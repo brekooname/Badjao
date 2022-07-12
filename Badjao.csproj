@@ -352,26 +352,32 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\CarouselForm.cs">
+    <Compile Include="Controls\CalculationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\CarouselForm.Designer.cs">
+    <Compile Include="Controls\CalculationForm.Designer.cs">
+      <DependentUpon>CalculationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CarouselForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\CarouselForm.Designer.cs">
       <DependentUpon>CarouselForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Carousel\Selector.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\CalendarForm.cs">
+    <Compile Include="Controls\CalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\CalendarForm.Designer.cs">
+    <Compile Include="Controls\CalendarForm.Designer.cs">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Excel\Workbook.cs" />
-    <Compile Include="Controls\Forms\ChartForm.cs">
+    <Compile Include="Controls\ChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\ChartForm.Designer.cs">
+    <Compile Include="Controls\ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\BindingBase.cs">
@@ -404,10 +410,10 @@
     <Compile Include="Controls\Chart\SeriesModel.cs" />
     <Compile Include="Controls\Chart\SourceModel.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
-    <Compile Include="Controls\Forms\DataForm.cs">
+    <Compile Include="Controls\DataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\DataForm.Designer.cs">
+    <Compile Include="Controls\DataForm.Designer.cs">
       <DependentUpon>DataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IBindingSource.cs" />
@@ -496,7 +502,7 @@
     <Compile Include="Data\SqlStatement\SqlConfig.cs" />
     <Compile Include="Data\SqlStatement\SqlFactory.cs" />
     <Compile Include="Data\SqlStatement\SqlStatement.cs" />
-    <Compile Include="Data\Worker\DataWorker.cs">
+    <Compile Include="Data\AsyncWorker\DataWorker.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Enumerations\AwardType.cs" />
@@ -537,10 +543,10 @@
     <Compile Include="Enumerations\UI.cs" />
     <Compile Include="Controls\Excel\ExcelReport.cs" />
     <Compile Include="Controls\Excel\ExcelSettings.cs" />
-    <Compile Include="Controls\Forms\ExcelForm.cs">
+    <Compile Include="Controls\ExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\ExcelForm.Designer.cs">
+    <Compile Include="Controls\ExcelForm.Designer.cs">
       <DependentUpon>ExcelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -562,34 +568,34 @@
     <Compile Include="Abstractions\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Forms\FileBrowser.cs">
+    <Compile Include="Controls\FileBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\FileBrowser.Designer.cs">
+    <Compile Include="Controls\FileBrowser.Designer.cs">
       <DependentUpon>FileBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Forms\ColumnConfiguration.cs">
+    <Compile Include="Controls\ColumnConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\ColumnConfiguration.Designer.cs">
+    <Compile Include="Controls\ColumnConfiguration.Designer.cs">
       <DependentUpon>ColumnConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Forms\Error.cs">
+    <Compile Include="Controls\Error.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\Error.Designer.cs">
+    <Compile Include="Controls\Error.Designer.cs">
       <DependentUpon>Error.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Forms\Message.cs">
+    <Compile Include="Controls\Message.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\Message.Designer.cs">
+    <Compile Include="Controls\Message.Designer.cs">
       <DependentUpon>Message.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Forms\Notification.cs">
+    <Compile Include="Controls\Notification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\Notification.Designer.cs">
+    <Compile Include="Controls\Notification.Designer.cs">
       <DependentUpon>Notification.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Notification\FormAnimator.cs" />
@@ -602,17 +608,17 @@
     <Compile Include="Interfaces\IFolder.cs" />
     <Compile Include="Abstractions\PathBase.cs" />
     <Compile Include="Interfaces\IFilePath.cs" />
-    <Compile Include="Controls\Forms\LoadingForm.cs">
+    <Compile Include="Controls\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\LoadingForm.Designer.cs">
+    <Compile Include="Controls\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Controls\Forms\MainForm.cs">
+    <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\MainForm.Designer.cs">
+    <Compile Include="Controls\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\TipBase.cs">
@@ -621,10 +627,10 @@
     <Compile Include="Controls\ToolTip\ToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\PdfForm.cs">
+    <Compile Include="Controls\PdfForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\PdfForm.Designer.cs">
+    <Compile Include="Controls\PdfForm.Designer.cs">
       <DependentUpon>PdfForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -637,46 +643,49 @@
     <Compile Include="Static\Verify.cs" />
     <Compile Include="Controls\Styles\ChartConfiguration.cs" />
     <Compile Include="Interfaces\IChartConfiguration.cs" />
-    <EmbeddedResource Include="Controls\Forms\CarouselForm.resx">
+    <EmbeddedResource Include="Controls\CalculationForm.resx">
+      <DependentUpon>CalculationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CarouselForm.resx">
       <DependentUpon>CarouselForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\CalendarForm.resx">
+    <EmbeddedResource Include="Controls\CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\ChartForm.resx">
+    <EmbeddedResource Include="Controls\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\MainForm.resx">
+    <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\DataForm.resx">
+    <EmbeddedResource Include="Controls\DataForm.resx">
       <DependentUpon>DataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\FileBrowser.resx">
+    <EmbeddedResource Include="Controls\FileBrowser.resx">
       <DependentUpon>FileBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\ColumnConfiguration.resx">
+    <EmbeddedResource Include="Controls\ColumnConfiguration.resx">
       <DependentUpon>ColumnConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\Error.resx">
+    <EmbeddedResource Include="Controls\Error.resx">
       <DependentUpon>Error.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\Message.resx">
+    <EmbeddedResource Include="Controls\Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\Notification.resx">
+    <EmbeddedResource Include="Controls\Notification.resx">
       <DependentUpon>Notification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\LoadingForm.resx">
+    <EmbeddedResource Include="Controls\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\ExcelForm.resx">
+    <EmbeddedResource Include="Controls\ExcelForm.resx">
       <DependentUpon>ExcelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\PdfForm.resx">
+    <EmbeddedResource Include="Controls\PdfForm.resx">
       <DependentUpon>PdfForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
