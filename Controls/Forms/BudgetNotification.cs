@@ -15,12 +15,12 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="Syncfusion.Windows.Forms.MetroForm" />
-    public partial class BudgetNotification : MetroForm
+    public partial class Notification : MetroForm
     {
         /// <summary>
         /// The open notifications
         /// </summary>
-        public static readonly List<BudgetNotification> OpenNotifications = new List<BudgetNotification>( );
+        public static readonly List<Notification> OpenNotifications = new List<Notification>( );
 
         /// <summary>
         /// Gets or sets a value indicating whether [allow focus].
@@ -44,21 +44,21 @@ namespace BudgetExecution
         private IntPtr _currentForegroundWindow;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BudgetNotification"/> class.
+        /// Initializes a new instance of the <see cref="Notification"/> class.
         /// </summary>
-        public BudgetNotification()
+        public Notification()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BudgetNotification"/> class.
+        /// Initializes a new instance of the <see cref="Notification"/> class.
         /// </summary>
         /// <param name="title">The title.</param>
         /// <param name="body">The body.</param>
         /// <param name="duration">The duration.</param>
         /// <param name="animation">The animation.</param>
         /// <param name="direction">The direction.</param>
-        public BudgetNotification( string title, string body, int duration = 2,
+        public Notification( string title, string body, int duration = 2,
             FormAnimator.AnimationMethod animation = FormAnimator.AnimationMethod.Slide,
             FormAnimator.AnimationDirection direction = FormAnimator.AnimationDirection.Left )
             : this( )

@@ -1,6 +1,6 @@
 ﻿namespace BudgetExecution
 {
-    partial class BudgetNotification
+    partial class Notification
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BudgetNotification));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notification));
             this.Title = new System.Windows.Forms.Label();
             this.Message = new System.Windows.Forms.Label();
             this.NotifyIcon = new System.Windows.Forms.PictureBox();
@@ -70,7 +70,7 @@
             this.NotifyIcon.Image = ((System.Drawing.Image)(resources.GetObject("NotifyIcon.Image")));
             this.NotifyIcon.Location = new System.Drawing.Point(0, 0);
             this.NotifyIcon.Name = "NotifyIcon";
-            this.NotifyIcon.Size = new System.Drawing.Size(38, 26);
+            this.NotifyIcon.Size = new System.Drawing.Size(24, 37);
             this.NotifyIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.NotifyIcon.TabIndex = 2;
             this.NotifyIcon.TabStop = false;
@@ -96,6 +96,7 @@
             this.BackPanel.Margin = new System.Windows.Forms.Padding(0);
             this.BackPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.BackPanel.Name = "BackPanel";
+            this.BackPanel.Padding = new System.Windows.Forms.Padding(5);
             this.BackPanel.Size = new System.Drawing.Size(348, 149);
             this.BackPanel.TabIndex = 3;
             this.BackPanel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -106,18 +107,18 @@
             this.BackPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.BackPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             // 
-            // BudgetNotification
+            // Notification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.BorderColor = System.Drawing.SystemColors.MenuHighlight;
-            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionBarHeight = 3;
-            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.CaptionButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CaptionButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(350, 151);
             this.ControlBox = false;
             this.Controls.Add(this.BackPanel);
@@ -125,8 +126,8 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximumSize = new System.Drawing.Size(460, 189);
-            this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.Name = "BudgetNotification";
+            this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.Name = "Notification";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

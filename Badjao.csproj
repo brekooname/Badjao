@@ -352,6 +352,12 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Forms\CalendarForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\CalendarForm.Designer.cs">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Excel\Workbook.cs" />
     <Compile Include="Controls\Forms\ChartForm.cs">
       <SubType>Form</SubType>
@@ -389,6 +395,12 @@
     <Compile Include="Controls\Chart\SeriesModel.cs" />
     <Compile Include="Controls\Chart\SourceModel.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
+    <Compile Include="Controls\Forms\DataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\DataForm.Designer.cs">
+      <DependentUpon>DataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IBindingSource.cs" />
     <Compile Include="Interfaces\IWorkbook.cs" />
     <Compile Include="Interfaces\IChart.cs" />
@@ -565,10 +577,10 @@
     <Compile Include="Controls\Dialog\Message\Message.Designer.cs">
       <DependentUpon>Message.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Notification\BudgetNotification.cs">
+    <Compile Include="Controls\Forms\BudgetNotification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Notification\BudgetNotification.Designer.cs">
+    <Compile Include="Controls\Forms\BudgetNotification.Designer.cs">
       <DependentUpon>BudgetNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Notification\FormAnimator.cs" />
@@ -581,11 +593,11 @@
     <Compile Include="Interfaces\IFolder.cs" />
     <Compile Include="Abstractions\PathBase.cs" />
     <Compile Include="Interfaces\IFilePath.cs" />
-    <Compile Include="Controls\Forms\Loader.cs">
+    <Compile Include="Controls\Forms\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\Loader.Designer.cs">
-      <DependentUpon>Loader.cs</DependentUpon>
+    <Compile Include="Controls\Forms\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Controls\Forms\MainForm.cs">
@@ -600,10 +612,10 @@
     <Compile Include="Controls\ToolTip\ToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\PDF\PdfForm.cs">
+    <Compile Include="Controls\Forms\PdfForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\PDF\PdfForm.Designer.cs">
+    <Compile Include="Controls\Forms\PdfForm.Designer.cs">
       <DependentUpon>PdfForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -616,8 +628,17 @@
     <Compile Include="Static\Verify.cs" />
     <Compile Include="Controls\Styles\ChartConfiguration.cs" />
     <Compile Include="Interfaces\IChartConfiguration.cs" />
+    <EmbeddedResource Include="Controls\Forms\CalendarForm.resx">
+      <DependentUpon>CalendarForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Forms\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Forms\DataForm.resx">
+      <DependentUpon>DataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
@@ -634,16 +655,16 @@
     <EmbeddedResource Include="Controls\Dialog\Message\Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Notification\BudgetNotification.resx">
+    <EmbeddedResource Include="Controls\Forms\BudgetNotification.resx">
       <DependentUpon>BudgetNotification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\Loader.resx">
-      <DependentUpon>Loader.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Forms\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Forms\ExcelForm.resx">
       <DependentUpon>ExcelForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\PDF\PdfForm.resx">
+    <EmbeddedResource Include="Controls\Forms\PdfForm.resx">
       <DependentUpon>PdfForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
