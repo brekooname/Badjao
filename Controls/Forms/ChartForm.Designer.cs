@@ -134,7 +134,6 @@
             this.Chart.Spacing = 10F;
             this.Chart.Style3D = true;
             this.Chart.TabIndex = 0;
-            this.Chart.Text = "Chart";
             this.Chart.Tilt = 15F;
             // 
             // 
@@ -142,7 +141,6 @@
             this.Chart.Title.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.Chart.Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.Chart.Title.Name = "Default";
-            this.Chart.Titles.Add(this.Chart.Title);
             this.Chart.VisualTheme = "";
             // 
             // ToolBar
