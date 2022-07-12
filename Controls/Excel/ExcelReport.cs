@@ -16,9 +16,9 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "PossiblyMistakenUseOfParamsMethod" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
+    [ SuppressMessage( "ReSharper", "PossiblyMistakenUseOfParamsMethod" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     public class ExcelReport
     {
         /// <summary>
@@ -36,22 +36,22 @@ namespace BudgetExecution
         /// <param name = "data" >
         /// The list.
         /// </param>
-        /// <param name = "excelFilePath" >
+        /// <param name = "path" >
         /// The excelFilePath.
         /// </param>
         /// <returns>
         /// </returns>
-        public bool CreateExcelDocument<T>( IEnumerable<T> data, string excelFilePath )
+        public bool CreateExcelDocument<T>( IEnumerable<T> data, string path )
         {
             if( data != null
-                && Verify.IsInput( excelFilePath ) )
+                && Verify.IsInput( path ) )
             {
                 try
                 {
                     using( var _dataSet = new DataSet(  ) )
                     {
                         _dataSet?.Tables?.Add( ListToDataTable( data ) );
-                        return CreateExcelDocument( _dataSet, excelFilePath );
+                        return CreateExcelDocument( _dataSet, path );
                     }
                 }
                 catch( Exception ex )
@@ -70,14 +70,14 @@ namespace BudgetExecution
         /// <param name = "dataTable" >
         /// The table.
         /// </param>
-        /// <param name = "excelFilePath" >
+        /// <param name = "path" >
         /// The excelFilePath.
         /// </param>
         /// <returns>
         /// </returns>
-        public bool CreateExcelDocument( DataTable dataTable, string excelFilePath )
+        public bool CreateExcelDocument( DataTable dataTable, string path )
         {
-            if( Verify.IsInput( excelFilePath )
+            if( Verify.IsInput( path )
                 && dataTable?.Rows?.Count > 0
                 && dataTable?.Columns?.Count > 0 )
             {
@@ -86,7 +86,7 @@ namespace BudgetExecution
                     using( var _dataSet = new DataSet(  ) )
                     {
                         _dataSet.Tables.Add( dataTable );
-                        var _document = CreateExcelDocument( _dataSet, excelFilePath );
+                        var _document = CreateExcelDocument( _dataSet, path );
                         _dataSet.Tables.Remove( dataTable );
                         return _document;
                     }
@@ -107,24 +107,24 @@ namespace BudgetExecution
         /// <param name = "dataSet" >
         /// The dataSet.
         /// </param>
-        /// <param name = "excelFileName" >
+        /// <param name = "fileName" >
         /// The excelFileName.
         /// </param>
         /// <returns>
         /// </returns>
-        public bool CreateExcelDocument( DataSet dataSet, string excelFileName )
+        public bool CreateExcelDocument( DataSet dataSet, string fileName )
         {
-            if( Verify.IsInput( excelFileName )
+            if( Verify.IsInput( fileName )
                 && dataSet != null )
             {
                 try
                 {
-                    using( var _document = SpreadsheetDocument.Create( excelFileName, SpreadsheetDocumentType.Workbook ) )
+                    using( var _document = SpreadsheetDocument.Create( fileName, SpreadsheetDocumentType.Workbook ) )
                     {
                         WriteExcelFile( dataSet, _document );
                     }
 
-                    Trace.WriteLine( "Successfully created: " + excelFileName );
+                    Trace.WriteLine( "Successfully created: " + fileName );
                     return true;
                 }
                 catch( Exception ex )
@@ -149,7 +149,7 @@ namespace BudgetExecution
         /// </returns>
         public DataTable ListToDataTable<T>( IEnumerable<T> data )
         {
-            if( data != null )
+            if( Verify.IsSequence( data )  )
             {
                 try
                 {
@@ -372,7 +372,7 @@ namespace BudgetExecution
 
                     if( spreadSheet.WorkbookPart != null )
                     {
-                        spreadSheet.WorkbookPart.Workbook = new Workbook( );
+                        spreadSheet.WorkbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook( );
                         spreadSheet.WorkbookPart.Workbook.Append( new BookViews( new WorkbookView( ) ) );
                         var _styles = spreadSheet.WorkbookPart.AddNewPart<WorkbookStylesPart>( "rIdStyles" );
 

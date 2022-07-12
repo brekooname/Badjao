@@ -352,7 +352,7 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Excel\BudgetWorkbook.cs" />
+    <Compile Include="Controls\Excel\Workbook.cs" />
     <Compile Include="Controls\Forms\ChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -535,10 +535,10 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Extensions\TypeObject.cs" />
-    <Compile Include="Controls\Forms\FormBase.cs">
+    <Compile Include="Abstractions\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\FormBase.Designer.cs">
+    <Compile Include="Abstractions\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Dialog\Browser\BudgetFileBrowser.cs">
@@ -577,17 +577,17 @@
     <Compile Include="Controls\Excel\Heading.cs" />
     <Compile Include="IO\FilePath.cs" />
     <Compile Include="IO\Folder.cs" />
-    <Compile Include="IO\FolderBase.cs" />
-    <Compile Include="IO\IFolder.cs" />
-    <Compile Include="IO\PathBase.cs" />
-    <Compile Include="IO\IFilePath.cs" />
+    <Compile Include="Abstractions\FolderBase.cs" />
+    <Compile Include="Interfaces\IFolder.cs" />
+    <Compile Include="Abstractions\PathBase.cs" />
+    <Compile Include="Interfaces\IFilePath.cs" />
     <Compile Include="Controls\Forms\Loader.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Controls\Forms\Loader.Designer.cs">
       <DependentUpon>Loader.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Excel\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Controls\Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -13,7 +13,7 @@ namespace BudgetExecution
     using OfficeOpenXml.Style;
 
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    public class BudgetWorkbook : ExcelBase
+    public class Workbook : ExcelBase
     {
         /// <summary>
         /// The font color
@@ -67,16 +67,16 @@ namespace BudgetExecution
         public Image FooterImage { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BudgetWorkbook"/> class.
+        /// Initializes a new instance of the <see cref="Workbook"/> class.
         /// </summary>
-        public BudgetWorkbook()
+        public Workbook()
         {
             FileInfo = new FileInfo( FilePath );
             Excel = new ExcelPackage( FileInfo );
             Workbook = Excel.Workbook;
         }
 
-        public BudgetWorkbook( DataTable dataTable )
+        public Workbook( DataTable dataTable )
             : this( )
         {
             Data = dataTable.AsEnumerable( );
