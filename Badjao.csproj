@@ -352,6 +352,15 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Forms\CarouselForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Forms\CarouselForm.Designer.cs">
+      <DependentUpon>CarouselForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Carousel\Selector.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Forms\CalendarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -553,35 +562,35 @@
     <Compile Include="Abstractions\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Dialog\Browser\BudgetFileBrowser.cs">
+    <Compile Include="Controls\Forms\FileBrowser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Dialog\Browser\BudgetFileBrowser.Designer.cs">
-      <DependentUpon>BudgetFileBrowser.cs</DependentUpon>
+    <Compile Include="Controls\Forms\FileBrowser.Designer.cs">
+      <DependentUpon>FileBrowser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Dialog\Column\ColumnConfiguration.cs">
+    <Compile Include="Controls\Forms\ColumnConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Dialog\Column\ColumnConfiguration.Designer.cs">
+    <Compile Include="Controls\Forms\ColumnConfiguration.Designer.cs">
       <DependentUpon>ColumnConfiguration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Dialog\Error\Error.cs">
+    <Compile Include="Controls\Forms\Error.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Dialog\Error\Error.Designer.cs">
+    <Compile Include="Controls\Forms\Error.Designer.cs">
       <DependentUpon>Error.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Dialog\Message\Message.cs">
+    <Compile Include="Controls\Forms\Message.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Dialog\Message\Message.Designer.cs">
+    <Compile Include="Controls\Forms\Message.Designer.cs">
       <DependentUpon>Message.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Forms\BudgetNotification.cs">
+    <Compile Include="Controls\Forms\Notification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Forms\BudgetNotification.Designer.cs">
-      <DependentUpon>BudgetNotification.cs</DependentUpon>
+    <Compile Include="Controls\Forms\Notification.Designer.cs">
+      <DependentUpon>Notification.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Notification\FormAnimator.cs" />
     <Compile Include="Controls\Notification\NativeMethods.cs" />
@@ -628,6 +637,9 @@
     <Compile Include="Static\Verify.cs" />
     <Compile Include="Controls\Styles\ChartConfiguration.cs" />
     <Compile Include="Interfaces\IChartConfiguration.cs" />
+    <EmbeddedResource Include="Controls\Forms\CarouselForm.resx">
+      <DependentUpon>CarouselForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Forms\CalendarForm.resx">
       <DependentUpon>CalendarForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -643,20 +655,20 @@
     <EmbeddedResource Include="Data\Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Dialog\Browser\BudgetFileBrowser.resx">
-      <DependentUpon>BudgetFileBrowser.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Forms\FileBrowser.resx">
+      <DependentUpon>FileBrowser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Dialog\Column\ColumnConfiguration.resx">
+    <EmbeddedResource Include="Controls\Forms\ColumnConfiguration.resx">
       <DependentUpon>ColumnConfiguration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Dialog\Error\Error.resx">
+    <EmbeddedResource Include="Controls\Forms\Error.resx">
       <DependentUpon>Error.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Dialog\Message\Message.resx">
+    <EmbeddedResource Include="Controls\Forms\Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Forms\BudgetNotification.resx">
-      <DependentUpon>BudgetNotification.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\Forms\Notification.resx">
+      <DependentUpon>Notification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Forms\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
