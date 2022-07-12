@@ -516,10 +516,10 @@
     <Compile Include="Enumerations\UI.cs" />
     <Compile Include="Controls\Excel\ExcelReport.cs" />
     <Compile Include="Controls\Excel\ExcelSettings.cs" />
-    <Compile Include="Controls\Excel\ExcelForm.cs">
+    <Compile Include="Controls\Forms\ExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\Excel\ExcelForm.Designer.cs">
+    <Compile Include="Controls\Forms\ExcelForm.Designer.cs">
       <DependentUpon>ExcelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -640,7 +640,7 @@
     <EmbeddedResource Include="Controls\Forms\Loader.resx">
       <DependentUpon>Loader.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Excel\ExcelForm.resx">
+    <EmbeddedResource Include="Controls\Forms\ExcelForm.resx">
       <DependentUpon>ExcelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PDF\PdfForm.resx">
