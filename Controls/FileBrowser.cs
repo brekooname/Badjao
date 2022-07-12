@@ -9,11 +9,11 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Windows.Forms;
     
-    public partial class BudgetFileBrowser
+    public partial class FileBrowser
     {
         /// <summary>Initializes a new instance of the 
-        /// <see cref="BudgetFileBrowser" /> class.</summary>
-        public BudgetFileBrowser( )
+        /// <see cref="FileBrowser" /> class.</summary>
+        public FileBrowser( )
         {
             InitializeComponent( );
             Size = new Size( 700, 530 );

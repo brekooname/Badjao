@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle5 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle6 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle7 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle8 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo2 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataForm));
             this.DataGrid = new Syncfusion.Windows.Forms.Grid.GridDataBoundGrid();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DataSet = new System.Data.DataSet();
             this.ToolBar = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.TextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.PreviousButton = new System.Windows.Forms.ToolStripButton();
             this.ComboBox = new Syncfusion.Windows.Forms.Tools.ToolStripComboBoxEx();
+            this.NextButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.BrowseButton = new System.Windows.Forms.ToolStripButton();
             this.Separator22 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,62 +59,61 @@
             this.PdfButton = new System.Windows.Forms.ToolStripButton();
             this.Separator9 = new System.Windows.Forms.ToolStripSeparator();
             this.HomeButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.PreviousButton = new System.Windows.Forms.ToolStripButton();
-            this.NextButton = new System.Windows.Forms.ToolStripButton();
+            this.GridPanel = new VisualPlus.Toolkit.Controls.Layout.VisualPanel();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.ToolBar.SuspendLayout();
+            this.GridPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DataGrid
             // 
             this.DataGrid.AllowDragSelectedCols = true;
             this.DataGrid.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            gridBaseStyle1.Name = "Column Header";
-            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
-            gridBaseStyle1.StyleInfo.Enabled = false;
-            gridBaseStyle1.StyleInfo.Font.Bold = true;
-            gridBaseStyle1.StyleInfo.Font.Facename = "Segoe UI";
-            gridBaseStyle1.StyleInfo.Font.Italic = false;
-            gridBaseStyle1.StyleInfo.Font.Size = 9F;
-            gridBaseStyle1.StyleInfo.Font.Strikeout = false;
-            gridBaseStyle1.StyleInfo.Font.Underline = false;
-            gridBaseStyle1.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
-            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridBaseStyle2.Name = "Header";
-            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.CellType = "Header";
-            gridBaseStyle2.StyleInfo.Font.Bold = true;
-            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
-            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-            gridBaseStyle3.Name = "Standard";
-            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
-            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
-            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-            gridBaseStyle4.Name = "Row Header";
-            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
-            gridBaseStyle4.StyleInfo.Enabled = true;
-            gridBaseStyle4.StyleInfo.Font.Bold = true;
-            gridBaseStyle4.StyleInfo.Font.Facename = "Segoe UI";
-            gridBaseStyle4.StyleInfo.Font.Italic = false;
-            gridBaseStyle4.StyleInfo.Font.Size = 9F;
-            gridBaseStyle4.StyleInfo.Font.Strikeout = false;
-            gridBaseStyle4.StyleInfo.Font.Underline = false;
-            gridBaseStyle4.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
-            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            gridBaseStyle5.Name = "Column Header";
+            gridBaseStyle5.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle5.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle5.StyleInfo.Enabled = false;
+            gridBaseStyle5.StyleInfo.Font.Bold = true;
+            gridBaseStyle5.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle5.StyleInfo.Font.Italic = false;
+            gridBaseStyle5.StyleInfo.Font.Size = 9F;
+            gridBaseStyle5.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle5.StyleInfo.Font.Underline = false;
+            gridBaseStyle5.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle5.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle6.Name = "Header";
+            gridBaseStyle6.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.CellType = "Header";
+            gridBaseStyle6.StyleInfo.Font.Bold = true;
+            gridBaseStyle6.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle6.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle7.Name = "Standard";
+            gridBaseStyle7.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle7.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle7.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle8.Name = "Row Header";
+            gridBaseStyle8.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle8.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle8.StyleInfo.Enabled = true;
+            gridBaseStyle8.StyleInfo.Font.Bold = true;
+            gridBaseStyle8.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle8.StyleInfo.Font.Italic = false;
+            gridBaseStyle8.StyleInfo.Font.Size = 9F;
+            gridBaseStyle8.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle8.StyleInfo.Font.Underline = false;
+            gridBaseStyle8.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle8.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
             this.DataGrid.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle1,
-            gridBaseStyle2,
-            gridBaseStyle3,
-            gridBaseStyle4});
+            gridBaseStyle5,
+            gridBaseStyle6,
+            gridBaseStyle7,
+            gridBaseStyle8});
             this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2007Black;
             this.DataGrid.DataSource = this.BindingSource;
             this.DataGrid.DefaultRowHeight = 28;
@@ -128,13 +129,13 @@
             this.DataGrid.OptimizeInsertRemoveCells = true;
             this.DataGrid.Properties.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.DataGrid.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.DataGrid.Size = new System.Drawing.Size(1148, 672);
+            this.DataGrid.Size = new System.Drawing.Size(1052, 560);
             this.DataGrid.SmartSizeBox = false;
             this.DataGrid.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.DataGrid.TabIndex = 0;
-            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20))))));
-            gridStyleInfo1.VerticalScrollbar = true;
-            this.DataGrid.TableStyle = gridStyleInfo1;
+            gridStyleInfo2.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20))))));
+            gridStyleInfo2.VerticalScrollbar = true;
+            this.DataGrid.TableStyle = gridStyleInfo2;
             this.DataGrid.Text = "gridDataBoundGrid1";
             this.DataGrid.ThemesEnabled = true;
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -190,7 +191,6 @@
             this.ToolBar.ForeColor = System.Drawing.Color.Black;
             this.ToolBar.Image = null;
             this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
             this.TextBox,
             this.PreviousButton,
             this.ComboBox,
@@ -214,7 +214,7 @@
             this.ToolBar.Location = new System.Drawing.Point(0, 672);
             this.ToolBar.Name = "ToolBar";
             this.ToolBar.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Black;
-            this.ToolBar.Size = new System.Drawing.Size(1148, 41);
+            this.ToolBar.Size = new System.Drawing.Size(1188, 41);
             this.ToolBar.TabIndex = 3;
             this.ToolBar.Text = "Data";
             this.ToolBar.ThemeName = "Default";
@@ -228,6 +228,15 @@
             this.TextBox.Name = "TextBox";
             this.TextBox.Size = new System.Drawing.Size(150, 25);
             // 
+            // PreviousButton
+            // 
+            this.PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("PreviousButton.Image")));
+            this.PreviousButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PreviousButton.Name = "PreviousButton";
+            this.PreviousButton.Size = new System.Drawing.Size(76, 22);
+            this.PreviousButton.Text = "  Previous";
+            this.PreviousButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            // 
             // ComboBox
             // 
             this.ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -237,7 +246,16 @@
             this.ComboBox.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ComboBox.Name = "ComboBox";
             this.ComboBox.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.ComboBox.Size = new System.Drawing.Size(156, 25);
+            this.ComboBox.Size = new System.Drawing.Size(226, 25);
+            // 
+            // NextButton
+            // 
+            this.NextButton.Image = ((System.Drawing.Image)(resources.GetObject("NextButton.Image")));
+            this.NextButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NextButton.Name = "NextButton";
+            this.NextButton.Size = new System.Drawing.Size(50, 22);
+            this.NextButton.Text = "Next";
+            this.NextButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
             // toolStripSeparator1
             // 
@@ -354,29 +372,33 @@
             this.HomeButton.Text = "     Home";
             this.HomeButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
-            // toolStripLabel1
+            // GridPanel
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(37, 22);
-            this.toolStripLabel1.Text = "          ";
-            // 
-            // PreviousButton
-            // 
-            this.PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("PreviousButton.Image")));
-            this.PreviousButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PreviousButton.Name = "PreviousButton";
-            this.PreviousButton.Size = new System.Drawing.Size(76, 22);
-            this.PreviousButton.Text = "  Previous";
-            this.PreviousButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            // 
-            // NextButton
-            // 
-            this.NextButton.Image = ((System.Drawing.Image)(resources.GetObject("NextButton.Image")));
-            this.NextButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NextButton.Name = "NextButton";
-            this.NextButton.Size = new System.Drawing.Size(50, 22);
-            this.NextButton.Text = "Next";
-            this.NextButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.GridPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.GridPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.GridPanel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.GridPanel.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(183)))), ((int)(((byte)(230)))));
+            this.GridPanel.Border.HoverVisible = true;
+            this.GridPanel.Border.Rounding = 6;
+            this.GridPanel.Border.Thickness = 1;
+            this.GridPanel.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.GridPanel.Border.Visible = true;
+            this.GridPanel.Controls.Add(this.DataGrid);
+            this.GridPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.Location = new System.Drawing.Point(64, 67);
+            this.GridPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.GridPanel.Name = "GridPanel";
+            this.GridPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.GridPanel.Size = new System.Drawing.Size(1052, 560);
+            this.GridPanel.TabIndex = 4;
+            this.GridPanel.Text = "visualPanel1";
+            this.GridPanel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.GridPanel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.GridPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.GridPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             // 
             // DataForm
             // 
@@ -390,12 +412,11 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1148, 713);
-            this.Controls.Add(this.DataGrid);
+            this.ClientSize = new System.Drawing.Size(1188, 713);
+            this.Controls.Add(this.GridPanel);
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Name = "DataForm";
@@ -405,6 +426,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ToolBar.ResumeLayout(false);
             this.ToolBar.PerformLayout();
+            this.GridPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -433,9 +455,9 @@
         private System.Windows.Forms.ToolStripButton PdfButton;
         private System.Windows.Forms.ToolStripSeparator Separator9;
         private System.Windows.Forms.ToolStripButton HomeButton;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Data.DataSet DataSet;
         private System.Windows.Forms.ToolStripButton PreviousButton;
         private System.Windows.Forms.ToolStripButton NextButton;
+        private VisualPlus.Toolkit.Controls.Layout.VisualPanel GridPanel;
+        public System.Data.DataSet DataSet;
     }
 }

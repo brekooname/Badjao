@@ -90,7 +90,7 @@
             this.Ribbon.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2010;
             this.Ribbon.ShowQuickItemsDropDownButton = false;
             this.Ribbon.ShowRibbonDisplayOptionButton = false;
-            this.Ribbon.Size = new System.Drawing.Size(1148, 155);
+            this.Ribbon.Size = new System.Drawing.Size(1188, 155);
             this.Ribbon.Spreadsheet = null;
             this.Ribbon.SystemText.QuickAccessDialogDropDownName = "Start menu";
             this.Ribbon.SystemText.RenameDisplayLabelText = "&Display Name:";
@@ -116,7 +116,7 @@
             this.spreadsheet1.DefaultRowCount = 101;
             this.spreadsheet1.DisplayAlerts = true;
             this.spreadsheet1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spreadsheet1.FileName = "Book6";
+            this.spreadsheet1.FileName = "Book2";
             this.spreadsheet1.FormulaBarVisibility = true;
             formulaRangeSelectionController1.AllowMouseSelection = true;
             formulaRangeSelectionController1.AllowSelectionOnEditing = true;
@@ -127,7 +127,7 @@
             this.spreadsheet1.SelectedTabIndex = 0;
             this.spreadsheet1.SelectedTabItem = null;
             this.spreadsheet1.ShowBusyIndicator = true;
-            this.spreadsheet1.Size = new System.Drawing.Size(1148, 558);
+            this.spreadsheet1.Size = new System.Drawing.Size(1188, 517);
             this.spreadsheet1.TabIndex = 1;
             this.spreadsheet1.TabItemContextMenu = null;
             this.spreadsheet1.Text = "Spreadsheet";
@@ -170,7 +170,7 @@
             this.ToolBar.Location = new System.Drawing.Point(0, 672);
             this.ToolBar.Name = "ToolBar";
             this.ToolBar.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Black;
-            this.ToolBar.Size = new System.Drawing.Size(1148, 41);
+            this.ToolBar.Size = new System.Drawing.Size(1188, 41);
             this.ToolBar.TabIndex = 4;
             this.ToolBar.Text = "Data";
             this.ToolBar.ThemeName = "Default";
@@ -216,7 +216,7 @@
             this.ComboBox.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ComboBox.Name = "ComboBox";
             this.ComboBox.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.ComboBox.Size = new System.Drawing.Size(160, 25);
+            this.ComboBox.Size = new System.Drawing.Size(102, 25);
             // 
             // toolStripSeparator1
             // 
@@ -349,9 +349,9 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1148, 713);
-            this.Controls.Add(this.ToolBar);
+            this.ClientSize = new System.Drawing.Size(1188, 713);
             this.Controls.Add(this.spreadsheet1);
+            this.Controls.Add(this.ToolBar);
             this.Controls.Add(this.Ribbon);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;

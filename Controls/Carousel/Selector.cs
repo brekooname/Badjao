@@ -14,23 +14,6 @@ namespace BudgetExecution
 
     public class Selector: Carousel
     {
-        /// <summary>
-        /// Gets or sets the rpio path.
-        /// </summary>
-        /// <value>
-        /// The rpio path.
-        /// </value>
-        public string RegionPath { get; set; } =
-            ConfigurationManager.AppSettings[ "CarouselRegionImages" ];
-
-        /// <summary>
-        /// Gets or sets the rpio path.
-        /// </summary>
-        /// <value>
-        /// The rpio path.
-        /// </value>
-        public string NpmPath { get; set; } =
-            ConfigurationManager.AppSettings[ "CarouselNpmImages" ];
 
         /// <summary>
         /// Gets or sets the provider path.
@@ -39,7 +22,16 @@ namespace BudgetExecution
         /// The provider path.
         /// </value>
         public string ProviderPath { get; set; } =
-            ConfigurationManager.AppSettings[ "CarouselProviderPath" ];
+            ConfigurationManager.AppSettings[ "ProviderPath" ];
+
+        /// <summary>
+        /// Gets or sets the provider path.
+        /// </summary>
+        /// <value>
+        /// The provider path.
+        /// </value>
+        public string FunctionalityPath { get; set; } =
+            ConfigurationManager.AppSettings[ "FunctionalityPath" ];
 
         /// <summary>
         /// Gets or sets the fund path.
@@ -47,8 +39,6 @@ namespace BudgetExecution
         /// <value>
         /// The fund path.
         /// </value>
-        public string FundPath { get; set; } =
-            ConfigurationManager.AppSettings[ "CarouselFundImages" ];
 
         /// <summary>
         /// Initializes a new instance
@@ -74,7 +64,7 @@ namespace BudgetExecution
             UseCustomBounds = false;
             CanOverrideStyle = true;
             VisualStyle = CarouselVisualStyle.Metro;
-            FilePath = NpmPath;
+            FilePath = FunctionalityPath;
             HighlightColor = Color.SteelBlue;
 
             // ThemeStyle Properties

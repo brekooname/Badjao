@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.PdfViewer.MessageBoxSettings messageBoxSettings3 = new Syncfusion.Windows.Forms.PdfViewer.MessageBoxSettings();
-            Syncfusion.Windows.PdfViewer.PdfViewerPrinterSettings pdfViewerPrinterSettings3 = new Syncfusion.Windows.PdfViewer.PdfViewerPrinterSettings();
+            Syncfusion.Windows.Forms.PdfViewer.MessageBoxSettings messageBoxSettings2 = new Syncfusion.Windows.Forms.PdfViewer.MessageBoxSettings();
+            Syncfusion.Windows.PdfViewer.PdfViewerPrinterSettings pdfViewerPrinterSettings2 = new Syncfusion.Windows.PdfViewer.PdfViewerPrinterSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PdfForm));
-            Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings textSearchSettings3 = new Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings();
+            Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings textSearchSettings2 = new Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings();
             this.pdfViewerControl1 = new Syncfusion.Windows.Forms.PdfViewer.PdfViewerControl();
             this.ToolBar = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.Separator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -71,29 +71,29 @@
             this.pdfViewerControl1.IsTextSearchEnabled = true;
             this.pdfViewerControl1.IsTextSelectionEnabled = true;
             this.pdfViewerControl1.Location = new System.Drawing.Point(0, 0);
-            messageBoxSettings3.EnableNotification = true;
-            this.pdfViewerControl1.MessageBoxSettings = messageBoxSettings3;
+            messageBoxSettings2.EnableNotification = true;
+            this.pdfViewerControl1.MessageBoxSettings = messageBoxSettings2;
             this.pdfViewerControl1.MinimumZoomPercentage = 50;
             this.pdfViewerControl1.Name = "pdfViewerControl1";
             this.pdfViewerControl1.PageBorderThickness = 1;
-            pdfViewerPrinterSettings3.PageOrientation = Syncfusion.Windows.PdfViewer.PdfViewerPrintOrientation.Auto;
-            pdfViewerPrinterSettings3.PageSize = Syncfusion.Windows.PdfViewer.PdfViewerPrintSize.ActualSize;
-            pdfViewerPrinterSettings3.PrintLocation = ((System.Drawing.PointF)(resources.GetObject("pdfViewerPrinterSettings3.PrintLocation")));
-            pdfViewerPrinterSettings3.ShowPrintStatusDialog = true;
-            this.pdfViewerControl1.PrinterSettings = pdfViewerPrinterSettings3;
+            pdfViewerPrinterSettings2.PageOrientation = Syncfusion.Windows.PdfViewer.PdfViewerPrintOrientation.Auto;
+            pdfViewerPrinterSettings2.PageSize = Syncfusion.Windows.PdfViewer.PdfViewerPrintSize.ActualSize;
+            pdfViewerPrinterSettings2.PrintLocation = ((System.Drawing.PointF)(resources.GetObject("pdfViewerPrinterSettings2.PrintLocation")));
+            pdfViewerPrinterSettings2.ShowPrintStatusDialog = true;
+            this.pdfViewerControl1.PrinterSettings = pdfViewerPrinterSettings2;
             this.pdfViewerControl1.ReferencePath = null;
             this.pdfViewerControl1.ScrollDisplacementValue = 0;
             this.pdfViewerControl1.ShowHorizontalScrollBar = true;
             this.pdfViewerControl1.ShowToolBar = true;
             this.pdfViewerControl1.ShowVerticalScrollBar = true;
-            this.pdfViewerControl1.Size = new System.Drawing.Size(1148, 672);
+            this.pdfViewerControl1.Size = new System.Drawing.Size(1188, 672);
             this.pdfViewerControl1.SpaceBetweenPages = 8;
             this.pdfViewerControl1.TabIndex = 0;
             this.pdfViewerControl1.Text = "DocumentViewer";
-            textSearchSettings3.CurrentInstanceColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(255)))), ((int)(((byte)(171)))), ((int)(((byte)(64)))));
-            textSearchSettings3.HighlightAllInstance = true;
-            textSearchSettings3.OtherInstanceColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
-            this.pdfViewerControl1.TextSearchSettings = textSearchSettings3;
+            textSearchSettings2.CurrentInstanceColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(255)))), ((int)(((byte)(171)))), ((int)(((byte)(64)))));
+            textSearchSettings2.HighlightAllInstance = true;
+            textSearchSettings2.OtherInstanceColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(254)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
+            this.pdfViewerControl1.TextSearchSettings = textSearchSettings2;
             this.pdfViewerControl1.ThemeName = "Default";
             this.pdfViewerControl1.UseWaitCursor = true;
             this.pdfViewerControl1.VerticalScrollOffset = 0;
@@ -108,9 +108,8 @@
             this.ToolBar.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
             this.ToolBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ToolBar.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolBar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.ToolBar.ForeColor = System.Drawing.Color.Black;
             this.ToolBar.Image = null;
-            this.ToolBar.ImageScalingSize = new System.Drawing.Size(18, 18);
             this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Separator1,
             this.TextBox,
@@ -138,10 +137,11 @@
             this.ToolBar.Location = new System.Drawing.Point(0, 672);
             this.ToolBar.Name = "ToolBar";
             this.ToolBar.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Black;
-            this.ToolBar.Size = new System.Drawing.Size(1148, 41);
+            this.ToolBar.Size = new System.Drawing.Size(1188, 41);
             this.ToolBar.TabIndex = 3;
             this.ToolBar.Text = "Data";
             this.ToolBar.ThemeName = "Default";
+            this.ToolBar.UseWaitCursor = true;
             // 
             // Separator1
             // 
@@ -184,7 +184,7 @@
             this.ComboBox.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ComboBox.Name = "ComboBox";
             this.ComboBox.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.ComboBox.Size = new System.Drawing.Size(160, 25);
+            this.ComboBox.Size = new System.Drawing.Size(102, 25);
             // 
             // toolStripSeparator1
             // 
@@ -197,7 +197,7 @@
             this.BrowseButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BrowseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(67, 22);
+            this.BrowseButton.Size = new System.Drawing.Size(64, 22);
             this.BrowseButton.Text = "Browse";
             this.BrowseButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BrowseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -212,7 +212,7 @@
             this.DatabaseButton.Image = ((System.Drawing.Image)(resources.GetObject("DatabaseButton.Image")));
             this.DatabaseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DatabaseButton.Name = "DatabaseButton";
-            this.DatabaseButton.Size = new System.Drawing.Size(53, 22);
+            this.DatabaseButton.Size = new System.Drawing.Size(50, 22);
             this.DatabaseButton.Text = "Data";
             this.DatabaseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -226,7 +226,7 @@
             this.ExcelButton.Image = ((System.Drawing.Image)(resources.GetObject("ExcelButton.Image")));
             this.ExcelButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExcelButton.Name = "ExcelButton";
-            this.ExcelButton.Size = new System.Drawing.Size(69, 22);
+            this.ExcelButton.Size = new System.Drawing.Size(66, 22);
             this.ExcelButton.Text = "Reports";
             this.ExcelButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -240,7 +240,7 @@
             this.CaculatorButton.Image = ((System.Drawing.Image)(resources.GetObject("CaculatorButton.Image")));
             this.CaculatorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CaculatorButton.Name = "CaculatorButton";
-            this.CaculatorButton.Size = new System.Drawing.Size(83, 22);
+            this.CaculatorButton.Size = new System.Drawing.Size(78, 22);
             this.CaculatorButton.Text = "Calculator";
             this.CaculatorButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -254,7 +254,7 @@
             this.GoogleButton.Image = ((System.Drawing.Image)(resources.GetObject("GoogleButton.Image")));
             this.GoogleButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GoogleButton.Name = "GoogleButton";
-            this.GoogleButton.Size = new System.Drawing.Size(64, 22);
+            this.GoogleButton.Size = new System.Drawing.Size(62, 22);
             this.GoogleButton.Text = "Search";
             this.GoogleButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -268,7 +268,7 @@
             this.CalendarButton.Image = ((System.Drawing.Image)(resources.GetObject("CalendarButton.Image")));
             this.CalendarButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CalendarButton.Name = "CalendarButton";
-            this.CalendarButton.Size = new System.Drawing.Size(76, 22);
+            this.CalendarButton.Size = new System.Drawing.Size(71, 22);
             this.CalendarButton.Text = "Calendar";
             this.CalendarButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -282,7 +282,7 @@
             this.ChartButton.Image = ((System.Drawing.Image)(resources.GetObject("ChartButton.Image")));
             this.ChartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ChartButton.Name = "ChartButton";
-            this.ChartButton.Size = new System.Drawing.Size(63, 22);
+            this.ChartButton.Size = new System.Drawing.Size(60, 22);
             this.ChartButton.Text = "Charts";
             this.ChartButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -296,7 +296,7 @@
             this.HomeButton.Image = ((System.Drawing.Image)(resources.GetObject("HomeButton.Image")));
             this.HomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HomeButton.Name = "HomeButton";
-            this.HomeButton.Size = new System.Drawing.Size(62, 22);
+            this.HomeButton.Size = new System.Drawing.Size(57, 22);
             this.HomeButton.Text = "Home";
             this.HomeButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -317,12 +317,11 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1148, 713);
+            this.ClientSize = new System.Drawing.Size(1188, 713);
             this.Controls.Add(this.pdfViewerControl1);
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Name = "PdfForm";

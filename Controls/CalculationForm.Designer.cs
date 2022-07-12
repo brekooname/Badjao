@@ -38,19 +38,20 @@
             this.Calculator.AccessibleName = "Calculator Control";
             this.Calculator.BeforeTouchSize = new System.Drawing.Size(398, 429);
             this.Calculator.ButtonStyle = Syncfusion.Windows.Forms.ButtonAppearance.Metro;
+            this.Calculator.CanOverrideStyle = true;
             this.Calculator.Culture = new System.Globalization.CultureInfo("en-US");
             this.Calculator.DisplayTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Calculator.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Calculator.DoubleValue = 0D;
             this.Calculator.EnableTouchMode = true;
-            this.Calculator.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.Calculator.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Calculator.ForeColor = System.Drawing.Color.White;
+            this.Calculator.ForeColor = System.Drawing.Color.LightGray;
             this.Calculator.Location = new System.Drawing.Point(0, 0);
             this.Calculator.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Calculator.Name = "Calculator";
             this.Calculator.Office2007Theme = Syncfusion.Windows.Forms.Office2007Theme.Managed;
             this.Calculator.Office2010Theme = Syncfusion.Windows.Forms.Office2010Theme.Managed;
+            this.Calculator.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Calculator.Size = new System.Drawing.Size(398, 429);
             this.Calculator.TabIndex = 0;
             this.Calculator.ThemeName = "Metro";
@@ -68,7 +69,7 @@
             this.Calculator.UseVerticalAndHorizontalSpacing = true;
             this.Calculator.UseVisualStyle = true;
             // 
-            // CalculatorForm
+            // CalculationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
