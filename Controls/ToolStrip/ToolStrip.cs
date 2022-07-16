@@ -76,7 +76,7 @@ namespace BudgetExecution
         /// <value>
         /// The buttons.
         /// </value>
-        public IDictionary<string, ToolbarButton> Buttons { get; }
+        public IDictionary<string, ToolStripButton> Buttons { get; }
 
         /// <summary>
         /// Gets or sets the size of the image.
@@ -130,15 +130,15 @@ namespace BudgetExecution
         /// Gets the buttons.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, ToolbarButton> GetButtons()
+        public IDictionary<string, ToolStripButton> GetButtons()
         {
-            var _buttons = new SortedList<string, ToolbarButton>( );
+            var _buttons = new SortedList<string, ToolStripButton>( );
 
             if( Items?.Count > 0 )
             {
                 foreach( var _control in Items )
                 {
-                    if( _control is ToolbarButton _item )
+                    if( _control is ToolStripButton _item )
                     {
                         if( !string.IsNullOrEmpty( _item.Name ) )
                         {
@@ -149,10 +149,10 @@ namespace BudgetExecution
 
                 return _buttons?.Count > 0
                     ? _buttons
-                    : default( SortedList<string, ToolbarButton> );
+                    : default( SortedList<string, ToolStripButton> );
             }
 
-            return default( IDictionary<string, ToolbarButton> );
+            return default( IDictionary<string, ToolStripButton> );
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // First Button
-                FirstButton = new ToolbarButton( );
+                FirstButton = new ToolStripButton( );
                 FirstButton.ToolType = ToolType.FirstButton;
                 FirstButton.Image = Image.FromFile( _firstRecord );
                 FirstButton.BindingSource = BindingSource;
@@ -227,7 +227,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Previous Button
-                PreviousButton = new ToolbarButton( );
+                PreviousButton = new ToolStripButton( );
                 PreviousButton.ToolType = ToolType.PreviousButton;
                 PreviousButton.Image = Image.FromFile( _previousRecord );
                 PreviousButton.BindingSource = BindingSource;
@@ -236,7 +236,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Next Button
-                NextButton = new ToolbarButton( );
+                NextButton = new ToolStripButton( );
                 NextButton.ToolType = ToolType.NextButton;
                 NextButton.Image = Image.FromFile( _nextRecord );
                 NextButton.BindingSource = BindingSource;
@@ -245,7 +245,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Last button
-                LastButton = new ToolbarButton( );
+                LastButton = new ToolStripButton( );
                 LastButton.ToolType = ToolType.LastButton;
                 LastButton.Image = Image.FromFile( _lastRecord );
                 LastButton.BindingSource = BindingSource;
@@ -254,7 +254,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Edit Button
-                EditButton = new ToolbarButton( );
+                EditButton = new ToolStripButton( );
                 EditButton.ToolType = ToolType.EditButton;
                 EditButton.Image = Image.FromFile( _edit );
                 EditButton.HoverText = "Edit Record";
@@ -262,7 +262,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Add Button
-                AddButton = new ToolbarButton( );
+                AddButton = new ToolStripButton( );
                 AddButton.ToolType = ToolType.AddButton;
                 AddButton.Image = Image.FromFile( _add );
                 AddButton.HoverText = "Add Record";
@@ -270,7 +270,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Delete Button
-                DeleteButton = new ToolbarButton( );
+                DeleteButton = new ToolStripButton( );
                 DeleteButton.ToolType = ToolType.DeleteButton;
                 DeleteButton.Image = Image.FromFile( _delete );
                 DeleteButton.HoverText = "Delete Record";
@@ -278,7 +278,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Refresh Button
-                RefreshButton = new ToolbarButton( );
+                RefreshButton = new ToolStripButton( );
                 RefreshButton.ToolType = ToolType.RefreshButton;
                 RefreshButton.Image = Image.FromFile( _refresh );
                 RefreshButton.HoverText = "Refresh Data";
@@ -286,7 +286,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Save Button
-                SaveButton = new ToolbarButton( );
+                SaveButton = new ToolStripButton( );
                 SaveButton.ToolType = ToolType.SaveButton;
                 SaveButton.Image = Image.FromFile( _save );
                 SaveButton.HoverText = "Save Changes";
@@ -294,7 +294,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Browse Button
-                BrowseButton = new ToolbarButton( );
+                BrowseButton = new ToolStripButton( );
                 BrowseButton.ToolType = ToolType.BrowseButton;
                 BrowseButton.Image = Image.FromFile( _browse );
                 BrowseButton.HoverText = "Browse for file";
@@ -302,7 +302,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Print Button
-                PrintButton = new ToolbarButton( );
+                PrintButton = new ToolStripButton( );
                 PrintButton.ToolType = ToolType.PrintButton;
                 PrintButton.Image = Image.FromFile( _print );
                 PrintButton.HoverText = "Print Data";
@@ -310,7 +310,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Excel Button
-                ExcelButton = new ToolbarButton( );
+                ExcelButton = new ToolStripButton( );
                 ExcelButton.ToolType = ToolType.ExcelButton;
                 ExcelButton.Image = Image.FromFile( _excelFile );
                 ExcelButton.HoverText = "Export to Excel";
@@ -318,7 +318,7 @@ namespace BudgetExecution
                 Items.Add( new ToolSeparator( ) );
 
                 // Calculator Button
-                CalculatorButton = new ToolbarButton( );
+                CalculatorButton = new ToolStripButton( );
                 CalculatorButton.ToolType = ToolType.CalculatorButton;
                 CalculatorButton.Image = Image.FromFile( _calculator );
                 CalculatorButton.HoverText = "Launch Calculator";

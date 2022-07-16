@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// <value>
         /// The buttons.
         /// </value>
-        IDictionary<string, ToolbarButton> Buttons { get; }
+        IDictionary<string, ToolStripButton> Buttons { get; }
 
         /// <summary>
         /// Gets or sets the size of the image.
@@ -202,7 +202,7 @@ namespace BudgetExecution
         /// <value>
         /// The first button.
         /// </value>
-        ToolbarButton FirstButton { get; set; }
+        ToolStripButton FirstButton { get; set; }
 
         /// <summary>
         /// Gets or sets the previous button.
@@ -210,7 +210,7 @@ namespace BudgetExecution
         /// <value>
         /// The previous button.
         /// </value>
-        ToolbarButton PreviousButton { get; set; }
+        ToolStripButton PreviousButton { get; set; }
 
         /// <summary>
         /// Gets or sets the next button.
@@ -218,7 +218,7 @@ namespace BudgetExecution
         /// <value>
         /// The next button.
         /// </value>
-        ToolbarButton NextButton { get; set; }
+        ToolStripButton NextButton { get; set; }
 
         /// <summary>
         /// Gets or sets the last button.
@@ -226,7 +226,7 @@ namespace BudgetExecution
         /// <value>
         /// The last button.
         /// </value>
-        ToolbarButton LastButton { get; set; }
+        ToolStripButton LastButton { get; set; }
 
         /// <summary>
         /// Gets or sets the edit button.
@@ -234,7 +234,7 @@ namespace BudgetExecution
         /// <value>
         /// The edit button.
         /// </value>
-        ToolbarButton EditButton { get; set; }
+        ToolStripButton EditButton { get; set; }
 
         /// <summary>
         /// Gets or sets the add button.
@@ -242,7 +242,7 @@ namespace BudgetExecution
         /// <value>
         /// The add button.
         /// </value>
-        ToolbarButton AddButton { get; set; }
+        ToolStripButton AddButton { get; set; }
 
         /// <summary>
         /// Gets or sets the delete button.
@@ -250,7 +250,7 @@ namespace BudgetExecution
         /// <value>
         /// The delete button.
         /// </value>
-        ToolbarButton DeleteButton { get; set; }
+        ToolStripButton DeleteButton { get; set; }
 
         /// <summary>
         /// Gets or sets the refresh button.
@@ -258,7 +258,7 @@ namespace BudgetExecution
         /// <value>
         /// The refresh button.
         /// </value>
-        ToolbarButton RefreshButton { get; set; }
+        ToolStripButton RefreshButton { get; set; }
 
         /// <summary>
         /// Gets or sets the save button.
@@ -266,7 +266,7 @@ namespace BudgetExecution
         /// <value>
         /// The save button.
         /// </value>
-        ToolbarButton SaveButton { get; set; }
+        ToolStripButton SaveButton { get; set; }
 
         /// <summary>
         /// Gets or sets the browse button.
@@ -274,7 +274,7 @@ namespace BudgetExecution
         /// <value>
         /// The browse button.
         /// </value>
-        ToolbarButton BrowseButton { get; set; }
+        ToolStripButton BrowseButton { get; set; }
 
         /// <summary>
         /// Gets or sets the print button.
@@ -282,7 +282,7 @@ namespace BudgetExecution
         /// <value>
         /// The print button.
         /// </value>
-        ToolbarButton PrintButton { get; set; }
+        ToolStripButton PrintButton { get; set; }
 
         /// <summary>
         /// Gets or sets the excel button.
@@ -290,7 +290,7 @@ namespace BudgetExecution
         /// <value>
         /// The excel button.
         /// </value>
-        ToolbarButton ExcelButton { get; set; }
+        ToolStripButton ExcelButton { get; set; }
 
         /// <summary>
         /// Gets or sets the calculator button.
@@ -298,6 +298,6 @@ namespace BudgetExecution
         /// <value>
         /// The calculator button.
         /// </value>
-        ToolbarButton CalculatorButton { get; set; }
+        ToolStripButton CalculatorButton { get; set; }
     }
 }

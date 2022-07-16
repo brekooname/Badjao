@@ -44,12 +44,12 @@
         /// Creates the first record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateFirstButton()
+        public static ToolStripButton CreateFirstButton()
         {
             try
             {
                 var _filename = ImageDirectory + "FirstButton.png";
-                var _firstButton = new ToolbarButton( );
+                var _firstButton = new ToolStripButton( );
                 _firstButton.Image = Image.FromFile( _filename );
                 _firstButton.HoverText = "First Record";
                 return _firstButton;
@@ -57,7 +57,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -65,12 +65,12 @@
         /// Creates the previous record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreatePreviousButton()
+        public static ToolStripButton CreatePreviousButton()
         {
             try
             {
                 var _filename = ImageDirectory + "PreviousButton.png";
-                var _previousButton = new ToolbarButton( );
+                var _previousButton = new ToolStripButton( );
                 _previousButton.Image = Image.FromFile( _filename );
                 _previousButton.HoverText = "Previous Record";
                 return _previousButton;
@@ -78,7 +78,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -86,12 +86,12 @@
         /// Creates the next record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateNextButton()
+        public static ToolStripButton CreateNextButton()
         {
             try
             {
                 var _filename = ImageDirectory + "NextButton.png";
-                var _nextButton = new ToolbarButton( );
+                var _nextButton = new ToolStripButton( );
                 _nextButton.Image = Image.FromFile( _filename );
                 _nextButton.HoverText = "Next Record";
                 return _nextButton;
@@ -99,7 +99,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -107,12 +107,12 @@
         /// Creates the last record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateLastButton()
+        public static ToolStripButton CreateLastButton()
         {
             try
             {
                 var _filename = ImageDirectory + "LastButton.png";
-                var _lastButton = new ToolbarButton( );
+                var _lastButton = new ToolStripButton( );
                 _lastButton.Image = Image.FromFile( _filename );
                 _lastButton.HoverText = "Last Record";
                 return _lastButton;
@@ -120,7 +120,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -128,12 +128,12 @@
         /// Creates the edit record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateEditButton()
+        public static ToolStripButton CreateEditButton()
         {
             try
             {
                 var _filename = ImageDirectory + "EditButton.png";
-                var _editButton = new ToolbarButton( );
+                var _editButton = new ToolStripButton( );
                 _editButton.Image = Image.FromFile( _filename );
                 _editButton.HoverText = "Edit Record";
                 return _editButton;
@@ -141,7 +141,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -149,12 +149,12 @@
         /// Creates the add record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateAddButton()
+        public static ToolStripButton CreateAddButton()
         {
             try
             {
                 var _filename = ImageDirectory + "AddButton.png";
-                var _addButton = new ToolbarButton( );
+                var _addButton = new ToolStripButton( );
                 _addButton.Image = Image.FromFile( _filename );
                 _addButton.HoverText = "Add Record";
                 return _addButton;
@@ -162,7 +162,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -170,12 +170,12 @@
         /// Creates the delete record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateDeleteButton()
+        public static ToolStripButton CreateDeleteButton()
         {
             try
             {
                 var _filename = ImageDirectory + "DeleteButton.png";
-                var _deleteButton = new ToolbarButton( );
+                var _deleteButton = new ToolStripButton( );
                 _deleteButton.Image = Image.FromFile( _filename );
                 _deleteButton.HoverText = "Delete Record";
                 return _deleteButton;
@@ -183,7 +183,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -191,12 +191,12 @@
         /// Creates the refresh data button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateRefreshButton()
+        public static ToolStripButton CreateRefreshButton()
         {
             try
             {
                 var _filename = ImageDirectory + "RefreshButton.png";
-                var _refreshButton = new ToolbarButton( );
+                var _refreshButton = new ToolStripButton( );
                 _refreshButton.Image = Image.FromFile( _filename );
                 _refreshButton.HoverText = "Refresh Data";
                 return _refreshButton;
@@ -204,7 +204,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -212,12 +212,12 @@
         /// Creates the save changes button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateSaveButton()
+        public static ToolStripButton CreateSaveButton()
         {
             try
             {
                 var _filename = ImageDirectory + "SaveButton.png";
-                var _saveButton = new ToolbarButton( );
+                var _saveButton = new ToolStripButton( );
                 _saveButton.Image = Image.FromFile( _filename );
                 _saveButton.HoverText = "Save Changes";
                 return _saveButton;
@@ -225,7 +225,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -233,12 +233,12 @@
         /// Creates the print data button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreatePrintButton()
+        public static ToolStripButton CreatePrintButton()
         {
             try
             {
                 var _filename = ImageDirectory + "PrintButton.png";
-                var _printButton = new ToolbarButton( );
+                var _printButton = new ToolStripButton( );
                 _printButton.Image = Image.FromFile( _filename );
                 _printButton.HoverText = "Print Data";
                 return _printButton;
@@ -246,7 +246,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -254,12 +254,12 @@
         /// Creates the excel export button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateExcelButton()
+        public static ToolStripButton CreateExcelButton()
         {
             try
             {
                 var _filename = ImageDirectory + "ExcelButton.png";
-                var _excelButton = new ToolbarButton( );
+                var _excelButton = new ToolStripButton( );
                 _excelButton.Image = Image.FromFile( _filename );
                 _excelButton.HoverText = "Export to Excel";
                 return _excelButton;
@@ -267,7 +267,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 
@@ -275,12 +275,12 @@
         /// Creates the calculator button.
         /// </summary>
         /// <returns></returns>
-        public static ToolbarButton CreateCalculatorButton()
+        public static ToolStripButton CreateCalculatorButton()
         {
             try
             {
                 var _filename = ImageDirectory + "CalculatorButton.png";
-                var _calculatorButton = new ToolbarButton( );
+                var _calculatorButton = new ToolStripButton( );
                 _calculatorButton.Image = Image.FromFile( _filename );
                 _calculatorButton.HoverText = "Launch Calculator";
                 return _calculatorButton;
@@ -288,7 +288,7 @@
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolbarButton );
+                return default( ToolStripButton );
             }
         }
 

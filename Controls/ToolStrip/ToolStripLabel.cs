@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// <see cref = "ToolStripLabel"/>
         /// class.
         /// </summary>
-        public ToolStripLabel()
+        public ToolStripLabel( )
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );

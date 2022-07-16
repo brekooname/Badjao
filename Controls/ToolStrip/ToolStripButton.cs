@@ -14,13 +14,13 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
     [ Serializable ]
-    public class ToolbarButton : ToolbarButtonBase, IToolStripButton
+    public class ToolStripButton : ToolbarButtonBase, IToolStripButton
     {
         /// <summary>
         /// Initializes a new instance of
-        /// the <see cref="ToolbarButton"/> class.
+        /// the <see cref="ToolStripButton"/> class.
         /// </summary>
-        public ToolbarButton()
+        public ToolStripButton()
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );
@@ -39,10 +39,10 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance
-        /// Mof the <see cref="ToolbarButton"/> class.
+        /// Mof the <see cref="ToolStripButton"/> class.
         /// </summary>
         /// <param name="toolType">The tool.</param>
-        public ToolbarButton( ToolType toolType )
+        public ToolStripButton( ToolType toolType )
             : this( )
         {
             ToolType = toolType;
@@ -60,7 +60,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _button = sender as ToolbarButton;
+                var _button = sender as ToolStripButton;
 
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
@@ -114,7 +114,7 @@ namespace BudgetExecution
         ///     event data.</param>
         public void OnClick( object sender, EventArgs e )
         {
-            if( sender is ToolbarButton _button )
+            if( sender is ToolStripButton _button )
             {
                 try
                 {
