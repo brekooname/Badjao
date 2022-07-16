@@ -356,6 +356,24 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\ToolStrip\ToolStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToolStrip\ToolStripButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToolStrip\ToolStripComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToolStrip\ToolStripLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToolStrip\ToolStripProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToolStrip\ToolStripTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\CalculationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -420,6 +438,7 @@
     <Compile Include="Controls\DataForm.Designer.cs">
       <DependentUpon>DataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IToolStrip.cs" />
     <Compile Include="Interfaces\IBindingSource.cs" />
     <Compile Include="Interfaces\IWorkbook.cs" />
     <Compile Include="Interfaces\IChart.cs" />
@@ -618,6 +637,10 @@
     <Compile Include="Controls\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IToolStripButton.cs" />
+    <Compile Include="Interfaces\IToolStripComboBox.cs" />
+    <Compile Include="Interfaces\IToolStripLabel.cs" />
+    <Compile Include="Interfaces\IToolStripTextBox.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -647,6 +670,28 @@
     <Compile Include="Static\Verify.cs" />
     <Compile Include="Controls\Styles\ChartConfiguration.cs" />
     <Compile Include="Interfaces\IChartConfiguration.cs" />
+    <Compile Include="Controls\ToolStrip\ToolFactory.cs" />
+    <Compile Include="Controls\ToolStrip\ToolSeparator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\ToolStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\ToolStripButtonBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\ToolStripComboBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\ToolStripLabelBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\ToolStripProgressBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\ToolStripTextBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Controls\CalculationForm.resx">
       <DependentUpon>CalculationForm.cs</DependentUpon>
     </EmbeddedResource>
