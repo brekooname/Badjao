@@ -47,8 +47,6 @@ namespace BudgetExecution
         {
             ToolType = toolType;
         }
-        
-        
 
         /// <summary>
         /// Called when [mouse over].
