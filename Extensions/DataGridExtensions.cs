@@ -103,7 +103,7 @@ namespace BudgetExecution
                 try
                 {
                     var _grid = dataGridView.GetDataTable(  );
-                    var _view = new DataView( _grid );
+                    var _view = new System.Data.DataView( _grid );
 
                     if( _grid?.Columns.Count > 0 )
                     {
@@ -144,7 +144,7 @@ namespace BudgetExecution
                 {
                     using( var _dataTable = dataGridView.GetDataTable( ) )
                     {
-                        using( var _view = new DataView( _dataTable ) )
+                        using( var _view = new System.Data.DataView( _dataTable ) )
                         {
                             if( _dataTable?.Columns?.Count > 0 )
                             {
@@ -200,7 +200,7 @@ namespace BudgetExecution
                             }
                         }
 
-                        using( var _view = new DataView( _dataTable ) )
+                        using( var _view = new System.Data.DataView( _dataTable ) )
                         {
                             var _table = _view?.ToTable( true, _names );
 

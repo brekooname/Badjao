@@ -138,8 +138,8 @@ namespace BudgetExecution
             }
 
             #endregion
-            public Button CloseButton;
-            public Button OpenButton;
+            public System.Windows.Forms.Button CloseButton;
+            public System.Windows.Forms.Button OpenButton;
         public VisualRichTextBox TextBox;
     }
     

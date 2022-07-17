@@ -356,6 +356,29 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\PivotChart\PivotChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PivotGrid\PivotGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Layout\Layout.cs" />
+    <Compile Include="Controls\GroupBox\GroupBox.cs" />
+    <Compile Include="Interfaces\ILayout.cs" />
+    <Compile Include="Abstractions\LayoutBase.cs" />
+    <Compile Include="Controls\RichTextBox\RichTextBox.cs" />
+    <Compile Include="Controls\Tile\Tile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ListBox\ListBox.cs" />
+    <Compile Include="Controls\ListView\ListView.cs" />
+    <Compile Include="Controls\DataView\DataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGrid\DataGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Button\Button.cs" />
     <Compile Include="Controls\ToolStrip\ToolStrip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -438,6 +461,17 @@
     <Compile Include="Controls\DataForm.Designer.cs">
       <DependentUpon>DataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abstractions\GridBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\DataViewBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\GroupBoxBase.cs" />
+    <Compile Include="Interfaces\IGroupBox.cs" />
+    <Compile Include="Interfaces\IListView.cs" />
+    <Compile Include="Interfaces\IDataGrid.cs" />
+    <Compile Include="Interfaces\IButton.cs" />
     <Compile Include="Interfaces\IToolStrip.cs" />
     <Compile Include="Interfaces\IBindingSource.cs" />
     <Compile Include="Interfaces\IWorkbook.cs" />
@@ -641,6 +675,14 @@
     <Compile Include="Interfaces\IToolStripComboBox.cs" />
     <Compile Include="Interfaces\IToolStripLabel.cs" />
     <Compile Include="Interfaces\IToolStripTextBox.cs" />
+    <Compile Include="Abstractions\ListBoxBase.cs" />
+    <Compile Include="Abstractions\ListViewBase.cs" />
+    <Compile Include="Abstractions\PivotChartBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\PivotGridBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -684,6 +726,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolStrip.resx</DependentUpon>
     </Compile>
+    <Compile Include="Abstractions\RichTextBase.cs" />
     <Compile Include="Static\Resource.cs" />
     <Compile Include="Static\Static.cs" />
     <Compile Include="Static\Validate.cs" />
@@ -710,6 +753,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Abstractions\ToolStripTextBoxBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Abstractions\TileBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Controls\CalculationForm.resx">
@@ -925,7 +971,7 @@
     <None Include="Clients\SQLite\Data\settings\sqlitebrowser.reg" />
     <None Include="Clients\SQLite\Data\settings\SQLiteDatabaseBrowserPortableSettings.ini" />
     <None Include="Clients\SQLite\Other\Source\AppNamePortable.ini" />
-    <None Include="Docs\Excel.xlsx" />
+    <None Include="Resources\Docs\Excel.xlsx" />
     <None Include="Lib\MetroSet UI.dll.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -2814,14 +2860,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clients\LINQPad\" />
-    <Folder Include="Controls\Button\" />
-    <Folder Include="Controls\DataGrid\" />
-    <Folder Include="Controls\DataView\" />
-    <Folder Include="Controls\ListBox\" />
-    <Folder Include="Controls\ListView\" />
-    <Folder Include="Controls\PivotChart\" />
-    <Folder Include="Controls\PivotGrid\" />
-    <Folder Include="Controls\Tile\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

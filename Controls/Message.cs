@@ -50,7 +50,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void OnCloseButtonClicked( object sender, EventArgs e )
         {
-            if( sender is Button _button && !string.IsNullOrEmpty( _button.Name ) )
+            if( sender is System.Windows.Forms.Button _button && !string.IsNullOrEmpty( _button.Name ) )
             {
                 try
                 {
@@ -65,7 +65,7 @@ namespace BudgetExecution
 
         public virtual void OnOpenButtonClick( object sender, EventArgs e )
         {
-            if( sender is Button _button 
+            if( sender is System.Windows.Forms.Button _button 
                 && !string.IsNullOrEmpty( _button.Name ) )
             {
                 try

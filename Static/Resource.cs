@@ -86,17 +86,7 @@ namespace BudgetExecution
         /// The division caption
         /// </summary>
         public static readonly string DivisionCaption = AppSettings[ "DivisionCaption" ];
-
-        /// <summary>
-        /// The division images
-        /// </summary>
-        public static readonly string DivisionImages = AppSettings[ "DivisionImages" ];
-
-        /// <summary>
-        /// The division text icon
-        /// </summary>
-        public static readonly string DivisionTextIcon = AppSettings[ "DivisionTextIcon" ];
-
+        
         /// <summary>
         /// The main form images
         /// </summary>
@@ -110,7 +100,7 @@ namespace BudgetExecution
         /// <summary>
         /// The tool bar images
         /// </summary>
-        public static readonly string ToolBarImages = AppSettings[ "ToolBarImages" ];
+        public static readonly string ToolStripImages = AppSettings[ "ToolStripImages" ];
 
         /// <summary>
         /// The object class sources

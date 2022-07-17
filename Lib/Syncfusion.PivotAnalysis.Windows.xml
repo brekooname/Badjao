@@ -81,7 +81,7 @@
             To use this control, you must assign some IList object to the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.ItemSource"/> property.
             The IList object must have public properties, which you want to use it in the pivot table.
             To represent the data in cross tabular format, you need to specify the pivot information in  
-            <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotRows"/>, <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotColumns"/> and <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotCalculations"/> properties.
+            <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotRows"/>, <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridBase.PivotColumns"/> and <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridBase.PivotCalculations"/> properties.
             </remarks>
         </member>
         <member name="F:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotFilters">
@@ -629,7 +629,7 @@
             Initializes the Grid model.
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridControlBase_CurrentCellStartEditing(System.Object,System.ComponentModel.CancelEventArgs)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridBase_CurrentCellStartEditing(System.Object,System.ComponentModel.CancelEventArgs)">
             <summary>
             Occurs before the current cell switches into edit mode.
             </summary>
@@ -741,12 +741,12 @@
             Used for populating completeTablelist dictionary with fieldHeader/ fieldMapping Name as key.
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridControlBase_WindowScrolling(System.Object,Syncfusion.Windows.Forms.ScrollWindowEventArgs)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridBase_WindowScrolling(System.Object,Syncfusion.Windows.Forms.ScrollWindowEventArgs)">
             <summary>
             Triggered to invalidate the GroupBar.
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridControlBase_CellButtonClicked(System.Object,Syncfusion.Windows.Forms.Grid.GridCellButtonClickedEventArgs)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridBase_CellButtonClicked(System.Object,Syncfusion.Windows.Forms.Grid.GridCellButtonClickedEventArgs)">
             <summary>
             Triggered if the Expand or Collapse button is clicked.
             </summary>
@@ -909,7 +909,7 @@
             This method is used to validate the refresh event of PivotEngine.
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridControlBase_CurrentCellActivating(System.Object,Syncfusion.Windows.Forms.Grid.GridCurrentCellActivatingEventArgs)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridBase_CurrentCellActivating(System.Object,Syncfusion.Windows.Forms.Grid.GridCurrentCellActivatingEventArgs)">
             <summary>
             Triggered if current cell in the grid gets activated.
             </summary>
@@ -1381,7 +1381,7 @@
             </summary>
             <value>If<b>True</b>ignores the refresh;Otherwise;<b>False</b>.</value>
         </member>
-        <member name="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGridControl">
+        <member name="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.PivotGrid">
             <summary>
             Gets or sets the PivotGrid control.
             </summary>
@@ -2111,7 +2111,7 @@
             <returns>Returns a list of row and column pivot values.</returns>
             <remarks>
             The returned list is an ordered list of the pivot values that contain row pivot values followed by the column pivot values.
-            There is a one to one correspondence between the number of items in <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotRows"/> and then <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotColumns"/>
+            There is a one to one correspondence between the number of items in <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotRows"/> and then <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGrid.PivotColumns"/>
             to this returned ordered list.
             </remarks>
         </member>
@@ -3337,7 +3337,7 @@
             </summary>
             <param name="container">Contains the components with visual representation.</param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.CreatePivotGridControl(Syncfusion.Windows.Forms.Grid.GridModel)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.CreatePivotGrid(Syncfusion.Windows.Forms.Grid.GridModel)">
             <summary>
             Creates the new instance of the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase"/> class specifying the functionality of <see cref="T:Syncfusion.Windows.Forms.Grid.GridModel"/>.
             </summary>
@@ -3971,7 +3971,7 @@
             </summary>
             <value><b>true</b> if the pivot value chooser is shown; otherwise, <b>false</b>. The default value is <b>false</b>.</value>
             <remarks>
-            The PivotValueChooser allows the users to hide, show, or reorder the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotCalculations"/> in the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.RowPivotsOnly"/> mode.
+            The PivotValueChooser allows the users to hide, show, or reorder the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotCalculations"/> in the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGrid.RowPivotsOnly"/> mode.
             Note: This property is used only when the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.RowPivotsOnly"/> is set to true.
             </remarks>
         </member>
@@ -4086,7 +4086,7 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotSchemaDesigner">
             <summary>
-            Gets the value of the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotSchemaDesigner"/> instance wired within the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl"/>.
+            Gets the value of the <see cref="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.PivotSchemaDesigner"/> instance wired within the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGrid"/>.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl.EnableTouchMode">
@@ -5997,19 +5997,19 @@
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle"/> class.
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoStore)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridStyleInfoStore)">
             <summary>
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle"/> class.
             </summary>
             <param name="store"> Holds instance of a <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoStore"/> class. </param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoIdentity)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridStyleInfoIdentity)">
             <summary>
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle"/> class.
             </summary>
             <param name="identity">A <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoIdentity"/> that holds the identity for this <see cref="T:Syncfusion.Windows.Forms.Grid.GridControlStyleInfoStore"/>.</param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoIdentity,Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoStore)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridStyleInfoIdentity,Syncfusion.Windows.Forms.PivotAnalysis.PivotGridStyleInfoStore)">
             <summary>
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlVisualStyle"/> class.
             </summary>
@@ -6258,7 +6258,7 @@
              Maintains the GridControl for create the identity. 
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoIdentity.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControl)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoIdentity.#ctor(Syncfusion.Windows.Forms.PivotAnalysis.PivotGrid)">
             <summary>
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlStyleInfoIdentity"/> class.
             </summary>

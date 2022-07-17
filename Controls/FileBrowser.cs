@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void OnCloseButtonClicked( object sender, EventArgs e )
         {
-            if( sender is Button _button 
+            if( sender is System.Windows.Forms.Button _button 
                 && !string.IsNullOrEmpty( _button.Name ) 
                 && e != null )
             {
@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <param name="ex">The exception.</param>
         private static void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )
