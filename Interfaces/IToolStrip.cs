@@ -41,7 +41,7 @@ namespace BudgetExecution
         /// <value>
         /// The setting.
         /// </value>
-        NameValueCollection Setting { get; set; }
+        NameValueCollection Setting { get; }
 
         /// <summary>
         /// The image path
@@ -64,8 +64,20 @@ namespace BudgetExecution
         /// </value>
         Size ImageSize { get; set; }
 
+        /// <summary>
+        /// Gets or sets the size of the image scaling.
+        /// </summary>
+        /// <value>
+        /// The size of the image scaling.
+        /// </value>
         Size ImageScalingSize { get; set; }
 
+        /// <summary>
+        /// Gets or sets the items.
+        /// </summary>
+        /// <value>
+        /// The items.
+        /// </value>
         ToolStripItemCollection Items { get; }
 
         /// <summary>

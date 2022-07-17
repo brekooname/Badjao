@@ -246,7 +246,7 @@
             this.ComboBox.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ComboBox.Name = "ComboBox";
             this.ComboBox.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.ComboBox.Size = new System.Drawing.Size(226, 25);
+            this.ComboBox.Size = new System.Drawing.Size(189, 25);
             // 
             // NextButton
             // 

@@ -103,8 +103,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _calculator = new CalculationForm(  );
-                _calculator.Show(  );
+                using( var _calculator = new CalculationForm(  ) )
+                {
+                    _calculator.Show(  );
+                }
             }
             catch ( Exception ex )
             {
@@ -121,8 +123,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _calendar = new CalendarForm(  );
-                _calendar.Show(  );
+                using( var _calendar = new CalendarForm(  ) )
+                {
+                    _calendar.Show(  );
+                }
             }
             catch ( Exception ex )
             {
@@ -139,8 +143,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _browse = new FileBrowser(  );
-                _browse.Show(  );
+                using( var _browse = new FileBrowser(  ) )
+                {
+                    _browse.Show(  );
+                }
             }
             catch ( Exception ex )
             {
@@ -157,8 +163,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _charts = new ChartForm(  );
-                _charts.Show(  );
+                using( var _charts = new ChartForm(  ) )
+                {
+
+                    _charts.Show(  );
+                }
             }
             catch ( Exception ex )
             {
@@ -175,8 +184,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _menu = new MainForm(  );
-                _menu.Show(  );
+                using( var _menu = new MainForm(  ) )
+                {
+                    _menu.Show(  );
+                }
             }
             catch ( Exception ex )
             {
@@ -188,8 +199,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _excel = new ExcelForm(  );
-                _excel.Show(  );
+                using( var _excel = new ExcelForm(  ) )
+                {
+                    _excel.Show(  );
+                }
             }
             catch ( Exception ex )
             {

@@ -5,19 +5,48 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class ToolStripBase : ToolStripEx
     {
+        /// <summary>
+        /// Gets or sets the setting.
+        /// </summary>
+        /// <value>
+        /// The setting.
+        /// </value>
+        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
+        
+        /// <summary>
+        /// Gets or sets the binding source.
+        /// </summary>
+        /// <value>
+        /// The binding source.
+        /// </value>
+        public virtual BindingSource BindingSource { get; set; }
+
         /// <summary>
         /// Gets or sets the separator.
         /// </summary>
         /// <value>
         /// The separator.
         /// </value>
-        public ToolSeparator Separator1 { get; set; }
+        public virtual IEnumerable<ToolSeparator> Separator { get; set; }
+
+        /// <summary>
+        /// Gets or sets the separator.
+        /// </summary>
+        /// <value>
+        /// The separator.
+        /// </value>
+        public virtual ToolSeparator Separator1 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator2.
@@ -25,7 +54,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator2.
         /// </value>
-        public ToolSeparator Separator2 { get; set; }
+        public virtual ToolSeparator Separator2 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator3.
@@ -33,7 +62,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator3.
         /// </value>
-        public ToolSeparator Separator3 { get; set; }
+        public virtual ToolSeparator Separator3 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator4.
@@ -41,7 +70,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator4.
         /// </value>
-        public ToolSeparator Separator4 { get; set; }
+        public virtual ToolSeparator Separator4 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator5.
@@ -49,7 +78,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator5.
         /// </value>
-        public ToolSeparator Separator5 { get; set; }
+        public virtual ToolSeparator Separator5 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator6.
@@ -57,7 +86,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator6.
         /// </value>
-        public ToolSeparator Separator6 { get; set; }
+        public virtual ToolSeparator Separator6 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator7.
@@ -65,7 +94,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator7.
         /// </value>
-        public ToolSeparator Separator7 { get; set; }
+        public virtual ToolSeparator Separator7 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator8.
@@ -73,7 +102,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator8.
         /// </value>
-        public ToolSeparator Separator8 { get; set; }
+        public virtual ToolSeparator Separator8 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator9.
@@ -81,7 +110,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator9.
         /// </value>
-        public ToolSeparator Separator9 { get; set; }
+        public virtual ToolSeparator Separator9 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator10.
@@ -89,7 +118,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator10.
         /// </value>
-        public ToolSeparator Separator10 { get; set; }
+        public virtual ToolSeparator Separator10 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator11.
@@ -97,7 +126,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator11.
         /// </value>
-        public ToolSeparator Separator11 { get; set; }
+        public virtual ToolSeparator Separator11 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator12.
@@ -105,7 +134,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator12.
         /// </value>
-        public ToolSeparator Separator12 { get; set; }
+        public virtual ToolSeparator Separator12 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator13.
@@ -113,7 +142,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator13.
         /// </value>
-        public ToolSeparator Separator13 { get; set; }
+        public virtual ToolSeparator Separator13 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator14.
@@ -121,7 +150,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator14.
         /// </value>
-        public ToolSeparator Separator14 { get; set; }
+        public virtual ToolSeparator Separator14 { get; set; }
 
         /// <summary>
         /// Gets or sets the separator15.
@@ -129,7 +158,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator15.
         /// </value>
-        public ToolSeparator Separator15 { get; set; }
+        public virtual ToolSeparator Separator15 { get; set; }
 
         /// <summary>
         /// Gets or sets the tool strip ComboBox.
@@ -137,7 +166,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool strip ComboBox.
         /// </value>
-        public ToolStripComboBox ToolStripComboBox { get; set; }
+        public virtual ToolStripComboBox ToolStripComboBox { get; set; }
 
         /// <summary>
         /// Gets or sets the tool strip text box.
@@ -145,7 +174,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool strip text box.
         /// </value>
-        public ToolStripTextBox ToolStripTextBox { get; set; }
+        public virtual ToolStripTextBox ToolStripTextBox { get; set; }
 
         /// <summary>
         /// Gets or sets the first button.
@@ -153,7 +182,7 @@ namespace BudgetExecution
         /// <value>
         /// The first button.
         /// </value>
-        public ToolStripButton FirstButton { get; set; }
+        public virtual ToolStripButton FirstButton { get; set; }
 
         /// <summary>
         /// Gets or sets the previous button.
@@ -161,7 +190,7 @@ namespace BudgetExecution
         /// <value>
         /// The previous button.
         /// </value>
-        public ToolStripButton PreviousButton { get; set; }
+        public virtual ToolStripButton PreviousButton { get; set; }
 
         /// <summary>
         /// Gets or sets the next button.
@@ -169,7 +198,7 @@ namespace BudgetExecution
         /// <value>
         /// The next button.
         /// </value>
-        public ToolStripButton NextButton { get; set; }
+        public virtual ToolStripButton NextButton { get; set; }
 
         /// <summary>
         /// Gets or sets the last button.
@@ -177,7 +206,7 @@ namespace BudgetExecution
         /// <value>
         /// The last button.
         /// </value>
-        public ToolStripButton LastButton { get; set; }
+        public virtual ToolStripButton LastButton { get; set; }
 
         /// <summary>
         /// Gets or sets the edit button.
@@ -185,7 +214,7 @@ namespace BudgetExecution
         /// <value>
         /// The edit button.
         /// </value>
-        public ToolStripButton EditButton { get; set; }
+        public virtual ToolStripButton EditButton { get; set; }
 
         /// <summary>
         /// Gets or sets the add button.
@@ -193,7 +222,7 @@ namespace BudgetExecution
         /// <value>
         /// The add button.
         /// </value>
-        public ToolStripButton AddButton { get; set; }
+        public virtual ToolStripButton AddButton { get; set; }
 
         /// <summary>
         /// Gets or sets the delete button.
@@ -201,7 +230,7 @@ namespace BudgetExecution
         /// <value>
         /// The delete button.
         /// </value>
-        public ToolStripButton DeleteButton { get; set; }
+        public virtual ToolStripButton DeleteButton { get; set; }
 
         /// <summary>
         /// Gets or sets the refresh button.
@@ -209,7 +238,7 @@ namespace BudgetExecution
         /// <value>
         /// The refresh button.
         /// </value>
-        public ToolStripButton RefreshButton { get; set; }
+        public virtual ToolStripButton RefreshButton { get; set; }
 
         /// <summary>
         /// Gets or sets the save button.
@@ -217,7 +246,7 @@ namespace BudgetExecution
         /// <value>
         /// The save button.
         /// </value>
-        public ToolStripButton SaveButton { get; set; }
+        public virtual ToolStripButton SaveButton { get; set; }
 
         /// <summary>
         /// Gets or sets the browse button.
@@ -225,7 +254,7 @@ namespace BudgetExecution
         /// <value>
         /// The browse button.
         /// </value>
-        public ToolStripButton BrowseButton { get; set; }
+        public virtual ToolStripButton BrowseButton { get; set; }
 
         /// <summary>
         /// Gets or sets the print button.
@@ -233,7 +262,7 @@ namespace BudgetExecution
         /// <value>
         /// The print button.
         /// </value>
-        public ToolStripButton PrintButton { get; set; }
+        public virtual ToolStripButton PrintButton { get; set; }
 
         /// <summary>
         /// Gets or sets the excel button.
@@ -241,7 +270,7 @@ namespace BudgetExecution
         /// <value>
         /// The excel button.
         /// </value>
-        public ToolStripButton ExcelButton { get; set; }
+        public virtual ToolStripButton ExcelButton { get; set; }
 
         /// <summary>
         /// Gets or sets the calculator button.
@@ -249,7 +278,7 @@ namespace BudgetExecution
         /// <value>
         /// The calculator button.
         /// </value>
-        public ToolStripButton CalculatorButton { get; set; }
+        public virtual ToolStripButton CalculatorButton { get; set; }
 
         /// <summary>
         /// Gets or sets the progress bar.
@@ -257,7 +286,194 @@ namespace BudgetExecution
         /// <value>
         /// The progress bar.
         /// </value>
-        public ToolStripProgressBar ProgressBar { get; set; }
+        public virtual ToolStripProgressBar ProgressBar { get; set; }
+        
+        /// <summary>
+        /// Populates the tools.
+        /// </summary>
+        public virtual  void PopulateTools( )
+        {
+            try
+            {
+                var _firstRecord = Setting[ "ToolStripImages" ] + @"\FirstButton.png";
+                var _previousRecord = Setting[ "ToolStripImages" ] + @"\PreviousButton.png";
+                var _nextRecord = Setting[ "ToolStripImages" ] + @"\NextButton.png";
+                var _lastRecord = Setting[ "ToolStripImages" ] + @"\LastButton.png";
+                var _edit = Setting[ "ToolStripImages" ] + @"\EditButton.png";
+                var _add = Setting[ "ToolStripImages" ] + @"\AddButton.png";
+                var _delete = Setting[ "ToolStripImages" ] + @"\DeleteButton.png";
+                var _refresh = Setting[ "ToolStripImages" ] + @"\RefreshButton.png";
+                var _save = Setting[ "ToolStripImages" ] + @"\SaveButton.png";
+                var _browse = Setting[ "ToolStripImages" ] + @"\BrowseButton.png";
+                var _print = Setting[ "ToolStripImages" ] + @"\PrintButton.png";
+                var _excelFile = Setting[ "ToolStripImages" ] + @"\ExcelButton.png";
+                var _calculator = Setting[ "ToolStripImages" ] + @"\CalculatorButton.png";
+                Items.Add( new ToolSeparator( ) );
+                Items.Add( new ToolStripTextBox( ) );
+                Items.Add( new ToolSeparator( ) );
+                Items.Add( new ToolStripComboBox( ) );
+                Items.Add( new ToolSeparator( ) );
+
+                // First Button
+                FirstButton = new ToolStripButton
+                {
+                    ToolType = ToolType.FirstButton,
+                    Image = Image.FromFile( _firstRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Beginning"
+                };
+
+                Items.Add( FirstButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Previous Button
+                PreviousButton = new ToolStripButton
+                {
+                    ToolType = ToolType.PreviousButton,
+                    Image = Image.FromFile( _previousRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Previous"
+                };
+
+                Items.Add( PreviousButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Next Button
+                NextButton = new ToolStripButton
+                {
+                    ToolType = ToolType.NextButton,
+                    Image = Image.FromFile( _nextRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Next Record"
+                };
+
+                Items.Add( NextButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Last button
+                LastButton = new ToolStripButton
+                {
+                    ToolType = ToolType.LastButton,
+                    Image = Image.FromFile( _lastRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Last Record"
+                };
+
+                Items.Add( LastButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Edit Button
+                EditButton = new ToolStripButton
+                {
+                    ToolType = ToolType.EditButton,
+                    Image = Image.FromFile( _edit ),
+                    HoverText = "Edit Record"
+                };
+
+                Items.Add( EditButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Add Button
+                AddButton = new ToolStripButton
+                {
+                    ToolType = ToolType.AddButton,
+                    Image = Image.FromFile( _add ),
+                    HoverText = "Add Record"
+                };
+
+                Items.Add( AddButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Delete Button
+                DeleteButton = new ToolStripButton
+                {
+                    ToolType = ToolType.DeleteButton,
+                    Image = Image.FromFile( _delete ),
+                    HoverText = "Delete Record"
+                };
+
+                Items.Add( DeleteButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Refresh Button
+                RefreshButton = new ToolStripButton
+                {
+                    ToolType = ToolType.RefreshButton,
+                    Image = Image.FromFile( _refresh ),
+                    HoverText = "Refresh Data"
+                };
+
+                Items.Add( RefreshButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Save Button
+                SaveButton = new ToolStripButton
+                {
+                    ToolType = ToolType.SaveButton,
+                    Image = Image.FromFile( _save ),
+                    HoverText = "Save Changes"
+                };
+
+                Items.Add( SaveButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Browse Button
+                BrowseButton = new ToolStripButton
+                {
+                    ToolType = ToolType.BrowseButton,
+                    Image = Image.FromFile( _browse ),
+                    HoverText = "Browse for file"
+                };
+
+                Items.Add( BrowseButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Print Button
+                PrintButton = new ToolStripButton
+                {
+                    ToolType = ToolType.PrintButton,
+                    Image = Image.FromFile( _print ),
+                    HoverText = "Print Data"
+                };
+
+                Items.Add( PrintButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Excel Button
+                ExcelButton = new ToolStripButton
+                {
+                    ToolType = ToolType.ExcelButton,
+                    Image = Image.FromFile( _excelFile ),
+                    HoverText = "Export to Excel"
+                };
+
+                Items.Add( ExcelButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Calculator Button
+                CalculatorButton = new ToolStripButton
+                {
+                    ToolType = ToolType.CalculatorButton,
+                    Image = Image.FromFile( _calculator ),
+                    HoverText = "Launch Calculator"
+                };
+
+                Items.Add( CalculatorButton );
+                Items.Add( new ToolSeparator( ) );
+
+                // Progress Bar
+                ProgressBar = new ToolStripProgressBar
+                {
+                    Visible = false
+                };
+
+                Items.Add( ProgressBar );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
         /// <summary>
         /// Get Error Dialog.

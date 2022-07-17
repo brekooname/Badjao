@@ -10,8 +10,6 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
 
     /// <summary>
     /// 
@@ -25,14 +23,6 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
     public class ToolStrip : ToolStripBase, IToolStrip
     {
-        /// <summary>
-        /// Gets or sets the binding source.
-        /// </summary>
-        /// <value>
-        /// The binding source.
-        /// </value>
-        public BindingSource BindingSource { get; set; }
-
         /// <summary>
         /// Gets or sets the field.
         /// </summary>
@@ -58,12 +48,12 @@ namespace BudgetExecution
         public IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the setting.
+        /// Gets or sets the items.
         /// </summary>
         /// <value>
-        /// The setting.
+        /// The items.
         /// </value>
-        public NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
+        public override ToolStripItemCollection Items { get; }
 
         /// <summary>
         /// The image path
@@ -140,9 +130,9 @@ namespace BudgetExecution
                 {
                     if( _control is ToolStripButton _item )
                     {
-                        if( !string.IsNullOrEmpty( _item.Name ) )
+                        if( !string.IsNullOrEmpty( _item?.Name ) )
                         {
-                            _buttons.Add( _item.Name, _item );
+                            _buttons.Add( _item?.Name, _item );
                         }
                     }
                 }
@@ -184,151 +174,6 @@ namespace BudgetExecution
             {
                 var _separator = new ToolSeparator( );
                 Items?.Add( _separator );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the tools.
-        /// </summary>
-        public void PopulateTools()
-        {
-            try
-            {
-                var _firstRecord = Setting[ "ToolStripImages" ] + @"\FirstButton.png";
-                var _previousRecord = Setting[ "ToolStripImages" ] + @"\PreviousButton.png";
-                var _nextRecord = Setting[ "ToolStripImages" ] + @"\NextButton.png";
-                var _lastRecord = Setting[ "ToolStripImages" ] + @"\LastButton.png";
-                var _edit = Setting[ "ToolStripImages" ] + @"\EditButton.png";
-                var _add = Setting[ "ToolStripImages" ] + @"\AddButton.png";
-                var _delete = Setting[ "ToolStripImages" ] + @"\DeleteButton.png";
-                var _refresh = Setting[ "ToolStripImages" ] + @"\RefreshButton.png";
-                var _save = Setting[ "ToolStripImages" ] + @"\SaveButton.png";
-                var _browse = Setting[ "ToolStripImages" ] + @"\BrowseButton.png";
-                var _print = Setting[ "ToolStripImages" ] + @"\PrintButton.png";
-                var _excelFile = Setting[ "ToolStripImages" ] + @"\ExcelButton.png";
-                var _calculator = Setting[ "ToolStripImages" ] + @"\CalculatorButton.png";
-                Items.Add( new ToolSeparator( ) );
-                base.Items.Add( new ToolStripTextBox( ) );
-                Items.Add( new ToolSeparator( ) );
-                Items.Add( new ToolStripComboBox( ) );
-                Items.Add( new ToolSeparator( ) );
-
-                // First Button
-                FirstButton = new ToolStripButton( );
-                FirstButton.ToolType = ToolType.FirstButton;
-                FirstButton.Image = Image.FromFile( _firstRecord );
-                FirstButton.BindingSource = BindingSource;
-                FirstButton.HoverText = "Go To Beginning";
-                Items.Add( FirstButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Previous Button
-                PreviousButton = new ToolStripButton( );
-                PreviousButton.ToolType = ToolType.PreviousButton;
-                PreviousButton.Image = Image.FromFile( _previousRecord );
-                PreviousButton.BindingSource = BindingSource;
-                PreviousButton.HoverText = "Go To Previous";
-                Items.Add( PreviousButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Next Button
-                NextButton = new ToolStripButton( );
-                NextButton.ToolType = ToolType.NextButton;
-                NextButton.Image = Image.FromFile( _nextRecord );
-                NextButton.BindingSource = BindingSource;
-                NextButton.HoverText = "Go To Next Record";
-                Items.Add( NextButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Last button
-                LastButton = new ToolStripButton( );
-                LastButton.ToolType = ToolType.LastButton;
-                LastButton.Image = Image.FromFile( _lastRecord );
-                LastButton.BindingSource = BindingSource;
-                LastButton.HoverText = "Go To Last Record";
-                Items.Add( LastButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Edit Button
-                EditButton = new ToolStripButton( );
-                EditButton.ToolType = ToolType.EditButton;
-                EditButton.Image = Image.FromFile( _edit );
-                EditButton.HoverText = "Edit Record";
-                Items.Add( EditButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Add Button
-                AddButton = new ToolStripButton( );
-                AddButton.ToolType = ToolType.AddButton;
-                AddButton.Image = Image.FromFile( _add );
-                AddButton.HoverText = "Add Record";
-                Items.Add( AddButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Delete Button
-                DeleteButton = new ToolStripButton( );
-                DeleteButton.ToolType = ToolType.DeleteButton;
-                DeleteButton.Image = Image.FromFile( _delete );
-                DeleteButton.HoverText = "Delete Record";
-                Items.Add( DeleteButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Refresh Button
-                RefreshButton = new ToolStripButton( );
-                RefreshButton.ToolType = ToolType.RefreshButton;
-                RefreshButton.Image = Image.FromFile( _refresh );
-                RefreshButton.HoverText = "Refresh Data";
-                Items.Add( RefreshButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Save Button
-                SaveButton = new ToolStripButton( );
-                SaveButton.ToolType = ToolType.SaveButton;
-                SaveButton.Image = Image.FromFile( _save );
-                SaveButton.HoverText = "Save Changes";
-                Items.Add( SaveButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Browse Button
-                BrowseButton = new ToolStripButton( );
-                BrowseButton.ToolType = ToolType.BrowseButton;
-                BrowseButton.Image = Image.FromFile( _browse );
-                BrowseButton.HoverText = "Browse for file";
-                Items.Add( BrowseButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Print Button
-                PrintButton = new ToolStripButton( );
-                PrintButton.ToolType = ToolType.PrintButton;
-                PrintButton.Image = Image.FromFile( _print );
-                PrintButton.HoverText = "Print Data";
-                Items.Add( PrintButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Excel Button
-                ExcelButton = new ToolStripButton( );
-                ExcelButton.ToolType = ToolType.ExcelButton;
-                ExcelButton.Image = Image.FromFile( _excelFile );
-                ExcelButton.HoverText = "Export to Excel";
-                Items.Add( ExcelButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Calculator Button
-                CalculatorButton = new ToolStripButton( );
-                CalculatorButton.ToolType = ToolType.CalculatorButton;
-                CalculatorButton.Image = Image.FromFile( _calculator );
-                CalculatorButton.HoverText = "Launch Calculator";
-                Items.Add( CalculatorButton );
-                Items.Add( new ToolSeparator( ) );
-
-                // Progress Bar
-                ProgressBar = new ToolStripProgressBar( );
-                ProgressBar.Visible = false;
-                Items.Add( ProgressBar );
             }
             catch( Exception ex )
             {

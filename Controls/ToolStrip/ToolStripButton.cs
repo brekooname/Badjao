@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// Initializes a new instance of
         /// the <see cref="ToolStripButton"/> class.
         /// </summary>
-        public ToolStripButton()
+        public ToolStripButton( )
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );
@@ -66,8 +66,8 @@ namespace BudgetExecution
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _button.Tag = HoverText;
-                    var tip = new ToolTip( _button );
-                    ToolTip = tip;
+                    var _tip = new ToolTip( _button );
+                    ToolTip = _tip;
                 }
                 else
                 {
@@ -150,6 +150,7 @@ namespace BudgetExecution
                             {
                                 _excelForm?.ShowDialog( );
                             }
+
                             break;
                         }
 
@@ -159,53 +160,63 @@ namespace BudgetExecution
                             {
                                 _message?.ShowDialog( );
                             }
+
                             break;
                         }
 
                         case ToolType.PrintButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
-                            _message?.ShowDialog( );
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            {
+                                _message?.ShowDialog( );
+                            }
+
                             break;
                         }
 
                         case ToolType.AddButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
-                            _message?.ShowDialog( );
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            {
+                                _message?.ShowDialog( );
+                            }
+
                             break;
                         }
 
                         case ToolType.DeleteButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
-                            _message?.ShowDialog( );
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            {
+                                _message?.ShowDialog( );
+                            }
+
                             break;
                         }
 
                         case ToolType.RefreshButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
-                            _message?.ShowDialog( );
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            {
+                                _message?.ShowDialog( );
+                            }
+
                             break;
                         }
 
                         case ToolType.EditButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
-                            _message?.ShowDialog( );
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            {
+                                _message?.ShowDialog( );
+                            }
+
                             break;
                         }
 
                         case ToolType.ExitButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
                             _message?.ShowDialog( );
                             break;
                         }
@@ -213,7 +224,6 @@ namespace BudgetExecution
                         case ToolType.ExportButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
                             _message?.ShowDialog( );
                             break;
                         }
@@ -221,7 +231,6 @@ namespace BudgetExecution
                         case ToolType.ImportButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
                             _message?.ShowDialog( );
                             break;
                         }
@@ -229,7 +238,6 @@ namespace BudgetExecution
                         case ToolType.UpdateButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
                             _message?.ShowDialog( );
                             break;
                         }
@@ -237,7 +245,6 @@ namespace BudgetExecution
                         case ToolType.InsertButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message.Text = "NOT YET IMPLEMENTED!";
                             _message?.ShowDialog( );
                             break;
                         }
