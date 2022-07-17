@@ -664,6 +664,21 @@
     <Compile Include="Controls\Styles\BudgetForm.cs" />
     <Compile Include="Controls\Styles\BudgetSetting.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
+    <Compile Include="Resources\Extenstions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Extenstions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Loaders.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Loaders.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Providers.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Providers.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ToolStrip.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -752,6 +767,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resources\Extenstions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Extenstions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Loaders.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Loaders.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Providers.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Providers.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ToolStrip.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ToolStrip.Designer.cs</LastGenOutput>
@@ -1849,6 +1876,24 @@
     <Content Include="Resources\Images\Database\png\DatabaseNetwork.png" />
     <Content Include="Resources\Images\Database\png\DatabaseSettings.png" />
     <Content Include="Resources\Images\Database\png\DatabaseTransfer.png" />
+    <None Include="Resources\Images\Data\AddField.png" />
+    <None Include="Resources\Images\Data\AddRow.png" />
+    <None Include="Resources\Images\Data\AddTable.png" />
+    <None Include="Resources\Images\Data\DataDelete.png" />
+    <None Include="Resources\Images\Data\DataRefresh.png" />
+    <None Include="Resources\Images\Data\EditField.png" />
+    <None Include="Resources\Images\Data\EditRow.png" />
+    <None Include="Resources\Images\Data\DataAdd.png" />
+    <None Include="Resources\Images\Data\Database.png" />
+    <None Include="Resources\Images\Data\DataConfig.png" />
+    <None Include="Resources\Images\Data\DataRow.png" />
+    <None Include="Resources\Images\Data\Delete.png" />
+    <None Include="Resources\Images\Data\DeleteField.png" />
+    <None Include="Resources\Images\Data\DeleteRow.png" />
+    <None Include="Resources\Images\Data\DeleteTable.png" />
+    <None Include="Resources\Images\Data\Download.png" />
+    <None Include="Resources\Images\Data\EncryptData.png" />
+    <None Include="Resources\Images\Data\Grid.png" />
     <Content Include="Resources\Images\Data\ico\DataAdd.ico" />
     <Content Include="Resources\Images\Data\ico\DataColumnAdd.ico" />
     <Content Include="Resources\Images\Data\ico\DataColumnDelete.ico" />
@@ -1871,6 +1916,8 @@
     <Content Include="Resources\Images\Data\ico\DataSettings.ico" />
     <Content Include="Resources\Images\Data\ico\DataSort.ico" />
     <Content Include="Resources\Images\Data\ico\DataTransfer.ico" />
+    <None Include="Resources\Images\Data\InsertRow.png" />
+    <None Include="Resources\Images\Data\Metrics.png" />
     <Content Include="Resources\Images\Data\png\DataAdd.png" />
     <Content Include="Resources\Images\Data\png\Database.png" />
     <Content Include="Resources\Images\Data\png\DataColumnAdd.png" />
@@ -1894,6 +1941,15 @@
     <Content Include="Resources\Images\Data\png\DataSettings.png" />
     <Content Include="Resources\Images\Data\png\DataSort.png" />
     <Content Include="Resources\Images\Data\png\DataTransfer.png" />
+    <None Include="Resources\Images\Data\Upload.png" />
+    <None Include="Resources\Images\Data\Refresh.png" />
+    <None Include="Resources\Images\Data\SearchData.png" />
+    <None Include="Resources\Images\Data\Settings.png" />
+    <None Include="Resources\Images\Data\Transfer.png" />
+    <None Include="Resources\Images\Data\TransferIn.png" />
+    <None Include="Resources\Images\Data\TransferOut.png" />
+    <None Include="Resources\Images\Data\Upsert.png" />
+    <None Include="Resources\Images\Data\VerifyData.png" />
     <Content Include="Resources\Images\Dialog\ico\DialogArchive.ico" />
     <Content Include="Resources\Images\Dialog\ico\DialogBrowseFolder.ico" />
     <Content Include="Resources\Images\Dialog\ico\DialogCaution.ico" />
@@ -2042,6 +2098,24 @@
     <Content Include="Resources\Images\EPA\png\EpaDark.png" />
     <Content Include="Resources\Images\EPA\png\EpaGreen.png" />
     <Content Include="Resources\Images\EPA\png\EpaHorizontal.png" />
+    <None Include="Resources\Images\Extensions\ACCDB.png" />
+    <None Include="Resources\Images\Extensions\CSV.png" />
+    <None Include="Resources\Images\Extensions\DB.png" />
+    <None Include="Resources\Images\Extensions\DLL.png" />
+    <None Include="Resources\Images\Extensions\DOC.png" />
+    <None Include="Resources\Images\Extensions\DOCX.png" />
+    <None Include="Resources\Images\Extensions\HTML.png" />
+    <None Include="Resources\Images\Extensions\MDB.png" />
+    <None Include="Resources\Images\Extensions\MDF.png" />
+    <None Include="Resources\Images\Extensions\PDF.png" />
+    <None Include="Resources\Images\Extensions\PNG.png" />
+    <None Include="Resources\Images\Extensions\PY.png" />
+    <None Include="Resources\Images\Extensions\SDF.png" />
+    <None Include="Resources\Images\Extensions\SQL.png" />
+    <None Include="Resources\Images\Extensions\TXT.png" />
+    <None Include="Resources\Images\Extensions\XLS.png" />
+    <None Include="Resources\Images\Extensions\XLSX.png" />
+    <None Include="Resources\Images\Extensions\XML.png" />
     <Content Include="Resources\Images\EXT\ico\ExtACCDB.ico" />
     <Content Include="Resources\Images\EXT\ico\ExtBIN.ico" />
     <Content Include="Resources\Images\EXT\ico\ExtBMP.ico" />
@@ -2584,6 +2658,11 @@
     <Content Include="Resources\Images\Outlays\png\OutlayTransit.png" />
     <Content Include="Resources\Images\Outlays\png\OutlayTravelObligations.png" />
     <Content Include="Resources\Images\Outlays\png\OutlayVendor.png" />
+    <None Include="Resources\Images\Providers\ACCDB.png" />
+    <None Include="Resources\Images\Providers\DB.png" />
+    <None Include="Resources\Images\Providers\MDB.png" />
+    <None Include="Resources\Images\Providers\MDF.png" />
+    <None Include="Resources\Images\Providers\SDF.png" />
     <Content Include="Resources\Images\Provider\ico\ProviderAccess.ico" />
     <Content Include="Resources\Images\Provider\ico\ProviderCsv.ico" />
     <Content Include="Resources\Images\Provider\ico\ProviderExcel.ico" />
@@ -2617,11 +2696,13 @@
     <Content Include="Resources\Images\ToolStrip\png\EditRecordButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\EmailButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\ExcelButton.png" />
+    <None Include="Resources\Images\ToolStrip\png\Export.png" />
     <Content Include="Resources\Images\ToolStrip\png\ExportButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\FirstButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\Forward.png" />
     <Content Include="Resources\Images\ToolStrip\png\GuidanceButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\HomeButton.png" />
+    <None Include="Resources\Images\ToolStrip\png\Import.png" />
     <Content Include="Resources\Images\ToolStrip\png\ImportButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\InsertButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\LastButton.png" />
@@ -2733,6 +2814,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clients\LINQPad\" />
+    <Folder Include="Controls\Button\" />
+    <Folder Include="Controls\DataGrid\" />
+    <Folder Include="Controls\DataView\" />
+    <Folder Include="Controls\ListBox\" />
+    <Folder Include="Controls\ListView\" />
+    <Folder Include="Controls\PivotChart\" />
+    <Folder Include="Controls\PivotGrid\" />
+    <Folder Include="Controls\Tile\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

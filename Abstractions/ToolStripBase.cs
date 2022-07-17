@@ -11,6 +11,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
+    using System.Resources;
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -23,6 +24,8 @@ namespace BudgetExecution
         /// The setting.
         /// </value>
         public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
+
+        public virtual ResourceManager ResourceManager { get; set; }
         
         /// <summary>
         /// Gets or sets the binding source.

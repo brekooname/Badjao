@@ -10,6 +10,7 @@ namespace BudgetExecution
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
+    using System.Resources;
 
     /// <summary>
     /// 
@@ -65,6 +66,8 @@ namespace BudgetExecution
         /// The setting.
         /// </value>
         public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
+
+        public virtual ResourceManager Resource { get; set; }
 
         /// <summary>
         /// Gets or sets the bar.

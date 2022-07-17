@@ -49,9 +49,11 @@
             try
             {
                 var _filename = ImageDirectory + "FirstButton.png";
-                var _firstButton = new ToolStripButton( );
-                _firstButton.Image = Image.FromFile( _filename );
-                _firstButton.HoverText = "First Record";
+                var _firstButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "First Record"
+                };
                 return _firstButton;
             }
             catch( Exception ex )
@@ -70,9 +72,11 @@
             try
             {
                 var _filename = ImageDirectory + "PreviousButton.png";
-                var _previousButton = new ToolStripButton( );
-                _previousButton.Image = Image.FromFile( _filename );
-                _previousButton.HoverText = "Previous Record";
+                var _previousButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Previous Record"
+                };
                 return _previousButton;
             }
             catch( Exception ex )
@@ -91,9 +95,11 @@
             try
             {
                 var _filename = ImageDirectory + "NextButton.png";
-                var _nextButton = new ToolStripButton( );
-                _nextButton.Image = Image.FromFile( _filename );
-                _nextButton.HoverText = "Next Record";
+                var _nextButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Next Record"
+                };
                 return _nextButton;
             }
             catch( Exception ex )
@@ -112,9 +118,11 @@
             try
             {
                 var _filename = ImageDirectory + "LastButton.png";
-                var _lastButton = new ToolStripButton( );
-                _lastButton.Image = Image.FromFile( _filename );
-                _lastButton.HoverText = "Last Record";
+                var _lastButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Last Record"
+                };
                 return _lastButton;
             }
             catch( Exception ex )
@@ -133,9 +141,11 @@
             try
             {
                 var _filename = ImageDirectory + "EditButton.png";
-                var _editButton = new ToolStripButton( );
-                _editButton.Image = Image.FromFile( _filename );
-                _editButton.HoverText = "Edit Record";
+                var _editButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Edit Record"
+                };
                 return _editButton;
             }
             catch( Exception ex )
@@ -154,9 +164,11 @@
             try
             {
                 var _filename = ImageDirectory + "AddButton.png";
-                var _addButton = new ToolStripButton( );
-                _addButton.Image = Image.FromFile( _filename );
-                _addButton.HoverText = "Add Record";
+                var _addButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Add Record"
+                };
                 return _addButton;
             }
             catch( Exception ex )
@@ -175,9 +187,11 @@
             try
             {
                 var _filename = ImageDirectory + "DeleteButton.png";
-                var _deleteButton = new ToolStripButton( );
-                _deleteButton.Image = Image.FromFile( _filename );
-                _deleteButton.HoverText = "Delete Record";
+                var _deleteButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Delete Record"
+                };
                 return _deleteButton;
             }
             catch( Exception ex )
@@ -196,9 +210,11 @@
             try
             {
                 var _filename = ImageDirectory + "RefreshButton.png";
-                var _refreshButton = new ToolStripButton( );
-                _refreshButton.Image = Image.FromFile( _filename );
-                _refreshButton.HoverText = "Refresh Data";
+                var _refreshButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Refresh Data"
+                };
                 return _refreshButton;
             }
             catch( Exception ex )
@@ -217,9 +233,11 @@
             try
             {
                 var _filename = ImageDirectory + "SaveButton.png";
-                var _saveButton = new ToolStripButton( );
-                _saveButton.Image = Image.FromFile( _filename );
-                _saveButton.HoverText = "Save Changes";
+                var _saveButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Save Changes"
+                };
                 return _saveButton;
             }
             catch( Exception ex )
@@ -238,9 +256,11 @@
             try
             {
                 var _filename = ImageDirectory + "PrintButton.png";
-                var _printButton = new ToolStripButton( );
-                _printButton.Image = Image.FromFile( _filename );
-                _printButton.HoverText = "Print Data";
+                var _printButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Print Data"
+                };
                 return _printButton;
             }
             catch( Exception ex )
@@ -259,9 +279,11 @@
             try
             {
                 var _filename = ImageDirectory + "ExcelButton.png";
-                var _excelButton = new ToolStripButton( );
-                _excelButton.Image = Image.FromFile( _filename );
-                _excelButton.HoverText = "Export to Excel";
+                var _excelButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Export to Excel"
+                };
                 return _excelButton;
             }
             catch( Exception ex )
@@ -280,9 +302,11 @@
             try
             {
                 var _filename = ImageDirectory + "CalculatorButton.png";
-                var _calculatorButton = new ToolStripButton( );
-                _calculatorButton.Image = Image.FromFile( _filename );
-                _calculatorButton.HoverText = "Launch Calculator";
+                var _calculatorButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Launch Calculator"
+                };
                 return _calculatorButton;
             }
             catch( Exception ex )

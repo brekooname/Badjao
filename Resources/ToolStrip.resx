@@ -128,7 +128,7 @@
     <value>Images\ToolStrip\png\AddColumnButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddRecordButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\ToolStrip\png\AddRecordButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Data\InsertRow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BrowseButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\BrowseButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,35 +145,65 @@
   <data name="CopyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\CopyButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CsvButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="CsvImportButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\CsvButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DataAddButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\DataAdd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DatabaseButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DataConfigButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\DataConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DataDeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DataRowButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\DataRow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteColumnButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\ToolStrip\png\DeleteColumnButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Data\DeleteField.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteRecordButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\ToolStrip\png\DeleteRecordButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Data\DeleteRow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteTableButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\DeleteTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DownloadButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\DownloadButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DownloadDataButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Download.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\EditButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditColumnButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\ToolStrip\png\EditColumnButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Data\EditField.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EditRecordButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\ToolStrip\png\EditRecordButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Data\EditRow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="EmailButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\EmailButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="EncryptDataButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\EncryptData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ExcelButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\ExcelButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExcelExportButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\ToolStrip\png\Export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ExcelImportButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\ToolStrip\png\Import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ExportButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\ExportButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,8 +211,11 @@
   <data name="FirstButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\FirstButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ForwardButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\Forward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GridButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GuidanceButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\GuidanceButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -194,7 +227,7 @@
     <value>Images\ToolStrip\png\ImportButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="InsertButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Images\ToolStrip\png\InsertButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>Images\Data\Upsert.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LastButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\LastButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -204,6 +237,9 @@
   </data>
   <data name="MenuButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\MenuButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MetricsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Metrics.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NavigationButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\NavigationButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,6 +271,9 @@
   <data name="RefreshButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\RefreshButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RefreshDataButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="RemoveButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\RemoveButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -243,6 +282,9 @@
   </data>
   <data name="SaveButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\SaveButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchDataButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\SearchData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SettingsButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\SettingsButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,6 +304,12 @@
   <data name="TransferButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\TransferButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TransferInButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\TransferIn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TransferOutButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\TransferOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TrashButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\TrashButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -274,8 +322,14 @@
   <data name="UploadButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\UploadButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="UploadDataButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\Upload.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="VerifyButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\VerifyButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VerifyDataButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\Data\VerifyData.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WebButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\WebButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
