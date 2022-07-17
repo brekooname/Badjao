@@ -48,6 +48,7 @@ namespace BudgetExecution
             ToolType = toolType;
         }
 
+
         /// <summary>
         /// Called when [mouse over].
         /// </summary>
@@ -116,7 +117,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    switch( _button.ToolType )
+                    switch( _button?.ToolType )
                     {
                         case ToolType.FirstButton:
                         {
