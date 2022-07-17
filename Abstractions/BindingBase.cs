@@ -9,9 +9,8 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Windows.Forms;
 
-    public abstract class BindingBase : BindingSource
+    public abstract class BindingBase : System.Windows.Forms.BindingSource
     {
         /// <summary>
         /// Gets the data set.

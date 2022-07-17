@@ -1,7 +1,6 @@
-﻿// <copyright file = "ListView.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "BudgetLabel.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -11,12 +10,18 @@ namespace BudgetExecution
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.Linq;
     using System.Windows.Forms;
-    using VisualPlus.Enumerators;
     using VisualPlus.Toolkit.Controls.Interactivity;
-    
-    public class ListView : ListViewBase, IListView
+
+    /// <summary>
+    /// Defines the
+    /// <see cref="Label" />
+    /// </summary>
+    /// <seealso cref="VisualLabel" />
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    public class Label : LabelBase, ILabel
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -75,62 +80,38 @@ namespace BudgetExecution
         public override NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
 
         /// <summary>
-        /// Initializes a new instance
-        /// of the <see cref="ListView"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="Label" />
+        /// class.
         /// </summary>
-        public ListView()
+        public Label()
         {
             // Basic Properties
-            Size = new Size( 250, 150 );
+            Size = new Size( 165, 23 );
             Location = new Point( 1, 1 );
-            Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            Dock = DockStyle.None;
+            BackColor = Color.FromArgb( 18, 18, 18 );
+            ForeColor = Color.FromArgb( 141, 139, 138 );
+            Font = new Font( "Roboto", 9 );
             Margin = new Padding( 3 );
             Padding = new Padding( 1 );
-            Font = new Font( "Roboto", 9 );
-            ForeColor = Color.White;
+            Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            Dock = DockStyle.None;
             Enabled = true;
             Visible = true;
-            Selectable = true;
-            ControlStyle = LVControlStyles.SuperFlat;
-            GridLines = GridLines.Horizontal;
-            GridColor = SystemColors.WindowFrame;
-            GridLineStyle = GridLineStyle.Dashed;
-            DisplayTextFont = new Font( "Roboto", 9 );
-            DisplayTextOnEmpty = false;
-            DisplayTextColor = Color.LightSteelBlue;
-            FullRowSelect = true;
-            AllowColumnResize = true;
-            AlternatingColors = false;
-            HoverColumnTracking = true;
-            HeaderVisible = false;
-            ItemSelectedColor = Color.SteelBlue;
-            ItemSelectedTextColor = Color.White;
-
-            // BackColor SeriesConfiguration
-            BackColor = Color.FromArgb( 18, 18, 18 );
-            ForeColor = Color.White;
-            BackColorState.Disabled = Color.FromArgb( 18, 18, 18 );
-            BackColorState.Enabled = Color.FromArgb( 18, 18, 18 );
-
-            // Border SeriesConfiguration
-            Border.Color = SystemColors.WindowFrame;
-            Border.Thickness = 1;
-            Border.HoverColor = Color.SteelBlue;
-            Border.HoverVisible = false;
-
-            // Item SeriesConfiguration
-            ItemHeight = 30;
+            TextAlignment = StringAlignment.Center;
+            TextLineAlignment = StringAlignment.Center;
+            OutlineColor = Color.FromArgb( 18, 18, 18 );
+            MouseHover += OnMouseOver;
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ListView" />
+        /// <see cref="Label" />
         /// class.
         /// </summary>
         /// <param name="size">The size.</param>
         /// <param name="location">The location.</param>
-        public ListView( Size size, Point location )
+        public Label( Size size, Point location )
             : this( )
         {
             Size = size;
@@ -139,25 +120,25 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ListView" />
+        /// <see cref="Label" />
         /// class.
         /// </summary>
         /// <param name="label">The label.</param>
         [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
-        public ListView( VisualLabel label )
+        public Label( VisualLabel label )
             : this( label.Size, label.Location )
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ListView" />
+        /// <see cref="Label" />
         /// class.
         /// </summary>
         /// <param name="size">The size.</param>
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
-        public ListView( Size size, Point location, Control parent )
+        public Label( Size size, Point location, Control parent )
             : this( size, location )
         {
             Parent = parent;
@@ -166,14 +147,14 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ListView" />
+        /// <see cref="Label" />
         /// class.
         /// </summary>
         /// <param name="size">The size.</param>
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
         /// <param name="text">The text.</param>
-        public ListView( Size size, Point location, Control parent,
+        public Label( Size size, Point location, Control parent,
             string text )
             : this( size, location, parent )
         {
@@ -182,14 +163,15 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ListView" />
+        /// <see cref="Label" />
         /// class.
         /// </summary>
         /// <param name="size">The size.</param>
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
-        /// <param name="bindingSource">The binding source.</param>
-        public ListView( Size size, Point location, Control parent, BindingSource bindingSource )
+        /// <param name="bindingSource">The bindingSource.</param>
+        public Label( Size size, Point location, Control parent,
+            BindingSource bindingSource )
             : this( size, location, parent )
         {
             BindingSource = bindingSource;
@@ -199,13 +181,13 @@ namespace BudgetExecution
         /// Sets the color of the border.
         /// </summary>
         /// <param name="color">The color.</param>
-        public void SetBorderColor( Color color )
+        public void SetOutlineColor( Color color )
         {
             if( color != Color.Empty )
             {
                 try
                 {
-                    Border.Color = color;
+                    OutlineColor = color;
                 }
                 catch( Exception ex )
                 {
@@ -215,16 +197,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the color of the border.
+        /// Sets the text alignment.
         /// </summary>
-        /// <param name="color">The color.</param>
-        public void SetHoverBorderColor( Color color )
+        /// <param name="alignment">The alignment.</param>
+        public void SetTextAlignment( StringAlignment alignment )
         {
-            if( color != Color.Empty )
+            if( Enum.IsDefined( typeof( StringAlignment ), alignment ) )
             {
                 try
                 {
-                    Border.HoverColor = color;
+                    TextAlignment = alignment;
                 }
                 catch( Exception ex )
                 {
@@ -234,53 +216,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the color of the border.
+        /// Sets the line alignment.
         /// </summary>
-        /// <param name="hoverColor">if set to <c>true</c> [hover color].</param>
-        public void SetBorderConfiguration( bool hoverColor )
+        /// <param name="alignment">The alignment.</param>
+        public void SetLineAlignment( StringAlignment alignment )
         {
-            try
-            {
-                switch( hoverColor )
-                {
-                    case true:
-                    {
-                        Border.Color = Color.FromArgb( 64, 64, 64 );
-                        Border.Thickness = 1;
-                        Border.HoverColor = SystemColors.WindowFrame;
-                        Border.HoverVisible = true;
-                        Border.Type = ShapeTypes.Rounded;
-                        break;
-                    }
-
-                    case false:
-                    {
-                        Border.Color = Color.FromArgb( 18, 18, 18 );
-                        Border.Thickness = 1;
-                        Border.HoverColor = Color.SteelBlue;
-                        Border.HoverVisible = false;
-                        Border.Type = ShapeTypes.Rounded;
-                        break;
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the hover information.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        public void SetHoverText( string text )
-        {
-            if( Verify.IsInput( text ) )
+            if( Enum.IsDefined( typeof( StringAlignment ), alignment ) )
             {
                 try
                 {
-                    var _ = new ToolTip( this, text );
+                    TextLineAlignment = alignment;
                 }
                 catch( Exception ex )
                 {
@@ -312,7 +257,7 @@ namespace BudgetExecution
         /// Sets the tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
-        public void ReTag( object tag )
+        public void SetTag( object tag )
         {
             if( tag != null )
             {
@@ -328,66 +273,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Adds the item.
+        /// Sets the numeric.
         /// </summary>
-        /// <param name="item">The item.</param>
-        public void AddItem( string item )
+        /// <param name="numeric">The numeric.</param>
+        public void SetNumeric( Numeric numeric )
         {
-            if( Verify.IsInput( item ) )
+            if( Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-                    Items?.Add( item );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Adds the items.
-        /// </summary>
-        /// <param name="items">The items.</param>
-        public void AddItems( IEnumerable<string> items )
-        {
-            if( items?.Count( ) > 0 )
-            {
-                try
-                {
-                    foreach( var _item in items )
-                    {
-                        if( _item != null )
-                        {
-                            Items?.Add( _item );
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Adds the item.
-        /// </summary>
-        /// <param name="item">The item.</param>
-        public void RemoveItem( string item )
-        {
-            if( Verify.IsInput( item ) )
-            {
-                try
-                {
-                    foreach( var _listItem in Items )
-                    {
-                        if( _listItem?.Equals( item ) == true )
-                        {
-                            Items?.RemoveByKey( item );
-                        }
-                    }
+                    Numeric = numeric;
                 }
                 catch( Exception ex )
                 {

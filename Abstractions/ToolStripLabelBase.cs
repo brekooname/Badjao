@@ -10,7 +10,6 @@ namespace BudgetExecution
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.Windows.Forms;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class ToolStripLabelBase : System.Windows.Forms.ToolStripLabel
@@ -167,7 +166,7 @@ namespace BudgetExecution
         {
             try
             {
-                Tag = BudgetSetting.ReTag( tag );
+                Tag = Settings.ReTag( tag );
             }
             catch( Exception ex )
             {

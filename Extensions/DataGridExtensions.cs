@@ -22,12 +22,12 @@ namespace BudgetExecution
         /// The GetCurrentDataRow
         /// </summary>
         /// <param name="bindingSource">The bindingSource
-        /// <see cref="BindingSource" /></param>
+        /// <see cref="System.Windows.Forms.BindingSource" /></param>
         /// <returns>
         /// The
         /// <see cref="DataRow" />
         /// </returns>
-        public static DataRow GetCurrentDataRow( this BindingSource bindingSource )
+        public static DataRow GetCurrentDataRow( this System.Windows.Forms.BindingSource bindingSource )
         {
             try
             {

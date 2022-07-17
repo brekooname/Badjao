@@ -10,7 +10,6 @@ namespace BudgetExecution
     using System.Data;
     using System.Linq;
     using System.Threading;
-    using System.Windows.Forms;
 
     /// <summary>
     /// 
@@ -92,7 +91,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is BindingSource _binder
+                if( bindingSource is System.Windows.Forms.BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -125,7 +124,7 @@ namespace BudgetExecution
             try
             {
                 if( dict?.Any( ) == true
-                    && bindingList is BindingSource _list )
+                    && bindingList is System.Windows.Forms.BindingSource _list )
                 {
                     try
                     {
@@ -144,7 +143,7 @@ namespace BudgetExecution
                             && _list?.DataSource != null )
                         {
                             DataSource = _list?.DataSource;
-                            Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                            base.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
                         }
                     }
                     catch( Exception ex )

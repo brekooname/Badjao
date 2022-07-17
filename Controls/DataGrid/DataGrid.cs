@@ -186,9 +186,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( Verify.IsInput( BindingSource.Filter ) )
+                    if( Verify.IsInput( base.BindingSource.Filter ) )
                     {
-                        BindingSource.RemoveFilter( );
+                        base.BindingSource.RemoveFilter( );
                     }
 
                     BindingSource.DataSource = dataRows.CopyToDataTable( );
@@ -208,16 +208,16 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="bindingSource">The bindingSource.</param>
         /// <param name="dict">The dictionary.</param>
-        public void SetBindingSource( BindingSource bindingSource, IDictionary<string, object> dict )
+        public void SetBindingSource( System.Windows.Forms.BindingSource bindingSource, IDictionary<string, object> dict )
         {
             if( bindingSource?.DataSource != null
                 && dict?.Any( ) == true )
             {
                 try
                 {
-                    if( Verify.IsInput( BindingSource.Filter ) )
+                    if( Verify.IsInput( base.BindingSource.Filter ) )
                     {
-                        BindingSource.RemoveFilter( );
+                        base.BindingSource.RemoveFilter( );
                     }
 
                     BindingSource.DataSource = ( bindingSource.DataSource as IEnumerable<DataRow> )

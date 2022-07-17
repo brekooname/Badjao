@@ -15,14 +15,14 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="BudgetSetting" />
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "AccessToStaticMemberViaDerivedType" )]
-    [SuppressMessage( "ReSharper", "ConvertToConstant.Global" )]
-    public class BudgetForm : BudgetSetting
+    /// <seealso cref="Settings" />
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AccessToStaticMemberViaDerivedType" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertToConstant.Global" ) ]
+    public class BudgetForm 
     {
         /// <summary>
         /// Gets or sets the state of the minimized.
@@ -162,7 +162,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    Settings.Fail( ex );
                     return default( Field );
                 }
             }
@@ -181,7 +181,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                Settings.Fail( ex );
             }
         }
     }

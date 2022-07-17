@@ -13,7 +13,6 @@ namespace BudgetExecution
     using System.Data;
     using System.Drawing;
     using System.Linq;
-    using System.Windows.Forms;
     using Syncfusion.Drawing;
     using Syncfusion.Windows.Forms.Chart;
 
@@ -165,7 +164,7 @@ namespace BudgetExecution
                 Legend.ItemsSize = size;
                 Legend.VisibleCheckBox = true;
                 Legend.BackInterior = new BrushInfo( backColor );
-                Legend.ItemsAlignment = BudgetSetting.GetStringAlignment( StringAlignment.Center );
+                Legend.ItemsAlignment = Settings.GetStringAlignment( StringAlignment.Center );
                 Legend.ItemsTextAligment = VerticalAlignment.Center;
                 Legend.Orientation = ChartOrientation.Vertical;
                 Legend.FloatingAutoSize = true;
@@ -189,7 +188,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is BindingSource _bindingSource
+                if( bindingSource is System.Windows.Forms.BindingSource _bindingSource
                     && _bindingSource?.DataSource != null )
                 {
                     try
@@ -226,7 +225,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
+                        var _list = bindingList as System.Windows.Forms.BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

@@ -13,7 +13,6 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
@@ -84,7 +83,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is BindingSource _binder
+                if( bindingSource is System.Windows.Forms.BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -121,7 +120,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
+                        var _list = bindingList as System.Windows.Forms.BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

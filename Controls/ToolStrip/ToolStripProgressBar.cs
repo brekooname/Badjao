@@ -98,7 +98,7 @@ namespace BudgetExecution
         {
             try
             {
-                Tag = BudgetSetting.ReTag( tag );
+                Tag = Settings.ReTag( tag );
             }
             catch( Exception ex )
             {

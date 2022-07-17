@@ -1,6 +1,7 @@
-﻿// <copyright file = "CarouselBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "SplashBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
+//
 
 namespace BudgetExecution
 {
@@ -11,12 +12,12 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.IO;
-    using System.Linq;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class CarouselBase : Carousel
+    [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
+    public abstract class SplashBase : SplashPanel
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -74,10 +75,16 @@ namespace BudgetExecution
         /// </value>
         public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
 
-        /// <summary>Initializes a new instance of the class.
-        /// 	<see cref="CarouselBase" />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashBase"/> class.
         /// </summary>
-        protected CarouselBase()
+        /// <remarks>
+        /// The default value for the <see cref="P:Syncfusion.Windows.Forms.Tools.SplashPanel.TimerInterval" /> is set to
+        /// 5000 milli seconds.
+        /// The splash panel has animation turned and by default will appear in the
+        /// middle of the screen.
+        /// </remarks>
+        public SplashBase()
         {
         }
 
@@ -102,7 +109,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        public virtual void ReSize( int width, int height )
+        public virtual void ReSize( int width = 300, int height = 150 )
         {
             try
             {
@@ -212,22 +219,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -246,12 +237,12 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the tool tip.
         /// </summary>
-        /// <param name="tip">The tip.</param>
-        public virtual void SetToolTip( string tip )
+        /// <param name="message">The tip.</param>
+        public virtual void SetToolTip( string message )
         {
             try
             {
-                Tag = Settings.GetToolTip( this, tip );
+                Tag = Settings.GetToolTip( this, message );
             }
             catch( Exception ex )
             {
@@ -262,14 +253,18 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the image.
         /// </summary>
-        /// <param name="image">The image.</param>
-        public virtual void AddImage( Image image )
+        /// <param name = "path" > </param>
+        public virtual void ResetIcon( string path )
         {
-            if( image != null )
+            if( Verify.IsInput( path )
+                && File.Exists( path ) )
             {
                 try
                 {
-                    ImageList.Images.Add( image );
+                    using( var _stream = File.Open( path, FileMode.Open ) )
+                    {
+                        FormIcon = new Icon( _stream );
+                    }
                 }
                 catch( Exception ex )
                 {
@@ -279,127 +274,10 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Creates the image list.
-        /// </summary>
-        /// <param name="srcDir">The source dir.</param>
-        /// <returns></returns>
-        public virtual ImageList CreateImageList( string srcDir )
-        {
-            if( Directory.Exists( srcDir ) )
-            {
-                var _files = Directory.EnumerateFiles( srcDir );
-                var _paths = _files?.ToList( );
-                var _list = new ImageList( );
-
-                for( var i = 0; i < _paths.Count; i++ )
-                {
-                    if( !string.IsNullOrEmpty( _paths[ i ] )
-                        && File.Exists( _paths[ i ] ) )
-                    {
-                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
-                        {
-                            var _img = new Bitmap( _stream );
-                            _list?.Images?.Add( _img );
-                        }
-                    }
-                }
-
-                return _list?.Images?.Count > 0
-                    ? _list
-                    : default( ImageList );
-            }
-
-            return default( ImageList );
-        }
-
-        /// <summary>
-        /// Creates the image list.
-        /// </summary>
-        /// <param name="srcDir">The source dir.</param>
-        /// <param name = "size" > </param>
-        /// <returns></returns>
-        public virtual ImageList CreateImageList( string srcDir, Size size )
-        {
-            if( Directory.Exists( srcDir ) )
-            {
-                var _files = Directory.EnumerateFiles( srcDir );
-                var _paths = _files?.ToList( );
-                var _list = new ImageList( );
-
-                for( var i = 0; i < _paths.Count; i++ )
-                {
-                    if( !string.IsNullOrEmpty( _paths[ i ] )
-                        && File.Exists( _paths[ i ] ) )
-                    {
-                        var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
-                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
-                        {
-                            var _img = new Bitmap( _stream )
-                            {
-                                Tag = _name
-                            };
-
-                            _list.ImageSize = size;
-                            _list?.Images?.Add( _img );
-                        }
-                    }
-                }
-
-                return _list?.Images?.Count > 0
-                    ? _list
-                    : default( ImageList );
-            }
-
-            return default( ImageList );
-        }
-
-        /// <summary>
-        /// Creates the carousel items.
-        /// </summary>
-        /// <param name="paths">The images.</param>
-        /// <returns></returns>
-        public virtual IEnumerable<CarouselImage> CreateCarouselItems( IEnumerable<string> paths )
-        {
-            if( paths?.Any( ) == true )
-            {
-                var _list = paths.ToList( );
-                var _carouselImages = new List<CarouselImage>( );
-
-                for( var i = 0; i < _list?.Count; i++ )
-                {
-                    if( !string.IsNullOrEmpty( _list[ i ] )
-                        && File.Exists( _list[ i ] ) )
-                    {
-                        using( var _stream = File.Open( _list[ i ], FileMode.Open ) )
-                        {
-                            using( var _img = new Bitmap( _stream ) )
-                            {
-                                var _carouselImage = new CarouselImage
-                                {
-                                    ItemImage = _img
-                                };
-
-                                _carouselImages.Add( _carouselImage );
-                            }
-                        }
-                    }
-                }
-
-                return _carouselImages.Any( )
-                    ? _carouselImages
-                    : default( IEnumerable<CarouselImage> );
-            }
-
-            return default( IEnumerable<CarouselImage> );
-        }
-        
-
-        /// <summary>
-        /// Get Error Dialog.
+        /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-        protected void Fail( Exception ex )
+        protected static void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )
             {

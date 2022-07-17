@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarTextBoxBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ImageListBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 //
@@ -6,12 +6,15 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class ToolbarTextBase : System.Windows.Forms.ToolStripTextBox
+    public abstract class ImageListBase : ImageListAdv
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -20,6 +23,14 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public virtual BindingSource BindingSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tool tip.
+        /// </summary>
+        /// <value>
+        /// The tool tip.
+        /// </value>
+        public virtual ToolTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the hover text.
@@ -38,43 +49,55 @@ namespace BudgetExecution
         public virtual Field Field { get; set; }
 
         /// <summary>
-        /// Gets or sets the tool tip.
+        /// Gets or sets the numeric.
         /// </summary>
         /// <value>
-        /// The tool tip.
+        /// The numeric.
         /// </value>
-        public virtual ToolTip ToolTip { get; set; }
+        public virtual Numeric Numeric { get; set; }
 
         /// <summary>
-        /// Gets or sets the setting.
+        /// Gets or sets the filter.
         /// </summary>
         /// <value>
-        /// The setting.
+        /// The filter.
         /// </value>
-        public virtual NameValueCollection Setting { get; set; } =
-            ConfigurationManager.AppSettings;
+        public virtual IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the bar.
+        /// Gets or sets the bud ex configuration.
         /// </summary>
         /// <value>
-        /// The bar.
+        /// The bud ex configuration.
         /// </value>
-        public ToolType Bar { get; set; }
+        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
 
         /// <summary>
-        /// Initializes a new instance
-        /// of the <see cref="ToolbarTextBase"/> class.
+        /// Res the size.
         /// </summary>
-        protected ToolbarTextBase()
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        public virtual void ReSizeImages( int width, int height )
         {
+            if( width > 0
+                && height > 0 )
+            {
+                try
+                {
+                    ImageSize = new Size( width, height );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
         }
 
         /// <summary>
-        /// Fails the specified ex.
+        /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        protected static void Fail( Exception ex )
+        protected void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )
             {

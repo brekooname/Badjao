@@ -47,7 +47,7 @@ namespace BudgetExecution
             : base( size, location )
         {
             Size = size;
-            Location = BudgetSetting.ReLocate( location.X, location.Y );
+            Location = Settings.ReLocate( location.X, location.Y );
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace BudgetExecution
             : base( size, location, parent )
         {
             Size = new Size( size.Width, size.Height );
-            Location = BudgetSetting.ReLocate( location.X, location.Y );
+            Location = Settings.ReLocate( location.X, location.Y );
             Parent = parent;
             Parent.Controls.Add( this );
         }

@@ -156,7 +156,7 @@ namespace BudgetExecution
         {
             try
             {
-                Tag = BudgetSetting.ReTag( tag );
+                Tag = Settings.ReTag( tag );
             }
             catch( Exception ex )
             {
@@ -174,7 +174,7 @@ namespace BudgetExecution
 
             try
             {
-                HoverText = BudgetSetting.GetText( _text );
+                HoverText = Settings.GetText( _text );
             }
             catch( Exception ex )
             {

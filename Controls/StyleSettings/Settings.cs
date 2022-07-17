@@ -15,7 +15,7 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class BudgetSetting
+    public static class Settings
     {
         /// <summary>
         /// Gets or sets the image size icon.
@@ -438,7 +438,7 @@ namespace BudgetExecution
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        protected static void Fail( Exception ex )
+        public static void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )
             {

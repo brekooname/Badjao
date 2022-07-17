@@ -1,4 +1,4 @@
-﻿// <copyright file = "PivotChartControl.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ChartControl.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 //
@@ -11,7 +11,7 @@ namespace BudgetExecution
     using Syncfusion.Windows.Forms.Chart;
     using Syncfusion.Windows.Forms.PivotChart;
 
-    [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
+    [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
     public class PivotChart : PivotChartBase
     {
         /// <summary>

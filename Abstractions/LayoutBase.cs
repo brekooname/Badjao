@@ -111,7 +111,7 @@ namespace BudgetExecution
             : this( )
         {
             Size = size;
-            Location = BudgetSetting.ReLocate( location.X, location.Y );
+            Location = Settings.ReLocate( location.X, location.Y );
         }
 
         /// <summary>

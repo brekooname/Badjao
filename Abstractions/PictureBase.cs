@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarButtonBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "PictureBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -9,16 +9,26 @@ namespace BudgetExecution
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Forms;
-    using System.Resources;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.ToolStripButton" />
+    /// <seealso cref="IPictureBox" />
+    /// <seealso cref="System.Windows.Forms.PictureBox" />
+    [SuppressMessage( "ReSharper", "UnusedType.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public class ToolbarButtonBase : System.Windows.Forms.ToolStripButton
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    public abstract class PictureBase : System.Windows.Forms.PictureBox
     {
+        /// <summary>
+        /// Gets or sets the binding source.
+        /// </summary>
+        /// <value>
+        /// The binding source.
+        /// </value>
+        public virtual BindingSource BindingSource { get; set; }
+
         /// <summary>
         /// Gets or sets the tool tip.
         /// </summary>
@@ -28,12 +38,12 @@ namespace BudgetExecution
         public virtual ToolTip ToolTip { get; set; }
 
         /// <summary>
-        /// Gets or sets the binding source.
+        /// Gets or sets the hover text.
         /// </summary>
         /// <value>
-        /// The binding source.
+        /// The hover text.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public virtual string HoverText { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -49,7 +59,7 @@ namespace BudgetExecution
         /// <value>
         /// The numeric.
         /// </value>
-        public virtual string HoverText { get; set; }
+        public virtual Numeric Numeric { get; set; }
 
         /// <summary>
         /// Gets or sets the filter.
@@ -60,48 +70,24 @@ namespace BudgetExecution
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the setting.
+        /// Gets or sets the bud ex configuration.
         /// </summary>
         /// <value>
-        /// The setting.
+        /// The bud ex configuration.
         /// </value>
         public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        public virtual ResourceManager Resource { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bar.
-        /// </summary>
-        /// <value>
-        /// The bar.
-        /// </value>
-        public ToolType ToolType { get; set; }
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
-        public void ReTag( object tag )
+        public virtual void SetTag( object tag )
         {
             try
             {
-                Tag = Settings.ReTag( tag );
+                Tag = Verify.IsRef( tag )
+                    ? tag
+                    : null;
             }
             catch( Exception ex )
             {
@@ -110,35 +96,30 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the hover text.
+        /// Called when [mouse hover].
         /// </summary>
-        /// <param name="item">The item.</param>
-        public void SetHoverText( ToolStripItem item )
-        {
-            var _text = item?.Tag?.ToString( );
-
-            if( !string.IsNullOrEmpty( _text ) )
-            {
-                try
-                {
-                    HoverText = _text;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the hover text.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        public void SetHoverText( string text )
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.</param>
+        [SuppressMessage( "ReSharper", "UnusedVariable" )]
+        public virtual void OnMouseHover( object sender, EventArgs e )
         {
             try
             {
-                HoverText = text;
+                var _picturePanel = sender as PictureBase;
+
+                if( Verify.IsInput( HoverText ) )
+                {
+                    var _ = new ToolTip( _picturePanel, HoverText );
+                }
+                else
+                {
+                    if( Verify.IsInput( Tag?.ToString( ) ) )
+                    {
+                        var _ = new ToolTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -147,7 +128,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Get Error Dialog.
+        /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )

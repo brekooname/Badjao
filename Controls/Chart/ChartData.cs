@@ -10,8 +10,8 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Windows.Forms;
 
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ChartData
     {
         public ChartData()
@@ -59,7 +59,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is BindingSource binder
+                if( bindingSource is System.Windows.Forms.BindingSource binder
                     && binder?.DataSource != null )
                 {
                     try
@@ -96,7 +96,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
+                        var _list = bindingList as System.Windows.Forms.BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

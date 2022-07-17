@@ -9,7 +9,6 @@ namespace BudgetExecution
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Forms;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class ToolStripProgressBase : System.Windows.Forms.ToolStripProgressBar

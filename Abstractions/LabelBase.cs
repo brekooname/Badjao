@@ -1,21 +1,21 @@
-﻿// <copyright file = "ListBoxBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "LabelBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
-    using System;
     using System.Collections.Generic;
+    using System;
     using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using VisualPlus.Toolkit.Controls.DataManagement;
+    using VisualPlus.Toolkit.Controls.Interactivity;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class ListBoxBase : VisualListBox
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    public abstract class LabelBase : VisualLabel
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -72,23 +72,7 @@ namespace BudgetExecution
         /// The bud ex configuration.
         /// </value>
         public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -358,12 +342,73 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Get Error Dialog.
+        /// Called when [mouse over].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.</param>
+        public virtual void OnMouseOver( object sender, EventArgs e )
+        {
+            var _budgetLabel = sender as Label;
+
+            try
+            {
+                if( _budgetLabel != null
+                    && !string.IsNullOrEmpty( HoverText ) )
+                {
+                    if( Verify.IsInput( HoverText ) )
+                    {
+                        var _hoverText = _budgetLabel?.HoverText;
+                        var _ = new ToolTip( _budgetLabel, _hoverText );
+                    }
+                    else
+                    {
+                        if( Verify.IsInput( Tag?.ToString( ) ) )
+                        {
+                            var _text = Tag?.ToString( )?.SplitPascal( );
+                            var _ = new ToolTip( _budgetLabel, _text );
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse leave].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.
+        /// </param>
+        public virtual void OnMouseLeave( object sender, EventArgs e )
+        {
+            var _budgetLabel = sender as Label;
+
+            try
+            {
+                if( _budgetLabel != null )
+                {
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using ( var _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );
