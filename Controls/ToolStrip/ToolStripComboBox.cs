@@ -11,6 +11,7 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
+    using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -40,13 +41,12 @@ namespace BudgetExecution
             BackColor = Color.FromArgb( 18, 18, 18 );
             ForeColor = Color.White;
             Font = new Font( "Roboto", 9 );
-            Field = Field.NS;
             Tag = "Make Selection";
             ToolTipText = Tag.ToString(  );
             HoverText = Tag.ToString(  );
-            Text = string.Empty;
             Visible = true;
             Enabled = true;
+            Style = ToolStripExStyle.Office2016Black;
             MouseHover += OnMouseHover;
             MouseLeave += OnMouseLeave;
         }
@@ -80,7 +80,7 @@ namespace BudgetExecution
         public ToolStripComboBox( IEnumerable<DataRow> data, string filter )
             : this(  )
         {
-            BindingSource.DataSource = data.ToList(  );
+            BindingSource.DataSource = data?.ToList(  );
             BindingSource.DataMember = filter;
         }
 
@@ -106,9 +106,28 @@ namespace BudgetExecution
             return null;
         }
 
+        /// <summary>
+        /// Gets the selected item.
+        /// </summary>
+        /// <returns></returns>
+        public void AddItem( object item )
+        {
+            if( item != null )
+            {
+                try
+                {
+                    Items.Add( item );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
         /// <summary> Sets the data source. </summary>
         /// <param name = "bindingSource" > The bindingsource. </param>
-        public void SetDataSource( System.Windows.Forms.BindingSource bindingSource )
+        public void SetDataSource( BindingSource bindingSource )
         {
             if( bindingSource?.DataSource != null )
             {
@@ -134,19 +153,19 @@ namespace BudgetExecution
         {
             try
             {
-                var _button = sender as ToolStripComboBox;
-                if(  _button != null
-                    && !string.IsNullOrEmpty( HoverText ) )
+                var _comboBox = sender as ToolStripComboBox;
+                if(  !string.IsNullOrEmpty( _comboBox?.HoverText ) )
                 {
-                    _button.Tag = HoverText;
-                    var _ = new ToolTip( _button );
+                    var _text = _comboBox?.HoverText;
+                    var _ = new ToolTip( _comboBox, _text );
                 }
                 else
                 {
-                    if( Verify.IsInput( Tag?.ToString( ) ) )
+                    if( Verify.IsInput( _comboBox?.Tag?.ToString( ) ) )
                     {
-                        var _text = Tag?.ToString(  )?.SplitPascal(  );
-                        var _ = new ToolTip( _button, _text );
+                        var _text = _comboBox?.Tag
+                            ?.ToString(  )?.SplitPascal(  );
+                        var _ = new ToolTip( _comboBox, _text );
                     }
                 }
             }

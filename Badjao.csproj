@@ -356,6 +356,8 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\CheckBox\CheckBox.cs" />
+    <Compile Include="Abstractions\CheckBoxBase.cs" />
     <Compile Include="Controls\Binding\BindingData.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -807,6 +809,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataForm.resx">
       <DependentUpon>DataForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
@@ -2761,6 +2764,7 @@
     <Content Include="Resources\Images\ToolStrip\png\AddRecordButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\BrowseButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\CalculatorButton.png" />
+    <None Include="Resources\Images\ToolStrip\png\CalendarButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\ChartButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\CloseButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\CopyButton.png" />
@@ -2778,6 +2782,7 @@
     <Content Include="Resources\Images\ToolStrip\png\ExportButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\FirstButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\Forward.png" />
+    <None Include="Resources\Images\ToolStrip\png\GoogleButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\GuidanceButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\HomeButton.png" />
     <None Include="Resources\Images\ToolStrip\png\Import.png" />
@@ -2785,9 +2790,11 @@
     <Content Include="Resources\Images\ToolStrip\png\InsertButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\LastButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\LogoutButton.png" />
+    <None Include="Resources\Images\ToolStrip\png\LookupButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\MenuButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\NavigationButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\NextButton.png" />
+    <None Include="Resources\Images\ToolStrip\png\OutlookButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\PauseButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\PdfButton.png" />
     <Content Include="Resources\Images\ToolStrip\png\PlayButton.png" />

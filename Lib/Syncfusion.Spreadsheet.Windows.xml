@@ -39116,7 +39116,7 @@
             </summary>
             <value><c>true</c> if elements can be recycled when scrolled out of view; otherwise, <c>false</c>.</value>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.CellRenderer.SpreadsheetComboBoxCellRenderer.OnInitializeEditElement(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex,System.Windows.Forms.ComboBox,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetColumn)">
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.CellRenderer.SpreadsheetComboBoxCellRenderer.OnInitializeEditElement(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex,System.Windows.Forms.DropDown,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetColumn)">
             <summary>
             Initialize the edit element of combobox while loading in the grid.
             </summary>
@@ -39124,13 +39124,13 @@
             <param name="uiElement">combobox</param>
             <param name="column"></param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.CellRenderer.SpreadsheetComboBoxCellRenderer.OnWireEditUIElement(System.Windows.Forms.ComboBox)">
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.CellRenderer.SpreadsheetComboBoxCellRenderer.OnWireEditUIElement(System.Windows.Forms.DropDown)">
             <summary>
             Hook the required editelement events from this method.
             </summary>
             <param name="uiElement"></param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.CellRenderer.SpreadsheetComboBoxCellRenderer.OnUnwireEditUIElement(System.Windows.Forms.ComboBox)">
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.CellRenderer.SpreadsheetComboBoxCellRenderer.OnUnwireEditUIElement(System.Windows.Forms.DropDown)">
             <summary>
             UnHook the required editelement events from this method.
             </summary>

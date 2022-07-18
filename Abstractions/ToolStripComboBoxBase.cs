@@ -75,14 +75,7 @@ namespace BudgetExecution
         /// The bar.
         /// </value>
         public ToolType Bar { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance
-        /// of the <see cref="ToolStripComboBoxBase"/> class.
-        /// </summary>
-        protected ToolStripComboBoxBase()
-        {
-        }
+        
 
         /// <summary>
         /// Sets the font.

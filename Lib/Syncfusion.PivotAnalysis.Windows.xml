@@ -2479,7 +2479,7 @@
             <param name="rect">A <see cref="T:System.Drawing.Rectangle"/> object that represents the drawing area.</param>
             <param name="state">The current state of the button.</param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.HeaderCellOffice2010VisualStyleDrawing.DrawComboBoxStyle(System.Drawing.Graphics,System.Drawing.Rectangle,Syncfusion.Windows.Forms.ThemedComboBoxDrawing.DropDownState,System.Drawing.Color)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.HeaderCellOffice2010VisualStyleDrawing.DrawComboBoxStyle(System.Drawing.Graphics,System.Drawing.Rectangle,Syncfusion.Windows.Forms.ThemedDropDownDrawing.DropDownState,System.Drawing.Color)">
             <summary>
             Draws the ComboBox skins
             </summary>

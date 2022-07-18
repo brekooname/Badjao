@@ -337,4 +337,16 @@
   <data name="WordButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Images\ToolStrip\png\WordButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CalendarButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\ToolStrip\png\CalendarButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GoogleButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\ToolStrip\png\GoogleButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LookupButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\ToolStrip\png\LookupButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OutlookButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Images\ToolStrip\png\OutlookButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

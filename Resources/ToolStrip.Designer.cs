@@ -123,6 +123,16 @@ namespace BudgetExecution.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CalendarButton {
+            get {
+                object obj = ResourceManager.GetObject("CalendarButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChartButton {
             get {
                 object obj = ResourceManager.GetObject("ChartButton", resourceCulture);
@@ -383,6 +393,16 @@ namespace BudgetExecution.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GoogleButton {
+            get {
+                object obj = ResourceManager.GetObject("GoogleButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GridButton {
             get {
                 object obj = ResourceManager.GetObject("GridButton", resourceCulture);
@@ -453,6 +473,16 @@ namespace BudgetExecution.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LookupButton {
+            get {
+                object obj = ResourceManager.GetObject("LookupButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MenuButton {
             get {
                 object obj = ResourceManager.GetObject("MenuButton", resourceCulture);
@@ -486,6 +516,16 @@ namespace BudgetExecution.Resources {
         internal static System.Drawing.Bitmap NextButton {
             get {
                 object obj = ResourceManager.GetObject("NextButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OutlookButton {
+            get {
+                object obj = ResourceManager.GetObject("OutlookButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

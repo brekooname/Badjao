@@ -65,6 +65,11 @@ namespace BudgetExecution
         CalculatorButton,
 
         /// <summary>
+        /// The calendar button
+        /// </summary>
+        CalendarButton,
+
+        /// <summary>
         /// The close button
         /// </summary>
         CloseButton,
@@ -205,6 +210,11 @@ namespace BudgetExecution
         GuidanceButton,
 
         /// <summary>
+        /// The google button icon
+        /// </summary>
+        GoogleButton,
+
+        /// <summary>
         /// The home button
         /// </summary>
         HomeButton,
@@ -228,6 +238,11 @@ namespace BudgetExecution
         /// The logout button
         /// </summary>
         LogoutButton,
+
+        /// <summary>
+        /// The lookup button
+        /// </summary>
+        LookupButton,
 
         /// <summary>
         /// The previous button

@@ -4,8 +4,8 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using EnvDTE;
     using Syncfusion.Windows.Forms;
-    using Syncfusion.Windows.Forms.Tools;
 
     /// <summary>
     ///   <br />
@@ -13,16 +13,11 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public partial class DataForm : MetroForm
     {
-        public DataForm()
+
+        public DataForm( )
         {
             InitializeComponent( );
             Load += OnLoad;
-            HomeButton.Click += OnHomeMenuButtonClicked;
-            ChartButton.Click += OnChartButtonClicked;
-            BrowseButton.Click += OnBrowseButtonClicked;
-            ExcelButton.Click += OnExcelButtonClicked;
-            CalendarButton.Click += OnCalendarButtonClicked;
-            CalculatorButton.Click += OnCalculatorButtonClicked;
         }
 
 
@@ -34,16 +29,16 @@ namespace BudgetExecution
         {
             try
             {
-                var Tables = new List<string>( );
-                var sources = Enum.GetNames( typeof( Source ) );
+                var _tables = new List<string>( );
+                var _sources = Enum.GetNames( typeof( SQL ) );
 
-                foreach( var item in sources )
+                foreach( var item in _sources )
                 {
-                    Tables.Add( item );
+                    _tables.Add( item );
                 }
 
-                return Tables.Count > 0
-                    ? Tables
+                return _tables.Count > 0
+                    ? _tables 
                     : default( List<string> );
             }
             catch ( Exception ex )
@@ -52,29 +47,7 @@ namespace BudgetExecution
                 return default( IEnumerable<string> );
             }
         }
-
-
-        /// <summary>
-        /// Populates the toolbar ComboBox.
-        /// </summary>
-        public void PopulateToolbarComboBox( )
-        {
-            try
-            {
-                var _comboBox = ToolBar.Items[ "ComboBox" ] as ToolStripComboBoxEx;
-                var _tables = GetTableList(  );
-
-                foreach( var table in _tables )
-                {
-                    _comboBox?.Items.Add( table );
-                }
-            }
-            catch ( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
 
         /// <summary>
         /// Called when [load].
@@ -85,7 +58,20 @@ namespace BudgetExecution
         {
             try
             {
-                PopulateToolbarComboBox( );
+                if( Toolbar?.DropDown != null )
+                {
+                    Toolbar.DropDown.Items.Clear(  );
+                    var _items = GetTableList( );
+
+                    foreach( var i in _items )
+                    {
+                        if( !string.IsNullOrEmpty( i )
+                            && i != "NS" )
+                        {
+                            Toolbar.DropDown?.Items.Add( i );
+                        }
+                    }
+                }
             }
             catch ( Exception ex )
             {
@@ -209,6 +195,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

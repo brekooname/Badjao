@@ -10,17 +10,18 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// 
     /// </summary>
     /// <seealso cref="ToolStripBase" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )  ]
-    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
-    [ SuppressMessage( "ReSharper", "ObjectCreationAsStatement" ) ]
-    [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
+    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
+    [SuppressMessage( "ReSharper", "ObjectCreationAsStatement" )]
+    [SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" )]
     public class ToolStrip : ToolStripBase, IToolStrip
     {
         /// <summary>
@@ -46,14 +47,6 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the items.
-        /// </summary>
-        /// <value>
-        /// The items.
-        /// </value>
-        public override ToolStripItemCollection Items { get; }
 
         /// <summary>
         /// The image path
@@ -114,6 +107,7 @@ namespace BudgetExecution
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
             ImageDirectory = Setting[ "ToolStripImages" ];
+            PopulateTools( );
         }
 
         /// <summary>
@@ -150,12 +144,77 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual void AddTextBox()
+        public virtual void AddTextBox( )
         {
             try
             {
                 var _textBox = new ToolStripTextBox( );
                 Items?.Add( _textBox );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void AddComboBox( )
+        {
+            try
+            {
+                var _comboBox = new ToolStripComboBox( );
+                Items?.Add( _comboBox );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void AddDropDownItem( object item )
+        {
+            try
+            {
+                DropDown?.Items.Add( item );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void ResetDropDownList( IEnumerable<object> items )
+        {
+            try
+            {
+                DropDown?.Items?.Clear( );
+                if ( items?.Count( ) > 0 )
+                {
+                    foreach( var item in items )
+                    {
+                        DropDown?.Items?.Add( item );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+        /// <summary>
+        /// Populates the toolbar ComboBox.
+        /// </summary>
+        public void PopulateComboBoxItems()
+        {
+            try
+            {
+                foreach( var _name in Enum.GetNames( typeof( SQL ) ) )
+                {
+                    if( !string.IsNullOrEmpty( _name )
+                        && _name != "NS" )
+                    {
+                        DropDown.Items.Add( _name );
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -174,6 +233,181 @@ namespace BudgetExecution
             {
                 var _separator = new ToolSeparator( );
                 Items?.Add( _separator );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Populates the tools.
+        /// </summary>
+        public virtual void PopulateTools()
+        {
+            try
+            {
+                var _firstRecord = ImageDirectory + @"\FirstButton.png";
+                var _previousRecord = ImageDirectory + @"\PreviousButton.png";
+                var _nextRecord = ImageDirectory + @"\NextButton.png";
+                var _lastRecord = ImageDirectory + @"\LastButton.png";
+                var _edit = ImageDirectory + @"\EditButton.png";
+                var _add = ImageDirectory + @"\AddButton.png";
+                var _delete = ImageDirectory + @"\DeleteButton.png";
+                var _refresh = ImageDirectory + @"\RefreshButton.png";
+                var _save = ImageDirectory + @"\SaveButton.png";
+                var _browse = ImageDirectory + @"\BrowseButton.png";
+                var _print = ImageDirectory + @"\PrintButton.png";
+                var _excelFile = ImageDirectory + @"\ExcelButton.png";
+                var _calculator = ImageDirectory + @"\CalculatorButton.png";
+                Items.Add( new ToolSeparator( ) );
+                TextBox = new ToolStripTextBox( );
+                Items.Add( TextBox );
+                Items.Add( new ToolSeparator( ) );
+                DropDown = new ToolStripComboBox( );
+                Items.Add( DropDown );
+                Items.Add( new ToolSeparator( ) );
+
+                FirstButton = new ToolStripButton
+                {
+                    ToolType = ToolType.FirstButton,
+                    Image = Image.FromFile( _firstRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Beginning"
+                };
+
+                Items.Add( FirstButton );
+                Items.Add( new ToolSeparator( ) );
+
+                PreviousButton = new ToolStripButton
+                {
+                    ToolType = ToolType.PreviousButton,
+                    Image = Image.FromFile( _previousRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Previous"
+                };
+
+                Items.Add( PreviousButton );
+                Items.Add( new ToolSeparator( ) );
+
+                NextButton = new ToolStripButton
+                {
+                    ToolType = ToolType.NextButton,
+                    Image = Image.FromFile( _nextRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Next Record"
+                };
+
+                Items.Add( NextButton );
+                Items.Add( new ToolSeparator( ) );
+
+                LastButton = new ToolStripButton
+                {
+                    ToolType = ToolType.LastButton,
+                    Image = Image.FromFile( _lastRecord ),
+                    BindingSource = BindingSource,
+                    HoverText = "Go To Last Record"
+                };
+
+                Items.Add( LastButton );
+                Items.Add( new ToolSeparator( ) );
+
+                EditButton = new ToolStripButton
+                {
+                    ToolType = ToolType.EditButton,
+                    Image = Image.FromFile( _edit ),
+                    HoverText = "Edit Record"
+                };
+
+                Items.Add( EditButton );
+                Items.Add( new ToolSeparator( ) );
+
+                AddButton = new ToolStripButton
+                {
+                    ToolType = ToolType.AddButton,
+                    Image = Image.FromFile( _add ),
+                    HoverText = "Add Record"
+                };
+
+                Items.Add( AddButton );
+                Items.Add( new ToolSeparator( ) );
+
+                DeleteButton = new ToolStripButton
+                {
+                    ToolType = ToolType.DeleteButton,
+                    Image = Image.FromFile( _delete ),
+                    HoverText = "Delete Record"
+                };
+
+                Items.Add( DeleteButton );
+                Items.Add( new ToolSeparator( ) );
+
+                RefreshButton = new ToolStripButton
+                {
+                    ToolType = ToolType.RefreshButton,
+                    Image = Image.FromFile( _refresh ),
+                    HoverText = "Refresh Data"
+                };
+
+                Items.Add( RefreshButton );
+                Items.Add( new ToolSeparator( ) );
+
+                SaveButton = new ToolStripButton
+                {
+                    ToolType = ToolType.SaveButton,
+                    Image = Image.FromFile( _save ),
+                    HoverText = "Save Changes"
+                };
+
+                Items.Add( SaveButton );
+                Items.Add( new ToolSeparator( ) );
+
+                BrowseButton = new ToolStripButton
+                {
+                    ToolType = ToolType.BrowseButton,
+                    Image = Image.FromFile( _browse ),
+                    HoverText = "Browse for file"
+                };
+
+                Items.Add( BrowseButton );
+                Items.Add( new ToolSeparator( ) );
+
+                PrintButton = new ToolStripButton
+                {
+                    ToolType = ToolType.PrintButton,
+                    Image = Image.FromFile( _print ),
+                    HoverText = "Print Data"
+                };
+
+                Items.Add( PrintButton );
+                Items.Add( new ToolSeparator( ) );
+
+                ExcelButton = new ToolStripButton
+                {
+                    ToolType = ToolType.ExcelButton,
+                    Image = Image.FromFile( _excelFile ),
+                    HoverText = "Export to Excel"
+                };
+
+                Items.Add( ExcelButton );
+                Items.Add( new ToolSeparator( ) );
+
+                CalculatorButton = new ToolStripButton
+                {
+                    ToolType = ToolType.CalculatorButton,
+                    Image = Image.FromFile( _calculator ),
+                    HoverText = "Launch Calculator"
+                };
+
+                Items.Add( CalculatorButton );
+                Items.Add( new ToolSeparator( ) );
+
+                ProgressBar = new ToolStripProgressBar
+                {
+                    Visible = false
+                };
+
+                Items.Add( ProgressBar );
             }
             catch( Exception ex )
             {

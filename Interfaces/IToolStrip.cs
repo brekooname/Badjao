@@ -7,7 +7,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Drawing;
-    using System.Windows.Forms;
 
     public interface IToolStrip
     {
@@ -42,11 +41,7 @@ namespace BudgetExecution
         /// The setting.
         /// </value>
         NameValueCollection Setting { get; }
-
-        /// <summary>
-        /// The image path
-        /// </summary>
-        string ImageDirectory { get; set; }
+        
 
         /// <summary>
         /// Gets the buttons.
@@ -71,14 +66,7 @@ namespace BudgetExecution
         /// The size of the image scaling.
         /// </value>
         Size ImageScalingSize { get; set; }
-
-        /// <summary>
-        /// Gets or sets the items.
-        /// </summary>
-        /// <value>
-        /// The items.
-        /// </value>
-        ToolStripItemCollection Items { get; }
+        
 
         /// <summary>
         /// Gets or sets the separator.
@@ -198,7 +186,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool strip ComboBox.
         /// </value>
-        ToolStripComboBox ToolStripComboBox { get; set; }
+        ToolStripComboBox DropDown { get; set; }
 
         /// <summary>
         /// Gets or sets the tool strip text box.
@@ -206,7 +194,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool strip text box.
         /// </value>
-        ToolStripTextBox ToolStripTextBox { get; set; }
+        ToolStripTextBox TextBox { get; set; }
 
         /// <summary>
         /// Gets or sets the first button.
