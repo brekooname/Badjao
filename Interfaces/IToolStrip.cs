@@ -181,12 +181,28 @@ namespace BudgetExecution
         ToolSeparator Separator14 { get; set; }
 
         /// <summary>
+        /// Gets or sets the separator15.
+        /// </summary>
+        /// <value>
+        /// The separator15.
+        /// </value>
+        ToolSeparator Separator15 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the separator16.
+        /// </summary>
+        /// <value>
+        /// The separator16.
+        /// </value>
+        ToolSeparator Separator16 { get; set; }
+
+        /// <summary>
         /// Gets or sets the tool strip ComboBox.
         /// </summary>
         /// <value>
         /// The tool strip ComboBox.
         /// </value>
-        ToolStripComboBox DropDown { get; set; }
+        ToolStripDropDown DropDown { get; set; }
 
         /// <summary>
         /// Gets or sets the tool strip text box.

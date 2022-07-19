@@ -43,7 +43,7 @@ namespace BudgetExecution
         /// <value>
         /// The pop up.
         /// </value>
-        public ToolStripDropDown PopUp { get; }
+        public System.Windows.Forms.ToolStripDropDown PopUp { get; }
 
         /// <summary>
         /// Gets or sets the host.
@@ -74,7 +74,7 @@ namespace BudgetExecution
             : this( )
         {
             Grid = dataGrid;
-            PopUp = new ToolStripDropDown( );
+            PopUp = new System.Windows.Forms.ToolStripDropDown( );
             ColumnListBox.CheckOnClick = true;
         }
 

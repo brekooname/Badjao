@@ -9,7 +9,6 @@ namespace BudgetExecution
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
     using System.Resources;
     using Syncfusion.Windows.Forms.Tools;
 
@@ -168,13 +167,15 @@ namespace BudgetExecution
         /// </value>
         public virtual ToolSeparator Separator15 { get; set; }
 
+        public virtual ToolSeparator Separator16 { get; set; }
+
         /// <summary>
         /// Gets or sets the tool strip ComboBox.
         /// </summary>
         /// <value>
         /// The tool strip ComboBox.
         /// </value>
-        public virtual ToolStripComboBox DropDown { get; set; }
+        public virtual ToolStripDropDown DropDown { get; set; }
 
         /// <summary>
         /// Gets or sets the tool strip text box.
@@ -295,7 +296,11 @@ namespace BudgetExecution
         /// The progress bar.
         /// </value>
         public virtual ToolStripProgressBar ProgressBar { get; set; }
- 
+
+        protected ToolStripBase( )
+        {
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

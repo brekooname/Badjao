@@ -18,7 +18,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="System.Windows.Forms.ToolStripComboBox" />
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class ToolStripComboBoxBase : ToolStripComboBoxEx
+    public abstract class ToolStripDropDownBase : ToolStripComboBoxEx
     {
         /// <summary>
         /// Gets or sets the binding source.

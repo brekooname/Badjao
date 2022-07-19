@@ -107,7 +107,6 @@ namespace BudgetExecution
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
             ImageDirectory = Setting[ "ToolStripImages" ];
-            PopulateTools( );
         }
 
         /// <summary>
@@ -161,7 +160,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _comboBox = new ToolStripComboBox( );
+                var _comboBox = new ToolStripComboBoxEx( );
                 Items?.Add( _comboBox );
             }
             catch( Exception ex )
@@ -174,7 +173,7 @@ namespace BudgetExecution
         {
             try
             {
-                DropDown?.Items.Add( item );
+                DropDown?.ComboBox?.Items.Add( item );
             }
             catch( Exception ex )
             {
@@ -186,12 +185,12 @@ namespace BudgetExecution
         {
             try
             {
-                DropDown?.Items?.Clear( );
+                DropDown?.ComboBox.Items?.Clear( );
                 if ( items?.Count( ) > 0 )
                 {
                     foreach( var item in items )
                     {
-                        DropDown?.Items?.Add( item );
+                        DropDown?.ComboBox?.Items?.Add( item );
                     }
                 }
             }
@@ -212,7 +211,7 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _name )
                         && _name != "NS" )
                     {
-                        DropDown.Items.Add( _name );
+                        DropDown?.ComboBox.Items.Add( _name );
                     }
                 }
             }
@@ -264,7 +263,7 @@ namespace BudgetExecution
                 TextBox = new ToolStripTextBox( );
                 Items.Add( TextBox );
                 Items.Add( new ToolSeparator( ) );
-                DropDown = new ToolStripComboBox( );
+                DropDown = new ToolStripDropDown( );
                 Items.Add( DropDown );
                 Items.Add( new ToolSeparator( ) );
 

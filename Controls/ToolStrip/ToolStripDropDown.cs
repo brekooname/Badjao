@@ -17,7 +17,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
-    public class ToolStripComboBox : ToolStripComboBoxBase, IToolbarComboBox
+    public class ToolStripDropDown: ToolStripDropDownBase, IToolbarComboBox
     {
         /// <summary>
         /// Gets or sets the tool tip.
@@ -28,16 +28,16 @@ namespace BudgetExecution
         public ToolTip ToolTip { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolStripComboBox"/> class.
+        /// Initializes a new instance of the <see cref="ToolStripComboBoxEx"/> class.
         /// </summary>
-        public ToolStripComboBox()
+        public ToolStripDropDown( )
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );
             Size = new Size( 175, 23 );
             DropDownStyle = ComboBoxStyle.DropDownList;
+            AllowDrop = true;
             MaxDropDownItems = 100;
-            DroppedDown = true;
             BackColor = Color.FromArgb( 18, 18, 18 );
             ForeColor = Color.White;
             Font = new Font( "Roboto", 9 );
@@ -47,37 +47,38 @@ namespace BudgetExecution
             Visible = true;
             Enabled = true;
             Style = ToolStripExStyle.Office2016Black;
+            ToolTip = new ToolTip( this, ToolTipText );
             MouseHover += OnMouseHover;
             MouseLeave += OnMouseLeave;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolStripComboBox"/> class.
+        /// Initializes a new instance of the <see cref="ToolStripComboBoxEx"/> class.
         /// </summary>
         /// <param name="data">The data.</param>
-        public ToolStripComboBox( IEnumerable<object> data )
+        public ToolStripDropDown( IEnumerable<object> data )
             : this(  )
         {
             BindingSource.DataSource = data?.ToList(  );
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolStripComboBox"/> class.
+        /// Initializes a new instance of the <see cref="ToolStripComboBoxEx"/> class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="filter">The filter.</param>
-        public ToolStripComboBox( IEnumerable<object> data, string filter )
+        public ToolStripDropDown( IEnumerable<object> data, string filter )
             : this( data )
         {
             BindingSource.Filter = filter;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolStripComboBox"/> class.
+        /// Initializes a new instance of the <see cref="ToolStripComboBoxEx"/> class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="filter">The filter.</param>
-        public ToolStripComboBox( IEnumerable<DataRow> data, string filter )
+        public ToolStripDropDown( IEnumerable<DataRow> data, string filter )
             : this(  )
         {
             BindingSource.DataSource = data?.ToList(  );
@@ -94,7 +95,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return Items[ SelectedIndex ];
+                    return ComboBox.Items[ SelectedIndex ];
                 }
                 catch( Exception ex )
                 {
@@ -116,7 +117,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Items.Add( item );
+                    ComboBox.Items.Add( item );
                 }
                 catch( Exception ex )
                 {
@@ -153,7 +154,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _comboBox = sender as ToolStripComboBox;
+                var _comboBox = sender as ToolStripDropDown;
                 if(  !string.IsNullOrEmpty( _comboBox?.HoverText ) )
                 {
                     var _text = _comboBox?.HoverText;

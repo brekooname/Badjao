@@ -4,6 +4,7 @@
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Drawing;
+    using Syncfusion.Windows.Forms.Tools;
 
     /// <summary>
     /// 
@@ -340,17 +341,17 @@
         /// </summary>
         /// <returns>
         /// </returns>
-        public static ToolStripComboBox CreateComboBox()
+        public static ToolStripComboBoxEx CreateComboBox()
         {
             try
             {
-                var _comboBox = new ToolStripComboBox( );
+                var _comboBox = new ToolStripComboBoxEx( );
                 return _comboBox;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ToolStripComboBox );
+                return default( ToolStripComboBoxEx );
             }
         }
 

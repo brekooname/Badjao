@@ -4,13 +4,13 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using EnvDTE;
     using Syncfusion.Windows.Forms;
 
     /// <summary>
     ///   <br />
     /// </summary>
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataForm : MetroForm
     {
 
@@ -58,9 +58,8 @@ namespace BudgetExecution
         {
             try
             {
-                if( Toolbar?.DropDown != null )
+                if( Toolbar != null )
                 {
-                    Toolbar.DropDown.Items.Clear(  );
                     var _items = GetTableList( );
 
                     foreach( var i in _items )
@@ -68,7 +67,7 @@ namespace BudgetExecution
                         if( !string.IsNullOrEmpty( i )
                             && i != "NS" )
                         {
-                            Toolbar.DropDown?.Items.Add( i );
+                            Toolbar.DropDown?.ComboBox?.Items.Add( i );
                         }
                     }
                 }

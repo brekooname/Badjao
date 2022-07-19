@@ -415,7 +415,7 @@
     <Compile Include="Controls\ToolStrip\ToolStripButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ToolStrip\ToolStripComboBox.cs">
+    <Compile Include="Controls\ToolStrip\ToolStripDropDown.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ToolStrip\ToolStripLabel.cs">
@@ -777,7 +777,7 @@
     <Compile Include="Abstractions\ToolStripButtonBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripComboBoxBase.cs">
+    <Compile Include="Abstractions\ToolStripDropDownBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Abstractions\ToolStripLabelBase.cs">
