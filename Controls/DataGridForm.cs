@@ -11,10 +11,10 @@ namespace BudgetExecution
     /// </summary>
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public partial class DataForm : MetroForm
+    public partial class DataGridForm : MetroForm
     {
 
-        public DataForm( )
+        public DataGridForm( )
         {
             InitializeComponent( );
             Load += OnLoad;

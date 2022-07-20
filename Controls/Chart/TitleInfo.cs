@@ -172,7 +172,7 @@ namespace BudgetExecution
                         _title.ForeColor = Color.FromArgb( 141, 139, 138 );
                         _title.Visible = true;
                         _title.Font = new Font( "Roboto", 9 );
-                        _title.BackColor = Color.FromArgb( 18, 18, 18 );
+                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
                         return _title;
                     }
                 }
@@ -202,7 +202,7 @@ namespace BudgetExecution
                         _title.ForeColor = Color.FromArgb( 141, 139, 138 );
                         _title.Visible = true;
                         _title.Font = new Font( "Roboto", 9 );
-                        _title.BackColor = Color.FromArgb( 18, 18, 18 );
+                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
                         return _title;
                     }
                 }
@@ -235,7 +235,7 @@ namespace BudgetExecution
                         _title.Visible = true;
                         _title.Font = font;
                         _title.ForeColor = color;
-                        _title.BackColor = Color.FromArgb( 18, 18, 18 );
+                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
                         return _title;
                     }
                 }
@@ -268,7 +268,7 @@ namespace BudgetExecution
                         _title.Visible = true;
                         _title.Font = font;
                         _title.ForeColor = color;
-                        _title.BackColor = Color.FromArgb( 18, 18, 18 );
+                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
                         return _title;
                     }
                 }

@@ -93,13 +93,13 @@ namespace BudgetExecution
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
             // BackColor SeriesConfiguration
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.White;
-            BackColorState.Disabled = Color.FromArgb( 18, 18, 18 );
-            BackColorState.Enabled = Color.FromArgb( 18, 18, 18 );
+            BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
+            BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
 
             // Border SeriesConfiguration
-            Border.Color = Color.FromArgb( 18, 18, 18 );
+            Border.Color = Color.FromArgb( 15, 15, 15 );
             Border.Thickness = 1;
             Border.HoverColor = Color.SteelBlue;
             Border.HoverVisible = true;
@@ -107,8 +107,8 @@ namespace BudgetExecution
             // Item SeriesConfiguration
             ItemHeight = 30;
             ItemLineAlignment = StringAlignment.Center;
-            ItemAlternate = Color.FromArgb( 18, 18, 18 );
-            ItemNormal = Color.FromArgb( 18, 18, 18 );
+            ItemAlternate = Color.FromArgb( 15, 15, 15 );
+            ItemNormal = Color.FromArgb( 15, 15, 15 );
             ItemSelected = Color.SteelBlue;
         }
 
@@ -253,9 +253,9 @@ namespace BudgetExecution
 
                     case false:
                     {
-                        Border.Color = Color.FromArgb( 18, 18, 18 );
+                        Border.Color = Color.FromArgb( 15, 15, 15 );
                         Border.Thickness = 1;
-                        Border.HoverColor = Color.FromArgb( 18, 18, 18 );
+                        Border.HoverColor = Color.FromArgb( 15, 15, 15 );
                         Border.HoverVisible = false;
                         Border.Type = ShapeTypes.Rounded;
                         break;

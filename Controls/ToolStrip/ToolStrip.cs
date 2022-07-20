@@ -76,7 +76,7 @@ namespace BudgetExecution
         {
             Margin = new Padding( 1, 1, 1, 1 );
             Padding = new Padding( 1, 1, 1, 1 );
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.Black;
             Font = new Font( "Roboto", 9 );
             ShowCaption = true;
@@ -97,7 +97,7 @@ namespace BudgetExecution
             GripStyle = ToolStripGripStyle.Hidden;
             VisualStyle = ToolStripExStyle.Default;
             OfficeColorScheme = ColorScheme.Blue;
-            ThemeStyle.BackColor = Color.FromArgb( 18, 18, 18 );
+            ThemeStyle.BackColor = Color.FromArgb( 15, 15, 15 );
             ThemeStyle.ArrowColor = Color.SteelBlue;
             ThemeStyle.BottomToolStripBackColor = Color.FromArgb( 28, 28, 28 );
             ThemeStyle.CaptionBackColor = Color.FromArgb( 28, 28, 28 );

@@ -32,7 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Error));
             this.TextBox = new VisualPlus.Toolkit.Controls.Editors.VisualRichTextBox();
             this.Panel = new VisualPlus.Toolkit.Controls.Layout.VisualPanel();
-            this.CloseButton = new System.Windows.Forms.Button();
+            this.CloseButton = new BudgetExecution.Button();
+            this.ToolTip = new BudgetExecution.ToolTip();
             this.SuspendLayout();
             // 
             // TextBox
@@ -48,7 +49,7 @@
             this.TextBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.TextBox.Border.Visible = true;
             this.TextBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.TextBox.ForeColor = System.Drawing.Color.LightGray;
             this.TextBox.Location = new System.Drawing.Point(76, 46);
             this.TextBox.MaxLength = 2147483647;
             this.TextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
@@ -96,19 +97,63 @@
             // 
             // CloseButton
             // 
-            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.CloseButton.BindingSource = null;
+            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.CloseButton.Border.HoverVisible = true;
+            this.CloseButton.Border.Rounding = 6;
+            this.CloseButton.Border.Thickness = 1;
+            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.CloseButton.Border.Visible = true;
+            this.CloseButton.DataFilter = null;
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.CloseButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.CloseButton.ForeColor = System.Drawing.Color.SteelBlue;
-            this.CloseButton.Location = new System.Drawing.Point(460, 343);
+            this.CloseButton.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.CloseButton.HoverText = null;
+            this.CloseButton.Image = null;
+            this.CloseButton.Images = null;
+            this.CloseButton.Location = new System.Drawing.Point(462, 342);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
+            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(142, 57);
-            this.CloseButton.TabIndex = 8;
+            this.CloseButton.Size = new System.Drawing.Size(140, 57);
+            this.CloseButton.TabIndex = 9;
             this.CloseButton.Text = "Close";
-            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.CornflowerBlue;
+            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.CloseButton.ToolTip = this.ToolTip;
+            // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 5000;
+            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.ToolTip.BindingSource = null;
+            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ToolTip.ForeColor = System.Drawing.Color.White;
+            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.Name = null;
+            this.ToolTip.OwnerDraw = true;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
+            this.ToolTip.StyleManager = null;
+            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
+            this.ToolTip.ThemeName = "Budget Execution";
+            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.TipText = null;
+            this.ToolTip.TipTitle = null;
             // 
             // Error
             // 
@@ -119,9 +164,9 @@
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.Red;
-            this.ClientSize = new System.Drawing.Size(688, 421);
+            this.ClientSize = new System.Drawing.Size(688, 420);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.TextBox);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -140,6 +185,7 @@
         public VisualPlus.Toolkit.Controls.Editors.VisualRichTextBox TextBox;
 
         public VisualPlus.Toolkit.Controls.Layout.VisualPanel Panel;
-        public System.Windows.Forms.Button CloseButton;
+        public Button CloseButton;
+        public ToolTip ToolTip;
     }
 }

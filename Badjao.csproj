@@ -356,6 +356,9 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\CurrencyBox\CurrencyBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\CheckBox\CheckBox.cs" />
     <Compile Include="Abstractions\CheckBoxBase.cs" />
     <Compile Include="Controls\Binding\BindingData.cs">
@@ -374,6 +377,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Label\Label.cs" />
+    <Compile Include="Controls\DataViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\DataViewForm.Designer.cs">
+      <DependentUpon>DataViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abstractions\CurrencyBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Interfaces\IClock.cs" />
     <Compile Include="Abstractions\ImageListBase.cs">
       <SubType>Component</SubType>
@@ -482,11 +494,11 @@
     <Compile Include="Controls\Chart\SeriesModel.cs" />
     <Compile Include="Controls\Chart\SourceModel.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
-    <Compile Include="Controls\DataForm.cs">
+    <Compile Include="Controls\DataGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\DataForm.Designer.cs">
-      <DependentUpon>DataForm.cs</DependentUpon>
+    <Compile Include="Controls\DataGridForm.Designer.cs">
+      <DependentUpon>DataGridForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\GridBase.cs">
       <SubType>Component</SubType>
@@ -714,6 +726,12 @@
     <Compile Include="Abstractions\PictureBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PivotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PivotForm.Designer.cs">
+      <DependentUpon>PivotForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -807,9 +825,12 @@
     <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataForm.resx">
-      <DependentUpon>DataForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataGridForm.resx">
+      <DependentUpon>DataGridForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DataViewForm.resx">
+      <DependentUpon>DataViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
@@ -837,6 +858,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PdfForm.resx">
       <DependentUpon>PdfForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PivotForm.resx">
+      <DependentUpon>PivotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -2899,6 +2923,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clients\LINQPad\" />
+    <Folder Include="Controls\Form\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

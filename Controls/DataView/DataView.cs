@@ -7,8 +7,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Drawing;
-    using Syncfusion.WinForms.DataGrid.Enums;
-    using Syncfusion.WinForms.GridCommon;
+    using Syncfusion.Windows.Forms;
 
     /// <summary>
     /// 
@@ -22,21 +21,17 @@ namespace BudgetExecution
         /// </summary>
         public DataView()
         {
-            BackColor = Color.FromArgb( 18, 18, 18 );
-            ShowBusyIndicator = true;
-            ShowErrorIcon = true;
-            ShowGroupDropArea = true;
-            ShowHeaderToolTip = true;
-            ShowRowHeader = true;
-            ShowPreviewRow = true;
-            ShowToolTip = true;
-            AllowDraggingColumns = true;
-            AllowDeleting = true;
-            AllowFiltering = true;
-            AllowGrouping = true;
-            FilterPopupMode = FilterPopupMode.AdvancedFilter;
-            EditMode = EditMode.DoubleClick;
-            CopyOption = CopyOptions.IncludeHeaders;
+            BackColor = Color.FromArgb( 40, 40, 40 );
+            ForeColor = Color.FromArgb( 240, 240, 240 );
+            Font = new Font( "Roboto Condensed", 9, FontStyle.Regular );
+            GridOfficeScrollBars = OfficeScrollBars.Office2016;
+            Office2016ScrollBarsColorScheme = ScrollBarOffice2016ColorScheme.Black;
+            ColorStyles = ColorStyles.Office2016Black;
+            ThemeStyle.CellStyle.Font = new Font( "Roboto Condensed", 9, FontStyle.Regular );
+            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            ThemeStyle.CellStyle.TextColor = Color.FromArgb( 240, 240, 240 );
+            ThemeStyle.CheckBoxStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            ThemeStyle.CheckBoxStyle.TickColor = Color.Lime;
         }
     }
 }

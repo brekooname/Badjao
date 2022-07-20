@@ -110,7 +110,7 @@ namespace BudgetExecution
             Dock = DockStyle.None;
             Visible = true;
             Enabled = true;
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.White;
             Font = new Font( "Roboto", 9 );
             Margin = new Padding( 3 );
@@ -124,8 +124,8 @@ namespace BudgetExecution
             Border.HoverVisible = true;
 
             // BackColor SeriesConfiguration.
-            BackColorState.Disabled = Color.FromArgb( 18, 18, 18 );
-            BackColorState.Enabled = Color.FromArgb( 18, 18, 18 );
+            BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
+            BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
 
             // Text SeriesConfiguration.
             TextAlignment = StringAlignment.Center;
@@ -281,11 +281,11 @@ namespace BudgetExecution
 
                     case false:
                     {
-                        Border.Color = Color.FromArgb( 18, 18, 18 );
+                        Border.Color = Color.FromArgb( 15, 15, 15 );
                         Border.Thickness = 1;
-                        Border.HoverColor = Color.FromArgb( 18, 18, 18 );
+                        Border.HoverColor = Color.FromArgb( 15, 15, 15 );
                         Border.HoverVisible = false;
-                        SeparatorColor = Color.FromArgb( 18, 18, 18 );
+                        SeparatorColor = Color.FromArgb( 15, 15, 15 );
                         Separate = false;
                         Border.Type = ShapeTypes.Rounded;
                         break;

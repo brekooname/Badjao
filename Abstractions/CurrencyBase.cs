@@ -1,4 +1,4 @@
-﻿// <copyright file = "DataGridViewBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "CurrencyBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 //
@@ -9,21 +9,30 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.ComponentModel;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using Syncfusion.Windows.Forms.Grid;
-    using Syncfusion.WinForms.DataGrid;
+    using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class DataViewBase : GridDataBoundGrid
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    public abstract class CurrencyBase : CurrencyEdit
     {
         /// <summary>
-        /// Gets or sets the application setting.
+        /// Gets or sets the binding source.
         /// </summary>
         /// <value>
-        /// The application setting.
+        /// The binding source.
         /// </value>
-        public virtual NameValueCollection Setting { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tool tip.
+        /// </summary>
+        /// <value>
+        /// The tool tip.
+        /// </value>
+        public virtual ToolTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the hover text.
@@ -32,14 +41,6 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the binding source.
-        /// </summary>
-        /// <value>
-        /// The binding source.
-        /// </value>
-        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -66,15 +67,39 @@ namespace BudgetExecution
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
+        /// Gets or sets the bud ex configuration.
+        /// </summary>
+        /// <value>
+        /// The bud ex configuration.
+        /// </value>
+        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
+
+        /// <summary>
+        /// Sets the field.
+        /// </summary>
+        /// <param name="field">The field.</param>
+        public virtual void SetField( Field field )
+        {
+            try
+            {
+                Field = BudgetForm.GetField( field );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingSource">The bindingSource.</param>
-        public virtual void SetDataSource<T1>( T1 bindingSource )
+        /// <param name="bindingList">The binding source.</param>
+        public virtual void SetDataSource<T1>( T1 bindingList )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _binder
+                if( bindingList is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -98,7 +123,7 @@ namespace BudgetExecution
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindingList">The bindingSource.</param>
+        /// <param name="bindingList">The binding source.</param>
         /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
             where T1 : IBindingList
@@ -111,15 +136,15 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( var kvp in dict )
                         {
-                            if( Verify.IsInput( _kvp.Key )
-                                && Verify.IsRef( _kvp.Value ) )
+                            if( Verify.IsInput( kvp.Key )
+                                && Verify.IsRef( kvp.Value ) )
                             {
-                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                                _filter += $"{kvp.Key} = {kvp.Value} AND";
                             }
                         }
 
@@ -147,7 +172,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="data">The data.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
         {
             if( Verify.IsSequence( data ) )
             {
@@ -169,25 +194,25 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
         {
             if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var kvp in dict )
                     {
                         if( Verify.IsInput( kvp.Key )
                             && kvp.Value != null )
                         {
-                            filter += $"{kvp.Key} = {kvp.Value} AND";
+                            _filter += $"{kvp.Key} = {kvp.Value} AND";
                         }
                     }
 
                     BindingSource.DataSource = data?.ToList( );
-                    BindingSource.Filter = filter.TrimEnd( " AND".ToCharArray( ) );
+                    BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
                 }
                 catch( Exception ex )
                 {
@@ -199,18 +224,18 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <typeparam name="T3">The type of the 3.</typeparam>
+        /// <typeparam name="T1">The type of T1.</typeparam>
+        /// <typeparam name="T2">The type of T2.</typeparam>
+        /// <typeparam name="T3">The type of T3.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The dictionary.</param>
         public virtual void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
             where T2 : struct
         {
             if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+                && BudgetExecution.Validate.IsField( field ) )
             {
                 try
                 {
@@ -240,13 +265,13 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
         {
-            if( Verify.IsRef( data ) )
+            if( Verify.IsInput( data ) )
             {
                 try
                 {
-                    if( Verify.IsRef( field ) )
+                    if( Verify.IsInput( field?.ToString( ) ) )
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field?.ToString( );
@@ -270,7 +295,7 @@ namespace BudgetExecution
         /// <param>The numeric.</param>
         /// <param name = "dict" > </param>
         public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
             where T2 : IDictionary<string, object>
         {
             if( Verify.IsSequence( data )
@@ -278,19 +303,19 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    var filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( var kvp in dict )
                     {
-                        if( Verify.IsInput( _kvp.Key )
-                            && _kvp.Value != null )
+                        if( Verify.IsInput( kvp.Key )
+                            && kvp.Value != null )
                         {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            filter += $"{kvp.Key} = {kvp.Value} AND";
                         }
                     }
 
                     BindingSource.DataSource = data?.ToList( );
-                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                    BindingSource.Filter = filter?.TrimEnd( " AND".ToCharArray( ) );
                 }
                 catch( Exception ex )
                 {
@@ -306,11 +331,11 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
             where T2 : struct
         {
             if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+                && BudgetExecution.Validate.IsField( field ) )
             {
                 try
                 {
@@ -330,6 +355,67 @@ namespace BudgetExecution
                 {
                     Fail( ex );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse over].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.</param>
+        public virtual void OnMouseOver( object sender, EventArgs e )
+        {
+            var _currencyTextBox = sender as CurrencyBox;
+
+            try
+            {
+                if( _currencyTextBox != null
+                    && !string.IsNullOrEmpty( HoverText ) )
+                {
+                    if( Verify.IsInput( HoverText ) )
+                    {
+                        var _hoverText = _currencyTextBox?.HoverText;
+                        var _ = new ToolTip( _currencyTextBox, _hoverText );
+                    }
+                    else
+                    {
+                        if( Verify.IsInput( Tag?.ToString( ) ) )
+                        {
+                            var _text = Tag?.ToString( )?.SplitPascal( );
+                            var _ = new ToolTip( _currencyTextBox, _text );
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse leave].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.
+        /// </param>
+        public virtual void OnMouseLeave( object sender, EventArgs e )
+        {
+            var _currencyTextBox = sender as CurrencyBox;
+
+            try
+            {
+                if( _currencyTextBox != null )
+                {
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

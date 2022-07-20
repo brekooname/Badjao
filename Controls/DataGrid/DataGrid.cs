@@ -36,10 +36,10 @@ namespace BudgetExecution
             Size = new Size( 240, 150 );
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
             EnableHeadersVisualStyles = false;
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             BorderStyle = BorderStyle.None;
             CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            BackgroundColor = Color.FromArgb( 18, 18, 18 );
+            BackgroundColor = Color.FromArgb( 15, 15, 15 );
             GridColor = Color.FromArgb( 141, 139, 138 );
 
             // Column SeriesConfiguration

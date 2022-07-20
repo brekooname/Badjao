@@ -25,7 +25,7 @@ namespace BudgetExecution
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );
             DisplayStyle = ToolStripItemDisplayStyle.Image;
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.LightSteelBlue;
             Font = new Font( "Roboto", 9 );
             Text = string.Empty;

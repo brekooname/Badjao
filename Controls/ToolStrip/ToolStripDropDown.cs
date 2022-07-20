@@ -34,11 +34,11 @@ namespace BudgetExecution
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );
-            Size = new Size( 175, 23 );
+            Size = new Size( 200, 24 );
             DropDownStyle = ComboBoxStyle.DropDownList;
             AllowDrop = true;
             MaxDropDownItems = 100;
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.White;
             Font = new Font( "Roboto", 9 );
             Tag = "Make Selection";

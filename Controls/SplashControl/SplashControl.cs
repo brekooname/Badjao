@@ -24,14 +24,14 @@ namespace BudgetExecution
         /// </remarks>
         public SplashControl()
         {
-            BackColor = Color.FromArgb( 18, 18, 18 );
+            BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.White;
             Font = new Font( "Roboto", 9 );
             Size = new Size( 300, 150 );
             BorderStyle = Border3DStyle.Etched;
             BorderType = SplashBorderType.Border3D;
 
-            BackgroundColor = new BrushInfo( GradientStyle.PathEllipse, Color.FromArgb( 18, 18, 18 ),
+            BackgroundColor = new BrushInfo( GradientStyle.PathEllipse, Color.FromArgb( 15, 15, 15 ),
                 Color.FromArgb( 45, 45, 45 ) );
 
             ShowAnimation = true;
