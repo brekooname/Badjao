@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PivotForm));
+            this.DataSet = new System.Data.DataSet();
+            this.ListPanel = new BudgetExecution.Layout();
+            this.ListBox = new BudgetExecution.ListBox();
+            this.BindingSource = new BudgetExecution.BindingSource();
+            this.ToolTip = new BudgetExecution.ToolTip();
+            this.PivotPanel = new BudgetExecution.Layout();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
-            this.BindingSource = new BudgetExecution.BindingSource();
-            this.DataSet = new System.Data.DataSet();
-            this.ToolTip = new BudgetExecution.ToolTip();
             this.BrowseButton = new BudgetExecution.ToolStripButton();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
             this.DeleteButton = new BudgetExecution.ToolStripButton();
@@ -65,10 +69,167 @@
             this.Separator15 = new BudgetExecution.ToolSeparator();
             this.HomeButton = new BudgetExecution.ToolStripButton();
             this.Separator16 = new BudgetExecution.ToolSeparator();
-            this.ToolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            this.PivotChart = new BudgetExecution.PivotChart();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
+            this.ListPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            this.PivotPanel.SuspendLayout();
+            this.ToolStrip.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // DataSet
+            // 
+            this.DataSet.DataSetName = "NewDataSet";
+            // 
+            // ListPanel
+            // 
+            this.ListPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListPanel.BindingSource = null;
+            this.ListPanel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ListPanel.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.ListPanel.Border.HoverVisible = false;
+            this.ListPanel.Border.Rounding = 6;
+            this.ListPanel.Border.Thickness = 1;
+            this.ListPanel.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.ListPanel.Border.Visible = true;
+            this.ListPanel.Children = null;
+            this.ListPanel.Controls.Add(this.ListBox);
+            this.ListPanel.DataFilter = null;
+            this.ListPanel.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ListPanel.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ListPanel.HoverText = null;
+            this.ListPanel.Location = new System.Drawing.Point(869, 112);
+            this.ListPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.ListPanel.Name = "ListPanel";
+            this.ListPanel.Numeric = BudgetExecution.Numeric.NS;
+            this.ListPanel.Padding = new System.Windows.Forms.Padding(1);
+            this.ListPanel.Size = new System.Drawing.Size(264, 476);
+            this.ListPanel.TabIndex = 10;
+            this.ListPanel.Text = "layout1";
+            this.ListPanel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.ListPanel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ListPanel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ListPanel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ListPanel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.ListPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.ListPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.ListPanel.ToolTip = null;
+            // 
+            // ListBox
+            // 
+            this.ListBox.AlternateColors = false;
+            this.ListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.BindingSource = this.BindingSource;
+            this.ListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.ListBox.Border.HoverVisible = true;
+            this.ListBox.Border.Rounding = 6;
+            this.ListBox.Border.Thickness = 1;
+            this.ListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.ListBox.Border.Visible = true;
+            this.ListBox.DataFilter = null;
+            this.ListBox.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ListBox.Font = new System.Drawing.Font("Roboto", 9F);
+            this.ListBox.ForeColor = System.Drawing.Color.White;
+            this.ListBox.HoverText = null;
+            this.ListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.ItemHeight = 30;
+            this.ListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
+            this.ListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.ItemSelected = System.Drawing.Color.SteelBlue;
+            this.ListBox.Location = new System.Drawing.Point(32, 21);
+            this.ListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.ListBox.Name = "ListBox";
+            this.ListBox.Numeric = BudgetExecution.Numeric.NS;
+            this.ListBox.Size = new System.Drawing.Size(200, 430);
+            this.ListBox.TabIndex = 9;
+            this.ListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.ListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ListBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ListBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.ListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.ListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.ListBox.ToolTip = this.ToolTip;
+            // 
+            // BindingSource
+            // 
+            this.BindingSource.DataFilter = null;
+            this.BindingSource.DataSet = this.DataSet;
+            this.BindingSource.DataTable = null;
+            this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
+            this.BindingSource.Index = 0;
+            this.BindingSource.Numeric = BudgetExecution.Numeric.NS;
+            this.BindingSource.Record = null;
+            this.BindingSource.Source = BudgetExecution.Source.NS;
+            // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 5000;
+            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.ToolTip.BindingSource = null;
+            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ToolTip.ForeColor = System.Drawing.Color.White;
+            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.Name = null;
+            this.ToolTip.OwnerDraw = true;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
+            this.ToolTip.StyleManager = null;
+            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
+            this.ToolTip.ThemeName = "Budget Execution";
+            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.TipText = null;
+            this.ToolTip.TipTitle = null;
+            // 
+            // PivotPanel
+            // 
+            this.PivotPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PivotPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.PivotPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.PivotPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.PivotPanel.BindingSource = this.BindingSource;
+            this.PivotPanel.Border.Color = System.Drawing.Color.Gray;
+            this.PivotPanel.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.PivotPanel.Border.HoverVisible = false;
+            this.PivotPanel.Border.Rounding = 6;
+            this.PivotPanel.Border.Thickness = 1;
+            this.PivotPanel.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.PivotPanel.Border.Visible = true;
+            this.PivotPanel.Children = null;
+            this.PivotPanel.Controls.Add(this.PivotChart);
+            this.PivotPanel.DataFilter = null;
+            this.PivotPanel.Field = BudgetExecution.Field.RpioActivityCode;
+            this.PivotPanel.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PivotPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.PivotPanel.HoverText = null;
+            this.PivotPanel.Location = new System.Drawing.Point(55, 112);
+            this.PivotPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.PivotPanel.Name = "PivotPanel";
+            this.PivotPanel.Numeric = BudgetExecution.Numeric.NS;
+            this.PivotPanel.Padding = new System.Windows.Forms.Padding(1);
+            this.PivotPanel.Size = new System.Drawing.Size(757, 476);
+            this.PivotPanel.TabIndex = 8;
+            this.PivotPanel.Text = "layout1";
+            this.PivotPanel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.PivotPanel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PivotPanel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PivotPanel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.PivotPanel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.PivotPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.PivotPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.PivotPanel.ToolTip = this.ToolTip;
             // 
             // ToolStrip
             // 
@@ -199,41 +360,6 @@
             this.AddButton.Text = "toolStripButton5";
             this.AddButton.ToolTip = this.ToolTip;
             this.AddButton.ToolType = BudgetExecution.ToolType.AddButton;
-            // 
-            // BindingSource
-            // 
-            this.BindingSource.DataFilter = null;
-            this.BindingSource.DataSet = this.DataSet;
-            this.BindingSource.DataTable = null;
-            this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
-            this.BindingSource.Index = 0;
-            this.BindingSource.Numeric = BudgetExecution.Numeric.NS;
-            this.BindingSource.Record = null;
-            this.BindingSource.Source = BudgetExecution.Source.NS;
-            // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "NewDataSet";
-            // 
-            // ToolTip
-            // 
-            this.ToolTip.AutoPopDelay = 5000;
-            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.ToolTip.BindingSource = null;
-            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ToolTip.ForeColor = System.Drawing.Color.White;
-            this.ToolTip.InitialDelay = 500;
-            this.ToolTip.Name = null;
-            this.ToolTip.OwnerDraw = true;
-            this.ToolTip.ReshowDelay = 100;
-            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
-            this.ToolTip.StyleManager = null;
-            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
-            this.ToolTip.ThemeName = "Budget Execution";
-            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ToolTip.TipText = null;
-            this.ToolTip.TipTitle = null;
             // 
             // BrowseButton
             // 
@@ -669,6 +795,33 @@
             this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator16.Size = new System.Drawing.Size(6, 34);
             // 
+            // PivotChart
+            // 
+            this.PivotChart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.PivotChart.BindingSource = null;
+            this.PivotChart.ChartTypes = Syncfusion.Windows.Forms.PivotChart.PivotChartTypes.Column;
+            this.PivotChart.CustomPalette = new System.Drawing.Color[] {
+        System.Drawing.Color.SteelBlue,
+        System.Drawing.Color.Red,
+        System.Drawing.Color.Green};
+            this.PivotChart.DataFilter = null;
+            this.PivotChart.DeferLayoutUpdate = false;
+            this.PivotChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PivotChart.Field = BudgetExecution.Field.RpioActivityCode;
+            this.PivotChart.Font = new System.Drawing.Font("Roboto", 9F);
+            this.PivotChart.ForeColor = System.Drawing.Color.White;
+            this.PivotChart.ItemSource = this.BindingSource;
+            this.PivotChart.Location = new System.Drawing.Point(0, 0);
+            this.PivotChart.MinimumSize = new System.Drawing.Size(300, 250);
+            this.PivotChart.Name = "PivotChart";
+            this.PivotChart.Numeric = BudgetExecution.Numeric.NS;
+            this.PivotChart.ShowLegend = true;
+            this.PivotChart.ShowPivotTableFieldList = false;
+            this.PivotChart.Size = new System.Drawing.Size(757, 476);
+            this.PivotChart.TabIndex = 0;
+            this.PivotChart.ToolTip = this.ToolTip;
+            this.PivotChart.UpdateManager = null;
+            // 
             // PivotForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -682,6 +835,8 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1184, 710);
+            this.Controls.Add(this.ListPanel);
+            this.Controls.Add(this.PivotPanel);
             this.Controls.Add(this.ToolStrip);
             this.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
@@ -694,10 +849,13 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
+            this.ListPanel.ResumeLayout(false);
+            this.ListPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            this.PivotPanel.ResumeLayout(false);
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -707,9 +865,6 @@
 
         public ToolStrip ToolStrip;
         public ToolStripButton AddButton;
-        private BindingSource BindingSource;
-        private System.Data.DataSet DataSet;
-        private ToolTip ToolTip;
         public ToolStripButton BrowseButton;
         public ToolStripButton CalculatorButton;
         public ToolStripButton DeleteButton;
@@ -741,5 +896,12 @@
         public ToolSeparator Separator15;
         public ToolStripButton HomeButton;
         public ToolSeparator Separator16;
+        public Layout PivotPanel;
+        public BindingSource BindingSource;
+        public System.Data.DataSet DataSet;
+        public ToolTip ToolTip;
+        public Layout ListPanel;
+        public ListBox ListBox;
+        public PivotChart PivotChart;
     }
 }
