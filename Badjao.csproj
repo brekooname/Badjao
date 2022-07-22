@@ -757,7 +757,7 @@
       <DependentUpon>PdfForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\StyleSettings\BudgetForm.cs" />
+    <Compile Include="Controls\Form\BudgetForm.cs" />
     <Compile Include="Controls\StyleSettings\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
     <Compile Include="Resources\Extenstions.Designer.cs">
@@ -788,7 +788,7 @@
     <Compile Include="Static\Static.cs" />
     <Compile Include="Static\Validate.cs" />
     <Compile Include="Static\Verify.cs" />
-    <Compile Include="Controls\StyleSettings\ChartConfiguration.cs" />
+    <Compile Include="Controls\Chart\ChartConfiguration.cs" />
     <Compile Include="Interfaces\IChartConfiguration.cs" />
     <Compile Include="Controls\ToolStrip\ToolFactory.cs" />
     <Compile Include="Controls\ToolStrip\ToolSeparator.cs">
@@ -2935,7 +2935,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clients\LINQPad\" />
-    <Folder Include="Controls\Form\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
