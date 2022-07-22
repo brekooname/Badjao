@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
             this.ToolTip = new BudgetExecution.ToolTip();
@@ -67,11 +71,11 @@
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.GridPanel = new BudgetExecution.Layout();
             this.DataView = new Syncfusion.Windows.Forms.Grid.GridDataBoundGrid();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSet = new BudgetExecution.DataSet();
             this.TableAdapter = new BudgetExecution.DataSetTableAdapters.StatusOfFundsTableAdapter();
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
-            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataSet = new BudgetExecution.DataSet();
             this.ToolStrip.SuspendLayout();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataView)).BeginInit();
@@ -309,7 +313,7 @@
             this.DropDown.MaxLength = 32767;
             this.DropDown.Name = "DropDown";
             this.DropDown.Numeric = BudgetExecution.Numeric.NS;
-            this.DropDown.Size = new System.Drawing.Size(148, 24);
+            this.DropDown.Size = new System.Drawing.Size(127, 24);
             this.DropDown.Style = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016Black;
             this.DropDown.Tag = "Make Selection";
             this.DropDown.ToolTip = this.ToolTip;
@@ -706,21 +710,67 @@
             // DataView
             // 
             this.DataView.AllowDragSelectedCols = true;
-            this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.DataView.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            gridBaseStyle1.Name = "Column Header";
+            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle1.StyleInfo.Enabled = false;
+            gridBaseStyle1.StyleInfo.Font.Bold = true;
+            gridBaseStyle1.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle1.StyleInfo.Font.Italic = false;
+            gridBaseStyle1.StyleInfo.Font.Size = 9F;
+            gridBaseStyle1.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle1.StyleInfo.Font.Underline = false;
+            gridBaseStyle1.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle2.Name = "Header";
+            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.CellType = "Header";
+            gridBaseStyle2.StyleInfo.Font.Bold = true;
+            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle3.Name = "Standard";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle4.Name = "Row Header";
+            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle4.StyleInfo.Enabled = true;
+            gridBaseStyle4.StyleInfo.Font.Bold = true;
+            gridBaseStyle4.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle4.StyleInfo.Font.Italic = false;
+            gridBaseStyle4.StyleInfo.Font.Size = 9F;
+            gridBaseStyle4.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle4.StyleInfo.Font.Underline = false;
+            gridBaseStyle4.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            this.DataView.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
+            gridBaseStyle1,
+            gridBaseStyle2,
+            gridBaseStyle3,
+            gridBaseStyle4});
             this.DataView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DataView.CanOverrideStyle = true;
             this.DataView.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2016Black;
             this.DataView.DataMember = "StatusOfFunds";
             this.DataView.DataSource = this.BindingSource;
+            this.DataView.DefaultRowHeight = 28;
             this.DataView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataView.Font = new System.Drawing.Font("Roboto", 9F);
             this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.DataView.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2016DarkGray;
             this.DataView.Location = new System.Drawing.Point(0, 0);
             this.DataView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataView.Name = "DataView";
             this.DataView.Office2016ScrollBars = true;
-            this.DataView.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.DataView.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.DarkGray;
             this.DataView.OptimizeInsertRemoveCells = true;
+            this.DataView.Properties.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
             this.DataView.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
             this.DataView.Size = new System.Drawing.Size(857, 429);
             this.DataView.SmartSizeBox = false;
@@ -771,6 +821,16 @@
             this.DataView.ThemeStyle.VerticalScrollBarStyle.ThumbPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.DataView.UseListChangedEvent = true;
             this.DataView.UseRightToLeftCompatibleTextBox = true;
+            // 
+            // BindingSource
+            // 
+            this.BindingSource.DataSource = this.DataSet;
+            this.BindingSource.Position = 0;
+            // 
+            // DataSet
+            // 
+            this.DataSet.DataSetName = "DataSet";
+            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // TableAdapter
             // 
@@ -852,16 +912,6 @@
             this.ListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.ListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ListBox.ToolTip = null;
-            // 
-            // BindingSource
-            // 
-            this.BindingSource.DataSource = this.DataSet;
-            this.BindingSource.Position = 0;
-            // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "DataSet";
-            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // DataViewForm
             // 
