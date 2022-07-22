@@ -86,7 +86,7 @@ namespace BudgetExecution
             Data = table.AsEnumerable( );
             SeriesConfiguration = seriesConfig;
             DataTable = table;
-            DataSet = DataTable?.DataSet;
+            DataSet = (DataSet)DataTable?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;
@@ -108,7 +108,7 @@ namespace BudgetExecution
             Data = data;
             SeriesConfiguration = seriesConfig;
             DataTable = data.CopyToDataTable( );
-            DataSet = DataTable.DataSet;
+            DataSet = (DataSet)DataTable.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;

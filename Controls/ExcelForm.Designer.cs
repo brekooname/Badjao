@@ -280,7 +280,7 @@
             // BindingSource
             // 
             this.BindingSource.DataFilter = null;
-            this.BindingSource.DataSet = this.DataSet;
+            this.BindingSource.DataSet = (DataSet)DataSet;
             this.BindingSource.DataTable = null;
             this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
             this.BindingSource.Index = 0;

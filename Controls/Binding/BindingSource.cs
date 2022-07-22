@@ -26,7 +26,7 @@ namespace BudgetExecution
         public BindingSource( IEnumerable<DataRow> dataRows )
         {
             DataTable = dataRows?.CopyToDataTable( );
-            DataSet = DataTable?.DataSet;
+            DataSet = (DataSet)DataTable?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable?.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;
@@ -42,7 +42,7 @@ namespace BudgetExecution
         public BindingSource( DataTable dataTable )
         {
             DataTable = dataTable;
-            DataSet = DataTable?.DataSet;
+            DataSet = (DataSet)DataTable?.DataSet;
             DataSource = DataTable;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable?.TableName );
             Record = (DataRow)Current;

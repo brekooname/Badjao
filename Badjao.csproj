@@ -386,6 +386,11 @@
     <Compile Include="Abstractions\CurrencyBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IClock.cs" />
     <Compile Include="Abstractions\ImageListBase.cs">
       <SubType>Component</SubType>
@@ -726,10 +731,10 @@
     <Compile Include="Abstractions\PictureBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PivotForm.cs">
+    <Compile Include="Controls\PivotForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PivotForm.Designer.cs">
+    <Compile Include="Controls\PivotForm.Designer.cs">
       <DependentUpon>PivotForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -859,7 +864,7 @@
     <EmbeddedResource Include="Controls\PdfForm.resx">
       <DependentUpon>PdfForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PivotForm.resx">
+    <EmbeddedResource Include="Controls\PivotForm.resx">
       <DependentUpon>PivotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -892,6 +897,17 @@
     <None Include="Clients\SqlCe\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="Clients\SqlCe\CompactView.exe.config" />
     <None Include="Clients\SqlCe\CompactView.exe.manifest" />
+    <None Include="DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Data\Database\SQLite\DataModels\Data.db" />
     <None Include="Data\Database\SQLite\ReferenceModels\CREATE\TABLE\logs\xvba_debug.log.docx" />
     <None Include="Data\Database\SQLite\ReferenceModels\References.db" />
@@ -1030,6 +1046,7 @@
     <None Include="Clients\SQLite\Data\settings\sqlitebrowser.reg" />
     <None Include="Clients\SQLite\Data\settings\SQLiteDatabaseBrowserPortableSettings.ini" />
     <None Include="Clients\SQLite\Other\Source\AppNamePortable.ini" />
+    <None Include="README.md" />
     <None Include="Resources\Docs\Excel.xlsx" />
     <None Include="Lib\MetroSet UI.dll.config" />
     <None Include="packages.config" />
@@ -1047,6 +1064,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="Data\Database\Access\DataModels\CREATE\TABLE\Allocations.sql" />
     <Content Include="Data\Database\Access\DataModels\CREATE\TABLE\AllowanceHolders.sql" />
     <Content Include="Data\Database\Access\DataModels\CREATE\TABLE\BackUp.sql" />
@@ -1216,13 +1235,6 @@
     <Content Include="Data\Database\Access\ReferenceModels\CREATE\TABLE\ResponsibilityCenters.sql" />
     <Content Include="Data\Database\Access\ReferenceModels\References.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Database\Access\ReferenceModels\References.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Database\Access\ReferenceModels\References_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>References.mdf</DependentUpon>
     </Content>
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\DATABASE\R6.sql" />
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\Actuals.sql" />

@@ -6,14 +6,13 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Data.OleDb;
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Windows.Forms;
     using Microsoft.Office.Interop.Excel;
     using OfficeOpenXml;
-    using App = Microsoft.Office.Interop.Excel.Application;
+    using Excel = Microsoft.Office.Interop.Excel.Application;
     using DataTable = System.Data.DataTable;
 
     /// <summary>
@@ -114,22 +113,31 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _excelPackage = ReadExcelFile( filePath );
-                    var _name = Path.GetFileNameWithoutExtension( filePath );
-                    var _excelWorksheet = _excelPackage.Workbook.Worksheets.Add( _name );
-                    var _columns = table.Columns.Count;
-                    var _rows = table.Rows.Count;
-
-                    for( var column = 1; column <= _columns; column++ )
+                    using( var _excelPackage = ExcelQuery.ReadExcelFile( filePath ) )
                     {
-                        _excelWorksheet.Cells[ 1, column ].Value = table.Columns[ column - 1 ].ColumnName;
-                    }
-
-                    for( var row = 1; row <= _rows; row++ )
-                    {
-                        for( var col = 0; col < _columns; col++ )
+                        var _name = Path.GetFileNameWithoutExtension( filePath );
+                        var _excelWorksheet = _excelPackage?.Workbook?.Worksheets?.Add( _name );
+                        var _columns = table?.Columns?.Count;
+                        var _rows = table?.Rows?.Count;
+                        for( var column = 1; column <= _columns; column++ )
                         {
-                            _excelWorksheet.Cells[ row + 1, col + 1 ].Value = table.Rows[ row - 1 ][ col ];
+                            if ( _excelWorksheet != null )
+                            {
+                                _excelWorksheet.Cells[ 1, column ].Value =
+                                    table.Columns[ column - 1 ].ColumnName;
+                            }
+                        }
+
+                        for( var row = 1; row <= _rows; row++ )
+                        {
+                            for( var col = 0; col < _columns; col++ )
+                            {
+                                if ( _excelWorksheet != null )
+                                {
+                                    _excelWorksheet.Cells[ row + 1, col + 1 ].Value =
+                                        table.Rows[ row - 1 ][ col ];
+                                }
+                            }
                         }
                     }
                 }
@@ -302,7 +310,7 @@ namespace BudgetExecution
             try
             {
                 var _filePath = GetConnectionBuilder( ).ProviderPath[ Provider.ToString( ) ];
-                var _application = new App( );
+                var _application = new Excel( );
                 var _workbook = _application.Workbooks.Open( _filePath );
                 var worksheet = _workbook.Sheets[ 1 ];
                 var _range = worksheet.UsedRange;
@@ -373,7 +381,7 @@ namespace BudgetExecution
         /// <param name="range">The range.</param>
         /// <param name="workSheet">The work sheet.</param>
         /// <param name="excel">The excel.</param>
-        protected virtual void Release( Range range, Worksheet workSheet, App excel )
+        protected virtual void Release(   Range range, Worksheet workSheet, Excel excel )
         {
             try
             {
