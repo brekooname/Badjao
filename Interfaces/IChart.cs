@@ -50,7 +50,7 @@ namespace BudgetExecution
         /// <summary>
         /// The style
         /// </summary>
-        IChartConfiguration Style { get; set; }
+        IChartConfig Style { get; set; }
 
         /// <summary>
         /// Gets or sets the source.

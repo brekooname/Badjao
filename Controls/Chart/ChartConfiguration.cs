@@ -15,14 +15,14 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ChartStyleInfo" />
-    /// <seealso cref="IChartConfiguration" />
+    /// <seealso cref="IChartConfig" />
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "MemberInitializerValueIgnored" )]
     [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
     [SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" )]
     [SuppressMessage( "ReSharper", "MergeConditionalExpression" )]
-    public class ChartConfiguration : ChartStyleInfo, IChartConfiguration
+    public class ChartConfiguration : ChartStyleInfo, IChartConfig
     {
         /// <summary>
         /// Gets or sets the call out.

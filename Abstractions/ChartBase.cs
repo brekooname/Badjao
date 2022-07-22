@@ -84,7 +84,7 @@ namespace BudgetExecution
         /// <summary>
         /// The style
         /// </summary>
-        public virtual IChartConfiguration Style { get; set; }
+        public virtual IChartConfig Style { get; set; }
 
         /// <summary>
         /// Gets or sets the source.

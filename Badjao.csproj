@@ -356,6 +356,11 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AlignConfig.cs" />
+    <Compile Include="Controls\StyleConfig\BorderConfig.cs" />
+    <Compile Include="Controls\StyleConfig\ChartConfig.cs" />
+    <Compile Include="Controls\StyleConfig\ColorConfig.cs" />
+    <Compile Include="Controls\StyleConfig\ControlConfig.cs" />
     <Compile Include="Controls\CurrencyBox\CurrencyBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -390,6 +395,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StyleConfig\FontConfig.cs" />
+    <Compile Include="Controls\StyleConfig\FormConfig.cs" />
+    <Compile Include="Controls\StyleConfig\SizeConfig.cs" />
+    <Compile Include="TableViewBase.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\IClock.cs" />
     <Compile Include="Abstractions\ImageListBase.cs">
@@ -758,7 +769,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\Form\BudgetForm.cs" />
-    <Compile Include="Controls\StyleSettings\Settings.cs" />
+    <Compile Include="Controls\StyleConfig\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
     <Compile Include="Resources\Extenstions.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -789,7 +800,7 @@
     <Compile Include="Static\Validate.cs" />
     <Compile Include="Static\Verify.cs" />
     <Compile Include="Controls\Chart\ChartConfiguration.cs" />
-    <Compile Include="Interfaces\IChartConfiguration.cs" />
+    <Compile Include="Interfaces\IChartConfig.cs" />
     <Compile Include="Controls\ToolStrip\ToolFactory.cs" />
     <Compile Include="Controls\ToolStrip\ToolSeparator.cs">
       <SubType>Component</SubType>

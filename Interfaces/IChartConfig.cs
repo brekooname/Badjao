@@ -8,7 +8,7 @@ namespace BudgetExecution
     using Syncfusion.Drawing;
     using Syncfusion.Windows.Forms.Chart;
 
-    public interface IChartConfiguration
+    public interface IChartConfig
     {
         /// <summary>
         /// Gets or sets the color of the text.
@@ -65,15 +65,8 @@ namespace BudgetExecution
         /// The tool tip format.
         /// </value>
         string ToolTipFormat { get; set; }
-
-        /// <summary>
-        /// Gets or sets the callout.
-        /// </summary>
-        /// <value>
-        /// The callout.
-        /// </value>
-        ChartCalloutInfo CallOut { get; set; }
-
+        
+    
         /// <summary>
         /// Gets or sets the text orientation.
         /// </summary>

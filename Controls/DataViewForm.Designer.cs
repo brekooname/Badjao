@@ -35,8 +35,6 @@
             Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
-            this.ToolTip = new BudgetExecution.ToolTip();
-            this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
             this.BrowseButton = new BudgetExecution.ToolStripButton();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
@@ -76,142 +74,11 @@
             this.TableAdapter = new BudgetExecution.DataSetTableAdapters.StatusOfFundsTableAdapter();
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
-            this.ToolStrip.SuspendLayout();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ToolTip
-            // 
-            this.ToolTip.AutoPopDelay = 5000;
-            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.ToolTip.BindingSource = null;
-            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ToolTip.ForeColor = System.Drawing.Color.White;
-            this.ToolTip.InitialDelay = 500;
-            this.ToolTip.Name = null;
-            this.ToolTip.OwnerDraw = true;
-            this.ToolTip.ReshowDelay = 100;
-            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
-            this.ToolTip.StyleManager = null;
-            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
-            this.ToolTip.ThemeName = "Budget Execution";
-            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ToolTip.TipText = null;
-            this.ToolTip.TipTitle = null;
-            // 
-            // ToolStrip
-            // 
-            this.ToolStrip.AddButton = this.AddButton;
-            this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ToolStrip.BindingSource = null;
-            this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
-            this.ToolStrip.BrowseButton = this.BrowseButton;
-            this.ToolStrip.CalculatorButton = this.CalculatorButton;
-            this.ToolStrip.CanOverrideStyle = true;
-            this.ToolStrip.CaptionAlignment = Syncfusion.Windows.Forms.Tools.CaptionAlignment.Near;
-            this.ToolStrip.CaptionFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold);
-            this.ToolStrip.CaptionStyle = Syncfusion.Windows.Forms.Tools.CaptionStyle.Top;
-            this.ToolStrip.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
-            this.ToolStrip.DataFilter = null;
-            this.ToolStrip.DeleteButton = this.DeleteButton;
-            this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ToolStrip.DropDown = this.DropDown;
-            this.ToolStrip.EditButton = null;
-            this.ToolStrip.ExcelButton = this.ExcelButton;
-            this.ToolStrip.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ToolStrip.FirstButton = this.FirstButton;
-            this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ToolStrip.Image = null;
-            this.ToolStrip.ImageDirectory = null;
-            this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ToolStrip.ImageSize = new System.Drawing.Size(0, 0);
-            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TextBox,
-            this.Separator1,
-            this.Label,
-            this.Separator2,
-            this.DropDown,
-            this.Separator3,
-            this.FirstButton,
-            this.Separator4,
-            this.PreviousButton,
-            this.Separator5,
-            this.NextButton,
-            this.Separator6,
-            this.LastButton,
-            this.Separator7,
-            this.AddButton,
-            this.Separator8,
-            this.DeleteButton,
-            this.Separator9,
-            this.RefreshButton,
-            this.Separator10,
-            this.SaveButton,
-            this.Separator11,
-            this.BrowseButton,
-            this.Separator12,
-            this.CalculatorButton,
-            this.Separator13,
-            this.ChartButton,
-            this.Separator14,
-            this.ExcelButton,
-            this.Separator15,
-            this.HomeButton,
-            this.Separator16});
-            this.ToolStrip.LastButton = this.LastButton;
-            this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ToolStrip.Location = new System.Drawing.Point(0, 661);
-            this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
-            this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.NextButton = this.NextButton;
-            this.ToolStrip.Numeric = BudgetExecution.Numeric.NS;
-            this.ToolStrip.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Black;
-            this.ToolStrip.Padding = new System.Windows.Forms.Padding(1);
-            this.ToolStrip.PreviousButton = this.PreviousButton;
-            this.ToolStrip.PrintButton = null;
-            this.ToolStrip.ProgressBar = null;
-            this.ToolStrip.RefreshButton = this.RefreshButton;
-            this.ToolStrip.ResourceManager = null;
-            this.ToolStrip.SaveButton = this.SaveButton;
-            this.ToolStrip.Separator = null;
-            this.ToolStrip.Separator1 = this.Separator1;
-            this.ToolStrip.Separator10 = this.Separator10;
-            this.ToolStrip.Separator11 = this.Separator11;
-            this.ToolStrip.Separator12 = this.Separator12;
-            this.ToolStrip.Separator13 = this.Separator13;
-            this.ToolStrip.Separator14 = this.Separator14;
-            this.ToolStrip.Separator15 = this.Separator15;
-            this.ToolStrip.Separator16 = this.Separator16;
-            this.ToolStrip.Separator2 = this.Separator2;
-            this.ToolStrip.Separator3 = this.Separator3;
-            this.ToolStrip.Separator4 = this.Separator4;
-            this.ToolStrip.Separator5 = this.Separator5;
-            this.ToolStrip.Separator6 = this.Separator6;
-            this.ToolStrip.Separator7 = this.Separator7;
-            this.ToolStrip.Separator8 = this.Separator8;
-            this.ToolStrip.Separator9 = this.Separator9;
-            this.ToolStrip.Setting = null;
-            this.ToolStrip.ShowCaption = true;
-            this.ToolStrip.ShowLauncher = true;
-            this.ToolStrip.Size = new System.Drawing.Size(1188, 52);
-            this.ToolStrip.TabIndex = 6;
-            this.ToolStrip.Text = "Budget Execution";
-            this.ToolStrip.TextBox = this.TextBox;
-            this.ToolStrip.ThemeStyle.ArrowColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ToolStrip.ThemeStyle.BottomToolStripBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ToolStrip.ThemeStyle.CaptionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ToolStrip.ThemeStyle.CaptionForeColor = System.Drawing.Color.Black;
-            this.ToolStrip.ThemeStyle.ComboBoxStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ToolStrip.ThemeStyle.ComboBoxStyle.HoverBorderColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.HoverItemBackColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.HoverItemForeColor = System.Drawing.Color.White;
             // 
             // AddButton
             // 
@@ -231,7 +98,6 @@
             this.AddButton.Resource = null;
             this.AddButton.Size = new System.Drawing.Size(24, 24);
             this.AddButton.Text = "toolStripButton5";
-            this.AddButton.ToolTip = this.ToolTip;
             this.AddButton.ToolType = BudgetExecution.ToolType.AddButton;
             // 
             // BrowseButton
@@ -252,7 +118,6 @@
             this.BrowseButton.Resource = null;
             this.BrowseButton.Size = new System.Drawing.Size(24, 24);
             this.BrowseButton.Text = "toolStripButton1";
-            this.BrowseButton.ToolTip = this.ToolTip;
             this.BrowseButton.ToolType = BudgetExecution.ToolType.BrowseButton;
             // 
             // CalculatorButton
@@ -273,7 +138,6 @@
             this.CalculatorButton.Resource = null;
             this.CalculatorButton.Size = new System.Drawing.Size(24, 24);
             this.CalculatorButton.Text = "toolStripButton9";
-            this.CalculatorButton.ToolTip = this.ToolTip;
             this.CalculatorButton.ToolType = BudgetExecution.ToolType.CalculatorButton;
             // 
             // DeleteButton
@@ -294,7 +158,6 @@
             this.DeleteButton.Resource = null;
             this.DeleteButton.Size = new System.Drawing.Size(24, 24);
             this.DeleteButton.Text = "toolStripButton6";
-            this.DeleteButton.ToolTip = this.ToolTip;
             this.DeleteButton.ToolType = BudgetExecution.ToolType.DeleteButton;
             // 
             // DropDown
@@ -316,7 +179,6 @@
             this.DropDown.Size = new System.Drawing.Size(127, 24);
             this.DropDown.Style = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016Black;
             this.DropDown.Tag = "Make Selection";
-            this.DropDown.ToolTip = this.ToolTip;
             this.DropDown.ToolTipText = "Make Selection";
             // 
             // ExcelButton
@@ -337,7 +199,6 @@
             this.ExcelButton.Resource = null;
             this.ExcelButton.Size = new System.Drawing.Size(24, 24);
             this.ExcelButton.Text = "toolStripButton10";
-            this.ExcelButton.ToolTip = this.ToolTip;
             this.ExcelButton.ToolType = BudgetExecution.ToolType.ExcelButton;
             // 
             // FirstButton
@@ -358,7 +219,6 @@
             this.FirstButton.Resource = null;
             this.FirstButton.Size = new System.Drawing.Size(24, 24);
             this.FirstButton.Text = "toolStripButton1";
-            this.FirstButton.ToolTip = this.ToolTip;
             this.FirstButton.ToolType = BudgetExecution.ToolType.FirstButton;
             // 
             // TextBox
@@ -399,7 +259,6 @@
             this.Label.Size = new System.Drawing.Size(111, 24);
             this.Label.Tag = "";
             this.Label.Text = "Record Information";
-            this.Label.ToolTip = this.ToolTip;
             // 
             // Separator2
             // 
@@ -443,7 +302,6 @@
             this.PreviousButton.Resource = null;
             this.PreviousButton.Size = new System.Drawing.Size(24, 24);
             this.PreviousButton.Text = "toolStripButton2";
-            this.PreviousButton.ToolTip = this.ToolTip;
             this.PreviousButton.ToolType = BudgetExecution.ToolType.PreviousButton;
             // 
             // Separator5
@@ -472,7 +330,6 @@
             this.NextButton.Resource = null;
             this.NextButton.Size = new System.Drawing.Size(24, 24);
             this.NextButton.Text = "toolStripButton3";
-            this.NextButton.ToolTip = this.ToolTip;
             this.NextButton.ToolType = BudgetExecution.ToolType.NextButton;
             // 
             // Separator6
@@ -501,7 +358,6 @@
             this.LastButton.Resource = null;
             this.LastButton.Size = new System.Drawing.Size(24, 24);
             this.LastButton.Text = "toolStripButton4";
-            this.LastButton.ToolTip = this.ToolTip;
             this.LastButton.ToolType = BudgetExecution.ToolType.LastButton;
             // 
             // Separator7
@@ -546,7 +402,6 @@
             this.RefreshButton.Resource = null;
             this.RefreshButton.Size = new System.Drawing.Size(24, 24);
             this.RefreshButton.Text = "toolStripButton7";
-            this.RefreshButton.ToolTip = this.ToolTip;
             this.RefreshButton.ToolType = BudgetExecution.ToolType.RefreshButton;
             // 
             // Separator10
@@ -575,7 +430,6 @@
             this.SaveButton.Resource = null;
             this.SaveButton.Size = new System.Drawing.Size(24, 24);
             this.SaveButton.Text = "toolStripButton8";
-            this.SaveButton.ToolTip = this.ToolTip;
             this.SaveButton.ToolType = BudgetExecution.ToolType.SaveButton;
             // 
             // Separator11
@@ -620,7 +474,6 @@
             this.ChartButton.Resource = null;
             this.ChartButton.Size = new System.Drawing.Size(24, 24);
             this.ChartButton.Text = "toolStripButton11";
-            this.ChartButton.ToolTip = this.ToolTip;
             this.ChartButton.ToolType = BudgetExecution.ToolType.ChartButton;
             // 
             // Separator14
@@ -657,7 +510,6 @@
             this.HomeButton.Resource = null;
             this.HomeButton.Size = new System.Drawing.Size(24, 24);
             this.HomeButton.Text = "toolStripButton12";
-            this.HomeButton.ToolTip = this.ToolTip;
             this.HomeButton.ToolType = BudgetExecution.ToolType.HomeButton;
             // 
             // Separator16
@@ -711,7 +563,7 @@
             // 
             this.DataView.AllowDragSelectedCols = true;
             this.DataView.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             gridBaseStyle1.Name = "Column Header";
             gridBaseStyle1.StyleInfo.BaseStyle = "Header";
             gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
@@ -929,7 +781,6 @@
             this.Controls.Add(this.ListBox);
             this.Controls.Add(this.ListPanel);
             this.Controls.Add(this.GridPanel);
-            this.Controls.Add(this.ToolStrip);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -945,8 +796,6 @@
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.OnLoad);
-            this.ToolStrip.ResumeLayout(false);
-            this.ToolStrip.PerformLayout();
             this.GridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
@@ -957,8 +806,6 @@
         }
 
         #endregion
-        private ToolTip ToolTip;
-        public ToolStrip ToolStrip;
         public ToolStripButton AddButton;
         public ToolStripButton BrowseButton;
         public ToolStripButton CalculatorButton;
