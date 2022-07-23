@@ -86,7 +86,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( ConnectionBuilder?.ConnectionString )
+                return !string.IsNullOrEmpty( ConnectionBuilder?.ConnectionString )
                     ? ConnectionBuilder
                     : default( ConnectionBuilder );
             }
@@ -110,7 +110,7 @@ namespace BudgetExecution
                 {
                     var _directory = ProviderPath[ $"{Provider}" ] + $@"\{CommandType}";
 
-                    if( Verify.IsInput( _directory )
+                    if( !string.IsNullOrEmpty( _directory )
                         && Directory.Exists( _directory ) )
                     {
                         var _scriptFiles = Directory.GetFiles( _directory );

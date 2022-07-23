@@ -84,7 +84,7 @@ namespace BudgetExecution
             CaptionStyle = CaptionStyle.Top;
             CaptionAlignment = CaptionAlignment.Near;
             CaptionTextStyle = CaptionTextStyle.Plain;
-            Text = "Budget Execution";
+            Text = "";
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Dock = DockStyle.Bottom;
             BorderStyle = ToolStripBorderStyle.StaticEdge;

@@ -276,7 +276,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void SetHoverText( string text )
         {
-            if( Verify.IsInput( text ) )
+            if( !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
@@ -295,7 +295,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void SetText( string text )
         {
-            if( Verify.IsInput( text ) )
+            if( !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
@@ -333,7 +333,7 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         public void AddItem( string item )
         {
-            if( Verify.IsInput( item ) )
+            if( !string.IsNullOrEmpty( item ) )
             {
                 try
                 {
@@ -377,7 +377,7 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         public void RemoveItem( string item )
         {
-            if( Verify.IsInput( item ) )
+            if( !string.IsNullOrEmpty( item ) )
             {
                 try
                 {

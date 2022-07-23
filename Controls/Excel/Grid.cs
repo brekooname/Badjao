@@ -278,7 +278,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( Worksheet.Name )
+                return !string.IsNullOrEmpty( Worksheet.Name )
                     ? Worksheet
                     : default( ExcelWorksheet );
             }

@@ -54,7 +54,7 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        if( Verify.IsInput( kvp.Key )
+                        if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
                         {
                             _dictionary?.Add( kvp.Key, kvp.Value );
@@ -131,7 +131,7 @@ namespace BudgetExecution
                     {
                         foreach( var value in _enumerable )
                         {
-                            if( Verify.IsInput( value )
+                            if( !string.IsNullOrEmpty( value )
                                 && _fields.Contains( value ) )
                             {
                                 _list.Add( value );
@@ -171,7 +171,7 @@ namespace BudgetExecution
                     {
                         foreach( var key in _keys )
                         {
-                            if( Verify.IsInput( key )
+                            if( !string.IsNullOrEmpty( key )
                                 && _fields.Contains( key ) )
                             {
                                 _list.Add( key );

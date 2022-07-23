@@ -53,14 +53,14 @@ namespace BudgetExecution
                 if( _checkBox != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    if( Verify.IsInput( HoverText ) )
+                    if( !string.IsNullOrEmpty( HoverText ) )
                     {
                         var _hoverText = _checkBox?.HoverText;
                         var _ = new ToolTip( _checkBox, _hoverText );
                     }
                     else
                     {
-                        if( Verify.IsInput( Tag?.ToString( ) ) )
+                        if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
                             var _text = Tag?.ToString( )?.SplitPascal( );
                             var _ = new ToolTip( _checkBox, _text );

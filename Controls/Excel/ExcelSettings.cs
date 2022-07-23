@@ -219,7 +219,7 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         public virtual void SetFilePath( string filePath )
         {
-            if( Verify.IsInput( filePath )
+            if( !string.IsNullOrEmpty( filePath )
                 && File.Exists( filePath ) )
             {
                 try
@@ -240,7 +240,7 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         public virtual void SetFileName( string filePath )
         {
-            if( Verify.IsInput( filePath )
+            if( !string.IsNullOrEmpty( filePath )
                 && File.Exists( filePath ) )
             {
                 try
@@ -292,8 +292,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public virtual string GetConnectionString( string extension, string filePath )
         {
-            if( Verify.IsInput( extension )
-                && Verify.IsInput( filePath ) )
+            if( !string.IsNullOrEmpty( extension )
+                && !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
@@ -401,7 +401,7 @@ namespace BudgetExecution
         public void AddComment( Grid grid, string text )
         {
             if( Validate.IsGrid( grid )
-                && Verify.IsInput( text ) )
+                && !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
@@ -478,7 +478,7 @@ namespace BudgetExecution
                         foreach( var caption in text )
                         {
                             if( cell != null
-                               && Verify.IsInput( caption ) )
+                               && !string.IsNullOrEmpty( caption ) )
                             {
                                 cell.Value = caption;
                             }

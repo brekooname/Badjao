@@ -142,17 +142,5 @@
                 _error?.ShowDialog( );
             }
         }
-
-        /// <summary>
-        /// Called when [load].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void OnLoad( object sender, EventArgs e )
-        {
-            // TODO: This line of code loads data into the 'DataSet.StatusOfFunds' table. You can move, or remove it, as needed.
-            TableAdapter.Fill( DataSet.StatusOfFunds );
-
-        }
     }
 }

@@ -278,7 +278,7 @@ namespace BudgetExecution
         /// <param name="message">The message.</param>
         public virtual void SetBannerText( string message )
         {
-            if( Verify.IsInput( message )
+            if( !string.IsNullOrEmpty( message )
                && Banner != null
                && ShowBanner )
             {

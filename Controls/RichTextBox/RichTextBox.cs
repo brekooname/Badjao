@@ -126,7 +126,7 @@ namespace BudgetExecution
         /// The text.</param>
         public void SetText( string text )
         {
-            if( Verify.IsInput( text ) )
+            if( !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
@@ -150,7 +150,7 @@ namespace BudgetExecution
         /// Size of the font.</param>
         public void SetFontStyle( string fontFamily, Color fontColor, int fontSize = 10 )
         {
-            if( Verify.IsInput( fontFamily )
+            if( !string.IsNullOrEmpty( fontFamily )
                && fontColor != Color.Empty )
             {
                 try

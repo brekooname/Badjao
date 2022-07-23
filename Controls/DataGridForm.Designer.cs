@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
             Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
             this.BindingSource = new BudgetExecution.BindingSource();
+            this.DataSet = new BudgetExecution.DataModel();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
@@ -74,20 +75,19 @@
             this.DataGrid = new Syncfusion.Windows.Forms.Grid.GridDataBoundGrid();
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
-            this.DataSet = new BudgetExecution.DataSet();
-            this.TableAdapter = new BudgetExecution.DataSetTableAdapters.StatusOfFundsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.ToolStrip.SuspendLayout();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.ListPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // BindingSource
             // 
             this.BindingSource.DataFilter = null;
             this.BindingSource.DataMember = "StatusOfFunds";
+            this.BindingSource.DataSet = null;
             this.BindingSource.DataSource = this.DataSet;
             this.BindingSource.DataTable = null;
             this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
@@ -95,6 +95,11 @@
             this.BindingSource.Numeric = BudgetExecution.Numeric.NS;
             this.BindingSource.Record = null;
             this.BindingSource.Source = BudgetExecution.Source.NS;
+            // 
+            // DataSet
+            // 
+            this.DataSet.DataSetName = "DataSet";
+            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ToolTip
             // 
@@ -326,7 +331,7 @@
             this.DropDown.MaxLength = 32767;
             this.DropDown.Name = "DropDown";
             this.DropDown.Numeric = BudgetExecution.Numeric.NS;
-            this.DropDown.Size = new System.Drawing.Size(127, 24);
+            this.DropDown.Size = new System.Drawing.Size(81, 24);
             this.DropDown.Style = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016Black;
             this.DropDown.Tag = "Make Selection";
             this.DropDown.ToolTip = this.ToolTip;
@@ -713,7 +718,7 @@
             // 
             this.DataGrid.AllowDragSelectedCols = true;
             this.DataGrid.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             gridBaseStyle1.Name = "Column Header";
             gridBaseStyle1.StyleInfo.BaseStyle = "Header";
             gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
@@ -756,16 +761,19 @@
             gridBaseStyle2,
             gridBaseStyle3,
             gridBaseStyle4});
-            this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2007Black;
+            this.DataGrid.CanOverrideStyle = true;
+            this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2010Black;
             this.DataGrid.DataSource = this.BindingSource;
             this.DataGrid.DefaultRowHeight = 28;
             this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGrid.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2007;
+            this.DataGrid.ForeColor = System.Drawing.Color.LightGray;
+            this.DataGrid.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.DataGrid.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Black;
             this.DataGrid.Location = new System.Drawing.Point(0, 0);
             this.DataGrid.Name = "DataGrid";
             this.DataGrid.Office2007ScrollBars = true;
             this.DataGrid.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.DataGrid.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
             this.DataGrid.Office2016ScrollBars = true;
             this.DataGrid.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.DataGrid.OptimizeInsertRemoveCells = true;
@@ -775,17 +783,19 @@
             this.DataGrid.SmartSizeBox = false;
             this.DataGrid.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.DataGrid.TabIndex = 0;
-            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20))))));
+            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40))))));
+            gridStyleInfo1.TextColor = System.Drawing.Color.LightGray;
             gridStyleInfo1.VerticalScrollbar = true;
             this.DataGrid.TableStyle = gridStyleInfo1;
-            this.DataGrid.Text = "gridDataBoundGrid1";
             this.DataGrid.ThemesEnabled = true;
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonDisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(114)))), ((int)(((byte)(114)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
@@ -825,9 +835,9 @@
             this.ListPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ListPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ListPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ListPanel.BindingSource = null;
+            this.ListPanel.BindingSource = this.BindingSource;
             this.ListPanel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ListPanel.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.ListPanel.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ListPanel.Border.HoverVisible = false;
             this.ListPanel.Border.Rounding = 6;
             this.ListPanel.Border.Thickness = 1;
@@ -865,7 +875,7 @@
             this.ListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ListBox.BindingSource = null;
             this.ListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.ListBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ListBox.Border.HoverVisible = true;
             this.ListBox.Border.Rounding = 6;
             this.ListBox.Border.Thickness = 1;
@@ -876,7 +886,7 @@
             this.ListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.ListBox.ForeColor = System.Drawing.Color.White;
             this.ListBox.HoverText = null;
-            this.ListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ListBox.ItemHeight = 30;
             this.ListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.ListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -885,7 +895,7 @@
             this.ListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ListBox.Name = "ListBox";
             this.ListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.ListBox.Size = new System.Drawing.Size(191, 411);
+            this.ListBox.Size = new System.Drawing.Size(199, 411);
             this.ListBox.TabIndex = 0;
             this.ListBox.Text = "listBox1";
             this.ListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -895,29 +905,20 @@
             this.ListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.ListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.ListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.ListBox.ToolTip = null;
-            // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "DataSet";
-            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // TableAdapter
-            // 
-            this.TableAdapter.ClearBeforeFill = true;
+            this.ListBox.ToolTip = this.ToolTip;
             // 
             // DataGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BorderColor = System.Drawing.Color.SteelBlue;
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaptionForeColor = System.Drawing.Color.SteelBlue;
+            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1188, 713);
             this.Controls.Add(this.ListPanel);
             this.Controls.Add(this.ToolStrip);
@@ -933,15 +934,14 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Load += new System.EventHandler(this.DataGridForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
             this.GridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ListPanel.ResumeLayout(false);
             this.ListPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -987,8 +987,7 @@
         public Syncfusion.Windows.Forms.Grid.GridDataBoundGrid DataGrid;
         public Layout ListPanel;
         public ListBox ListBox;
-        public BindingSource BindingSource;
-        public DataSetTableAdapters.StatusOfFundsTableAdapter TableAdapter;
-        public DataSet DataSet;
+        private DataModel DataSet;
+        private BindingSource BindingSource;
     }
 }

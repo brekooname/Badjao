@@ -107,7 +107,7 @@ namespace BudgetExecution
         /// <param name="filePath">The destination.</param>
         public virtual void Move( string filePath )
         {
-            if( Verify.IsInput( filePath ) )
+            if( !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
@@ -128,7 +128,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( filePath )
+                if( !string.IsNullOrEmpty( filePath )
                     && !File.Exists( filePath ) )
                 {
                     FileInfo.CopyTo( filePath );
@@ -149,7 +149,7 @@ namespace BudgetExecution
             {
                 var _file = Path.GetFullPath( Input ) ;
 
-                if( Verify.IsInput( _file )
+                if( !string.IsNullOrEmpty( _file )
                     && File.Exists( _file ) )
                 {
                     File.Delete( _file );
@@ -171,7 +171,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( FileInfo?.DirectoryName ) 
+                return !string.IsNullOrEmpty( FileInfo?.DirectoryName ) 
                     && Directory.Exists( FileInfo?.DirectoryName );
             }
             catch( Exception ex )
@@ -207,7 +207,7 @@ namespace BudgetExecution
             try
             {
                 var _path = Path.GetFullPath( Input ); 
-                return Verify.IsInput( _path ) 
+                return !string.IsNullOrEmpty( _path ) 
                     && File.Exists( _path )
                         ? new FileInfo( _path )?.Create()
                         : default( FileStream );

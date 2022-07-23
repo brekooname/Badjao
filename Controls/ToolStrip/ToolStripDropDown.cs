@@ -162,7 +162,7 @@ namespace BudgetExecution
                 }
                 else
                 {
-                    if( Verify.IsInput( _comboBox?.Tag?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( _comboBox?.Tag?.ToString( ) ) )
                     {
                         var _text = _comboBox?.Tag
                             ?.ToString(  )?.SplitPascal(  );

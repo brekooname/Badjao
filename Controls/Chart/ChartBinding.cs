@@ -13,13 +13,13 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="FormBinding" />
+    /// <seealso cref="BindingSource" />
     /// <seealso cref="IChartBinding" />
     /// <seealso cref="IChartSeriesModel" />
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "UnusedType.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class ChartBinding : FormBinding, IChartBinding, IChartSeriesModel
+    public class ChartBinding : BindingSource, IChartBinding, IChartSeriesModel
     {
         /// <summary>
         /// Gets or sets the chart handler.
@@ -68,7 +68,7 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="FormBinding" />
+        /// <see cref="BindingSource" />
         /// class.
         /// </summary>
         public ChartBinding()
@@ -86,7 +86,7 @@ namespace BudgetExecution
             Data = table.AsEnumerable( );
             SeriesConfiguration = seriesConfig;
             DataTable = table;
-            DataSet = (DataSet)DataTable?.DataSet;
+            DataSet = DataTable?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;
@@ -108,7 +108,7 @@ namespace BudgetExecution
             Data = data;
             SeriesConfiguration = seriesConfig;
             DataTable = data.CopyToDataTable( );
-            DataSet = (DataSet)DataTable.DataSet;
+            DataSet = DataTable.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;

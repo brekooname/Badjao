@@ -108,8 +108,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbDataAdapter GetAdapter()
         {
-            if( Verify.IsInput( ConnectionBuilder.ConnectionString )
-                && Verify.IsInput( SqlStatement.GetSelectStatement( ) ) )
+            if( !string.IsNullOrEmpty( ConnectionBuilder.ConnectionString )
+                && !string.IsNullOrEmpty( SqlStatement.GetSelectStatement( ) ) )
             {
                 try
                 {
@@ -159,13 +159,13 @@ namespace BudgetExecution
         /// <returns></returns>
         private OleDbDataAdapter GetOleDbDataAdapter()
         {
-            if( Verify.IsInput( SqlStatement.GetSelectStatement( ) ) )
+            if( !string.IsNullOrEmpty( SqlStatement.GetSelectStatement( ) ) )
             {
                 try
                 {
                     var _connectionString = ConnectionBuilder?.ConnectionString;
 
-                    return Verify.IsInput( _connectionString )
+                    return !string.IsNullOrEmpty( _connectionString )
                         ? new OleDbDataAdapter( SqlStatement.GetSelectStatement( ), _connectionString )
                         : default( OleDbDataAdapter );
                 }
@@ -191,7 +191,7 @@ namespace BudgetExecution
                 {
                     var _connectionString = ConnectionBuilder?.ConnectionString;
 
-                    return Verify.IsInput( _connectionString )
+                    return !string.IsNullOrEmpty( _connectionString )
                         ? new SqlDataAdapter( SqlStatement.GetSelectStatement( ), _connectionString )
                         : default( SqlDataAdapter );
                 }
@@ -211,8 +211,8 @@ namespace BudgetExecution
         /// <returns></returns>
         private SqlCeDataAdapter GetSqlCeAdapter()
         {
-            if( Verify.IsInput( Connection?.ConnectionString )
-                && Verify.IsInput( SqlStatement?.GetSelectStatement( ) ) )
+            if( !string.IsNullOrEmpty( Connection?.ConnectionString )
+                && !string.IsNullOrEmpty( SqlStatement?.GetSelectStatement( ) ) )
             {
                 try
                 {

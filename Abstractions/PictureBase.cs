@@ -109,13 +109,13 @@ namespace BudgetExecution
             {
                 var _picturePanel = sender as PictureBase;
 
-                if( Verify.IsInput( HoverText ) )
+                if( !string.IsNullOrEmpty( HoverText ) )
                 {
                     var _ = new ToolTip( _picturePanel, HoverText );
                 }
                 else
                 {
-                    if( Verify.IsInput( Tag?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
                         var _ = new ToolTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
                     }

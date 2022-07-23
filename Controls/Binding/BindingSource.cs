@@ -26,7 +26,7 @@ namespace BudgetExecution
         public BindingSource( IEnumerable<DataRow> dataRows )
         {
             DataTable = dataRows?.CopyToDataTable( );
-            DataSet = (DataSet)DataTable?.DataSet;
+            DataSet = DataTable?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable?.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;
@@ -42,7 +42,7 @@ namespace BudgetExecution
         public BindingSource( DataTable dataTable )
         {
             DataTable = dataTable;
-            DataSet = (DataSet)DataTable?.DataSet;
+            DataSet = DataTable?.DataSet;
             DataSource = DataTable;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable?.TableName );
             Record = (DataRow)Current;
@@ -58,7 +58,7 @@ namespace BudgetExecution
         public void SetDataFilter( Field field, string filter )
         {
             if( Validate.IsField( field )
-                && Verify.IsInput( filter ) )
+                && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {
@@ -97,7 +97,7 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        if( Verify.IsInput( kvp.Key )
+                        if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
                         {
                             DataFilter?.Add( kvp.Key, kvp.Value );

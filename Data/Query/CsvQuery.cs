@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Data.OleDb;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -139,8 +140,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CsvImport( ref string sheetName )
         {
-            if( Verify.IsInput( sheetName )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( sheetName )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -156,7 +157,7 @@ namespace BudgetExecution
                         {
                             var _schema = _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                            if( Verify.IsInput( sheetName ) )
+                            if( !string.IsNullOrEmpty( sheetName ) )
                             {
                                 if( !SheetExists( sheetName, _schema ) )
                                 {
@@ -205,8 +206,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CsvImport( string fileName, ref string sheetName )
         {
-            if( Verify.IsInput( fileName )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( fileName )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -221,7 +222,7 @@ namespace BudgetExecution
                         {
                             var _schema = _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                            if( Verify.IsInput( sheetName ) )
+                            if( !string.IsNullOrEmpty( sheetName ) )
                             {
                                 if( !SheetExists( sheetName, _schema ) )
                                 {
@@ -269,7 +270,7 @@ namespace BudgetExecution
         {
             if( table?.Columns.Count > 0
                 && table.Rows.Count > 0
-                && Verify.IsInput( filePath ) )
+                && !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
@@ -355,7 +356,7 @@ namespace BudgetExecution
         /// </returns>
         public ExcelPackage CreateCsvFile( string filePath )
         {
-            if( Verify.IsInput( filePath ) )
+            if( !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
@@ -419,7 +420,7 @@ namespace BudgetExecution
         /// </returns>
         private bool SheetExists( string sheetName, DataTable dataTable )
         {
-            if( Verify.IsInput( sheetName )
+            if( !string.IsNullOrEmpty( sheetName )
                 && dataTable?.Columns.Count > 0
                 && dataTable.Rows.Count > 0 )
             {

@@ -154,7 +154,7 @@ namespace BudgetExecution
                                 var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.SQLite}" ]?.ConnectionString;
 
-                                return Verify.IsInput( _connectionString )
+                                return !string.IsNullOrEmpty( _connectionString )
                                     ? new SQLiteConnection( _connectionString )
                                     : default( DbConnection );
                             }
@@ -164,7 +164,7 @@ namespace BudgetExecution
                                 var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.SqlCe}" ]?.ConnectionString;
 
-                                return Verify.IsInput( _connectionString )
+                                return !string.IsNullOrEmpty( _connectionString )
                                     ? new SqlCeConnection( _connectionString )
                                     : default( DbConnection );
                             }
@@ -174,7 +174,7 @@ namespace BudgetExecution
                                 var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.SqlServer}" ]?.ConnectionString;
 
-                                return Verify.IsInput( _connectionString )
+                                return !string.IsNullOrEmpty( _connectionString )
                                     ? new SqlConnection( _connectionString )
                                     : default( DbConnection );
                             }
@@ -187,7 +187,7 @@ namespace BudgetExecution
                                 var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.OleDb}" ]?.ConnectionString;
 
-                                return Verify.IsInput( _connectionString )
+                                return !string.IsNullOrEmpty( _connectionString )
                                     ? new OleDbConnection( _connectionString )
                                     : default( DbConnection );
                             }
@@ -237,7 +237,7 @@ namespace BudgetExecution
             {
                 var _connectionString = ConnectionBuilder?.ConnectionString;
 
-                return Verify.IsInput( _connectionString )
+                return !string.IsNullOrEmpty( _connectionString )
                     ? _connectionString
                     : string.Empty;
             }

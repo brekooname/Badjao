@@ -95,7 +95,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.IsInput( tableName )
+            if( !string.IsNullOrEmpty( tableName )
                 && Verify.IsSequence( dataColumns ) )
             {
                 try
@@ -103,27 +103,27 @@ namespace BudgetExecution
                     var _sql = $"CREATE TABLE {tableName}";
 
                     if( Validate.IsProvider( Provider )
-                        && Verify.IsInput( _sql ) )
+                        && !string.IsNullOrEmpty( _sql ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -133,7 +133,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
@@ -158,7 +158,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.IsInput( viewName )
+            if( !string.IsNullOrEmpty( viewName )
                 && dataColumns?.Any( ) == true
                 && ConnectionBuilder != null
                 && ConnectionBuilder.Provider != Provider.SqlCe )
@@ -171,14 +171,14 @@ namespace BudgetExecution
                     {
                         case Provider.SQLite:
                         {
-                            return Verify.IsInput( _sql )
+                            return !string.IsNullOrEmpty( _sql )
                                 ? new SQLiteCommand( _sql )
                                 : default( SQLiteCommand );
                         }
 
                         case Provider.SqlServer:
                         {
-                            return Verify.IsInput( _sql )
+                            return !string.IsNullOrEmpty( _sql )
                                 ? new SqlCommand( _sql )
                                 : default( SqlCommand );
                         }
@@ -188,7 +188,7 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            return Verify.IsInput( _sql )
+                            return !string.IsNullOrEmpty( _sql )
                                 ? new OleDbCommand( _sql )
                                 : default( OleDbCommand );
                         }
@@ -218,28 +218,28 @@ namespace BudgetExecution
                 {
                     var _sql = $"DROP {dataTable.TableName};";
 
-                    if( Verify.IsInput( _sql )
+                    if( !string.IsNullOrEmpty( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -249,7 +249,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
@@ -283,28 +283,28 @@ namespace BudgetExecution
                     var _sql =
                         $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
 
-                    if( Verify.IsInput( _sql )
+                    if( !string.IsNullOrEmpty( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -314,7 +314,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
@@ -340,7 +340,7 @@ namespace BudgetExecution
         public DbCommand GetAlterCommand( DataTable dataTable, string name )
         {
             if( dataTable != null
-                && Verify.IsInput( name )
+                && !string.IsNullOrEmpty( name )
                 && CommandBuilder != null )
             {
                 try
@@ -348,27 +348,27 @@ namespace BudgetExecution
                     var _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
-                        && Verify.IsInput( _sql ) )
+                        && !string.IsNullOrEmpty( _sql ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -378,7 +378,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.IsInput( _sql )
+                                return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }

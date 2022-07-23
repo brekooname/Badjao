@@ -208,7 +208,7 @@ namespace BudgetExecution
         /// <param name="control">The control.</param>
         public virtual void SetToolTipText( Control control )
         {
-            if( Verify.IsInput( control?.Tag?.ToString( ) ) )
+            if( !string.IsNullOrEmpty( control?.Tag?.ToString( ) ) )
             {
                 try
                 {
@@ -231,7 +231,7 @@ namespace BudgetExecution
         public virtual void SetToolTipText( Control control, string caption )
         {
             if( control != null
-                && Verify.IsInput( caption ) )
+                && !string.IsNullOrEmpty( caption ) )
             {
                 try
                 {
@@ -259,7 +259,7 @@ namespace BudgetExecution
                     Control parent = item.GetCurrentParent( );
                     var caption = item?.Tag?.ToString( );
 
-                    if( Verify.IsInput( caption ) )
+                    if( !string.IsNullOrEmpty( caption ) )
                     {
                         RemoveAll( );
                         SetToolTipText( parent, caption );
@@ -283,7 +283,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( Verify.IsInput( control?.Tag?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( control?.Tag?.ToString( ) ) )
                     {
                         var caption = control.Tag.ToString( );
                         RemoveAll( );
@@ -305,7 +305,7 @@ namespace BudgetExecution
         public virtual void SetToolTipText( Component component, string caption )
         {
             if( component != null
-                && Verify.IsInput( caption ) )
+                && !string.IsNullOrEmpty( caption ) )
             {
                 try
                 {

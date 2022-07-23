@@ -45,7 +45,7 @@
             Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem chartToolBarShowLegendItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.Chart = new Syncfusion.Windows.Forms.Chart.ChartControl();
-            this.DataSet = new System.Data.DataSet();
+            this.DataSet = new BudgetExecution.DataModel();
             this.BindingSource = new BudgetExecution.BindingSource();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
@@ -220,7 +220,7 @@
             // BindingSource
             // 
             this.BindingSource.DataFilter = null;
-            this.BindingSource.DataSet = (DataSet)DataSet;
+            this.BindingSource.DataSet = this.DataSet;
             this.BindingSource.DataTable = null;
             this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
             this.BindingSource.Index = 0;
@@ -345,6 +345,7 @@
             this.ToolStrip.ShowLauncher = true;
             this.ToolStrip.Size = new System.Drawing.Size(1385, 52);
             this.ToolStrip.TabIndex = 1;
+            this.ToolStrip.Text = "Budget Execution";
             this.ToolStrip.TextBox = this.TextBox;
             this.ToolStrip.ThemeStyle.ArrowColor = System.Drawing.Color.SteelBlue;
             this.ToolStrip.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
@@ -546,7 +547,7 @@
             this.DropDown.MaxLength = 32767;
             this.DropDown.Name = "DropDown";
             this.DropDown.Numeric = BudgetExecution.Numeric.NS;
-            this.DropDown.Size = new System.Drawing.Size(204, 24);
+            this.DropDown.Size = new System.Drawing.Size(175, 24);
             this.DropDown.Style = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016Black;
             this.DropDown.Tag = "Make Selection";
             this.DropDown.ToolTip = this.ToolTip;
@@ -816,13 +817,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BorderColor = System.Drawing.Color.SteelBlue;
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaptionForeColor = System.Drawing.Color.SteelBlue;
+            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1385, 713);
             this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.Chart);
@@ -848,7 +849,6 @@
         }
 
         #endregion
-        private System.Data.DataSet DataSet;
         private ToolTip ToolTip;
         public ToolStrip ToolStrip;
         public ToolStripTextBox TextBox;
@@ -885,5 +885,6 @@
         public ToolStripDropDown DropDown;
         private BindingSource BindingSource;
         public Syncfusion.Windows.Forms.Chart.ChartControl Chart;
+        public DataModel DataSet;
     }
 }

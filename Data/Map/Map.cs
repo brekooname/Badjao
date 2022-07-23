@@ -128,7 +128,7 @@
 
                     foreach( var kvp in Input )
                     {
-                        if( Verify.IsInput( kvp.Key )
+                        if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
                         {
                             return true;
@@ -157,7 +157,7 @@
                 {
                     var _data = Input.GetPrimaryKey( );
 
-                    return Verify.IsInput( _data.Key )
+                    return !string.IsNullOrEmpty( _data.Key )
                         ? new Key( _data )
                         : default( IKey );
                 }
@@ -186,7 +186,7 @@
 
                     foreach( var kvp in Output )
                     {
-                        if( Verify.IsInput( kvp.Key )
+                        if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
                         {
                             _output.Add( new Element( kvp ) );

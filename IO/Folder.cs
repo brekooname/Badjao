@@ -49,7 +49,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( Environment.CurrentDirectory )
+                return !string.IsNullOrEmpty( Environment.CurrentDirectory )
                     ? Environment.CurrentDirectory
                     : string.Empty;
             }
@@ -69,7 +69,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( fullName ) 
+                return !string.IsNullOrEmpty( fullName ) 
                     && !Directory.Exists( fullName )
                         ? Directory.CreateDirectory( fullName )
                         : default( DirectoryInfo );
@@ -89,7 +89,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( folderName )
+                if( !string.IsNullOrEmpty( folderName )
                     && Directory.Exists( folderName ) )
                 {
                     Directory.Delete( folderName, true );
@@ -113,7 +113,7 @@ namespace BudgetExecution
                 return default( DirectoryInfo );
             }
 
-            if( Verify.IsInput( folderName )
+            if( !string.IsNullOrEmpty( folderName )
                 && Directory.Exists( folderName ) )
             {
                 Directory.Delete( folderName );
@@ -121,7 +121,7 @@ namespace BudgetExecution
 
             try
             {
-                return Verify.IsInput( folderName ) 
+                return !string.IsNullOrEmpty( folderName ) 
                     && !Directory.Exists( folderName )
                         ? DirectoryInfo?.CreateSubdirectory( folderName )
                         : default( DirectoryInfo );
@@ -159,12 +159,12 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( fullName )
+                if( !string.IsNullOrEmpty( fullName )
                     && !Directory.Exists( fullName ) )
                 {
                     DirectoryInfo?.MoveTo( fullName );
                 }
-                else if( Verify.IsInput( fullName )
+                else if( !string.IsNullOrEmpty( fullName )
                     && Directory.Exists( fullName ) )
                 {
                     Directory.CreateDirectory( fullName );
@@ -185,7 +185,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( destinationPath ) )
+                if( !string.IsNullOrEmpty( destinationPath ) )
                 {
                     ZipFile.CreateFromDirectory( Path, destinationPath );
                 }
@@ -204,7 +204,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( zipPath )
+                if( !string.IsNullOrEmpty( zipPath )
                     && File.Exists( zipPath ) )
                 {
                     ZipFile.ExtractToDirectory( zipPath, Path );

@@ -1025,7 +1025,7 @@ namespace BudgetExcess
             defval = DiscardNational( defval );
             _log.Debug( "DEFAULT VALUE BEFORE [" + col.defaultValue + "] AFTER [" + defval + "]" );
 
-            if( Verify.IsInput( defval )
+            if( !string.IsNullOrEmpty( defval )
                 && defval.ToUpper( ).Contains( "GETDATE" ) )
             {
                 _log.Debug( "converted SQL Server GETDATE() to CURRENTTIMESTAMP for column ["
@@ -1034,7 +1034,7 @@ namespace BudgetExcess
 
                 sb.Append( " DEFAULT (CURRENTTIMESTAMP)" );
             }
-            else if( Verify.IsInput( defval )
+            else if( !string.IsNullOrEmpty( defval )
                 && IsValidDefaultValue( defval ) )
             {
                 sb.Append( " DEFAULT " + defval );

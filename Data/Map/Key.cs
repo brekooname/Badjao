@@ -115,7 +115,7 @@ namespace BudgetExecution
             {
                 return !Validate.PrimaryKey( PrimaryKey )
                     && Index > -1
-                    && Verify.IsInput( Name )
+                    && !string.IsNullOrEmpty( Name )
                         ? Name + " = " + Index
                         : string.Empty;
             }
@@ -186,7 +186,7 @@ namespace BudgetExecution
         /// <param name="keyName">Name of the key.</param>
         protected void SetPrimaryKey( string keyName )
         {
-            if( Verify.IsInput( keyName ) )
+            if( !string.IsNullOrEmpty( keyName ) )
             {
                 try
                 {
@@ -305,7 +305,7 @@ namespace BudgetExecution
         /// <param name="key">The key.</param>
         protected void SetIndex( DataRow dataRow, PrimaryKey key )
         {
-            if( Verify.IsInput( dataRow?.ItemArray )
+            if( Verify.IsSequence( dataRow?.ItemArray )
                 && Validate.PrimaryKey( key ) )
             {
                 try

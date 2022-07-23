@@ -133,7 +133,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( filePath ) && File.Exists( filePath )
+                return !string.IsNullOrEmpty( filePath ) && File.Exists( filePath )
                     ? Path.GetFullPath( filePath )
                     : default( string );
             }
@@ -150,7 +150,7 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         protected string GetProviderPath( string filePath )
         {
-            if( Verify.IsInput( filePath )
+            if( !string.IsNullOrEmpty( filePath )
                && File.Exists( filePath )
                && Path.HasExtension( filePath ) )
             {
@@ -240,7 +240,7 @@ namespace BudgetExecution
                         {
                             var _connection = Connectors[ provider.ToString( ) ]?.ConnectionString;
 
-                            return Verify.IsInput( _connection )
+                            return !string.IsNullOrEmpty( _connection )
                                 ? _connection?.Replace( "{FilePath}", FilePath )
                                 : string.Empty;
                         }
@@ -252,7 +252,7 @@ namespace BudgetExecution
                         {
                             var _connection = Connectors[ provider.ToString( ) ]?.ConnectionString;
 
-                            return Verify.IsInput( _connection )
+                            return !string.IsNullOrEmpty( _connection )
                                 ? _connection
                                 : string.Empty;
                         }

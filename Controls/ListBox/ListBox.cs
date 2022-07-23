@@ -296,7 +296,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public void AddItem( object item )
         {
-            if( Verify.IsInput( item ) )
+            if( !string.IsNullOrEmpty( item?.ToString( ) ) )
             {
                 try
                 {
@@ -315,7 +315,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void SetHoverText( string text )
         {
-            if( Verify.IsInput( text ) )
+            if( !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
@@ -334,7 +334,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void SetText( string text )
         {
-            if( Verify.IsInput( text ) )
+            if( !string.IsNullOrEmpty( text ) )
             {
                 try
                 {

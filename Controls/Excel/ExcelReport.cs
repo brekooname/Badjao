@@ -44,7 +44,7 @@ namespace BudgetExecution
         public bool CreateExcelDocument<T>( IEnumerable<T> data, string path )
         {
             if( data != null
-                && Verify.IsInput( path ) )
+                && !string.IsNullOrEmpty( path ) )
             {
                 try
                 {
@@ -77,7 +77,7 @@ namespace BudgetExecution
         /// </returns>
         public bool CreateExcelDocument( DataTable dataTable, string path )
         {
-            if( Verify.IsInput( path )
+            if( !string.IsNullOrEmpty( path )
                 && dataTable?.Rows?.Count > 0
                 && dataTable?.Columns?.Count > 0 )
             {
@@ -114,7 +114,7 @@ namespace BudgetExecution
         /// </returns>
         public bool CreateExcelDocument( DataSet dataSet, string fileName )
         {
-            if( Verify.IsInput( fileName )
+            if( !string.IsNullOrEmpty( fileName )
                 && dataSet != null )
             {
                 try
@@ -298,8 +298,8 @@ namespace BudgetExecution
         /// </param>
         public void AppendNumericCell( string cellReference, string cellStringValue, OpenXmlElement excelRow )
         {
-            if( Verify.IsInput( cellReference )
-                && Verify.IsInput( cellStringValue )
+            if( !string.IsNullOrEmpty( cellReference )
+                && !string.IsNullOrEmpty( cellStringValue )
                 && excelRow != null )
             {
                 try

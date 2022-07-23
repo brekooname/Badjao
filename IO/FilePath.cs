@@ -55,7 +55,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( filePath )
+                return !string.IsNullOrEmpty( filePath )
                     ? new FileInfo( filePath )
                     : default( FileInfo );
             }
@@ -102,7 +102,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( search )
+                if( !string.IsNullOrEmpty( search )
                    && File.Exists( search ) )
                 {
                     using( var _stream = File.Open( search, FileMode.Open ) )
@@ -144,13 +144,13 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<FileInfo> Search( string pattern )
         {
-            if( Verify.IsInput( pattern ) )
+            if( !string.IsNullOrEmpty( pattern ) )
             {
                 try
                 {
                     var _input = Path.GetFullPath( Input ) ;
 
-                    if( Verify.IsInput( _input )
+                    if( !string.IsNullOrEmpty( _input )
                         && File.Exists( _input ) )
                     {
                         var _enumerable = Directory.EnumerateFiles( _input, pattern );
@@ -161,7 +161,7 @@ namespace BudgetExecution
                             _list.Add( new FileInfo( file ) );
                         }
 
-                        return Verify.IsInput( _list )
+                        return Verify.IsSequence( _list )
                             ? _list
                             : default( List<FileInfo> );
                     }
@@ -186,7 +186,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( FullName )
+                return !string.IsNullOrEmpty( FullName )
                     ? FullName
                     : string.Empty;
             }
@@ -205,7 +205,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( FullName )
+                return !string.IsNullOrEmpty( FullName )
                     ? FullName
                     : default( string );
             }
@@ -227,7 +227,7 @@ namespace BudgetExecution
             {
                 var _extension = Path.GetExtension( Input );
 
-                return Verify.IsInput( _extension )
+                return !string.IsNullOrEmpty( _extension )
                     ? _extension
                     : string.Empty;
             }
@@ -248,7 +248,7 @@ namespace BudgetExecution
             {
                 var _input = Path.GetFullPath( Input );
 
-                return Verify.IsInput( _input )
+                return !string.IsNullOrEmpty( _input )
                     ? _input
                     : string.Empty;
             }

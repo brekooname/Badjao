@@ -115,7 +115,7 @@ namespace BudgetExecution
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, string column )
         {
             if( Verify.IsSequence( dataRows )
-                && Verify.IsInput( column ) )
+                && !string.IsNullOrEmpty( column ) )
             {
                 try
                 {
@@ -147,7 +147,7 @@ namespace BudgetExecution
         {
             if( Verify.IsSequence( dataRows )
                 && Verify.IsField( field )
-                && Verify.IsInput( filter ) )
+                && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {
@@ -206,7 +206,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable CreateTableFromExcel( string filePath )
         {
-            if( Verify.IsInput( filePath )
+            if( !string.IsNullOrEmpty( filePath )
                 && File.Exists( filePath ) )
             {
                 try
@@ -276,7 +276,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable CreateTableFromExcel( string filePath, bool header = true )
         {
-            if( Verify.IsInput( filePath )
+            if( !string.IsNullOrEmpty( filePath )
                 && File.Exists( filePath ) )
             {
                 try
@@ -344,9 +344,9 @@ namespace BudgetExecution
         public static IDictionary<string, IEnumerable<string>> GetSeries(
             IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.IsInput( dataRows )
+            if( Verify.IsSequence( dataRows )
                 && Verify.IsField( field )
-                && Verify.IsInput( filter ) )
+                && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {
@@ -361,7 +361,7 @@ namespace BudgetExecution
                         {
                             var _columnName = _columns[ i ].ColumnName;
 
-                            if( Verify.IsInput( _columnName )
+                            if( !string.IsNullOrEmpty( _columnName )
                                 && _columns[ i ]?.DataType == typeof( string ) )
                             {
                                 _dict.Add( _columns[ i ].ColumnName, _values );
@@ -415,7 +415,7 @@ namespace BudgetExecution
             string filter )
         {
             if( Verify.IsSequence( dataRows )
-                && Verify.IsInput( filter )
+                && !string.IsNullOrEmpty( filter )
                 && Verify.IsField( field ) )
             {
                 try
@@ -454,7 +454,7 @@ namespace BudgetExecution
 
                     for( var i = 0; i < _columns?.Count; i++ )
                     {
-                        if( Verify.IsInput( _columns[ i ]?.ColumnName )
+                        if( !string.IsNullOrEmpty( _columns[ i ]?.ColumnName )
                             && _columns[ i ]?.DataType == typeof( string ) )
                         {
                             _dict?.Add( _columns[ i ]?.ColumnName, GetValues( dataTable?.AsEnumerable(  ), _columns[ i ]?.ColumnName ) );

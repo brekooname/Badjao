@@ -140,7 +140,7 @@ namespace BudgetExecution
 
                         foreach( var kvp in dict )
                         {
-                            if( Verify.IsInput( kvp.Key )
+                            if( !string.IsNullOrEmpty( kvp.Key )
                                 && Verify.IsRef( kvp.Value ) )
                             {
                                 _filter += $"{kvp.Key} = {kvp.Value} AND";
@@ -203,7 +203,7 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        if( Verify.IsInput( kvp.Key )
+                        if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
                         {
                             _filter += $"{kvp.Key} = {kvp.Value} AND";
@@ -238,7 +238,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( Verify.IsInput( filter?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( filter?.ToString( ) ) )
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field.ToString( );
@@ -266,11 +266,11 @@ namespace BudgetExecution
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<T1>
         {
-            if( Verify.IsInput( data ) )
+            if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    if( Verify.IsInput( field?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( field?.ToString( ) ) )
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field?.ToString( );
@@ -306,7 +306,7 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        if( Verify.IsInput( kvp.Key )
+                        if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
                         {
                             filter += $"{kvp.Key} = {kvp.Value} AND";
@@ -338,7 +338,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( Verify.IsInput( filter?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( filter?.ToString( ) ) )
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field.ToString( );

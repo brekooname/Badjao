@@ -111,7 +111,7 @@ namespace BudgetExecution
         /// <param name="path">The path.</param>
         public void Add( string path )
         {
-            if( Verify.IsInput( path )
+            if( !string.IsNullOrEmpty( path )
                && File.Exists( path ) )
             {
                 try

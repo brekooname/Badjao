@@ -240,7 +240,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void SetText( string text )
         {
-            if( Verify.IsInput( text ) )
+            if( !string.IsNullOrEmpty( text ) )
             {
                 try
                 {

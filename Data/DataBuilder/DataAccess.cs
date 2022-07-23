@@ -290,7 +290,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
-            if( Verify.IsInput( dataRows )
+            if( Verify.IsSequence( dataRows )
                 && dataRows?.HasPrimaryKey( ) == true )
             {
                 try

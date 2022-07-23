@@ -90,7 +90,7 @@ namespace BudgetExecution
         public IEnumerable<DataRow> FilterData( Field field, string filter )
         {
             if( Validate.IsField( field )
-                && Verify.IsInput( filter ) )
+                && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {

@@ -99,7 +99,7 @@ namespace BudgetExecution
                     ?.FileInfo
                     ?.Directory;
 
-                return Verify.IsInput( _file?.FullName )
+                return !string.IsNullOrEmpty( _file?.FullName )
                     ? Directory.CreateDirectory( _file?.FullName )
                     : default( DirectoryInfo );
             }
@@ -239,8 +239,8 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( destinationPath )
-                    && Verify.IsInput( sourcePath ) )
+                if( !string.IsNullOrEmpty( destinationPath )
+                    && !string.IsNullOrEmpty( sourcePath ) )
                 {
                     ZipFile.CreateFromDirectory( sourcePath, destinationPath );
                 }

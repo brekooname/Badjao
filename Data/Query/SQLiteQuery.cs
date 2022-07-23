@@ -207,8 +207,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CreateTableFromExcelFile( string filePath, ref string sheetName )
         {
-            if( Verify.IsInput( filePath )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( filePath )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -259,8 +259,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CreateTableFromCsvFile( string fileName, ref string sheetName )
         {
-            if( Verify.IsInput( fileName )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( fileName )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -271,7 +271,7 @@ namespace BudgetExecution
                     _dataSet.Tables.Add( _dataTable );
                     var _cstring = GetExcelFilePath( );
 
-                    if( Verify.IsInput( _cstring ) )
+                    if( !string.IsNullOrEmpty( _cstring ) )
                     {
                         var _csvquery = new CsvQuery( _cstring );
                         var _select = _csvquery.GetCommand( );
@@ -335,7 +335,7 @@ namespace BudgetExecution
         /// </returns>
         private bool CheckIfSheetNameExists( string sheetName, DataTable dataSchema )
         {
-            if( Verify.IsInput( sheetName )
+            if( !string.IsNullOrEmpty( sheetName )
                 && Verify.IsTable( dataSchema ) )
             {
                 for( var i = 0; i < dataSchema.Rows.Count; i++ )

@@ -221,7 +221,7 @@ namespace BudgetExecution
         /// </returns>
         protected void SetConnectionBuilder( string fullPath )
         {
-            if( Verify.IsInput( fullPath )
+            if( !string.IsNullOrEmpty( fullPath )
                 && File.Exists( fullPath ) )
             {
                 try

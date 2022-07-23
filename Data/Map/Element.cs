@@ -183,7 +183,7 @@ namespace BudgetExecution
         protected virtual void SetName( DataRow dataRow, string columnName )
         {
             if( Verify.IsRow( dataRow )
-                && Verify.IsInput( columnName )
+                && !string.IsNullOrEmpty( columnName )
                 && Enum.GetNames( typeof( Field ) )?.Contains( columnName ) == true )
             {
                 try
@@ -255,7 +255,7 @@ namespace BudgetExecution
         /// <param name = "fieldName" > </param>
         protected virtual void SetField( string fieldName )
         {
-            if( Verify.IsInput( fieldName )
+            if( !string.IsNullOrEmpty( fieldName )
                 && Enum.GetNames( typeof( Field ) )?.Contains( fieldName ) == true )
             {
                 try
@@ -281,7 +281,7 @@ namespace BudgetExecution
         protected virtual void SetField( DataRow dataRow, string fieldName )
         {
             if( Verify.IsRow( dataRow )
-                && Verify.IsInput( fieldName ) )
+                && !string.IsNullOrEmpty( fieldName ) )
             {
                 try
                 {
@@ -355,7 +355,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsInput( value ) )
+                if( !string.IsNullOrEmpty( value?.ToString( ) ) )
                 {
                     Value = value;
                 }
@@ -374,7 +374,7 @@ namespace BudgetExecution
         protected virtual void SetValue( DataRow dataRow, string columnName )
         {
             if( Verify.IsRow( dataRow )
-                && Verify.IsInput( columnName )
+                && !string.IsNullOrEmpty( columnName )
                 && Enum.GetNames( typeof( Field ) ).Contains( columnName ) )
             {
                 try

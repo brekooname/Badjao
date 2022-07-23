@@ -115,8 +115,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CreateTableFromExcelFile( string fileName, ref string sheetName )
         {
-            if( Verify.IsInput( fileName )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( fileName )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -127,7 +127,7 @@ namespace BudgetExecution
                     _dataSet.Tables.Add( _dataTable );
                     var cstring = GetExcelFilePath( );
 
-                    if( Verify.IsInput( cstring ) )
+                    if( !string.IsNullOrEmpty( cstring ) )
                     {
                         var _excelQuery = new ExcelQuery( cstring );
                         var _connection = _excelQuery.GetConnection( ) as OleDbConnection;
@@ -164,8 +164,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CreateTableFromCsvFile( string filePath, ref string sheetName )
         {
-            if( Verify.IsInput( filePath )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( filePath )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -182,7 +182,7 @@ namespace BudgetExecution
                     _dataSet.Tables.Add( _dataTable );
                     var _cstring = GetExcelFilePath( );
 
-                    if( Verify.IsInput( _cstring ) )
+                    if( !string.IsNullOrEmpty( _cstring ) )
                     {
                         var _csvQuery = new CsvQuery( _cstring );
                         var _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
@@ -216,7 +216,7 @@ namespace BudgetExecution
         /// </returns>
         private bool CheckIfSheetNameExists( string sheetName, DataTable schemaTable )
         {
-            if( Verify.IsInput( sheetName )
+            if( !string.IsNullOrEmpty( sheetName )
                 && Verify.IsTable( schemaTable ) )
             {
                 for( var i = 0; i < schemaTable.Rows.Count; i++ )

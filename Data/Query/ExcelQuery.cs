@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Data.OleDb;
     using System.IO;
     using System.Runtime.InteropServices;
@@ -109,7 +110,7 @@ namespace BudgetExecution
         public void WriteExcelFile( DataTable table, string filePath )
         {
             if( Verify.IsTable( table )
-                && Verify.IsInput( filePath ) )
+                && !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
@@ -155,7 +156,7 @@ namespace BudgetExecution
         /// <returns></returns>
         private static ExcelPackage ReadExcelFile( string filePath )
         {
-            if( Verify.IsInput( filePath ) )
+            if( !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
@@ -212,7 +213,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataTable ImportData( ref string sheetName )
         {
-            if( Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -258,8 +259,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataTable CsvImport( string fileName, ref string sheetName )
         {
-            if( Verify.IsInput( fileName )
-                && Verify.IsInput( sheetName ) )
+            if( !string.IsNullOrEmpty( fileName )
+                && !string.IsNullOrEmpty( sheetName ) )
             {
                 try
                 {
@@ -273,7 +274,7 @@ namespace BudgetExecution
                    var _connection = new OleDbConnection( _connectionString );
                     var _schema = _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                    if( Verify.IsInput( sheetName ) )
+                    if( !string.IsNullOrEmpty( sheetName ) )
                     {
                         if( !SheetExists( sheetName, _schema ) )
                         {
@@ -348,7 +349,7 @@ namespace BudgetExecution
         /// <returns></returns>
         private bool SheetExists( string sheetName, DataTable dataTable )
         {
-            if( Verify.IsInput( sheetName )
+            if( !string.IsNullOrEmpty( sheetName )
                 && dataTable?.Columns.Count > 0
                 && dataTable.Rows.Count > 0 )
             {

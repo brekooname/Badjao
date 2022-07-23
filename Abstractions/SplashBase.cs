@@ -256,7 +256,7 @@ namespace BudgetExecution
         /// <param name = "path" > </param>
         public virtual void ResetIcon( string path )
         {
-            if( Verify.IsInput( path )
+            if( !string.IsNullOrEmpty( path )
                 && File.Exists( path ) )
             {
                 try

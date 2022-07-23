@@ -143,7 +143,7 @@ namespace BudgetExecution
                     }
                     else
                     {
-                        if( Verify.IsInput( Tag )
+                        if( !string.IsNullOrEmpty( Tag?.ToString( ) )
                            && !string.IsNullOrEmpty( Tag.ToString( ) ) )
                         {
                             var _ = new ToolTip( progress, Tag?.ToString( )?.SplitPascal( ) );

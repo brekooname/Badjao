@@ -88,18 +88,18 @@ namespace BudgetExecution
         public void OnMouseHover( object sender, EventArgs e )
         {
             if( sender is ToolStripLabel _label
-                && Verify.IsInput( _label?.HoverText ) )
+                && !string.IsNullOrEmpty( _label?.HoverText ) )
             {
                 try
                 {
-                    if( Verify.IsInput( HoverText ) )
+                    if( !string.IsNullOrEmpty( HoverText ) )
                     {
                         var _text = _label?.HoverText;
                         var _ = new ToolTip( this, _text );
                     }
                     else
                     {
-                        if( Verify.IsInput( Tag?.ToString( ) ) )
+                        if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
                             var _text = Tag?.ToString(  )?.SplitPascal(  );
                             var _ = new ToolTip( _label, _text );

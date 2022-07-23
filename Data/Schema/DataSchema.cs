@@ -134,11 +134,11 @@ namespace BudgetExecution
                 {
                     foreach( DataColumn caption in _schema )
                     {
-                        if( Verify.IsInput( caption.Caption ) )
+                        if( !string.IsNullOrEmpty( caption.Caption ) )
                         {
                             _list.Add( caption.Caption );
                         }
-                        else if( Verify.IsInput( caption.ColumnName ) )
+                        else if( !string.IsNullOrEmpty( caption.ColumnName ) )
                         {
                             _list.Add( caption.ColumnName.SplitPascal( ) );
                         }
@@ -352,7 +352,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( Name )
+                return !string.IsNullOrEmpty( Name )
                     ? Name
                     : string.Empty;
             }
@@ -392,7 +392,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( Name ) && IsSource
+                return !string.IsNullOrEmpty( Name ) && IsSource
                     ? (Source)Enum.Parse( typeof( Source ), Name )
                     : Source.NS;
             }
