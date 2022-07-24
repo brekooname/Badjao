@@ -41,7 +41,9 @@ namespace BudgetExecution
         public Query( Source source, Provider provider = Provider.SQLite,
             SQL commandType = SQL.SELECT )
         {
-            SetConnectionBuilder( source, provider );
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -67,7 +69,10 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandType )
         {
-            SetConnectionBuilder( source, provider );
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -86,11 +91,13 @@ namespace BudgetExecution
         /// </param>
         public Query( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
             ConnectionBuilder = connectionBuilder;
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
+            ConnectionFactory = new ConnectionFactory( connectionBuilder );
             SqlStatement = sqlStatement;
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter( );
+            CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
+            Adapter = new AdapterFactory( connectionBuilder, sqlStatement )?.GetAdapter( );
             IsDisposed = false;
         }
 
@@ -108,7 +115,10 @@ namespace BudgetExecution
         /// </param>
         public Query( Source source, Provider provider, IDictionary<string, object> dict )
         {
-            SetConnectionBuilder( source, provider );
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -127,7 +137,9 @@ namespace BudgetExecution
         /// </param>
         public Query( string fullPath, SQL commandType = SQL.SELECT )
         {
-            SetConnectionBuilder( fullPath );
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -149,7 +161,9 @@ namespace BudgetExecution
         /// </param>
         public Query( string fullPath, SQL commandType, IDictionary<string, object> dict )
         {
-            SetConnectionBuilder( fullPath );
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -220,12 +234,12 @@ namespace BudgetExecution
         [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
         protected virtual void Dispose( bool disposing )
         {
-            if( ConnectionFactory?.GetConnection( ) != null )
+            if( ConnectionFactory?.Connection != null )
             {
                 try
                 {
-                    ConnectionFactory?.GetConnection( )?.Close( );
-                    ConnectionFactory?.GetConnection( )?.Dispose( );
+                    ConnectionFactory?.Connection?.Close( );
+                    ConnectionFactory?.Connection?.Dispose( );
                     IsDisposed = true;
                 }
                 catch( Exception ex )

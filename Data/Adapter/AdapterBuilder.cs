@@ -51,7 +51,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        public AdapterBuilder()
+        public AdapterBuilder( )
         {
             MissingMappingAction = MissingMappingAction.Passthrough;
             MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -70,7 +70,7 @@ namespace BudgetExecution
         {
             ConnectionBuilder = commandBuilder.ConnectionBuilder;
             SqlStatement = commandBuilder.SqlStatement;
-            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+            Connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
             SelectCommand = CommandFactory.GetSelectCommand( );
@@ -85,9 +85,9 @@ namespace BudgetExecution
             : this( )
         {
             ConnectionBuilder = connectionBuilder;
-            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+            Connection = new ConnectionFactory( connectionBuilder )?.Connection;
             SqlStatement = sqlStatement;
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
             SelectCommand = CommandFactory.GetSelectCommand( );
         }

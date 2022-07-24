@@ -50,9 +50,10 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
-            ProgramElements = GetSeries( GetDataTable(  ) );
-            Record = GetData(  )?.FirstOrDefault(  );
-            Args = Record?.ToDictionary(  );
+            Table = GetDataTable(  );
+            ProgramElements = GetSeries( Table );
+            Record = GetData(   )?.FirstOrDefault(   );
+            Args = Record?.ToDictionary(   );
         }
 
         /// <summary>
@@ -68,9 +69,10 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
-            ProgramElements = GetSeries( GetDataTable(  ) );
-            Record = GetRecord(  );
-            Args = Record?.ToDictionary(  );
+            Table = GetDataTable(  );
+            ProgramElements = GetSeries( Table );
+            Record = GetRecord(   );
+            Args = Record?.ToDictionary(   );
         }
 
         /// <summary>
@@ -85,9 +87,10 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
-            ProgramElements = GetSeries( GetDataTable(  ) );
-            Record = GetRecord(  );
-            Args = Record?.ToDictionary(  );
+            Table = GetDataTable(  );
+            ProgramElements = GetSeries( Table );
+            Record = GetRecord(   );
+            Args = Record?.ToDictionary(   );
         }
 
         /// <summary>
@@ -99,11 +102,12 @@ namespace BudgetExecution
             Query = query;
             Source = query.Source;
             Provider = query.Provider;
-            ConnectionBuilder = Query.GetConnectionBuilder(  );
-            SqlStatement = Query.GetSqlStatement(  );
-            ProgramElements = GetSeries( GetDataTable(  ) );
-            Record = GetRecord(  );
-            Args = Record?.ToDictionary(  );
+            ConnectionBuilder = query.GetConnectionBuilder(   );
+            SqlStatement = query.GetSqlStatement(  );
+            Table = GetDataTable(  );
+            ProgramElements = GetSeries( Table );
+            Record = GetRecord(   );
+            Args = Record?.ToDictionary(   );
         }
 
         /// <summary>
@@ -114,14 +118,14 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, string column )
         {
-            if( Verify.IsSequence( dataRows )
+            if( dataRows?.Any( ) == true
                 && !string.IsNullOrEmpty( column ) )
             {
                 try
                 {
-                    var _query = dataRows?.Select( p => p.Field<string>( column ) )?.Distinct(  );
+                    var _query = dataRows.Select( p => p.Field<string>( column ) )?.Distinct(   );
 
-                    return _query?.Any(  ) == true
+                    return _query?.Any( ) == true
                         ? _query
                         : default( IEnumerable<string> );
                 }
@@ -145,17 +149,17 @@ namespace BudgetExecution
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, Field field,
             string filter )
         {
-            if( Verify.IsSequence( dataRows )
-                && Verify.IsField( field )
+            if( dataRows?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field )
                 && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {
                     var _query = dataRows
                         ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
-                        ?.Select( p => p.Field<string>( $"{field}" ) )?.Distinct(  );
+                        ?.Select( p => p.Field<string>( $"{field}" ) )?.Distinct(   );
 
-                    return _query?.Any(  ) == true
+                    return _query?.Any( ) == true
                         ? _query
                         : default( IEnumerable<string> );
                 }
@@ -176,13 +180,13 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable GetSchemaTable( DataTable dataTable )
         {
-            if( Verify.IsTable( dataTable ) )
+            if( dataTable != null  )
             {
                 try
                 {
                     using( var _reader = new DataTableReader( dataTable ) )
                     {
-                        var _schema = _reader?.GetSchemaTable(  );
+                        var _schema = _reader?.GetSchemaTable(   );
 
                         return _schema?.Rows?.Count > 0
                             ? _schema
@@ -211,34 +215,32 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _sheets = 0;
-
                     var _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
                         + filePath
                         + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
                     using( var _connection = new OleDbConnection( _connectionString ) )
                     {
-                        _connection?.Open(  );
+                        _connection?.Open( );
 
-                        using( var _dataSet = new DataSet(   ) )
+                        using( var _dataSet = new DataSet( ) )
                         {
-                            using( var _schema = _connection?.GetSchema() )
+                            using( var _schema = _connection?.GetSchema( ) )
                             {
                                 var _sheetName = string.Empty;
 
                                 if( _schema != null )
                                 {
-                                    var _dataTable = _schema?.AsEnumerable(  )
+                                    var _dataTable = _schema?.AsEnumerable( )
                                         ?.Where( r =>
                                             r.Field<string>( "TABLE_NAME" )
                                                 .Contains( "FilterDatabase" ) )?.Select( r => r )
-                                        ?.CopyToDataTable(  );
+                                        ?.CopyToDataTable(   );
 
-                                    _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString(  );
+                                    _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString(   );
                                 }
 
-                                using( var _command = new OleDbCommand(   ) )
+                                using( var _command = new OleDbCommand( ) )
                                 {
                                     _command.Connection = _connection;
                                     _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
@@ -249,7 +251,7 @@ namespace BudgetExecution
 
                                         using( var _table = _dataSet.Tables[ "ExcelData" ] )
                                         {
-                                            _connection.Close(  );
+                                            _connection.Close( );
                                             return _table;
                                         }
                                     }
@@ -281,12 +283,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _package = new ExcelPackage(   ) )
+                    using( var _package = new ExcelPackage( ) )
                     {
                         using( var _stream = File.OpenRead( filePath ) )
                         {
                             _package.Load( _stream );
-                            var _worksheet = _package?.Workbook?.Worksheets?.First(  );
+                            var _worksheet = _package?.Workbook?.Worksheets?.First(   );
                             var _table = new DataTable( _worksheet?.Name );
 
                             if( _worksheet?.Cells != null )
@@ -296,7 +298,7 @@ namespace BudgetExecution
                                 {
                                     _table?.Columns?.Add( header
                                         ? _firstRowCell.Text
-                                        : $"Column {_firstRowCell.Start.Column}" );
+                                        : $"Column { _firstRowCell.Start.Column }" );
                                 }
 
                                 var _start = header
@@ -306,10 +308,10 @@ namespace BudgetExecution
                                 for( var _row = _start; _row <= _worksheet.Dimension.End.Row;
                                     _row++ )
                                 {
-                                    var _excelRange = _worksheet.Cells[ _row, 1, _row,
-                                        _worksheet.Dimension.End.Column ];
+                                    var _excelRange = _worksheet.Cells[ _row, 1, 
+                                        _row, _worksheet.Dimension.End.Column ];
 
-                                    var _dataRow = _table.Rows?.Add(  );
+                                    var _dataRow = _table.Rows?.Add( );
 
                                     foreach( var cell in _excelRange )
                                     {
@@ -344,18 +346,18 @@ namespace BudgetExecution
         public static IDictionary<string, IEnumerable<string>> GetSeries(
             IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.IsSequence( dataRows )
-                && Verify.IsField( field )
+            if( dataRows?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field )
                 && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {
-                    var _dataTable = dataRows.CopyToDataTable(  );
+                    var _dataTable = dataRows.CopyToDataTable( );
                     var _columns = _dataTable?.Columns;
-                    var _dict = new Dictionary<string, IEnumerable<string>>(  );
+                    var _dict = new Dictionary<string, IEnumerable<string>>( );
                     var _values = GetValues( dataRows, field, filter );
 
-                    if( _values?.Any(  ) == true )
+                    if( _values?.Any( ) == true )
                     {
                         for( var i = 0; i < _columns?.Count; i++ )
                         {
@@ -368,7 +370,7 @@ namespace BudgetExecution
                             }
                         }
 
-                        return _dict?.Any(  ) == true
+                        return _dict?.Any( ) == true
                             ? _dict
                             : default( Dictionary<string, IEnumerable<string>> );
                     }
@@ -389,12 +391,12 @@ namespace BudgetExecution
         /// Gets the Verify.
         /// </summary>
         /// <returns></returns>
-        public IBuilder GetBuilder()
+        public IBuilder GetBuilder( )
         {
             try
             {
                 return Query != null
-                    ? MemberwiseClone(  ) as Builder
+                    ? MemberwiseClone( ) as Builder
                     : default( Builder );
             }
             catch( Exception ex )
@@ -414,9 +416,9 @@ namespace BudgetExecution
         public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, Field field,
             string filter )
         {
-            if( Verify.IsSequence( dataRows )
-                && !string.IsNullOrEmpty( filter )
-                && Verify.IsField( field ) )
+            if( dataRows?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field )
+                && Validate.IsField( field ) )
             {
                 try
                 {
@@ -424,8 +426,8 @@ namespace BudgetExecution
                         ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p );
 
-                    return _query?.Any(  ) == true
-                        ? _query.ToArray(  )
+                    return _query?.Any( ) == true
+                        ? _query.ToArray( )
                         : default( DataRow[ ] );
                 }
                 catch( Exception ex )
@@ -445,23 +447,25 @@ namespace BudgetExecution
         /// <returns></returns>
         private static IDictionary<string, IEnumerable<string>> GetSeries( DataTable dataTable )
         {
-            if( Verify.IsTable( dataTable ) )
+            if ( dataTable != null )
             {
                 try
                 {
-                    var _dict = new Dictionary<string, IEnumerable<string>>(  );
-                    var _columns = dataTable.Columns;
+                    var _dict = new Dictionary<string, IEnumerable<string>>(   );
+                    var _columns = dataTable?.Columns;
+                    var _rows = dataTable?.AsEnumerable(  );
 
                     for( var i = 0; i < _columns?.Count; i++ )
                     {
                         if( !string.IsNullOrEmpty( _columns[ i ]?.ColumnName )
                             && _columns[ i ]?.DataType == typeof( string ) )
                         {
-                            _dict?.Add( _columns[ i ]?.ColumnName, GetValues( dataTable?.AsEnumerable(  ), _columns[ i ]?.ColumnName ) );
+                            _dict?.Add( _columns[ i ]?.ColumnName,
+                                GetValues( _rows, _columns[ i ]?.ColumnName ) );
                         }
                     }
 
-                    return _dict?.Any(  ) == true
+                    return _dict?.Any( ) == true
                         ? _dict
                         : default( Dictionary<string, IEnumerable<string>> );
                 }

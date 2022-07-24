@@ -12,68 +12,56 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ISource" />
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public interface IBuilder : ISource
     {
         /// <summary>
         /// Gets the record.
         /// </summary>
         /// <returns></returns>
-        DataRow GetRecord();
+        DataRow GetRecord( );
 
         /// <summary>
         /// Gets the column ordinals.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<int> GetColumnOrdinals();
+        IEnumerable<int> GetColumnOrdinals( );
 
         /// <summary>
         /// Gets the fields.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Field> GetFields();
+        IEnumerable<Field> GetFields( );
 
         /// <summary>
         /// Gets the elements.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IElement> GetElements();
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns></returns>
-        Provider GetProvider();
-
-        /// <summary>
-        /// Gets the query.
-        /// </summary>
-        /// <returns></returns>
-        IQuery GetQuery();
-
+        IEnumerable<IElement> GetElements( );
+        
         /// <summary>
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DataRow> GetData();
+        IEnumerable<DataRow> GetData( );
 
         /// <summary>
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        DataTable GetDataTable();
+        DataTable GetDataTable( );
 
         /// <summary>
         /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
-        DataSet GetDataSet();
+        DataSet GetDataSet( );
 
         /// <summary>
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        DataColumnCollection GetColumnSchema();
+        DataColumnCollection GetColumnSchema( );
 
         /// <summary>
         /// Gets the primary indexes.

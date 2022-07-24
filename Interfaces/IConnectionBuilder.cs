@@ -4,8 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System.Collections.Specialized;
-
     /// <summary>
     /// </summary>
     public interface IConnectionBuilder
@@ -36,7 +34,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        NameValueCollection ProviderPath { get; set; }
+        string ProviderPath { get; set; }
 
         /// <summary>
         /// Gets the connection string.

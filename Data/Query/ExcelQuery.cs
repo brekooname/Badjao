@@ -114,7 +114,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _excelPackage = ExcelQuery.ReadExcelFile( filePath ) )
+                    using( var _excelPackage = ReadExcelFile( filePath ) )
                     {
                         var _name = Path.GetFileNameWithoutExtension( filePath );
                         var _excelWorksheet = _excelPackage?.Workbook?.Worksheets?.Add( _name );
@@ -310,7 +310,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _filePath = GetConnectionBuilder( ).ProviderPath[ Provider.ToString( ) ];
+                var _filePath = GetConnectionBuilder( ).ProviderPath;
                 var _application = new Excel( );
                 var _workbook = _application.Workbooks.Open( _filePath );
                 var worksheet = _workbook.Sheets[ 1 ];

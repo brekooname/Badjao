@@ -119,7 +119,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsTable( DataSet )
+                return Verify.IsTable( DataSet?.Tables[ 0 ] )
                     ? DataSet
                     : default( DataSet );
             }

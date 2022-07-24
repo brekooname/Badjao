@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// Gets the column ordinals.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<int> GetColumnOrdinals()
+        public IEnumerable<int> GetColumnOrdinals( )
         {
             try
             {
@@ -49,19 +49,16 @@ namespace BudgetExecution
         /// Gets the fields.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Field> GetFields()
+        public IEnumerable<Field> GetFields( )
         {
             try
             {
-                var _columns = Record
-                    ?.ToDictionary( )
-                    ?.Keys
-                    ?.ToArray( );
+                var _columns = Record?.ToDictionary( )
+                    ?.Keys?.ToArray( );
 
                 if( _columns?.Any( ) == true )
                 {
-                    var _fields = _columns
-                        ?.Select( e => e.ToEnum<Field>( ) );
+                    var _fields = _columns?.Select( e => e.ToEnum<Field>( ) );
 
                     return _fields?.Any( ) == true
                         ? _fields
@@ -83,7 +80,7 @@ namespace BudgetExecution
         /// Gets the elements.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IElement> GetElements()
+        public IEnumerable<IElement> GetElements( )
         {
             try
             {

@@ -5,7 +5,6 @@
 namespace BudgetExecution
 {
     using System;
-    using System.Collections.Specialized;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -27,14 +26,14 @@ namespace BudgetExecution
         /// <summary>
         /// The provider path
         /// </summary>
-        public NameValueCollection ProviderPath { get; set; }
+        public string ProviderPath { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ConnectionBuilder" />
         /// class.
         /// </summary>
-        public ConnectionBuilder()
+        public ConnectionBuilder( )
         {
         }
 
@@ -50,11 +49,12 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             FilePath = GetFilePath( provider );
+            PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
-            ProviderPath = ConfigurationManager.AppSettings;
-            FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( FilePath ) );
-            TableName = Source.ToString( );
-            ConnectionString = GetConnectionString( Provider );
+            FileExtension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            TableName = source.ToString( );
+            ProviderPath = ConfigurationManager.AppSettings[ FileExtension.ToString( ) ];
+            ConnectionString = GetConnectionString( provider );
         }
 
         /// <summary>
@@ -67,10 +67,11 @@ namespace BudgetExecution
         {
             Source = Source.External;
             FilePath = fullPath;
-            FileName = Path.GetFileNameWithoutExtension( FilePath );
-            FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( FilePath ) );
-            Provider = (Provider)Enum.Parse( typeof( Provider ), GetProviderPath( FilePath ) );
-            ProviderPath = ConfigurationManager.AppSettings;
+            FileName = Path.GetFileNameWithoutExtension( fullPath );
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+            FileExtension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            Provider = (Provider)Enum.Parse( typeof( Provider ), GetProviderPath( fullPath ) );
+            ProviderPath = ConfigurationManager.AppSettings[ FileExtension.ToString( ) ];
             TableName = FileName;
             ConnectionString = GetConnectionString( Provider );
         }
@@ -88,10 +89,11 @@ namespace BudgetExecution
             Provider = provider;
             FilePath = fullPath;
             FileName = Path.GetFileNameWithoutExtension( fullPath );
-            ProviderPath = ConfigurationManager.AppSettings;
-            FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( fullPath ) );
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+            FileExtension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            ProviderPath = ConfigurationManager.AppSettings[ FileExtension.ToString( ) ];
             TableName = Source.ToString( );
-            ConnectionString = GetConnectionString( Provider );
+            ConnectionString = GetConnectionString( provider );
         }
     }
 }

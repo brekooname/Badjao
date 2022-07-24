@@ -39,6 +39,15 @@ namespace BudgetExecution
         public virtual EXT FileExtension { get; set; }
 
         /// <summary>
+        /// Gets or sets the path extension.
+        /// </summary>
+        /// <value>
+        /// The path extension.
+        /// </value>
+        public virtual string PathExtension { get; set; }
+
+
+        /// <summary>
         /// The file path
         /// </summary>
         public virtual string FilePath { get; set; }
@@ -172,42 +181,42 @@ namespace BudgetExecution
                             case EXT.ACCDB:
 
                             {
-                                var _path = ConfigurationManager.AppSettings[ "OleDbFilePath" ];
-                                return _path?.Replace( "{FilePath}", filePath );
+                                var _path = ConfigurationManager.AppSettings[ "Access" ];
+                                return _path;
                             }
                             case EXT.DB:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "OleDbFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "SQLite" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                             case EXT.XLSX:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "ExcelFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "Excel" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                             case EXT.CSV:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "CsvFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "CSV" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                             case EXT.MDF:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "SqlServerFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "SqlServer" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                             case EXT.SDF:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "SqlCeFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "SqlCe" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                             case EXT.TXT:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "CsvFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "CSV" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                             default:
                             {
-                                var _path = ConfigurationManager.AppSettings[ "SQLiteFilePath" ];
+                                var _path = ConfigurationManager.AppSettings[ "SQLite" ];
                                 return _path?.Replace( "{FilePath}", filePath );
                             }
                         }
@@ -234,6 +243,10 @@ namespace BudgetExecution
                 {
                     switch( provider )
                     {
+                        case Provider.SQLite:
+                        case Provider.Access:
+                        case Provider.SqlCe:
+                        case Provider.SqlServer:
                         case Provider.OleDb:
                         case Provider.Excel:
                         case Provider.CSV:
@@ -242,18 +255,6 @@ namespace BudgetExecution
 
                             return !string.IsNullOrEmpty( _connection )
                                 ? _connection?.Replace( "{FilePath}", FilePath )
-                                : string.Empty;
-                        }
-
-                        case Provider.SQLite:
-                        case Provider.Access:
-                        case Provider.SqlCe:
-                        case Provider.SqlServer:
-                        {
-                            var _connection = Connectors[ provider.ToString( ) ]?.ConnectionString;
-
-                            return !string.IsNullOrEmpty( _connection )
-                                ? _connection
                                 : string.Empty;
                         }
                     }

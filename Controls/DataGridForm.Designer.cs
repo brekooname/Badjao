@@ -35,8 +35,6 @@
             Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
-            this.BindingSource = new BudgetExecution.BindingSource();
-            this.DataSet = new BudgetExecution.DataModel();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
@@ -73,33 +71,15 @@
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.GridPanel = new VisualPlus.Toolkit.Controls.Layout.VisualPanel();
             this.DataGrid = new Syncfusion.Windows.Forms.Grid.GridDataBoundGrid();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.ToolStrip.SuspendLayout();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.ListPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // BindingSource
-            // 
-            this.BindingSource.DataFilter = null;
-            this.BindingSource.DataMember = "StatusOfFunds";
-            this.BindingSource.DataSet = null;
-            this.BindingSource.DataSource = this.DataSet;
-            this.BindingSource.DataTable = null;
-            this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
-            this.BindingSource.Index = 0;
-            this.BindingSource.Numeric = BudgetExecution.Numeric.NS;
-            this.BindingSource.Record = null;
-            this.BindingSource.Source = BudgetExecution.Source.NS;
-            // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "DataSet";
-            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ToolTip
             // 
@@ -125,7 +105,7 @@
             // 
             this.ToolStrip.AddButton = this.AddButton;
             this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ToolStrip.BindingSource = this.BindingSource;
+            this.ToolStrip.BindingSource = null;
             this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
             this.ToolStrip.BrowseButton = this.BrowseButton;
             this.ToolStrip.CalculatorButton = this.CalculatorButton;
@@ -219,7 +199,6 @@
             this.ToolStrip.ShowLauncher = true;
             this.ToolStrip.Size = new System.Drawing.Size(1188, 52);
             this.ToolStrip.TabIndex = 5;
-            this.ToolStrip.Text = "Budget Execution";
             this.ToolStrip.TextBox = this.TextBox;
             this.ToolStrip.ThemeStyle.ArrowColor = System.Drawing.Color.SteelBlue;
             this.ToolStrip.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
@@ -235,7 +214,7 @@
             // 
             this.AddButton.AutoToolTip = false;
             this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.AddButton.BindingSource = this.BindingSource;
+            this.AddButton.BindingSource = null;
             this.AddButton.DataFilter = null;
             this.AddButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.AddButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -256,7 +235,7 @@
             // 
             this.BrowseButton.AutoToolTip = false;
             this.BrowseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.BrowseButton.BindingSource = this.BindingSource;
+            this.BrowseButton.BindingSource = null;
             this.BrowseButton.DataFilter = null;
             this.BrowseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BrowseButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -277,7 +256,7 @@
             // 
             this.CalculatorButton.AutoToolTip = false;
             this.CalculatorButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.CalculatorButton.BindingSource = this.BindingSource;
+            this.CalculatorButton.BindingSource = null;
             this.CalculatorButton.DataFilter = null;
             this.CalculatorButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.CalculatorButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -298,7 +277,7 @@
             // 
             this.DeleteButton.AutoToolTip = false;
             this.DeleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.DeleteButton.BindingSource = this.BindingSource;
+            this.DeleteButton.BindingSource = null;
             this.DeleteButton.DataFilter = null;
             this.DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.DeleteButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -319,7 +298,7 @@
             // 
             this.DropDown.AllowDrop = true;
             this.DropDown.Bar = BudgetExecution.ToolType.NS;
-            this.DropDown.BindingSource = this.BindingSource;
+            this.DropDown.BindingSource = null;
             this.DropDown.DataFilter = null;
             this.DropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DropDown.Field = BudgetExecution.Field.RpioActivityCode;
@@ -331,7 +310,7 @@
             this.DropDown.MaxLength = 32767;
             this.DropDown.Name = "DropDown";
             this.DropDown.Numeric = BudgetExecution.Numeric.NS;
-            this.DropDown.Size = new System.Drawing.Size(81, 24);
+            this.DropDown.Size = new System.Drawing.Size(25, 24);
             this.DropDown.Style = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016Black;
             this.DropDown.Tag = "Make Selection";
             this.DropDown.ToolTip = this.ToolTip;
@@ -341,7 +320,7 @@
             // 
             this.ExcelButton.AutoToolTip = false;
             this.ExcelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ExcelButton.BindingSource = this.BindingSource;
+            this.ExcelButton.BindingSource = null;
             this.ExcelButton.DataFilter = null;
             this.ExcelButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.ExcelButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -362,7 +341,7 @@
             // 
             this.FirstButton.AutoToolTip = false;
             this.FirstButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.FirstButton.BindingSource = this.BindingSource;
+            this.FirstButton.BindingSource = null;
             this.FirstButton.DataFilter = null;
             this.FirstButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.FirstButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -406,7 +385,7 @@
             // 
             this.Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.Label.Bar = BudgetExecution.ToolType.NS;
-            this.Label.BindingSource = this.BindingSource;
+            this.Label.BindingSource = null;
             this.Label.DataFilter = null;
             this.Label.Field = BudgetExecution.Field.RpioActivityCode;
             this.Label.Font = new System.Drawing.Font("Roboto", 9F);
@@ -447,7 +426,7 @@
             // 
             this.PreviousButton.AutoToolTip = false;
             this.PreviousButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.PreviousButton.BindingSource = this.BindingSource;
+            this.PreviousButton.BindingSource = null;
             this.PreviousButton.DataFilter = null;
             this.PreviousButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.PreviousButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -476,7 +455,7 @@
             // 
             this.NextButton.AutoToolTip = false;
             this.NextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.NextButton.BindingSource = this.BindingSource;
+            this.NextButton.BindingSource = null;
             this.NextButton.DataFilter = null;
             this.NextButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.NextButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -505,7 +484,7 @@
             // 
             this.LastButton.AutoToolTip = false;
             this.LastButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.LastButton.BindingSource = this.BindingSource;
+            this.LastButton.BindingSource = null;
             this.LastButton.DataFilter = null;
             this.LastButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.LastButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -550,7 +529,7 @@
             // 
             this.RefreshButton.AutoToolTip = false;
             this.RefreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.RefreshButton.BindingSource = this.BindingSource;
+            this.RefreshButton.BindingSource = null;
             this.RefreshButton.DataFilter = null;
             this.RefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.RefreshButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -579,7 +558,7 @@
             // 
             this.SaveButton.AutoToolTip = false;
             this.SaveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.SaveButton.BindingSource = this.BindingSource;
+            this.SaveButton.BindingSource = null;
             this.SaveButton.DataFilter = null;
             this.SaveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.SaveButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -624,7 +603,7 @@
             // 
             this.ChartButton.AutoToolTip = false;
             this.ChartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.ChartButton.BindingSource = this.BindingSource;
+            this.ChartButton.BindingSource = null;
             this.ChartButton.DataFilter = null;
             this.ChartButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.ChartButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -661,7 +640,7 @@
             // 
             this.HomeButton.AutoToolTip = false;
             this.HomeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.HomeButton.BindingSource = this.BindingSource;
+            this.HomeButton.BindingSource = null;
             this.HomeButton.DataFilter = null;
             this.HomeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.HomeButton.Field = BudgetExecution.Field.RpioActivityCode;
@@ -763,6 +742,7 @@
             gridBaseStyle4});
             this.DataGrid.CanOverrideStyle = true;
             this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2010Black;
+            this.DataGrid.DataMember = "";
             this.DataGrid.DataSource = this.BindingSource;
             this.DataGrid.DefaultRowHeight = 28;
             this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -835,7 +815,7 @@
             this.ListPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ListPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ListPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ListPanel.BindingSource = this.BindingSource;
+            this.ListPanel.BindingSource = null;
             this.ListPanel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ListPanel.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ListPanel.Border.HoverVisible = false;
@@ -934,12 +914,11 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
             this.GridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.ListPanel.ResumeLayout(false);
             this.ListPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -987,7 +966,6 @@
         public Syncfusion.Windows.Forms.Grid.GridDataBoundGrid DataGrid;
         public Layout ListPanel;
         public ListBox ListBox;
-        private DataModel DataSet;
-        private BindingSource BindingSource;
+        public System.Windows.Forms.BindingSource BindingSource;
     }
 }

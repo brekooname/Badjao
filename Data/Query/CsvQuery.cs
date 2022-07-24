@@ -314,7 +314,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filePath = GetConnectionBuilder( ).ProviderPath[ Provider.ToString( ) ];
+                    var _filePath = GetConnectionBuilder( ).ProviderPath;
 
                     using( var _excelPackage = new ExcelPackage( new FileInfo( _filePath ) ) )
                     {

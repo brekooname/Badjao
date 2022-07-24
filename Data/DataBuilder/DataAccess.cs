@@ -16,125 +16,82 @@ namespace BudgetExecution
     /// <seealso cref="DataConfig" />
     /// <seealso cref="ISource" />
     /// <seealso cref="IProvider" />
-    [SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
-    [SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" )]
+    [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     public abstract class DataAccess : DataConfig, ISource, IProvider
     {
-        /// <summary>
-        /// Gets the query.
-        /// </summary>
-        /// <returns></returns>
-        public IQuery GetQuery()
-        {
-            try
-            {
-                return Query ?? new Query( ConnectionBuilder, SqlStatement );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IQuery );
-            }
-        }
-
         /// <summary>
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DataRow> GetData()
+        public IEnumerable<DataRow> GetData( )
         {
-            if( Verify.IsTable( Table ) )
+            try
             {
-                try
-                {
-                    var _data = Table
-                        ?.AsEnumerable( );
+                var _dataTable = GetDataTable( );
+                var _data = _dataTable?.AsEnumerable( );
 
-                    return Verify.IsRows( _data )
-                        ? _data
-                        : default( EnumerableRowCollection<DataRow> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
+                return _data?.Any( ) == true
+                    ? _data
+                    : default( IEnumerable<DataRow> );
             }
-
-            return default( IEnumerable<DataRow> );
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IEnumerable<DataRow> );
+            }
         }
 
         /// <summary>
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        public DataTable GetDataTable()
+        public DataTable GetDataTable( )
         {
-            if( Verify.IsTable( Table ) )
+            try
             {
-                try
-                {
-                    DataSet = new DataSet
-                    {
-                        DataSetName = $"{Source}"
-                    };
+                var _dataSet = new DataSet(  );
+                var _dataTable = new DataTable( $"{Source}" );
+                _dataSet.Tables.Add( _dataTable );
+                var _adapter = Query?.GetAdapter( );
+                _adapter?.Fill( _dataSet, _dataTable?.TableName );
+                SetColumnCaptions( _dataTable );
 
-                    Table = new DataTable( $"{Source}" )
-                    {
-                        TableName = $"{Source}"
-                    };
-
-                    DataSet.Tables.Add( Table );
-                    var _adapter = Query?.GetAdapter( );
-                    _adapter?.Fill( DataSet, Table.TableName );
-                    SetColumnCaptions( Table );
-
-                    return Table?.Rows?.Count > 0
-                        ? Table
-                        : default( DataTable );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( DataTable );
-                }
+                return _dataTable?.Rows?.Count > 0
+                    ? _dataTable
+                    : default( DataTable );
             }
-
-            return default( DataTable );
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( DataTable );
+            }
         }
 
         /// <summary>
         /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
-        public DataSet GetDataSet()
+        public DataSet GetDataSet( )
         {
             if( Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
-                    DataSet = new DataSet
-                    {
-                        DataSetName = "DataSet"
-                    };
-
-                    var _table = new DataTable( $"{Source}" )
-                    {
-                        TableName = $"{Source}"
-                    };
-
-                    DataSet.Tables.Add( _table );
+                    var _dataSet = new DataSet(  );
+                    var _table = new DataTable( $"{Source}" );
+                    _dataSet.Tables.Add( _table );
 
                     using( var _adapter = Query?.GetAdapter(  ) )
                     {
-                        _adapter?.Fill( DataSet, _table?.TableName );
+                        _adapter?.Fill( _dataSet, _table?.TableName );
                         SetColumnCaptions( _table );
 
                         return _table?.Rows?.Count > 0
-                            ? DataSet
+                            ? _dataSet
                             : default( DataSet );
                     }
                 }
@@ -152,7 +109,7 @@ namespace BudgetExecution
         /// Gets the source.
         /// </summary>
         /// <returns></returns>
-        public Source GetSource()
+        public Source GetSource( )
         {
             try
             {
@@ -170,7 +127,7 @@ namespace BudgetExecution
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public Provider GetProvider()
+        public Provider GetProvider( )
         {
             try
             {
@@ -189,7 +146,7 @@ namespace BudgetExecution
         /// Gets the record.
         /// </summary>
         /// <returns></returns>
-        public DataRow GetRecord()
+        public DataRow GetRecord( )
         {
             try
             {
@@ -210,7 +167,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         public void SetColumnCaptions( DataTable dataTable )
         {
-            if( Verify.IsTable( dataTable ) )
+            if( dataTable != null  )
             {
                 try
                 {
@@ -247,14 +204,14 @@ namespace BudgetExecution
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        public DataColumnCollection GetColumnSchema()
+        public DataColumnCollection GetColumnSchema( )
         {
             try
             {
                 var _table = GetDataTable( );
                 SetColumnCaptions( _table );
 
-                DataSet = new DataSet
+                var _dataSet = new DataSet
                 {
                     DataSetName = $"{Source}"
                 };
@@ -264,11 +221,11 @@ namespace BudgetExecution
                     TableName = $"{Source}"
                 };
 
-                DataSet.Tables.Add( _dataTable );
+                _dataSet.Tables.Add( _dataTable );
 
                 using( var _adapter = Query?.GetAdapter(  ) )
                 {
-                    _adapter?.Fill( DataSet, _dataTable.TableName );
+                    _adapter?.Fill( _dataSet, _dataTable.TableName );
                     SetColumnCaptions( _dataTable );
 
                     return _table.Columns.Count > 0

@@ -169,7 +169,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public IDictionary<string, object> GetArgs()
+        public IDictionary<string, object> GetArgs( )
         {
             try
             {
@@ -301,7 +301,7 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionFactory?.GetConnection( ) ?? default( DbConnection );
+                return ConnectionFactory?.Connection ?? default( DbConnection );
             }
             catch( Exception ex )
             {

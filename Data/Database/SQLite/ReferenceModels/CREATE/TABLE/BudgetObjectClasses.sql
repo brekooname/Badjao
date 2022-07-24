@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS BudgetObjectClasses
 	Code	TEXT(255) NOT NULL,
 	Name	TEXT(255),
 	CONSTRAINT PrimaryKeyBudgetObjectClasses PRIMARY KEY(BudgetObjectClassesId AUTOINCREMENT)
-)v
+);

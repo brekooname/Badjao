@@ -69,7 +69,7 @@ namespace BudgetExecution
         {
             AdapterBuilder = adapterBuilder;
             ConnectionBuilder = AdapterBuilder.ConnectionBuilder;
-            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+            Connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
             SqlStatement = new SqlStatement( ConnectionBuilder );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
         }
@@ -84,7 +84,7 @@ namespace BudgetExecution
             ConnectionBuilder = connectionBuilder;
             SqlStatement = sqlStatement;
             AdapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
-            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+            Connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
         }
 
@@ -99,7 +99,7 @@ namespace BudgetExecution
             CommandBuilder = commandBuilder;
             SqlStatement = CommandBuilder.SqlStatement;
             AdapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
-            Connection = new ConnectionFactory( ConnectionBuilder ).GetConnection( );
+            Connection = new ConnectionFactory( ConnectionBuilder ).Connection;
         }
 
         /// <summary>

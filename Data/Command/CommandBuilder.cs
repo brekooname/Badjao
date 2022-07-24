@@ -163,7 +163,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
 
                     switch( sqlStatement?.GetCommandType( ) )
                     {
@@ -234,7 +234,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
 
                     if( !string.IsNullOrEmpty( _connection?.ConnectionString ) )
                     {
@@ -308,7 +308,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
                     using( _connection )
                     {
                         switch( sqlStatement?.GetCommandType( ) )
@@ -381,7 +381,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection( );
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
 
                     switch( sqlStatement?.GetCommandType( ) )
                     {

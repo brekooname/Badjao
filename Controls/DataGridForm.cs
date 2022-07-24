@@ -4,6 +4,8 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
 
     /// <summary>
@@ -17,6 +19,26 @@ namespace BudgetExecution
         public DataGridForm( )
         {
             InitializeComponent( );
+
+            DataGrid.ForeColor = Color.Black;
+            DataGrid.Font = new Font( "Roboto", 9 );
+            DataGrid.Margin = new Padding( 3 );
+            DataGrid.Padding = new Padding( 1 );
+            DataGrid.Size = new Size( 240, 150 );
+            DataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            DataGrid.BackColor = Color.FromArgb( 40, 40, 40 );
+            DataGrid.BorderStyle = BorderStyle.None;
+            DataGrid.BackColor = Color.FromArgb( 40, 40, 40 );
+            DataGrid.ForeColor = Color.FromArgb( 240, 240, 240 );
+            DataGrid.GridOfficeScrollBars = OfficeScrollBars.Office2016;
+            DataGrid.Office2016ScrollBarsColorScheme = ScrollBarOffice2016ColorScheme.Black;
+            DataGrid.ColorStyles = ColorStyles.Office2016Black;
+            DataGrid.ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
+            DataGrid.ThemeStyle.CellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            DataGrid.ThemeStyle.CellStyle.TextColor = Color.FromArgb( 240, 240, 240 );
+            DataGrid.ThemeStyle.CheckBoxStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            DataGrid.ThemeStyle.CheckBoxStyle.TickColor = Color.Lime;
+
             Load += OnLoad;
         }
 
@@ -58,19 +80,8 @@ namespace BudgetExecution
         {
             try
             {
-                if( Toolbar != null )
-                {
-                    var _items = GetTableList( );
-
-                    foreach( var i in _items )
-                    {
-                        if( !string.IsNullOrEmpty( i )
-                            && i != "NS" )
-                        {
-                            Toolbar.DropDown?.ComboBox?.Items.Add( i );
-                        }
-                    }
-                }
+                var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
+                DataGrid.DataSource = _data?.Table;
             }
             catch ( Exception ex )
             {

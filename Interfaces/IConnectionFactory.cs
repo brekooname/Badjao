@@ -8,20 +8,20 @@ namespace BudgetExecution
 
     /// <summary>
     /// </summary>
-    public interface IConnectionFactory : IProvider
+    public interface IConnectionFactory 
     {
         /// <summary>
         /// Gets the connection.
         /// </summary>
         /// <returns>
         /// </returns>
-        DbConnection GetConnection();
+        DbConnection Connection { get; set; }
 
         /// <summary>
         /// Gets the connection manager.
         /// </summary>
         /// <returns>
         /// </returns>
-        IConnectionBuilder GetConnectionBuilder();
+        IConnectionBuilder ConnectionBuilder { get; set; }
     }
 }

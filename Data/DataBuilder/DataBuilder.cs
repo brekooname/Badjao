@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <see cref = "DataBuilder" />
         /// class.
         /// </summary>
-        public DataBuilder()
+        public DataBuilder( )
         {
         }
 

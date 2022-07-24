@@ -24,7 +24,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-    public class ConnectionFactory : ISource, IConnectionFactory
+    public class ConnectionFactory : ISource, IProvider, IConnectionFactory
     {
         /// <summary>
         /// Gets the source.
@@ -36,10 +36,10 @@ namespace BudgetExecution
         public Provider Provider { get; set; }
 
         /// <summary>
-        /// Gets or sets the connection builder.
+        /// Gets or sets the connection connectionBuilder.
         /// </summary>
         /// <value>
-        /// The connection builder.
+        /// The connection connectionBuilder.
         /// </value>
         public IConnectionBuilder ConnectionBuilder { get; set; }
 
@@ -55,7 +55,7 @@ namespace BudgetExecution
         /// Initializes a new instance of
         /// the <see cref = "ConnectionFactory"/> class.
         /// </summary>
-        public ConnectionFactory()
+        public ConnectionFactory( )
         {
         }
 
@@ -63,74 +63,31 @@ namespace BudgetExecution
         /// Initializes a new instance of
         /// the <see cref = "ConnectionFactory"/> class.
         /// </summary>
-        /// <param name = "builder" >
+        /// <param name = "connectionBuilder" >
         /// The manager.
         /// </param>
-        public ConnectionFactory( IConnectionBuilder builder )
+        public ConnectionFactory( IConnectionBuilder connectionBuilder )
         {
-            ConnectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( ConnectionBuilder );
+            ConnectionBuilder = connectionBuilder;
+            Connection = SetConnection( connectionBuilder );
         }
 
         /// <summary>
         /// Initializes a new instance of
         /// the <see cref = "ConnectionFactory"/> class.
         /// </summary>
-        /// <param name = "builder" >
+        /// <param name = "connectionBuilder" >
         /// The connectionBuilder.
         /// </param>
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public ConnectionFactory( IConnectionBuilder builder, ISqlStatement sqlStatement )
+        public ConnectionFactory( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
-            ConnectionBuilder = GetConnectionBuilder( builder );
+            ConnectionBuilder = connectionBuilder;
             Connection = SetConnection( ConnectionBuilder );
         }
-
-        /// <summary>
-        /// Sets the connection manager.
-        /// </summary>
-        /// <param name = "builder" >
-        /// The manager.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        private IConnectionBuilder GetConnectionBuilder( IConnectionBuilder builder )
-        {
-            try
-            {
-                return Verify.IsRef( builder )
-                    ? builder
-                    : default( IConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IConnectionBuilder );
-            }
-        }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public IConnectionBuilder GetConnectionBuilder()
-        {
-            try
-            {
-                return Verify.IsRef( ConnectionBuilder )
-                    ? ConnectionBuilder
-                    : default( IConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IConnectionBuilder );
-            }
-        }
+        
 
         /// <summary>
         /// Gets the connection.
@@ -139,13 +96,13 @@ namespace BudgetExecution
         /// </returns>
         private DbConnection SetConnection( IConnectionBuilder connectionBuilder )
         {
-            if( Verify.IsRef( connectionBuilder ) )
+            if( connectionBuilder != null )
             {
                 try
                 {
                     var _provider = connectionBuilder.Provider;
 
-                    if( Validate.IsProvider( _provider ) )
+                    if( Enum.IsDefined( typeof( Provider ), _provider ) )
                     {
                         switch( _provider )
                         {
@@ -204,27 +161,6 @@ namespace BudgetExecution
             return default( DbConnection );
         }
 
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public DbConnection GetConnection()
-        {
-            try
-            {
-                return Verify.IsRef( Connection )
-                    ? Connection
-                    : default( DbConnection );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DbConnection );
-            }
-        }
-
         /// <summary>
         /// Converts to string.
         /// </summary>
@@ -245,50 +181,6 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public Provider GetProvider()
-        {
-            try
-            {
-                var _provider = ConnectionBuilder.Provider;
-
-                return Validate.IsProvider( _provider )
-                    ? _provider
-                    : Provider.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Provider.NS;
-            }
-        }
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public Source GetSource()
-        {
-            try
-            {
-                var _source = ConnectionBuilder.Source;
-
-                return Validate.IsSource( _source )
-                    ? _source
-                    : Source.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Source.NS;
             }
         }
         

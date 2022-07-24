@@ -7,12 +7,12 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Windows.Forms;
     using System.Data;
     using System.ComponentModel;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class GridBase : DataGridView

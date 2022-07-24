@@ -26,11 +26,11 @@ namespace BudgetExecution
         /// <param name="data">The input.</param>
         /// <returns></returns>
         public static bool IsTable<T>( T data )
-            where T : IListSource
+            where T : DataTable
         {
-            if( !data?.ContainsListCollection == true )
+            if( data != null )
             {
-                Fail( new ArgumentException( "Verify [ IListSource data ] input argument!" ) );
+                Fail( new ArgumentException( "Verify [ T data ] input argument!" ) );
                 return false;
             }
             else
