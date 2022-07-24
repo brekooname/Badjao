@@ -26,7 +26,7 @@
             {
                 using( var _calculator = new CalculationForm( ) )
                 {
-                    _calculator.Show( );
+                    _calculator?.Show( );
                 }
             }
             catch( Exception ex )
@@ -141,7 +141,7 @@
             try
             {
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
-                DataView.BindingSource.DataTable = _data?.Table;
+                BindingSource.DataSource = _data?.Table;
             }
             catch( Exception ex )
             {

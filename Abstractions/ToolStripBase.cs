@@ -37,7 +37,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the separator.

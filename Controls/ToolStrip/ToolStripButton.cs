@@ -65,15 +65,13 @@ namespace BudgetExecution
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _button.Tag = HoverText;
-                    var _tip = new ToolTip( _button );
-                    ToolTip = _tip;
+                    var _ = new ToolTip( _button );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _tool = new ToolTip( _button );
-                        ToolTip = _tool;
+                        var _ = new ToolTip( _button );
                     }
                 }
             }

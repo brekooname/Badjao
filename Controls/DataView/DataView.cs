@@ -38,8 +38,8 @@ namespace BudgetExecution
             ForeColor = Color.FromArgb( 240, 240, 240 );
             Font = new Font( "Roboto", 9, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
-            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Blue;
-            ColorStyles = ColorStyles.Office2010Black;
+            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
+            ColorStyles = ColorStyles.SystemTheme;
 
             // ThemStyle Properties
             ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );

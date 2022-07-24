@@ -21,7 +21,8 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
     [SuppressMessage( "ReSharper", "ObjectCreationAsStatement" )]
-    [SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" )]
+    [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
+    [ Serializable ]
     public class ToolStrip : ToolStripBase, IToolStrip
     {
         /// <summary>
@@ -106,7 +107,7 @@ namespace BudgetExecution
             ThemeStyle.ComboBoxStyle.HoverBorderColor = Color.SteelBlue;
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
-            ImageDirectory = Setting[ "ToolStripImages" ];
+            PopulateTools( );
         }
 
         /// <summary>
@@ -242,23 +243,10 @@ namespace BudgetExecution
         /// <summary>
         /// Populates the tools.
         /// </summary>
-        public virtual void PopulateTools()
+        public virtual void PopulateTools( )
         {
             try
             {
-                var _firstRecord = ImageDirectory + @"\FirstButton.png";
-                var _previousRecord = ImageDirectory + @"\PreviousButton.png";
-                var _nextRecord = ImageDirectory + @"\NextButton.png";
-                var _lastRecord = ImageDirectory + @"\LastButton.png";
-                var _edit = ImageDirectory + @"\EditButton.png";
-                var _add = ImageDirectory + @"\AddButton.png";
-                var _delete = ImageDirectory + @"\DeleteButton.png";
-                var _refresh = ImageDirectory + @"\RefreshButton.png";
-                var _save = ImageDirectory + @"\SaveButton.png";
-                var _browse = ImageDirectory + @"\BrowseButton.png";
-                var _print = ImageDirectory + @"\PrintButton.png";
-                var _excelFile = ImageDirectory + @"\ExcelButton.png";
-                var _calculator = ImageDirectory + @"\CalculatorButton.png";
                 Items.Add( new ToolSeparator( ) );
                 TextBox = new ToolStripTextBox( );
                 Items.Add( TextBox );
@@ -270,7 +258,6 @@ namespace BudgetExecution
                 FirstButton = new ToolStripButton
                 {
                     ToolType = ToolType.FirstButton,
-                    Image = Image.FromFile( _firstRecord ),
                     BindingSource = BindingSource,
                     HoverText = "Go To Beginning"
                 };
@@ -281,7 +268,6 @@ namespace BudgetExecution
                 PreviousButton = new ToolStripButton
                 {
                     ToolType = ToolType.PreviousButton,
-                    Image = Image.FromFile( _previousRecord ),
                     BindingSource = BindingSource,
                     HoverText = "Go To Previous"
                 };
@@ -292,7 +278,6 @@ namespace BudgetExecution
                 NextButton = new ToolStripButton
                 {
                     ToolType = ToolType.NextButton,
-                    Image = Image.FromFile( _nextRecord ),
                     BindingSource = BindingSource,
                     HoverText = "Go To Next Record"
                 };
@@ -303,7 +288,6 @@ namespace BudgetExecution
                 LastButton = new ToolStripButton
                 {
                     ToolType = ToolType.LastButton,
-                    Image = Image.FromFile( _lastRecord ),
                     BindingSource = BindingSource,
                     HoverText = "Go To Last Record"
                 };
@@ -314,7 +298,6 @@ namespace BudgetExecution
                 EditButton = new ToolStripButton
                 {
                     ToolType = ToolType.EditButton,
-                    Image = Image.FromFile( _edit ),
                     HoverText = "Edit Record"
                 };
 
@@ -324,7 +307,6 @@ namespace BudgetExecution
                 AddButton = new ToolStripButton
                 {
                     ToolType = ToolType.AddButton,
-                    Image = Image.FromFile( _add ),
                     HoverText = "Add Record"
                 };
 
@@ -334,7 +316,6 @@ namespace BudgetExecution
                 DeleteButton = new ToolStripButton
                 {
                     ToolType = ToolType.DeleteButton,
-                    Image = Image.FromFile( _delete ),
                     HoverText = "Delete Record"
                 };
 
@@ -344,7 +325,6 @@ namespace BudgetExecution
                 RefreshButton = new ToolStripButton
                 {
                     ToolType = ToolType.RefreshButton,
-                    Image = Image.FromFile( _refresh ),
                     HoverText = "Refresh Data"
                 };
 
@@ -354,7 +334,6 @@ namespace BudgetExecution
                 SaveButton = new ToolStripButton
                 {
                     ToolType = ToolType.SaveButton,
-                    Image = Image.FromFile( _save ),
                     HoverText = "Save Changes"
                 };
 
@@ -364,7 +343,6 @@ namespace BudgetExecution
                 BrowseButton = new ToolStripButton
                 {
                     ToolType = ToolType.BrowseButton,
-                    Image = Image.FromFile( _browse ),
                     HoverText = "Browse for file"
                 };
 
@@ -374,7 +352,6 @@ namespace BudgetExecution
                 PrintButton = new ToolStripButton
                 {
                     ToolType = ToolType.PrintButton,
-                    Image = Image.FromFile( _print ),
                     HoverText = "Print Data"
                 };
 
@@ -384,7 +361,6 @@ namespace BudgetExecution
                 ExcelButton = new ToolStripButton
                 {
                     ToolType = ToolType.ExcelButton,
-                    Image = Image.FromFile( _excelFile ),
                     HoverText = "Export to Excel"
                 };
 
@@ -394,7 +370,6 @@ namespace BudgetExecution
                 CalculatorButton = new ToolStripButton
                 {
                     ToolType = ToolType.CalculatorButton,
-                    Image = Image.FromFile( _calculator ),
                     HoverText = "Launch Calculator"
                 };
 
