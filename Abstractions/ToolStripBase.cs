@@ -278,8 +278,192 @@ namespace BudgetExecution
         /// </value>
         public virtual ToolStripProgressBar ProgressBar { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolStripBase"/> class.
+        /// </summary>
         protected ToolStripBase( )
         {
+        }
+
+        /// <summary>
+        /// Called when [load].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected void OnLoad( object sender, EventArgs e )
+        {
+            if ( sender is ToolStrip  )
+            {
+                try
+                {
+                    Items.Add( new ToolSeparator( ) );
+                    TextBox = new ToolStripTextBox( );
+                    Items.Add( TextBox );
+                    Items.Add( new ToolSeparator( ) );
+                    DropDown = new ToolStripDropDown( );
+                    Items.Add( DropDown );
+                    Items.Add( new ToolSeparator( ) );
+
+                    FirstButton = new ToolStripButton
+                    {
+                        Name = "FirstButton",
+                        Text = "",
+                        ToolType = ToolType.FirstButton,
+                        BindingSource = BindingSource,
+                        HoverText = "Go To Beginning"
+                    };
+
+                    Items.Add( FirstButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    PreviousButton = new ToolStripButton
+                    {
+                        Name = "PreviousButton",
+                        Text = "",
+                        ToolType = ToolType.PreviousButton,
+                        BindingSource = BindingSource,
+                        HoverText = "Go To Previous"
+                    };
+
+                    Items.Add( PreviousButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    NextButton = new ToolStripButton
+                    {
+                        Name = "NextButton",
+                        Text = "",
+                        ToolType = ToolType.NextButton,
+                        BindingSource = BindingSource,
+                        HoverText = "Go To Next Record"
+                    };
+
+                    Items.Add( NextButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    LastButton = new ToolStripButton
+                    {
+                        Name = "LastButton",
+                        Text = "",
+                        ToolType = ToolType.LastButton,
+                        BindingSource = BindingSource,
+                        HoverText = "Go To Last Record"
+                    };
+
+                    Items.Add( LastButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    EditButton = new ToolStripButton
+                    {
+                        Name = "EditButton",
+                        Text = "",
+                        ToolType = ToolType.EditButton,
+                        HoverText = "Edit Record"
+                    };
+
+                    Items.Add( EditButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    AddButton = new ToolStripButton
+                    {
+                        Name = "AddButton",
+                        Text = "",
+                        ToolType = ToolType.AddButton,
+                        HoverText = "Add Record"
+                    };
+
+                    Items.Add( AddButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    DeleteButton = new ToolStripButton
+                    {
+                        Name = "DeleteButton",
+                        Text = "",
+                        ToolType = ToolType.DeleteButton,
+                        HoverText = "Delete Record"
+                    };
+
+                    Items.Add( DeleteButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    RefreshButton = new ToolStripButton
+                    {
+                        Name = "RefreshButton",
+                        Text = "",
+                        ToolType = ToolType.RefreshButton,
+                        HoverText = "Refresh Data"
+                    };
+
+                    Items.Add( RefreshButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    SaveButton = new ToolStripButton
+                    {
+                        Name = "SaveButton",
+                        Text = "",
+                        ToolType = ToolType.SaveButton,
+                        HoverText = "Save Changes"
+                    };
+
+                    Items.Add( SaveButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    BrowseButton = new ToolStripButton
+                    {
+                        Name = "BrowseButton",
+                        Text = "",
+                        ToolType = ToolType.BrowseButton,
+                        HoverText = "Browse for file"
+                    };
+
+                    Items.Add( BrowseButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    PrintButton = new ToolStripButton
+                    {
+                        Name = "PrintButton",
+                        Text = "",
+                        ToolType = ToolType.PrintButton,
+                        HoverText = "Print Data"
+                    };
+
+                    Items.Add( PrintButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    ExcelButton = new ToolStripButton
+                    {
+                        Name = "ExcelButton",
+                        Text = "",
+                        ToolType = ToolType.ExcelButton,
+                        HoverText = "Export to Excel"
+                    };
+
+                    Items.Add( ExcelButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    CalculatorButton = new ToolStripButton
+                    {
+                        Name = "CalculatorButton",
+                        Text = "",
+                        ToolType = ToolType.CalculatorButton,
+                        HoverText = "Launch Calculator"
+                    };
+
+                    Items.Add( CalculatorButton );
+                    Items.Add( new ToolSeparator( ) );
+
+                    ProgressBar = new ToolStripProgressBar
+                    {
+                        Name = "ProgressBar",
+                        Visible = false
+                    };
+
+                    Items.Add( ProgressBar );
+                }
+                catch ( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
         }
 
         /// <summary>

@@ -6,17 +6,15 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
-    using System.Resources;
 
     /// <summary>
     /// 
     /// </summary>
     /// <seealso cref="System.Windows.Forms.ToolStripButton" />
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ Serializable ]
     public class ToolStripButtonBase : ToolStripItem
     {
         /// <summary>
@@ -58,16 +56,6 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the setting.
-        /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        public virtual ResourceManager Resource { get; set; }
 
         /// <summary>
         /// Gets or sets the bar.

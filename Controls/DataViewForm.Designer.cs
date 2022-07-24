@@ -29,14 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
             Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
             this.DataView = new BudgetExecution.DataView();
-            this.ListBox = new BudgetExecution.ListBox();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ListBox = new BudgetExecution.ListBox();
             this.ToolTip = new BudgetExecution.ToolTip();
+            this.GridPanel = new BudgetExecution.Layout();
             ((System.ComponentModel.ISupportInitialize)(this.DataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            this.GridPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DataView
@@ -44,29 +50,79 @@
             this.DataView.AllowDragSelectedCols = true;
             this.DataView.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))), ((int)(((byte)(180)))));
             this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.DataView.BindingSource = null;
+            gridBaseStyle1.Name = "Column Header";
+            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle1.StyleInfo.Enabled = false;
+            gridBaseStyle1.StyleInfo.Font.Bold = false;
+            gridBaseStyle1.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle1.StyleInfo.Font.Italic = false;
+            gridBaseStyle1.StyleInfo.Font.Size = 9F;
+            gridBaseStyle1.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle1.StyleInfo.Font.Underline = false;
+            gridBaseStyle1.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle2.Name = "Header";
+            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.CellType = "Header";
+            gridBaseStyle2.StyleInfo.Font.Bold = true;
+            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle3.Name = "Standard";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle4.Name = "Row Header";
+            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle4.StyleInfo.Enabled = true;
+            gridBaseStyle4.StyleInfo.Font.Bold = true;
+            gridBaseStyle4.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle4.StyleInfo.Font.Italic = false;
+            gridBaseStyle4.StyleInfo.Font.Size = 9F;
+            gridBaseStyle4.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle4.StyleInfo.Font.Underline = false;
+            gridBaseStyle4.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            this.DataView.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
+            gridBaseStyle1,
+            gridBaseStyle2,
+            gridBaseStyle3,
+            gridBaseStyle4});
+            this.DataView.BindingSource = this.BindingSource;
+            this.DataView.CanOverrideStyle = true;
+            this.DataView.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2016DarkGray;
             this.DataView.DataFilter = null;
             this.DataView.DataSource = this.BindingSource;
             this.DataView.DefaultRowHeight = 22;
+            this.DataView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataView.ExcelLikeAlignment = true;
             this.DataView.ExcelLikeSelectionFrame = true;
             this.DataView.Field = BudgetExecution.Field.RpioActivityCode;
             this.DataView.Font = new System.Drawing.Font("Roboto", 9F);
             this.DataView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2010;
+            this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.DataView.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Black;
+            this.DataView.HighlightCurrentColumnHeader = true;
+            this.DataView.HorizontalScrollTips = true;
+            this.DataView.HorizontalThumbTrack = true;
             this.DataView.HoverText = null;
-            this.DataView.Location = new System.Drawing.Point(80, 120);
+            this.DataView.Location = new System.Drawing.Point(0, 0);
             this.DataView.Name = "DataView";
             this.DataView.Numeric = BudgetExecution.Numeric.NS;
             this.DataView.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.DataView.Office2016ScrollBars = true;
+            this.DataView.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.DarkGray;
             this.DataView.OptimizeInsertRemoveCells = true;
             this.DataView.Properties.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.DataView.Properties.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DataView.Properties.GridLineColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.DataView.Properties.ThemedHeader = true;
             this.DataView.Setting = null;
             this.DataView.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.DataView.Size = new System.Drawing.Size(765, 409);
+            this.DataView.Size = new System.Drawing.Size(754, 409);
             this.DataView.SmartSizeBox = false;
             this.DataView.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.DataView.TabIndex = 0;
@@ -120,6 +176,8 @@
             this.DataView.ThemeStyle.VerticalScrollBarStyle.ThumbPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.DataView.UseListChangedEvent = true;
             this.DataView.UseRightToLeftCompatibleTextBox = true;
+            this.DataView.VerticalScrollTips = true;
+            this.DataView.VerticalThumbTrack = true;
             // 
             // ListBox
             // 
@@ -181,6 +239,42 @@
             this.ToolTip.TipText = null;
             this.ToolTip.TipTitle = null;
             // 
+            // GridPanel
+            // 
+            this.GridPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.GridPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.GridPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.GridPanel.BindingSource = null;
+            this.GridPanel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.GridPanel.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.GridPanel.Border.HoverVisible = false;
+            this.GridPanel.Border.Rounding = 6;
+            this.GridPanel.Border.Thickness = 1;
+            this.GridPanel.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.GridPanel.Border.Visible = true;
+            this.GridPanel.Children = null;
+            this.GridPanel.Controls.Add(this.DataView);
+            this.GridPanel.DataFilter = null;
+            this.GridPanel.Field = BudgetExecution.Field.RpioActivityCode;
+            this.GridPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.GridPanel.HoverText = null;
+            this.GridPanel.Location = new System.Drawing.Point(80, 120);
+            this.GridPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.GridPanel.Name = "GridPanel";
+            this.GridPanel.Numeric = BudgetExecution.Numeric.NS;
+            this.GridPanel.Padding = new System.Windows.Forms.Padding(1);
+            this.GridPanel.Size = new System.Drawing.Size(754, 409);
+            this.GridPanel.TabIndex = 2;
+            this.GridPanel.Text = "layout1";
+            this.GridPanel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.GridPanel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridPanel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.GridPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.GridPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.GridPanel.ToolTip = null;
+            // 
             // DataViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -195,7 +289,7 @@
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1188, 713);
             this.Controls.Add(this.ListBox);
-            this.Controls.Add(this.DataView);
+            this.Controls.Add(this.GridPanel);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -212,16 +306,17 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.DataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            this.GridPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
         public DataView DataView;
         public ListBox ListBox;
-        public System.Windows.Forms.BindingSource BindingSource;
         public ToolTip ToolTip;
+        public Layout GridPanel;
+        public System.Windows.Forms.BindingSource BindingSource;
     }
 }

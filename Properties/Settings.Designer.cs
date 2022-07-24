@@ -33,16 +33,5 @@ namespace BudgetExecution.Properties {
                 return ((string)(this["ACCDB"]));
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("data source=C:\\Users\\terry\\source\\repos\\Badjao\\Data\\Database\\SQLite\\DataModels\\Da" +
-            "ta.db;default type name=Text")]
-        public string ConnectionString {
-            get {
-                return ((string)(this["ConnectionString"]));
-            }
-        }
     }
 }

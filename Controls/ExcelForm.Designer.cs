@@ -269,7 +269,6 @@
             this.AddButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddButton.Margin = new System.Windows.Forms.Padding(5);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Resource = null;
             this.AddButton.Size = new System.Drawing.Size(24, 24);
             this.AddButton.Text = "toolStripButton5";
             this.AddButton.ToolTip = this.ToolTip;
@@ -325,7 +324,6 @@
             this.BrowseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BrowseButton.Margin = new System.Windows.Forms.Padding(5);
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Resource = null;
             this.BrowseButton.Size = new System.Drawing.Size(24, 24);
             this.BrowseButton.Text = "toolStripButton1";
             this.BrowseButton.ToolTip = this.ToolTip;
@@ -346,7 +344,6 @@
             this.CalculatorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CalculatorButton.Margin = new System.Windows.Forms.Padding(5);
             this.CalculatorButton.Name = "CalculatorButton";
-            this.CalculatorButton.Resource = null;
             this.CalculatorButton.Size = new System.Drawing.Size(24, 24);
             this.CalculatorButton.Text = "toolStripButton9";
             this.CalculatorButton.ToolTip = this.ToolTip;
@@ -367,7 +364,6 @@
             this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(5);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Resource = null;
             this.DeleteButton.Size = new System.Drawing.Size(24, 24);
             this.DeleteButton.Text = "toolStripButton6";
             this.DeleteButton.ToolTip = this.ToolTip;
@@ -410,7 +406,6 @@
             this.ExcelButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExcelButton.Margin = new System.Windows.Forms.Padding(5);
             this.ExcelButton.Name = "ExcelButton";
-            this.ExcelButton.Resource = null;
             this.ExcelButton.Size = new System.Drawing.Size(24, 24);
             this.ExcelButton.Text = "toolStripButton10";
             this.ExcelButton.ToolTip = this.ToolTip;
@@ -431,7 +426,6 @@
             this.FirstButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FirstButton.Margin = new System.Windows.Forms.Padding(5);
             this.FirstButton.Name = "FirstButton";
-            this.FirstButton.Resource = null;
             this.FirstButton.Size = new System.Drawing.Size(24, 24);
             this.FirstButton.Text = "toolStripButton1";
             this.FirstButton.ToolTip = this.ToolTip;
@@ -516,7 +510,6 @@
             this.PreviousButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PreviousButton.Margin = new System.Windows.Forms.Padding(5);
             this.PreviousButton.Name = "PreviousButton";
-            this.PreviousButton.Resource = null;
             this.PreviousButton.Size = new System.Drawing.Size(24, 24);
             this.PreviousButton.Text = "toolStripButton2";
             this.PreviousButton.ToolTip = this.ToolTip;
@@ -545,7 +538,6 @@
             this.NextButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextButton.Margin = new System.Windows.Forms.Padding(5);
             this.NextButton.Name = "NextButton";
-            this.NextButton.Resource = null;
             this.NextButton.Size = new System.Drawing.Size(24, 24);
             this.NextButton.Text = "toolStripButton3";
             this.NextButton.ToolTip = this.ToolTip;
@@ -574,7 +566,6 @@
             this.LastButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LastButton.Margin = new System.Windows.Forms.Padding(5);
             this.LastButton.Name = "LastButton";
-            this.LastButton.Resource = null;
             this.LastButton.Size = new System.Drawing.Size(24, 24);
             this.LastButton.Text = "toolStripButton4";
             this.LastButton.ToolTip = this.ToolTip;
@@ -619,7 +610,6 @@
             this.RefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshButton.Margin = new System.Windows.Forms.Padding(5);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Resource = null;
             this.RefreshButton.Size = new System.Drawing.Size(24, 24);
             this.RefreshButton.Text = "toolStripButton7";
             this.RefreshButton.ToolTip = this.ToolTip;
@@ -648,7 +638,6 @@
             this.SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveButton.Margin = new System.Windows.Forms.Padding(5);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Resource = null;
             this.SaveButton.Size = new System.Drawing.Size(24, 24);
             this.SaveButton.Text = "toolStripButton8";
             this.SaveButton.ToolTip = this.ToolTip;
@@ -693,7 +682,6 @@
             this.ChartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ChartButton.Margin = new System.Windows.Forms.Padding(5);
             this.ChartButton.Name = "ChartButton";
-            this.ChartButton.Resource = null;
             this.ChartButton.Size = new System.Drawing.Size(24, 24);
             this.ChartButton.Text = "toolStripButton11";
             this.ChartButton.ToolTip = this.ToolTip;
@@ -730,7 +718,6 @@
             this.HomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HomeButton.Margin = new System.Windows.Forms.Padding(5);
             this.HomeButton.Name = "HomeButton";
-            this.HomeButton.Resource = null;
             this.HomeButton.Size = new System.Drawing.Size(24, 24);
             this.HomeButton.Text = "toolStripButton12";
             this.HomeButton.ToolTip = this.ToolTip;
