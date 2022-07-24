@@ -221,9 +221,8 @@
             this.ToolStrip.PrintButton = null;
             this.ToolStrip.ProgressBar = null;
             this.ToolStrip.RefreshButton = this.RefreshButton;
-            this.ToolStrip.ResourceManager = null;
             this.ToolStrip.SaveButton = this.SaveButton;
-            this.ToolStrip.Separator = null;
+            this.ToolStrip.Separators = null;
             this.ToolStrip.Separator1 = this.Separator1;
             this.ToolStrip.Separator10 = this.Separator10;
             this.ToolStrip.Separator11 = this.Separator11;
@@ -240,7 +239,6 @@
             this.ToolStrip.Separator7 = this.Separator7;
             this.ToolStrip.Separator8 = this.Separator8;
             this.ToolStrip.Separator9 = this.Separator9;
-            this.ToolStrip.Setting = null;
             this.ToolStrip.ShowCaption = true;
             this.ToolStrip.ShowLauncher = true;
             this.ToolStrip.Size = new System.Drawing.Size(1188, 52);

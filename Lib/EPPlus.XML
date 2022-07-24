@@ -9381,13 +9381,13 @@
             Detaches any attached logger from the formula parser.
             </summary>
         </member>
-        <member name="T:OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenSeparatorHandlers.TokenSeparatorHandler">
+        <member name="T:OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenSeparatorHandlers.TokenSeparatorsHandler">
             <summary>
-            This class provides access to <see cref="T:OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenSeparatorHandlers.SeparatorHandler"/>s - classes that exposes functionatlity
+            This class provides access to <see cref="T:OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenSeparatorHandlers.SeparatorsHandler"/>s - classes that exposes functionatlity
             needed when parsing strings to tokens.
             </summary>
         </member>
-        <member name="M:OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenSeparatorHandlers.TokenSeparatorHandler.Handle(System.Char,OfficeOpenXml.FormulaParsing.LexicalAnalysis.Token,OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenizerContext,OfficeOpenXml.FormulaParsing.LexicalAnalysis.ITokenIndexProvider)">
+        <member name="M:OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenSeparatorHandlers.TokenSeparatorsHandler.Handle(System.Char,OfficeOpenXml.FormulaParsing.LexicalAnalysis.Token,OfficeOpenXml.FormulaParsing.LexicalAnalysis.TokenizerContext,OfficeOpenXml.FormulaParsing.LexicalAnalysis.ITokenIndexProvider)">
             <summary>
             Handles a tokenseparator.
             </summary>

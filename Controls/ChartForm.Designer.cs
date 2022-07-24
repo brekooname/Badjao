@@ -322,9 +322,8 @@
             this.ToolStrip.PrintButton = null;
             this.ToolStrip.ProgressBar = null;
             this.ToolStrip.RefreshButton = this.RefreshButton;
-            this.ToolStrip.ResourceManager = null;
             this.ToolStrip.SaveButton = this.SaveButton;
-            this.ToolStrip.Separator = null;
+            this.ToolStrip.Separators = null;
             this.ToolStrip.Separator1 = this.Separator1;
             this.ToolStrip.Separator10 = this.Separator10;
             this.ToolStrip.Separator11 = this.Separator11;

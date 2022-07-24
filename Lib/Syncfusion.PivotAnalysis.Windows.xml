@@ -4235,7 +4235,7 @@
             </summary>
             <param name="e">THe <see cref="T:System.Windows.Forms.ToolStripRenderEventArgs"/> that contains the event data.</param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.ContextThemeRenderer.OnRenderSeparator(System.Windows.Forms.ToolStripSeparatorRenderEventArgs)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.ContextThemeRenderer.OnRenderSeparator(System.Windows.Forms.ToolStripSeparatorsRenderEventArgs)">
             <summary>
             Overrides and sets the separator back-color.
             </summary>
@@ -8079,7 +8079,7 @@
             </summary>
             <param name="e">The <see cref="T:System.Windows.Forms.ToolStripArrowRenderEventArgs"/> that contains the event data.</param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotCalculationFilterHelper.ContextRenderer.OnRenderSeparator(System.Windows.Forms.ToolStripSeparatorRenderEventArgs)">
+        <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotCalculationFilterHelper.ContextRenderer.OnRenderSeparator(System.Windows.Forms.ToolStripSeparatorsRenderEventArgs)">
             <summary>
             Overrides and sets the separator back-color.
             </summary>

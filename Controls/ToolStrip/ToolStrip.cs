@@ -22,7 +22,6 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
     [SuppressMessage( "ReSharper", "ObjectCreationAsStatement" )]
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
-    [ Serializable ]
     public class ToolStrip : ToolStripBase, IToolStrip
     {
         /// <summary>

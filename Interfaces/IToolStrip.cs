@@ -5,7 +5,6 @@
 namespace BudgetExecution
 {
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Drawing;
 
     public interface IToolStrip
@@ -33,16 +32,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the setting.
-        /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        NameValueCollection Setting { get; }
         
-
         /// <summary>
         /// Gets the buttons.
         /// </summary>

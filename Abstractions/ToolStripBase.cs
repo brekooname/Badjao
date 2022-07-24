@@ -6,31 +6,12 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
-    using System.Resources;
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class ToolStripBase : ToolStripEx
     {
-        /// <summary>
-        /// Gets or sets the setting.
-        /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-           
-        /// <summary>
-        /// Gets or sets the resource manager.
-        /// </summary>
-        /// <value>
-        /// The resource manager.
-        /// </value>
-        public virtual ResourceManager ResourceManager { get; set; }
-        
         /// <summary>
         /// Gets or sets the binding source.
         /// </summary>
@@ -45,7 +26,7 @@ namespace BudgetExecution
         /// <value>
         /// The separator.
         /// </value>
-        public virtual IEnumerable<ToolSeparator> Separator { get; set; }
+        public virtual IEnumerable<ToolSeparator> Separators { get; set; }
 
         /// <summary>
         /// Gets or sets the separator.
