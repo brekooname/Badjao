@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle5 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle6 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle7 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle8 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo2 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
             this.AddButton = new BudgetExecution.ToolStripButton();
             this.BrowseButton = new BudgetExecution.ToolStripButton();
@@ -611,49 +611,49 @@
             // 
             this.DataView.AllowDragSelectedCols = true;
             this.DataView.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            gridBaseStyle5.Name = "Column Header";
-            gridBaseStyle5.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle5.StyleInfo.CellType = "ColumnHeaderCell";
-            gridBaseStyle5.StyleInfo.Enabled = false;
-            gridBaseStyle5.StyleInfo.Font.Bold = true;
-            gridBaseStyle5.StyleInfo.Font.Facename = "Segoe UI";
-            gridBaseStyle5.StyleInfo.Font.Italic = false;
-            gridBaseStyle5.StyleInfo.Font.Size = 9F;
-            gridBaseStyle5.StyleInfo.Font.Strikeout = false;
-            gridBaseStyle5.StyleInfo.Font.Underline = false;
-            gridBaseStyle5.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
-            gridBaseStyle5.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridBaseStyle6.Name = "Header";
-            gridBaseStyle6.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.CellType = "Header";
-            gridBaseStyle6.StyleInfo.Font.Bold = true;
-            gridBaseStyle6.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
-            gridBaseStyle6.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-            gridBaseStyle7.Name = "Standard";
-            gridBaseStyle7.StyleInfo.CheckBoxOptions.CheckedValue = "True";
-            gridBaseStyle7.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
-            gridBaseStyle7.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-            gridBaseStyle8.Name = "Row Header";
-            gridBaseStyle8.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle8.StyleInfo.CellType = "RowHeaderCell";
-            gridBaseStyle8.StyleInfo.Enabled = true;
-            gridBaseStyle8.StyleInfo.Font.Bold = true;
-            gridBaseStyle8.StyleInfo.Font.Facename = "Segoe UI";
-            gridBaseStyle8.StyleInfo.Font.Italic = false;
-            gridBaseStyle8.StyleInfo.Font.Size = 9F;
-            gridBaseStyle8.StyleInfo.Font.Strikeout = false;
-            gridBaseStyle8.StyleInfo.Font.Underline = false;
-            gridBaseStyle8.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
-            gridBaseStyle8.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            this.DataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            gridBaseStyle1.Name = "Column Header";
+            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle1.StyleInfo.Enabled = false;
+            gridBaseStyle1.StyleInfo.Font.Bold = true;
+            gridBaseStyle1.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle1.StyleInfo.Font.Italic = false;
+            gridBaseStyle1.StyleInfo.Font.Size = 9F;
+            gridBaseStyle1.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle1.StyleInfo.Font.Underline = false;
+            gridBaseStyle1.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle2.Name = "Header";
+            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.CellType = "Header";
+            gridBaseStyle2.StyleInfo.Font.Bold = true;
+            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle3.Name = "Standard";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle4.Name = "Row Header";
+            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle4.StyleInfo.Enabled = true;
+            gridBaseStyle4.StyleInfo.Font.Bold = true;
+            gridBaseStyle4.StyleInfo.Font.Facename = "Segoe UI";
+            gridBaseStyle4.StyleInfo.Font.Italic = false;
+            gridBaseStyle4.StyleInfo.Font.Size = 9F;
+            gridBaseStyle4.StyleInfo.Font.Strikeout = false;
+            gridBaseStyle4.StyleInfo.Font.Underline = false;
+            gridBaseStyle4.StyleInfo.Font.Unit = System.Drawing.GraphicsUnit.Point;
+            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
             this.DataView.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle5,
-            gridBaseStyle6,
-            gridBaseStyle7,
-            gridBaseStyle8});
+            gridBaseStyle1,
+            gridBaseStyle2,
+            gridBaseStyle3,
+            gridBaseStyle4});
             this.DataView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DataView.CanOverrideStyle = true;
             this.DataView.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2016Black;
@@ -661,12 +661,13 @@
             this.DataView.DefaultRowHeight = 28;
             this.DataView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataView.Font = new System.Drawing.Font("Roboto", 9F);
-            this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2010;
+            this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.DataView.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Black;
             this.DataView.Location = new System.Drawing.Point(0, 0);
             this.DataView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DataView.Name = "DataView";
             this.DataView.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.DataView.Office2016ScrollBars = true;
             this.DataView.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.DarkGray;
             this.DataView.OptimizeInsertRemoveCells = true;
             this.DataView.Properties.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
@@ -675,14 +676,14 @@
             this.DataView.SmartSizeBox = false;
             this.DataView.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.DataView.TabIndex = 0;
-            gridStyleInfo2.Font.Bold = false;
-            gridStyleInfo2.Font.Facename = "Roboto";
-            gridStyleInfo2.Font.Italic = false;
-            gridStyleInfo2.Font.Size = 9F;
-            gridStyleInfo2.Font.Strikeout = false;
-            gridStyleInfo2.Font.Underline = false;
-            gridStyleInfo2.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40))))));
-            this.DataView.TableStyle = gridStyleInfo2;
+            gridStyleInfo1.Font.Bold = false;
+            gridStyleInfo1.Font.Facename = "Roboto";
+            gridStyleInfo1.Font.Italic = false;
+            gridStyleInfo1.Font.Size = 9F;
+            gridStyleInfo1.Font.Strikeout = false;
+            gridStyleInfo1.Font.Underline = false;
+            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40))))));
+            this.DataView.TableStyle = gridStyleInfo1;
             this.DataView.ThemesEnabled = true;
             this.DataView.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.DataView.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
@@ -724,7 +725,6 @@
             // DataSet
             // 
             this.DataSet.DataSetName = "DataSet";
-            this.DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ListPanel
             // 
@@ -921,7 +921,6 @@
             this.ToolStrip.ShowLauncher = true;
             this.ToolStrip.Size = new System.Drawing.Size(1188, 52);
             this.ToolStrip.TabIndex = 9;
-            this.ToolStrip.Text = "Budget Execution";
             this.ToolStrip.TextBox = this.toolStripTextBox1;
             this.ToolStrip.ThemeStyle.ArrowColor = System.Drawing.Color.SteelBlue;
             this.ToolStrip.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
@@ -1033,7 +1032,7 @@
             this.toolStripDropDown1.MaxLength = 32767;
             this.toolStripDropDown1.Name = "toolStripDropDown1";
             this.toolStripDropDown1.Numeric = BudgetExecution.Numeric.NS;
-            this.toolStripDropDown1.Size = new System.Drawing.Size(94, 24);
+            this.toolStripDropDown1.Size = new System.Drawing.Size(81, 24);
             this.toolStripDropDown1.Style = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016Black;
             this.toolStripDropDown1.Tag = "Make Selection";
             this.toolStripDropDown1.ToolTip = this.ToolTip;
@@ -1442,44 +1441,10 @@
         }
 
         #endregion
-        public ToolStripButton AddButton;
-        public ToolStripButton BrowseButton;
-        public ToolStripButton CalculatorButton;
-        public ToolStripButton DeleteButton;
-        public ToolStripDropDown DropDown;
-        public ToolStripButton ExcelButton;
-        public ToolStripButton FirstButton;
-        public ToolStripTextBox TextBox;
-        public ToolSeparator Separator1;
-        public ToolStripLabel Label;
-        public ToolSeparator Separator2;
-        public ToolSeparator Separator3;
-        public ToolSeparator Separator4;
-        public ToolStripButton PreviousButton;
-        public ToolSeparator Separator5;
-        public ToolStripButton NextButton;
-        public ToolSeparator Separator6;
-        public ToolStripButton LastButton;
-        public ToolSeparator Separator7;
-        public ToolSeparator Separator8;
-        public ToolSeparator Separator9;
-        public ToolStripButton RefreshButton;
-        public ToolSeparator Separator10;
-        public ToolStripButton SaveButton;
-        public ToolSeparator Separator11;
-        public ToolSeparator Separator12;
-        public ToolSeparator Separator13;
-        public ToolStripButton ChartButton;
-        public ToolSeparator Separator14;
-        public ToolSeparator Separator15;
-        public ToolStripButton HomeButton;
-        public ToolSeparator Separator16;
         public Layout GridPanel;
         public Syncfusion.Windows.Forms.Grid.GridDataBoundGrid DataView;
         public Layout ListPanel;
         private ListBox ListBox;
-        public DataModel DataSet;
-        public ToolTip ToolTip;
         public ToolStrip ToolStrip;
         public ToolStripButton toolStripButton1;
         public ToolStripButton toolStripButton2;
@@ -1514,5 +1479,39 @@
         public ToolStripButton toolStripButton13;
         public ToolSeparator toolSeparator16;
         public BindingSource BindingSource;
+        private ToolStripButton AddButton;
+        private ToolStripButton BrowseButton;
+        private ToolStripButton CalculatorButton;
+        private ToolStripButton DeleteButton;
+        private ToolStripDropDown DropDown;
+        private ToolStripButton ExcelButton;
+        private ToolStripButton FirstButton;
+        private ToolStripTextBox TextBox;
+        private ToolSeparator Separator1;
+        private ToolStripLabel Label;
+        private ToolSeparator Separator2;
+        private ToolSeparator Separator3;
+        private ToolSeparator Separator4;
+        private ToolStripButton PreviousButton;
+        private ToolSeparator Separator5;
+        private ToolStripButton NextButton;
+        private ToolSeparator Separator6;
+        private ToolStripButton LastButton;
+        private ToolSeparator Separator7;
+        private ToolSeparator Separator8;
+        private ToolSeparator Separator9;
+        private ToolStripButton RefreshButton;
+        private ToolSeparator Separator10;
+        private ToolStripButton SaveButton;
+        private ToolSeparator Separator11;
+        private ToolSeparator Separator12;
+        private ToolSeparator Separator13;
+        private ToolStripButton ChartButton;
+        private ToolSeparator Separator14;
+        private ToolSeparator Separator15;
+        private ToolStripButton HomeButton;
+        private ToolSeparator Separator16;
+        private DataModel DataSet;
+        private ToolTip ToolTip;
     }
 }
