@@ -45,9 +45,10 @@ namespace BudgetExecution
         {
             try
             {
-                ConnectionBuilder = Validate.IsSource( source ) && Validate.IsProvider( provider )
-                    ? new ConnectionBuilder( source, provider )
-                    : default( ConnectionBuilder );
+                ConnectionBuilder = Enum.IsDefined( typeof( Source ), source ) 
+                    && Enum.IsDefined( typeof( Provider ), provider )
+                        ? new ConnectionBuilder( source, provider )
+                        : default( ConnectionBuilder );
             }
             catch( Exception ex )
             {
@@ -61,18 +62,15 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetArgs( IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true )
+            try
             {
-                try
-                {
-                    Args = dict?.Any( ) == true
-                        ? dict
-                        : new Dictionary<string, object>( );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
+                Args = dict?.Any( ) == true
+                    ? dict
+                    : new Dictionary<string, object>( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -98,12 +96,12 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the select statement.
         /// </summary>
-        protected void SetSelectStatement()
+        protected void SetSelectStatement( )
         {
             try
             {
                 CommandText = !string.IsNullOrEmpty( ConnectionBuilder?.ConnectionString )
-                    ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.TableName};"
+                    ? $"{ SQL.SELECT } * FROM { ConnectionBuilder?.TableName };"
                     : string.Empty;
             }
             catch( Exception ex )
@@ -118,7 +116,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetSelectStatement( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
@@ -126,12 +124,12 @@ namespace BudgetExecution
 
                     foreach( var _kvp in dict )
                     {
-                        _empty += $" {_kvp.Key} = '{_kvp.Value}' AND";
+                        _empty += $" { _kvp.Key } = '{ _kvp.Value }' AND";
                     }
 
                     var _values = _empty.TrimEnd( " AND".ToCharArray( ) );
                     var _tableName = ConnectionBuilder?.TableName;
-                    CommandText = $"{SQL.SELECT} * FROM {_tableName} WHERE {_values};";
+                    CommandText = $"{ SQL.SELECT } * FROM { _tableName } WHERE { _values };";
                 }
                 catch( Exception ex )
                 {
@@ -140,7 +138,7 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                CommandText = $"{SQL.SELECT} * FROM {ConnectionBuilder?.TableName};";
+                CommandText = $"{ SQL.SELECT } * FROM { ConnectionBuilder?.TableName };";
             }
         }
 
@@ -162,7 +160,7 @@ namespace BudgetExecution
                     }
 
                     var _vals = _update.TrimEnd( " AND".ToCharArray( ) );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.TableName} SET {_vals};";
+                    CommandText = $"{ SQL.UPDATE } { ConnectionBuilder?.TableName } SET { _vals };";
                 }
                 catch( Exception ex )
                 {
@@ -187,14 +185,14 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        _column += $"{kvp.Key}, ";
-                        _values += $"{kvp.Value}, ";
+                        _column += $"{ kvp.Key }, ";
+                        _values += $"{ kvp.Value }, ";
                     }
 
                     var values =
-                        $"({_column.TrimEnd( ", ".ToCharArray( ) )}) VALUES ({_values.TrimEnd( ", ".ToCharArray( ) )})";
+                        $"({ _column.TrimEnd( ", ".ToCharArray( ) ) }) VALUES ({ _values.TrimEnd( ", ".ToCharArray( ) ) })";
 
-                    CommandText = $"{SQL.INSERT} INTO {_table} {values};";
+                    CommandText = $"{ SQL.INSERT } INTO { _table } { values };";
                 }
                 catch( Exception ex )
                 {
@@ -217,12 +215,12 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        _columns += $" {kvp.Key} = '{kvp.Value}' AND";
+                        _columns += $" { kvp.Key } = '{ kvp.Value }' AND";
                     }
 
                     var _values = _columns.TrimEnd( " AND".ToCharArray( ) );
                     var _table = ConnectionBuilder?.TableName;
-                    CommandText = $"{SQL.DELETE} FROM {_table} WHERE {_values};";
+                    CommandText = $"{ SQL.DELETE } FROM { _table } WHERE { _values };";
                 }
                 catch( Exception ex )
                 {
@@ -231,7 +229,7 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                CommandText = $"{SQL.DELETE} * FROM {ConnectionBuilder?.TableName};";
+                CommandText = $"{ SQL.DELETE } * FROM { ConnectionBuilder?.TableName };";
             }
         }
 

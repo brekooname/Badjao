@@ -25,7 +25,7 @@ namespace BudgetExecution
         /// <summary>
         /// The command builder
         /// </summary>
-        public ICommandBuilder CommandBuilder { get; }
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets the connection builder.
@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection builder.
         /// </value>
-        public IConnectionBuilder ConnectionBuilder { get; }
+        public IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// Gets the SQL statement.
