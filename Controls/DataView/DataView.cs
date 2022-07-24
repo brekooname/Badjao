@@ -25,7 +25,7 @@ namespace BudgetExecution
             // Control Properties
             ThemesEnabled = true;
             ApplyVisualStyles = true;
-            GridVisualStyles = GridVisualStyles.Office2010Black;
+            GridVisualStyles = GridVisualStyles.Office2016Black;
             EnableAddNew = true;
             EnableEdit = true;
             EnableRemove = true;
@@ -39,7 +39,15 @@ namespace BudgetExecution
             Font = new Font( "Roboto", 9, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
             Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
-            ColorStyles = ColorStyles.SystemTheme;
+            ColorStyles = ColorStyles.Office2010Black;
+            GridVisualStyles = GridVisualStyles.Office2010Black;
+            GridLineColor = SystemColors.GradientActiveCaption;
+            HorizontalScrollTips = true;
+            HorizontalThumbTrack = true;
+            VerticalScrollTips = true;
+            VerticalThumbTrack = true;
+            DefaultGridBorderStyle = GridBorderStyle.Dotted;
+            AlphaBlendSelectionColor = Color.FromArgb( 130, 1, 115, 199 );
 
             // ThemStyle Properties
             ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
