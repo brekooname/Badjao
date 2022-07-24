@@ -11,6 +11,7 @@
         public DataViewForm( )
         {
             InitializeComponent( );
+            Load += OnLoad;
         }
 
 
@@ -130,6 +131,23 @@
             }
         }
 
+        /// <summary>
+        /// Called when [load].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        public void OnLoad( object sender, EventArgs e )
+        {
+            try
+            {
+                var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
+                BindingSource.DataSource = _data?.Table;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
