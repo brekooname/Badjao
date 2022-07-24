@@ -141,7 +141,7 @@
             try
             {
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
-                BindingSource.DataSource = _data?.Table;
+                DataView.BindingSource.DataTable = _data?.Table;
             }
             catch( Exception ex )
             {

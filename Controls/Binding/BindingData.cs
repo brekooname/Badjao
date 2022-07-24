@@ -91,7 +91,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _binder
+                if( bindingSource is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -124,7 +124,7 @@ namespace BudgetExecution
             try
             {
                 if( dict?.Any( ) == true
-                    && bindingList is System.Windows.Forms.BindingSource _list )
+                    && bindingList is BindingSource _list )
                 {
                     try
                     {
@@ -225,8 +225,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -234,7 +234,7 @@ namespace BudgetExecution
                     {
                         DataSource = data.ToList( );
                         DataMember = field.ToString( );
-                        Filter = $"{field} = {filter}";
+                        Filter = $"{ field } = { filter }";
                     }
                     else
                     {
@@ -258,11 +258,11 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
-                    if( Verify.IsRef( field ) )
+                    if( field != null )
                     {
                         DataSource = data.ToList( );
                         DataMember = field?.ToString( );
@@ -290,8 +290,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : IDictionary<string, object>
         {
-            if( Verify.IsSequence( data )
-                && Verify.IsMap( dict ) )
+            if( data?.Any( ) == true
+                && dict?.Any( ) == true )
             {
                 try
                 {
@@ -328,12 +328,12 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
-                    if( Verify.IsRef( filter?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( filter?.ToString( ) ) )
                     {
                         DataSource = data.ToList( );
                         DataMember = field.ToString( );
@@ -356,13 +356,13 @@ namespace BudgetExecution
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<DataRow> GetData()
+        public override IEnumerable<DataRow> GetData( )
         {
             try
             {
                 var _rows = DataTable?.AsEnumerable( );
 
-                return Verify.IsSequence( _rows )
+                return _rows?.Any( ) == true
                     ? _rows
                     : default( EnumerableRowCollection<DataRow> );
             }

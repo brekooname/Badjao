@@ -74,7 +74,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _binder
+                if( bindingSource is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -111,7 +111,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

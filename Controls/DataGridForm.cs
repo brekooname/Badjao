@@ -30,9 +30,9 @@ namespace BudgetExecution
             DataGrid.BorderStyle = BorderStyle.None;
             DataGrid.BackColor = Color.FromArgb( 40, 40, 40 );
             DataGrid.ForeColor = Color.FromArgb( 240, 240, 240 );
-            DataGrid.GridOfficeScrollBars = OfficeScrollBars.Office2016;
-            DataGrid.Office2016ScrollBarsColorScheme = ScrollBarOffice2016ColorScheme.Black;
-            DataGrid.ColorStyles = ColorStyles.Office2016Black;
+            DataGrid.GridOfficeScrollBars = OfficeScrollBars.Office2010;
+            DataGrid.Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
+            DataGrid.ColorStyles = ColorStyles.Office2010Black;
             DataGrid.ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
             DataGrid.ThemeStyle.CellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
             DataGrid.ThemeStyle.CellStyle.TextColor = Color.FromArgb( 240, 240, 240 );
