@@ -14,7 +14,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
     [ Serializable ]
-    public class ToolStripButton : ToolbarButtonBase, IToolStripButton
+    public class ToolStripButton : ToolStripButtonBase, IToolStripButton
     {
         /// <summary>
         /// Initializes a new instance of

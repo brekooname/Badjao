@@ -16,8 +16,9 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="System.Windows.Forms.ToolStripButton" />
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public class ToolbarButtonBase : System.Windows.Forms.ToolStripButton
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ Serializable ]
+    public class ToolStripButtonBase : System.Windows.Forms.ToolStripButton
     {
         /// <summary>
         /// Gets or sets the tool tip.
@@ -76,6 +77,7 @@ namespace BudgetExecution
         /// The bar.
         /// </value>
         public ToolType ToolType { get; set; }
+
 
         /// <summary>
         /// Sets the field.
