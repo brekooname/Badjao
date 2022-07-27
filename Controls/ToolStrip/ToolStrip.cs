@@ -244,41 +244,113 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Populates the tools.
+        /// Populates the buttons on the toolstrip
         /// </summary>
-        public virtual void PopulateTools( )
+        public virtual void CreateButtons( )
         {
             try
             {
+                FirstButton = new ToolStripButton
+                {
+                    Name = "FirstButton",
+                    Text = "",
+                    ToolType = ToolType.FirstButton
+                };
+                
+                PreviousButton = new ToolStripButton
+                {
+                    Name = "PreviousButton",
+                    Text = "",
+                    ToolType = ToolType.PreviousButton
+                };
+
+                NextButton = new ToolStripButton
+                {
+                    Name = "NextButton",
+                    Text = "",
+                    ToolType = ToolType.NextButton
+                };
+
+                LastButton = new ToolStripButton
+                {
+                    Name = "LastButton",
+                    Text = "",
+                    ToolType = ToolType.LastButton
+                };
+
+                EditButton = new ToolStripButton
+                {
+                    Name = "EditButton",
+                    Text = "",
+                    ToolType = ToolType.EditButton
+                };
+
+                AddButton = new ToolStripButton
+                {
+                    Name = "AddButton",
+                    Text = "",
+                    ToolType = ToolType.AddButton
+                };
+
+                DeleteButton = new ToolStripButton
+                {
+                    Name = "DeleteButton",
+                    Text = "",
+                    ToolType = ToolType.DeleteButton
+                };
+
+                RefreshButton = new ToolStripButton
+                {
+                    Name = "RefreshButton",
+                    Text = "",
+                    ToolType = ToolType.RefreshButton
+                };
+
+                SaveButton = new ToolStripButton
+                {
+                    Name = "SaveButton",
+                    Text = "",
+                    ToolType = ToolType.SaveButton
+                };
+
+                BrowseButton = new ToolStripButton
+                {
+                    Name = "BrowseButton",
+                    Text = "",
+                    ToolType = ToolType.BrowseButton
+                };
+
+                PrintButton = new ToolStripButton
+                {
+                    Name = "PrintButton",
+                    Text = "",
+                    ToolType = ToolType.PrintButton
+                };
+
+                ExcelButton = new ToolStripButton
+                {
+                    Name = "ExcelButton",
+                    Text = "",
+                    ToolType = ToolType.ExcelButton
+                };
+
+                CalculatorButton = new ToolStripButton
+                {
+                    Name = "CalculatorButton",
+                    Text = "",
+                    ToolType = ToolType.CalculatorButton
+                };
+
+                ProgressBar = new ToolStripProgressBar
+                {
+                    Name = "ProgressBar",
+                    Visible = false
+                };
             }
             catch( Exception ex )
             {
                 Fail( ex );
             }
-        }
-
-        public ToolStripButton CreateButton( ToolType tool )
-        {
-            try
-            {
-                var _assembly = Assembly.GetAssembly( GetType( ) );
-                var _manager = new ResourceManager( $"ToolStrip.resx", _assembly );
-                using( var _stream = _manager.GetStream( $"{ tool }.png" ) )
-                {
-                    if( _stream != null )
-                    {
-                        var _image = Bitmap.FromStream( _stream );
-                        PreviousButton.Image = _image;
-                    }
-                }
-            }
-            catch ( Exception ex )
-            {
-                Fail( ex );
-                return default( ToolStripButton );
-            }
-
-            return default( ToolStripButton );
         }
 
         /// <summary>
@@ -294,7 +366,7 @@ namespace BudgetExecution
                 try
                 {
                     var _assembly = Assembly.GetAssembly( GetType( ) );
-                    var _manager = new ResourceManager( $"ToolStrip.resx", _assembly );
+                    var _manager = new ResourceManager( "ToolStrip.resx", _assembly );
                     var _file = button.ToolType.ToString( );
                     var _toolButton = new ToolStripButton
                     {
