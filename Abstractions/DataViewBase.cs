@@ -23,7 +23,7 @@ namespace BudgetExecution
         /// <value>
         /// The application setting.
         /// </value>
-        public virtual NameValueCollection Setting { get; set; }
+        public virtual NameValueCollection Setting { get; set; } 
 
         /// <summary>
         /// Gets or sets the hover text.
@@ -182,7 +182,7 @@ namespace BudgetExecution
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
                         {
-                            filter += $"{kvp.Key} = {kvp.Value} AND";
+                            filter += $"{ kvp.Key } = { kvp.Value } AND";
                         }
                     }
 
@@ -318,7 +318,7 @@ namespace BudgetExecution
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field.ToString( );
-                        BindingSource.Filter = $"{field} = {filter}";
+                        BindingSource.Filter = $"{ field } = { filter }";
                     }
                     else
                     {

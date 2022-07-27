@@ -11,6 +11,8 @@ namespace BudgetExecution
     using Syncfusion.Windows.Forms.Tools;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
+    using System.Resources;
 
     /// <summary>
     /// 
@@ -72,7 +74,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolStrip"/> class.
         /// </summary>
-        public ToolStrip()
+        public ToolStrip( )
         {
             Margin = new Padding( 1, 1, 1, 1 );
             Padding = new Padding( 1, 1, 1, 1 );
@@ -138,6 +140,7 @@ namespace BudgetExecution
             return default( IDictionary<string, ToolStripButton> );
         }
 
+
         /// <summary>
         /// Creates the text box.
         /// </summary>
@@ -199,6 +202,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
+
         /// <summary>
         /// Populates the toolbar ComboBox.
         /// </summary>
@@ -251,6 +255,76 @@ namespace BudgetExecution
             {
                 Fail( ex );
             }
+        }
+
+        public ToolStripButton CreateButton( ToolType tool )
+        {
+            try
+            {
+                var _assembly = Assembly.GetAssembly( GetType( ) );
+                var _manager = new ResourceManager( $"ToolStrip.resx", _assembly );
+                using( var _stream = _manager.GetStream( $"{ tool }.png" ) )
+                {
+                    if( _stream != null )
+                    {
+                        var _image = Bitmap.FromStream( _stream );
+                        PreviousButton.Image = _image;
+                    }
+                }
+            }
+            catch ( Exception ex )
+            {
+                Fail( ex );
+                return default( ToolStripButton );
+            }
+
+            return default( ToolStripButton );
+        }
+
+        /// <summary>
+        /// Sets the button image.
+        /// </summary>
+        /// <param name="button">The button.</param>
+        /// <returns></returns>
+        public ToolStripButton SetButtonImage( ToolStripButton button )
+        {
+            if( button != null 
+                && Enum.IsDefined( typeof( ToolType ), button.ToolType ) )
+            {
+                try
+                {
+                    var _assembly = Assembly.GetAssembly( GetType( ) );
+                    var _manager = new ResourceManager( $"ToolStrip.resx", _assembly );
+                    var _file = button.ToolType.ToString( );
+                    var _toolButton = new ToolStripButton
+                    {
+                        ToolType = button.ToolType,
+                        Name = button.ToolType.ToString( ),
+                        Text = "",
+                        HoverText = button.HoverText
+                    };
+
+                    using( var _stream = _manager?.GetStream( $"{ _file }.png" ) )
+                    {
+                        if( _stream != null )
+                        {
+                            var _image = Bitmap.FromStream( _stream );
+                            _toolButton.Image = _image;
+                        }
+                    }
+
+                    return _toolButton.Image != null 
+                        ? _toolButton 
+                        : default( ToolStripButton );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( ToolStripButton );
+                }
+            }
+
+            return default( ToolStripButton );
         }
     }
 }
