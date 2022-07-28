@@ -8,6 +8,8 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
     using System.Drawing;
+    using System.Reflection;
+    using System.Resources;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -28,13 +30,13 @@ namespace BudgetExecution
             BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.LightSteelBlue;
             Font = new Font( "Roboto", 9 );
-            Text = string.Empty;
-            Visible = true;
-            Enabled = true;
             AutoToolTip = false;
             MouseHover += OnMouseHover;
             MouseLeave += OnMouseLeave;
             Click += OnClick;
+            Text = string.Empty;
+            Visible = true;
+            Enabled = true;
         }
 
         /// <summary>
@@ -265,6 +267,34 @@ namespace BudgetExecution
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the button image.
+        /// </summary>
+        /// <returns></returns>
+        public void SetImage( )
+        {
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            {
+                try
+                {
+                    var _assembly = Assembly.GetAssembly( GetType( ) );
+                    var _manager = new ResourceManager( "ToolStrip.resx", _assembly );
+                    using( var _stream = _manager?.GetStream( $"{ ToolType.ToString( ) }.png" ) )
+                    {
+                        if( _stream != null )
+                        {
+                            var _image = Bitmap.FromStream( _stream );
+                            Image = _image;
                         }
                     }
                 }
