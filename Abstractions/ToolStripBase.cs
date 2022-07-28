@@ -27,14 +27,6 @@ namespace BudgetExecution
         /// The separator.
         /// </value>
         public virtual IEnumerable<ToolSeparator> Separators { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the tool strip ComboBox.
-        /// </summary>
-        /// <value>
-        /// The tool strip ComboBox.
-        /// </value>
-        public virtual ToolStripDropDown DropDown { get; set; }
 
         /// <summary>
         /// Gets or sets the label.
@@ -43,6 +35,14 @@ namespace BudgetExecution
         /// The label.
         /// </value>
         public virtual ToolStripLabel Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tool strip ComboBox.
+        /// </summary>
+        /// <value>
+        /// The tool strip ComboBox.
+        /// </value>
+        public virtual ToolStripDropDown DropDown { get; set; }
 
         /// <summary>
         /// Gets or sets the tool strip text box.
@@ -157,6 +157,14 @@ namespace BudgetExecution
         public virtual ToolStripButton CalculatorButton { get; set; }
 
         /// <summary>
+        /// Gets or sets the calculator button.
+        /// </summary>
+        /// <value>
+        /// The calculator button.
+        /// </value>
+        public virtual ToolStripButton HomeButton { get; set; }
+
+        /// <summary>
         /// Gets or sets the progress bar.
         /// </summary>
         /// <value>
@@ -169,6 +177,24 @@ namespace BudgetExecution
         /// </summary>
         protected ToolStripBase( )
         {
+            Label = new ToolStripLabel( );
+            TextBox = new ToolStripTextBox( );
+            DropDown = new ToolStripDropDown( );
+            FirstButton = new ToolStripButton( );
+            PreviousButton = new ToolStripButton( );
+            NextButton = new ToolStripButton( );
+            LastButton = new ToolStripButton( );
+            EditButton = new ToolStripButton( );
+            AddButton = new ToolStripButton( );
+            DeleteButton = new ToolStripButton( );
+            SaveButton = new ToolStripButton( );
+            RefreshButton = new ToolStripButton( );
+            BrowseButton = new ToolStripButton( );
+            PrintButton = new ToolStripButton( );
+            ExcelButton = new ToolStripButton( );
+            CalculatorButton = new ToolStripButton( );
+            HomeButton = new ToolStripButton( );
+            ProgressBar = new ToolStripProgressBar( );
         }
 
         /// <summary>
