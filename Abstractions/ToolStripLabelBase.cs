@@ -12,6 +12,7 @@ namespace BudgetExecution
     using System.Drawing;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public abstract class ToolStripLabelBase : System.Windows.Forms.ToolStripLabel
     {
         /// <summary>
@@ -53,23 +54,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the setting.
-        /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        /// <summary>
-        /// Gets or sets the bar.
-        /// </summary>
-        /// <value>
-        /// The bar.
-        /// </value>
-        public ToolType Bar { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="ToolStripLabelBase"/> class.
@@ -86,7 +71,9 @@ namespace BudgetExecution
         {
             try
             {
-                Font = font;
+                Font = font != null
+                    ? font
+                    : new Font( "Roboto", 8 );
             }
             catch( Exception ex )
             {
@@ -102,7 +89,9 @@ namespace BudgetExecution
         {
             try
             {
-                ForeColor = color;
+                ForeColor = color != Color.Empty
+                    ? color
+                    : Color.Empty;
             }
             catch( Exception ex )
             {
@@ -118,7 +107,9 @@ namespace BudgetExecution
         {
             try
             {
-                BackColor = color;
+                BackColor = color != Color.Empty
+                    ? color
+                    : Color.Empty;
             }
             catch( Exception ex )
             {
@@ -134,7 +125,9 @@ namespace BudgetExecution
         {
             try
             {
-                Text = text;
+                Text = !string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -150,7 +143,9 @@ namespace BudgetExecution
         {
             try
             {
-                Field = BudgetForm.GetField( field );
+                Field = Enum.IsDefined( typeof( Field ), field )
+                    ? field
+                    : Field.NS;
             }
             catch( Exception ex )
             {
@@ -166,7 +161,9 @@ namespace BudgetExecution
         {
             try
             {
-                Tag = Settings.ReTag( tag );
+               Tag = tag != null
+                   ? tag
+                   : null;
             }
             catch( Exception ex )
             {

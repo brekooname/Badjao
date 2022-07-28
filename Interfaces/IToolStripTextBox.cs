@@ -36,8 +36,14 @@ namespace BudgetExecution
         void SetHoverText( ToolStripItem item );
 
         /// <summary>
+        /// Sets the text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        void SetText( string text );
+
+        /// <summary>
         /// Clears this instance.
         /// </summary>
-        void Clear();
+        void Clear( );
     }
 }

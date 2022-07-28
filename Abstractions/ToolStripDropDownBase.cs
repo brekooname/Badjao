@@ -18,6 +18,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="System.Windows.Forms.ToolStripComboBox" />
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public abstract class ToolStripDropDownBase : ToolStripComboBoxEx
     {
         /// <summary>
@@ -61,21 +62,12 @@ namespace BudgetExecution
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the setting.
+        /// Initializes a new instance of
+        ///  the <see cref="ToolStripDropDownBase"/> class.
         /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        /// <summary>
-        /// Gets or sets the bar.
-        /// </summary>
-        /// <value>
-        /// The bar.
-        /// </value>
-        public ToolType Bar { get; set; }
-        
+        protected ToolStripDropDownBase( )
+        {
+        }
 
         /// <summary>
         /// Sets the font.
@@ -85,7 +77,9 @@ namespace BudgetExecution
         {
             try
             {
-                Font = font;
+                Font = font != null
+                    ? font
+                    : new Font( "Roboto", 8  );
             }
             catch( Exception ex )
             {
@@ -101,7 +95,9 @@ namespace BudgetExecution
         {
             try
             {
-                ForeColor = color;
+                ForeColor = color != Color.Empty
+                    ? color
+                    : Color.Empty;
             }
             catch( Exception ex )
             {
@@ -117,7 +113,9 @@ namespace BudgetExecution
         {
             try
             {
-                BackColor = color;
+                BackColor = color != Color.Empty
+                    ? color
+                    : Color.Empty;
             }
             catch( Exception ex )
             {
@@ -133,7 +131,9 @@ namespace BudgetExecution
         {
             try
             {
-                Field = BudgetForm.GetField( field );
+                Field = Enum.IsDefined( typeof( Field ), field )
+                    ? field
+                    : Field.NS;
             }
             catch( Exception ex )
             {

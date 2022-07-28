@@ -17,6 +17,7 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripTextBox : ToolbarTextBase, IToolStripTextBox
     {
         /// <summary>
@@ -41,21 +42,48 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ToolStripTextBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        public ToolStripTextBox( string text ) 
+            : this( )
+        {
+            Text = text;
+        }
+
+        /// <summary>
+        /// Sets the text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        public void SetText( string text )
+        {
+            try
+            {
+                Text = !string.IsNullOrEmpty( text )
+                ? text
+                : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sets the hover information.
         /// </summary>
         /// <param name="text">The text.</param>
         public void SetHoverText( string text )
         {
-            if( !string.IsNullOrEmpty( text ) )
+            try
             {
-                try
-                {
-                    HoverText = text;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
+                HoverText = !string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -65,19 +93,15 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         public void SetField( Field field )
         {
-            if( Enum.IsDefined( typeof( Field ), field ) )
+            try
             {
-                try
-                {
-                    if( field != Field.NS )
-                    {
-                        Field = field;
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
+                Field = Enum.IsDefined( typeof( Field ), field )
+                    ? field
+                    : Field.NS;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -87,16 +111,15 @@ namespace BudgetExecution
         /// <param name="tag">The tag.</param>
         public void SetTag( object tag )
         {
-            if( tag != null )
+            try
             {
-                try
-                {
-                    Tag = tag;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
+                Tag = tag != null
+                   ? tag
+                   : null;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

@@ -108,7 +108,7 @@ namespace BudgetExecution
             ThemeStyle.ComboBoxStyle.HoverBorderColor = Color.SteelBlue;
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
-            VisibleChanged += OnLoad;
+            VisibleChanged += OnVisible;
         }
 
         /// <summary>
@@ -142,104 +142,65 @@ namespace BudgetExecution
 
 
         /// <summary>
-        /// Creates the text box.
+        /// Called when [load].
         /// </summary>
-        /// <returns>
-        /// </returns>
-        public virtual void AddTextBox( )
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        protected void OnVisible( object sender, EventArgs e )
         {
-            try
+            if( sender is ToolStrip )
             {
-                var _textBox = new ToolStripTextBox( );
-                Items?.Add( _textBox );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        public virtual void AddComboBox( )
-        {
-            try
-            {
-                var _comboBox = new ToolStripComboBoxEx( );
-                Items?.Add( _comboBox );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        public virtual void AddDropDownItem( object item )
-        {
-            try
-            {
-                DropDown?.ComboBox?.Items.Add( item );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        public virtual void ResetDropDownList( IEnumerable<object> items )
-        {
-            try
-            {
-                DropDown?.ComboBox.Items?.Clear( );
-                if ( items?.Count( ) > 0 )
-                {
-                    foreach( var item in items )
-                    {
-                        DropDown?.ComboBox?.Items?.Add( item );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Populates the toolbar ComboBox.
-        /// </summary>
-        public void PopulateComboBoxItems()
-        {
-            try
-            {
-                foreach( var _name in Enum.GetNames( typeof( SQL ) ) )
-                {
-                    if( !string.IsNullOrEmpty( _name )
-                        && _name != "NS" )
-                    {
-                        DropDown?.ComboBox.Items.Add( _name );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Creates the text box.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public virtual void AddSeparator()
-        {
-            try
-            {
-                var _separator = new ToolSeparator( );
-                Items?.Add( _separator );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                Items.Clear( );
+                Items.Add( Label );
+                Items.Add( new ToolSeparator( ) );
+                Items.Add( TextBox );
+                Items.Add( new ToolSeparator( ) );
+                Items.Add( DropDown );
+                Items.Add( new ToolSeparator( ) );
+                FirstButton.SetImage( );
+                Items.Add( FirstButton );
+                Items.Add( new ToolSeparator( ) );
+                PreviousButton.SetImage( );
+                Items.Add( PreviousButton );
+                Items.Add( new ToolSeparator( ) );
+                NextButton.SetImage( );
+                Items.Add( NextButton );
+                Items.Add( new ToolSeparator( ) );
+                LastButton.SetImage( );
+                Items.Add( LastButton );
+                Items.Add( new ToolSeparator( ) );
+                EditButton.SetImage( );
+                Items.Add( EditButton );
+                Items.Add( new ToolSeparator( ) );
+                AddButton.SetImage( );
+                Items.Add( AddButton );
+                Items.Add( new ToolSeparator( ) );
+                DeleteButton.SetImage( );
+                Items.Add( DeleteButton );
+                Items.Add( new ToolSeparator( ) );
+                SaveButton.SetImage( );
+                Items.Add( SaveButton );
+                Items.Add( new ToolSeparator( ) );
+                RefreshButton.SetImage( );
+                Items.Add( RefreshButton );
+                Items.Add( new ToolSeparator( ) );
+                BrowseButton.SetImage( );
+                Items.Add( BrowseButton );
+                Items.Add( new ToolSeparator( ) );
+                PrintButton.SetImage( );
+                Items.Add( PrintButton );
+                Items.Add( new ToolSeparator( ) );
+                ExcelButton.SetImage( );
+                Items.Add( ExcelButton );
+                Items.Add( new ToolSeparator( ) );
+                CalculatorButton.SetImage( );
+                Items.Add( CalculatorButton );
+                Items.Add( new ToolSeparator( ) );
+                HomeButton.SetImage( );
+                Items.Add( HomeButton );
+                Items.Add( new ToolSeparator( ) );
+                Items.Add( ProgressBar );
+                Items.Add( new ToolSeparator( ) );
             }
         }
 
@@ -250,153 +211,11 @@ namespace BudgetExecution
         {
             try
             {
-                FirstButton = new ToolStripButton
-                {
-                    Name = "FirstButton",
-                    Text = "",
-                    ToolType = ToolType.FirstButton
-                };
-                
-                PreviousButton = new ToolStripButton
-                {
-                    Name = "PreviousButton",
-                    Text = "",
-                    ToolType = ToolType.PreviousButton
-                };
-
-                NextButton = new ToolStripButton
-                {
-                    Name = "NextButton",
-                    Text = "",
-                    ToolType = ToolType.NextButton
-                };
-
-                LastButton = new ToolStripButton
-                {
-                    Name = "LastButton",
-                    Text = "",
-                    ToolType = ToolType.LastButton
-                };
-
-                EditButton = new ToolStripButton
-                {
-                    Name = "EditButton",
-                    Text = "",
-                    ToolType = ToolType.EditButton
-                };
-
-                AddButton = new ToolStripButton
-                {
-                    Name = "AddButton",
-                    Text = "",
-                    ToolType = ToolType.AddButton
-                };
-
-                DeleteButton = new ToolStripButton
-                {
-                    Name = "DeleteButton",
-                    Text = "",
-                    ToolType = ToolType.DeleteButton
-                };
-
-                RefreshButton = new ToolStripButton
-                {
-                    Name = "RefreshButton",
-                    Text = "",
-                    ToolType = ToolType.RefreshButton
-                };
-
-                SaveButton = new ToolStripButton
-                {
-                    Name = "SaveButton",
-                    Text = "",
-                    ToolType = ToolType.SaveButton
-                };
-
-                BrowseButton = new ToolStripButton
-                {
-                    Name = "BrowseButton",
-                    Text = "",
-                    ToolType = ToolType.BrowseButton
-                };
-
-                PrintButton = new ToolStripButton
-                {
-                    Name = "PrintButton",
-                    Text = "",
-                    ToolType = ToolType.PrintButton
-                };
-
-                ExcelButton = new ToolStripButton
-                {
-                    Name = "ExcelButton",
-                    Text = "",
-                    ToolType = ToolType.ExcelButton
-                };
-
-                CalculatorButton = new ToolStripButton
-                {
-                    Name = "CalculatorButton",
-                    Text = "",
-                    ToolType = ToolType.CalculatorButton
-                };
-
-                ProgressBar = new ToolStripProgressBar
-                {
-                    Name = "ProgressBar",
-                    Visible = false
-                };
             }
             catch( Exception ex )
             {
                 Fail( ex );
             }
-        }
-
-        /// <summary>
-        /// Sets the button image.
-        /// </summary>
-        /// <param name="button">The button.</param>
-        /// <returns></returns>
-        public ToolStripButton SetButtonImage( ToolStripButton button )
-        {
-            if( button != null 
-                && Enum.IsDefined( typeof( ToolType ), button.ToolType ) )
-            {
-                try
-                {
-                    var _assembly = Assembly.GetAssembly( GetType( ) );
-                    var _manager = new ResourceManager( "ToolStrip.resx", _assembly );
-                    var _file = button.ToolType.ToString( );
-                    var _toolButton = new ToolStripButton
-                    {
-                        ToolType = button.ToolType,
-                        Name = button.ToolType.ToString( ),
-                        Text = "",
-                        HoverText = button.HoverText
-                    };
-
-                    using( var _stream = _manager?.GetStream( $"{ _file }.png" ) )
-                    {
-                        if( _stream != null )
-                        {
-                            var _image = Bitmap.FromStream( _stream );
-                            _toolButton.Image = _image;
-                        }
-                    }
-
-                    return _toolButton.Image != null 
-                        ? _toolButton 
-                        : default( ToolStripButton );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( ToolStripButton );
-                }
-            }
-
-            return default( ToolStripButton );
         }
     }
 }

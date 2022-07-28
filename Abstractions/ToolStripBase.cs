@@ -7,6 +7,10 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Linq;
+    using System.Reflection;
+    using System.Resources;
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -180,32 +184,101 @@ namespace BudgetExecution
             Label = new ToolStripLabel( );
             TextBox = new ToolStripTextBox( );
             DropDown = new ToolStripDropDown( );
-            FirstButton = new ToolStripButton( );
-            PreviousButton = new ToolStripButton( );
-            NextButton = new ToolStripButton( );
-            LastButton = new ToolStripButton( );
-            EditButton = new ToolStripButton( );
-            AddButton = new ToolStripButton( );
-            DeleteButton = new ToolStripButton( );
-            SaveButton = new ToolStripButton( );
-            RefreshButton = new ToolStripButton( );
-            BrowseButton = new ToolStripButton( );
-            PrintButton = new ToolStripButton( );
-            ExcelButton = new ToolStripButton( );
-            CalculatorButton = new ToolStripButton( );
-            HomeButton = new ToolStripButton( );
+            FirstButton = new ToolStripButton( ToolType.FirstButton );
+            PreviousButton = new ToolStripButton( ToolType.PreviousButton );
+            NextButton = new ToolStripButton( ToolType.NextButton );
+            LastButton = new ToolStripButton( ToolType.LastButton );
+            EditButton = new ToolStripButton( ToolType.EditButton);
+            AddButton = new ToolStripButton( ToolType.AddButton );
+            DeleteButton = new ToolStripButton( ToolType.DeleteButton );
+            SaveButton = new ToolStripButton( ToolType.SaveButton );
+            RefreshButton = new ToolStripButton( ToolType.RefreshButton );
+            BrowseButton = new ToolStripButton( ToolType.BrowseButton );
+            PrintButton = new ToolStripButton( ToolType.PrintButton );
+            ExcelButton = new ToolStripButton( ToolType.ExcelButton );
+            CalculatorButton = new ToolStripButton( ToolType.CalculatorButton );
+            HomeButton = new ToolStripButton( ToolType.HomeButton );
             ProgressBar = new ToolStripProgressBar( );
         }
 
+        
         /// <summary>
-        /// Called when [load].
+        /// Creates the text box.
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected void OnLoad( object sender, EventArgs e )
+        /// <returns>
+        /// </returns>
+        public virtual void AddTextBox()
         {
-            if ( sender is ToolStrip  )
+            try
             {
+                var _textBox = new ToolStripTextBox( );
+                Items?.Add( _textBox );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void AddComboBox()
+        {
+            try
+            {
+                var _comboBox = new ToolStripComboBoxEx( );
+                Items?.Add( _comboBox );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void AddDropDownItem( object item )
+        {
+            try
+            {
+                DropDown?.ComboBox?.Items.Add( item );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void ResetDropDownList( IEnumerable<object> items )
+        {
+            try
+            {
+                DropDown?.ComboBox.Items?.Clear( );
+                if( items?.Count( ) > 0 )
+                {
+                    foreach( var item in items )
+                    {
+                        DropDown?.ComboBox?.Items?.Add( item );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+        
+        /// <summary>
+        /// Creates the text box.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public virtual void AddSeparator()
+        {
+            try
+            {
+                var _separator = new ToolSeparator( );
+                Items?.Add( _separator );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

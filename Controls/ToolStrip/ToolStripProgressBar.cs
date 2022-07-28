@@ -28,7 +28,7 @@ namespace BudgetExecution
             Font = new Font( "Roboto", 9 );
             Visible = true;
             Enabled = true;
-            Name = "Progress";
+            Name = "ProgressBar";
             Maximum = 100;
             Minimum = 1;
             Tag = Name;
@@ -61,7 +61,7 @@ namespace BudgetExecution
         /// <summary>
         /// Increases the specified increment.
         /// </summary>
-        public void ShowProgress( int step = 10 )
+        public void ProgressByStep( int step = 10 )
         {
             try
             {
@@ -82,7 +82,9 @@ namespace BudgetExecution
         {
             try
             {
-                Field = BudgetForm.GetField( field );
+                Field = Enum.IsDefined( typeof( Field ), field )
+                    ? field
+                    : Field.NS;
             }
             catch( Exception ex )
             {
@@ -94,11 +96,14 @@ namespace BudgetExecution
         /// Sets the tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
+        [SuppressMessage( "ReSharper", "MergeConditionalExpression" )]
         public void ReTag( object tag )
         {
             try
             {
-                Tag = Settings.ReTag( tag );
+                Tag = tag != null
+                    ? tag
+                    : null;
             }
             catch( Exception ex )
             {
@@ -114,7 +119,9 @@ namespace BudgetExecution
         {
             try
             {
-                HoverText = text;
+                HoverText = string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
             }
             catch( Exception ex )
             {

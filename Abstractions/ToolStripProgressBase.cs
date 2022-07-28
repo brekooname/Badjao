@@ -5,9 +5,6 @@
 namespace BudgetExecution
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
@@ -36,23 +33,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual ToolTip ToolTip { get; set; }
-
-        /// <summary>
-        /// Gets or sets the filter.
-        /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
-        public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the setting.
-        /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         /// <summary>
         /// Gets or sets the hover text.
         /// </summary>

@@ -12,6 +12,7 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripLabel : ToolStripLabelBase, IToolStripLabel
     {
         /// <summary>
@@ -43,7 +44,7 @@ namespace BudgetExecution
             Text = text;
             MouseHover += OnMouseHover;
         }
-
+        
         /// <summary> Sets the text. </summary>
         /// <param name = "text" > The text. </param>
         /// <param name = "color" > The color. </param>
@@ -51,8 +52,13 @@ namespace BudgetExecution
         {
             try
             {
-                ForeColor = color;
-                Text = text;
+                ForeColor = color != Color.Empty
+                    ? color
+                    : Color.Empty;
+
+                Text = !string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -68,9 +74,17 @@ namespace BudgetExecution
         {
             try
             {
-                Font = font;
-                ForeColor = color;
-                Text = text;
+                Font = font != null
+                    ? font
+                    : new Font( "Roboto", 8 );
+
+                ForeColor = color != Color.Empty
+                    ? color
+                    : Color.Empty;
+
+                Text = !string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
             }
             catch( Exception ex )
             {

@@ -318,7 +318,6 @@
             // DropDown
             // 
             this.DropDown.AllowDrop = true;
-            this.DropDown.Bar = BudgetExecution.ToolType.NS;
             this.DropDown.BindingSource = this.BindingSource;
             this.DropDown.DataFilter = null;
             this.DropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -403,7 +402,6 @@
             // Label
             // 
             this.Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.Label.Bar = BudgetExecution.ToolType.NS;
             this.Label.BindingSource = this.BindingSource;
             this.Label.DataFilter = null;
             this.Label.Field = BudgetExecution.Field.RpioActivityCode;
