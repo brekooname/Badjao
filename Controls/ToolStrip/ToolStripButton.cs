@@ -49,7 +49,8 @@ namespace BudgetExecution
             : this( )
         {
             ToolType = toolType;
-            Image = GetImage( toolType );
+            Name = toolType.ToString( );
+            Image = GetImage(  );
         }
 
 
@@ -279,24 +280,46 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the button image.
-        /// </summary>
-        /// <returns></returns>
-        public Image GetImage( ToolType toolType )
+        public void  SetImage( )
         {
-            if( Enum.IsDefined( typeof( ToolType ), toolType ) )
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
                 try
                 {
                     Setting = ConfigurationManager.AppSettings;
-                    var _path = Setting[ "ToolStrip" ] + $"{ toolType }.png";
+                    var _path = Setting[ "ToolStrip" ] + $"{ ToolType }.png";
+                    using( var _stream = File.Open( _path, FileMode.Open ) )
+                    {
+                        if( _stream != null )
+                        {
+                            var _image = Image.FromStream( _stream );
+                            Image = _image;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+        /// <summary>
+        /// Sets the button image.
+        /// </summary>
+        /// <returns></returns>
+        public Image GetImage(  )
+        {
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            {
+                try
+                {
+                    Setting = ConfigurationManager.AppSettings;
+                    var _path = Setting[ "ToolStrip" ] + $"{ ToolType }.png";
                     using( var _stream = File.Open( _path, FileMode.Open ))
                     {
                         if( _stream != null )
                         {
                             var _image = Bitmap.FromStream( _stream );
-
                             return _image != null
                                 ? _image
                                 : default( Image );

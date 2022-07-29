@@ -143,12 +143,6 @@
             {
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
                 BindingSource.DataSource = _data.Table;
-                var _toolstrip = new ToolStrip
-                {
-                    Dock = DockStyle.Bottom
-                };
-
-                Controls.Add( _toolstrip );
             }
             catch( Exception ex )
             {

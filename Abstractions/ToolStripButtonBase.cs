@@ -17,7 +17,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ Serializable ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
-    public class ToolStripButtonBase : ToolStripItem
+    public class ToolStripButtonBase : System.Windows.Forms.ToolStripButton
     {
         /// <summary>
         /// Gets or sets the setting.

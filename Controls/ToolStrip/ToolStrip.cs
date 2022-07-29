@@ -94,8 +94,8 @@ namespace BudgetExecution
             LauncherStyle = LauncherStyle.Office12;
             ShowLauncher = true;
             GripStyle = ToolStripGripStyle.Hidden;
-            VisualStyle = ToolStripExStyle.Default;
-            OfficeColorScheme = ColorScheme.Blue;
+            VisualStyle = ToolStripExStyle.Office2016DarkGray;
+            OfficeColorScheme = ColorScheme.Black;
             ThemeStyle.BackColor = Color.FromArgb( 15, 15, 15 );
             ThemeStyle.ArrowColor = Color.SteelBlue;
             ThemeStyle.BottomToolStripBackColor = Color.FromArgb( 28, 28, 28 );
@@ -105,6 +105,8 @@ namespace BudgetExecution
             ThemeStyle.ComboBoxStyle.HoverBorderColor = Color.SteelBlue;
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
+            Visible = true;
+            Enabled = true;
         }
 
         /// <summary>

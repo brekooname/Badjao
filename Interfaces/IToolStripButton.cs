@@ -5,6 +5,7 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Drawing;
 
     public interface IToolStripButton
     {
@@ -51,6 +52,6 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the image.
         /// </summary>
-        void SetImage( );
+        Image GetImage( );
     }
 }
