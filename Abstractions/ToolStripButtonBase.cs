@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
 
@@ -18,6 +19,14 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripButtonBase : ToolStripItem
     {
+        /// <summary>
+        /// Gets or sets the setting.
+        /// </summary>
+        /// <value>
+        /// The setting.
+        /// </value>
+        public virtual NameValueCollection Setting { get; set; }
+
         /// <summary>
         /// Gets or sets the tool tip.
         /// </summary>

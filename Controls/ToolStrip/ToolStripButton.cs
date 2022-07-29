@@ -5,17 +5,18 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
     using System.Drawing;
-    using System.Reflection;
-    using System.Resources;
+    using System.IO;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
     [ Serializable ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripButton : ToolStripButtonBase, IToolStripButton
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace BudgetExecution
             : this( )
         {
             ToolType = toolType;
+            Image = GetImage( toolType );
         }
 
 
@@ -281,32 +283,34 @@ namespace BudgetExecution
         /// Sets the button image.
         /// </summary>
         /// <returns></returns>
-        public void SetImage( )
+        public Image GetImage( ToolType toolType )
         {
-            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            if( Enum.IsDefined( typeof( ToolType ), toolType ) )
             {
                 try
                 {
-                    var _assembly = Assembly.GetEntryAssembly( );
-
-                    if( _assembly != null )
+                    Setting = ConfigurationManager.AppSettings;
+                    var _path = Setting[ "ToolStrip" ] + $"{ toolType }.png";
+                    using( var _stream = File.Open( _path, FileMode.Open ))
                     {
-                        var _manager = new ResourceManager( "BudgetExecution.Badjao.Resources.ToolStrip", _assembly );
-                        using( var _stream = _manager?.GetStream( $"{ ToolType.ToString( ) }.png" ) )
+                        if( _stream != null )
                         {
-                            if( _stream != null )
-                            {
-                                var _image = Bitmap.FromStream( _stream );
-                                Image = _image;
-                            }
+                            var _image = Bitmap.FromStream( _stream );
+
+                            return _image != null
+                                ? _image
+                                : default( Image );
                         }
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
+                    return default( Image );
                 }
             }
+
+            return default( Image );
         }
     }
 }

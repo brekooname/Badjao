@@ -803,6 +803,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolStrip.resx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Abstractions\RichTextBase.cs" />
     <Compile Include="Abstractions\SplashBase.cs">
@@ -916,6 +917,7 @@
     <EmbeddedResource Include="Resources\ToolStrip.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ToolStrip.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include=".editorconfig" />
     <None Include="Access.xsc">
