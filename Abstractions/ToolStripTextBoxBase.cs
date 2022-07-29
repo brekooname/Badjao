@@ -11,7 +11,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class ToolbarTextBase : System.Windows.Forms.ToolStripTextBox
+    public abstract class ToolStripTextBase : System.Windows.Forms.ToolStripTextBox
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -53,20 +53,12 @@ namespace BudgetExecution
         /// </value>
         public virtual NameValueCollection Setting { get; set; } =
             ConfigurationManager.AppSettings;
-
-        /// <summary>
-        /// Gets or sets the bar.
-        /// </summary>
-        /// <value>
-        /// The bar.
-        /// </value>
-        public ToolType Bar { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolbarTextBase"/> class.
+        /// of the <see cref="ToolStripTextBase"/> class.
         /// </summary>
-        protected ToolbarTextBase()
+        protected ToolStripTextBase( )
         {
         }
 

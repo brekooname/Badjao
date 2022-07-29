@@ -10,9 +10,6 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Resources;
 
     /// <summary>
     /// 
@@ -108,7 +105,6 @@ namespace BudgetExecution
             ThemeStyle.ComboBoxStyle.HoverBorderColor = Color.SteelBlue;
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
-            VisibleChanged += OnVisible;
         }
 
         /// <summary>
@@ -150,57 +146,6 @@ namespace BudgetExecution
         {
             if( sender is ToolStrip )
             {
-                Items.Clear( );
-                Items.Add( Label );
-                Items.Add( new ToolSeparator( ) );
-                Items.Add( TextBox );
-                Items.Add( new ToolSeparator( ) );
-                Items.Add( DropDown );
-                Items.Add( new ToolSeparator( ) );
-                FirstButton.SetImage( );
-                Items.Add( FirstButton );
-                Items.Add( new ToolSeparator( ) );
-                PreviousButton.SetImage( );
-                Items.Add( PreviousButton );
-                Items.Add( new ToolSeparator( ) );
-                NextButton.SetImage( );
-                Items.Add( NextButton );
-                Items.Add( new ToolSeparator( ) );
-                LastButton.SetImage( );
-                Items.Add( LastButton );
-                Items.Add( new ToolSeparator( ) );
-                EditButton.SetImage( );
-                Items.Add( EditButton );
-                Items.Add( new ToolSeparator( ) );
-                AddButton.SetImage( );
-                Items.Add( AddButton );
-                Items.Add( new ToolSeparator( ) );
-                DeleteButton.SetImage( );
-                Items.Add( DeleteButton );
-                Items.Add( new ToolSeparator( ) );
-                SaveButton.SetImage( );
-                Items.Add( SaveButton );
-                Items.Add( new ToolSeparator( ) );
-                RefreshButton.SetImage( );
-                Items.Add( RefreshButton );
-                Items.Add( new ToolSeparator( ) );
-                BrowseButton.SetImage( );
-                Items.Add( BrowseButton );
-                Items.Add( new ToolSeparator( ) );
-                PrintButton.SetImage( );
-                Items.Add( PrintButton );
-                Items.Add( new ToolSeparator( ) );
-                ExcelButton.SetImage( );
-                Items.Add( ExcelButton );
-                Items.Add( new ToolSeparator( ) );
-                CalculatorButton.SetImage( );
-                Items.Add( CalculatorButton );
-                Items.Add( new ToolSeparator( ) );
-                HomeButton.SetImage( );
-                Items.Add( HomeButton );
-                Items.Add( new ToolSeparator( ) );
-                Items.Add( ProgressBar );
-                Items.Add( new ToolSeparator( ) );
             }
         }
 

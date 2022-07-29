@@ -379,7 +379,6 @@
             // TextBox
             // 
             this.TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
-            this.TextBox.Bar = BudgetExecution.ToolType.NS;
             this.TextBox.BindingSource = null;
             this.TextBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.TextBox.Font = new System.Drawing.Font("Roboto", 9F);

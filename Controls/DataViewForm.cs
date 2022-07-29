@@ -2,6 +2,7 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using System;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
 
 
@@ -142,6 +143,12 @@
             {
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
                 BindingSource.DataSource = _data.Table;
+                var _toolstrip = new ToolStrip
+                {
+                    Dock = DockStyle.Bottom
+                };
+
+                Controls.Add( _toolstrip );
             }
             catch( Exception ex )
             {

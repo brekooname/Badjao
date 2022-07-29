@@ -287,14 +287,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _assembly = Assembly.GetAssembly( GetType( ) );
-                    var _manager = new ResourceManager( "ToolStrip.resx", _assembly );
-                    using( var _stream = _manager?.GetStream( $"{ ToolType.ToString( ) }.png" ) )
+                    var _assembly = Assembly.GetEntryAssembly( );
+
+                    if( _assembly != null )
                     {
-                        if( _stream != null )
+                        var _manager = new ResourceManager( "BudgetExecution.Badjao.Resources.ToolStrip", _assembly );
+                        using( var _stream = _manager?.GetStream( $"{ ToolType.ToString( ) }.png" ) )
                         {
-                            var _image = Bitmap.FromStream( _stream );
-                            Image = _image;
+                            if( _stream != null )
+                            {
+                                var _image = Bitmap.FromStream( _stream );
+                                Image = _image;
+                            }
                         }
                     }
                 }

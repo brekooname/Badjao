@@ -6,8 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
 
@@ -29,7 +27,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.

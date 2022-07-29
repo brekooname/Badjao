@@ -5,7 +5,6 @@
 namespace BudgetExecution
 {
     using System;
-    using System.Windows.Forms;
 
     public interface IToolStripButton
     {
@@ -41,13 +40,17 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the hover text.
         /// </summary>
-        /// <param name="item">The item.</param>
-        void SetHoverText( ToolStripItem item );
+        void SetHoverText( );
 
         /// <summary>
         /// Sets the hover text.
         /// </summary>
         /// <param name="text">The text.</param>
         void SetHoverText( string text );
+
+        /// <summary>
+        /// Sets the image.
+        /// </summary>
+        void SetImage( );
     }
 }

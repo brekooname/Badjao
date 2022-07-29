@@ -7,10 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
     using System.Linq;
-    using System.Reflection;
-    using System.Resources;
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -181,24 +178,75 @@ namespace BudgetExecution
         /// </summary>
         protected ToolStripBase( )
         {
-            Label = new ToolStripLabel( );
+            Items.Clear( );
+            Label = new ToolStripLabel(  );
+            Items.Add( Label );
+            Items.Add( new ToolSeparator( ) );
             TextBox = new ToolStripTextBox( );
+            Items.Add( TextBox );
+            Items.Add( new ToolSeparator( ) );
             DropDown = new ToolStripDropDown( );
+            Items.Add( DropDown );
+            Items.Add( new ToolSeparator( ) );
             FirstButton = new ToolStripButton( ToolType.FirstButton );
+            FirstButton.SetImage( );
+            Items.Add( FirstButton );
+            Items.Add( new ToolSeparator( ) );
             PreviousButton = new ToolStripButton( ToolType.PreviousButton );
+            PreviousButton.SetImage( );
+            Items.Add( PreviousButton );
+            Items.Add( new ToolSeparator( ) );
             NextButton = new ToolStripButton( ToolType.NextButton );
+            NextButton.SetImage( );
+            Items.Add( NextButton );
+            Items.Add( new ToolSeparator( ) );
             LastButton = new ToolStripButton( ToolType.LastButton );
-            EditButton = new ToolStripButton( ToolType.EditButton);
+            LastButton.SetImage( );
+            Items.Add( LastButton );
+            Items.Add( new ToolSeparator( ) );
+            EditButton = new ToolStripButton( ToolType.EditButton );
+            EditButton.SetImage( );
+            Items.Add( EditButton );
+            Items.Add( new ToolSeparator( ) );
             AddButton = new ToolStripButton( ToolType.AddButton );
+            AddButton.SetImage( );
+            Items.Add( AddButton );
+            Items.Add( new ToolSeparator( ) );
             DeleteButton = new ToolStripButton( ToolType.DeleteButton );
+            DeleteButton.SetImage( );
+            Items.Add( DeleteButton );
+            Items.Add( new ToolSeparator( ) );
             SaveButton = new ToolStripButton( ToolType.SaveButton );
+            SaveButton.SetImage( );
+            Items.Add( SaveButton );
+            Items.Add( new ToolSeparator( ) );
             RefreshButton = new ToolStripButton( ToolType.RefreshButton );
+            RefreshButton.SetImage( );
+            Items.Add( RefreshButton );
+            Items.Add( new ToolSeparator( ) );
             BrowseButton = new ToolStripButton( ToolType.BrowseButton );
+            BrowseButton.SetImage( );
+            Items.Add( BrowseButton );
+            Items.Add( new ToolSeparator( ) );
             PrintButton = new ToolStripButton( ToolType.PrintButton );
+            PrintButton.SetImage( );
+            Items.Add( PrintButton );
+            Items.Add( new ToolSeparator( ) );
             ExcelButton = new ToolStripButton( ToolType.ExcelButton );
+            ExcelButton.SetImage( );
+            Items.Add( ExcelButton );
+            Items.Add( new ToolSeparator( ) );
             CalculatorButton = new ToolStripButton( ToolType.CalculatorButton );
+            CalculatorButton.SetImage( );
+            Items.Add( CalculatorButton );
+            Items.Add( new ToolSeparator( ) );
             HomeButton = new ToolStripButton( ToolType.HomeButton );
+            HomeButton.SetImage( );
+            Items.Add( HomeButton );
+            Items.Add( new ToolSeparator( ) );
             ProgressBar = new ToolStripProgressBar( );
+            Items.Add( ProgressBar );
+            Items.Add( new ToolSeparator( ) );
         }
 
         
@@ -207,7 +255,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual void AddTextBox()
+        public virtual void AddTextBox( )
         {
             try
             {

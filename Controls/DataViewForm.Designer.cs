@@ -40,7 +40,6 @@
             this.DataView = new BudgetExecution.DataView();
             this.ListBox = new BudgetExecution.ListBox();
             this.ToolTip = new BudgetExecution.ToolTip();
-            this.ToolStrip = new BudgetExecution.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataView)).BeginInit();
@@ -106,12 +105,13 @@
             this.DataView.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2010Black;
             this.DataView.DataFilter = null;
             this.DataView.DataSource = this.BindingSource;
+            this.DataView.DefaultRowHeight = 22;
             this.DataView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataView.ExcelLikeAlignment = true;
             this.DataView.ExcelLikeSelectionFrame = true;
             this.DataView.Field = BudgetExecution.Field.RpioActivityCode;
             this.DataView.Font = new System.Drawing.Font("Roboto", 9F);
-            this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2010;
+            this.DataView.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.DataView.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
             this.DataView.HorizontalScrollTips = true;
             this.DataView.HorizontalThumbTrack = true;
@@ -119,8 +119,10 @@
             this.DataView.Location = new System.Drawing.Point(0, 0);
             this.DataView.Name = "DataView";
             this.DataView.Numeric = BudgetExecution.Numeric.NS;
+            this.DataView.Office2007ScrollBars = true;
             this.DataView.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.DataView.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.DataView.Office2016ScrollBars = true;
             this.DataView.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.DataView.OptimizeInsertRemoveCells = true;
             this.DataView.Properties.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
@@ -251,64 +253,6 @@
             this.ToolTip.TipText = null;
             this.ToolTip.TipTitle = null;
             // 
-            // ToolStrip
-            // 
-            this.ToolStrip.AddButton = null;
-            this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ToolStrip.BindingSource = this.BindingSource;
-            this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
-            this.ToolStrip.BrowseButton = null;
-            this.ToolStrip.CalculatorButton = null;
-            this.ToolStrip.CanOverrideStyle = true;
-            this.ToolStrip.CaptionAlignment = Syncfusion.Windows.Forms.Tools.CaptionAlignment.Near;
-            this.ToolStrip.CaptionFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Bold);
-            this.ToolStrip.CaptionStyle = Syncfusion.Windows.Forms.Tools.CaptionStyle.Top;
-            this.ToolStrip.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
-            this.ToolStrip.DataFilter = null;
-            this.ToolStrip.DeleteButton = null;
-            this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ToolStrip.DropDown = null;
-            this.ToolStrip.EditButton = null;
-            this.ToolStrip.ExcelButton = null;
-            this.ToolStrip.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ToolStrip.FirstButton = null;
-            this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStrip.ForeColor = System.Drawing.Color.Black;
-            this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ToolStrip.Image = null;
-            this.ToolStrip.ImageDirectory = null;
-            this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ToolStrip.ImageSize = new System.Drawing.Size(0, 0);
-            this.ToolStrip.LastButton = null;
-            this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ToolStrip.Location = new System.Drawing.Point(0, 672);
-            this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
-            this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.NextButton = null;
-            this.ToolStrip.Numeric = BudgetExecution.Numeric.NS;
-            this.ToolStrip.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Blue;
-            this.ToolStrip.Padding = new System.Windows.Forms.Padding(1);
-            this.ToolStrip.PreviousButton = null;
-            this.ToolStrip.PrintButton = null;
-            this.ToolStrip.ProgressBar = null;
-            this.ToolStrip.RefreshButton = null;
-            this.ToolStrip.SaveButton = null;
-            this.ToolStrip.Separators = null;
-            this.ToolStrip.ShowCaption = true;
-            this.ToolStrip.ShowLauncher = true;
-            this.ToolStrip.Size = new System.Drawing.Size(1188, 41);
-            this.ToolStrip.TabIndex = 3;
-            this.ToolStrip.TextBox = null;
-            this.ToolStrip.ThemeStyle.ArrowColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ToolStrip.ThemeStyle.BottomToolStripBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ToolStrip.ThemeStyle.CaptionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ToolStrip.ThemeStyle.CaptionForeColor = System.Drawing.Color.Black;
-            this.ToolStrip.ThemeStyle.ComboBoxStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ToolStrip.ThemeStyle.ComboBoxStyle.HoverBorderColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.HoverItemBackColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.HoverItemForeColor = System.Drawing.Color.White;
-            // 
             // DataViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -322,7 +266,6 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1188, 713);
-            this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.GridPanel);
             this.Controls.Add(this.ListBox);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -353,6 +296,5 @@
         public System.Windows.Forms.BindingSource BindingSource;
         public System.Windows.Forms.Panel GridPanel;
         public DataView DataView;
-        public ToolStrip ToolStrip;
     }
 }

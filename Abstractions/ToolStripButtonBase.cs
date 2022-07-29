@@ -15,6 +15,7 @@ namespace BudgetExecution
     /// <seealso cref="System.Windows.Forms.ToolStripButton" />
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ Serializable ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripButtonBase : ToolStripItem
     {
         /// <summary>
@@ -74,7 +75,9 @@ namespace BudgetExecution
         {
             try
             {
-                Field = BudgetForm.GetField( field );
+                Field = Enum.IsDefined( typeof( Field ), field )
+                    ? field
+                    : Field.NS;
             }
             catch( Exception ex )
             {
@@ -90,7 +93,9 @@ namespace BudgetExecution
         {
             try
             {
-                Tag = Settings.ReTag( tag );
+                Tag = tag != null
+                   ? tag
+                   : null;
             }
             catch( Exception ex )
             {
@@ -101,10 +106,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the hover text.
         /// </summary>
-        /// <param name="item">The item.</param>
-        public void SetHoverText( ToolStripItem item )
+        public void SetHoverText( )
         {
-            var _text = item?.Tag?.ToString( );
+            var _text = Tag?.ToString( );
 
             if( !string.IsNullOrEmpty( _text ) )
             {
@@ -127,7 +131,9 @@ namespace BudgetExecution
         {
             try
             {
-                HoverText = text;
+                HoverText = !string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
             }
             catch( Exception ex )
             {

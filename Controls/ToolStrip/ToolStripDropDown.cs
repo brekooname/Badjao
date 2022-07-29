@@ -89,7 +89,7 @@ namespace BudgetExecution
         /// Gets the selected item.
         /// </summary>
         /// <returns></returns>
-        public object GetSelectedItem()
+        public object GetSelectedItem( )
         {
             if( Selected && SelectedIndex > -1 )
             {

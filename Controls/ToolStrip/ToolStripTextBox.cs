@@ -18,13 +18,13 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
-    public class ToolStripTextBox : ToolbarTextBase, IToolStripTextBox
+    public class ToolStripTextBox : ToolStripTextBase, IToolStripTextBox
     {
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="ToolStripTextBox"/> class.
         /// </summary>
-        public ToolStripTextBox()
+        public ToolStripTextBox( )
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Padding = new Padding( 0 );
@@ -55,7 +55,7 @@ namespace BudgetExecution
         /// Sets the text.
         /// </summary>
         /// <param name="text">The text.</param>
-        public void SetText( string text )
+        public void ResetText( string text )
         {
             try
             {

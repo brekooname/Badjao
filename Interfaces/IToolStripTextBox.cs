@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// Sets the text.
         /// </summary>
         /// <param name="text">The text.</param>
-        void SetText( string text );
+        void ResetText( string text );
 
         /// <summary>
         /// Clears this instance.
