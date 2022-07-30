@@ -28,17 +28,18 @@ namespace BudgetExecution
             TransparentBackground = true;
             EnableAddNew = true;
             EnableEdit = true;
+            CanOverrideStyle = true;
             EnableRemove = true;
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
             ExcelLikeAlignment = true;
-            BackColor = Color.FromArgb( 40, 40, 40 );
+            BackColor = Color.FromArgb( 30, 30, 30 );
             ForeColor = Color.LightSteelBlue;
             Font = new Font( "Roboto", 8, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
             Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
-            ColorStyles = ColorStyles.Office2010Blue;
-            GridVisualStyles = GridVisualStyles.Office2010Blue;
+            ColorStyles = ColorStyles.Office2016Black;
+            GridVisualStyles = GridVisualStyles.Metro;
             GridLineColor = SystemColors.GradientActiveCaption;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;
@@ -70,7 +71,12 @@ namespace BudgetExecution
             TableStyle.AutoFit = AutoFitOptions.Both;
             TableStyle.Font.Facename = "Roboto";
             TableStyle.Font.Size = 8;
-            TableStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            TableStyle.BackColor = Color.FromArgb( 30, 30, 30 );
+
+            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 30, 30, 30 );
+            ThemeStyle.CellStyle.TextColor = Color.LightSteelBlue;
+            ThemeStyle.HeaderStyle.HoverTextColor = Color.White;
+            ThemeStyle.HeaderStyle.HoverBackColor = Color.SteelBlue;
         }
     }
 }
