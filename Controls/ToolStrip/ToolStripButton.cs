@@ -5,7 +5,6 @@
 namespace BudgetExecution
 {
     using System;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
     using System.Drawing;
@@ -17,7 +16,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
     [ Serializable ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
-    public class ToolStripButton : ToolStripButtonBase, IToolStripButton
+    public class ToolStripButton : ToolButtonBase, IToolStripButton
     {
         /// <summary>
         /// Initializes a new instance of
@@ -49,6 +48,7 @@ namespace BudgetExecution
             ToolType = tool;
             Name = tool.ToString( );
             HoverText = GetHoverText( tool );
+            Tag = HoverText;
             Image = GetImage( tool );
         }
 
@@ -61,20 +61,29 @@ namespace BudgetExecution
         ///     event data.</param>
         public void OnMouseHover( object sender, EventArgs e )
         {
-            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            try
             {
-                try
+                var _button = sender as ToolStripButton;
+
+                if( _button != null
+                    && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    HoverText = GetHoverText( ToolType );
-                    if( !string.IsNullOrEmpty( HoverText ) )
+                    _button.Tag = HoverText;
+                    var tip = new ToolTip( _button );
+                    ToolTip = tip;
+                }
+                else
+                {
+                    if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                       var _ = new ToolTip( this, HoverText );
+                        var _tool = new ToolTip( _button );
+                        ToolTip = _tool;
                     }
                 }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -312,8 +321,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Setting = ConfigurationManager.AppSettings;
-                    var _path = Setting[ "ToolStrip" ] + $"{ ToolType }.png";
+                    var _path = ImageDirectory + $"{ ToolType }.png";
                     using( var _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
@@ -340,8 +348,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Setting = ConfigurationManager.AppSettings;
-                    var _path = Setting[ "ToolStrip" ] + $"{ toolType }.png";
+                    var _path = ImageDirectory + $"{ toolType }.png";
                     using( var _stream = File.Open( _path, FileMode.Open ))
                     {
                         if( _stream != null )

@@ -7,11 +7,13 @@ namespace BudgetExecution
     using System;
     using System.Collections.Specialized;
     using System.Configuration;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
     using VisualPlus.Enumerators;
     
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     public partial class Error : MetroForm
     {
         /// <summary>
@@ -54,7 +56,7 @@ namespace BudgetExecution
             CaptionButtonColor = Color.FromArgb( 80, 80, 80 );
             CaptionButtonHoverColor = Color.White;
             CaptionAlign = HorizontalAlignment.Left;
-            CaptionFont = new Font( "Roboto", 11 );
+            CaptionFont = new Font( "Roboto", 9 );
             MetroColor = Color.FromArgb( 15, 15, 15 );
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = new Icon( IconPath, 33, 32 );
@@ -84,6 +86,8 @@ namespace BudgetExecution
             Panel.Controls.Add( TextBox );
 
             Controls.Add( Panel );
+
+            CloseButton.Click += OnClick;
         }
 
         /// <summary>
@@ -138,6 +142,11 @@ namespace BudgetExecution
         public void SetText( string msg = "" )
         {
             TextBox.Text = msg;
+        }
+
+        public void OnClick( object sender, EventArgs e )
+        {
+            Close( );
         }
     }
 }

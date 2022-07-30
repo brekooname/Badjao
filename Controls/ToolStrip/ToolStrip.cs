@@ -79,7 +79,7 @@ namespace BudgetExecution
             ForeColor = Color.Black;
             Font = new Font( "Roboto", 9 );
             ShowCaption = true;
-            CaptionFont = new Font( "Roboto", 9, FontStyle.Bold );
+            CaptionFont = new Font( "Roboto", 9 );
             CaptionStyle = CaptionStyle.Top;
             CaptionAlignment = CaptionAlignment.Near;
             CaptionTextStyle = CaptionTextStyle.Plain;
@@ -146,9 +146,24 @@ namespace BudgetExecution
         {
             if( sender is ToolStrip )
             {
+                Label = new ToolStripLabel( );
+                TextBox = new ToolStripTextBox( );
+                FirstButton = new ToolStripButton( ToolType.FirstButton );
+                PreviousButton = new ToolStripButton( ToolType.PreviousButton );
+                NextButton = new ToolStripButton( ToolType.NextButton );
+                LastButton = new ToolStripButton( ToolType.LastButton );
+                EditButton = new ToolStripButton( ToolType.EditButton );
+                AddButton = new ToolStripButton( ToolType.AddButton );
+                DeleteButton = new ToolStripButton( ToolType.DeleteButton );
+                SaveButton = new ToolStripButton( ToolType.SaveButton );
+                RefreshButton = new ToolStripButton( ToolType.RefreshButton );
+                ExcelButton = new ToolStripButton( ToolType.ExcelButton );
+                CalculatorButton = new ToolStripButton( ToolType.CalculatorButton );
+                ChartButton = new ToolStripButton( ToolType.ChartButton );
+                HomeButton = new ToolStripButton( ToolType.HomeButton );
             }
         }
-
+        
         /// <summary>
         /// Populates the buttons on the toolstrip
         /// </summary>

@@ -6,8 +6,8 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Diagnostics.CodeAnalysis;
+    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
     /// <summary>
     /// 
@@ -16,7 +16,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ Serializable ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
-    public class ToolStripButtonBase : System.Windows.Forms.ToolStripButton
+    public class ToolButtonBase : System.Windows.Forms.ToolStripButton
     {
         /// <summary>
         /// Gets or sets the setting.
@@ -24,7 +24,7 @@ namespace BudgetExecution
         /// <value>
         /// The setting.
         /// </value>
-        public virtual NameValueCollection Setting { get; set; }
+        public string ImageDirectory { get; } = ConfigurationManager.AppSettings[ "ToolStrip" ];
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -182,17 +182,20 @@ namespace BudgetExecution
         /// </summary>
         public void SetHoverText( )
         {
-            var _text = Tag?.ToString( );
-
-            if( !string.IsNullOrEmpty( _text ) )
+            if ( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
-                try
+                var _text = GetHoverText( ToolType );
+
+                if( !string.IsNullOrEmpty( _text ) )
                 {
-                    HoverText = _text;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
+                    try
+                    {
+                        HoverText = _text;
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
                 }
             }
         }

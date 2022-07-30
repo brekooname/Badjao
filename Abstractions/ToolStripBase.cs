@@ -170,21 +170,7 @@ namespace BudgetExecution
         /// </summary>
         protected ToolStripBase( )
         {
-            Label = new ToolStripLabel(  );
-            TextBox = new ToolStripTextBox( );
-            FirstButton = new ToolStripButton( ToolType.FirstButton );
-            PreviousButton = new ToolStripButton( ToolType.PreviousButton );
-            NextButton = new ToolStripButton( ToolType.NextButton );
-            LastButton = new ToolStripButton( ToolType.LastButton );
-            EditButton = new ToolStripButton( ToolType.EditButton );
-            AddButton = new ToolStripButton( ToolType.AddButton );
-            DeleteButton = new ToolStripButton( ToolType.DeleteButton );
-            SaveButton = new ToolStripButton( ToolType.SaveButton );
-            RefreshButton = new ToolStripButton( ToolType.RefreshButton );
-            ExcelButton = new ToolStripButton( ToolType.ExcelButton );
-            CalculatorButton = new ToolStripButton( ToolType.CalculatorButton );
-            ChartButton = new ToolStripButton( ToolType.ChartButton );
-            HomeButton = new ToolStripButton( ToolType.HomeButton );
+            
         }
 
         

@@ -822,7 +822,7 @@
     <Compile Include="Abstractions\ToolStripBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripButtonBase.cs">
+    <Compile Include="Abstractions\ToolButtonBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Abstractions\ToolStripDropDownBase.cs">
