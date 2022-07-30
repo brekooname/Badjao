@@ -32,11 +32,13 @@ namespace BudgetExecution
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
             ExcelLikeAlignment = true;
-            Font = new Font( "Roboto", 9, FontStyle.Regular );
+            BackColor = Color.FromArgb( 40, 40, 40 );
+            ForeColor = Color.LightSteelBlue;
+            Font = new Font( "Roboto", 8, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
             Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
-            ColorStyles = ColorStyles.SystemTheme;
-            GridVisualStyles = GridVisualStyles.Office2010Black;
+            ColorStyles = ColorStyles.Office2010Blue;
+            GridVisualStyles = GridVisualStyles.Office2010Blue;
             GridLineColor = SystemColors.GradientActiveCaption;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;
@@ -46,7 +48,7 @@ namespace BudgetExecution
             AlphaBlendSelectionColor = Color.FromArgb( 130, 1, 115, 199 );
 
             // ThemStyle Properties
-            ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
+            ThemeStyle.CellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
 
             // Model Properties
             Model.Rows.DefaultSize = 22;
@@ -67,7 +69,8 @@ namespace BudgetExecution
             TableStyle.HorizontalAlignment = GridHorizontalAlignment.Center;
             TableStyle.AutoFit = AutoFitOptions.Both;
             TableStyle.Font.Facename = "Roboto";
-            TableStyle.Font.Size = 9;
+            TableStyle.Font.Size = 8;
+            TableStyle.BackColor = Color.FromArgb( 40, 40, 40 );
         }
     }
 }

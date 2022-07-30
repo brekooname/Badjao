@@ -17,7 +17,7 @@ namespace BudgetExecution
         public Message()
         {
             InitializeComponent( );
-            Size = new Size( 576, 300 );
+            Size = new Size( 621, 412 );
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BorderColor = Color.SteelBlue; 
             CloseButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
@@ -28,7 +28,7 @@ namespace BudgetExecution
             CloseButton.Text = "Close";
             CloseButton.ForeColor = Color.SteelBlue;
             CloseButton.BackColor = Color.FromArgb( 15, 15, 15 );
-            CloseButton.Click += OnCloseButtonClicked;
+            CloseButton.Click += OnCloseButtonClick;
             OpenButton.Click += OnOpenButtonClick;
             BackColor = Color.FromArgb( 15, 15, 15 );
         }
@@ -48,9 +48,10 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        public virtual void OnCloseButtonClicked( object sender, EventArgs e )
+        public virtual void OnCloseButtonClick( object sender, EventArgs e )
         {
-            if( sender is Button _button && !string.IsNullOrEmpty( _button.Name ) )
+            if( sender is Button _button
+                && !string.IsNullOrEmpty( _button?.Name ) )
             {
                 try
                 {
@@ -66,7 +67,7 @@ namespace BudgetExecution
         public virtual void OnOpenButtonClick( object sender, EventArgs e )
         {
             if( sender is Button _button 
-                && !string.IsNullOrEmpty( _button.Name ) )
+                && !string.IsNullOrEmpty( _button?.Name ) )
             {
                 try
                 {

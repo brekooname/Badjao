@@ -26,6 +26,7 @@
             {
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
                 BindingSource.DataSource = _data.Table;
+                ToolStrip.Office12Mode = true;
             }
             catch( Exception ex )
             {

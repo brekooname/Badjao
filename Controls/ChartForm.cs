@@ -9,6 +9,7 @@ namespace BudgetExecution
         public ChartForm()
         {
             InitializeComponent( );
+            ToolStrip.Office12Mode = true;
         }
     }
 }
