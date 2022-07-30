@@ -52,6 +52,6 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the image.
         /// </summary>
-        Image GetImage( );
+        Image GetImage( ToolType toolType );
     }
 }

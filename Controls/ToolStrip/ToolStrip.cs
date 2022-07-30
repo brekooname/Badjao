@@ -105,15 +105,13 @@ namespace BudgetExecution
             ThemeStyle.ComboBoxStyle.HoverBorderColor = Color.SteelBlue;
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
-            Visible = true;
-            Enabled = true;
         }
 
         /// <summary>
         /// Gets the buttons.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, ToolStripButton> GetButtons()
+        public IDictionary<string, ToolStripButton> GetButtons( )
         {
             var _buttons = new SortedList<string, ToolStripButton>( );
 

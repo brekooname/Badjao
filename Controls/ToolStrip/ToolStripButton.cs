@@ -44,13 +44,14 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// Mof the <see cref="ToolStripButton"/> class.
         /// </summary>
-        /// <param name="toolType">The tool.</param>
-        public ToolStripButton( ToolType toolType )
+        /// <param name="tool">The tool.</param>
+        public ToolStripButton( ToolType tool )
             : this( )
         {
-            ToolType = toolType;
-            Name = toolType.ToString( );
-            Image = GetImage(  );
+            ToolType = tool;
+            Name = tool.ToString( );
+            HoverText = GetHoverText( tool );
+            Image = GetImage( tool );
         }
 
 
@@ -62,27 +63,20 @@ namespace BudgetExecution
         ///     event data.</param>
         public void OnMouseHover( object sender, EventArgs e )
         {
-            try
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
-                var _button = sender as ToolStripButton;
-
-                if( _button != null
-                    && !string.IsNullOrEmpty( HoverText ) )
+                try
                 {
-                    _button.Tag = HoverText;
-                    var _ = new ToolTip( _button );
-                }
-                else
-                {
-                    if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
+                    HoverText = GetHoverText( ToolType );
+                    if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _ = new ToolTip( _button );
+                       var _ = new ToolTip( this, HoverText );
                     }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
             }
         }
 
@@ -280,7 +274,7 @@ namespace BudgetExecution
             }
         }
 
-        public void  SetImage( )
+        public void SetImage( )
         {
             if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
@@ -303,23 +297,24 @@ namespace BudgetExecution
                 }
             }
         }
+
         /// <summary>
         /// Sets the button image.
         /// </summary>
         /// <returns></returns>
-        public Image GetImage(  )
+        public Image GetImage( ToolType toolType )
         {
-            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            if( Enum.IsDefined( typeof( ToolType ), toolType ) )
             {
                 try
                 {
                     Setting = ConfigurationManager.AppSettings;
-                    var _path = Setting[ "ToolStrip" ] + $"{ ToolType }.png";
+                    var _path = Setting[ "ToolStrip" ] + $"{ toolType }.png";
                     using( var _stream = File.Open( _path, FileMode.Open ))
                     {
                         if( _stream != null )
                         {
-                            var _image = Bitmap.FromStream( _stream );
+                            var _image = Image.FromStream( _stream );
                             return _image != null
                                 ? _image
                                 : default( Image );

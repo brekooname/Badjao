@@ -349,7 +349,6 @@
             this.PreviousButton.Size = new System.Drawing.Size(24, 24);
             this.PreviousButton.Text = "toolStripButton2";
             this.PreviousButton.ToolTip = this.ToolTip;
-            this.PreviousButton.ToolType = BudgetExecution.ToolType.PreviousButton;
             // 
             // Separator5
             // 
@@ -377,7 +376,6 @@
             this.NextButton.Size = new System.Drawing.Size(24, 24);
             this.NextButton.Text = "toolStripButton3";
             this.NextButton.ToolTip = this.ToolTip;
-            this.NextButton.ToolType = BudgetExecution.ToolType.NextButton;
             // 
             // Separator6
             // 
@@ -405,7 +403,6 @@
             this.LastButton.Size = new System.Drawing.Size(24, 24);
             this.LastButton.Text = "toolStripButton4";
             this.LastButton.ToolTip = this.ToolTip;
-            this.LastButton.ToolType = BudgetExecution.ToolType.LastButton;
             // 
             // Separator7
             // 
@@ -449,7 +446,6 @@
             this.RefreshButton.Size = new System.Drawing.Size(24, 24);
             this.RefreshButton.Text = "toolStripButton7";
             this.RefreshButton.ToolTip = this.ToolTip;
-            this.RefreshButton.ToolType = BudgetExecution.ToolType.RefreshButton;
             // 
             // Separator10
             // 
@@ -477,7 +473,6 @@
             this.SaveButton.Size = new System.Drawing.Size(24, 24);
             this.SaveButton.Text = "toolStripButton8";
             this.SaveButton.ToolTip = this.ToolTip;
-            this.SaveButton.ToolType = BudgetExecution.ToolType.SaveButton;
             // 
             // Separator11
             // 
@@ -513,7 +508,6 @@
             this.ChartButton.Size = new System.Drawing.Size(24, 24);
             this.ChartButton.Text = "toolStripButton10";
             this.ChartButton.ToolTip = this.ToolTip;
-            this.ChartButton.ToolType = BudgetExecution.ToolType.ChartButton;
             // 
             // Separator13
             // 
@@ -557,7 +551,6 @@
             this.HomeButton.Size = new System.Drawing.Size(24, 24);
             this.HomeButton.Text = "toolStripButton13";
             this.HomeButton.ToolTip = this.ToolTip;
-            this.HomeButton.ToolType = BudgetExecution.ToolType.HomeButton;
             // 
             // Separator16
             // 

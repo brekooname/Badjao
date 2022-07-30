@@ -2,7 +2,6 @@
 {
     using System.Diagnostics.CodeAnalysis;
     using System;
-    using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
 
 
@@ -117,6 +116,11 @@
             }
         }
 
+        /// <summary>
+        /// Called when [excel button clicked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnExcelButtonClicked( object sender, EventArgs e )
         {
             try

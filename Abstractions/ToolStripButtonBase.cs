@@ -8,7 +8,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Forms;
 
     /// <summary>
     /// 
@@ -74,25 +73,7 @@ namespace BudgetExecution
         /// The bar.
         /// </value>
         public ToolType ToolType { get; set; }
-
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public void SetField( Field field )
-        {
-            try
-            {
-                Field = Enum.IsDefined( typeof( Field ), field )
-                    ? field
-                    : Field.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
+        
 
         /// <summary>
         /// Sets the tag.
@@ -110,6 +91,90 @@ namespace BudgetExecution
             {
                 Fail( ex );
             }
+        }
+
+        /// <summary>
+        /// Gets the hover text from the type of button.
+        /// </summary>
+        public string GetHoverText( ToolType tool )
+        {
+            if( Enum.IsDefined( typeof( ToolType ), tool ) )
+            {
+                try
+                {
+                    switch( tool )
+                    {
+                        case ToolType.FirstButton:
+                        {
+                            return "First Record";
+                        }
+                        case ToolType.PreviousButton:
+                        {
+                            return "Previous Record";
+                        }
+                        case ToolType.NextButton:
+                        {
+                            return "Next Record";
+                        }
+                        case ToolType.LastButton:
+                        {
+                            return "Last Record";
+                        }
+                        case ToolType.EditButton:
+                        {
+                            return "Edit Record";
+                        }
+                        case ToolType.AddButton:
+                        {
+                            return "Add Record";
+                        }
+                        case ToolType.DeleteButton:
+                        {
+                            return "Delete Record";
+                        }
+                        case ToolType.SaveButton:
+                        {
+                            return "Save Record";
+                        }
+
+                        case ToolType.RefreshButton:
+                        {
+                            return "Reset Filters";
+                        }
+
+                        case ToolType.ExcelButton:
+                        {
+                            return "Excel Export";
+                        }
+
+                        case ToolType.CalculatorButton:
+                        {
+                            return "Calculator";
+                        }
+
+                        case ToolType.ChartButton:
+                        {
+                            return "Visualizations";
+                        }
+
+                        case ToolType.HomeButton:
+                        {
+                            return "Main Menu";
+                        }
+
+                        default:
+                        {
+                            return string.Empty;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+
+            return string.Empty;
         }
 
         /// <summary>

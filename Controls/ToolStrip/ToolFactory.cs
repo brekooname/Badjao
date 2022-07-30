@@ -1,7 +1,6 @@
 ﻿namespace BudgetExecution
 {
     using System;
-    using System.Collections.Specialized;
     using System.Configuration;
     using System.Drawing;
     using Syncfusion.Windows.Forms.Tools;
@@ -17,7 +16,7 @@
         /// <value>
         /// The image directory.
         /// </value>
-        public static NameValueCollection ImageDirectory { get; } = ConfigurationManager.AppSettings;
+        public static string ImageDirectory { get; } = ConfigurationManager.AppSettings[ "ToolStrip" ];
 
         /// <summary>
         /// Initializes a new instance
@@ -53,7 +52,8 @@
                 var _firstButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "First Record"
+                    HoverText = "First Record",
+                    ToolType = ToolType.FirstButton
                 };
                 return _firstButton;
             }
@@ -76,7 +76,8 @@
                 var _previousButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Previous Record"
+                    HoverText = "Previous Record",
+                    ToolType = ToolType.PreviousButton
                 };
                 return _previousButton;
             }
@@ -91,7 +92,7 @@
         /// Creates the next record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateNextButton()
+        public static ToolStripButton CreateNextButton( )
         {
             try
             {
@@ -99,7 +100,8 @@
                 var _nextButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Next Record"
+                    HoverText = "Next Record",
+                    ToolType = ToolType.NextButton
                 };
                 return _nextButton;
             }
@@ -114,7 +116,7 @@
         /// Creates the last record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateLastButton()
+        public static ToolStripButton CreateLastButton( )
         {
             try
             {
@@ -122,8 +124,10 @@
                 var _lastButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Last Record"
+                    HoverText = "Last Record",
+                    ToolType = ToolType.LastButton
                 };
+
                 return _lastButton;
             }
             catch( Exception ex )
@@ -145,8 +149,10 @@
                 var _editButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Edit Record"
+                    HoverText = "Edit Record",
+                    ToolType = ToolType.EditButton
                 };
+
                 return _editButton;
             }
             catch( Exception ex )
@@ -160,7 +166,7 @@
         /// Creates the add record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateAddButton()
+        public static ToolStripButton CreateAddButton( )
         {
             try
             {
@@ -168,7 +174,8 @@
                 var _addButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Add Record"
+                    HoverText = "Add Record",
+                    ToolType = ToolType.AddButton
                 };
                 return _addButton;
             }
@@ -183,7 +190,7 @@
         /// Creates the delete record button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateDeleteButton()
+        public static ToolStripButton CreateDeleteButton( )
         {
             try
             {
@@ -191,7 +198,8 @@
                 var _deleteButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Delete Record"
+                    HoverText = "Delete Record",
+                    ToolType = ToolType.DeleteButton
                 };
                 return _deleteButton;
             }
@@ -206,7 +214,7 @@
         /// Creates the refresh data button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateRefreshButton()
+        public static ToolStripButton CreateRefreshButton( )
         {
             try
             {
@@ -214,7 +222,8 @@
                 var _refreshButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Refresh Data"
+                    HoverText = "Refresh Data",
+                    ToolType = ToolType.RefreshButton
                 };
                 return _refreshButton;
             }
@@ -237,7 +246,8 @@
                 var _saveButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Save Changes"
+                    HoverText = "Save Changes",
+                    ToolType = ToolType.SaveButton
                 };
                 return _saveButton;
             }
@@ -252,7 +262,7 @@
         /// Creates the print data button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreatePrintButton()
+        public static ToolStripButton CreatePrintButton( )
         {
             try
             {
@@ -260,7 +270,8 @@
                 var _printButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Print Data"
+                    HoverText = "Print Data",
+                    ToolType = ToolType.PrintButton
                 };
                 return _printButton;
             }
@@ -275,7 +286,7 @@
         /// Creates the excel export button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateExcelButton()
+        public static ToolStripButton CreateExcelButton( )
         {
             try
             {
@@ -283,7 +294,8 @@
                 var _excelButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Export to Excel"
+                    HoverText = "Export to Excel",
+                    ToolType = ToolType.ExcelButton
                 };
                 return _excelButton;
             }
@@ -298,7 +310,7 @@
         /// Creates the calculator button.
         /// </summary>
         /// <returns></returns>
-        public static ToolStripButton CreateCalculatorButton()
+        public static ToolStripButton CreateCalculatorButton( )
         {
             try
             {
@@ -306,7 +318,8 @@
                 var _calculatorButton = new ToolStripButton
                 {
                     Image = Image.FromFile( _filename ),
-                    HoverText = "Launch Calculator"
+                    HoverText = "Launch Calculator",
+                    ToolType = ToolType.CalculatorButton
                 };
                 return _calculatorButton;
             }
@@ -318,11 +331,34 @@
         }
 
         /// <summary>
+        /// Creates the print data button.
+        /// </summary>
+        /// <returns></returns>
+        public static ToolStripButton CreateHomeButton( )
+        {
+            try
+            {
+                var _filename = ImageDirectory + "HomeButton.png";
+                var _homeButton = new ToolStripButton
+                {
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Main Menu",
+                    ToolType = ToolType.HomeButton
+                };
+                return _homeButton;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( ToolStripButton );
+            }
+        }
+        /// <summary>
         /// Creates the label.
         /// </summary>
         /// <returns>
         /// </returns>
-        public static ToolStripLabel CreateLabel()
+        public static ToolStripLabel CreateLabel( )
         {
             try
             {
@@ -341,7 +377,7 @@
         /// </summary>
         /// <returns>
         /// </returns>
-        public static ToolStripComboBoxEx CreateComboBox()
+        public static ToolStripComboBoxEx CreateComboBox( )
         {
             try
             {
@@ -360,7 +396,7 @@
         /// </summary>
         /// <returns>
         /// </returns>
-        public static ToolStripProgressBar CreateProgressBar()
+        public static ToolStripProgressBar CreateProgressBar( )
         {
             try
             {
@@ -379,7 +415,7 @@
         /// </summary>
         /// <returns>
         /// </returns>
-        public static ToolStripTextBox CreateTextBox()
+        public static ToolStripTextBox CreateTextBox( )
         {
             try
             {

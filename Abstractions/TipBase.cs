@@ -321,7 +321,24 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Clears the text.
+        /// </summary>
+        public virtual void ClearText( )
+        {
+            try
+            {
+                TipText = string.Empty;
+                TipTitle = string.Empty;
+                RemoveAll( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

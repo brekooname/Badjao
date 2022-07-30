@@ -931,6 +931,7 @@
     <None Include="Access.xss">
       <DependentUpon>Access.xsd</DependentUpon>
     </None>
+    <None Include="BudgetExecution.DotSettings" />
     <None Include="Clients\SqlCe\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="Clients\SqlCe\CompactView.exe.config" />
     <None Include="Clients\SqlCe\CompactView.exe.manifest" />
