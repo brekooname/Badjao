@@ -268,3 +268,5 @@ __pycache__/
 *.accdb
 *.db
 *.db
+Data/Database/Access/DataModels/Data.accdb
+Data/Database/Access/ReferenceModels/References.accdb

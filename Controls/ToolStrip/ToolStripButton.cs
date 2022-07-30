@@ -36,8 +36,6 @@ namespace BudgetExecution
             MouseLeave += OnMouseLeave;
             Click += OnClick;
             Text = string.Empty;
-            Visible = true;
-            Enabled = true;
         }
 
         /// <summary>
@@ -247,18 +245,52 @@ namespace BudgetExecution
 
                         case ToolType.CalculatorButton:
                         {
-                            var _calculator = new CalculationForm( );
-                            _calculator?.ShowDialog( );
+                            using( var _calculator = new CalculationForm(  ) )
+                            {
+                                _calculator?.ShowDialog( );
+                            }
+
                             break;
                         }
 
+                        case ToolType.CalendarButton:
+                        {
+                            using( var _form = new CalendarForm( ) )
+                            {
+                                _form?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.BrowseButton:
                         {
-                            var _message = new FileBrowser( );
-                            _message?.ShowDialog( );
+                            using( var _browser = new FileBrowser(  ) )
+                            {
+                                _browser?.ShowDialog( );
+                            }
+                            
                             break;
                         }
 
+                        case ToolType.HomeButton:
+                        {
+                            using( var _form = new MainForm( ) )
+                            {
+                                _form?.ShowDialog( );
+                            }
+
+                            break;
+                        }
+
+                        case ToolType.ChartButton:
+                        {
+                            using( var _form = new ChartForm( ) )
+                            {
+                                _form?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         default:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
