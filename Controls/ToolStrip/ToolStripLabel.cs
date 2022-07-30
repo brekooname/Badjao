@@ -9,10 +9,10 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Windows.Forms;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
-    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" )  ]
     public class ToolStripLabel : ToolStripLabelBase, IToolStripLabel
     {
         /// <summary>
@@ -28,8 +28,6 @@ namespace BudgetExecution
             ForeColor = Color.White;
             BackColor = Color.FromArgb( 45, 45, 45 );
             Font = new Font( "Roboto", 9, FontStyle.Regular );
-            Visible = true;
-            Enabled = true;
             Tag = Name;
         }
 
@@ -42,9 +40,20 @@ namespace BudgetExecution
             : this( )
         {
             Text = text;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolStripLabel"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="hoverText">The hover text.</param>
+        public ToolStripLabel( string text, string hoverText = "" )
+            : this( text )
+        {
+            HoverText = hoverText;
             MouseHover += OnMouseHover;
         }
-        
+
         /// <summary> Sets the text. </summary>
         /// <param name = "text" > The text. </param>
         /// <param name = "color" > The color. </param>
@@ -66,23 +75,41 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the text. </summary>
-        /// <param name = "text" > The text. </param>
-        /// <param name = "color" > The color. </param>
-        /// <param name = "font" > The font. </param>
-        public void SetText( string text, Color color, Font font )
+        /// <summary>
+        /// Sets the text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="font">The font.</param>
+        /// <param name="color">The color.</param>
+        public void SetText( string text, Color color,  Font font )
         {
             try
             {
                 Font = font != null
                     ? font
-                    : new Font( "Roboto", 8 );
+                    : new Font( "Roboto", 9  );
 
                 ForeColor = color != Color.Empty
                     ? color
                     : Color.Empty;
 
                 Text = !string.IsNullOrEmpty( text )
+                    ? text
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary> Sets the text. </summary>
+        /// <param name = "text" > The text. </param>
+        public void SetHoverText( string text )
+        {
+            try
+            {
+                HoverText = !string.IsNullOrEmpty( text )
                     ? text
                     : string.Empty;
             }

@@ -57,7 +57,7 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// of the <see cref="ToolStripLabelBase"/> class.
         /// </summary>
-        protected ToolStripLabelBase()
+        protected ToolStripLabelBase( )
         {
         }
 
@@ -71,7 +71,7 @@ namespace BudgetExecution
             {
                 Font = font != null
                     ? font
-                    : new Font( "Roboto", 8 );
+                    : new Font( "Roboto", 9 );
             }
             catch( Exception ex )
             {
@@ -132,25 +132,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = Enum.IsDefined( typeof( Field ), field )
-                    ? field
-                    : Field.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>

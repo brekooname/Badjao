@@ -52,6 +52,17 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ToolStripTextBox"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="hoverText">The hover text.</param>
+        public ToolStripTextBox( string text, string hoverText = "" )
+            : this( text )
+        {
+            HoverText = hoverText;
+        }
+
+        /// <summary>
         /// Sets the text.
         /// </summary>
         /// <param name="text">The text.</param>
@@ -62,60 +73,6 @@ namespace BudgetExecution
                 Text = !string.IsNullOrEmpty( text )
                 ? text
                 : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the hover information.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        public void SetHoverText( string text )
-        {
-            try
-            {
-                HoverText = !string.IsNullOrEmpty( text )
-                    ? text
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public void SetField( Field field )
-        {
-            try
-            {
-                Field = Enum.IsDefined( typeof( Field ), field )
-                    ? field
-                    : Field.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        public void SetTag( object tag )
-        {
-            try
-            {
-                Tag = tag != null
-                   ? tag
-                   : null;
             }
             catch( Exception ex )
             {

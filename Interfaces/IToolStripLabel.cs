@@ -56,18 +56,7 @@ namespace BudgetExecution
         /// Sets the text.
         /// </summary>
         /// <param name="text">The text.</param>
-        void SetText( string text );
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        void SetField( Field field );
-
-        /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        void SetTag( object tag );
+        void SetHoverText( string text );
+        
     }
 }
