@@ -31,7 +31,7 @@ namespace BudgetExecution
         public SqlStatement( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECT )
         {
             ConnectionBuilder = connectionBuilder;
-            SetCommandType( commandType );
+            CommandType = commandType;
             Args = null;
             SetCommandText( Args );
         }
@@ -45,7 +45,7 @@ namespace BudgetExecution
         {
             ConnectionBuilder = connectionBuilder;
             CommandType = SQL.SELECT;
-            SetArgs( dict );
+            Args = dict;
             SetCommandText( Args );
         }
 
@@ -59,8 +59,8 @@ namespace BudgetExecution
             SQL commandType = SQL.SELECT )
         {
             ConnectionBuilder = connectionBuilder;
-            SetCommandType( commandType );
-            SetArgs( dict );
+            CommandType = commandType;
+            Args = dict;
             SetCommandText( Args );
         }
 

@@ -282,7 +282,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="provider">The provider.</param>
         /// <returns></returns>
-        public  string GetFilePath( Provider provider )
+        public string GetFilePath( Provider provider )
         {
             if( Enum.IsDefined( typeof( Provider ), provider ) )
             {
@@ -328,6 +328,89 @@ namespace BudgetExecution
                         default:
                         {
                             FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
+                            break;
+                        }
+                    }
+
+                    return !string.IsNullOrEmpty( FilePath )
+                        ? FilePath
+                        : string.Empty;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the file path.
+        /// </summary>
+        /// <param name="command">The provider.</param>
+        /// <returns></returns>
+        public string GetFilePath( SQL command )
+        {
+            if( Enum.IsDefined( typeof( SQL ), command ) )
+            {
+                try
+                {
+                    switch( command )
+                    {
+                        case SQL.ALTERTABLE:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "ALTERTABLE" ];
+                            break;
+                        }
+                        case SQL.CREATETABLE:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "CREATETABLE" ];
+                            break;
+                        }
+                        case SQL.CREATEDATABASE:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "CREATEDATABASE" ];
+                            break;
+                        }
+                        case SQL.CREATEVIEW:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "CREATEVIEW" ];
+                            break;
+                        }
+                        case SQL.DETACH:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "DETACH" ];
+                            break;
+                        }
+                        case SQL.DELETE:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "DELETE" ];
+                            break;
+                        }
+                        case SQL.SELECTALL:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SELECTALL" ];
+                            break;
+                        }
+                        case SQL.SELECT:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SELECT" ];
+                            break;
+                        }
+                        case SQL.INSERT:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "INSERT" ];
+                            break;
+                        }
+                        case SQL.UPDATE:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "UPDATE" ];
+                            break;
+                        }
+                        default:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SELECTALL" ];
                             break;
                         }
                     }

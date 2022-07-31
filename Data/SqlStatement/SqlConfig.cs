@@ -45,47 +45,7 @@ namespace BudgetExecution
         /// The file name
         /// </summary>
         public string FileName { get; set; }
-
-        /// <summary>
-        /// Gets the arguments.
-        /// </summary>
-        /// <returns></returns>
-        public IDictionary<string, object> GetArgs()
-        {
-            if( Args.Any( ) )
-            {
-                try
-                {
-                    return Args ?? new Dictionary<string, object>( );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return new Dictionary<string, object>( );
-                }
-            }
-
-            return new Dictionary<string, object>( );
-        }
-
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <returns></returns>
-        public IConnectionBuilder GetConnectionBuilder()
-        {
-            try
-            {
-                return !string.IsNullOrEmpty( ConnectionBuilder?.ConnectionString )
-                    ? ConnectionBuilder
-                    : default( ConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( ConnectionBuilder );
-            }
-        }
+        
 
         /// <summary>
         /// Gets the script files.
@@ -98,7 +58,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _directory = ProviderPath[ $"{Provider}" ] + $@"\{CommandType}";
+                    var _directory = ProviderPath[ $"{ Provider }" ] + $@"\{ CommandType }";
 
                     if( !string.IsNullOrEmpty( _directory )
                         && Directory.Exists( _directory ) )

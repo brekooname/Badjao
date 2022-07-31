@@ -226,7 +226,7 @@ namespace BudgetExecution
                 var _numeric = SeriesConfiguration?.Numeric;
 
                 return !GetEmpty( xIndex )
-                    ? double.Parse( Record[ $@"{_numeric}" ].ToString( ) )
+                    ? double.Parse( Record[ $@"{ _numeric }" ].ToString( ) )
                     : 0;
             }
             catch( Exception ex )
