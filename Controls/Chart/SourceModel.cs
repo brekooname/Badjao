@@ -93,7 +93,7 @@ namespace BudgetExecution
         {
             SourceBinding = new ChartBinding( data, seriesConfig );
             BindingModel = new ChartDataBindModel( data, seriesConfig?.Field.ToString( ) );
-            SourceData = SourceBinding.GetData( );
+            SourceData = SourceBinding.Data;
             Configuration = SourceBinding?.GetSeriesConfig( );
             Stat = Configuration.Stat;
             Metric = SourceBinding?.GetDataMetric( );
@@ -104,18 +104,17 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SourceModel" /> class.
         /// </summary>
-        /// <param name="table">The table.</param>
+        /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public SourceModel( DataTable table, ISeriesConfig seriesConfig )
+        public SourceModel( DataTable dataTable, ISeriesConfig seriesConfig )
         {
-            SourceBinding = new ChartBinding( table?.AsEnumerable( ), seriesConfig );
-            BindingModel = new ChartDataBindModel( table, seriesConfig?.Field.ToString( ) );
-            SourceData = SourceBinding.GetData( );
+            SourceBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
+            BindingModel = new ChartDataBindModel( dataTable, seriesConfig?.Field.ToString( ) );
+            SourceData = SourceBinding.Data;
             Configuration = SourceBinding?.GetSeriesConfig( );
             Stat = Configuration.Stat;
             Metric = SourceBinding?.GetDataMetric( );
             SeriesData = Metric?.CalculateStatistics( );
-            BindingModel.Changed += OnChanged;
         }
 
         /// <summary>
@@ -125,13 +124,12 @@ namespace BudgetExecution
         public SourceModel( IChartBinding bindingSource )
         {
             SourceBinding = bindingSource;
-            BindingModel = new ChartDataBindModel( SourceBinding );
-            SourceData = SourceBinding.GetData( );
-            Configuration = SourceBinding?.GetSeriesConfig( );
+            BindingModel = new ChartDataBindModel( bindingSource );
+            SourceData = bindingSource.Data;
+            Configuration = bindingSource.GetSeriesConfig( );
             Stat = Configuration.Stat;
-            Metric = SourceBinding?.GetDataMetric( );
+            Metric = bindingSource.GetDataMetric( );
             SeriesData = Metric?.CalculateStatistics( );
-            BindingModel.Changed += OnChanged;
         }
 
         /// <summary>

@@ -9,14 +9,14 @@ namespace BudgetExecution
         public ChartForm()
         {
             InitializeComponent( );
-            ToolStrip.Office12Mode = true;
         }
 
         public ChartForm( System.Windows.Forms.BindingSource bindingSource ) 
             : this( )
         {
-            InitializeComponent( );
+            ToolStrip.Office12Mode = true;
             BindingSource = bindingSource;
+            ChartControl.BindingSource = bindingSource;
             ToolStrip.BindingSource = bindingSource;
         }
     }

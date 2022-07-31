@@ -114,7 +114,7 @@ namespace BudgetExecution
                 Style.Callout.DisplayTextAndFormat = "{0} : {2}";
                 Style.Callout.Border.Color = Color.SteelBlue;
                 Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
-                Style.Callout.Font = ChartConfiguration.SetFont( );
+                Style.Callout.Font = ChartConfig.SetFont( );
                 Style.DisplayText = true;
             }
             catch( Exception ex )

@@ -293,7 +293,7 @@ namespace BudgetExecution
 
                         case ToolType.ChartButton:
                         {
-                            if( BindingSource != null )
+                            if( BindingSource?.DataSource != null )
                             {
                                 using( var _form = new ChartForm( BindingSource ) )
                                 {

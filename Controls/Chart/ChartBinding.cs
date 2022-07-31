@@ -19,7 +19,7 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "UnusedType.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class ChartBinding : BindingSource, IChartBinding, IChartSeriesModel
+    public class ChartBinding : System.Windows.Forms.BindingSource, IChartBinding
     {
         /// <summary>
         /// Gets or sets the chart handler.
@@ -43,12 +43,44 @@ namespace BudgetExecution
         public new int Count { get; set; }
 
         /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        public Source Source { get; set; }
+
+        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <value>
         /// The data.
         /// </value>
         public IEnumerable<DataRow> Data { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data set.
+        /// </summary>
+        /// <value>
+        /// The data set.
+        /// </value>
+        public DataSet DataSet { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data table.
+        /// </summary>
+        /// <value>
+        /// The data table.
+        /// </value>
+        public DataTable DataTable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the record.
+        /// </summary>
+        /// <value>
+        /// The record.
+        /// </value>
+        public DataRow Record { get; set; }
 
         /// <summary>
         /// Gets the configuration.
@@ -78,19 +110,17 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBinding" /> class.
         /// </summary>
-        /// <param name="table">The table.</param>
+        /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( DataTable table, ISeriesConfig seriesConfig )
-            : base( table.AsEnumerable( ) )
+        public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig )
         {
-            Data = table.AsEnumerable( );
+            Data = dataTable.AsEnumerable( );
             SeriesConfiguration = seriesConfig;
-            DataTable = table;
-            DataSet = DataTable?.DataSet;
-            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
-            DataSource = DataTable;
+            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
+            DataTable = dataTable;
+            DataSet = dataTable.DataSet;
+            DataSource = dataTable;
             Record = (DataRow)Current;
-            Index = Position;
             AllowNew = true;
             Changed += OnCurrentChanged;
         }
@@ -103,7 +133,6 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
         public ChartBinding( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
-            : base( data )
         {
             Data = data;
             SeriesConfiguration = seriesConfig;
@@ -112,7 +141,6 @@ namespace BudgetExecution
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;
-            Index = Position;
             AllowNew = true;
             Changed += OnCurrentChanged;
         }
@@ -252,6 +280,19 @@ namespace BudgetExecution
                 {
                     Fail( ex );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private void Fail( Exception ex )
+        {
+            using( var _error = new Error( ex ) )
+            {
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }

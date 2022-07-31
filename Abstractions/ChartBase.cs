@@ -19,11 +19,11 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="ChartControl" />
+    /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartControl" />
     [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
-    public abstract class ChartBase : ChartControl
+    public abstract class ChartBase : Syncfusion.Windows.Forms.Chart.ChartControl
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -31,7 +31,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.

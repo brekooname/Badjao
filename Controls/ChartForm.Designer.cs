@@ -34,220 +34,56 @@
             Syncfusion.Windows.Forms.Chart.ChartLineInfo chartLineInfo1 = new Syncfusion.Windows.Forms.Chart.ChartLineInfo();
             Syncfusion.Windows.Forms.Chart.ChartSeries chartSeries2 = new Syncfusion.Windows.Forms.Chart.ChartSeries();
             Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo chartCustomShapeInfo2 = new Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem chartToolBarSaveItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem chartToolBarPaletteItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem chartToolBarStyleItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem chartToolBarTypeItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem chartToolBarSeries3DItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem chartToolBarShowLegendItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
-            this.Chart = new Syncfusion.Windows.Forms.Chart.ChartControl();
-            this.DataSet = new BudgetExecution.DataModel();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.TextBox = new BudgetExecution.ToolStripTextBox();
+            this.ToolTip = new BudgetExecution.ToolTip();
             this.Separator1 = new BudgetExecution.ToolSeparator();
             this.Label = new BudgetExecution.ToolStripLabel();
             this.Separator2 = new BudgetExecution.ToolSeparator();
             this.DropDown = new BudgetExecution.ToolStripDropDown();
             this.Separator3 = new BudgetExecution.ToolSeparator();
-            this.Separator4 = new BudgetExecution.ToolSeparator();
-            this.Separator5 = new BudgetExecution.ToolSeparator();
-            this.Separator6 = new BudgetExecution.ToolSeparator();
-            this.Separator7 = new BudgetExecution.ToolSeparator();
-            this.Separator8 = new BudgetExecution.ToolSeparator();
-            this.Separator9 = new BudgetExecution.ToolSeparator();
-            this.Separator10 = new BudgetExecution.ToolSeparator();
-            this.Separator11 = new BudgetExecution.ToolSeparator();
-            this.Separator12 = new BudgetExecution.ToolSeparator();
-            this.Separator13 = new BudgetExecution.ToolSeparator();
-            this.Separator14 = new BudgetExecution.ToolSeparator();
-            this.Separator15 = new BudgetExecution.ToolSeparator();
-            this.Separator16 = new BudgetExecution.ToolSeparator();
-            this.Separator17 = new BudgetExecution.ToolSeparator();
-            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FirstButton = new BudgetExecution.ToolStripButton();
+            this.Separator4 = new BudgetExecution.ToolSeparator();
             this.PreviousButton = new BudgetExecution.ToolStripButton();
+            this.Separator5 = new BudgetExecution.ToolSeparator();
             this.NextButton = new BudgetExecution.ToolStripButton();
+            this.Separator6 = new BudgetExecution.ToolSeparator();
             this.LastButton = new BudgetExecution.ToolStripButton();
+            this.Separator7 = new BudgetExecution.ToolSeparator();
             this.AddButton = new BudgetExecution.ToolStripButton();
+            this.Separator8 = new BudgetExecution.ToolSeparator();
             this.EditButton = new BudgetExecution.ToolStripButton();
+            this.Separator9 = new BudgetExecution.ToolSeparator();
             this.DeleteButton = new BudgetExecution.ToolStripButton();
+            this.Separator10 = new BudgetExecution.ToolSeparator();
             this.RefreshButton = new BudgetExecution.ToolStripButton();
+            this.Separator11 = new BudgetExecution.ToolSeparator();
             this.SaveButton = new BudgetExecution.ToolStripButton();
+            this.Separator12 = new BudgetExecution.ToolSeparator();
             this.BrowseButton = new BudgetExecution.ToolStripButton();
+            this.Separator13 = new BudgetExecution.ToolSeparator();
             this.ExcelButton = new BudgetExecution.ToolStripButton();
+            this.Separator14 = new BudgetExecution.ToolSeparator();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
+            this.Separator15 = new BudgetExecution.ToolSeparator();
             this.TableButton = new BudgetExecution.ToolStripButton();
+            this.Separator17 = new BudgetExecution.ToolSeparator();
             this.HomeButton = new BudgetExecution.ToolStripButton();
             this.Separator18 = new BudgetExecution.ToolSeparator();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
-            this.ToolStrip.SuspendLayout();
+            this.DataSet = new BudgetExecution.DataModel();
+            this.Separator16 = new BudgetExecution.ToolSeparator();
+            this.ChartControl = new BudgetExecution.ChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            this.ToolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Chart
-            // 
-            this.Chart.AllowUserEditStyles = true;
-            this.Chart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Chart.AutoHighlight = true;
-            this.Chart.BackInterior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.None, System.Drawing.Color.LightGray, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.Chart.ChartArea.BackInterior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.None, System.Drawing.Color.LightGray, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.Chart.ChartArea.BorderColor = System.Drawing.Color.Transparent;
-            this.Chart.ChartArea.CursorLocation = new System.Drawing.Point(0, 0);
-            this.Chart.ChartArea.CursorReDraw = false;
-            this.Chart.ChartInterior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.LightGray, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.Chart.CustomPalette = new System.Drawing.Color[] {
-        System.Drawing.Color.SteelBlue,
-        System.Drawing.Color.Red,
-        System.Drawing.Color.Lime,
-        System.Drawing.Color.Yellow,
-        System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(90)))), ((int)(((byte)(36))))),
-        System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(72)))), ((int)(((byte)(38)))))};
-            this.Chart.DataSourceName = "BindingSource";
-            this.Chart.Depth = 150F;
-            this.Chart.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Chart.ForeColor = System.Drawing.Color.LightGray;
-            this.Chart.HighlightSymbol = true;
-            this.Chart.IsWindowLess = false;
-            // 
-            // 
-            // 
-            this.Chart.Legend.Location = new System.Drawing.Point(68, 81);
-            this.Chart.Legend.Position = Syncfusion.Windows.Forms.Chart.ChartDock.Floating;
-            this.Chart.Legend.Visible = false;
-            this.Chart.Localize = null;
-            this.Chart.Location = new System.Drawing.Point(89, 67);
-            this.Chart.Name = "Chart";
-            this.Chart.Palette = Syncfusion.Windows.Forms.Chart.ChartColorPalette.Custom;
-            this.Chart.PrimaryXAxis.Font = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Chart.PrimaryXAxis.ForeColor = System.Drawing.Color.LightGray;
-            this.Chart.PrimaryXAxis.GridLineType.ForeColor = System.Drawing.Color.LightGray;
-            this.Chart.PrimaryXAxis.LineType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.Chart.PrimaryXAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
-            this.Chart.PrimaryXAxis.Margin = true;
-            this.Chart.PrimaryXAxis.MinorGridLineType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.Chart.PrimaryXAxis.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.Chart.PrimaryXAxis.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.Chart.PrimaryXAxis.TitleFont = new System.Drawing.Font("Segoe UI", 14F);
-            this.Chart.PrimaryYAxis.Font = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Chart.PrimaryYAxis.ForeColor = System.Drawing.Color.LightGray;
-            this.Chart.PrimaryYAxis.GridLineType.ForeColor = System.Drawing.Color.LightGray;
-            this.Chart.PrimaryYAxis.LineType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.Chart.PrimaryYAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
-            this.Chart.PrimaryYAxis.Margin = true;
-            this.Chart.PrimaryYAxis.MinorGridLineType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.Chart.PrimaryYAxis.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.Chart.PrimaryYAxis.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.Chart.PrimaryYAxis.TitleFont = new System.Drawing.Font("Segoe UI", 14F);
-            this.Chart.RealMode3D = true;
-            this.Chart.Rotation = 5F;
-            chartSeries1.FancyToolTip.ResizeInsideSymbol = true;
-            chartSeries1.Name = "Default0";
-            chartSeries1.Points.Add(1D, ((double)(55D)));
-            chartSeries1.Points.Add(2D, ((double)(70D)));
-            chartSeries1.Points.Add(3D, ((double)(80D)));
-            chartSeries1.Points.Add(4D, ((double)(65D)));
-            chartSeries1.Points.Add(5D, ((double)(75D)));
-            chartSeries1.Resolution = 0D;
-            chartSeries1.StackingGroup = "Default Group";
-            chartSeries1.Style.AltTagFormat = "";
-            chartSeries1.Style.Callout.Font.Facename = "Microsoft Sans Serif";
-            chartSeries1.Style.DrawTextShape = false;
-            chartSeries1.Style.Font.Facename = "Microsoft Sans Serif";
-            chartSeries1.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            chartLineInfo1.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
-            chartLineInfo1.Color = System.Drawing.SystemColors.ControlText;
-            chartLineInfo1.DashPattern = null;
-            chartLineInfo1.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            chartLineInfo1.Width = 1F;
-            chartCustomShapeInfo1.Border = chartLineInfo1;
-            chartCustomShapeInfo1.Color = System.Drawing.SystemColors.HighlightText;
-            chartCustomShapeInfo1.Type = Syncfusion.Windows.Forms.Chart.ChartCustomShape.Square;
-            chartSeries1.Style.TextShape = chartCustomShapeInfo1;
-            chartSeries1.Text = "Default0";
-            chartSeries2.FancyToolTip.ResizeInsideSymbol = true;
-            chartSeries2.Name = "Default1";
-            chartSeries2.Points.Add(1D, ((double)(70D)));
-            chartSeries2.Points.Add(2D, ((double)(35D)));
-            chartSeries2.Points.Add(3D, ((double)(65D)));
-            chartSeries2.Points.Add(4D, ((double)(25D)));
-            chartSeries2.Points.Add(5D, ((double)(50D)));
-            chartSeries2.Resolution = 0D;
-            chartSeries2.StackingGroup = "Default Group";
-            chartSeries2.Style.AltTagFormat = "";
-            chartSeries2.Style.Callout.Font.Facename = "Microsoft Sans Serif";
-            chartSeries2.Style.DrawTextShape = false;
-            chartSeries2.Style.Font.Facename = "Microsoft Sans Serif";
-            chartSeries2.Style.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            chartCustomShapeInfo2.Border = chartLineInfo1;
-            chartCustomShapeInfo2.Color = System.Drawing.SystemColors.HighlightText;
-            chartCustomShapeInfo2.Type = Syncfusion.Windows.Forms.Chart.ChartCustomShape.Square;
-            chartSeries2.Style.TextShape = chartCustomShapeInfo2;
-            chartSeries2.Text = "Default1";
-            this.Chart.Series.Add(chartSeries1);
-            this.Chart.Series.Add(chartSeries2);
-            this.Chart.Series3D = true;
-            this.Chart.SeriesHighlight = true;
-            this.Chart.ShowToolbar = true;
-            this.Chart.Size = new System.Drawing.Size(1227, 552);
-            this.Chart.Spacing = 10F;
-            this.Chart.Style3D = true;
-            this.Chart.TabIndex = 0;
-            this.Chart.Tilt = 15F;
-            // 
-            // 
-            // 
-            this.Chart.Title.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.Chart.Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.Chart.Title.Name = "Default";
-            this.Chart.ToolBar.Border.BackColor = System.Drawing.Color.Transparent;
-            this.Chart.ToolBar.Border.ForeColor = System.Drawing.Color.Transparent;
-            this.Chart.ToolBar.EnableDefaultItems = false;
-            this.Chart.ToolBar.IncludeInExportedChart = false;
-            this.Chart.ToolBar.Items.Add(chartToolBarSaveItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarPaletteItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarStyleItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarTypeItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarSeries3DItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarShowLegendItem1);
-            this.Chart.ToolBar.Orientation = Syncfusion.Windows.Forms.Chart.ChartOrientation.Vertical;
-            this.Chart.ToolBar.Position = Syncfusion.Windows.Forms.Chart.ChartDock.Right;
-            this.Chart.ToolBar.ShowBorder = false;
-            this.Chart.ToolBar.ShowDialog = true;
-            this.Chart.ToolBar.ShowGrip = false;
-            this.Chart.ToolBar.Visible = true;
-            this.Chart.VisualTheme = "";
-            // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "ChartData";
-            // 
-            // ToolTip
-            // 
-            this.ToolTip.AutoPopDelay = 5000;
-            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.ToolTip.BindingSource = null;
-            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ToolTip.ForeColor = System.Drawing.Color.White;
-            this.ToolTip.InitialDelay = 500;
-            this.ToolTip.Name = null;
-            this.ToolTip.OwnerDraw = true;
-            this.ToolTip.ReshowDelay = 100;
-            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
-            this.ToolTip.StyleManager = null;
-            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
-            this.ToolTip.ThemeName = "Budget Execution";
-            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ToolTip.TipText = null;
-            this.ToolTip.TipTitle = null;
             // 
             // ToolStrip
             // 
             this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ToolStrip.BindingSource = null;
+            this.ToolStrip.BindingSource = this.BindingSource;
             this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
             this.ToolStrip.CanOverrideStyle = true;
             this.ToolStrip.CaptionAlignment = Syncfusion.Windows.Forms.Tools.CaptionAlignment.Near;
@@ -341,6 +177,26 @@
             this.TextBox.Tag = "";
             this.TextBox.ToolTip = this.ToolTip;
             // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 5000;
+            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.ToolTip.BindingSource = null;
+            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ToolTip.ForeColor = System.Drawing.Color.White;
+            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.Name = null;
+            this.ToolTip.OwnerDraw = true;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
+            this.ToolTip.StyleManager = null;
+            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
+            this.ToolTip.ThemeName = "Budget Execution";
+            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.TipText = null;
+            this.ToolTip.TipTitle = null;
+            // 
             // Separator1
             // 
             this.Separator1.ForeColor = System.Drawing.Color.Black;
@@ -402,118 +258,6 @@
             this.Separator3.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator3.Size = new System.Drawing.Size(6, 36);
             // 
-            // Separator4
-            // 
-            this.Separator4.ForeColor = System.Drawing.Color.Black;
-            this.Separator4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator4.Name = "Separator4";
-            this.Separator4.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator4.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator5
-            // 
-            this.Separator5.ForeColor = System.Drawing.Color.Black;
-            this.Separator5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator5.Name = "Separator5";
-            this.Separator5.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator5.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator6
-            // 
-            this.Separator6.ForeColor = System.Drawing.Color.Black;
-            this.Separator6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator6.Name = "Separator6";
-            this.Separator6.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator6.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator7
-            // 
-            this.Separator7.ForeColor = System.Drawing.Color.Black;
-            this.Separator7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator7.Name = "Separator7";
-            this.Separator7.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator7.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator8
-            // 
-            this.Separator8.ForeColor = System.Drawing.Color.Black;
-            this.Separator8.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator8.Name = "Separator8";
-            this.Separator8.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator8.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator9
-            // 
-            this.Separator9.ForeColor = System.Drawing.Color.Black;
-            this.Separator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator9.Name = "Separator9";
-            this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator9.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator10
-            // 
-            this.Separator10.ForeColor = System.Drawing.Color.Black;
-            this.Separator10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator10.Name = "Separator10";
-            this.Separator10.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator10.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator11
-            // 
-            this.Separator11.ForeColor = System.Drawing.Color.Black;
-            this.Separator11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator11.Name = "Separator11";
-            this.Separator11.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator11.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator12
-            // 
-            this.Separator12.ForeColor = System.Drawing.Color.Black;
-            this.Separator12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator12.Name = "Separator12";
-            this.Separator12.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator12.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator13
-            // 
-            this.Separator13.ForeColor = System.Drawing.Color.Black;
-            this.Separator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator13.Name = "Separator13";
-            this.Separator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator13.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator14
-            // 
-            this.Separator14.ForeColor = System.Drawing.Color.Black;
-            this.Separator14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator14.Name = "Separator14";
-            this.Separator14.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator14.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator15
-            // 
-            this.Separator15.ForeColor = System.Drawing.Color.Black;
-            this.Separator15.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator15.Name = "Separator15";
-            this.Separator15.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator15.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator16
-            // 
-            this.Separator16.ForeColor = System.Drawing.Color.Black;
-            this.Separator16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator16.Name = "Separator16";
-            this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator16.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator17
-            // 
-            this.Separator17.ForeColor = System.Drawing.Color.Black;
-            this.Separator17.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator17.Name = "Separator17";
-            this.Separator17.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator17.Size = new System.Drawing.Size(6, 36);
-            // 
             // FirstButton
             // 
             this.FirstButton.AutoToolTip = false;
@@ -532,6 +276,14 @@
             this.FirstButton.Size = new System.Drawing.Size(24, 26);
             this.FirstButton.ToolTip = this.ToolTip;
             this.FirstButton.ToolType = BudgetExecution.ToolType.FirstButton;
+            // 
+            // Separator4
+            // 
+            this.Separator4.ForeColor = System.Drawing.Color.Black;
+            this.Separator4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator4.Name = "Separator4";
+            this.Separator4.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator4.Size = new System.Drawing.Size(6, 36);
             // 
             // PreviousButton
             // 
@@ -552,6 +304,14 @@
             this.PreviousButton.ToolTip = this.ToolTip;
             this.PreviousButton.ToolType = BudgetExecution.ToolType.PreviousButton;
             // 
+            // Separator5
+            // 
+            this.Separator5.ForeColor = System.Drawing.Color.Black;
+            this.Separator5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator5.Name = "Separator5";
+            this.Separator5.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator5.Size = new System.Drawing.Size(6, 36);
+            // 
             // NextButton
             // 
             this.NextButton.AutoToolTip = false;
@@ -570,6 +330,14 @@
             this.NextButton.Size = new System.Drawing.Size(24, 26);
             this.NextButton.ToolTip = this.ToolTip;
             this.NextButton.ToolType = BudgetExecution.ToolType.NextButton;
+            // 
+            // Separator6
+            // 
+            this.Separator6.ForeColor = System.Drawing.Color.Black;
+            this.Separator6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator6.Name = "Separator6";
+            this.Separator6.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator6.Size = new System.Drawing.Size(6, 36);
             // 
             // LastButton
             // 
@@ -590,6 +358,14 @@
             this.LastButton.ToolTip = this.ToolTip;
             this.LastButton.ToolType = BudgetExecution.ToolType.LastButton;
             // 
+            // Separator7
+            // 
+            this.Separator7.ForeColor = System.Drawing.Color.Black;
+            this.Separator7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator7.Name = "Separator7";
+            this.Separator7.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator7.Size = new System.Drawing.Size(6, 36);
+            // 
             // AddButton
             // 
             this.AddButton.AutoToolTip = false;
@@ -608,6 +384,14 @@
             this.AddButton.Size = new System.Drawing.Size(24, 26);
             this.AddButton.ToolTip = this.ToolTip;
             this.AddButton.ToolType = BudgetExecution.ToolType.AddButton;
+            // 
+            // Separator8
+            // 
+            this.Separator8.ForeColor = System.Drawing.Color.Black;
+            this.Separator8.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator8.Name = "Separator8";
+            this.Separator8.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator8.Size = new System.Drawing.Size(6, 36);
             // 
             // EditButton
             // 
@@ -628,6 +412,14 @@
             this.EditButton.ToolTip = this.ToolTip;
             this.EditButton.ToolType = BudgetExecution.ToolType.EditButton;
             // 
+            // Separator9
+            // 
+            this.Separator9.ForeColor = System.Drawing.Color.Black;
+            this.Separator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator9.Name = "Separator9";
+            this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator9.Size = new System.Drawing.Size(6, 36);
+            // 
             // DeleteButton
             // 
             this.DeleteButton.AutoToolTip = false;
@@ -646,6 +438,14 @@
             this.DeleteButton.Size = new System.Drawing.Size(24, 26);
             this.DeleteButton.ToolTip = this.ToolTip;
             this.DeleteButton.ToolType = BudgetExecution.ToolType.DeleteButton;
+            // 
+            // Separator10
+            // 
+            this.Separator10.ForeColor = System.Drawing.Color.Black;
+            this.Separator10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator10.Name = "Separator10";
+            this.Separator10.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator10.Size = new System.Drawing.Size(6, 36);
             // 
             // RefreshButton
             // 
@@ -667,6 +467,14 @@
             this.RefreshButton.ToolTip = this.ToolTip;
             this.RefreshButton.ToolType = BudgetExecution.ToolType.RefreshButton;
             // 
+            // Separator11
+            // 
+            this.Separator11.ForeColor = System.Drawing.Color.Black;
+            this.Separator11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator11.Name = "Separator11";
+            this.Separator11.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator11.Size = new System.Drawing.Size(6, 36);
+            // 
             // SaveButton
             // 
             this.SaveButton.AutoToolTip = false;
@@ -685,6 +493,14 @@
             this.SaveButton.Size = new System.Drawing.Size(24, 26);
             this.SaveButton.ToolTip = this.ToolTip;
             this.SaveButton.ToolType = BudgetExecution.ToolType.SaveButton;
+            // 
+            // Separator12
+            // 
+            this.Separator12.ForeColor = System.Drawing.Color.Black;
+            this.Separator12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator12.Name = "Separator12";
+            this.Separator12.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator12.Size = new System.Drawing.Size(6, 36);
             // 
             // BrowseButton
             // 
@@ -705,6 +521,14 @@
             this.BrowseButton.ToolTip = this.ToolTip;
             this.BrowseButton.ToolType = BudgetExecution.ToolType.BrowseButton;
             // 
+            // Separator13
+            // 
+            this.Separator13.ForeColor = System.Drawing.Color.Black;
+            this.Separator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator13.Name = "Separator13";
+            this.Separator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator13.Size = new System.Drawing.Size(6, 36);
+            // 
             // ExcelButton
             // 
             this.ExcelButton.AutoToolTip = false;
@@ -723,6 +547,14 @@
             this.ExcelButton.Size = new System.Drawing.Size(24, 26);
             this.ExcelButton.ToolTip = this.ToolTip;
             this.ExcelButton.ToolType = BudgetExecution.ToolType.ExcelButton;
+            // 
+            // Separator14
+            // 
+            this.Separator14.ForeColor = System.Drawing.Color.Black;
+            this.Separator14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator14.Name = "Separator14";
+            this.Separator14.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator14.Size = new System.Drawing.Size(6, 36);
             // 
             // CalculatorButton
             // 
@@ -744,6 +576,14 @@
             this.CalculatorButton.ToolTip = this.ToolTip;
             this.CalculatorButton.ToolType = BudgetExecution.ToolType.CalculatorButton;
             // 
+            // Separator15
+            // 
+            this.Separator15.ForeColor = System.Drawing.Color.Black;
+            this.Separator15.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator15.Name = "Separator15";
+            this.Separator15.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator15.Size = new System.Drawing.Size(6, 36);
+            // 
             // TableButton
             // 
             this.TableButton.AutoToolTip = false;
@@ -763,6 +603,14 @@
             this.TableButton.Text = "toolStripButton11";
             this.TableButton.ToolTip = this.ToolTip;
             this.TableButton.ToolType = BudgetExecution.ToolType.TableButton;
+            // 
+            // Separator17
+            // 
+            this.Separator17.ForeColor = System.Drawing.Color.Black;
+            this.Separator17.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator17.Name = "Separator17";
+            this.Separator17.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator17.Size = new System.Drawing.Size(6, 36);
             // 
             // HomeButton
             // 
@@ -792,6 +640,130 @@
             this.Separator18.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator18.Size = new System.Drawing.Size(6, 36);
             // 
+            // DataSet
+            // 
+            this.DataSet.DataSetName = "ChartData";
+            // 
+            // Separator16
+            // 
+            this.Separator16.ForeColor = System.Drawing.Color.Black;
+            this.Separator16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator16.Name = "Separator16";
+            this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator16.Size = new System.Drawing.Size(6, 36);
+            // 
+            // ChartControl
+            // 
+            this.ChartControl.AllowGradientPalette = true;
+            this.ChartControl.AllowUserEditStyles = true;
+            this.ChartControl.AutoHighlight = true;
+            this.ChartControl.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
+            this.ChartControl.BindingSource = this.BindingSource;
+            this.ChartControl.ChartArea.AutoScale = true;
+            this.ChartControl.ChartArea.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
+            this.ChartControl.ChartArea.BorderColor = System.Drawing.Color.Transparent;
+            this.ChartControl.ChartArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ChartControl.ChartArea.CursorLocation = new System.Drawing.Point(0, 0);
+            this.ChartControl.ChartArea.CursorReDraw = false;
+            this.ChartControl.ChartAreaMargins = new Syncfusion.Windows.Forms.Chart.ChartMargins(3, 3, 3, 3);
+            this.ChartControl.ChartData = null;
+            this.ChartControl.ChartInterior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.LightSteelBlue, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
+            this.ChartControl.Configuration = null;
+            this.ChartControl.DataFilter = null;
+            this.ChartControl.DataMetric = null;
+            this.ChartControl.DataSeries = null;
+            this.ChartControl.DataSourceName = "[none]";
+            this.ChartControl.Depth = 250F;
+            this.ChartControl.DisplayChartContextMenu = false;
+            this.ChartControl.DisplaySeriesContextMenu = false;
+            this.ChartControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChartControl.EnableMouseRotation = true;
+            this.ChartControl.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ChartControl.HoverText = null;
+            this.ChartControl.IsWindowLess = false;
+            // 
+            // 
+            // 
+            this.ChartControl.Legend.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
+            this.ChartControl.Legend.Font = new System.Drawing.Font("Roboto", 9F);
+            this.ChartControl.Legend.ItemsAlignment = System.Drawing.StringAlignment.Center;
+            this.ChartControl.Legend.ItemsSize = new System.Drawing.Size(12, 12);
+            this.ChartControl.Legend.Location = new System.Drawing.Point(1272, 68);
+            this.ChartControl.Legend.ShowItemsShadow = true;
+            this.ChartControl.Legend.ShowSymbol = true;
+            this.ChartControl.Legend.VisibleCheckBox = true;
+            this.ChartControl.Localize = null;
+            this.ChartControl.Location = new System.Drawing.Point(0, 0);
+            this.ChartControl.Name = "ChartControl";
+            this.ChartControl.Numeric = BudgetExecution.Numeric.NS;
+            this.ChartControl.Padding = new System.Windows.Forms.Padding(1);
+            this.ChartControl.Palette = Syncfusion.Windows.Forms.Chart.ChartColorPalette.Metro;
+            this.ChartControl.PrimaryXAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
+            this.ChartControl.PrimaryXAxis.Margin = true;
+            this.ChartControl.PrimaryXAxis.TitleColor = System.Drawing.Color.LightGray;
+            this.ChartControl.PrimaryYAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
+            this.ChartControl.PrimaryYAxis.Margin = true;
+            this.ChartControl.PrimaryYAxis.TitleColor = System.Drawing.Color.LightGray;
+            this.ChartControl.RealMode3D = true;
+            this.ChartControl.Rotation = 0.1F;
+            chartSeries1.FancyToolTip.ResizeInsideSymbol = true;
+            chartSeries1.Name = "Default0";
+            chartSeries1.Resolution = 0D;
+            chartSeries1.StackingGroup = "Default Group";
+            chartSeries1.Style.AltTagFormat = "";
+            chartSeries1.Style.DrawTextShape = false;
+            chartLineInfo1.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
+            chartLineInfo1.Color = System.Drawing.SystemColors.ControlText;
+            chartLineInfo1.DashPattern = null;
+            chartLineInfo1.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            chartLineInfo1.Width = 1F;
+            chartCustomShapeInfo1.Border = chartLineInfo1;
+            chartCustomShapeInfo1.Color = System.Drawing.SystemColors.HighlightText;
+            chartCustomShapeInfo1.Type = Syncfusion.Windows.Forms.Chart.ChartCustomShape.Square;
+            chartSeries1.Style.TextShape = chartCustomShapeInfo1;
+            chartSeries1.Text = "Default0";
+            chartSeries2.FancyToolTip.ResizeInsideSymbol = true;
+            chartSeries2.Name = "Default1";
+            chartSeries2.Resolution = 0D;
+            chartSeries2.StackingGroup = "Default Group";
+            chartSeries2.Style.AltTagFormat = "";
+            chartSeries2.Style.DrawTextShape = false;
+            chartCustomShapeInfo2.Border = chartLineInfo1;
+            chartCustomShapeInfo2.Color = System.Drawing.SystemColors.HighlightText;
+            chartCustomShapeInfo2.Type = Syncfusion.Windows.Forms.Chart.ChartCustomShape.Square;
+            chartSeries2.Style.TextShape = chartCustomShapeInfo2;
+            chartSeries2.Text = "Default1";
+            this.ChartControl.Series.Add(chartSeries1);
+            this.ChartControl.Series.Add(chartSeries2);
+            this.ChartControl.Series3D = true;
+            this.ChartControl.SeriesHighlight = true;
+            this.ChartControl.ShadowColor = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))), System.Drawing.Color.Silver);
+            this.ChartControl.ShowScrollBars = false;
+            this.ChartControl.ShowToolbar = true;
+            this.ChartControl.Size = new System.Drawing.Size(1385, 661);
+            this.ChartControl.Source = BudgetExecution.Source.NS;
+            this.ChartControl.SourceModel = null;
+            this.ChartControl.Spacing = 5F;
+            this.ChartControl.SpacingBetweenPoints = 5F;
+            this.ChartControl.Style = null;
+            this.ChartControl.Style3D = true;
+            this.ChartControl.TabIndex = 5;
+            this.ChartControl.Text = "Chart Title";
+            this.ChartControl.Tilt = 5F;
+            // 
+            // 
+            // 
+            this.ChartControl.Title.Name = "Default";
+            this.ChartControl.TitleInfo = null;
+            this.ChartControl.Titles.Add(this.ChartControl.Title);
+            this.ChartControl.ToolBar.ButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ChartControl.ToolBar.Position = Syncfusion.Windows.Forms.Chart.ChartDock.Bottom;
+            this.ChartControl.ToolBar.ShowBorder = false;
+            this.ChartControl.ToolBar.ShowGrip = false;
+            this.ChartControl.ToolBar.Visible = true;
+            this.ChartControl.ToolTip = null;
+            this.ChartControl.VisualTheme = "";
+            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -805,8 +777,8 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1385, 713);
+            this.Controls.Add(this.ChartControl);
             this.Controls.Add(this.ToolStrip);
-            this.Controls.Add(this.Chart);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -819,18 +791,16 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private ToolTip ToolTip;
-        public Syncfusion.Windows.Forms.Chart.ChartControl Chart;
         public ToolStrip ToolStrip;
         private DataModel DataSet;
         public System.Windows.Forms.BindingSource BindingSource;
@@ -869,5 +839,7 @@
         public ToolStripButton NextButton;
         private ToolSeparator Separator17;
         private ToolSeparator Separator18;
+        public ToolTip ToolTip;
+        public ChartControl ChartControl;
     }
 }

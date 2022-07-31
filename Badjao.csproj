@@ -59,7 +59,7 @@
     <StartupObject>BudgetExecution.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>BudExNinjaGrey.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Images\Ninja\BudExNinjaGrey.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -374,6 +374,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Chart\ChartControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Chart\IChartBinding.cs" />
     <Compile Include="Controls\StyleConfig\AlignConfig.cs" />
     <Compile Include="Controls\StyleConfig\BorderConfig.cs" />
     <Compile Include="Controls\StyleConfig\ChartConfig.cs" />
@@ -519,7 +523,7 @@
     <Compile Include="Controls\Chart\ChartData.cs" />
     <Compile Include="Controls\Chart\DataSeries.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
-    <Compile Include="Controls\Chart\SeriesConfiguration.cs" />
+    <Compile Include="Controls\Chart\SeriesConfig.cs" />
     <Compile Include="Controls\Chart\SeriesModel.cs" />
     <Compile Include="Controls\Chart\SourceModel.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
@@ -544,7 +548,6 @@
     <Compile Include="Interfaces\IBindingSource.cs" />
     <Compile Include="Interfaces\IWorkbook.cs" />
     <Compile Include="Interfaces\IChart.cs" />
-    <Compile Include="Interfaces\IChartBinding.cs" />
     <Compile Include="Interfaces\IChartSeriesModel.cs" />
     <Compile Include="Interfaces\IDataMetric.cs" />
     <Compile Include="Interfaces\IDataSeries.cs" />
@@ -813,7 +816,6 @@
     <Compile Include="Static\Static.cs" />
     <Compile Include="Static\Validate.cs" />
     <Compile Include="Static\Verify.cs" />
-    <Compile Include="Controls\Chart\ChartConfiguration.cs" />
     <Compile Include="Interfaces\IChartConfig.cs" />
     <Compile Include="Controls\ToolStrip\ToolFactory.cs" />
     <Compile Include="Controls\ToolStrip\ToolSeparator.cs">
@@ -1093,7 +1095,7 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
-    <Content Include="BudExNinjaGrey.ico" />
+    <Content Include="Resources\Images\Ninja\BudExNinjaGrey.ico" />
     <Content Include="Data\Database\Access\DataModels\CREATE\TABLE\Allocations.sql" />
     <Content Include="Data\Database\Access\DataModels\CREATE\TABLE\AllowanceHolders.sql" />
     <Content Include="Data\Database\Access\DataModels\CREATE\TABLE\BackUp.sql" />
