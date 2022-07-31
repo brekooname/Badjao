@@ -293,9 +293,20 @@ namespace BudgetExecution
 
                         case ToolType.ChartButton:
                         {
-                            using( var _form = new ChartForm( ) )
+                            if( BindingSource != null )
                             {
-                                _form?.ShowDialog( );
+                                using( var _form = new ChartForm( BindingSource ) )
+                                {
+                                    _form?.ShowDialog( );
+                                }
+
+                            }
+                            else if( BindingSource == null )
+                            {
+                                using( var _form = new ChartForm(  ) )
+                                {
+                                    _form?.ShowDialog( );
+                                }
                             }
 
                             break;
