@@ -5,7 +5,9 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// 
@@ -42,7 +44,7 @@ namespace BudgetExecution
         /// </returns>
         public virtual bool IsMatch( IDataUnit dataUnit )
         {
-            if( Verify.IsRef( dataUnit ) )
+            if( dataUnit != null )
             {
                 try
                 {
@@ -69,7 +71,7 @@ namespace BudgetExecution
         /// </returns>
         public virtual bool IsMatch( IElement element )
         {
-            if( Verify.IsRef( element ) )
+            if( element != null )
             {
                 try
                 {
@@ -86,12 +88,39 @@ namespace BudgetExecution
 
             return false;
         }
-        
+
+        /// <summary>
+        /// Determines whether the specified dictionary is match.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified dictionary is match; otherwise, <c>false</c>.
+        /// </returns>
+        public virtual bool IsMatch( IDictionary<string, object> dict  )
+        {
+            if( dict?.Any( ) == true )
+            {
+                try
+                {
+                    var _name = dict.Keys.First( );
+                    var _value = dict[ _name ];
+                    return _value.Equals( Value ) && _name.Equals( Name );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return false;
+                }
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        public static void Fail( Exception ex )
+        protected static void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )
             {

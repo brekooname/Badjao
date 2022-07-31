@@ -76,6 +76,24 @@ namespace BudgetExecution
         /// <see cref="SeriesModel" />
         /// class.
         /// </summary>
+        public SeriesModel( System.Windows.Forms.BindingSource bindingSource )
+        {
+            SourceBinding = new ChartBinding( bindingSource );
+            SourceModel = new SourceModel( SourceBinding );
+            BindingModel = new ChartDataBindModel( SourceBinding );
+            SourceData = SourceModel.SourceData;
+            SeriesConfiguration = SourceBinding.SeriesConfiguration;
+            Stat = SeriesConfiguration.Stat;
+            DataMetric = SourceBinding.Metric;
+            SeriesData = DataMetric.CalculateStatistics( );
+            BindingModel.Changed += OnChanged;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="SeriesModel" />
+        /// class.
+        /// </summary>
         /// <param name="chartBinding"></param>
         public SeriesModel( IChartBinding chartBinding )
         {
@@ -83,9 +101,9 @@ namespace BudgetExecution
             SourceModel = new SourceModel( chartBinding );
             BindingModel = new ChartDataBindModel( SourceBinding );
             SourceData = chartBinding.Data;
-            SeriesConfiguration = chartBinding.GetSeriesConfig( );
+            SeriesConfiguration = chartBinding.SeriesConfiguration;
             Stat = SeriesConfiguration.Stat;
-            DataMetric = chartBinding.GetDataMetric( );
+            DataMetric = chartBinding.Metric;
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -100,6 +118,7 @@ namespace BudgetExecution
         {
             SourceBinding = new ChartBinding( dataTable, seriesConfig );
             BindingModel = new ChartDataBindModel( SourceBinding );
+            SourceModel = new SourceModel( SourceBinding );
             SourceData = SourceBinding.Data;
             SeriesConfiguration = seriesConfig;
             Stat = seriesConfig.Stat;
@@ -118,10 +137,11 @@ namespace BudgetExecution
         {
             SourceBinding = new ChartBinding( dataRows, seriesConfig );
             BindingModel = new ChartDataBindModel( SourceBinding );
+            SourceModel = new SourceModel( SourceBinding );
             SourceData = SourceBinding.Data;
-            SeriesConfiguration = SourceBinding.GetSeriesConfig( );
+            SeriesConfiguration = SourceBinding.SeriesConfiguration;
             Stat = seriesConfig.Stat;
-            DataMetric = SourceBinding.GetDataMetric( );
+            DataMetric = SourceBinding.Metric;
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }

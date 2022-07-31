@@ -94,9 +94,9 @@ namespace BudgetExecution
             SourceBinding = new ChartBinding( data, seriesConfig );
             BindingModel = new ChartDataBindModel( data, seriesConfig?.Field.ToString( ) );
             SourceData = SourceBinding.Data;
-            Configuration = SourceBinding?.GetSeriesConfig( );
+            Configuration = SourceBinding?.SeriesConfiguration;
             Stat = Configuration.Stat;
-            Metric = SourceBinding?.GetDataMetric( );
+            Metric = SourceBinding?.Metric;
             SeriesData = Metric?.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -111,9 +111,24 @@ namespace BudgetExecution
             SourceBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
             BindingModel = new ChartDataBindModel( dataTable, seriesConfig?.Field.ToString( ) );
             SourceData = SourceBinding.Data;
-            Configuration = SourceBinding?.GetSeriesConfig( );
+            Configuration = SourceBinding?.SeriesConfiguration;
             Stat = Configuration.Stat;
-            Metric = SourceBinding?.GetDataMetric( );
+            Metric = SourceBinding?.Metric;
+            SeriesData = Metric?.CalculateStatistics( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SourceModel" /> struct.
+        /// </summary>
+        /// <param name="chartBinding">The binding source.</param>
+        public SourceModel( IChartBinding chartBinding )
+        {
+            SourceBinding = chartBinding;
+            BindingModel = new ChartDataBindModel( chartBinding );
+            SourceData = chartBinding.Data;
+            Configuration = chartBinding.SeriesConfiguration;
+            Stat = Configuration.Stat;
+            Metric = chartBinding.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
 
@@ -121,14 +136,14 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="SourceModel" /> struct.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        public SourceModel( IChartBinding bindingSource )
+        public SourceModel( System.Windows.Forms.BindingSource bindingSource )
         {
-            SourceBinding = bindingSource;
+            SourceBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( bindingSource );
-            SourceData = bindingSource.Data;
-            Configuration = bindingSource.GetSeriesConfig( );
+            SourceData = SourceBinding.Data;
+            Configuration = SourceBinding.SeriesConfiguration;
             Stat = Configuration.Stat;
-            Metric = bindingSource.GetDataMetric( );
+            Metric = SourceBinding.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
 

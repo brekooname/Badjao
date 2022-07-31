@@ -11,9 +11,15 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    /// <summary>
+    /// 
+    /// </summary>
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ChartData
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartData"/> class.
+        /// </summary>
         public ChartData()
         {
         }
@@ -24,7 +30,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public BindingSource BindingSource { get; set; }
+        public System.Windows.Forms.BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -92,7 +98,7 @@ namespace BudgetExecution
             try
             {
                 if( Verify.IsBindable( bindingList )
-                    && Verify.IsMap( dict ) )
+                    && dict?.Any( ) == true )
                 {
                     try
                     {
@@ -134,7 +140,7 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -156,7 +162,7 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -173,7 +179,7 @@ namespace BudgetExecution
 
                     BindingSource.DataSource = data?.ToList( );
                     BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
-                }
+                }  
                 catch( Exception ex )
                 {
                     Fail( ex );
@@ -194,8 +200,9 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) 
+                && !string.IsNullOrEmpty( filter?.ToString( ) ) )
             {
                 try
                 {
@@ -203,7 +210,7 @@ namespace BudgetExecution
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field.ToString( );
-                        BindingSource.Filter = $"{field} = {filter}";
+                        BindingSource.Filter = $"{ field } = { filter }";
                     }
                     else
                     {
@@ -227,7 +234,7 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -258,8 +265,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : IDictionary<string, object>
         {
-            if( Verify.IsSequence( data )
-                && Verify.IsMap( dict ) )
+            if( data?.Any( ) == true
+                && dict?.Any( ) == true )
             {
                 try
                 {
@@ -294,7 +301,7 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
+            if( data?.Any( ) == true
                 && Validate.IsField( field ) )
             {
                 try

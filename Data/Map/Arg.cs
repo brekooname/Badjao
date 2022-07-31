@@ -45,11 +45,11 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetInput( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
-                    var _dictionary = new Dictionary<string, object>( );
+                    var _dict = new Dictionary<string, object>( );
                     var _fields = Enum.GetNames( typeof( Field ) );
 
                     foreach( var kvp in dict )
@@ -57,12 +57,12 @@ namespace BudgetExecution
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
                         {
-                            _dictionary?.Add( kvp.Key, kvp.Value );
+                            _dict?.Add( kvp.Key, kvp.Value );
                         }
                     }
 
-                    Input = _dictionary?.Any( ) == true
-                        ? _dictionary
+                    Input = _dict?.Any( ) == true && _dict != Output 
+                        ? _dict
                         : default( Dictionary<string, object> );
                 }
                 catch( Exception ex )

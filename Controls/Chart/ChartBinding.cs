@@ -73,7 +73,7 @@ namespace BudgetExecution
         /// The data table.
         /// </value>
         public DataTable DataTable { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the record.
         /// </summary>
@@ -107,6 +107,17 @@ namespace BudgetExecution
         {
         }
 
+        public ChartBinding( System.Windows.Forms.BindingSource bindingSource )
+        {
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
+            DataTable = (DataTable)bindingSource.DataSource;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
+            Record = bindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            Changed += OnCurrentChanged;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBinding" /> class.
         /// </summary>
@@ -137,48 +148,14 @@ namespace BudgetExecution
             Data = data;
             SeriesConfiguration = seriesConfig;
             DataTable = data.CopyToDataTable( );
-            DataSet = DataTable.DataSet;
+            DataSet = data.CopyToDataTable( )?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;
             Record = (DataRow)Current;
             AllowNew = true;
             Changed += OnCurrentChanged;
         }
-
-        /// <summary>
-        /// Gets the series configuration.
-        /// </summary>
-        /// <returns></returns>
-        public ISeriesConfig GetSeriesConfig()
-        {
-            try
-            {
-                return SeriesConfiguration;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( ISeriesConfig );
-            }
-        }
-
-        /// <summary>
-        /// Gets the data metric.
-        /// </summary>
-        /// <returns></returns>
-        public IDataMetric GetDataMetric()
-        {
-            try
-            {
-                return Metric;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDataMetric );
-            }
-        }
-
+        
         /// <summary>
         /// Gets the count.
         /// </summary>
@@ -206,7 +183,7 @@ namespace BudgetExecution
             try
             {
                 var _numeric = SeriesConfiguration?.Numeric;
-                return double.Parse( Record[ $"{_numeric}" ].ToString( ) ) > 0;
+                return double.Parse( Record[ $"{ _numeric }" ].ToString( ) ) > 0;
             }
             catch( Exception ex )
             {
@@ -227,7 +204,7 @@ namespace BudgetExecution
                 var _numeric = SeriesConfiguration?.Numeric;
 
                 return !GetEmpty( xIndex )
-                    ? double.Parse( Record[ $"{_numeric}" ].ToString( ) )
+                    ? double.Parse( Record[ $"{ _numeric }" ].ToString( ) )
                     : 0;
             }
             catch( Exception ex )

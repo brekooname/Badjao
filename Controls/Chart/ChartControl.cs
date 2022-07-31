@@ -202,11 +202,24 @@ namespace BudgetExecution
             : this( )
         {
             SourceModel = new SourceModel( sourceBinding );
-            Configuration = sourceBinding.GetSeriesConfig( );
+            Configuration = sourceBinding.SeriesConfiguration;
             ChartData = new SeriesModel( sourceBinding );
             DataMetric = SourceModel.Metric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
             DataSeries = new DataSeries( ChartData );
+            Series.Add( DataSeries );
+            Titles.Add( TitleInfo.GetChartMainTitle( ) );
+        }
+
+        public ChartControl( System.Windows.Forms.BindingSource bindingSource )
+            : this( )
+        {
+            SourceModel = new SourceModel( bindingSource );
+            ChartData = new SeriesModel( bindingSource );
+            DataSeries = new DataSeries( ChartData );
+            Configuration = ChartData.SeriesConfiguration;
+            DataMetric = ChartData.DataMetric;
+            TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -221,10 +234,10 @@ namespace BudgetExecution
             : this( )
         {
             SourceModel = sourceModel;
-            Configuration = SourceModel.SourceBinding.GetSeriesConfig( );
-            ChartData = new SeriesModel( SourceModel.SourceBinding );
+            Configuration = sourceModel.SourceBinding.SeriesConfiguration;
+            ChartData = new SeriesModel( sourceModel.SourceBinding );
             TitleInfo = new TitleInfo( Configuration.Name );
-            DataMetric = SourceModel.Metric;
+            DataMetric = sourceModel.Metric;
             DataSeries = new DataSeries( ChartData );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
@@ -241,10 +254,10 @@ namespace BudgetExecution
             : this( )
         {
             SourceModel = sourceModel;
-            Configuration = SourceModel.SourceBinding.GetSeriesConfig( );
+            Configuration = sourceModel.SourceBinding.SeriesConfiguration;
             TitleInfo = titleInfo;
-            DataMetric = SourceModel.Metric;
-            ChartData = new SeriesModel( SourceModel.SourceBinding );
+            DataMetric = sourceModel.Metric;
+            ChartData = new SeriesModel( sourceModel.SourceBinding );
             DataSeries = new DataSeries( ChartData );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
@@ -261,10 +274,10 @@ namespace BudgetExecution
             : this( )
         {
             ChartData = chartData;
-            Configuration = ChartData.SeriesConfiguration;
-            SourceModel = ChartData.SourceModel;
+            Configuration = chartData.SeriesConfiguration;
+            SourceModel = chartData.SourceModel;
             TitleInfo = titleInfo;
-            DataMetric = ChartData.DataMetric;
+            DataMetric = chartData.DataMetric;
             DataSeries = new DataSeries( ChartData );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );

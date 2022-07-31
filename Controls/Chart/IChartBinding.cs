@@ -80,18 +80,6 @@
         IDataMetric Metric { get; set; }
         
         /// <summary>
-        /// Gets the series configuration.
-        /// </summary>
-        /// <returns></returns>
-        ISeriesConfig GetSeriesConfig();
-
-        /// <summary>
-        /// Gets the data metric.
-        /// </summary>
-        /// <returns></returns>
-        IDataMetric GetDataMetric();
-
-        /// <summary>
         /// Gets the count.
         /// </summary>
         /// <returns></returns>

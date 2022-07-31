@@ -48,7 +48,7 @@ namespace BudgetExecution
         public Element()
         {
         }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
@@ -64,12 +64,12 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="value">The value.</param>
-        public Element( string name, string value = "" )
+        /// <param name="columnName">The value.</param>
+        public Element( string name, string columnName = "" )
         {
             Field = (Field)Enum.Parse( typeof( Field ), name );
             Name = name;
-            Value = value;
+            Value = columnName;
         }
 
         /// <summary>
@@ -88,23 +88,23 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
         /// <param name="field">The field.</param>
-        /// <param name="value">The value.</param>
-        public Element( Field field, string value = "" )
+        /// <param name="columnName">The value.</param>
+        public Element( Field field, string columnName = "" )
         {
             Field = field;
             Name = field.ToString( );
-            Value = value;
+            Value = columnName;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
         /// <param name="dataRow">The Data row.</param>
-        /// <param name="value">The value.</param>
-        public Element( DataRow dataRow, string value )
+        /// <param name="columnName">The value.</param>
+        public Element( DataRow dataRow, string columnName )
         {
-            Name = dataRow[ value ].ToString( );
-            Value = dataRow[ value ];
+            Name = dataRow[ columnName ].ToString( );
+            Value = dataRow[ columnName ];
             Field = (Field)Enum.Parse( typeof( Field ), Name );
         }
 
