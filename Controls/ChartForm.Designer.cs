@@ -35,10 +35,6 @@
             Syncfusion.Windows.Forms.Chart.ChartSeries chartSeries2 = new Syncfusion.Windows.Forms.Chart.ChartSeries();
             Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo chartCustomShapeInfo2 = new Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo();
             Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem chartToolBarSaveItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem chartToolBarCopyItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem chartToolBarPrintItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem chartToolBarPrintPreviewItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem();
-            Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter chartToolBarSplitter1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter();
             Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem chartToolBarPaletteItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem();
             Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem chartToolBarStyleItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem();
             Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem chartToolBarTypeItem1 = new Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem();
@@ -120,6 +116,7 @@
             // 
             // Chart
             // 
+            this.Chart.AllowUserEditStyles = true;
             this.Chart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Chart.AutoHighlight = true;
@@ -149,7 +146,7 @@
             this.Chart.Legend.Position = Syncfusion.Windows.Forms.Chart.ChartDock.Floating;
             this.Chart.Legend.Visible = false;
             this.Chart.Localize = null;
-            this.Chart.Location = new System.Drawing.Point(74, 52);
+            this.Chart.Location = new System.Drawing.Point(89, 67);
             this.Chart.Name = "Chart";
             this.Chart.Palette = Syncfusion.Windows.Forms.Chart.ChartColorPalette.Custom;
             this.Chart.PrimaryXAxis.Font = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -221,6 +218,7 @@
             this.Chart.Series.Add(chartSeries2);
             this.Chart.Series3D = true;
             this.Chart.SeriesHighlight = true;
+            this.Chart.ShowToolbar = true;
             this.Chart.Size = new System.Drawing.Size(1227, 552);
             this.Chart.Spacing = 10F;
             this.Chart.Style3D = true;
@@ -232,17 +230,22 @@
             this.Chart.Title.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.Chart.Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.Chart.Title.Name = "Default";
+            this.Chart.ToolBar.Border.BackColor = System.Drawing.Color.Transparent;
+            this.Chart.ToolBar.Border.ForeColor = System.Drawing.Color.Transparent;
             this.Chart.ToolBar.EnableDefaultItems = false;
+            this.Chart.ToolBar.IncludeInExportedChart = false;
             this.Chart.ToolBar.Items.Add(chartToolBarSaveItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarCopyItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarPrintItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarPrintPreviewItem1);
-            this.Chart.ToolBar.Items.Add(chartToolBarSplitter1);
             this.Chart.ToolBar.Items.Add(chartToolBarPaletteItem1);
             this.Chart.ToolBar.Items.Add(chartToolBarStyleItem1);
             this.Chart.ToolBar.Items.Add(chartToolBarTypeItem1);
             this.Chart.ToolBar.Items.Add(chartToolBarSeries3DItem1);
             this.Chart.ToolBar.Items.Add(chartToolBarShowLegendItem1);
+            this.Chart.ToolBar.Orientation = Syncfusion.Windows.Forms.Chart.ChartOrientation.Vertical;
+            this.Chart.ToolBar.Position = Syncfusion.Windows.Forms.Chart.ChartDock.Right;
+            this.Chart.ToolBar.ShowBorder = false;
+            this.Chart.ToolBar.ShowDialog = true;
+            this.Chart.ToolBar.ShowGrip = false;
+            this.Chart.ToolBar.Visible = true;
             this.Chart.VisualTheme = "";
             // 
             // ToolStrip
@@ -1259,7 +1262,6 @@
         public ToolSeparator toolSeparator15;
         public ToolStripButton toolStripButton12;
         public ToolSeparator toolSeparator16;
-        public System.Windows.Forms.BindingSource BindingSource;
         public ToolStripTextBox TextBox;
         public ToolSeparator Separator1;
         public ToolStripLabel Label;
@@ -1293,5 +1295,6 @@
         public ToolSeparator Separator16;
         public ToolStripDropDown DropDown;
         public DataModel DataSet;
+        private System.Windows.Forms.BindingSource BindingSource;
     }
 }

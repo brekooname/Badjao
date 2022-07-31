@@ -40,7 +40,7 @@ namespace BudgetExecution
         public Message( string text )
             : this( )
         {
-            TextBox.Text  = text;
+            TextBox.Text  = Environment.NewLine + text;
         }
 
         /// <summary>

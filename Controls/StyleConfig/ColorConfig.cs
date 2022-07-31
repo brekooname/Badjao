@@ -62,7 +62,7 @@ namespace BudgetExecution
         /// <summary>
         /// The control dark back color
         /// </summary>
-        public static readonly Color ControlDarkBackColor = Color.FromArgb( 40, 40, 40 );
+        public static readonly Color ControlInteriorColor = Color.FromArgb( 40, 40, 40 );
 
         /// <summary>
         /// The clear background
@@ -72,7 +72,7 @@ namespace BudgetExecution
         /// <summary>
         /// The gray back hover
         /// </summary>
-        public static readonly Color HoverGray = Color.FromArgb( 38, 38, 39 );
+        public static readonly Color HoverGray = Color.FromArgb( 41, 41, 41 );
 
         /// <summary>
         /// The blue back hover

@@ -28,7 +28,7 @@ namespace BudgetExecution
             TransparentBackground = true;
             EnableAddNew = true;
             EnableEdit = true;
-            CanOverrideStyle = true;
+            CanOverrideStyle = false;
             EnableRemove = true;
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
