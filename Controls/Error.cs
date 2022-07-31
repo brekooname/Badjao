@@ -73,19 +73,19 @@ namespace BudgetExecution
             TextBox.Border.Type = ShapeTypes.Rounded;
             TextBox.Border.Color = Color.FromArgb( 64, 64, 64 );
             TextBox.Border.HoverColor = Color.Maroon;
-            TextBox.Parent = Panel;
+            TextBox.Parent = BackPanel;
             TextBox.Dock = DockStyle.Fill;
 
-            Panel.BackColor = Color.FromArgb( 15, 15, 15 );
-            Panel.BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
-            Panel.BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
-            Panel.Border.Color = Color.FromArgb( 64, 64, 64 );
-            Panel.Border.HoverColor = Color.FromArgb( 192, 0, 0 );
-            Panel.Parent = this;
-            Panel.Location = new Point( 61, 48 );
-            Panel.Controls.Add( TextBox );
+            BackPanel.BackColor = Color.FromArgb( 15, 15, 15 );
+            BackPanel.BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
+            BackPanel.BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
+            BackPanel.Border.Color = Color.FromArgb( 64, 64, 64 );
+            BackPanel.Border.HoverColor = Color.FromArgb( 192, 0, 0 );
+            BackPanel.Parent = this;
+            BackPanel.Location = new Point( 61, 48 );
+            BackPanel.Controls.Add( TextBox );
 
-            Controls.Add( Panel );
+            Controls.Add( BackPanel );
 
             CloseButton.Click += OnClick;
         }
@@ -116,8 +116,15 @@ namespace BudgetExecution
         /// </summary>
         public void SetText( )
         {
-            var _logString = Exception.ToLogString( "" );
-            TextBox.Text = _logString;
+            try
+            {
+                var _logString = Exception.ToLogString( "" );
+                TextBox.Text = _logString;
+            }
+            catch ( Exception ex )
+            {
+                Console.WriteLine( ex.StackTrace );
+            }
         }
 
         /// <summary>

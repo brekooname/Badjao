@@ -374,11 +374,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Configuration\AlignConfig.cs" />
-    <Compile Include="Controls\Configuration\BorderConfig.cs" />
-    <Compile Include="Controls\Configuration\ChartConfig.cs" />
-    <Compile Include="Controls\Configuration\ColorConfig.cs" />
-    <Compile Include="Controls\Configuration\ControlConfig.cs" />
+    <Compile Include="Controls\StyleConfig\AlignConfig.cs" />
+    <Compile Include="Controls\StyleConfig\BorderConfig.cs" />
+    <Compile Include="Controls\StyleConfig\ChartConfig.cs" />
+    <Compile Include="Controls\StyleConfig\ColorConfig.cs" />
+    <Compile Include="Controls\StyleConfig\ControlConfig.cs" />
     <Compile Include="Controls\CurrencyBox\CurrencyBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -412,9 +412,9 @@
     <Compile Include="Data\DataBuilder\DataModel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Configuration\FontConfig.cs" />
-    <Compile Include="Controls\Configuration\FormConfig.cs" />
-    <Compile Include="Controls\Configuration\SizeConfig.cs" />
+    <Compile Include="Controls\StyleConfig\FontConfig.cs" />
+    <Compile Include="Controls\StyleConfig\FormConfig.cs" />
+    <Compile Include="Controls\StyleConfig\SizeConfig.cs" />
     <Compile Include="Abstractions\DataGridBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -782,7 +782,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\Form\BudgetForm.cs" />
-    <Compile Include="Controls\Configuration\Settings.cs" />
+    <Compile Include="Controls\StyleConfig\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
     <Compile Include="Resources\Extenstions.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2143,6 +2143,8 @@
     <Content Include="Resources\Images\Dialog\png\DialogUpload.png" />
     <Content Include="Resources\Images\Dialog\png\DialogVerify.png" />
     <Content Include="Resources\Images\Dialog\png\DialogWarning.png" />
+    <None Include="Resources\Images\Dialog\png\Message.png" />
+    <None Include="Resources\Images\Dialog\png\Error.png" />
     <Content Include="Resources\Images\Email\ico\DbEmail.ico" />
     <Content Include="Resources\Images\Email\ico\EmailAdd.ico" />
     <Content Include="Resources\Images\Email\ico\EmailBrowse.ico" />

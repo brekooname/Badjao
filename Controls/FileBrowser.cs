@@ -19,6 +19,7 @@ namespace BudgetExecution
             Size = new Size( 700, 530 );
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = Color.FromArgb( 15, 15, 15 );
+            CloseButton.Click += OnCloseButtonClicked;
         }
 
         /// <summary>

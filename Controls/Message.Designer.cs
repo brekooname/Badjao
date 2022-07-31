@@ -63,14 +63,14 @@ namespace BudgetExecution
             this.TextBox.Border.Visible = true;
             this.TextBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox.ForeColor = System.Drawing.Color.White;
-            this.TextBox.Location = new System.Drawing.Point(76, 110);
+            this.TextBox.Location = new System.Drawing.Point(86, 120);
             this.TextBox.MaxLength = 2147483647;
             this.TextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TextBox.Name = "TextBox";
             this.TextBox.ReadOnly = true;
             this.TextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
             this.TextBox.ShowSelectionMargin = false;
-            this.TextBox.Size = new System.Drawing.Size(526, 208);
+            this.TextBox.Size = new System.Drawing.Size(526, 232);
             this.TextBox.TabIndex = 8;
             this.TextBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.TextBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -195,7 +195,7 @@ namespace BudgetExecution
             this.Label.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label.ForeColor = System.Drawing.Color.SteelBlue;
             this.Label.HoverText = null;
-            this.Label.Location = new System.Drawing.Point(86, 46);
+            this.Label.Location = new System.Drawing.Point(86, 80);
             this.Label.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Label.Name = "Label";
             this.Label.Numeric = BudgetExecution.Numeric.NS;
@@ -234,7 +234,7 @@ namespace BudgetExecution
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Numeric = BudgetExecution.Numeric.NS;
             this.PictureBox.Padding = new System.Windows.Forms.Padding(1);
-            this.PictureBox.Size = new System.Drawing.Size(37, 34);
+            this.PictureBox.Size = new System.Drawing.Size(22, 22);
             this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox.TabIndex = 13;
             this.PictureBox.TabStop = false;

@@ -44,6 +44,17 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Message"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="caption">The caption.</param>
+        public Message( string text, string caption )
+            : this( text )
+        {
+            Label.Text = caption;
+        }
+
+        /// <summary>
         /// Called when [close button clicked].
         /// </summary>
         /// <param name="sender">The sender.</param>

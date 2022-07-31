@@ -387,7 +387,7 @@ namespace BudgetExecution
             // 
             // SqliteCheckBox
             // 
-            this.SqliteCheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
+            this.SqliteCheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.SqliteCheckBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
             this.SqliteCheckBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
             this.SqliteCheckBox.Border.HoverVisible = true;
