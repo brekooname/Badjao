@@ -46,7 +46,6 @@ namespace BudgetExecution
         /// </value>
         public virtual string PathExtension { get; set; }
 
-
         /// <summary>
         /// The file path
         /// </summary>
@@ -68,12 +67,13 @@ namespace BudgetExecution
         public virtual string ConnectionString { get; set; }
 
         /// <summary>
-        /// Sets the file path.
+        /// Gets the file path.
         /// </summary>
         /// <param name="provider">The provider.</param>
+        /// <returns></returns>
         public virtual string GetFilePath( Provider provider )
         {
-            if( Validate.IsProvider( provider ) )
+            if( Enum.IsDefined( typeof( Provider ), provider ) )
             {
                 try
                 {

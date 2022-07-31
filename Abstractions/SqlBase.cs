@@ -6,93 +6,48 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class SqlBase
     {
         /// <summary>
+        /// The extension
+        /// </summary>
+        public readonly EXT Extension = EXT.SQL;
+
+        /// <summary>
         /// The connection builder
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
+        public virtual IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// The command type
         /// </summary>
-        public SQL CommandType { get; set; }
+        public virtual SQL CommandType { get; set; }
 
         /// <summary>
         /// The arguments
         /// </summary>
-        public IDictionary<string, object> Args { get; set; }
+        public virtual IDictionary<string, object> Args { get; set; }
 
         /// <summary>
         /// The command text
         /// </summary>
-        public string CommandText { get; set; }
+        public virtual  string CommandText { get; set; }
 
         /// <summary>
-        /// Sets the connection builder.
+        /// The file path
         /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
-        protected void SetConnectionBuilder( Source source, Provider provider )
-        {
-            try
-            {
-                ConnectionBuilder = Enum.IsDefined( typeof( Source ), source ) 
-                    && Enum.IsDefined( typeof( Provider ), provider )
-                        ? new ConnectionBuilder( source, provider )
-                        : default( ConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the arguments.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        protected void SetArgs( IDictionary<string, object> dict )
-        {
-            try
-            {
-                Args = dict?.Any( ) == true
-                    ? dict
-                    : new Dictionary<string, object>( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the type of the command.
-        /// </summary>
-        /// <param name="commandType">Type of the command.</param>
-        protected void SetCommandType( SQL commandType )
-        {
-            try
-            {
-                CommandType = Enum.IsDefined( typeof( SQL ), commandType )
-                    && Enum.GetNames( typeof( SQL ) ).Contains( commandType.ToString( ) )
-                        ? commandType
-                        : SQL.SELECT;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        public virtual string FilePath { get; set; }
+        
         /// <summary>
         /// Sets the select statement.
         /// </summary>
@@ -124,7 +79,7 @@ namespace BudgetExecution
 
                     foreach( var _kvp in dict )
                     {
-                        _empty += $" { _kvp.Key } = '{ _kvp.Value }' AND";
+                        _empty += $"{ _kvp.Key } = '{ _kvp.Value }' AND";
                     }
 
                     var _values = _empty.TrimEnd( " AND".ToCharArray( ) );
@@ -148,7 +103,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetUpdateStatement( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
@@ -175,7 +130,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetInsertStatement( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
@@ -207,7 +162,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetDeleteStatement( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
@@ -302,19 +257,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        protected static void Fail( Exception ex )
-        {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
-        }
-
-        /// <summary>
         /// Converts to string.
         /// </summary>
         /// <returns>
@@ -332,6 +274,87 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the file path.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
+        public  string GetFilePath( Provider provider )
+        {
+            if( Enum.IsDefined( typeof( Provider ), provider ) )
+            {
+                try
+                {
+                    switch( provider )
+                    {
+                        case Provider.OleDb:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "OleDb" ];
+                            break;
+                        }
+                        case Provider.Access:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "Access" ];
+                            break;
+                        }
+                        case Provider.SQLite:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
+                            break;
+                        }
+                        case Provider.SqlCe:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SqlCe" ];
+                            break;
+                        }
+                        case Provider.Excel:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "Excel" ];
+                            break;
+                        }
+                        case Provider.SqlServer:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SqlServer" ];
+                            break;
+                        }
+                        case Provider.CSV:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "CSV" ];
+                            break;
+                        }
+                        default:
+                        {
+                            FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
+                            break;
+                        }
+                    }
+
+                    return !string.IsNullOrEmpty( FilePath )
+                        ? FilePath
+                        : string.Empty;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Get Error Dialog.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        protected static void Fail( Exception ex )
+        {
+            using( var _error = new Error( ex ) )
+            {
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }

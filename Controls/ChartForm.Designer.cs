@@ -803,7 +803,6 @@
         #endregion
         public ToolStrip ToolStrip;
         private DataModel DataSet;
-        public System.Windows.Forms.BindingSource BindingSource;
         public ToolStripTextBox TextBox;
         private ToolSeparator Separator1;
         public ToolStripLabel Label;
@@ -841,5 +840,6 @@
         private ToolSeparator Separator18;
         public ToolTip ToolTip;
         public ChartControl ChartControl;
+        private System.Windows.Forms.BindingSource BindingSource;
     }
 }

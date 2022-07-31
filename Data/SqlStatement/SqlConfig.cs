@@ -22,11 +22,6 @@ namespace BudgetExecution
     public abstract class SqlConfig : SqlBase
     {
         /// <summary>
-        /// The extension
-        /// </summary>
-        public readonly EXT Extension = EXT.SQL;
-
-        /// <summary>
         /// The provider path
         /// </summary>
         public NameValueCollection ProviderPath { get; set; } = ConfigurationManager.AppSettings;
@@ -45,11 +40,6 @@ namespace BudgetExecution
         /// The SQL statement
         /// </summary>
         public ISqlStatement SqlStatement { get; set; }
-
-        /// <summary>
-        /// The file path
-        /// </summary>
-        public string FilePath { get; set; }
 
         /// <summary>
         /// The file name

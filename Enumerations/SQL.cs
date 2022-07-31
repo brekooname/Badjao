@@ -20,6 +20,11 @@ namespace BudgetExecution
         SELECT,
 
         /// <summary>
+        /// The selectall
+        /// </summary>
+        SELECTALL,
+
+        /// <summary>
         /// Defines the INSERT
         /// </summary>
         INSERT,
@@ -37,7 +42,17 @@ namespace BudgetExecution
         /// <summary>
         /// Defines the CREATE
         /// </summary>
-        CREATE,
+        CREATEDATABASE,
+
+        /// <summary>
+        /// The createtable
+        /// </summary>
+        CREATETABLE,
+
+        /// <summary>
+        /// The createview
+        /// </summary>
+        CREATEVIEW,
 
         /// <summary>
         /// Defines the DROP
@@ -47,7 +62,7 @@ namespace BudgetExecution
         /// <summary>
         /// Defines the ALTER
         /// </summary>
-        ALTER,
+        ALTERTABLE,
 
         /// <summary>
         /// The attach
