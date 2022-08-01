@@ -33,6 +33,7 @@ namespace BudgetExecution
             InitialDelay = 500;
             AutoPopDelay = 5000;
             ReshowDelay = 100;
+            TipIcon = ToolTipIcon.Info;
         }
 
         /// <summary>
@@ -74,6 +75,16 @@ namespace BudgetExecution
             : this( )
         {
             SetToolTipText( toolItem );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolTip"/> class.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        public ToolTip( Control control )
+            : this( )
+        {
+            SetToolTipText( control );
         }
     }
 }

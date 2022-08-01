@@ -5,6 +5,7 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
     using VisualPlus.Models;
@@ -13,6 +14,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.CheckBoxBase" />
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public class CheckBox : CheckBoxBase
     {
         /// <summary>
@@ -95,7 +97,7 @@ namespace BudgetExecution
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the
         ///     event data.</param>
-        public void OnMouseLeave( object sender, EventArgs e )
+        public override void OnMouseLeave( object sender, EventArgs e )
         {
             try
             {
