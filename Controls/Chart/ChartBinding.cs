@@ -16,9 +16,9 @@ namespace BudgetExecution
     /// <seealso cref="BindingSource" />
     /// <seealso cref="IChartBinding" />
     /// <seealso cref="IChartSeriesModel" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedType.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     public class ChartBinding : System.Windows.Forms.BindingSource, IChartBinding
     {
         /// <summary>

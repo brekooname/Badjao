@@ -621,7 +621,7 @@ namespace BudgetExecution
             this.SelectButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.SelectButton.ForeColor = System.Drawing.Color.SteelBlue;
-            this.SelectButton.HoverText = null;
+            this.SelectButton.HoverText = "Select File";
             this.SelectButton.Image = null;
             this.SelectButton.Images = null;
             this.SelectButton.Location = new System.Drawing.Point(71, 17);
@@ -639,18 +639,18 @@ namespace BudgetExecution
             this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.SelectButton.ToolTip = null;
+            this.SelectButton.ToolTip = this.ToolTip;
             // 
             // CloseButton
             // 
             this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(93)))), ((int)(((byte)(129)))));
+            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CloseButton.BindingSource = null;
             this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(93)))), ((int)(((byte)(129)))));
             this.CloseButton.Border.HoverVisible = true;
             this.CloseButton.Border.Rounding = 6;
             this.CloseButton.Border.Thickness = 1;
@@ -662,7 +662,7 @@ namespace BudgetExecution
             this.CloseButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.CloseButton.ForeColor = System.Drawing.Color.SteelBlue;
-            this.CloseButton.HoverText = null;
+            this.CloseButton.HoverText = "Close Window";
             this.CloseButton.Image = null;
             this.CloseButton.Images = null;
             this.CloseButton.Location = new System.Drawing.Point(430, 17);
@@ -680,7 +680,7 @@ namespace BudgetExecution
             this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.CloseButton.ToolTip = null;
+            this.CloseButton.ToolTip = this.ToolTip;
             // 
             // ToolTip
             // 
