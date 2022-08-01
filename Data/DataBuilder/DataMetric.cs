@@ -38,18 +38,13 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "DataMetric"/> class.
         /// </summary>
-        public DataMetric()
+        public DataMetric() : base( )
         {
         }
 
         public DataMetric( System.Windows.Forms.BindingSource bindingSource, Numeric numeric = Numeric.Amount )
+            : base( bindingSource, numeric)
         {
-            Data = ( (DataTable)bindingSource?.DataSource )?.AsEnumerable( )?.ToList( );
-            Field = Field.NS;
-            Numeric = numeric;
-            Count = Data.Count( );
-            Total = CalculateTotals( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
         }
@@ -63,14 +58,9 @@ namespace BudgetExecution
         /// <param name = "numeric" >
         /// The numeric.
         /// </param>
-        public DataMetric( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
+        public DataMetric( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount ) 
+            : base( dataRow, numeric )
         {
-            Data = dataRow;
-            Field = Field.NS;
-            Numeric = numeric;
-            Count = Data.Count( );
-            Total = CalculateTotals( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
         }
@@ -88,13 +78,8 @@ namespace BudgetExecution
         /// The numeric.
         /// </param>
         public DataMetric( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
+            : base( dataRow, field, numeric )
         {
-            Field = field;
-            Numeric = numeric;
-            Data = dataRow;
-            Count = Data.Count( );
-            Total = CalculateTotals( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
             Statistics = CalculateStatistics( Data, Field, Numeric );
@@ -150,10 +135,10 @@ namespace BudgetExecution
                 try
                 {
                     var _query = dataRow
-                        ?.Where( p => p.Field<double>( $"{numeric}" ) != 0d )
-                        ?.StandardDeviation( p => p.Field<double>( $"{numeric}" ) );
+                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                        ?.StandardDeviation( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                    return _query > 0.0d
+                    return _query > 0 
                         ? double.Parse( _query.ToString( ) )
                         : 0.0d;
                 }
@@ -199,10 +184,10 @@ namespace BudgetExecution
                     try
                     {
                         var _query = dataRow
-                            ?.Where( p => p.Field<double>( $"{numeric}" ) != 0d )
-                            ?.StandardDeviation( p => p.Field<double>( $"{numeric}" ) );
+                            ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                            ?.StandardDeviation( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                        return _query > 0.0d
+                        return _query > 0
                             ? double.Parse( _query.ToString( ) )
                             : 0.0d;
                     }
@@ -239,10 +224,10 @@ namespace BudgetExecution
                 try
                 {
                     var _query = _table?.AsEnumerable( )
-                        ?.Where( p => p.Field<double>( $"{numeric}" ) != 0d )
-                        ?.Variance( p => p.Field<double>( $"{numeric}" ) );
+                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                        ?.Variance( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                    return _query > 0.0d
+                    return _query > 0
                         ? double.Parse( _query.ToString( ) )
                         : 0.0d;
                 }
@@ -300,10 +285,10 @@ namespace BudgetExecution
                 try
                 {
                     var _query = _table?.AsEnumerable( )
-                        ?.Where( p => p.Field<double>( $"{numeric}" ) != 0d )
-                        ?.Variance( p => p.Field<double>( $"{numeric}" ) );
+                        ?.Where( p => p.Field<double>( $"{numeric}" ) != 0 )
+                        ?.Variance( p => p.Field<double>( $"{ numeric }" ) );
 
-                    return _query > 0.0d
+                    return _query > 0
                         ? double.Parse( _query.ToString( ) )
                         : 0.0d;
                 }
@@ -328,7 +313,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
+        [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
         public IEnumerable<double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
         {
             if( dataRow?.Any( ) == true
@@ -391,7 +376,7 @@ namespace BudgetExecution
                         foreach( var filter in _codes )
                         {
                             var _select = dataRow
-                                ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                                ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
                                 ?.Select( p => p );
 
                             if( CalculateTotals( _select, numeric ) > 0 )
@@ -400,7 +385,7 @@ namespace BudgetExecution
                             }
                         }
 
-                        return _dictionary?.Count > 0.0
+                        return _dictionary?.Count > 0
                             ? _dictionary
                             : default( Dictionary<string, IEnumerable<double>> );
                     }

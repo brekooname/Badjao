@@ -84,7 +84,7 @@ namespace BudgetExecution
             SourceData = SourceModel.SourceData;
             SeriesConfiguration = ChartBinding.SeriesConfiguration;
             Stat = SeriesConfiguration.Stat;
-            DataMetric = ChartBinding.Metric;
+            DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -103,7 +103,7 @@ namespace BudgetExecution
             SourceData = chartBinding.Data;
             SeriesConfiguration = chartBinding.SeriesConfiguration;
             Stat = SeriesConfiguration.Stat;
-            DataMetric = chartBinding.Metric;
+            DataMetric = new DataMetric( SourceData );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -122,7 +122,7 @@ namespace BudgetExecution
             SourceData = ChartBinding.Data;
             SeriesConfiguration = seriesConfig;
             Stat = seriesConfig.Stat;
-            DataMetric = ChartBinding.Metric;
+            DataMetric = new DataMetric( SourceData );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }

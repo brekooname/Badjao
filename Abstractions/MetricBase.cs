@@ -26,6 +26,14 @@ namespace BudgetExecution
         public Source Source { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        public string TableName { get; set; }
+
+        /// <summary>
         /// The field
         /// </summary>
         public Field Field { get; set; }
@@ -59,6 +67,83 @@ namespace BudgetExecution
         /// The statistics
         /// </summary>
         public IDictionary<string, IEnumerable<double>> Statistics { get; set; }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        protected MetricBase( )
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="numeric">The numeric.</param>
+        protected MetricBase( System.Windows.Forms.BindingSource bindingSource, Numeric numeric = Numeric.Amount  )
+        {
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ),( (DataTable)bindingSource.DataSource ).TableName );
+            Numeric = numeric;
+            Field = Field.NS;
+            Total = CalculateTotals( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="numeric">The numeric.</param>
+        protected MetricBase( System.Windows.Forms.BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
+        {
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            Numeric = numeric;
+            Field = field;
+            Total = CalculateTotals( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="numeric">The numeric.</param>
+        protected MetricBase( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
+        {
+            Data = dataRow;
+            TableName = dataRow.CopyToDataTable( ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
+            Numeric = numeric;
+            Field = Field.NS;
+            Count = dataRow.Count( );
+            Total = CalculateTotals( dataRow, numeric );
+            Average = CalculateAverage( dataRow, numeric );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="numeric">The numeric.</param>
+        protected MetricBase( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
+        {
+            Field = field;
+            Numeric = numeric;
+            Data = dataRow;
+            TableName = dataRow.CopyToDataTable( ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
+            Count = dataRow.Count( );
+            Total = CalculateTotals( dataRow, numeric );
+            Average = CalculateAverage( dataRow, Numeric );
+        }
 
         /// <summary>
         /// Gets the dataRow.
@@ -74,7 +159,7 @@ namespace BudgetExecution
                 try
                 {
                     var _query = Data
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                        ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
                         ?.Select( p => p );
 
                     return _query?.Any( ) == true
@@ -136,7 +221,7 @@ namespace BudgetExecution
                 try
                 {
                     var _select = dataRow
-                        ?.Where( p => p.Field<double>( $"{ numeric }" ) != 0.0D )
+                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
                         ?.Select( p => p );
 
                     return _select?.Any( ) == true
@@ -166,10 +251,10 @@ namespace BudgetExecution
                 try
                 {
                     var _select = dataRow
-                        ?.Select( p => p.Field<double>( $"{numeric}" ) );
+                        ?.Select( p => p.Field<decimal>( $"{ numeric }" ) );
 
                     return _select?.Any( ) == true && _select?.Sum( ) > 0
-                        ? _select.Sum( )
+                        ? double.Parse( _select.Sum( ).ToString( ) )
                         : 0.0d;
                 }
                 catch( Exception ex )
@@ -205,9 +290,9 @@ namespace BudgetExecution
                         foreach( var filter in _codes )
                         {
                             var _query = dataRow.Filter( field.ToString( ), filter )
-                                ?.Sum( p => p.Field<double>( $"{ numeric }" ) );
+                                ?.Sum( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                            if( _query > 0.0d )
+                            if( _query > 0 )
                             {
                                 _dictionary?.Add( filter, double.Parse( _query?.ToString( ) ) );
                             }
@@ -242,11 +327,11 @@ namespace BudgetExecution
                 try
                 {
                     var _query = dataRow
-                        .Where( p => p.Field<double>( $"{numeric}" ) != 0.0 )
-                        ?.Select( p => p.Field<double>( $"{numeric}" ) )
+                        .Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                        ?.Select( p => p.Field<decimal>( $"{ numeric }" ) )
                         ?.Average( );
 
-                    return _query > 0d
+                    return _query > 0
                         ? double.Parse( _query?.ToString( ) )
                         : 0.0d;
                 }
@@ -289,7 +374,7 @@ namespace BudgetExecution
                             {
                                 var _value = CalculateAverage( _query, numeric );
 
-                                if( _value > 0.0d )
+                                if( _value > 0 )
                                 {
                                     _dictionary?.Add( filter, _value );
                                 }

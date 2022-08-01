@@ -3095,7 +3095,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Analysis\" />
     <Folder Include="Clients\LINQPad\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
   </ItemGroup>
