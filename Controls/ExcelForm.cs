@@ -9,6 +9,7 @@ namespace BudgetExecution
         public ExcelForm()
         {
             InitializeComponent( );
+            ToolStrip.Office12Mode = true;
         }
     }
 }

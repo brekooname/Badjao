@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle5 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle6 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle7 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle8 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo2 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GridPanel = new System.Windows.Forms.Panel();
@@ -62,20 +62,20 @@
             this.SaveButton = new BudgetExecution.ToolStripButton();
             this.Separator7 = new BudgetExecution.ToolSeparator();
             this.RefreshButton = new BudgetExecution.ToolStripButton();
+            this.Separator9 = new BudgetExecution.ToolSeparator();
+            this.BrowseButton = new BudgetExecution.ToolStripButton();
             this.Separator8 = new BudgetExecution.ToolSeparator();
             this.ExcelButton = new BudgetExecution.ToolStripButton();
-            this.Separator9 = new BudgetExecution.ToolSeparator();
-            this.CalculatorButton = new BudgetExecution.ToolStripButton();
             this.Separator10 = new BudgetExecution.ToolSeparator();
-            this.ChartButton = new BudgetExecution.ToolStripButton();
+            this.CalculatorButton = new BudgetExecution.ToolStripButton();
             this.Separator11 = new BudgetExecution.ToolSeparator();
-            this.HomeButton = new BudgetExecution.ToolStripButton();
+            this.ChartButton = new BudgetExecution.ToolStripButton();
             this.Separator13 = new BudgetExecution.ToolSeparator();
+            this.HomeButton = new BudgetExecution.ToolStripButton();
             this.PrimaryListBox = new BudgetExecution.ListBox();
             this.toolSeparator1 = new BudgetExecution.ToolSeparator();
             this.EditButton = new BudgetExecution.ToolStripButton();
             this.SecondaryListBox = new BudgetExecution.ListBox();
-            this.BrowseButton = new BudgetExecution.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataView1)).BeginInit();
@@ -95,35 +95,35 @@
             this.dataView1.AllowDragSelectedCols = true;
             this.dataView1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.dataView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            gridBaseStyle5.Name = "Column Header";
-            gridBaseStyle5.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle5.StyleInfo.CellType = "ColumnHeaderCell";
-            gridBaseStyle5.StyleInfo.Enabled = false;
-            gridBaseStyle5.StyleInfo.Font.Bold = true;
-            gridBaseStyle5.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridBaseStyle6.Name = "Header";
-            gridBaseStyle6.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.CellType = "Header";
-            gridBaseStyle6.StyleInfo.Font.Bold = true;
-            gridBaseStyle6.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
-            gridBaseStyle6.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-            gridBaseStyle7.Name = "Standard";
-            gridBaseStyle7.StyleInfo.CheckBoxOptions.CheckedValue = "True";
-            gridBaseStyle7.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
-            gridBaseStyle7.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-            gridBaseStyle8.Name = "Row Header";
-            gridBaseStyle8.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle8.StyleInfo.CellType = "RowHeaderCell";
-            gridBaseStyle8.StyleInfo.Enabled = true;
-            gridBaseStyle8.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            gridBaseStyle1.Name = "Column Header";
+            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle1.StyleInfo.Enabled = false;
+            gridBaseStyle1.StyleInfo.Font.Bold = true;
+            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle2.Name = "Header";
+            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.CellType = "Header";
+            gridBaseStyle2.StyleInfo.Font.Bold = true;
+            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle3.Name = "Standard";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle4.Name = "Row Header";
+            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle4.StyleInfo.Enabled = true;
+            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
             this.dataView1.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle5,
-            gridBaseStyle6,
-            gridBaseStyle7,
-            gridBaseStyle8});
+            gridBaseStyle1,
+            gridBaseStyle2,
+            gridBaseStyle3,
+            gridBaseStyle4});
             this.dataView1.BindingSource = this.BindingSource;
             this.dataView1.CanOverrideStyle = true;
             this.dataView1.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2016Black;
@@ -155,19 +155,19 @@
             this.dataView1.SmartSizeBox = false;
             this.dataView1.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.dataView1.TabIndex = 0;
-            gridStyleInfo2.AutoFit = Syncfusion.Windows.Forms.Grid.AutoFitOptions.Both;
-            gridStyleInfo2.Font.Bold = false;
-            gridStyleInfo2.Font.Facename = "Roboto";
-            gridStyleInfo2.Font.Italic = false;
-            gridStyleInfo2.Font.Size = 8F;
-            gridStyleInfo2.Font.Strikeout = false;
-            gridStyleInfo2.Font.Underline = false;
-            gridStyleInfo2.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridStyleInfo2.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40))))));
-            gridStyleInfo2.TextColor = System.Drawing.Color.LightSteelBlue;
-            gridStyleInfo2.Themed = true;
-            gridStyleInfo2.WrapText = false;
-            this.dataView1.TableStyle = gridStyleInfo2;
+            gridStyleInfo1.AutoFit = Syncfusion.Windows.Forms.Grid.AutoFitOptions.Both;
+            gridStyleInfo1.Font.Bold = false;
+            gridStyleInfo1.Font.Facename = "Roboto";
+            gridStyleInfo1.Font.Italic = false;
+            gridStyleInfo1.Font.Size = 8F;
+            gridStyleInfo1.Font.Strikeout = false;
+            gridStyleInfo1.Font.Underline = false;
+            gridStyleInfo1.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40))))));
+            gridStyleInfo1.TextColor = System.Drawing.Color.LightSteelBlue;
+            gridStyleInfo1.Themed = true;
+            gridStyleInfo1.WrapText = false;
+            this.dataView1.TableStyle = gridStyleInfo1;
             this.dataView1.Text = "dataView1";
             this.dataView1.ThemesEnabled = true;
             this.dataView1.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -266,7 +266,7 @@
             this.HomeButton});
             this.ToolStrip.Label = this.Label;
             this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ToolStrip.Location = new System.Drawing.Point(0, 661);
+            this.ToolStrip.Location = new System.Drawing.Point(0, 711);
             this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
             this.ToolStrip.Name = "ToolStrip";
             this.ToolStrip.Numeric = BudgetExecution.Numeric.NS;
@@ -609,6 +609,33 @@
             this.RefreshButton.ToolTip = this.ToolTip;
             this.RefreshButton.ToolType = BudgetExecution.ToolType.RefreshButton;
             // 
+            // Separator9
+            // 
+            this.Separator9.ForeColor = System.Drawing.Color.Black;
+            this.Separator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator9.Name = "Separator9";
+            this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator9.Size = new System.Drawing.Size(6, 36);
+            // 
+            // BrowseButton
+            // 
+            this.BrowseButton.AutoToolTip = false;
+            this.BrowseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.BrowseButton.BindingSource = this.BindingSource;
+            this.BrowseButton.DataFilter = null;
+            this.BrowseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BrowseButton.Field = BudgetExecution.Field.RpioActivityCode;
+            this.BrowseButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.BrowseButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.BrowseButton.HoverText = "Browse File System";
+            this.BrowseButton.Image = global::BudgetExecution.Properties.Resources.BrowseButton;
+            this.BrowseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BrowseButton.Margin = new System.Windows.Forms.Padding(5);
+            this.BrowseButton.Name = "BrowseButton";
+            this.BrowseButton.Size = new System.Drawing.Size(24, 26);
+            this.BrowseButton.ToolTip = this.ToolTip;
+            this.BrowseButton.ToolType = BudgetExecution.ToolType.BrowseButton;
+            // 
             // Separator8
             // 
             this.Separator8.ForeColor = System.Drawing.Color.Black;
@@ -637,13 +664,13 @@
             this.ExcelButton.ToolTip = this.ToolTip;
             this.ExcelButton.ToolType = BudgetExecution.ToolType.ExcelButton;
             // 
-            // Separator9
+            // Separator10
             // 
-            this.Separator9.ForeColor = System.Drawing.Color.Black;
-            this.Separator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator9.Name = "Separator9";
-            this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator9.Size = new System.Drawing.Size(6, 36);
+            this.Separator10.ForeColor = System.Drawing.Color.Black;
+            this.Separator10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator10.Name = "Separator10";
+            this.Separator10.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator10.Size = new System.Drawing.Size(6, 36);
             // 
             // CalculatorButton
             // 
@@ -665,13 +692,13 @@
             this.CalculatorButton.ToolTip = this.ToolTip;
             this.CalculatorButton.ToolType = BudgetExecution.ToolType.CalculatorButton;
             // 
-            // Separator10
+            // Separator11
             // 
-            this.Separator10.ForeColor = System.Drawing.Color.Black;
-            this.Separator10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator10.Name = "Separator10";
-            this.Separator10.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator10.Size = new System.Drawing.Size(6, 36);
+            this.Separator11.ForeColor = System.Drawing.Color.Black;
+            this.Separator11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator11.Name = "Separator11";
+            this.Separator11.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator11.Size = new System.Drawing.Size(6, 36);
             // 
             // ChartButton
             // 
@@ -693,13 +720,13 @@
             this.ChartButton.ToolTip = this.ToolTip;
             this.ChartButton.ToolType = BudgetExecution.ToolType.ChartButton;
             // 
-            // Separator11
+            // Separator13
             // 
-            this.Separator11.ForeColor = System.Drawing.Color.Black;
-            this.Separator11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator11.Name = "Separator11";
-            this.Separator11.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator11.Size = new System.Drawing.Size(6, 36);
+            this.Separator13.ForeColor = System.Drawing.Color.Black;
+            this.Separator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator13.Name = "Separator13";
+            this.Separator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator13.Size = new System.Drawing.Size(6, 36);
             // 
             // HomeButton
             // 
@@ -720,14 +747,6 @@
             this.HomeButton.Text = "toolStripButton3";
             this.HomeButton.ToolTip = this.ToolTip;
             this.HomeButton.ToolType = BudgetExecution.ToolType.HomeButton;
-            // 
-            // Separator13
-            // 
-            this.Separator13.ForeColor = System.Drawing.Color.Black;
-            this.Separator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator13.Name = "Separator13";
-            this.Separator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator13.Size = new System.Drawing.Size(6, 36);
             // 
             // PrimaryListBox
             // 
@@ -838,25 +857,6 @@
             this.SecondaryListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.SecondaryListBox.ToolTip = null;
             // 
-            // BrowseButton
-            // 
-            this.BrowseButton.AutoToolTip = false;
-            this.BrowseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BrowseButton.BindingSource = this.BindingSource;
-            this.BrowseButton.DataFilter = null;
-            this.BrowseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BrowseButton.Field = BudgetExecution.Field.RpioActivityCode;
-            this.BrowseButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.BrowseButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.BrowseButton.HoverText = "Browse File System";
-            this.BrowseButton.Image = global::BudgetExecution.Properties.Resources.BrowseButton;
-            this.BrowseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BrowseButton.Margin = new System.Windows.Forms.Padding(5);
-            this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(24, 26);
-            this.BrowseButton.ToolTip = this.ToolTip;
-            this.BrowseButton.ToolType = BudgetExecution.ToolType.BrowseButton;
-            // 
             // DataViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -865,11 +865,11 @@
             this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.ClientSize = new System.Drawing.Size(1388, 713);
+            this.ClientSize = new System.Drawing.Size(1388, 763);
             this.Controls.Add(this.SecondaryListBox);
             this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.GridPanel);

@@ -87,11 +87,11 @@ namespace BudgetExecution
             this.OpenButton.BackColor = System.Drawing.Color.Transparent;
             this.OpenButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.OpenButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.OpenButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(93)))), ((int)(((byte)(129)))));
-            this.OpenButton.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.OpenButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.OpenButton.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(93)))), ((int)(((byte)(129)))));
             this.OpenButton.BindingSource = null;
             this.OpenButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.OpenButton.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.OpenButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.OpenButton.Border.HoverVisible = false;
             this.OpenButton.Border.Rounding = 6;
             this.OpenButton.Border.Thickness = 1;
@@ -101,7 +101,7 @@ namespace BudgetExecution
             this.OpenButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.OpenButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.OpenButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.OpenButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.OpenButton.ForeColor = System.Drawing.Color.SteelBlue;
             this.OpenButton.HoverText = null;
             this.OpenButton.Image = null;
             this.OpenButton.Images = null;
@@ -114,7 +114,7 @@ namespace BudgetExecution
             this.OpenButton.Text = "Open";
             this.OpenButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.OpenButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.OpenButton.TextStyle.Enabled = System.Drawing.Color.LightSteelBlue;
+            this.OpenButton.TextStyle.Enabled = System.Drawing.Color.SteelBlue;
             this.OpenButton.TextStyle.Hover = System.Drawing.Color.White;
             this.OpenButton.TextStyle.Pressed = System.Drawing.Color.White;
             this.OpenButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -149,11 +149,11 @@ namespace BudgetExecution
             this.CloseButton.BackColor = System.Drawing.Color.Transparent;
             this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(93)))), ((int)(((byte)(129)))));
-            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(93)))), ((int)(((byte)(129)))));
             this.CloseButton.BindingSource = null;
             this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.CloseButton.Border.HoverVisible = false;
             this.CloseButton.Border.Rounding = 6;
             this.CloseButton.Border.Thickness = 1;
@@ -163,7 +163,7 @@ namespace BudgetExecution
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CloseButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.CloseButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.CloseButton.ForeColor = System.Drawing.Color.SteelBlue;
             this.CloseButton.HoverText = null;
             this.CloseButton.Image = null;
             this.CloseButton.Images = null;
@@ -176,7 +176,7 @@ namespace BudgetExecution
             this.CloseButton.Text = "Close";
             this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.LightSteelBlue;
+            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.SteelBlue;
             this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
             this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
             this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -234,7 +234,7 @@ namespace BudgetExecution
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Numeric = BudgetExecution.Numeric.NS;
             this.PictureBox.Padding = new System.Windows.Forms.Padding(1);
-            this.PictureBox.Size = new System.Drawing.Size(22, 22);
+            this.PictureBox.Size = new System.Drawing.Size(18, 18);
             this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox.TabIndex = 13;
             this.PictureBox.TabStop = false;
