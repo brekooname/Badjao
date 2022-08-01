@@ -138,7 +138,7 @@
             this.Separator18});
             this.ToolStrip.Label = null;
             this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ToolStrip.Location = new System.Drawing.Point(0, 661);
+            this.ToolStrip.Location = new System.Drawing.Point(0, 711);
             this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
             this.ToolStrip.Name = "ToolStrip";
             this.ToolStrip.Numeric = BudgetExecution.Numeric.NS;
@@ -148,7 +148,7 @@
             this.ToolStrip.Separators = null;
             this.ToolStrip.ShowCaption = true;
             this.ToolStrip.ShowLauncher = true;
-            this.ToolStrip.Size = new System.Drawing.Size(1385, 52);
+            this.ToolStrip.Size = new System.Drawing.Size(1388, 52);
             this.ToolStrip.TabIndex = 4;
             this.ToolStrip.TextBox = null;
             this.ToolStrip.ThemeName = "Office2016DarkGray";
@@ -688,7 +688,7 @@
             this.ChartControl.Legend.Font = new System.Drawing.Font("Roboto", 9F);
             this.ChartControl.Legend.ItemsAlignment = System.Drawing.StringAlignment.Center;
             this.ChartControl.Legend.ItemsSize = new System.Drawing.Size(12, 12);
-            this.ChartControl.Legend.Location = new System.Drawing.Point(1272, 68);
+            this.ChartControl.Legend.Location = new System.Drawing.Point(1275, 68);
             this.ChartControl.Legend.ShowItemsShadow = true;
             this.ChartControl.Legend.ShowSymbol = true;
             this.ChartControl.Legend.VisibleCheckBox = true;
@@ -740,7 +740,7 @@
             this.ChartControl.ShadowColor = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))), System.Drawing.Color.Silver);
             this.ChartControl.ShowScrollBars = false;
             this.ChartControl.ShowToolbar = true;
-            this.ChartControl.Size = new System.Drawing.Size(1385, 661);
+            this.ChartControl.Size = new System.Drawing.Size(1388, 711);
             this.ChartControl.Source = BudgetExecution.Source.NS;
             this.ChartControl.SourceModel = null;
             this.ChartControl.Spacing = 5F;
@@ -772,11 +772,11 @@
             this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.ClientSize = new System.Drawing.Size(1385, 713);
+            this.ClientSize = new System.Drawing.Size(1388, 763);
             this.Controls.Add(this.ChartControl);
             this.Controls.Add(this.ToolStrip);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

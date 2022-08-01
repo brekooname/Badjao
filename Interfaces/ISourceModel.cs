@@ -23,7 +23,7 @@ namespace BudgetExecution
         /// <value>
         /// The source binding.
         /// </value>
-        IChartBinding SourceBinding { get; set; }
+        IChartBinding ChartBinding { get; set; }
 
         /// <summary>
         /// Gets or sets the series data.

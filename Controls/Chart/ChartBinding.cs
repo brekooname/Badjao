@@ -115,6 +115,20 @@ namespace BudgetExecution
             DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
+            SeriesConfiguration = new SeriesConfig( );
+            Changed += OnCurrentChanged;
+        }
+
+        public ChartBinding( DataTable dataTable )
+        {
+            Data = dataTable.AsEnumerable( );
+            SeriesConfiguration = new SeriesConfig( );
+            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
+            DataTable = dataTable;
+            DataSet = dataTable.DataSet;
+            DataSource = dataTable;
+            Record = (DataRow)Current;
+            AllowNew = true;
             Changed += OnCurrentChanged;
         }
 

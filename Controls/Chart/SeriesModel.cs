@@ -78,13 +78,13 @@ namespace BudgetExecution
         /// </summary>
         public SeriesModel( System.Windows.Forms.BindingSource bindingSource )
         {
-            SourceBinding = new ChartBinding( bindingSource );
-            SourceModel = new SourceModel( SourceBinding );
-            BindingModel = new ChartDataBindModel( SourceBinding );
+            ChartBinding = new ChartBinding( bindingSource );
+            SourceModel = new SourceModel( ChartBinding );
+            BindingModel = new ChartDataBindModel( ChartBinding );
             SourceData = SourceModel.SourceData;
-            SeriesConfiguration = SourceBinding.SeriesConfiguration;
+            SeriesConfiguration = ChartBinding.SeriesConfiguration;
             Stat = SeriesConfiguration.Stat;
-            DataMetric = SourceBinding.Metric;
+            DataMetric = ChartBinding.Metric;
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -97,9 +97,9 @@ namespace BudgetExecution
         /// <param name="chartBinding"></param>
         public SeriesModel( IChartBinding chartBinding )
         {
-            SourceBinding = chartBinding;
+            ChartBinding = chartBinding;
             SourceModel = new SourceModel( chartBinding );
-            BindingModel = new ChartDataBindModel( SourceBinding );
+            BindingModel = new ChartDataBindModel( ChartBinding );
             SourceData = chartBinding.Data;
             SeriesConfiguration = chartBinding.SeriesConfiguration;
             Stat = SeriesConfiguration.Stat;
@@ -116,13 +116,13 @@ namespace BudgetExecution
         public SeriesModel( DataTable dataTable, ISeriesConfig seriesConfig )
             : base( dataTable, seriesConfig )
         {
-            SourceBinding = new ChartBinding( dataTable, seriesConfig );
-            BindingModel = new ChartDataBindModel( SourceBinding );
-            SourceModel = new SourceModel( SourceBinding );
-            SourceData = SourceBinding.Data;
+            ChartBinding = new ChartBinding( dataTable, seriesConfig );
+            BindingModel = new ChartDataBindModel( ChartBinding );
+            SourceModel = new SourceModel( ChartBinding );
+            SourceData = ChartBinding.Data;
             SeriesConfiguration = seriesConfig;
             Stat = seriesConfig.Stat;
-            DataMetric = SourceBinding.Metric;
+            DataMetric = ChartBinding.Metric;
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -135,13 +135,13 @@ namespace BudgetExecution
         public SeriesModel( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : base( dataRows, seriesConfig )
         {
-            SourceBinding = new ChartBinding( dataRows, seriesConfig );
-            BindingModel = new ChartDataBindModel( SourceBinding );
-            SourceModel = new SourceModel( SourceBinding );
-            SourceData = SourceBinding.Data;
-            SeriesConfiguration = SourceBinding.SeriesConfiguration;
+            ChartBinding = new ChartBinding( dataRows, seriesConfig );
+            BindingModel = new ChartDataBindModel( ChartBinding );
+            SourceModel = new SourceModel( ChartBinding );
+            SourceData = ChartBinding.Data;
+            SeriesConfiguration = ChartBinding.SeriesConfiguration;
             Stat = seriesConfig.Stat;
-            DataMetric = SourceBinding.Metric;
+            DataMetric = ChartBinding.Metric;
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }

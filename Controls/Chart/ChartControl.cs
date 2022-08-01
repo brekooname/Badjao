@@ -142,11 +142,11 @@ namespace BudgetExecution
 
             //Chart Legend Setting;
             ShowLegend = true;
-            Legend.Font = new Font( "Roboto", 9 );
-            Legend.ItemsSize = new Size( 12, 12 );
+            Legend.Font = new Font( "Roboto", 6 );
+            Legend.ItemsSize = new Size( 10, 10 );
             Legend.VisibleCheckBox = true;
             Legend.BackInterior = new BrushInfo( Color.FromArgb( 15, 15, 15 ) );
-            Legend.ItemsAlignment = StringAlignment.Center ;
+            Legend.ItemsAlignment = StringAlignment.Center;
             Legend.ItemsTextAligment = VerticalAlignment.Center;
             Legend.Orientation = ChartOrientation.Vertical;
             Legend.FloatingAutoSize = true;
@@ -234,8 +234,8 @@ namespace BudgetExecution
             : this( )
         {
             SourceModel = sourceModel;
-            Configuration = sourceModel.SourceBinding.SeriesConfiguration;
-            ChartData = new SeriesModel( sourceModel.SourceBinding );
+            Configuration = sourceModel.ChartBinding.SeriesConfiguration;
+            ChartData = new SeriesModel( sourceModel.ChartBinding );
             TitleInfo = new TitleInfo( Configuration.Name );
             DataMetric = sourceModel.Metric;
             DataSeries = new DataSeries( ChartData );
@@ -254,10 +254,10 @@ namespace BudgetExecution
             : this( )
         {
             SourceModel = sourceModel;
-            Configuration = sourceModel.SourceBinding.SeriesConfiguration;
+            Configuration = sourceModel.ChartBinding.SeriesConfiguration;
             TitleInfo = titleInfo;
             DataMetric = sourceModel.Metric;
-            ChartData = new SeriesModel( sourceModel.SourceBinding );
+            ChartData = new SeriesModel( sourceModel.ChartBinding );
             DataSeries = new DataSeries( ChartData );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );

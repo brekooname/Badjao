@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// <value>
         /// The chart binding.
         /// </value>
-        public IChartBinding SourceBinding { get; set; }
+        public IChartBinding ChartBinding { get; set; }
 
         /// <summary>
         /// Gets the binding model.
@@ -91,12 +91,12 @@ namespace BudgetExecution
         /// <param name="seriesConfig">The seriesConfig.</param>
         public SourceModel( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
         {
-            SourceBinding = new ChartBinding( data, seriesConfig );
+            ChartBinding = new ChartBinding( data, seriesConfig );
             BindingModel = new ChartDataBindModel( data, seriesConfig?.Field.ToString( ) );
-            SourceData = SourceBinding.Data;
-            Configuration = SourceBinding?.SeriesConfiguration;
+            SourceData = ChartBinding.Data;
+            Configuration = ChartBinding?.SeriesConfiguration;
             Stat = Configuration.Stat;
-            Metric = SourceBinding?.Metric;
+            Metric = ChartBinding?.Metric;
             SeriesData = Metric?.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -108,12 +108,12 @@ namespace BudgetExecution
         /// <param name="seriesConfig">The seriesConfig.</param>
         public SourceModel( DataTable dataTable, ISeriesConfig seriesConfig )
         {
-            SourceBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
+            ChartBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
             BindingModel = new ChartDataBindModel( dataTable, seriesConfig?.Field.ToString( ) );
-            SourceData = SourceBinding.Data;
-            Configuration = SourceBinding?.SeriesConfiguration;
+            SourceData = ChartBinding.Data;
+            Configuration = ChartBinding?.SeriesConfiguration;
             Stat = Configuration.Stat;
-            Metric = SourceBinding?.Metric;
+            Metric = ChartBinding?.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
 
@@ -123,7 +123,7 @@ namespace BudgetExecution
         /// <param name="chartBinding">The binding source.</param>
         public SourceModel( IChartBinding chartBinding )
         {
-            SourceBinding = chartBinding;
+            ChartBinding = chartBinding;
             BindingModel = new ChartDataBindModel( chartBinding );
             SourceData = chartBinding.Data;
             Configuration = chartBinding.SeriesConfiguration;
@@ -138,12 +138,12 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         public SourceModel( System.Windows.Forms.BindingSource bindingSource )
         {
-            SourceBinding = new ChartBinding( bindingSource );
+            ChartBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( bindingSource );
-            SourceData = SourceBinding.Data;
-            Configuration = SourceBinding.SeriesConfiguration;
+            SourceData = ChartBinding.Data;
+            Configuration = ChartBinding.SeriesConfiguration;
             Stat = Configuration.Stat;
-            Metric = SourceBinding.Metric;
+            Metric = ChartBinding.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
 

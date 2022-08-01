@@ -16,8 +16,8 @@ namespace BudgetExecution
         {
             ToolStrip.Office12Mode = true;
             BindingSource = bindingSource;
-            ChartControl.BindingSource = bindingSource;
             ToolStrip.BindingSource = bindingSource;
+            ChartControl = new ChartControl( bindingSource );
         }
     }
 }
