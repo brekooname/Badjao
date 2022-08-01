@@ -16,7 +16,7 @@ namespace BudgetExecution
         public FileBrowser( )
         {
             InitializeComponent( );
-            Size = new Size( 700, 530 );
+            Size = new Size( 700, 480);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = Color.FromArgb( 15, 15, 15 );
             CloseButton.Click += OnCloseButtonClicked;
@@ -29,8 +29,8 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void OnCloseButtonClicked( object sender, EventArgs e )
         {
-            if( sender is System.Windows.Forms.Button _button 
-                && !string.IsNullOrEmpty( _button.Name ) 
+            if( sender is Button _button 
+                && !string.IsNullOrEmpty( _button?.Name ) 
                 && e != null )
             {
                 try
