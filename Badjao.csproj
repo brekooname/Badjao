@@ -453,6 +453,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataBuilder\Computation.cs" />
     <Compile Include="Controls\Chart\ChartControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -492,6 +493,7 @@
     <Compile Include="Abstractions\CurrencyBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data\DataBuilder\DataMetric.cs" />
     <Compile Include="Data\DataBuilder\DataModel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -501,6 +503,9 @@
     <Compile Include="Abstractions\DataGridBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Interfaces\IDataFilter.cs" />
+    <Compile Include="Interfaces\IDataMetric.cs" />
+    <Compile Include="Interfaces\IMetric.cs" />
     <Compile Include="Interfaces\IClock.cs" />
     <Compile Include="Abstractions\ImageListBase.cs">
       <SubType>Component</SubType>
@@ -628,7 +633,6 @@
     <Compile Include="Interfaces\IWorkbook.cs" />
     <Compile Include="Interfaces\IChart.cs" />
     <Compile Include="Interfaces\IChartSeriesModel.cs" />
-    <Compile Include="Interfaces\IDataMetric.cs" />
     <Compile Include="Interfaces\IDataSeries.cs" />
     <Compile Include="Interfaces\IDataSource.cs" />
     <Compile Include="Interfaces\IGrid.cs" />
@@ -842,6 +846,7 @@
     <Compile Include="Controls\PivotForm.Designer.cs">
       <DependentUpon>PivotForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abstractions\MetricBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -3090,6 +3095,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Analysis\" />
     <Folder Include="Clients\LINQPad\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataMetric : ISource
+    public interface IDataMetric : IMetric, ISource
     {
         /// <summary>
         /// Gets or sets the data.
