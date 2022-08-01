@@ -4,36 +4,124 @@
 
 namespace BudgetExecution
 {
+    using System.Collections.Generic;
+
     /// <summary> </summary>
     public interface ISqlStatement
     {
-        IConnectionBuilder ConnectionBuilder { get; set; }
+        /// <summary>
+        /// The source
+        /// </summary>
+        Source Source { get; set; }
 
         /// <summary>
-        /// Gets the type of the command.
+        /// The provider
         /// </summary>
-        /// <returns>
-        /// SQL
-        /// </returns>
-        SQL GetCommandType();
+        Provider Provider { get; set; }
+
+        /// <summary>
+                                                      /// Gets or sets the type of the command.
+                                                      /// </summary>
+                                                      /// <value>
+                                                      /// The type of the command.
+                                                      /// </value>
+        SQL CommandType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the file.
+        /// </summary>
+        /// <value>
+        /// The name of the file.
+        /// </value>
+        string FileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the file path.
+        /// </summary>
+        /// <value>
+        /// The file path.
+        /// </value>
+        string FilePath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command text.
+        /// </summary>
+        /// <value>
+        /// The command text.
+        /// </value>
+        string CommandText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the arguments.
+        /// </summary>
+        /// <value>
+        /// The arguments.
+        /// </value>
+        IDictionary<string, object> Args { get; set; }
+
+        /// <summary>
+        /// Gets the file path.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
+        string GetFilePath( Provider provider );
+
+        /// <summary>
+        /// Gets the file path.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        /// <returns></returns>
+        string GetFilePath( SQL command );
+
+        /// <summary>
+        /// Gets the command text.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        /// <returns></returns>
+        string GetCommandText( IDictionary<string, object> dict, SQL commandType );
+
+        /// <summary>
+        /// Gets the select statement.
+        /// </summary>
+        /// <returns></returns>
+        string GetSelectStatement( );
 
         /// <summary>
         /// Gets the select statement.
         /// </summary>
         /// <returns>
         /// </returns>
-        string GetSelectStatement();
+        string GetSelectStatement( IDictionary<string, object> dict );
+
+        /// <summary>
+        /// Gets the update statement.
+        /// </summary>
+        /// <returns></returns>
+        string GetUpdateStatement( ); 
 
         /// <summary> Gets the update statement. </summary>
         /// <returns> </returns>
-        string GetUpdateStatement();
+        string GetUpdateStatement( IDictionary<string, object> dict );
+
+        /// <summary>
+        /// Gets the insert statement.
+        /// </summary>
+        /// <returns></returns>
+        string GetInsertStatement( );
 
         /// <summary> Gets the insert statement. </summary>
         /// <returns> </returns>
-        string GetInsertStatement();
+        string GetInsertStatement( IDictionary<string, object> dict);
+
+        /// <summary>
+        /// Gets the delete statement.
+        /// </summary>
+        /// <returns></returns>
+        string GetDeleteStatement( );
 
         /// <summary> Gets the delete statement. </summary>
         /// <returns> </returns>
-        string GetDeleteStatement();
+        string GetDeleteStatement( IDictionary<string, object> dict );
     }
 }

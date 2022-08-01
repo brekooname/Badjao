@@ -7,14 +7,15 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="SqlConfig" />
+    /// <seealso cref="SqlBase" />
     /// <seealso cref="ISqlStatement" />
     [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    public class SqlStatement : SqlConfig, ISqlStatement
+    public class SqlStatement : SqlBase, ISqlStatement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
@@ -23,17 +24,35 @@ namespace BudgetExecution
         {
         }
 
+        public SqlStatement( Source source, Provider provider )
+        {
+            CommandType = SQL.SELECTALL;
+            Source = source;
+            Provider = provider;
+            FilePath = GetFilePath( provider );
+            Args = null;
+            CommandText = GetSelectStatement( );
+        }
+
+        public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL ) 
+            : this( source, provider )
+        {
+            CommandType = commandType;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
         /// <param name="connectionBuilder">The connectionBuilder.</param>
         /// <param name="commandType">The commandType.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECT )
+        public SqlStatement( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECTALL )
         {
-            ConnectionBuilder = connectionBuilder;
             CommandType = commandType;
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
+            FilePath = GetFilePath( Provider );
             Args = null;
-            SetCommandText( Args );
+            CommandText = GetSelectStatement( );
         }
 
         /// <summary>
@@ -43,10 +62,30 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict )
         {
-            ConnectionBuilder = connectionBuilder;
-            CommandType = SQL.SELECT;
+            CommandType = SQL.SELECTALL;
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
             Args = dict;
-            SetCommandText( Args );
+            CommandText = GetSelectStatement( );
+        }
+
+        public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict )
+        {
+            CommandType = SQL.SELECTALL;
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            CommandText = GetSelectStatement( );
+        }
+
+        public SqlStatement( Source source, Provider provider, SQL commandType, IDictionary<string, object> dict )
+        {
+            CommandType = commandType;
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            FilePath = GetFilePath( provider );
+            CommandText = GetCommandText( Args );
         }
 
         /// <summary>
@@ -56,30 +95,21 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the commandType.</param>
         public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
-            SQL commandType = SQL.SELECT )
+            SQL commandType = SQL.SELECTALL )
         {
-            ConnectionBuilder = connectionBuilder;
             CommandType = commandType;
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
             Args = dict;
-            SetCommandText( Args );
+            FilePath = GetFilePath( connectionBuilder.Provider );
+            CommandText = GetCommandText( Args );
         }
-
-        /// <summary>
-        /// Gets the type of the command.
-        /// </summary>
-        /// <returns>
-        /// SQL
-        /// </returns>
-        public SQL GetCommandType()
-        {
-            return SQL.NS;
-        }
-
+        
         /// <summary>
         /// Gets the select statement.
         /// </summary>
         /// <returns></returns>
-        public string GetSelectStatement()
+        public override string GetSelectStatement( )
         {
             if( Args != null )
             {
@@ -93,8 +123,7 @@ namespace BudgetExecution
                     }
 
                     _values = _values.TrimEnd( " AND".ToCharArray( ) );
-                    var _table = ConnectionBuilder?.TableName;
-                    CommandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
+                    CommandText = $"SELECT * FROM { Source } WHERE { _values };";
 
                     return !string.IsNullOrEmpty( CommandText )
                         ? CommandText
@@ -108,7 +137,7 @@ namespace BudgetExecution
             }
             else if( Args == null )
             {
-                return $"{SQL.SELECT} * FROM {ConnectionBuilder?.TableName};";
+                return $"SELECT * FROM { Source };";
             }
 
             return default( string );
@@ -118,7 +147,7 @@ namespace BudgetExecution
         /// Gets the update statement.
         /// </summary>
         /// <returns></returns>
-        public string GetUpdateStatement()
+        public string GetUpdateStatement( ) 
         {
             if( Args != null )
             {
@@ -132,11 +161,8 @@ namespace BudgetExecution
                     }
 
                     var _values = _update.TrimEnd( " AND".ToCharArray( ) );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.TableName} SET {_values};";
 
-                    return !string.IsNullOrEmpty( CommandText )
-                        ? CommandText
-                        : default( string );
+                    return $"UPDATE { Source } SET { _values };";
                 }
                 catch( Exception ex )
                 {
@@ -152,28 +178,23 @@ namespace BudgetExecution
         /// Gets the insert statement.
         /// </summary>
         /// <returns></returns>
-        public string GetInsertStatement()
+        public string GetInsertStatement( )
         {
             try
             {
-                var _table = ConnectionBuilder?.TableName;
                 var _columnName = string.Empty;
                 var _values = string.Empty;
 
                 foreach( var kvp in Args )
                 {
-                    _columnName += $"{kvp.Key}, ";
-                    _values += $"{kvp.Value}, ";
+                    _columnName += $"{ kvp.Key }, ";
+                    _values += $"{ kvp.Value }, ";
                 }
 
                 var values =
-                    $"({_columnName.TrimEnd( ", ".ToCharArray( ) )}) VALUES ({_values.TrimEnd( ", ".ToCharArray( ) )})";
+                    $"({ _columnName.TrimEnd( ", ".ToCharArray( ) ) }) VALUES ({ _values.TrimEnd( ", ".ToCharArray( ) ) })";
 
-                CommandText = $"{SQL.INSERT} INTO {_table} {values};";
-
-                return !string.IsNullOrEmpty( CommandText )
-                    ? CommandText
-                    : default( string );
+                return $"INSERT INTO { Source } { values };";
             }
             catch( Exception ex )
             {
@@ -186,13 +207,13 @@ namespace BudgetExecution
         /// Gets the delete statement.
         /// </summary>
         /// <returns></returns>
-        public string GetDeleteStatement()
+        public string GetDeleteStatement( )
         {
             try
             {
-                return Verify.IsMap( Args ) && !string.IsNullOrEmpty( CommandText )
-                    ? CommandText
-                    : string.Empty;
+                return Args?.Any( ) == true
+                    ? GetDeleteStatement( Args )
+                    : $"DELETE * FROM { Source };";
             }
             catch( Exception ex )
             {

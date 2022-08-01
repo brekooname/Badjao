@@ -10,23 +10,38 @@ namespace BudgetExecution
     /// <summary> </summary>
     /// <seealso cref = "SqlStatement"/>
     [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
-    public class SqlFactory : SqlConfig
+    public class SqlFactory : SqlBase
     {
+        public ISqlStatement SqlStatement { get; set; }
+
+        public IConnectionBuilder ConnectionBuilder { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref = "SqlFactory"/>
         /// class.
         /// </summary>
-        /// <param name = "conectionBuilder" > </param>
+        /// <param name = "source" > </param>
+        /// <param name = "provider" > </param>
         /// <param name = "command" > The command. </param>
-        public SqlFactory( IConnectionBuilder conectionBuilder, SQL command = SQL.SELECT )
+        public SqlFactory( Source source, Provider provider, SQL command = SQL.SELECTALL )
+        {
+            Source = source;
+            Provider = provider;
+            CommandType = command;
+            SqlStatement = new SqlStatement( source, provider, command );
+            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString( ) ] );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
+        }
+
+        public SqlFactory( IConnectionBuilder conectionBuilder, SQL command = SQL.SELECTALL )
         {
             Source = conectionBuilder.Source;
             Provider = conectionBuilder.Provider;
             CommandType = command;
             ConnectionBuilder = conectionBuilder;
-            SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
-            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString( ) ] );
+            SqlStatement = new SqlStatement( conectionBuilder, command );
+            FilePath = SqlStatement.GetFilePath( conectionBuilder.Provider );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 
@@ -37,7 +52,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name = "filePath" > The filePath. </param>
         /// <param name = "command" > The command. </param>
-        public SqlFactory( string filePath, SQL command = SQL.SELECT )
+        public SqlFactory( string filePath, SQL command = SQL.SELECTALL )
         {
             ConnectionBuilder = new ConnectionBuilder( filePath );
             Source = ConnectionBuilder.Source;

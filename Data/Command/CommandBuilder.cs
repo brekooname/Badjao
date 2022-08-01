@@ -76,7 +76,9 @@ namespace BudgetExecution
         public CommandBuilder( ISqlStatement sqlStatement )
         {
             SqlStatement = sqlStatement;
-            ConnectionBuilder = SqlStatement.ConnectionBuilder;
+            Source = sqlStatement.Source;
+            Provider = sqlStatement.Provider;
+            ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
         }
@@ -102,8 +104,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetCommand( ISqlStatement sqlStatement )
         {
-            if( Verify.IsRef( sqlStatement )
-               && Enum.IsDefined( typeof( Provider ), ConnectionBuilder.Provider ) )
+            if( Enum.IsDefined( typeof( Provider ), ConnectionBuilder.Provider ) )
             {
                 try
                 {
@@ -132,7 +133,7 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            Command = GetSQLiteCommand( sqlStatement );
+                            Command = GetOleDbCommand( sqlStatement );
                             return Command;
                         }
 
@@ -165,7 +166,7 @@ namespace BudgetExecution
                 {
                     var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
 
-                    switch( sqlStatement?.GetCommandType( ) )
+                    switch( sqlStatement?.CommandType )
                     {
                         case SQL.SELECT:
                         {
@@ -238,7 +239,7 @@ namespace BudgetExecution
 
                     if( !string.IsNullOrEmpty( _connection?.ConnectionString ) )
                     {
-                        switch( sqlStatement?.GetCommandType( ) )
+                        switch( sqlStatement?.CommandType )
                         {
                             case SQL.SELECT:
                             {
@@ -311,7 +312,7 @@ namespace BudgetExecution
                     var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
                     using( _connection )
                     {
-                        switch( sqlStatement?.GetCommandType( ) )
+                        switch( sqlStatement?.CommandType )
                         {
                             case SQL.SELECT:
                             {
@@ -383,7 +384,7 @@ namespace BudgetExecution
                 {
                     var _connection = new ConnectionFactory( ConnectionBuilder )?.Connection;
 
-                    switch( sqlStatement?.GetCommandType( ) )
+                    switch( sqlStatement?.CommandType )
                     {
                         case SQL.SELECT:
                         {

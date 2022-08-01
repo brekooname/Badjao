@@ -51,9 +51,9 @@ namespace BudgetExecution
             FilePath = GetFilePath( provider );
             PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
-            FileExtension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
             TableName = source.ToString( );
-            ProviderPath = ConfigurationManager.AppSettings[ FileExtension.ToString( ) ];
+            ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
             ConnectionString = GetConnectionString( provider );
         }
 
@@ -69,9 +69,9 @@ namespace BudgetExecution
             FilePath = fullPath;
             FileName = Path.GetFileNameWithoutExtension( fullPath );
             PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
-            FileExtension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
             Provider = (Provider)Enum.Parse( typeof( Provider ), GetProviderPath( fullPath ) );
-            ProviderPath = ConfigurationManager.AppSettings[ FileExtension.ToString( ) ];
+            ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
             TableName = FileName;
             ConnectionString = GetConnectionString( Provider );
         }
@@ -90,9 +90,9 @@ namespace BudgetExecution
             FilePath = fullPath;
             FileName = Path.GetFileNameWithoutExtension( fullPath );
             PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
-            FileExtension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            ProviderPath = ConfigurationManager.AppSettings[ FileExtension.ToString( ) ];
-            TableName = Source.ToString( );
+            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
+            TableName = FileName;
             ConnectionString = GetConnectionString( provider );
         }
     }

@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <summary>
         /// The connector
         /// </summary>
-        public virtual ConnectionStringSettingsCollection Connectors { get; } =
+        public virtual ConnectionStringSettingsCollection ConnectionPaths { get; } =
             ConfigurationManager.ConnectionStrings;
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace BudgetExecution
         /// <summary>
         /// The file extension
         /// </summary>
-        public virtual EXT FileExtension { get; set; }
+        public virtual EXT Extension { get; set; }
 
         /// <summary>
         /// Gets or sets the path extension.
@@ -251,7 +251,7 @@ namespace BudgetExecution
                         case Provider.Excel:
                         case Provider.CSV:
                         {
-                            var _connection = Connectors[ provider.ToString( ) ]?.ConnectionString;
+                            var _connection = ConnectionPaths[ provider.ToString( ) ]?.ConnectionString;
 
                             return !string.IsNullOrEmpty( _connection )
                                 ? _connection?.Replace( "{FilePath}", FilePath )

@@ -2,21 +2,25 @@
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
+
 namespace BudgetExecution
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Configuration;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-
     /// <summary>
     /// 
     /// </summary>
+    /// <seealso cref="IProvider" />
+    /// <seealso cref="ISource" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class SqlBase
+    public abstract class SqlBase 
     {
         /// <summary>
         /// The extension
@@ -24,9 +28,14 @@ namespace BudgetExecution
         public readonly EXT Extension = EXT.SQL;
 
         /// <summary>
-        /// The connection builder
+        /// The source
         /// </summary>
-        public virtual IConnectionBuilder ConnectionBuilder { get; set; }
+        public Source Source { get; set; }
+
+        /// <summary>
+        /// The provider
+        /// </summary>
+        public Provider Provider { get; set; }
 
         /// <summary>
         /// The command type
@@ -41,27 +50,87 @@ namespace BudgetExecution
         /// <summary>
         /// The command text
         /// </summary>
-        public virtual  string CommandText { get; set; }
+        public virtual string CommandText { get; set; }
 
         /// <summary>
         /// The file path
         /// </summary>
         public virtual string FilePath { get; set; }
+
+        /// <summary>
+        /// The provider path
+        /// </summary>
+        public virtual NameValueCollection ProviderPath { get; set; } = ConfigurationManager.AppSettings;
+
+        /// <summary>
+        /// The file name
+        /// </summary>
+        public virtual string FileName { get; set; }
+        
+
+        /// <summary>
+        /// Gets the script files.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, string> GetScriptFiles( )
+        {
+            if(  Enum.IsDefined( typeof( Provider ), Provider )
+                && Enum.IsDefined( typeof( SQL ), CommandType ) )
+            {
+                try
+                {
+                    var _directory = ProviderPath[ $"{ Provider }" ] + $@"\{ CommandType }";
+                    var _scriptFiles = new Dictionary<string, string>(  );
+                    if( !string.IsNullOrEmpty( _directory )
+                        && Directory.Exists( _directory ) )
+                    {
+                        var _scripts = Directory.GetFiles( _directory );
+                        if( _scripts?.Any( ) == true )
+                        {
+                            foreach( var path in _scripts )
+                            {
+                                if( !string.IsNullOrEmpty( path ) )
+                                {
+                                    var _file = Path.GetFullPath( path );
+                                    using( var stream = File.OpenRead( _file ) )
+                                    {
+                                        var _sqlText = new StreamReader( stream );
+                                        _scriptFiles?.Add( Path.GetFileNameWithoutExtension( path ), _sqlText.ReadToEnd( ) );
+                                    }
+                                }
+                            }
+
+                            return _scriptFiles?.Any( ) == true
+                                ? _scriptFiles
+                                : default( IDictionary<string, string> );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, string> );
+                }
+            }
+
+            return default( IDictionary<string, string> );
+        }
         
         /// <summary>
         /// Sets the select statement.
         /// </summary>
-        protected void SetSelectStatement( )
+        public virtual string GetSelectStatement( )
         {
             try
             {
-                CommandText = !string.IsNullOrEmpty( ConnectionBuilder?.ConnectionString )
-                    ? $"{ SQL.SELECT } * FROM { ConnectionBuilder?.TableName };"
+                return CommandType == SQL.SELECTALL && Enum.IsDefined( typeof( Source ), Source )
+                    ? $"SELECT * FROM { Source };"
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                return string.Empty;
             }
         }
 
@@ -69,7 +138,7 @@ namespace BudgetExecution
         /// Sets the select statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        protected void SetSelectStatement( IDictionary<string, object> dict )
+        public virtual string GetSelectStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true )
             {
@@ -83,27 +152,27 @@ namespace BudgetExecution
                     }
 
                     var _values = _empty.TrimEnd( " AND".ToCharArray( ) );
-                    var _tableName = ConnectionBuilder?.TableName;
-                    CommandText = $"{ SQL.SELECT } * FROM { _tableName } WHERE { _values };";
+                    var _tableName = Source.ToString( );
+                    return $"SELECT * FROM { _tableName } WHERE { _values };";
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
+                    return string.Empty;
                 }
             }
-            else if( dict == null )
-            {
-                CommandText = $"{ SQL.SELECT } * FROM { ConnectionBuilder?.TableName };";
-            }
+
+            return string.Empty;
         }
 
         /// <summary>
         /// Sets the update statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        protected void SetUpdateStatement( IDictionary<string, object> dict )
+        public virtual string GetUpdateStatement( IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true )
+            if( dict?.Any( ) == true
+                && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
@@ -115,26 +184,29 @@ namespace BudgetExecution
                     }
 
                     var _vals = _update.TrimEnd( " AND".ToCharArray( ) );
-                    CommandText = $"{ SQL.UPDATE } { ConnectionBuilder?.TableName } SET { _vals };";
+                    return $"{ SQL.UPDATE } { Source } SET { _vals };";
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
+                    return string.Empty;
                 }
             }
+
+            return string.Empty;
         }
 
         /// <summary>
         /// Sets the insert statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        protected void SetInsertStatement( IDictionary<string, object> dict )
+        public virtual string GetInsertStatement( IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true )
+            if( dict?.Any( ) == true 
+                && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
-                    var _table = ConnectionBuilder?.TableName;
                     var _column = string.Empty;
                     var _values = string.Empty;
 
@@ -147,22 +219,26 @@ namespace BudgetExecution
                     var values =
                         $"({ _column.TrimEnd( ", ".ToCharArray( ) ) }) VALUES ({ _values.TrimEnd( ", ".ToCharArray( ) ) })";
 
-                    CommandText = $"{ SQL.INSERT } INTO { _table } { values };";
+                    return $"{ SQL.INSERT } INTO { Source } { values };";
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
+                    return string.Empty;
                 }
             }
+
+            return string.Empty;
         }
 
         /// <summary>
         /// Sets the delete statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        protected void SetDeleteStatement( IDictionary<string, object> dict )
+        public virtual string GetDeleteStatement( IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true )
+            if( dict?.Any( ) == true
+                && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
@@ -174,51 +250,27 @@ namespace BudgetExecution
                     }
 
                     var _values = _columns.TrimEnd( " AND".ToCharArray( ) );
-                    var _table = ConnectionBuilder?.TableName;
-                    CommandText = $"{ SQL.DELETE } FROM { _table } WHERE { _values };";
+                    return $"{ SQL.DELETE } FROM { Source } WHERE { _values };";
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
+                    return string.Empty;
                 }
             }
-            else if( dict == null )
-            {
-                CommandText = $"{ SQL.DELETE } * FROM { ConnectionBuilder?.TableName };";
-            }
-        }
 
-        /// <summary>
-        /// Sets the command text.
-        /// </summary>
-        /// <param name="sql">The SQL.</param>
-        protected void SetCommandText( string sql )
-        {
-            try
-            {
-                CommandText = !string.IsNullOrEmpty( sql )
-                    ? sql
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
+            return string.Empty;
         }
-
+        
         /// <summary>
         /// Sets the command text.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
-        public void SetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
+        public virtual string GetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
-            if( dict == null
-                && !string.IsNullOrEmpty( ConnectionBuilder?.ConnectionString ) )
-            {
-                SetSelectStatement( );
-            }
-            else if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true
+                && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
@@ -226,26 +278,38 @@ namespace BudgetExecution
                     {
                         case SQL.SELECT:
                         {
-                            SetSelectStatement( dict );
-                            break;
+                            var _queryText = GetSelectStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
                         }
 
                         case SQL.UPDATE:
                         {
-                            SetUpdateStatement( dict );
-                            break;
+                            var _queryText = GetUpdateStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
                         }
 
                         case SQL.INSERT:
                         {
-                            SetInsertStatement( dict );
-                            break;
+                            var _queryText = GetInsertStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
                         }
 
                         case SQL.DELETE:
                         {
-                            SetDeleteStatement( dict );
-                            break;
+                            var _queryText = GetDeleteStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
                         }
                     }
                 }
@@ -254,27 +318,8 @@ namespace BudgetExecution
                     Fail( ex );
                 }
             }
-        }
 
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            try
-            {
-                return !string.IsNullOrEmpty( CommandText )
-                    ? CommandText
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
+            return string.Empty;
         }
 
         /// <summary>
@@ -282,7 +327,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="provider">The provider.</param>
         /// <returns></returns>
-        public string GetFilePath( Provider provider )
+        public virtual string GetFilePath( Provider provider )
         {
             if( Enum.IsDefined( typeof( Provider ), provider ) )
             {
@@ -292,49 +337,37 @@ namespace BudgetExecution
                     {
                         case Provider.OleDb:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "OleDb" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "OleDb" ];
                         }
                         case Provider.Access:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "Access" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "Access" ];
                         }
                         case Provider.SQLite:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SQLite" ];
                         }
                         case Provider.SqlCe:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SqlCe" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SqlCe" ];
                         }
                         case Provider.Excel:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "Excel" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "Excel" ];
                         }
                         case Provider.SqlServer:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SqlServer" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SqlServer" ];
                         }
                         case Provider.CSV:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "CSV" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "CSV" ];
                         }
                         default:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SQLite" ];
                         }
                     }
-
-                    return !string.IsNullOrEmpty( FilePath )
-                        ? FilePath
-                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
@@ -350,7 +383,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="command">The provider.</param>
         /// <returns></returns>
-        public string GetFilePath( SQL command )
+        public virtual string GetFilePath( SQL command )
         {
             if( Enum.IsDefined( typeof( SQL ), command ) )
             {
@@ -360,64 +393,49 @@ namespace BudgetExecution
                     {
                         case SQL.ALTERTABLE:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "ALTERTABLE" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "ALTERTABLE" ];
                         }
                         case SQL.CREATETABLE:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "CREATETABLE" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "CREATETABLE" ];
                         }
                         case SQL.CREATEDATABASE:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "CREATEDATABASE" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "CREATEDATABASE" ];
                         }
                         case SQL.CREATEVIEW:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "CREATEVIEW" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "CREATEVIEW" ];
                         }
                         case SQL.DETACH:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "DETACH" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "DETACH" ];
                         }
                         case SQL.DELETE:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "DELETE" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "DELETE" ];
                         }
                         case SQL.SELECTALL:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SELECTALL" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SELECTALL" ];
                         }
                         case SQL.SELECT:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SELECT" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SELECT" ];
                         }
                         case SQL.INSERT:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "INSERT" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "INSERT" ];
                         }
                         case SQL.UPDATE:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "UPDATE" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "UPDATE" ];
                         }
                         default:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SELECTALL" ];
-                            break;
+                            return ConfigurationManager.AppSettings[ "SELECTALL" ];
                         }
                     }
-
-                    return !string.IsNullOrEmpty( FilePath )
-                        ? FilePath
-                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
@@ -428,6 +446,27 @@ namespace BudgetExecution
             return string.Empty;
         }
 
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString( )
+        {
+            try
+            {
+                return !string.IsNullOrEmpty( CommandText )
+                    ? CommandText
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return string.Empty;
+            }
+        }
+        
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
@@ -440,5 +479,6 @@ namespace BudgetExecution
                 _error?.ShowDialog( );
             }
         }
+
     }
 }
