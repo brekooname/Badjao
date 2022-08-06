@@ -16,42 +16,50 @@ namespace BudgetExecution
         /// <summary>
         /// The source
         /// </summary>
-        public Source Source { get; set; }
+        public virtual Source Source { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
+        public virtual IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// The arguments
         /// </summary>
-        public IDictionary<string, object> Args { get; set; }
+        public virtual IDictionary<string, object> Args { get; set; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        public ISqlStatement SqlStatement { get; set; }
+        public virtual ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// The query
         /// </summary>
-        public IQuery Query { get; set; }
+        public virtual IQuery Query { get; set; }
 
         /// <summary>
         /// The record
         /// </summary>
-        public DataRow Record { get; set; }
+        public virtual DataRow Record { get; set; }
 
         /// <summary>
         /// The Data table
         /// </summary>
-        public DataTable Table { get; set; }
+        public virtual DataTable DataTable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        public virtual string TableName { get; set; }
 
         /// <summary>
         /// Gets or sets the Data set.
@@ -59,8 +67,16 @@ namespace BudgetExecution
         /// <value>
         /// The Data set.
         /// </value>
-        public DataSet DataSet { get; set; }
-        
+        public virtual DataSet DataSet { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the data set.
+        /// </summary>
+        /// <value>
+        /// The name of the data set.
+        /// </value>
+        public virtual string DataSetName { get; set; }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

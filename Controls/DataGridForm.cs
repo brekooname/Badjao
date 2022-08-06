@@ -81,7 +81,7 @@ namespace BudgetExecution
             try
             {
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
-                DataGrid.DataSource = _data?.Table;
+                DataGrid.DataSource = _data?.DataTable;
             }
             catch ( Exception ex )
             {

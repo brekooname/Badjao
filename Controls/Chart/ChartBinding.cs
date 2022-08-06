@@ -141,6 +141,10 @@ namespace BudgetExecution
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
         public ChartBinding( BindingSource bindingSource )
         {
             BindingSource = bindingSource;
@@ -154,13 +158,40 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="bindingList">The binding list.</param>
+        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
+        public ChartBinding( IBindingList bindingList )
+        {
+            BindingSource = new BindingSource
+            {
+                DataSource = bindingList
+            };
+            Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
+            DataTable = (DataTable)BindingSource.DataSource;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
+            DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
+            Record = BindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            SeriesConfig = new SeriesConfig( );
+            Changed += OnCurrentChanged;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
         public ChartBinding( DataTable dataTable )
         {
+            BindingSource = new BindingSource( );
             Data = dataTable.AsEnumerable( );
             SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
             DataSet = dataTable.DataSet;
+            BindingSource.DataSource = dataTable;
             DataSource = dataTable;
             Record = (DataRow)Current;
             AllowNew = true;
@@ -174,10 +205,12 @@ namespace BudgetExecution
         /// <param name="seriesConfig">The seriesConfig.</param>
         public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig )
         {
+            BindingSource = new BindingSource( );
             Data = dataTable.AsEnumerable( );
             SeriesConfig = seriesConfig;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
+            BindingSource.DataSource = dataTable;
             DataSet = dataTable.DataSet;
             DataSource = dataTable;
             Record = (DataRow)Current;
@@ -194,9 +227,11 @@ namespace BudgetExecution
         /// <param name="seriesConfig">The seriesConfig.</param>
         public ChartBinding( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
         {
+            BindingSource = new BindingSource( );
             Data = data;
             SeriesConfig = seriesConfig;
             DataTable = data.CopyToDataTable( );
+            BindingSource.DataSource = data.CopyToDataTable(  );
             DataSet = data.CopyToDataTable( )?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSource = DataTable;

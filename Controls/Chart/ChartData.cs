@@ -334,19 +334,5 @@ namespace BudgetExecution
                 }
             }
         }
-        
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-        protected void Fail( Exception ex )
-        {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
-        }
     }
 }
