@@ -157,6 +157,69 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="ChartControl" />
+        /// class.
+        /// </summary>
+        /// <param name="chartBinding">The sourceBinding.</param>
+        public ChartControl( IChartBinding chartBinding )
+            : this( )
+        {
+            SeriesConfig = chartBinding.SeriesConfig;
+            SeriesModel = new SeriesModel( chartBinding );
+            DataMetric = SourceModel.DataMetric;
+            TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
+            DataSeries = new ChartDataSeries( chartBinding.DataTable );
+            Series.Add( DataSeries );
+            Titles.Add( TitleInfo.GetChartMainTitle( ) );
+        }
+
+        public ChartControl( DataTable dataTable )
+            : this( )
+        {
+            SeriesModel = new SeriesModel( dataTable );
+            DataSeries = new ChartDataSeries( dataTable );
+            SeriesConfig = SeriesModel.SeriesConfig;
+            DataMetric = new DataMetric( dataTable?.AsEnumerable( ));
+            TitleInfo = new TitleInfo( dataTable?.TableName );
+            Series.Add( DataSeries );
+            Titles.Add( TitleInfo.GetChartMainTitle( ) );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartControl"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        public ChartControl( BindingSource bindingSource )
+            : this( )
+        {
+            SeriesModel = new SeriesModel( bindingSource );
+            DataSeries = new ChartDataSeries( bindingSource );
+            SeriesConfig = SeriesModel.SeriesConfig;
+            DataMetric = new DataMetric( bindingSource );
+            TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
+            Series.Add( DataSeries );
+            Titles.Add( TitleInfo.GetChartMainTitle( ) );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        /// <see cref="ChartControl" />
+        /// class.
+        /// </summary>
+        /// <param name="sourceModel">The sourceModel.</param>
+        public ChartControl( ISeries sourceModel )
+            : this( )
+        {
+            SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
+            SeriesModel = new SeriesModel( sourceModel.ChartBinding );
+            TitleInfo = new TitleInfo( SeriesConfig.Name );
+            DataMetric = new DataMetric( sourceModel.Data );
+            DataSeries = new ChartDataSeries( sourceModel.Data );
+            Series.Add( DataSeries );
+            Titles.Add( TitleInfo.GetChartMainTitle( ) );
+        }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ChartControl" /> class.
         /// </summary>
         /// <param name="dataTable">The table.</param>
@@ -189,55 +252,7 @@ namespace BudgetExecution
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChartControl" />
-        /// class.
-        /// </summary>
-        /// <param name="chartBinding">The sourceBinding.</param>
-        public ChartControl( IChartBinding chartBinding )
-            : this( )
-        {
-            SeriesConfig = chartBinding.SeriesConfig;
-            SeriesModel = new SeriesModel( chartBinding );
-            DataMetric = SourceModel.DataMetric;
-            TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new ChartDataSeries( chartBinding.DataTable );
-            Series.Add( DataSeries );
-            Titles.Add( TitleInfo.GetChartMainTitle( ) );
-        }
-
-        public ChartControl( BindingSource bindingSource )
-            : this( )
-        {
-            SeriesModel = new SeriesModel( bindingSource );
-            DataSeries = new ChartDataSeries( bindingSource );
-            SeriesConfig = SeriesModel.SeriesConfig;
-            DataMetric = new DataMetric( bindingSource );
-            TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            Series.Add( DataSeries );
-            Titles.Add( TitleInfo.GetChartMainTitle( ) );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChartControl" />
-        /// class.
-        /// </summary>
-        /// <param name="sourceModel">The sourceModel.</param>
-        public ChartControl( ISeries sourceModel )
-            : this( )
-        {
-            SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
-            SeriesModel = new SeriesModel( sourceModel.ChartBinding );
-            TitleInfo = new TitleInfo( SeriesConfig.Name );
-            DataMetric = new DataMetric( sourceModel.Data );
-            DataSeries = new ChartDataSeries( sourceModel.Data );
-            Series.Add( DataSeries );
-            Titles.Add( TitleInfo.GetChartMainTitle( ) );
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ChartControl" />

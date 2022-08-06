@@ -68,7 +68,7 @@ namespace BudgetExecution
         /// <summary>
         /// The statistics
         /// </summary>
-        public virtual IDictionary<string, IEnumerable<double>> Statistics { get; set; }
+        public virtual IDictionary<string, double> Statistics { get; set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
@@ -97,19 +97,18 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        /// <param name="field">The field.</param>
+        /// <param name="dataTable">The data row.</param>
         /// <param name="numeric">The numeric.</param>
-        protected MetricBase( BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
+        protected MetricBase( DataTable dataTable, Numeric numeric = Numeric.Amount )
         {
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
-            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            Data = dataTable.AsEnumerable( );
+            TableName = dataTable.TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             Numeric = numeric;
-            Field = field;
-            Total = CalculateTotals( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-            Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Field = Field.NS;
+            Count = Data.Count( );
+            Total = CalculateTotals( Data, numeric );
+            Average = CalculateAverage( Data, numeric );
         }
 
         /// <summary>
@@ -128,6 +127,25 @@ namespace BudgetExecution
             Total = CalculateTotals( dataRow, numeric );
             Average = CalculateAverage( dataRow, numeric );
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="numeric">The numeric.</param>
+        protected MetricBase( BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
+        {
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            Numeric = numeric;
+            Field = field;
+            Total = CalculateTotals( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+        }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
@@ -383,7 +401,7 @@ namespace BudgetExecution
                             }
                         }
 
-                        return _dictionary.Any( )
+                        return _dictionary?.Any( ) == true
                             ? _dictionary
                             : default( Dictionary<string, double> );
                     }

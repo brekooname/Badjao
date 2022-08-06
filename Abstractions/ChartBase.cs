@@ -13,6 +13,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Drawing;
     using System.Linq;
+    using System.Windows.Forms;
     using Syncfusion.Drawing;
     using Syncfusion.Windows.Forms.Chart;
 
@@ -31,7 +32,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -145,7 +146,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBase"/> class.
         /// </summary>
-        public ChartBase()
+        protected ChartBase()
         {
         }
 
@@ -164,7 +165,7 @@ namespace BudgetExecution
                 Legend.ItemsSize = size;
                 Legend.VisibleCheckBox = true;
                 Legend.BackInterior = new BrushInfo( backColor );
-                Legend.ItemsAlignment = Settings.GetStringAlignment( StringAlignment.Center );
+                Legend.ItemsAlignment = StringAlignment.Center;
                 Legend.ItemsTextAligment = VerticalAlignment.Center;
                 Legend.Orientation = ChartOrientation.Vertical;
                 Legend.FloatingAutoSize = true;
@@ -188,7 +189,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _bindingSource
+                if( bindingSource is BindingSource _bindingSource
                     && _bindingSource?.DataSource != null )
                 {
                     try
@@ -220,12 +221,12 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsBindable( bindingList )
-                    && Verify.IsMap( dict ) )
+                if( bindingList?.Count > 0
+                    && dict?.Any( ) == true )
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

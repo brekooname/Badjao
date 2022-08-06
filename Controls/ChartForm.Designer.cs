@@ -72,12 +72,10 @@
             this.Separator17 = new BudgetExecution.ToolSeparator();
             this.HomeButton = new BudgetExecution.ToolStripButton();
             this.Separator18 = new BudgetExecution.ToolSeparator();
-            this.DataSet = new BudgetExecution.DataModel();
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.ChartControl = new BudgetExecution.ChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.ToolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip
@@ -640,10 +638,6 @@
             this.Separator18.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator18.Size = new System.Drawing.Size(6, 36);
             // 
-            // DataSet
-            // 
-            this.DataSet.DataSetName = "ChartData";
-            // 
             // Separator16
             // 
             this.Separator16.ForeColor = System.Drawing.Color.Black;
@@ -794,7 +788,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -802,7 +795,6 @@
 
         #endregion
         public ToolStrip ToolStrip;
-        private DataModel DataSet;
         public ToolStripTextBox TextBox;
         private ToolSeparator Separator1;
         public ToolStripLabel Label;

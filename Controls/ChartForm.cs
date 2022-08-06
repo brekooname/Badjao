@@ -2,6 +2,7 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
 
     public partial class ChartForm : MetroForm
@@ -11,7 +12,7 @@ namespace BudgetExecution
             InitializeComponent( );
         }
 
-        public ChartForm( System.Windows.Forms.BindingSource bindingSource ) 
+        public ChartForm( BindingSource bindingSource ) 
             : this( )
         {
             ToolStrip.Office12Mode = true;
