@@ -10,6 +10,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
 
     /// <summary>
     /// 
@@ -30,7 +31,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -65,7 +66,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource binder
+                if( bindingSource is BindingSource binder
                     && binder?.DataSource != null )
                 {
                     try
@@ -102,15 +103,15 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
-                                && Verify.IsRef( _kvp.Value ) )
+                                && _kvp.Value != null )
                             {
-                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                                _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                             }
                         }
 
@@ -173,7 +174,7 @@ namespace BudgetExecution
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
                         {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                         }
                     }
 
@@ -302,7 +303,7 @@ namespace BudgetExecution
             where T2 : struct
         {
             if( data?.Any( ) == true
-                && Validate.IsField( field ) )
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {

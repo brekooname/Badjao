@@ -92,7 +92,7 @@ namespace BudgetExecution
         /// <param name="seriesConfig">The seriesConfig.</param>
         protected SeriesBase( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
         {
-            ChartBinding = new ChartBindingSource( data, seriesConfig );
+            ChartBinding = new ChartBinding( data, seriesConfig );
             BindingModel = new ChartDataBindModel( data, seriesConfig?.Field.ToString( ) );
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding?.SeriesConfig;
@@ -109,7 +109,7 @@ namespace BudgetExecution
         /// <param name="seriesConfig">The seriesConfig.</param>
         protected SeriesBase( DataTable dataTable, ISeriesConfig seriesConfig )
         {
-            ChartBinding = new ChartBindingSource( dataTable?.AsEnumerable( ), seriesConfig );
+            ChartBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
             BindingModel = new ChartDataBindModel( dataTable, seriesConfig?.Field.ToString( ) );
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding?.SeriesConfig;
@@ -139,7 +139,7 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         protected SeriesBase( System.Windows.Forms.BindingSource bindingSource )
         {
-            ChartBinding = new ChartBindingSource( bindingSource );
+            ChartBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( bindingSource );
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;

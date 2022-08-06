@@ -31,7 +31,7 @@ namespace BudgetExecution
         /// <value>
         /// The type of the chart.
         /// </value>
-        public ChartType ChartType { get; set; }
+        public ChartSeriesType ChartType { get; set; }
 
         /// <summary>
         /// Gets the numeric.
@@ -63,7 +63,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="field">The field.</param>
         /// <param name="type">The type.</param>
-        public SeriesConfig( Field field, ChartType type = ChartType.Column )
+        public SeriesConfig( Field field, ChartSeriesType type = ChartSeriesType.Column )
             : this( )
         {
             Name = $"{ field }";
@@ -106,7 +106,7 @@ namespace BudgetExecution
         /// <param name="stat">The stat.</param>
         public void SetPointConfiguration( STAT stat = STAT.Total )
         {
-            if( Validate.STAT( stat ) )
+            if( Enum.IsDefined( typeof( STAT ), stat ) )
             {
                 try
                 {
@@ -132,7 +132,7 @@ namespace BudgetExecution
                         }
                     }
 
-                    if( ChartType != ChartType.Pie )
+                    if( ChartType != ChartSeriesType.Pie )
                     {
                         SmartLabels = true;
                         SortPoints = true;
@@ -178,10 +178,10 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="type">The type.</param>
         /// <param name="stat">The stat.</param>
-        public void SetPoints( IDictionary<string, double> data, ChartType type = ChartType.Column,
+        public void SetPoints( IDictionary<string, double> data, ChartSeriesType type = ChartSeriesType.Column,
             STAT stat = STAT.Total )
         {
-            if( Enum.IsDefined( typeof( ChartType ), type ) )
+            if( Enum.IsDefined( typeof( ChartSeriesType ), type ) )
             {
                 try
                 {
@@ -192,38 +192,37 @@ namespace BudgetExecution
 
                     switch( type )
                     {
-                        case ChartType.Column:
-                        case ChartType.Line:
-                        case ChartType.Spline:
-                        case ChartType.SplineArea:
-                        case ChartType.Area:
-                        case ChartType.Bar:
-                        case ChartType.BoxAndWhisker:
-                        case ChartType.Bubble:
-                        case ChartType.Candle:
-                        case ChartType.ColumnRange:
-                        case ChartType.Gannt:
-                        case ChartType.HeatMap:
-                        case ChartType.HiLo:
-                        case ChartType.HiLoOpenClose:
-                        case ChartType.Histogram:
-                        case ChartType.Kagi:
-                        case ChartType.PointAndFigure:
-                        case ChartType.Polar:
-                        case ChartType.Radar:
-                        case ChartType.RangeArea:
-                        case ChartType.RotatedSpline:
-                        case ChartType.Scatter:
-                        case ChartType.StackingArea:
-                        case ChartType.StackingArea100:
-                        case ChartType.StackingBar:
-                        case ChartType.StackingBar100:
-                        case ChartType.StackingColumn100:
-                        case ChartType.StepArea:
-                        case ChartType.StepLine:
-                        case ChartType.ThreeLineBreak:
-                        case ChartType.Tornado:
-                        case ChartType.StackingColumn:
+                        case ChartSeriesType.Column:
+                        case ChartSeriesType.Line:
+                        case ChartSeriesType.Spline:
+                        case ChartSeriesType.SplineArea:
+                        case ChartSeriesType.Area:
+                        case ChartSeriesType.Bar:
+                        case ChartSeriesType.BoxAndWhisker:
+                        case ChartSeriesType.Bubble:
+                        case ChartSeriesType.Candle:
+                        case ChartSeriesType.ColumnRange:
+                        case ChartSeriesType.HeatMap:
+                        case ChartSeriesType.HiLo:
+                        case ChartSeriesType.HiLoOpenClose:
+                        case ChartSeriesType.Histogram:
+                        case ChartSeriesType.Kagi:
+                        case ChartSeriesType.PointAndFigure:
+                        case ChartSeriesType.Polar:
+                        case ChartSeriesType.Radar:
+                        case ChartSeriesType.RangeArea:
+                        case ChartSeriesType.RotatedSpline:
+                        case ChartSeriesType.Scatter:
+                        case ChartSeriesType.StackingArea:
+                        case ChartSeriesType.StackingArea100:
+                        case ChartSeriesType.StackingBar:
+                        case ChartSeriesType.StackingBar100:
+                        case ChartSeriesType.StackingColumn100:
+                        case ChartSeriesType.StepArea:
+                        case ChartSeriesType.StepLine:
+                        case ChartSeriesType.ThreeLineBreak:
+                        case ChartSeriesType.Tornado:
+                        case ChartSeriesType.StackingColumn:
                         {
                             foreach( var _kvp in data )
                             {
@@ -233,9 +232,9 @@ namespace BudgetExecution
                             break;
                         }
 
-                        case ChartType.Pyramid:
-                        case ChartType.Funnel:
-                        case ChartType.Pie:
+                        case ChartSeriesType.Pyramid:
+                        case ChartSeriesType.Funnel:
+                        case ChartSeriesType.Pie:
                         {
                             foreach( var _kvp in data )
                             {

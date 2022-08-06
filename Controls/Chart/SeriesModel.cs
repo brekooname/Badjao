@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
@@ -68,9 +69,9 @@ namespace BudgetExecution
         /// <see cref="SeriesModel" />
         /// class.
         /// </summary>
-        public SeriesModel( System.Windows.Forms.BindingSource bindingSource )
+        public SeriesModel( BindingSource bindingSource )
         {
-            ChartBinding = new ChartBindingSource( bindingSource );
+            ChartBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( ChartBinding );
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;
@@ -106,7 +107,7 @@ namespace BudgetExecution
         public SeriesModel( DataTable dataTable, ISeriesConfig seriesConfig )
             : base( dataTable, seriesConfig )
         {
-            ChartBinding = new ChartBindingSource( dataTable, seriesConfig );
+            ChartBinding = new ChartBinding( dataTable, seriesConfig );
             BindingModel = new ChartDataBindModel( ChartBinding );
             SourceData = ChartBinding.Data;
             SeriesConfig = seriesConfig;
@@ -124,7 +125,7 @@ namespace BudgetExecution
         public SeriesModel( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : base( dataRows, seriesConfig )
         {
-            ChartBinding = new ChartBindingSource( dataRows, seriesConfig );
+            ChartBinding = new ChartBinding( dataRows, seriesConfig );
             BindingModel = new ChartDataBindModel( ChartBinding );
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;

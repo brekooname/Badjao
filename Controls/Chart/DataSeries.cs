@@ -16,8 +16,8 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="ChartSeries" />
     /// <seealso cref="IDataSeries" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class DataSeries : ChartSeries, IDataSeries
     {
         /// <summary>
@@ -78,18 +78,18 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="DataSeries"/> class.
         /// </summary>
-        /// <param name="chartData">The chart data.</param>
-        public DataSeries( ISeriesModel chartData )
+        /// <param name="seriesModel">The chart data.</param>
+        public DataSeries( ISeriesModel seriesModel )
             : this( )
         {
-            SeriesConfig = chartData.SeriesConfig;
+            SeriesConfig = seriesModel.SeriesConfig;
             Name = SeriesConfig.Name;
             Type = SeriesConfig.Type;
             ValueMetric = SeriesConfig.ValueMetric;
-            SourceModel = chartData?.SourceModel;
+            SourceModel = seriesModel?.SourceModel;
             SeriesData = SourceModel?.SeriesData;
-            SeriesValues = chartData?.Values;
-            SeriesCategories = chartData?.Categories;
+            SeriesValues = seriesModel?.Values;
+            SeriesCategories = seriesModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -128,7 +128,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public ChartSeriesType GetSeriesType( ChartType type = ChartType.Column )
+        public ChartSeriesType GetSeriesType( ChartSeriesType type = ChartSeriesType.Column )
         {
             try
             {
@@ -222,10 +222,10 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="type">The type.</param>
         /// <param name="stat">The value.</param>
-        public void SetPoints( IDictionary<string, double> data, ChartType type = ChartType.Column,
+        public void SetPoints( IDictionary<string, double> data, ChartSeriesType type = ChartSeriesType.Column,
             STAT stat = STAT.Total )
         {
-            if( Enum.IsDefined( typeof( ChartType ), type ) )
+            if( Enum.IsDefined( typeof( ChartSeriesType ), type ) )
             {
                 try
                 {
@@ -236,38 +236,37 @@ namespace BudgetExecution
 
                     switch( type )
                     {
-                        case ChartType.Column:
-                        case ChartType.Line:
-                        case ChartType.Spline:
-                        case ChartType.SplineArea:
-                        case ChartType.Area:
-                        case ChartType.Bar:
-                        case ChartType.BoxAndWhisker:
-                        case ChartType.Bubble:
-                        case ChartType.Candle:
-                        case ChartType.ColumnRange:
-                        case ChartType.Gannt:
-                        case ChartType.HeatMap:
-                        case ChartType.HiLo:
-                        case ChartType.HiLoOpenClose:
-                        case ChartType.Histogram:
-                        case ChartType.Kagi:
-                        case ChartType.PointAndFigure:
-                        case ChartType.Polar:
-                        case ChartType.Radar:
-                        case ChartType.RangeArea:
-                        case ChartType.RotatedSpline:
-                        case ChartType.Scatter:
-                        case ChartType.StackingArea:
-                        case ChartType.StackingArea100:
-                        case ChartType.StackingBar:
-                        case ChartType.StackingBar100:
-                        case ChartType.StackingColumn100:
-                        case ChartType.StepArea:
-                        case ChartType.StepLine:
-                        case ChartType.ThreeLineBreak:
-                        case ChartType.Tornado:
-                        case ChartType.StackingColumn:
+                        case ChartSeriesType.Column:
+                        case ChartSeriesType.Line:
+                        case ChartSeriesType.Spline:
+                        case ChartSeriesType.SplineArea:
+                        case ChartSeriesType.Area:
+                        case ChartSeriesType.Bar:
+                        case ChartSeriesType.BoxAndWhisker:
+                        case ChartSeriesType.Bubble:
+                        case ChartSeriesType.Candle:
+                        case ChartSeriesType.ColumnRange:
+                        case ChartSeriesType.HeatMap:
+                        case ChartSeriesType.HiLo:
+                        case ChartSeriesType.HiLoOpenClose:
+                        case ChartSeriesType.Histogram:
+                        case ChartSeriesType.Kagi:
+                        case ChartSeriesType.PointAndFigure:
+                        case ChartSeriesType.Polar:
+                        case ChartSeriesType.Radar:
+                        case ChartSeriesType.RangeArea:
+                        case ChartSeriesType.RotatedSpline:
+                        case ChartSeriesType.Scatter:
+                        case ChartSeriesType.StackingArea:
+                        case ChartSeriesType.StackingArea100:
+                        case ChartSeriesType.StackingBar:
+                        case ChartSeriesType.StackingBar100:
+                        case ChartSeriesType.StackingColumn100:
+                        case ChartSeriesType.StepArea:
+                        case ChartSeriesType.StepLine:
+                        case ChartSeriesType.ThreeLineBreak:
+                        case ChartSeriesType.Tornado:
+                        case ChartSeriesType.StackingColumn:
                         {
                             foreach( var kvp in data )
                             {
@@ -277,9 +276,9 @@ namespace BudgetExecution
                             break;
                         }
 
-                        case ChartType.Pyramid:
-                        case ChartType.Funnel:
-                        case ChartType.Pie:
+                        case ChartSeriesType.Pyramid:
+                        case ChartSeriesType.Funnel:
+                        case ChartSeriesType.Pie:
                         {
                             foreach( var kvp in data )
                             {

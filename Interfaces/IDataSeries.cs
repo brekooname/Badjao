@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        ChartSeriesType GetSeriesType( ChartType type = ChartType.Column );
+        ChartSeriesType GetSeriesType( ChartSeriesType type = ChartSeriesType.Column );
 
         /// <summary>
         /// Sets the point configuration.
@@ -33,11 +33,11 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the points.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dict">The data.</param>
         /// <param name="type">The type.</param>
         /// <param name="stat">The stat.</param>
-        void SetPoints( IDictionary<string, double> data,
-            ChartType type = ChartType.Column, STAT stat = STAT.Total );
+        void SetPoints( IDictionary<string, double> dict,
+            ChartSeriesType type = ChartSeriesType.Column, STAT stat = STAT.Total );
 
         /// <summary>
         /// Gets the series values.

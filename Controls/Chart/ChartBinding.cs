@@ -10,6 +10,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
 
     /// <summary>
     /// 
@@ -20,7 +21,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-    public class ChartBindingSource : System.Windows.Forms.BindingSource, IChartBinding
+    public class ChartBinding : BindingSource, IChartBinding
     {
         /// <summary>
         /// Gets or sets the chart handler.
@@ -105,7 +106,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -136,11 +137,11 @@ namespace BudgetExecution
         /// <see cref="BindingSource" />
         /// class.
         /// </summary>
-        public ChartBindingSource()
+        public ChartBinding()
         {
         }
 
-        public ChartBindingSource( System.Windows.Forms.BindingSource bindingSource )
+        public ChartBinding( BindingSource bindingSource )
         {
             BindingSource = bindingSource;
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
@@ -153,7 +154,7 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
-        public ChartBindingSource( DataTable dataTable )
+        public ChartBinding( DataTable dataTable )
         {
             Data = dataTable.AsEnumerable( );
             SeriesConfig = new SeriesConfig( );
@@ -167,11 +168,11 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChartBindingSource" /> class.
+        /// Initializes a new instance of the <see cref="ChartBinding" /> class.
         /// </summary>
         /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBindingSource( DataTable dataTable, ISeriesConfig seriesConfig )
+        public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig )
         {
             Data = dataTable.AsEnumerable( );
             SeriesConfig = seriesConfig;
@@ -186,12 +187,12 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ChartBindingSource" />
+        /// <see cref="ChartBinding" />
         /// class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBindingSource( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
+        public ChartBinding( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
         {
             Data = data;
             SeriesConfig = seriesConfig;
@@ -317,12 +318,12 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource binder
-                    && binder?.DataSource != null )
+                if( bindingSource is BindingSource binding
+                    && binding?.DataSource != null )
                 {
                     try
                     {
-                        BindingSource.DataSource = binder.DataSource;
+                        BindingSource.DataSource = binding.DataSource;
                     }
                     catch( Exception ex )
                     {
@@ -354,7 +355,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )
