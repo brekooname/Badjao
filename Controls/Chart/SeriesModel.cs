@@ -168,7 +168,7 @@ namespace BudgetExecution
             {
                 var _values = SeriesData
                     ?.Values
-                    ?.SelectMany( v => v );
+                    ?.Select( v => v );
 
                 return _values?.Any( ) == true
                     ? _values.ToArray( )

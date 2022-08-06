@@ -76,7 +76,7 @@ namespace BudgetExecution
         /// <value>
         /// The series data.
         /// </value>
-        public virtual IDictionary<string, IEnumerable<double>> SeriesData { get; set; }
+        public virtual IDictionary<string, double> SeriesData { get; set; }
 
         /// <summary>
         /// Initializes a new instance

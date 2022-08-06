@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        IDictionary<string, IEnumerable<double>> CalculateStatistics();
+        IDictionary<string, double> CalculateStatistics();
 
         /// <summary>
         /// Calculates the variances.
@@ -112,7 +112,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Field field,
+        IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount );
     }
 }

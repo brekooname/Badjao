@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// <value>
         /// The series data.
         /// </value>
-        public virtual IDictionary<string, IEnumerable<double>> DataValues { get; set; }
+        public virtual IDictionary<string, double> DataValues { get; set; }
 
         /// <summary>
         /// Gets the series categories.
