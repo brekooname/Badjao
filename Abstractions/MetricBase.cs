@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
 
     /// <summary>
     /// 
@@ -18,12 +19,13 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
     [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class MetricBase : IMetric, IDataFilter
     {
         /// <summary>
         /// Gets the source.
         /// </summary>
-        public Source Source { get; set; }
+        public virtual Source Source { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.
@@ -31,42 +33,42 @@ namespace BudgetExecution
         /// <value>
         /// The name of the table.
         /// </value>
-        public string TableName { get; set; }
+        public virtual string TableName { get; set; }
 
         /// <summary>
         /// The field
         /// </summary>
-        public Field Field { get; set; }
+        public virtual Field Field { get; set; }
 
         /// <summary>
         /// The numeric
         /// </summary>
-        public Numeric Numeric { get; set; }
+        public virtual Numeric Numeric { get; set; }
 
         /// <summary>
         /// The count
         /// </summary>
-        public int Count { get; set; }
+        public virtual int Count { get; set; }
 
         /// <summary>
         /// The dataRow
         /// </summary>
-        public IEnumerable<DataRow> Data { get; set; }
+        public virtual IEnumerable<DataRow> Data { get; set; }
 
         /// <summary>
         /// The total
         /// </summary>
-        public double Total { get; set; }
+        public virtual double Total { get; set; }
 
         /// <summary>
         /// The average
         /// </summary>
-        public double Average { get; set; }
+        public virtual double Average { get; set; }
 
         /// <summary>
         /// The statistics
         /// </summary>
-        public IDictionary<string, IEnumerable<double>> Statistics { get; set; }
+        public virtual IDictionary<string, IEnumerable<double>> Statistics { get; set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
@@ -80,7 +82,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
         /// <param name="numeric">The numeric.</param>
-        protected MetricBase( System.Windows.Forms.BindingSource bindingSource, Numeric numeric = Numeric.Amount  )
+        protected MetricBase( BindingSource bindingSource, Numeric numeric = Numeric.Amount  )
         {
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
@@ -98,7 +100,7 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
-        protected MetricBase( System.Windows.Forms.BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
+        protected MetricBase( BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
         {
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
@@ -151,7 +153,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public IEnumerable<DataRow> FilterData( Field field, string filter )
+        public virtual IEnumerable<DataRow> FilterData( Field field, string filter )
         {
             if( Enum.IsDefined( typeof( Field ), field )  
                 && !string.IsNullOrEmpty( filter ) )
@@ -214,7 +216,7 @@ namespace BudgetExecution
         /// <param name="dataRow">The dataRow.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public int GetCount( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
+        public virtual int GetCount( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true )
             {
@@ -244,7 +246,7 @@ namespace BudgetExecution
         /// <param name="dataRow">The dataRow.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public double CalculateTotals( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
+        public virtual double CalculateTotals( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true )
             {
@@ -273,7 +275,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public IDictionary<string, double> CalculateTotals( IEnumerable<DataRow> dataRow, Field field,
+        public virtual IDictionary<string, double> CalculateTotals( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -352,7 +354,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public IDictionary<string, double> CalculateAverages( IEnumerable<DataRow> dataRow, Field field,
+        public virtual IDictionary<string, double> CalculateAverages( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true

@@ -4,14 +4,15 @@
 
 namespace BudgetExecution
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Forms;
+    using Syncfusion.Windows.Forms.Chart;
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Data;
     using System.Drawing;
     using System.Linq;
-    using System.Windows.Forms;
-    using Syncfusion.Windows.Forms.Chart;
+    using System.Threading;
 
     /// <summary>
     /// 
@@ -106,6 +107,10 @@ namespace BudgetExecution
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartData"/> class.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
         protected ChartData( IEnumerable<DataRow> dataRows )
             : this( )
         {
@@ -129,6 +134,10 @@ namespace BudgetExecution
             SmartLabelsBorderWidth = 1;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartData"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
         protected ChartData( DataTable dataTable )
             : this( )
         {

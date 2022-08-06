@@ -602,7 +602,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\ChartDataSeries.cs" />
-    <Compile Include="Controls\Chart\ChartData.cs" />
+    <Compile Include="Abstractions\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesConfig.cs" />
     <Compile Include="Controls\Chart\SeriesModel.cs" />

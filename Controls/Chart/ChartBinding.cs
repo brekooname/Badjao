@@ -210,19 +210,10 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig )
+        public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig ) 
+            : this( dataTable )
         {
-            BindingSource = new BindingSource( );
-            Data = dataTable.AsEnumerable( );
             SeriesConfig = seriesConfig;
-            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
-            DataTable = dataTable;
-            BindingSource.DataSource = dataTable;
-            DataSet = dataTable.DataSet;
-            DataSource = dataTable;
-            Record = (DataRow)Current;
-            AllowNew = true;
-            Changed += OnCurrentChanged;
         }
 
         /// <summary>
@@ -230,21 +221,12 @@ namespace BudgetExecution
         /// <see cref="ChartBinding" />
         /// class.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataRows">The data.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
+        public ChartBinding( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig ) 
+            : this( dataRows )
         {
-            BindingSource = new BindingSource( );
-            Data = data;
             SeriesConfig = seriesConfig;
-            DataTable = data.CopyToDataTable( );
-            BindingSource.DataSource = data.CopyToDataTable(  );
-            DataSet = data.CopyToDataTable( )?.DataSet;
-            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
-            DataSource = DataTable;
-            Record = (DataRow)Current;
-            AllowNew = true;
-            Changed += OnCurrentChanged;
         }
         
         /// <summary>
