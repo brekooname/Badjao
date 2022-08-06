@@ -122,28 +122,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Gets the type of the series.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns></returns>
-        public ChartSeriesType GetSeriesType( ChartSeriesType type = ChartSeriesType.Column )
-        {
-            try
-            {
-                return Validate.ChartType( type )
-                    ? (ChartSeriesType)Enum.Parse( typeof( ChartSeriesType ), type.ToString( ) )
-                    : ChartSeriesType.Column;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-
-            return ChartSeriesType.Column;
-        }
-
+        
         /// <summary>
         /// Sets the point configuration.
         /// </summary>

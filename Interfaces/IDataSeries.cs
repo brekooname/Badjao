@@ -16,14 +16,7 @@ namespace BudgetExecution
         /// Sets the call out.
         /// </summary>
         void SetCallOut();
-
-        /// <summary>
-        /// Gets the type of the series.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns></returns>
-        ChartSeriesType GetSeriesType( ChartSeriesType type = ChartSeriesType.Column );
-
+        
         /// <summary>
         /// Sets the point configuration.
         /// </summary>
