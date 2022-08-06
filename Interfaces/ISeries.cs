@@ -39,6 +39,6 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        IDataMetric Metric { get; set; }
+        IDataMetric DataMetric { get; set; }
     }
 }

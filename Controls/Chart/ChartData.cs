@@ -16,7 +16,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ChartData
+    public class ChartData : DataSeries
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
@@ -56,6 +56,15 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public IDictionary<string, object> DataFilter { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartData"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        public ChartData( BindingSource bindingSource )
+        {
+            BindingSource = bindingSource;
+        }
 
         /// <summary>
         /// Sets the binding source.

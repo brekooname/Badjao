@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Linq;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
@@ -42,7 +43,7 @@ namespace BudgetExecution
         /// <value>
         /// The source model.
         /// </value>
-        public ISeries SourceModel { get; set; }
+        public ISeriesModel DataModel { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -75,6 +76,28 @@ namespace BudgetExecution
         {
         }
 
+        public DataSeries( BindingSource bindingSource )
+            : this( )
+        {
+            DataModel = new SeriesModel( bindingSource );
+            SeriesConfig = new SeriesModel( bindingSource ).SeriesConfig;
+            Name = SeriesConfig.Name;
+            Type = SeriesConfig.Type;
+            ValueMetric = SeriesConfig.ValueMetric;
+            SeriesData = DataModel?.DataMetric.CalculateStatistics( );
+            SeriesValues = DataModel?.Values;
+            SeriesCategories = DataModel?.Categories;
+            SmartLabels = SeriesConfig.SmartLabels;
+            Visible = SeriesConfig.Visible;
+            ShowTicks = SeriesConfig.ShowTicks;
+            Rotate = SeriesConfig.Rotate;
+            EnableAreaToolTip = SeriesConfig.EnableAreaToolTip;
+            EnableStyles = SeriesConfig.EnableStyles;
+            OptimizePiePointPositions = SeriesConfig.OptimizePiePointPositions;
+            LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
+            SmartLabelsBorderColor = Color.SteelBlue;
+            SmartLabelsBorderWidth = 1;
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="DataSeries"/> class.
         /// </summary>
@@ -86,8 +109,8 @@ namespace BudgetExecution
             Name = SeriesConfig.Name;
             Type = SeriesConfig.Type;
             ValueMetric = SeriesConfig.ValueMetric;
-            SourceModel = seriesModel?.SourceModel;
-            SeriesData = SourceModel?.SeriesData;
+            DataModel = seriesModel;
+            SeriesData = DataModel?.DataMetric.CalculateStatistics( );
             SeriesValues = seriesModel?.Values;
             SeriesCategories = seriesModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;

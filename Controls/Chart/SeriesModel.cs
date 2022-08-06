@@ -24,14 +24,6 @@ namespace BudgetExecution
     public class SeriesModel : SeriesBase, ISeriesModel
     {
         /// <summary>
-        /// Gets or sets the series metric.
-        /// </summary>
-        /// <value>
-        /// The series metric.
-        /// </value>
-        public IDataMetric DataMetric { get; set; }
-
-        /// <summary>
         /// Gets or sets the series values.
         /// </summary>
         /// <value>
@@ -69,7 +61,8 @@ namespace BudgetExecution
         /// <see cref="SeriesModel" />
         /// class.
         /// </summary>
-        public SeriesModel( BindingSource bindingSource )
+        public SeriesModel( BindingSource bindingSource ) 
+            : base( bindingSource )
         {
             ChartBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( ChartBinding );
@@ -87,7 +80,8 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="chartBinding"></param>
-        public SeriesModel( IChartBinding chartBinding )
+        public SeriesModel( IChartBinding chartBinding ) 
+            : base( chartBinding )
         {
             ChartBinding = chartBinding;
             BindingModel = new ChartDataBindModel( ChartBinding );
@@ -143,7 +137,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Metric;
+                return base.DataMetric;
             }
             catch( Exception ex )
             {

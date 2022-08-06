@@ -51,7 +51,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public virtual IDataMetric Metric { get; set; }
+        public virtual IDataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Gets the configuration.
@@ -97,8 +97,8 @@ namespace BudgetExecution
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding?.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
-            Metric = ChartBinding?.Metric;
-            SeriesData = Metric?.CalculateStatistics( );
+            DataMetric = ChartBinding?.Metric;
+            SeriesData = DataMetric?.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
 
@@ -114,8 +114,8 @@ namespace BudgetExecution
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding?.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
-            Metric = ChartBinding?.Metric;
-            SeriesData = Metric?.CalculateStatistics( );
+            DataMetric = ChartBinding?.Metric;
+            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>
@@ -129,8 +129,8 @@ namespace BudgetExecution
             SourceData = chartBinding.Data;
             SeriesConfig = chartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
-            Metric = chartBinding.Metric;
-            SeriesData = Metric?.CalculateStatistics( );
+            DataMetric = chartBinding.Metric;
+            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace BudgetExecution
             SourceData = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
-            Metric = ChartBinding.Metric;
-            SeriesData = Metric?.CalculateStatistics( );
+            DataMetric = ChartBinding.Metric;
+            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>

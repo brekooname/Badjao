@@ -39,6 +39,14 @@ namespace BudgetExecution
         public Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        public IDataMetric DataMetric { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SeriesConfig"/> class.
         /// </summary>
         public SeriesConfig( )
@@ -70,14 +78,6 @@ namespace BudgetExecution
             Field = field;
             ChartType = type;
         }
-
-        /// <summary>
-        /// Gets or sets the metric.
-        /// </summary>
-        /// <value>
-        /// The metric.
-        /// </value>
-        public IDataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Sets the call out.
@@ -246,14 +246,14 @@ namespace BudgetExecution
                                 {
                                     for( var i = 0; i < data.Keys.Count; i++ )
                                     {
-                                        Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:N1}";
+                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:N1}";
                                     }
                                 }
                                 else if( stat == STAT.Percentage )
                                 {
                                     for( var i = 0; i < data.Keys.Count; i++ )
                                     {
-                                        Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:P}";
+                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:P}";
                                     }
                                 }
                             }

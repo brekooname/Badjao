@@ -167,7 +167,7 @@ namespace BudgetExecution
             SourceModel = new SeriesModel( table, seriesConfig );
             SeriesConfig = seriesConfig;
             SeriesModel = new SeriesModel( table, seriesConfig );
-            DataMetric = SourceModel.Metric;
+            DataMetric = SourceModel.DataMetric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
             DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
@@ -185,7 +185,7 @@ namespace BudgetExecution
             SourceModel = new SeriesModel( dataRows, seriesConfig );
             SeriesConfig = seriesConfig;
             SeriesModel = new SeriesModel( dataRows, seriesConfig );
-            DataMetric = SourceModel.Metric;
+            DataMetric = SourceModel.DataMetric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
             DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
@@ -204,7 +204,7 @@ namespace BudgetExecution
             SourceModel = new SeriesModel( sourceBinding );
             SeriesConfig = sourceBinding.SeriesConfig;
             SeriesModel = new SeriesModel( sourceBinding );
-            DataMetric = SourceModel.Metric;
+            DataMetric = SourceModel.DataMetric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
             DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
