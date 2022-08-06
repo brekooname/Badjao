@@ -105,6 +105,10 @@ namespace BudgetExecution
             BindingModel.Changed += OnChanged;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SeriesModel"/> class.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
         public SeriesModel( IEnumerable<DataRow> dataRows )
             : base( dataRows )
         {

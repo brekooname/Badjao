@@ -23,6 +23,8 @@
         /// </value>
         Source Source { get; set; }
 
+        Field Field { get; set; }
+
         /// <summary>
         /// Gets the data.
         /// </summary>

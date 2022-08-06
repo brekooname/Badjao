@@ -159,17 +159,16 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartControl" /> class.
         /// </summary>
-        /// <param name="table">The table.</param>
+        /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartControl( DataTable table, ISeriesConfig seriesConfig )
+        public ChartControl( DataTable dataTable, ISeriesConfig seriesConfig )
             : this( )
         {
-            SourceModel = new SeriesModel( table, seriesConfig );
+            SourceModel = new SeriesModel( dataTable, seriesConfig );
             SeriesConfig = seriesConfig;
-            SeriesModel = new SeriesModel( table, seriesConfig );
             DataMetric = SourceModel.DataMetric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( dataTable );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -182,12 +181,11 @@ namespace BudgetExecution
         public ChartControl( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : this( )
         {
-            SourceModel = new SeriesModel( dataRows, seriesConfig );
             SeriesConfig = seriesConfig;
             SeriesModel = new SeriesModel( dataRows, seriesConfig );
             DataMetric = SourceModel.DataMetric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( dataRows );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -201,12 +199,11 @@ namespace BudgetExecution
         public ChartControl( IChartBinding chartBinding )
             : this( )
         {
-            SourceModel = new SeriesModel( chartBinding );
             SeriesConfig = chartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( chartBinding );
             DataMetric = SourceModel.DataMetric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( chartBinding.DataTable );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -214,9 +211,8 @@ namespace BudgetExecution
         public ChartControl( BindingSource bindingSource )
             : this( )
         {
-            SourceModel = new SeriesModel( bindingSource );
             SeriesModel = new SeriesModel( bindingSource );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( bindingSource );
             SeriesConfig = SeriesModel.SeriesConfig;
             DataMetric = new DataMetric( bindingSource );
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
@@ -233,12 +229,11 @@ namespace BudgetExecution
         public ChartControl( ISeries sourceModel )
             : this( )
         {
-            SourceModel = sourceModel;
             SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( sourceModel.ChartBinding );
             TitleInfo = new TitleInfo( SeriesConfig.Name );
             DataMetric = new DataMetric( sourceModel.Data );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( sourceModel.Data );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -258,7 +253,7 @@ namespace BudgetExecution
             TitleInfo = titleInfo;
             DataMetric = new DataMetric( sourceModel.Data );
             SeriesModel = new SeriesModel( sourceModel.ChartBinding );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( sourceModel.Data );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -278,7 +273,7 @@ namespace BudgetExecution
             SourceModel = chartData.SourceModel;
             TitleInfo = titleInfo;
             DataMetric = new DataMetric( SourceModel.Data );
-            DataSeries = new ChartData( SeriesModel );
+            DataSeries = new ChartDataSeries( SourceModel.Data );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }

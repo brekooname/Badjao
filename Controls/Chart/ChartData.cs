@@ -20,7 +20,8 @@ namespace BudgetExecution
     /// <seealso cref="IDataSeries" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class ChartData : ChartSeries, IDataSeries
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    public abstract class ChartData : ChartSeries, IDataSeries
     {
         /// <summary>
         /// Gets the configuration.
@@ -28,7 +29,7 @@ namespace BudgetExecution
         /// <value>
         /// The configuration.
         /// </value>
-        public ISeriesConfig SeriesConfig { get; set; }
+        public virtual ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets the metric.
@@ -36,7 +37,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public STAT ValueMetric { get; set; }
+        public virtual STAT ValueMetric { get; set; }
 
         /// <summary>
         /// Gets the source model.
@@ -44,7 +45,7 @@ namespace BudgetExecution
         /// <value>
         /// The source model.
         /// </value>
-        public ISeriesModel DataModel { get; set; }
+        public virtual ISeriesModel DataModel { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -52,7 +53,7 @@ namespace BudgetExecution
         /// <value>
         /// The series data.
         /// </value>
-        public IDictionary<string, IEnumerable<double>> DataValues { get; set; }
+        public virtual IDictionary<string, IEnumerable<double>> DataValues { get; set; }
 
         /// <summary>
         /// Gets the series categories.
@@ -60,7 +61,7 @@ namespace BudgetExecution
         /// <value>
         /// The series categories.
         /// </value>
-        public IEnumerable<string> Names { get; set; }
+        public virtual IEnumerable<string> Names { get; set; }
 
         /// <summary>
         /// Gets the series values.
@@ -68,12 +69,12 @@ namespace BudgetExecution
         /// <value>
         /// The series values.
         /// </value>
-        public IEnumerable<double> Values { get; set; }
+        public virtual IEnumerable<double> Values { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
-        public ChartData( )
+        protected ChartData( )
         {
         }
 
@@ -81,7 +82,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        public ChartData( BindingSource bindingSource )
+        protected ChartData( BindingSource bindingSource )
             : this( )
         {
             DataModel = new SeriesModel( bindingSource );
@@ -105,7 +106,7 @@ namespace BudgetExecution
         }
 
 
-        public ChartData( IEnumerable<DataRow> dataRows )
+        protected ChartData( IEnumerable<DataRow> dataRows )
             : this( )
         {
             DataModel = new SeriesModel( dataRows );
@@ -128,7 +129,7 @@ namespace BudgetExecution
             SmartLabelsBorderWidth = 1;
         }
 
-        public ChartData( DataTable dataTable )
+        protected ChartData( DataTable dataTable )
             : this( )
         {
             DataModel = new SeriesModel( dataTable );
@@ -155,7 +156,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
         /// <param name="seriesModel">The chart data.</param>
-        public ChartData( ISeriesModel seriesModel )
+        protected ChartData( ISeriesModel seriesModel )
             : this( )
         {
             SeriesConfig = seriesModel.SeriesConfig;
@@ -181,7 +182,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the call out.
         /// </summary>
-        public void SetCallOut( )
+        public virtual void SetCallOut( )
         {
             try
             {
@@ -203,7 +204,7 @@ namespace BudgetExecution
         /// Sets the point configuration.
         /// </summary>
         /// <param name="stat">The value.</param>
-        public void SetPointConfig( STAT stat = STAT.Total )
+        public virtual void SetPointConfig( STAT stat = STAT.Total )
         {
             if( SeriesConfig != null )
             {
@@ -224,7 +225,7 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="type">The type.</param>
         /// <param name="stat">The value.</param>
-        public void SetPoints( IDictionary<string, double> data, ChartSeriesType type = ChartSeriesType.Column,
+        public virtual void SetPoints( IDictionary<string, double> data, ChartSeriesType type = ChartSeriesType.Column,
             STAT stat = STAT.Total )
         {
             if( SeriesConfig != null 

@@ -87,54 +87,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        protected SeriesBase( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
-        {
-            ChartBinding = new ChartBinding( data, seriesConfig );
-            BindingModel = new ChartDataBindModel( data, seriesConfig?.Field.ToString( ) );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding?.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = ChartBinding?.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
-            BindingModel.Changed += OnChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
-        /// </summary>
-        /// <param name="dataTable">The table.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        protected SeriesBase( DataTable dataTable, ISeriesConfig seriesConfig )
-        {
-            ChartBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
-            BindingModel = new ChartDataBindModel( dataTable, seriesConfig?.Field.ToString( ) );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding?.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = ChartBinding?.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
-        /// </summary>
-        /// <param name="chartBinding">The binding source.</param>
-        protected SeriesBase( IChartBinding chartBinding )
-        {
-            ChartBinding = chartBinding;
-            BindingModel = new ChartDataBindModel( chartBinding );
-            Data = chartBinding.Data;
-            SeriesConfig = chartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = chartBinding.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
@@ -177,6 +129,42 @@ namespace BudgetExecution
             Stat = SeriesConfig.ValueMetric;
             DataMetric = ChartBinding.DataMetric;
             SeriesData = DataMetric?.CalculateStatistics( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
+        /// </summary>
+        /// <param name="chartBinding">The binding source.</param>
+        protected SeriesBase( IChartBinding chartBinding )
+        {
+            ChartBinding = chartBinding;
+            BindingModel = new ChartDataBindModel( chartBinding );
+            Data = chartBinding.Data;
+            SeriesConfig = chartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
+            DataMetric = chartBinding.DataMetric;
+            SeriesData = DataMetric?.CalculateStatistics( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
+        /// </summary>
+        /// <param name = "dataRows" > </param>
+        /// <param name="seriesConfig">The seriesConfig.</param>
+        protected SeriesBase( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig ) 
+            : this( dataRows )
+        {
+            SeriesConfig = seriesConfig;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
+        /// </summary>
+        /// <param name="dataTable">The table.</param>
+        /// <param name="seriesConfig">The seriesConfig.</param>
+        protected SeriesBase( DataTable dataTable, ISeriesConfig seriesConfig )
+        {
+            SeriesConfig = seriesConfig;
         }
 
         /// <summary>
