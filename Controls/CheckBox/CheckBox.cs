@@ -23,7 +23,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckBox"/> class.

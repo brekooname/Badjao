@@ -208,7 +208,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="bindingSource">The bindingSource.</param>
         /// <param name="dict">The dictionary.</param>
-        public void SetBindingSource( System.Windows.Forms.BindingSource bindingSource, IDictionary<string, object> dict )
+        public void SetBindingSource( BindingSource bindingSource, IDictionary<string, object> dict )
         {
             if( bindingSource?.DataSource != null
                 && dict?.Any( ) == true )

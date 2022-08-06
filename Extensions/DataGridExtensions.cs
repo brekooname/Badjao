@@ -27,7 +27,7 @@ namespace BudgetExecution
         /// The
         /// <see cref="DataRow" />
         /// </returns>
-        public static DataRow GetCurrentDataRow( this System.Windows.Forms.BindingSource bindingSource )
+        public static DataRow GetCurrentDataRow( this BindingSource bindingSource )
         {
             try
             {

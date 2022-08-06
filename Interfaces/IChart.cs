@@ -106,7 +106,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        System.Windows.Forms.BindingSource BindingSource { get; set; }
+        BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.

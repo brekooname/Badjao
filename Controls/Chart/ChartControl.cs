@@ -42,7 +42,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public override System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public override BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -211,7 +211,7 @@ namespace BudgetExecution
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
 
-        public ChartControl( System.Windows.Forms.BindingSource bindingSource )
+        public ChartControl( BindingSource bindingSource )
             : this( )
         {
             SourceModel = new SeriesModel( bindingSource );

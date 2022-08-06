@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="bindingSource">The bindingSource.</param>
         /// <param name="dict">The dictionary.</param>
-        void SetBindingSource( System.Windows.Forms.BindingSource bindingSource, IDictionary<string, object> dict );
+        void SetBindingSource( BindingSource bindingSource, IDictionary<string, object> dict );
 
         /// <summary>
         /// Pascalizes the headers.
