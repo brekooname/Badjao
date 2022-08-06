@@ -471,7 +471,7 @@
     <Compile Include="Controls\Binding\BindingData.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Binding\BindingSource.cs">
+    <Compile Include="Controls\Binding\SourceBinding.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Clock\Clock.cs">
@@ -493,7 +493,7 @@
     <Compile Include="Abstractions\CurrencyBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Data\DataBuilder\DataMetric.cs" />
+    <Compile Include="Controls\Chart\DataMetric.cs" />
     <Compile Include="Data\DataBuilder\DataModel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -601,7 +601,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\CallOut.cs" />
-    <Compile Include="Controls\Chart\ChartBinding.cs">
+    <Compile Include="Controls\Chart\ChartBindingSource.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\ChartData.cs" />
@@ -609,7 +609,7 @@
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesConfig.cs" />
     <Compile Include="Controls\Chart\SeriesModel.cs" />
-    <Compile Include="Controls\Chart\SourceModel.cs" />
+    <Compile Include="Abstractions\SeriesBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
     <Compile Include="Controls\DataGridForm.cs">
       <SubType>Form</SubType>
@@ -638,7 +638,7 @@
     <Compile Include="Interfaces\IGrid.cs" />
     <Compile Include="Interfaces\ISeriesConfig.cs" />
     <Compile Include="Interfaces\ISeriesModel.cs" />
-    <Compile Include="Interfaces\ISourceModel.cs" />
+    <Compile Include="Interfaces\ISeries.cs" />
     <Compile Include="Interfaces\ISpreadsheet.cs" />
     <Compile Include="Interfaces\ITitleInfo.cs" />
     <Compile Include="Data\Adapter\AdapterBuilder.cs">
@@ -1017,6 +1017,7 @@
       <DependentUpon>Access.xsd</DependentUpon>
     </None>
     <None Include="BudgetExecution.DotSettings" />
+    <None Include="ChartControl.cd" />
     <None Include="Clients\SqlCe\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
     <None Include="Clients\SqlCe\CompactView.exe.config" />
     <None Include="Clients\SqlCe\CompactView.exe.manifest" />

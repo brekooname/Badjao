@@ -91,7 +91,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is BindingSource _binder
+                if( bindingSource is SourceBinding _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -124,7 +124,7 @@ namespace BudgetExecution
             try
             {
                 if( dict?.Any( ) == true
-                    && bindingList is BindingSource _list )
+                    && bindingList is SourceBinding _list )
                 {
                     try
                     {

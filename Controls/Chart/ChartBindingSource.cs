@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
 
     /// <summary>
     /// 
@@ -19,7 +20,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-    public class ChartBinding : System.Windows.Forms.BindingSource, IChartBinding
+    public class ChartBindingSource : System.Windows.Forms.BindingSource, IChartBinding
     {
         /// <summary>
         /// Gets or sets the chart handler.
@@ -88,7 +89,7 @@ namespace BudgetExecution
         /// <value>
         /// The configuration.
         /// </value>
-        public ISeriesConfig SeriesConfiguration { get; set; }
+        public ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets the metric.
@@ -99,30 +100,63 @@ namespace BudgetExecution
         public IDataMetric Metric { get; set; }
 
         /// <summary>
+        /// Gets or sets the binding source.
+        /// </summary>
+        /// <value>
+        /// The binding source.
+        /// </value>
+        public System.Windows.Forms.BindingSource BindingSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the field.
+        /// </summary>
+        /// <value>
+        /// The field.
+        /// </value>
+        public Field Field { get; set; }
+
+        /// <summary>
+        /// Gets or sets the numeric.
+        /// </summary>
+        /// <value>
+        /// The numeric.
+        /// </value>
+        public Numeric Numeric { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public IDictionary<string, object> Criteria { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="BindingSource" />
         /// class.
         /// </summary>
-        public ChartBinding()
+        public ChartBindingSource()
         {
         }
 
-        public ChartBinding( System.Windows.Forms.BindingSource bindingSource )
+        public ChartBindingSource( System.Windows.Forms.BindingSource bindingSource )
         {
+            BindingSource = bindingSource;
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
             DataTable = (DataTable)bindingSource.DataSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
-            SeriesConfiguration = new SeriesConfig( );
+            SeriesConfig = new SeriesConfig( );
             Changed += OnCurrentChanged;
         }
 
-        public ChartBinding( DataTable dataTable )
+        public ChartBindingSource( DataTable dataTable )
         {
             Data = dataTable.AsEnumerable( );
-            SeriesConfiguration = new SeriesConfig( );
+            SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
             DataSet = dataTable.DataSet;
@@ -133,14 +167,14 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChartBinding" /> class.
+        /// Initializes a new instance of the <see cref="ChartBindingSource" /> class.
         /// </summary>
         /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig )
+        public ChartBindingSource( DataTable dataTable, ISeriesConfig seriesConfig )
         {
             Data = dataTable.AsEnumerable( );
-            SeriesConfiguration = seriesConfig;
+            SeriesConfig = seriesConfig;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
             DataSet = dataTable.DataSet;
@@ -152,15 +186,15 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ChartBinding" />
+        /// <see cref="ChartBindingSource" />
         /// class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
+        public ChartBindingSource( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
         {
             Data = data;
-            SeriesConfiguration = seriesConfig;
+            SeriesConfig = seriesConfig;
             DataTable = data.CopyToDataTable( );
             DataSet = data.CopyToDataTable( )?.DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
@@ -196,7 +230,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _numeric = SeriesConfiguration?.Numeric;
+                var _numeric = SeriesConfig?.Numeric;
                 return double.Parse( Record[ $"{ _numeric }" ].ToString( ) ) > 0;
             }
             catch( Exception ex )
@@ -215,16 +249,16 @@ namespace BudgetExecution
         {
             try
             {
-                var _numeric = SeriesConfiguration?.Numeric;
+                var _numeric = SeriesConfig?.Numeric;
 
                 return !GetEmpty( xIndex )
                     ? double.Parse( Record[ $"{ _numeric }" ].ToString( ) )
-                    : 0;
+                    : 0d;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return 0;
+                return 0d;
             }
         }
 
@@ -237,7 +271,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _numeric = SeriesConfiguration?.Numeric;
+                var _numeric = SeriesConfig?.Numeric;
 
                 return !GetEmpty( xIndex )
                     ? double.Parse( Record[ $@"{ _numeric }" ].ToString( ) )
@@ -273,7 +307,155 @@ namespace BudgetExecution
                 }
             }
         }
+        
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <param name="bindingSource">The bindingsource.</param>
+        public void SetDataSource<T1>( T1 bindingSource )
+            where T1 : IBindingList
+        {
+            try
+            {
+                if( bindingSource is System.Windows.Forms.BindingSource binder
+                    && binder?.DataSource != null )
+                {
+                    try
+                    {
+                        BindingSource.DataSource = binder.DataSource;
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
 
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2">The type of the 2.</typeparam>
+        /// <param name="bindingList">The bindingsource.</param>
+        /// <param name="dict">The dictionary.</param>
+        public void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
+            where T1 : IBindingList
+            where T2 : IDictionary<string, object>
+        {
+            try
+            {
+                if( bindingList?.IsEmpty( ) != true
+                    && dict?.Any( ) == true )
+                {
+                    try
+                    {
+                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _filter = string.Empty;
+
+                        foreach( var _kvp in dict )
+                        {
+                            if( !string.IsNullOrEmpty( _kvp.Key )
+                                && Verify.IsRef( _kvp.Value ) )
+                            {
+                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            }
+                        }
+
+                        if( _filter?.Length > 0
+                            && _list?.DataSource != null )
+                        {
+                            BindingSource.DataSource = _list?.DataSource;
+                            BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                        }
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+        
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <typeparam name="T1">The type of the 1.</typeparam>
+        /// <param name="data">The data.</param>
+        /// <param name="dict">The dictionary.</param>
+        public void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+            where T1 : IEnumerable<DataRow>
+        {
+            if( data?.Any( ) == true )
+            {
+                try
+                {
+                    var _filter = string.Empty;
+
+                    foreach( var _kvp in dict )
+                    {
+                        if( !string.IsNullOrEmpty( _kvp.Key )
+                            && _kvp.Value != null )
+                        {
+                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                        }
+                    }
+
+                    BindingSource.DataSource = data?.ToList( );
+                    BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
+                }  
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+        
+        
+        /// <summary>
+        /// Sets the bindings.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param>The numeric.</param>
+        /// <param name = "dict" > </param>
+        public void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
+            where T1 : IEnumerable<DataRow>
+            where T2 : IDictionary<string, object>
+        {
+            if( data?.Any( ) == true
+                && dict?.Any( ) == true )
+            {
+                try
+                {
+                    var _filter = string.Empty;
+
+                    foreach( var _kvp in dict )
+                    {
+                        if( !string.IsNullOrEmpty( _kvp.Key )
+                            && _kvp.Value != null )
+                        {
+                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
+                        }
+                    }
+
+                    BindingSource.DataSource = data?.ToList( );
+                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+        
         /// <summary>
         /// Fails the specified ex.
         /// </summary>

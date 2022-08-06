@@ -14,11 +14,12 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ChartDataBindModel" />
-    /// <seealso cref="ISourceModel" />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
-    public class SourceModel : ChartDataBindModel, ISourceModel
+    /// <seealso cref="ISeries" />
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    public abstract class SeriesBase : ChartDataBindModel, ISeries
     {
         /// <summary>
         /// Gets the data.
@@ -26,7 +27,7 @@ namespace BudgetExecution
         /// <value>
         /// The data.
         /// </value>
-        public IEnumerable<DataRow> SourceData { get; set; }
+        public virtual IEnumerable<DataRow> SourceData { get; set; }
 
         /// <summary>
         /// Gets or sets the chart binding.
@@ -34,7 +35,7 @@ namespace BudgetExecution
         /// <value>
         /// The chart binding.
         /// </value>
-        public IChartBinding ChartBinding { get; set; }
+        public virtual IChartBinding ChartBinding { get; set; }
 
         /// <summary>
         /// Gets the binding model.
@@ -42,7 +43,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding model.
         /// </value>
-        public ChartDataBindModel BindingModel { get; set; }
+        public virtual ChartDataBindModel BindingModel { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.
@@ -50,7 +51,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public IDataMetric Metric { get; set; }
+        public virtual IDataMetric Metric { get; set; }
 
         /// <summary>
         /// Gets the configuration.
@@ -58,7 +59,7 @@ namespace BudgetExecution
         /// <value>
         /// The configuration.
         /// </value>
-        public ISeriesConfig Configuration { get; set; }
+        public virtual ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets the value.
@@ -66,7 +67,7 @@ namespace BudgetExecution
         /// <value>
         /// The value.
         /// </value>
-        public STAT Stat { get; set; }
+        public virtual STAT Stat { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -74,75 +75,75 @@ namespace BudgetExecution
         /// <value>
         /// The series data.
         /// </value>
-        public IDictionary<string, IEnumerable<double>> SeriesData { get; set; }
+        public virtual IDictionary<string, IEnumerable<double>> SeriesData { get; set; }
 
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="SourceModel" /> class.
+        /// of the <see cref="SeriesBase" /> class.
         /// </summary>
-        public SourceModel()
+        protected SeriesBase( )
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceModel" /> class.
+        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
         /// </summary>
         /// <param name="data">The data.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public SourceModel( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
+        protected SeriesBase( IEnumerable<DataRow> data, ISeriesConfig seriesConfig )
         {
-            ChartBinding = new ChartBinding( data, seriesConfig );
+            ChartBinding = new ChartBindingSource( data, seriesConfig );
             BindingModel = new ChartDataBindModel( data, seriesConfig?.Field.ToString( ) );
             SourceData = ChartBinding.Data;
-            Configuration = ChartBinding?.SeriesConfiguration;
-            Stat = Configuration.Stat;
+            SeriesConfig = ChartBinding?.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
             Metric = ChartBinding?.Metric;
             SeriesData = Metric?.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceModel" /> class.
+        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
         /// </summary>
         /// <param name="dataTable">The table.</param>
         /// <param name="seriesConfig">The seriesConfig.</param>
-        public SourceModel( DataTable dataTable, ISeriesConfig seriesConfig )
+        protected SeriesBase( DataTable dataTable, ISeriesConfig seriesConfig )
         {
-            ChartBinding = new ChartBinding( dataTable?.AsEnumerable( ), seriesConfig );
+            ChartBinding = new ChartBindingSource( dataTable?.AsEnumerable( ), seriesConfig );
             BindingModel = new ChartDataBindModel( dataTable, seriesConfig?.Field.ToString( ) );
             SourceData = ChartBinding.Data;
-            Configuration = ChartBinding?.SeriesConfiguration;
-            Stat = Configuration.Stat;
+            SeriesConfig = ChartBinding?.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
             Metric = ChartBinding?.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceModel" /> struct.
+        /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
         /// </summary>
         /// <param name="chartBinding">The binding source.</param>
-        public SourceModel( IChartBinding chartBinding )
+        protected SeriesBase( IChartBinding chartBinding )
         {
             ChartBinding = chartBinding;
             BindingModel = new ChartDataBindModel( chartBinding );
             SourceData = chartBinding.Data;
-            Configuration = chartBinding.SeriesConfiguration;
-            Stat = Configuration.Stat;
+            SeriesConfig = chartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
             Metric = chartBinding.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SourceModel" /> struct.
+        /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        public SourceModel( System.Windows.Forms.BindingSource bindingSource )
+        protected SeriesBase( System.Windows.Forms.BindingSource bindingSource )
         {
-            ChartBinding = new ChartBinding( bindingSource );
+            ChartBinding = new ChartBindingSource( bindingSource );
             BindingModel = new ChartDataBindModel( bindingSource );
             SourceData = ChartBinding.Data;
-            Configuration = ChartBinding.SeriesConfiguration;
-            Stat = Configuration.Stat;
+            SeriesConfig = ChartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
             Metric = ChartBinding.Metric;
             SeriesData = Metric?.CalculateStatistics( );
         }
@@ -153,7 +154,7 @@ namespace BudgetExecution
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        public void OnChanged( object sender, EventArgs e )
+        public virtual void OnChanged( object sender, EventArgs e )
         {
             if( sender != null
                 && e != null )

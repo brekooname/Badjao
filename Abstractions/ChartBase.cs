@@ -100,7 +100,7 @@ namespace BudgetExecution
         /// <value>
         /// The data model.
         /// </value>
-        public virtual ISourceModel SourceModel { get; set; }
+        public virtual ISeries SourceModel { get; set; }
 
         /// <summary>
         /// Gets the configuration.
@@ -108,7 +108,7 @@ namespace BudgetExecution
         /// <value>
         /// The configuration.
         /// </value>
-        public virtual ISeriesConfig Configuration { get; set; }
+        public virtual ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.
@@ -124,7 +124,7 @@ namespace BudgetExecution
         /// <value>
         /// The data.
         /// </value>
-        public virtual ISeriesModel ChartData { get; set; }
+        public virtual ISeriesModel SeriesModel { get; set; }
 
         /// <summary>
         /// Gets the data series.

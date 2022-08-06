@@ -17,7 +17,7 @@ namespace BudgetExecution
         /// <value>
         /// The series configuration.
         /// </value>
-        ISeriesConfig SeriesConfiguration { get; set; }
+        ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets or sets the series metric.
@@ -49,6 +49,6 @@ namespace BudgetExecution
         /// <value>
         /// The source model.
         /// </value>
-        ISourceModel SourceModel { get; set; }
+        ISeries SourceModel { get; set; }
     }
 }

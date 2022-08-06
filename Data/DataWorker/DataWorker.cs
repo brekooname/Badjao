@@ -20,6 +20,6 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public BindingSource BindingSource { get; set; }
+        public SourceBinding BindingSource { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        STAT Stat { get; set; }
+        STAT ValueMetric { get; set; }
 
         /// <summary>
         /// Gets the numeric.
@@ -31,18 +31,26 @@ namespace BudgetExecution
         Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        ChartSeriesType Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        IDataMetric DataMetric { get; set; }
+
+        /// <summary>
         /// Sets the call out.
         /// </summary>
         void SetCallOut();
-
-        /// <summary> Gets the type of the series. </summary>
-        /// <param name = "type" >
-        /// The type.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        ChartType GetSeriesType( ChartType type = ChartType.Column );
-
+        
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

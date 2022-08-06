@@ -13,7 +13,7 @@
         /// <value>
         /// The binding source.
         /// </value>
-        BindingSource BindingSource { get; set; }
+        SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.

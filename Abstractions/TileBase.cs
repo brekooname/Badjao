@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public virtual SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.

@@ -2,14 +2,15 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
+
 namespace BudgetExecution
 {
+    using System.Diagnostics.CodeAnalysis;
+    using LinqStatistics;
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using LinqStatistics;
 
     /// <summary>
     /// 
@@ -38,7 +39,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "DataMetric"/> class.
         /// </summary>
-        public DataMetric() : base( )
+        public DataMetric( ) 
         {
         }
 
@@ -90,7 +91,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public Source GetSource()
+        public Source GetSource( )
         {
             try
             {
@@ -102,7 +103,7 @@ namespace BudgetExecution
                     ?.Table
                     ?.TableName;
 
-                return Verify.IsInput( _name )
+                return !string.IsNullOrEmpty( _name )
                     ? _source != null
                         ? (Source)Enum.Parse( typeof( Source ), _name )
                         : Source.NS
@@ -170,8 +171,8 @@ namespace BudgetExecution
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
-                && Validate.IsField( field )
-                && Validate.Numeric( numeric ) )
+                && Enum.IsDefined( typeof( Field ), field )
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
 
             {
                 if( dataRow?.Count( ) < 30 )
@@ -277,8 +278,8 @@ namespace BudgetExecution
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
-                && Validate.IsField( field )
-                && Validate.Numeric( numeric ) )
+                && Enum.IsDefined( typeof( Field ), field )
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 var _table = dataRow.CopyToDataTable( );
 
@@ -317,7 +318,7 @@ namespace BudgetExecution
         public IEnumerable<double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
         {
             if( dataRow?.Any( ) == true
-                && Validate.Numeric( numeric ) )
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
@@ -363,8 +364,8 @@ namespace BudgetExecution
             Field field, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
-                && Validate.IsField( field )
-                && Validate.Numeric( numeric ) )
+                && Enum.IsDefined( typeof( Field ), field )
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {

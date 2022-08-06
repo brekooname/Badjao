@@ -69,7 +69,7 @@
         /// <value>
         /// The configuration.
         /// </value>
-        ISeriesConfig SeriesConfiguration { get; set; }
+        ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets the metric.

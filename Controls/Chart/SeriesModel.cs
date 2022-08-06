@@ -20,16 +20,8 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class SeriesModel : SourceModel, ISeriesModel
+    public class SeriesModel : SeriesBase, ISeriesModel
     {
-        /// <summary>
-        /// Gets or sets the series configuration.
-        /// </summary>
-        /// <value>
-        /// The series configuration.
-        /// </value>
-        public ISeriesConfig SeriesConfiguration { get; set; }
-
         /// <summary>
         /// Gets or sets the series metric.
         /// </summary>
@@ -60,7 +52,7 @@ namespace BudgetExecution
         /// <value>
         /// The source model.
         /// </value>
-        public ISourceModel SourceModel { get; set; }
+        public ISeries SourceModel { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the
@@ -78,12 +70,11 @@ namespace BudgetExecution
         /// </summary>
         public SeriesModel( System.Windows.Forms.BindingSource bindingSource )
         {
-            ChartBinding = new ChartBinding( bindingSource );
-            SourceModel = new SourceModel( ChartBinding );
+            ChartBinding = new ChartBindingSource( bindingSource );
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceData = SourceModel.SourceData;
-            SeriesConfiguration = ChartBinding.SeriesConfiguration;
-            Stat = SeriesConfiguration.Stat;
+            SourceData = ChartBinding.Data;
+            SeriesConfig = ChartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
@@ -98,11 +89,10 @@ namespace BudgetExecution
         public SeriesModel( IChartBinding chartBinding )
         {
             ChartBinding = chartBinding;
-            SourceModel = new SourceModel( chartBinding );
             BindingModel = new ChartDataBindModel( ChartBinding );
             SourceData = chartBinding.Data;
-            SeriesConfiguration = chartBinding.SeriesConfiguration;
-            Stat = SeriesConfiguration.Stat;
+            SeriesConfig = chartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( SourceData );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
@@ -116,12 +106,11 @@ namespace BudgetExecution
         public SeriesModel( DataTable dataTable, ISeriesConfig seriesConfig )
             : base( dataTable, seriesConfig )
         {
-            ChartBinding = new ChartBinding( dataTable, seriesConfig );
+            ChartBinding = new ChartBindingSource( dataTable, seriesConfig );
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceModel = new SourceModel( ChartBinding );
             SourceData = ChartBinding.Data;
-            SeriesConfiguration = seriesConfig;
-            Stat = seriesConfig.Stat;
+            SeriesConfig = seriesConfig;
+            Stat = seriesConfig.ValueMetric;
             DataMetric = new DataMetric( SourceData );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
@@ -135,13 +124,12 @@ namespace BudgetExecution
         public SeriesModel( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : base( dataRows, seriesConfig )
         {
-            ChartBinding = new ChartBinding( dataRows, seriesConfig );
+            ChartBinding = new ChartBindingSource( dataRows, seriesConfig );
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceModel = new SourceModel( ChartBinding );
             SourceData = ChartBinding.Data;
-            SeriesConfiguration = ChartBinding.SeriesConfiguration;
-            Stat = seriesConfig.Stat;
-            DataMetric = ChartBinding.Metric;
+            SeriesConfig = ChartBinding.SeriesConfig;
+            Stat = seriesConfig.ValueMetric;
+            DataMetric = new DataMetric( SourceData );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -211,16 +199,16 @@ namespace BudgetExecution
         /// Gets the source model.
         /// </summary>
         /// <returns></returns>
-        public ISourceModel GetSourceModel( )
+        public ISeries GetSourceModel( )
         {
             try
             {
-                return (SourceModel)MemberwiseClone( );
+                return (SeriesBase)MemberwiseClone( );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ISourceModel );
+                return default( ISeries );
             }
         }
     }

@@ -164,12 +164,12 @@ namespace BudgetExecution
         public ChartControl( DataTable table, ISeriesConfig seriesConfig )
             : this( )
         {
-            SourceModel = new SourceModel( table, seriesConfig );
-            Configuration = seriesConfig;
-            ChartData = new SeriesModel( table, seriesConfig );
+            SourceModel = new SeriesModel( table, seriesConfig );
+            SeriesConfig = seriesConfig;
+            SeriesModel = new SeriesModel( table, seriesConfig );
             DataMetric = SourceModel.Metric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new DataSeries( ChartData );
+            DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -182,12 +182,12 @@ namespace BudgetExecution
         public ChartControl( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : this( )
         {
-            SourceModel = new SourceModel( dataRows, seriesConfig );
-            Configuration = seriesConfig;
-            ChartData = new SeriesModel( dataRows, seriesConfig );
+            SourceModel = new SeriesModel( dataRows, seriesConfig );
+            SeriesConfig = seriesConfig;
+            SeriesModel = new SeriesModel( dataRows, seriesConfig );
             DataMetric = SourceModel.Metric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new DataSeries( ChartData );
+            DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -201,12 +201,12 @@ namespace BudgetExecution
         public ChartControl( IChartBinding sourceBinding )
             : this( )
         {
-            SourceModel = new SourceModel( sourceBinding );
-            Configuration = sourceBinding.SeriesConfiguration;
-            ChartData = new SeriesModel( sourceBinding );
+            SourceModel = new SeriesModel( sourceBinding );
+            SeriesConfig = sourceBinding.SeriesConfig;
+            SeriesModel = new SeriesModel( sourceBinding );
             DataMetric = SourceModel.Metric;
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
-            DataSeries = new DataSeries( ChartData );
+            DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -214,10 +214,10 @@ namespace BudgetExecution
         public ChartControl( System.Windows.Forms.BindingSource bindingSource )
             : this( )
         {
-            SourceModel = new SourceModel( bindingSource );
-            ChartData = new SeriesModel( bindingSource );
-            DataSeries = new DataSeries( ChartData );
-            Configuration = ChartData.SeriesConfiguration;
+            SourceModel = new SeriesModel( bindingSource );
+            SeriesModel = new SeriesModel( bindingSource );
+            DataSeries = new DataSeries( SeriesModel );
+            SeriesConfig = SeriesModel.SeriesConfig;
             DataMetric = new DataMetric( bindingSource );
             TitleInfo = new TitleInfo( DataMetric.Data?.CopyToDataTable( )?.TableName );
             Series.Add( DataSeries );
@@ -230,15 +230,15 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="sourceModel">The sourceModel.</param>
-        public ChartControl( ISourceModel sourceModel )
+        public ChartControl( ISeries sourceModel )
             : this( )
         {
             SourceModel = sourceModel;
-            Configuration = sourceModel.ChartBinding.SeriesConfiguration;
-            ChartData = new SeriesModel( sourceModel.ChartBinding );
-            TitleInfo = new TitleInfo( Configuration.Name );
+            SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
+            SeriesModel = new SeriesModel( sourceModel.ChartBinding );
+            TitleInfo = new TitleInfo( SeriesConfig.Name );
             DataMetric = new DataMetric( sourceModel.SourceData );
-            DataSeries = new DataSeries( ChartData );
+            DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -250,15 +250,15 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="sourceModel">The sourceModel.</param>
         /// <param name="titleInfo">The titleInfo.</param>
-        public ChartControl( ISourceModel sourceModel, ITitleInfo titleInfo )
+        public ChartControl( ISeries sourceModel, ITitleInfo titleInfo )
             : this( )
         {
             SourceModel = sourceModel;
-            Configuration = sourceModel.ChartBinding.SeriesConfiguration;
+            SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
             TitleInfo = titleInfo;
             DataMetric = new DataMetric( sourceModel.SourceData );
-            ChartData = new SeriesModel( sourceModel.ChartBinding );
-            DataSeries = new DataSeries( ChartData );
+            SeriesModel = new SeriesModel( sourceModel.ChartBinding );
+            DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }
@@ -273,12 +273,12 @@ namespace BudgetExecution
         public ChartControl( ISeriesModel chartData, ITitleInfo titleInfo )
             : this( )
         {
-            ChartData = chartData;
-            Configuration = chartData.SeriesConfiguration;
+            SeriesModel = chartData;
+            SeriesConfig = chartData.SeriesConfig;
             SourceModel = chartData.SourceModel;
             TitleInfo = titleInfo;
             DataMetric = new DataMetric( SourceModel.SourceData );
-            DataSeries = new DataSeries( ChartData );
+            DataSeries = new DataSeries( SeriesModel );
             Series.Add( DataSeries );
             Titles.Add( TitleInfo.GetChartMainTitle( ) );
         }

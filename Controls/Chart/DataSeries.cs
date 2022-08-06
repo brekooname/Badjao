@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// <value>
         /// The configuration.
         /// </value>
-        public ISeriesConfig SeriesSetting { get; set; }
+        public ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets the metric.
@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public STAT Metric { get; set; }
+        public STAT ValueMetric { get; set; }
 
         /// <summary>
         /// Gets the source model.
@@ -42,7 +42,7 @@ namespace BudgetExecution
         /// <value>
         /// The source model.
         /// </value>
-        public ISourceModel SourceModel { get; set; }
+        public ISeries SourceModel { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -82,22 +82,22 @@ namespace BudgetExecution
         public DataSeries( ISeriesModel chartData )
             : this( )
         {
-            SeriesSetting = chartData.SeriesConfiguration;
-            Name = SeriesSetting.Name;
-            Type = GetSeriesType( SeriesSetting.GetSeriesType( ) );
-            Metric = SeriesSetting.Stat;
+            SeriesConfig = chartData.SeriesConfig;
+            Name = SeriesConfig.Name;
+            Type = SeriesConfig.Type;
+            ValueMetric = SeriesConfig.ValueMetric;
             SourceModel = chartData?.SourceModel;
             SeriesData = SourceModel?.SeriesData;
             SeriesValues = chartData?.Values;
             SeriesCategories = chartData?.Categories;
-            SmartLabels = SeriesSetting.SmartLabels;
-            Visible = SeriesSetting.Visible;
-            ShowTicks = SeriesSetting.ShowTicks;
-            Rotate = SeriesSetting.Rotate;
-            EnableAreaToolTip = SeriesSetting.EnableAreaToolTip;
-            EnableStyles = SeriesSetting.EnableStyles;
-            OptimizePiePointPositions = SeriesSetting.OptimizePiePointPositions;
-            LegendItemUseSeriesStyle = SeriesSetting.LegendItemUseSeriesStyle;
+            SmartLabels = SeriesConfig.SmartLabels;
+            Visible = SeriesConfig.Visible;
+            ShowTicks = SeriesConfig.ShowTicks;
+            Rotate = SeriesConfig.Rotate;
+            EnableAreaToolTip = SeriesConfig.EnableAreaToolTip;
+            EnableStyles = SeriesConfig.EnableStyles;
+            OptimizePiePointPositions = SeriesConfig.OptimizePiePointPositions;
+            LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
         }

@@ -7,7 +7,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
 
-    public interface ISourceModel
+    public interface ISeries
     {
         /// <summary>
         /// Gets or sets the data.

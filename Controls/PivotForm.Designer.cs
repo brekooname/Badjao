@@ -33,7 +33,7 @@
             this.DataSet = new System.Data.DataSet();
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
-            this.BindingSource = new BudgetExecution.BindingSource();
+            this.BindingSource = new BudgetExecution.SourceBinding();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.PivotPanel = new BudgetExecution.Layout();
             this.ToolStrip = new BudgetExecution.ToolStrip();
@@ -692,7 +692,7 @@
         public ToolStripButton HomeButton;
         public ToolSeparator Separator16;
         public Layout PivotPanel;
-        public BindingSource BindingSource;
+        public SourceBinding BindingSource;
         public System.Data.DataSet DataSet;
         public ToolTip ToolTip;
         public Layout ListPanel;

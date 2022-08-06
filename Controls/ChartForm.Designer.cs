@@ -666,9 +666,9 @@
             this.ChartControl.ChartArea.CursorLocation = new System.Drawing.Point(0, 0);
             this.ChartControl.ChartArea.CursorReDraw = false;
             this.ChartControl.ChartAreaMargins = new Syncfusion.Windows.Forms.Chart.ChartMargins(3, 3, 3, 3);
-            this.ChartControl.ChartData = null;
+            this.ChartControl.SeriesModel = null;
             this.ChartControl.ChartInterior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.LightSteelBlue, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.ChartControl.Configuration = null;
+            this.ChartControl.SeriesConfig = null;
             this.ChartControl.DataFilter = null;
             this.ChartControl.DataMetric = null;
             this.ChartControl.DataSeries = null;

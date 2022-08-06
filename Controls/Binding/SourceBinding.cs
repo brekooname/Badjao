@@ -13,17 +13,17 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "UnusedType.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class BindingSource : BindingData, IBindingSource
+    public class SourceBinding : BindingData, IBindingSource
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref = "BindingSource"/> class.
+        /// Initializes a new instance of the <see cref = "SourceBinding"/> class.
         /// </summary>
-        public BindingSource()
+        public SourceBinding()
         {
         }
 
         [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
-        public BindingSource( IEnumerable<DataRow> dataRows )
+        public SourceBinding( IEnumerable<DataRow> dataRows )
         {
             DataTable = dataRows?.CopyToDataTable( );
             DataSet = DataTable?.DataSet;
@@ -35,11 +35,11 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BindingSource"/> class.
+        /// Initializes a new instance of the <see cref="SourceBinding"/> class.
         /// </summary>
         /// <param name="dataTable">The dataTable.</param>
         [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
-        public BindingSource( DataTable dataTable )
+        public SourceBinding( DataTable dataTable )
         {
             DataTable = dataTable;
             DataSet = DataTable?.DataSet;
@@ -57,7 +57,7 @@ namespace BudgetExecution
         /// <param name="filter">The filter.</param>
         public void SetDataFilter( Field field, string filter )
         {
-            if( Validate.IsField( field )
+            if( Enum.IsDefined( typeof( Field ), field )
                 && !string.IsNullOrEmpty( filter ) )
             {
                 try
@@ -86,7 +86,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public void SetDataFilter( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
@@ -119,7 +119,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsTable( DataSet?.Tables[ 0 ] )
+                return DataSet?.Tables?.Count > 0
                     ? DataSet
                     : default( DataSet );
             }

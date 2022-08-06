@@ -24,7 +24,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public override BindingSource BindingSource { get; set; }
+        public override SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -189,7 +189,7 @@ namespace BudgetExecution
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
         /// <param name="bindingSource">The binding source.</param>
-        public ListView( Size size, Point location, Control parent, BindingSource bindingSource )
+        public ListView( Size size, Point location, Control parent, SourceBinding bindingSource )
             : this( size, location, parent )
         {
             BindingSource = bindingSource;

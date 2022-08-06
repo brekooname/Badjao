@@ -66,7 +66,7 @@ namespace BudgetExecution
         /// <value>
         /// The data model.
         /// </value>
-        ISourceModel SourceModel { get; set; }
+        ISeries SourceModel { get; set; }
 
         /// <summary>
         /// Gets the configuration.
@@ -74,7 +74,7 @@ namespace BudgetExecution
         /// <value>
         /// The configuration.
         /// </value>
-        ISeriesConfig Configuration { get; set; }
+        ISeriesConfig SeriesConfig { get; set; }
 
         /// <summary>
         /// Gets or sets the data.
@@ -82,7 +82,7 @@ namespace BudgetExecution
         /// <value>
         /// The data.
         /// </value>
-        ISeriesModel ChartData { get; set; }
+        ISeriesModel SeriesModel { get; set; }
 
         /// <summary>
         /// Gets the data series.

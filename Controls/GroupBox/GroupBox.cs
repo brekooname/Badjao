@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public override BindingSource BindingSource { get; set; }
+        public override SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.

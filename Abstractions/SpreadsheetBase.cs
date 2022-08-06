@@ -41,7 +41,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public BindingSource BindingSource { get; set; }
+        public SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpreadsheetBase"/> class.

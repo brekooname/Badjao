@@ -24,7 +24,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public virtual SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -99,7 +99,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingList is BindingSource _binder
+                if( bindingList is SourceBinding _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -136,7 +136,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
+                        var _list = bindingList as SourceBinding;
                         var _filter = string.Empty;
 
                         foreach( var kvp in dict )

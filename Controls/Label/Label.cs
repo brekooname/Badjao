@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public override BindingSource BindingSource { get; set; }
+        public override SourceBinding BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -171,7 +171,7 @@ namespace BudgetExecution
         /// <param name="parent">The parent.</param>
         /// <param name="bindingSource">The bindingSource.</param>
         public Label( Size size, Point location, Control parent,
-            BindingSource bindingSource )
+            SourceBinding bindingSource )
             : this( size, location, parent )
         {
             BindingSource = bindingSource;

@@ -11,8 +11,8 @@ namespace BudgetExecution
     using System.Linq;
     using Syncfusion.Windows.Forms.Chart;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class SeriesConfig : ChartSeries, ISeriesConfig
     {
         /// <summary>
@@ -23,7 +23,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the statistic.
         /// </summary>
-        public STAT Stat { get; set; }
+        public STAT ValueMetric { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the chart.
@@ -55,7 +55,7 @@ namespace BudgetExecution
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
             Numeric = Numeric.Amount;
-            Stat = STAT.Total;
+            ValueMetric = STAT.Total;
         }
 
         /// <summary>
@@ -66,10 +66,18 @@ namespace BudgetExecution
         public SeriesConfig( Field field, ChartType type = ChartType.Column )
             : this( )
         {
-            Name = $"{field}";
+            Name = $"{ field }";
             Field = field;
             ChartType = type;
         }
+
+        /// <summary>
+        /// Gets or sets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        public IDataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Sets the call out.
@@ -91,27 +99,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Gets the type of the series.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns></returns>
-        public ChartType GetSeriesType( ChartType type = ChartType.Column )
-        {
-            try
-            {
-                return Validate.ChartType( type )
-                    ? (ChartType)Enum.Parse( typeof( ChartType ), type.ToString( ) )
-                    : ChartType.Column;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return ChartType.Column;
-            }
-        }
-
+      
         /// <summary>
         /// Sets the point configuration.
         /// </summary>
