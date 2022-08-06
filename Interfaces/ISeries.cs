@@ -15,7 +15,7 @@ namespace BudgetExecution
         /// <value>
         /// The data.
         /// </value>
-        IEnumerable<DataRow> SourceData { get; set; }
+        IEnumerable<DataRow> Data { get; set; }
 
         /// <summary>
         /// Gets or sets the source binding.

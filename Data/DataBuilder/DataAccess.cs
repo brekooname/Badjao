@@ -27,7 +27,7 @@ namespace BudgetExecution
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DataRow> GetData( )
+        public virtual IEnumerable<DataRow> GetData( )
         {
             try
             {
@@ -49,12 +49,16 @@ namespace BudgetExecution
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        public DataTable GetDataTable( )
+        public virtual DataTable GetDataTable( )
         {
             try
             {
-                var _dataSet = new DataSet(  );
-                var _dataTable = new DataTable( $"{Source}" );
+                var _dataSet = new DataSet
+                {
+                    DataSetName = $"{ Provider }"
+                };
+
+                var _dataTable = new DataTable( $"{ Source }" );
                 _dataSet.Tables.Add( _dataTable );
                 var _adapter = Query?.GetAdapter( );
                 _adapter?.Fill( _dataSet, _dataTable?.TableName );
@@ -81,8 +85,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataSet = new DataSet(  );
-                    var _table = new DataTable( $"{Source}" );
+                    var _dataSet = new DataSet
+                    {
+                        DataSetName = $"{ Provider }"
+                    };
+
+                    var _table = new DataTable( $"{ Source }" );
                     _dataSet.Tables.Add( _table );
 
                     using( var _adapter = Query?.GetAdapter(  ) )
@@ -104,44 +112,7 @@ namespace BudgetExecution
 
             return default( DataSet );
         }
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns></returns>
-        public Source GetSource( )
-        {
-            try
-            {
-                return Validate.IsSource( Source )
-                    ? Source
-                    : Source.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Source.NS;
-            }
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
-        public Provider GetProvider( )
-        {
-            try
-            {
-                return Validate.IsProvider( Provider )
-                    ? Provider
-                    : Provider.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Provider.NS;
-            }
-        }
-
+        
         /// <summary>
         /// Gets the record.
         /// </summary>
@@ -150,7 +121,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsRow( Record )
+                return Record.ItemArray.Length > 0
                     ? Record
                     : default( DataRow );
             }
@@ -167,7 +138,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         public void SetColumnCaptions( DataTable dataTable )
         {
-            if( dataTable != null  )
+            if( dataTable?.Rows?.Count > 0  )
             {
                 try
                 {
@@ -213,7 +184,7 @@ namespace BudgetExecution
 
                 var _dataSet = new DataSet
                 {
-                    DataSetName = $"{Source}"
+                    DataSetName = $"{ Provider }"
                 };
 
                 var _dataTable = new DataTable( $"{ Source }" )
@@ -228,7 +199,7 @@ namespace BudgetExecution
                     _adapter?.Fill( _dataSet, _dataTable.TableName );
                     SetColumnCaptions( _dataTable );
 
-                    return _table.Columns.Count > 0
+                    return _table?.Columns?.Count > 0
                         ? _table.Columns
                         : default( DataColumnCollection );
                 }
@@ -247,7 +218,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
-            if( Verify.IsSequence( dataRows )
+            if( dataRows?.Any( ) == true
                 && dataRows?.HasPrimaryKey( ) == true )
             {
                 try
@@ -276,7 +247,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.IsSequence( dataColumns ) )
+            if( dataColumns?.Any( ) == true )
             {
                 try
                 {

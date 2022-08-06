@@ -3,23 +3,23 @@
   <Class Name="BudgetExecution.SeriesBase">
     <Position X="1" Y="0.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AgCAAACAAQAAAgAAAEAAAAgAAAAAAAACAAIAAAAAAAA=</HashCode>
+      <HashCode>AgAAAASAAQAAAgAAAEAAAAgAAAAAABAAAAIAAAAAAAA=</HashCode>
       <FileName>Abstractions\SeriesBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BudgetExecution.SeriesConfig">
-    <Position X="7.25" Y="0.75" Width="2.25" />
+    <Position X="6.75" Y="0.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>QAAAAAQAAgAAAAAAAAAAAAgiAAAAAQAAAgAAAAAAgAA=</HashCode>
+      <HashCode>QAAAAAQAAgAAAAAAAAAAAAgiAAAAAQAAAAAAAQAAgAA=</HashCode>
       <FileName>Controls\Chart\SeriesConfig.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="BudgetExecution.SeriesModel">
-    <Position X="4" Y="0.75" Width="2.5" />
+    <Position X="3.75" Y="0.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAAAAAAIACAAAAAAAQAAAEAAAAAQgAAAAAEA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAQgAAAAAEA=</HashCode>
       <FileName>Controls\Chart\SeriesModel.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -34,16 +34,16 @@
   <Class Name="BudgetExecution.ChartBinding">
     <Position X="4.25" Y="4.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>CAUMAEAAAgAAAgAABAAgAAwCAAAAABACYAAAAgAAhAA=</HashCode>
+      <HashCode>CAEMAEQAAgAAAgAABAAgAAgCAAAAABAAYAAAAgAAhAA=</HashCode>
       <FileName>Controls\Chart\ChartBinding.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BudgetExecution.DataSeries">
-    <Position X="10" Y="0.75" Width="2" />
+  <Class Name="BudgetExecution.ChartData">
+    <Position X="9.5" Y="0.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAgIAAEAAAAggAAQCAQAAAgAAAAAAQEA=</HashCode>
-      <FileName>Controls\Chart\DataSeries.cs</FileName>
+      <HashCode>AQAAgAAAAgAAAgAABAAAAAggAAAAAQAAAAAgAQAAAAA=</HashCode>
+      <FileName>Controls\Chart\ChartData.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
@@ -69,11 +69,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BudgetExecution.ChartData">
-    <Position X="7.5" Y="4.75" Width="2.75" />
+  <Class Name="BudgetExecution.ChartDataSeries">
+    <Position X="9.5" Y="5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>CAEAAAAAAAAAAAAAAAAAAAgCAAAAABAAAAAAAAAAgAA=</HashCode>
-      <FileName>Controls\Chart\ChartData.cs</FileName>
+      <HashCode>CAEAAACAAAAAAAAAAAAAAAACAAAAABAAAAAAAAAAgAA=</HashCode>
+      <FileName>Controls\Chart\ChartDataSeries.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -11,9 +11,9 @@ namespace BudgetExecution
     using System.Linq;
 
     /// <summary> </summary>
-    /// <seealso cref = "Builder" />
+    /// <seealso cref = "DataModel" />
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    public class DataBuilder : Builder
+    public class DataBuilder : DataModel
     {
         /// <summary>
         /// Initializes a new instance of the

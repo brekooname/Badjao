@@ -82,7 +82,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the call out.
         /// </summary>
-        public void SetCallOut( )
+        public virtual void SetCallOut( )
         {
             try
             {
@@ -104,7 +104,7 @@ namespace BudgetExecution
         /// Sets the point configuration.
         /// </summary>
         /// <param name="stat">The stat.</param>
-        public void SetPointConfiguration( STAT stat = STAT.Total )
+        public void SetPointConfig( STAT stat = STAT.Total )
         {
             if( Enum.IsDefined( typeof( STAT ), stat ) )
             {

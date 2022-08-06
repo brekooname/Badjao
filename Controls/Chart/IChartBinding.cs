@@ -14,15 +14,7 @@
         /// The chart handler.
         /// </value>
         ListChangedEventHandler ChartHandler { get; set; }
-
-        /// <summary>
-        /// Gets or sets the count.
-        /// </summary>
-        /// <value>
-        /// The count.
-        /// </value>
-        new int Count { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the source.
         /// </summary>
@@ -77,13 +69,7 @@
         /// <value>
         /// The metric.
         /// </value>
-        IDataMetric Metric { get; set; }
-        
-        /// <summary>
-        /// Gets the count.
-        /// </summary>
-        /// <returns></returns>
-        int GetCount();
+        IDataMetric DataMetric { get; set; }
         
         /// <summary>
         /// Called when [current changed].

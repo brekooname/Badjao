@@ -8,7 +8,7 @@ namespace BudgetExecution
 
     public class DataWorker : BackgroundWorker
     {
-        public readonly Builder unitBuilder = null;
+        public readonly DataModel unitBuilder = null;
 
         public DataWorker()
         {

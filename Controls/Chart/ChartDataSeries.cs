@@ -1,53 +1,39 @@
-﻿// <copyright file = "ChartBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ChartData.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
 {
-    using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Data;
-    using System.Drawing;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using Syncfusion.Drawing;
-    using Syncfusion.Windows.Forms.Chart;
+    using System.Windows.Forms;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartControl" />
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
-    public abstract class ChartBase : Syncfusion.Windows.Forms.Chart.ChartControl
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    public class ChartDataSeries : ChartData
     {
+
         /// <summary>
         /// Gets or sets the binding source.
         /// </summary>
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public BindingSource BindingSource { get; set; }
 
         /// <summary>
-        /// Gets or sets the tool tip.
+        /// Gets or sets the chart binding.
         /// </summary>
         /// <value>
-        /// The tool tip.
+        /// The chart binding.
         /// </value>
-        public virtual ToolTip ToolTip { get; set; }
-
-        /// <summary>
-        /// Gets or sets the hover text.
-        /// </summary>
-        /// <value>
-        /// The hover text.
-        /// </value>
-        public virtual string HoverText { get; set; }
+        public ChartBinding ChartBinding { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -55,7 +41,7 @@ namespace BudgetExecution
         /// <value>
         /// The field.
         /// </value>
-        public virtual Field Field { get; set; }
+        public Field Field { get; set; }
 
         /// <summary>
         /// Gets or sets the numeric.
@@ -63,7 +49,7 @@ namespace BudgetExecution
         /// <value>
         /// The numeric.
         /// </value>
-        public virtual Numeric Numeric { get; set; }
+        public Numeric Numeric { get; set; }
 
         /// <summary>
         /// Gets or sets the filter.
@@ -71,129 +57,67 @@ namespace BudgetExecution
         /// <value>
         /// The filter.
         /// </value>
-        public virtual IDictionary<string, object> DataFilter { get; set; }
+        public IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the bud ex configuration.
+        /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
         /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        /// <summary>
-        /// The style
-        /// </summary>
-        public virtual IChartConfig Style { get; set; }
-
-        /// <summary>
-        /// Gets or sets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
-        public virtual Source Source { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data model.
-        /// </summary>
-        /// <value>
-        /// The data model.
-        /// </value>
-        public virtual ISeries SourceModel { get; set; }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public virtual ISeriesConfig SeriesConfig { get; set; }
-
-        /// <summary>
-        /// Gets or sets the metric.
-        /// </summary>
-        /// <value>
-        /// The metric.
-        /// </value>
-        public virtual IDataMetric DataMetric { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public virtual ISeriesModel SeriesModel { get; set; }
-
-        /// <summary>
-        /// Gets the data series.
-        /// </summary>
-        /// <value>
-        /// The data series.
-        /// </value>
-        public virtual ChartData DataSeries { get; set; }
-
-        /// <summary>
-        /// Gets the default title.
-        /// </summary>
-        /// <value>
-        /// The title information.
-        /// </value>
-        public virtual ITitleInfo TitleInfo { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartBase"/> class.
-        /// </summary>
-        public ChartBase()
+        public ChartDataSeries()
         {
         }
 
         /// <summary>
-        /// Sets the legend configuration.
+        /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
         /// </summary>
-        /// <param name="font">The font.</param>
-        /// <param name="size">The size.</param>
-        /// <param name="backColor">The back color.</param>
-        public virtual void SetLegend( Font font, Size size, Color backColor )
+        /// <param name="bindingSource">The binding source.</param>
+        public ChartDataSeries( BindingSource bindingSource ) 
+            : base( bindingSource )
         {
-            try
-            {
-                ShowLegend = true;
-                Legend.Font = font;
-                Legend.ItemsSize = size;
-                Legend.VisibleCheckBox = true;
-                Legend.BackInterior = new BrushInfo( backColor );
-                Legend.ItemsAlignment = Settings.GetStringAlignment( StringAlignment.Center );
-                Legend.ItemsTextAligment = VerticalAlignment.Center;
-                Legend.Orientation = ChartOrientation.Vertical;
-                Legend.FloatingAutoSize = true;
-                Legend.ShowSymbol = true;
-                Legend.ShowItemsShadow = true;
-                Legend.ShowBorder = false;
-                Legend.Visible = true;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
+            BindingSource = bindingSource;
+        }
+
+        public ChartDataSeries( DataTable dataTable ) 
+            : base( dataTable )
+        {
+            ChartBinding = new ChartBinding( dataTable );
+            BindingSource = ChartBinding.BindingSource;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public ChartDataSeries( IEnumerable<DataRow> data )
+        {
+            ChartBinding = new ChartBinding( );
+            BindingSource = ChartBinding.BindingSource;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
+        /// </summary>
+        /// <param name="bindingList">The binding list.</param>
+        public ChartDataSeries( IBindingList bindingList )
+        {
+            ChartBinding = new ChartBinding( bindingList );
+            BindingSource = ChartBinding.BindingSource;
         }
 
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        public virtual void SetDataSource<T1>( T1 bindingSource )
+        /// <param name="bindingSource">The bindingsource.</param>
+        public void SetDataSource<T1>( T1 bindingSource )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _bindingSource
-                    && _bindingSource?.DataSource != null )
+                if( bindingSource is BindingSource binder
+                    && binder?.DataSource != null )
                 {
                     try
                     {
-                        BindingSource.DataSource = _bindingSource.DataSource;
+                        BindingSource.DataSource = binder.DataSource;
                     }
                     catch( Exception ex )
                     {
@@ -212,28 +136,28 @@ namespace BudgetExecution
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindingList">The bindingSource.</param>
+        /// <param name="bindingList">The bindingsource.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
+        public void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
             where T1 : IBindingList
             where T2 : IDictionary<string, object>
         {
             try
             {
                 if( Verify.IsBindable( bindingList )
-                    && Verify.IsMap( dict ) )
+                    && dict?.Any( ) == true )
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
-                                && Verify.IsRef( _kvp.Value ) )
+                                && _kvp.Value != null )
                             {
-                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                                _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                             }
                         }
 
@@ -260,10 +184,10 @@ namespace BudgetExecution
         /// Sets the binding source.
         /// </summary>
         /// <param name="data">The data.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data )
+        public void SetDataSource<T1>( IEnumerable<T1> data )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -282,10 +206,10 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+        public void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -296,13 +220,13 @@ namespace BudgetExecution
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
                         {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                         }
                     }
 
                     BindingSource.DataSource = data?.ToList( );
                     BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
-                }
+                }  
                 catch( Exception ex )
                 {
                     Fail( ex );
@@ -319,12 +243,13 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The dictionary.</param>
-        public virtual void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
+        public void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) 
+                && !string.IsNullOrEmpty( filter?.ToString( ) ) )
             {
                 try
                 {
@@ -332,7 +257,7 @@ namespace BudgetExecution
                     {
                         BindingSource.DataSource = data.ToList( );
                         BindingSource.DataMember = field.ToString( );
-                        BindingSource.Filter = $"{field} = {filter}";
+                        BindingSource.Filter = $"{ field } = { filter }";
                     }
                     else
                     {
@@ -353,10 +278,10 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
+        public void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -383,12 +308,12 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param>The numeric.</param>
         /// <param name = "dict" > </param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
+        public void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
             where T1 : IEnumerable<DataRow>
             where T2 : IDictionary<string, object>
         {
-            if( Verify.IsSequence( data )
-                && Verify.IsMap( dict ) )
+            if( data?.Any( ) == true
+                && dict?.Any( ) == true )
             {
                 try
                 {
@@ -419,12 +344,12 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+        public void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -444,20 +369,6 @@ namespace BudgetExecution
                 {
                     Fail( ex );
                 }
-            }
-        }
-        
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-        protected void Fail( Exception ex )
-        {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
             }
         }
     }

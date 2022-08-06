@@ -4,6 +4,7 @@
 
 namespace BudgetExecution
 {
+    using System.Collections.Generic;
     using System.Drawing;
     using Syncfusion.Windows.Forms.Chart;
 
@@ -170,5 +171,19 @@ namespace BudgetExecution
         ///   <c>true</c> if [enable area tool tip]; otherwise, <c>false</c>.
         /// </value>
         bool EnableAreaToolTip { get; set; }
+
+        /// <summary>
+        /// Sets the point configuration.
+        /// </summary>
+        /// <param name="stat">The stat.</param>
+        void SetPointConfig( STAT stat );
+
+        /// <summary>
+        /// Sets the points.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="stat">The stat.</param>
+        void SetPoints( IDictionary<string, double> data, ChartSeriesType type, STAT stat );
     }
 }

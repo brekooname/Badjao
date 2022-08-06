@@ -90,7 +90,7 @@ namespace BudgetExecution
         /// <value>
         /// The data series.
         /// </value>
-        DataSeries DataSeries { get; set; }
+        ChartData DataSeries { get; set; }
 
         /// <summary>
         /// Gets the default title.

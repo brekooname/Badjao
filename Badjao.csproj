@@ -494,9 +494,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\DataMetric.cs" />
-    <Compile Include="Data\DataBuilder\DataModel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\StyleConfig\FontConfig.cs" />
     <Compile Include="Controls\StyleConfig\FormConfig.cs" />
     <Compile Include="Controls\StyleConfig\SizeConfig.cs" />
@@ -604,8 +601,8 @@
     <Compile Include="Controls\Chart\ChartBinding.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Chart\ChartDataSeries.cs" />
     <Compile Include="Controls\Chart\ChartData.cs" />
-    <Compile Include="Controls\Chart\DataSeries.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesConfig.cs" />
     <Compile Include="Controls\Chart\SeriesModel.cs" />
@@ -677,7 +674,7 @@
     <Compile Include="Data\Conversion\sdf\TriggerBuilder.cs" />
     <Compile Include="Data\Conversion\sdf\TriggerSchema.cs" />
     <Compile Include="Data\Conversion\sdf\ViewSchema.cs" />
-    <Compile Include="Data\DataBuilder\Builder.cs" />
+    <Compile Include="Data\DataBuilder\DataModel.cs" />
     <Compile Include="Abstractions\BuilderBase.cs" />
     <Compile Include="Data\DataBuilder\DataAccess.cs" />
     <Compile Include="Data\DataBuilder\DataBuilder.cs" />

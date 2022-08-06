@@ -35,15 +35,7 @@ namespace BudgetExecution
         /// Occurs when [changed].
         /// </summary>
         public event ListChangedEventHandler Changed;
-
-        /// <summary>
-        /// Gets or sets the count.
-        /// </summary>
-        /// <value>
-        /// The count.
-        /// </value>
-        public new int Count { get; set; }
-
+       
         /// <summary>
         /// Gets or sets the source.
         /// </summary>
@@ -98,7 +90,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public IDataMetric Metric { get; set; }
+        public IDataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Gets or sets the binding source.
@@ -198,6 +190,21 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
+        public ChartBinding( IEnumerable<DataRow> data )
+        {
+            BindingSource = new BindingSource( );
+            Data = data;
+            SeriesConfig = new SeriesConfig( );
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            DataTable = data.CopyToDataTable( );
+            DataSet = DataTable.DataSet;
+            BindingSource.DataSource = DataTable;
+            DataSource = DataTable;
+            Record = (DataRow)Current;
+            AllowNew = true;
+            Changed += OnCurrentChanged;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBinding" /> class.
         /// </summary>
@@ -240,23 +247,6 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
         
-        /// <summary>
-        /// Gets the count.
-        /// </summary>
-        /// <returns></returns>
-        public int GetCount()
-        {
-            try
-            {
-                return Count;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return 0;
-            }
-        }
-
         /// <summary>
         /// Gets the empty.
         /// </summary>

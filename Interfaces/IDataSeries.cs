@@ -15,13 +15,13 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the call out.
         /// </summary>
-        void SetCallOut();
+        void SetCallOut( );
         
         /// <summary>
         /// Sets the point configuration.
         /// </summary>
         /// <param name="stat">The stat.</param>
-        void SetPointConfiguration( STAT stat = STAT.Total );
+        void SetPointConfig( STAT stat = STAT.Total );
 
         /// <summary>
         /// Sets the points.
@@ -31,11 +31,5 @@ namespace BudgetExecution
         /// <param name="stat">The stat.</param>
         void SetPoints( IDictionary<string, double> dict,
             ChartSeriesType type = ChartSeriesType.Column, STAT stat = STAT.Total );
-
-        /// <summary>
-        /// Gets the series values.
-        /// </summary>
-        /// <returns></returns>
-        IDictionary<string, IEnumerable<double>> GetSeriesValues();
     }
 }

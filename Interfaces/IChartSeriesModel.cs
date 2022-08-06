@@ -10,10 +10,6 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     public interface IChartSeriesModel
     {
-        /// <summary> Gets or sets the count. </summary>
-        /// <value> The count. </value>
-        int Count { get; set; }
-
         /// <summary> Gets the empty. </summary>
         /// <param name = "xIndex" > The xIndex. </param>
         /// <returns> </returns>

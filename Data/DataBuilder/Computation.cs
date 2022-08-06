@@ -14,7 +14,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    public class Computation : Builder, IDataFilter
+    public class Computation : DataModel, IDataFilter
     {
         /// <summary>
         /// Gets the Data.
@@ -54,14 +54,14 @@ namespace BudgetExecution
         /// </returns>
         public IEnumerable<DataRow> FilterData( Field field, string filter )
         {
-            if( GetData( )?.Any( ) == true
+            if( Data?.Any( ) == true
                 && Enum.IsDefined( typeof( Field ), field )
                 && !string.IsNullOrEmpty( filter ) )
             {
                 try
                 {
-                    var _select = GetData( )
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var _select = Data
+                        ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
                         ?.Select( p => p );
 
                     return _select?.Any( ) == true

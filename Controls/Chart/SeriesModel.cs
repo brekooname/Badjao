@@ -66,7 +66,7 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceData = ChartBinding.Data;
+            Data = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( bindingSource );
@@ -74,6 +74,18 @@ namespace BudgetExecution
             BindingModel.Changed += OnChanged;
         }
 
+        public SeriesModel( DataTable dataTable )
+            : base( dataTable )
+        {
+            ChartBinding = new ChartBinding( dataTable );
+            BindingModel = new ChartDataBindModel( ChartBinding );
+            Data = ChartBinding.Data;
+            SeriesConfig = ChartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
+            DataMetric = new DataMetric( Data );
+            SeriesData = DataMetric.CalculateStatistics( );
+            BindingModel.Changed += OnChanged;
+        }
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SeriesModel" />
@@ -85,10 +97,23 @@ namespace BudgetExecution
         {
             ChartBinding = chartBinding;
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceData = chartBinding.Data;
+            Data = chartBinding.Data;
             SeriesConfig = chartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
-            DataMetric = new DataMetric( SourceData );
+            DataMetric = new DataMetric( Data );
+            SeriesData = DataMetric.CalculateStatistics( );
+            BindingModel.Changed += OnChanged;
+        }
+
+        public SeriesModel( IEnumerable<DataRow> dataRows )
+            : base( dataRows )
+        {
+            ChartBinding = new ChartBinding( dataRows );
+            BindingModel = new ChartDataBindModel( ChartBinding );
+            Data = dataRows;
+            SeriesConfig = ChartBinding.SeriesConfig;
+            Stat = SeriesConfig.ValueMetric;
+            DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -103,10 +128,10 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding( dataTable, seriesConfig );
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceData = ChartBinding.Data;
+            Data = dataTable.AsEnumerable( )?.ToList( );
             SeriesConfig = seriesConfig;
             Stat = seriesConfig.ValueMetric;
-            DataMetric = new DataMetric( SourceData );
+            DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
@@ -121,31 +146,14 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding( dataRows, seriesConfig );
             BindingModel = new ChartDataBindModel( ChartBinding );
-            SourceData = ChartBinding.Data;
+            Data = dataRows;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = seriesConfig.ValueMetric;
-            DataMetric = new DataMetric( SourceData );
+            DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
-
-        /// <summary>
-        /// Gets the data metric.
-        /// </summary>
-        /// <returns></returns>
-        public IDataMetric GetSeriesMetric()
-        {
-            try
-            {
-                return base.DataMetric;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDataMetric );
-            }
-        }
-
+        
         /// <summary>
         /// Gets the data.
         /// </summary>
