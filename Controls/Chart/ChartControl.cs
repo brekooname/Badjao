@@ -13,7 +13,6 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Drawing.Drawing2D;
     using System.Windows.Forms;
-    using DocumentFormat.OpenXml.Office2010.Excel;
     using Syncfusion.Drawing;
     using Syncfusion.Windows.Forms.Chart;
     using Color = System.Drawing.Color;

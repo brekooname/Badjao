@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Configuration;
@@ -94,54 +93,6 @@ namespace BudgetExecution
         public virtual string FileName { get; set; }
         
 
-        /// <summary>
-        /// Gets the script files.
-        /// </summary>
-        /// <returns></returns>
-        public virtual IDictionary<string, string> GetScriptFiles( )
-        {
-            if(  Enum.IsDefined( typeof( Provider ), Provider )
-                && Enum.IsDefined( typeof( SQL ), CommandType ) )
-            {
-                try
-                {
-                    var _directory = ProviderPath[ $"{ Provider }" ] + $@"\{ CommandType }";
-                    var _scriptFiles = new Dictionary<string, string>(  );
-                    if( !string.IsNullOrEmpty( _directory )
-                        && Directory.Exists( _directory ) )
-                    {
-                        var _scripts = Directory.GetFiles( _directory );
-                        if( _scripts?.Any( ) == true )
-                        {
-                            foreach( var path in _scripts )
-                            {
-                                if( !string.IsNullOrEmpty( path ) )
-                                {
-                                    var _file = Path.GetFullPath( path );
-                                    using( var stream = File.OpenRead( _file ) )
-                                    {
-                                        var _sqlText = new StreamReader( stream );
-                                        _scriptFiles?.Add( Path.GetFileNameWithoutExtension( path ), _sqlText.ReadToEnd( ) );
-                                    }
-                                }
-                            }
-
-                            return _scriptFiles?.Any( ) == true
-                                ? _scriptFiles
-                                : default( IDictionary<string, string> );
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, string> );
-                }
-            }
-
-            return default( IDictionary<string, string> );
-        }
-        
         /// <summary>
         /// Sets the select statement.
         /// </summary>

@@ -194,9 +194,14 @@ namespace BudgetExecution
             Data = dataSet.Tables[ 0 ]?.Rows.ToList<DataRow>();
             DataTable = dataSet.Tables[ 0 ];
             SeriesConfig = new SeriesConfig( );
-            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
-            DataSet = dataSet;
-            Record = DataTable.Rows[ 0 ];
+
+            if ( DataTable != null )
+            {
+                Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+                DataSet = dataSet;
+                Record = DataTable.Rows[ 0 ];
+            }
+
             AllowNew = true;
             SeriesConfig = new SeriesConfig( );
             Count = BindingSource.Count;

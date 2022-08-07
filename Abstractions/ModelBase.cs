@@ -114,39 +114,84 @@ namespace BudgetExecution
                 return default( IEnumerable<IElement> );
             }
         }
+        
+        /// <summary>
+        /// Gets the columns.
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<DataColumn> GetDataColumns( DataTable dataTable )
+        {
+            if( dataTable?.Columns?.Count > 0 )
+            {
+                try
+                {
+                    var _dataColumns = new List<DataColumn>( );
+                    var _data = dataTable?.Columns;
+
+                    if( _data?.Count > 0 )
+                    {
+                        foreach( DataColumn column in _data )
+                        {
+                            _dataColumns.Add( column );
+                        }
+
+                        return _dataColumns?.Any( ) == true
+                            ? _dataColumns
+                            : default( IEnumerable<DataColumn> );
+                    }
+                    else
+                    {
+                        return default( IEnumerable<DataColumn> );
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataColumn> );
+                }
+            }
+
+            return default( IEnumerable<DataColumn> );
+        }
+
 
         /// <summary>
         /// Gets the columns.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DataColumn> GetDataColumns()
+        public IEnumerable<DataColumn> GetDataColumns(  )
         {
-            try
+            if( DataTable?.Columns?.Count > 0 )
             {
-                var _dataColumns = new List<DataColumn>( );
-                var _data = Record?.Table?.Columns;
-
-                if( _data?.Count > 0 )
+                try
                 {
-                    foreach( DataColumn column in _data )
+                    var _dataColumns = new List<DataColumn>( );
+                    var _data = DataTable?.Columns;
+
+                    if( _data?.Count > 0 )
                     {
-                        _dataColumns.Add( column );
-                    }
+                        foreach( DataColumn column in _data )
+                        {
+                            _dataColumns.Add( column );
+                        }
 
-                    return _dataColumns?.Any( ) == true
-                        ? _dataColumns
-                        : default( IEnumerable<DataColumn> );
+                        return _dataColumns?.Any( ) == true
+                            ? _dataColumns
+                            : default( IEnumerable<DataColumn> );
+                    }
+                    else
+                    {
+                        return default( IEnumerable<DataColumn> );
+                    }
                 }
-                else
+                catch( Exception ex )
                 {
+                    Fail( ex );
                     return default( IEnumerable<DataColumn> );
                 }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<DataColumn> );
-            }
+
+            return default( IEnumerable<DataColumn> );
         }
     }
 }
