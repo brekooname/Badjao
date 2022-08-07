@@ -58,7 +58,10 @@ namespace BudgetExecution
                     DataSetName = $"{ Provider }"
                 };
 
+                DataSet = _dataSet;
+                DataSetName = _dataSet.DataSetName;
                 var _dataTable = new DataTable( $"{ Source }" );
+                TableName = _dataTable.TableName;
                 _dataSet.Tables.Add( _dataTable );
                 var _adapter = Query?.GetAdapter( );
                 _adapter?.Fill( _dataSet, _dataTable?.TableName );
@@ -90,7 +93,10 @@ namespace BudgetExecution
                         DataSetName = $"{ Provider }"
                     };
 
+                    DataSet = _dataSet;
+                    DataSetName = _dataSet.DataSetName;
                     var _table = new DataTable( $"{ Source }" );
+                    TableName = _table?.TableName;
                     _dataSet.Tables.Add( _table );
 
                     using( var _adapter = Query?.GetAdapter(  ) )
