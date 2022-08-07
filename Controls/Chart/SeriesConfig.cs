@@ -53,6 +53,7 @@ namespace BudgetExecution
         {
             // Basic Properties
             SmartLabels = true;
+            ChartType = ChartSeriesType.Column;
             Visible = true;
             ShowTicks = true;
             Rotate = true;
@@ -64,13 +65,15 @@ namespace BudgetExecution
             SmartLabelsBorderWidth = 1;
             Numeric = Numeric.Amount;
             ValueMetric = STAT.Total;
+            Style.DisplayText = true;
+
+            // Callout Properties
             Style.Callout.Enable = true;
             Style.Callout.Position = LabelPosition.Top;
             Style.Callout.DisplayTextAndFormat = "{0} : {2}";
             Style.Callout.Border.Color = Color.SteelBlue;
             Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
             Style.Callout.Font = ChartConfig.SetFont( "Roboto", 9, FontStyle.Regular );
-            Style.DisplayText = true;
         }
 
         /// <summary>

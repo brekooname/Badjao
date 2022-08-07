@@ -200,6 +200,7 @@ namespace BudgetExecution
             Titles.Add( Header );
             DataSeries = new ChartDataSeries( chartBinding.DataTable );
             Series.Add( DataSeries );
+            SeriesConfig.SetPoints( DataSeries.DataValues, ChartSeriesType.Column, STAT.Total );
         }
 
         public ChartControl( DataTable dataTable )
@@ -226,6 +227,25 @@ namespace BudgetExecution
             SeriesModel = new SeriesModel( bindingSource );
             DataSeries = new ChartDataSeries( bindingSource );
             SeriesConfig = SeriesModel.SeriesConfig;
+            BindingSource = DataSerie;
+            DataMetric = new DataMetric( bindingSource );
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            Header.Text = TableName;
+            Text = Header.Text.SplitPascal( );
+            Series.Add( DataSeries );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartControl"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="seriesConfig">The series configuration.</param>
+        public ChartControl( BindingSource bindingSource, ISeriesConfig seriesConfig )
+            : this( )
+        {
+            SeriesModel = new SeriesModel( bindingSource );
+            DataSeries = new ChartDataSeries( bindingSource );
+            SeriesConfig = seriesConfig;
             BindingSource = new ChartBinding( bindingSource );
             DataMetric = new DataMetric( bindingSource );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;

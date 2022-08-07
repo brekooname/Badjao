@@ -3,7 +3,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System;
     using Syncfusion.Windows.Forms;
-
+    using System.Collections.Generic;
+    using System.Data;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
@@ -24,8 +25,13 @@
         {
             try
             {
-                var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access );
+                var _filter = new Dictionary<string, object>(  );
+                _filter.Add( "BFY", "2022"  );
+                _filter.Add( "FundCode", "B" );
+                _filter.Add( "RpioCode", "10"  );
+                var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
                 BindingSource.DataSource = _data.DataTable;
+                PopulateListBoxItems();
                 ToolStrip.Office12Mode = true;
             }
             catch( Exception ex )
@@ -33,7 +39,19 @@
                 Fail( ex );
             }
         }
-        
+
+        public void PopulateListBoxItems( )
+        {
+            PrimaryListBox.Items.Clear();
+            var _names = Enum.GetNames( typeof( Source ) );
+            foreach( var name in _names )
+            {
+                if( name != "NS" )
+                {
+                    PrimaryListBox.Items.Add( name.SplitPascal( ) );
+                }
+            }
+        }
 
         /// <summary>
         /// Get Error Dialog.

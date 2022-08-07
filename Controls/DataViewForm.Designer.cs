@@ -763,7 +763,6 @@
             this.PrimaryListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.PrimaryListBox.Border.Visible = true;
             this.PrimaryListBox.DataFilter = null;
-            this.PrimaryListBox.DataSource = this.BindingSource;
             this.PrimaryListBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.PrimaryListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.PrimaryListBox.ForeColor = System.Drawing.Color.White;
