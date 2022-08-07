@@ -13,6 +13,7 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Linq;
     using System.Threading;
+    using Microsoft.EntityFrameworkCore.Internal;
 
     /// <summary>
     /// 
@@ -250,7 +251,35 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
+        public virtual ChartPointIndexer GetDataPoints( )
+        {
+            if( DataValues?.Any( ) == true )
+            {
+                try
+                {
+                    var _points = new ChartPointIndexer( this );
+                    Points.Clear( );
+                    foreach( var kvp in DataValues )
+                    {
+                        Points.Add( kvp.Key, kvp.Value );
+                        _points.Add( kvp.Key, kvp.Value );
+                    }
+
+                    return _points.Count > 0
+                        ? _points
+                        : default( ChartPointIndexer );
+                }
+                catch ( Exception ex )
+                {
+                    Fail( ex  );
+                    return default( ChartPointIndexer );
+                }
+            }
+
+            return default( ChartPointIndexer );
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

@@ -11,11 +11,12 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
+    using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class ChartDataSeries : ChartData
     {
 
@@ -52,6 +53,14 @@ namespace BudgetExecution
         public Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the data points.
+        /// </summary>
+        /// <value>
+        /// The data points.
+        /// </value>
+        public ChartPointIndexer DataPoints { get; set; }
+
+        /// <summary>
         /// Gets or sets the filter.
         /// </summary>
         /// <value>
@@ -70,17 +79,21 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        public ChartDataSeries( BindingSource bindingSource ) 
+        public ChartDataSeries( BindingSource bindingSource )
             : base( bindingSource )
         {
             BindingSource = bindingSource;
+            ChartBinding = new ChartBinding( bindingSource );
+            BindingSource = ChartBinding.BindingSource;
+            DataPoints = GetDataPoints( );
         }
 
-        public ChartDataSeries( DataTable dataTable ) 
+        public ChartDataSeries( DataTable dataTable )
             : base( dataTable )
         {
             ChartBinding = new ChartBinding( dataTable );
             BindingSource = ChartBinding.BindingSource;
+            DataPoints = GetDataPoints( );
         }
 
         /// <summary>
@@ -89,8 +102,9 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         public ChartDataSeries( IEnumerable<DataRow> data )
         {
-            ChartBinding = new ChartBinding( );
+            ChartBinding = new ChartBinding(  );
             BindingSource = ChartBinding.BindingSource;
+            DataPoints = GetDataPoints( );
         }
 
         /// <summary>
@@ -101,6 +115,7 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding( bindingList );
             BindingSource = ChartBinding.BindingSource;
+            DataPoints = GetDataPoints( );
         }
 
         /// <summary>
@@ -145,7 +160,7 @@ namespace BudgetExecution
             try
             {
                 if( Verify.IsBindable( bindingList )
-                    && dict?.Any( ) == true )
+                    && dict?.Any(  ) == true )
                 {
                     try
                     {
@@ -165,7 +180,7 @@ namespace BudgetExecution
                             && _list?.DataSource != null )
                         {
                             BindingSource.DataSource = _list?.DataSource;
-                            BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                            BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray(  ) );
                         }
                     }
                     catch( Exception ex )
@@ -187,11 +202,11 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data )
             where T1 : IEnumerable<DataRow>
         {
-            if( data?.Any( ) == true )
+            if( data?.Any(  ) == true )
             {
                 try
                 {
-                    BindingSource.DataSource = data?.ToList( );
+                    BindingSource.DataSource = data?.ToList(  );
                 }
                 catch( Exception ex )
                 {
@@ -209,7 +224,7 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
             where T1 : IEnumerable<DataRow>
         {
-            if( data?.Any( ) == true )
+            if( data?.Any(  ) == true )
             {
                 try
                 {
@@ -224,9 +239,9 @@ namespace BudgetExecution
                         }
                     }
 
-                    BindingSource.DataSource = data?.ToList( );
-                    BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
-                }  
+                    BindingSource.DataSource = data?.ToList(  );
+                    BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray(  ) );
+                }
                 catch( Exception ex )
                 {
                     Fail( ex );
@@ -247,22 +262,22 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( data?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field ) 
-                && !string.IsNullOrEmpty( filter?.ToString( ) ) )
+            if( data?.Any(  ) == true
+                && Enum.IsDefined( typeof( Field ), field )
+                && !string.IsNullOrEmpty( filter?.ToString(  ) ) )
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( filter?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( filter?.ToString(  ) ) )
                     {
-                        BindingSource.DataSource = data.ToList( );
-                        BindingSource.DataMember = field.ToString( );
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
                         BindingSource.Filter = $"{ field } = { filter }";
                     }
                     else
                     {
-                        BindingSource.DataSource = data.ToList( );
-                        BindingSource.DataMember = field.ToString( );
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
                     }
                 }
                 catch( Exception ex )
@@ -281,18 +296,18 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<DataRow>
         {
-            if( data?.Any( ) == true )
+            if( data?.Any(  ) == true )
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( field?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( field?.ToString(  ) ) )
                     {
-                        BindingSource.DataSource = data.ToList( );
-                        BindingSource.DataMember = field?.ToString( );
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field?.ToString(  );
                     }
                     else
                     {
-                        BindingSource.DataSource = data.ToList( );
+                        BindingSource.DataSource = data.ToList(  );
                     }
                 }
                 catch( Exception ex )
@@ -312,8 +327,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : IDictionary<string, object>
         {
-            if( data?.Any( ) == true
-                && dict?.Any( ) == true )
+            if( data?.Any(  ) == true
+                && dict?.Any(  ) == true )
             {
                 try
                 {
@@ -328,8 +343,8 @@ namespace BudgetExecution
                         }
                     }
 
-                    BindingSource.DataSource = data?.ToList( );
-                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                    BindingSource.DataSource = data?.ToList(  );
+                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray(  ) );
                 }
                 catch( Exception ex )
                 {
@@ -348,21 +363,21 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( data?.Any( ) == true
+            if( data?.Any(  ) == true
                 && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( filter?.ToString( ) ) )
+                    if( !string.IsNullOrEmpty( filter?.ToString(  ) ) )
                     {
-                        BindingSource.DataSource = data.ToList( );
-                        BindingSource.DataMember = field.ToString( );
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
                         BindingSource.Filter = $"{field} = {filter}";
                     }
                     else
                     {
-                        BindingSource.DataSource = data.ToList( );
-                        BindingSource.DataMember = field.ToString( );
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
                     }
                 }
                 catch( Exception ex )
