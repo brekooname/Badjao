@@ -86,6 +86,7 @@ namespace BudgetExecution
             SeriesData = DataMetric.CalculateStatistics( );
             BindingModel.Changed += OnChanged;
         }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SeriesModel" />

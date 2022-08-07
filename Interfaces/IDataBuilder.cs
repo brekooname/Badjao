@@ -13,6 +13,6 @@ namespace BudgetExecution
         /// Gets the builder.
         /// </summary>
         /// <returns></returns>
-        IBuilder GetBuilder();
+        IModelBuilder GetBuilder();
     }
 }

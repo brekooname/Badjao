@@ -4,6 +4,8 @@
 
 namespace BudgetExecution
 {
+    using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
@@ -30,6 +32,16 @@ namespace BudgetExecution
             Provider = provider;
             CommandType = command;
             SqlStatement = new SqlStatement( source, provider, command );
+            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString( ) ] );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
+        }
+
+        public SqlFactory( IConnectionBuilder connectionBuilder, IEnumerable<DataColumn> columns, SQL command = SQL.SELECTALL )
+        {
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
+            CommandType = command;
+            SqlStatement = new SqlStatement( connectionBuilder, command );
             FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString( ) ] );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
         }

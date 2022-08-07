@@ -675,11 +675,11 @@
     <Compile Include="Data\Conversion\sdf\TriggerSchema.cs" />
     <Compile Include="Data\Conversion\sdf\ViewSchema.cs" />
     <Compile Include="Data\DataBuilder\DataModel.cs" />
-    <Compile Include="Abstractions\BuilderBase.cs" />
+    <Compile Include="Abstractions\ModelBase.cs" />
     <Compile Include="Data\DataBuilder\DataAccess.cs" />
     <Compile Include="Data\DataBuilder\DataBuilder.cs" />
     <Compile Include="Data\DataBuilder\DataConfig.cs" />
-    <Compile Include="Interfaces\IBuilder.cs" />
+    <Compile Include="Interfaces\IModelBuilder.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDataBuilder.cs" />
     <Compile Include="Interfaces\IDataSchema.cs" />

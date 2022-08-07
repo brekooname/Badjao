@@ -13,6 +13,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace BudgetExecution
 {
+    using System.Data;
+
     /// <summary>
     /// 
     /// </summary>
@@ -48,9 +50,33 @@ namespace BudgetExecution
         public virtual IDictionary<string, object> Args { get; set; }
 
         /// <summary>
+        /// Gets or sets the criteria.
+        /// </summary>
+        /// <value>
+        /// The criteria.
+        /// </value>
+        public virtual IDictionary<string, object> Criteria { get; set; }
+
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
+        public virtual IEnumerable<DataColumn> Columns { get; set; }
+
+        /// <summary>
         /// The command text
         /// </summary>
         public virtual string CommandText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        public virtual string TableName { get; set; }
 
         /// <summary>
         /// The file path
@@ -166,6 +192,89 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Gets the select statement.
+        /// </summary>
+        /// <param name="columnNames">The column names.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        public virtual string GetSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> dict )
+        {
+            if( dict?.Any( ) == true 
+                && columnNames?.Any( ) == true )
+            {
+                try
+                {
+                    var _empty = string.Empty;
+                    var _columns = string.Empty;
+                    foreach( var _kvp in dict )
+                    {
+                        _empty += $"{ _kvp.Key } = '{ _kvp.Value }' AND";
+                    }
+
+                    foreach( var name in columnNames )
+                    {
+                        _columns += $"{ name }, ";
+                    }
+
+                    var _criteria = _empty.TrimEnd( " AND".ToCharArray( ) );
+                    var _tableName = TableName;
+                    var _columnString = _columns.TrimEnd( ", ".ToCharArray( ) );
+                    return $"SELECT { _columnString } FROM { _tableName } WHERE { _criteria };";
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+        
+        public virtual string GetSelectStatement( IEnumerable<DataColumn> columns, IDictionary<string, object> dict )
+        {
+            if( dict?.Any( ) == true
+                && columns?.Any( ) == true )
+            {
+                try
+                {
+                    var _empty = string.Empty;
+                    var _columns = string.Empty;
+                    foreach( var _kvp in dict )
+                    {
+                        _empty += $"{ _kvp.Key } = '{ _kvp.Value }' AND";
+                    }
+
+                    foreach( var name in columns )
+                    {
+                        if( name.GetType(  ) == typeof( string ) )
+                        {
+                            _columns += $"{ name }, ";
+                        }
+                        else if( name.GetType(  ) == typeof( decimal ) )
+                        {
+                            _columns += $"SUM({ name }), ";
+                        }
+                    }
+
+                    var _criteria = _empty.TrimEnd( " AND".ToCharArray( ) );
+                    var _tableName = TableName;
+                    var _columnString = _columns.TrimEnd( ", ".ToCharArray( ) );
+
+                    return
+                        $"SELECT DISTINCT { _columnString } FROM { _tableName } WHERE { _criteria } GROUP BY { _columnString }";
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// Sets the update statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
@@ -261,7 +370,7 @@ namespace BudgetExecution
 
             return string.Empty;
         }
-        
+
         /// <summary>
         /// Sets the command text.
         /// </summary>
@@ -277,6 +386,7 @@ namespace BudgetExecution
                     switch( commandType )
                     {
                         case SQL.SELECT:
+
                         {
                             var _queryText = GetSelectStatement( dict );
 
@@ -285,9 +395,9 @@ namespace BudgetExecution
                                 : string.Empty;
                         }
 
-                        case SQL.UPDATE:
+                        case SQL.SELECTALL:
                         {
-                            var _queryText = GetUpdateStatement( dict );
+                            var _queryText = GetSelectStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -297,6 +407,15 @@ namespace BudgetExecution
                         case SQL.INSERT:
                         {
                             var _queryText = GetInsertStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+
+                        case SQL.UPDATE:
+                        {
+                            var _queryText = GetUpdateStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -322,151 +441,6 @@ namespace BudgetExecution
             return string.Empty;
         }
 
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        /// <returns></returns>
-        public virtual string GetFilePath( Provider provider )
-        {
-            if( Enum.IsDefined( typeof( Provider ), provider ) )
-            {
-                try
-                {
-                    switch( provider )
-                    {
-                        case Provider.OleDb:
-                        {
-                            return ConfigurationManager.AppSettings[ "OleDb" ];
-                        }
-                        case Provider.Access:
-                        {
-                            return ConfigurationManager.AppSettings[ "Access" ];
-                        }
-                        case Provider.SQLite:
-                        {
-                            return ConfigurationManager.AppSettings[ "SQLite" ];
-                        }
-                        case Provider.SqlCe:
-                        {
-                            return ConfigurationManager.AppSettings[ "SqlCe" ];
-                        }
-                        case Provider.Excel:
-                        {
-                            return ConfigurationManager.AppSettings[ "Excel" ];
-                        }
-                        case Provider.SqlServer:
-                        {
-                            return ConfigurationManager.AppSettings[ "SqlServer" ];
-                        }
-                        case Provider.CSV:
-                        {
-                            return ConfigurationManager.AppSettings[ "CSV" ];
-                        }
-                        default:
-                        {
-                            return ConfigurationManager.AppSettings[ "SQLite" ];
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <param name="command">The provider.</param>
-        /// <returns></returns>
-        public virtual string GetFilePath( SQL command )
-        {
-            if( Enum.IsDefined( typeof( SQL ), command ) )
-            {
-                try
-                {
-                    switch( command )
-                    {
-                        case SQL.ALTERTABLE:
-                        {
-                            return ConfigurationManager.AppSettings[ "ALTERTABLE" ];
-                        }
-                        case SQL.CREATETABLE:
-                        {
-                            return ConfigurationManager.AppSettings[ "CREATETABLE" ];
-                        }
-                        case SQL.CREATEDATABASE:
-                        {
-                            return ConfigurationManager.AppSettings[ "CREATEDATABASE" ];
-                        }
-                        case SQL.CREATEVIEW:
-                        {
-                            return ConfigurationManager.AppSettings[ "CREATEVIEW" ];
-                        }
-                        case SQL.DETACH:
-                        {
-                            return ConfigurationManager.AppSettings[ "DETACH" ];
-                        }
-                        case SQL.DELETE:
-                        {
-                            return ConfigurationManager.AppSettings[ "DELETE" ];
-                        }
-                        case SQL.SELECTALL:
-                        {
-                            return ConfigurationManager.AppSettings[ "SELECTALL" ];
-                        }
-                        case SQL.SELECT:
-                        {
-                            return ConfigurationManager.AppSettings[ "SELECT" ];
-                        }
-                        case SQL.INSERT:
-                        {
-                            return ConfigurationManager.AppSettings[ "INSERT" ];
-                        }
-                        case SQL.UPDATE:
-                        {
-                            return ConfigurationManager.AppSettings[ "UPDATE" ];
-                        }
-                        default:
-                        {
-                            return ConfigurationManager.AppSettings[ "SELECTALL" ];
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return !string.IsNullOrEmpty( CommandText )
-                    ? CommandText
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-        
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

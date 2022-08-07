@@ -13,7 +13,6 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Linq;
     using System.Threading;
-    using Microsoft.EntityFrameworkCore.Internal;
 
     /// <summary>
     /// 
@@ -47,7 +46,7 @@ namespace BudgetExecution
         /// <value>
         /// The source model.
         /// </value>
-        public virtual ISeriesModel DataModel { get; set; }
+        public virtual ISeriesModel SeriesDataModel { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -87,14 +86,14 @@ namespace BudgetExecution
         protected ChartData( BindingSource bindingSource )
             : this( )
         {
-            DataModel = new SeriesModel( bindingSource );
-            SeriesConfig = new SeriesModel( bindingSource ).SeriesConfig;
+            SeriesDataModel = new SeriesModel( bindingSource );
+            SeriesConfig = SeriesDataModel.SeriesConfig;
             Name = SeriesConfig.Name;
             Type = SeriesConfig.Type;
             ValueMetric = SeriesConfig.ValueMetric;
-            DataValues = DataModel?.DataMetric.CalculateStatistics( );
-            Values = DataModel?.Values;
-            Names = DataModel?.Categories;
+            DataValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
+            Values = SeriesDataModel?.Values;
+            Names = SeriesDataModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -106,8 +105,7 @@ namespace BudgetExecution
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
         }
-
-
+    
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
@@ -115,14 +113,14 @@ namespace BudgetExecution
         protected ChartData( IEnumerable<DataRow> dataRows )
             : this( )
         {
-            DataModel = new SeriesModel( dataRows );
-            SeriesConfig = DataModel.SeriesConfig;
+            SeriesDataModel = new SeriesModel( dataRows );
+            SeriesConfig = SeriesDataModel.SeriesConfig;
             Name = SeriesConfig.Name;
             Type = SeriesConfig.Type;
             ValueMetric = SeriesConfig.ValueMetric;
-            DataValues = DataModel?.DataMetric.CalculateStatistics( );
-            Values = DataModel?.Values;
-            Names = DataModel?.Categories;
+            DataValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
+            Values = SeriesDataModel?.Values;
+            Names = SeriesDataModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -142,14 +140,14 @@ namespace BudgetExecution
         protected ChartData( DataTable dataTable )
             : this( )
         {
-            DataModel = new SeriesModel( dataTable );
-            SeriesConfig = DataModel.SeriesConfig;
+            SeriesDataModel = new SeriesModel( dataTable );
+            SeriesConfig = SeriesDataModel.SeriesConfig;
             Name = SeriesConfig.Name;
             Type = SeriesConfig.Type;
             ValueMetric = SeriesConfig.ValueMetric;
-            DataValues = DataModel?.DataMetric.CalculateStatistics( );
-            Values = DataModel?.Values;
-            Names = DataModel?.Categories;
+            DataValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
+            Values = SeriesDataModel?.Values;
+            Names = SeriesDataModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -173,8 +171,8 @@ namespace BudgetExecution
             Name = SeriesConfig.Name;
             Type = SeriesConfig.Type;
             ValueMetric = SeriesConfig.ValueMetric;
-            DataModel = seriesModel;
-            DataValues = DataModel?.DataMetric?.CalculateStatistics( );
+            SeriesDataModel = seriesModel;
+            DataValues = SeriesDataModel?.DataMetric?.CalculateStatistics( );
             Values = seriesModel?.Values;
             Names = seriesModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;

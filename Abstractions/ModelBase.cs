@@ -13,7 +13,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="DataAccess" />
-    public abstract class BuilderBase : DataAccess
+    public abstract class ModelBase : DataAccess
     {
         /// <summary>
         /// Gets the column ordinals.
@@ -112,6 +112,40 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return default( IEnumerable<IElement> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the columns.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DataColumn> GetDataColumns()
+        {
+            try
+            {
+                var _dataColumns = new List<DataColumn>( );
+                var _data = Record?.Table?.Columns;
+
+                if( _data?.Count > 0 )
+                {
+                    foreach( DataColumn column in _data )
+                    {
+                        _dataColumns.Add( column );
+                    }
+
+                    return _dataColumns?.Any( ) == true
+                        ? _dataColumns
+                        : default( IEnumerable<DataColumn> );
+                }
+                else
+                {
+                    return default( IEnumerable<DataColumn> );
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IEnumerable<DataColumn> );
             }
         }
     }

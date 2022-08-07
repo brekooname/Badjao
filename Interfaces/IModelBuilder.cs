@@ -13,7 +13,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="ISource" />
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public interface IBuilder : ISource
+    public interface IModelBuilder : ISource
     {
         /// <summary>
         /// Gets the record.
@@ -64,17 +64,16 @@ namespace BudgetExecution
         DataColumnCollection GetColumnSchema( );
 
         /// <summary>
+        /// Gets the data columns.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<DataColumn> GetDataColumns( );
+
+            /// <summary>
         /// Gets the primary indexes.
         /// </summary>
         /// <param name="data">The Data.</param>
         /// <returns></returns>
         IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> data );
-
-        /// <summary>
-        /// Gets the column ordinals.
-        /// </summary>
-        /// <param name="data">The Data.</param>
-        /// <returns></returns>
-        IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> data );
     }
 }

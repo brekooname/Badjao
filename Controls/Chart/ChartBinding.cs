@@ -46,6 +46,13 @@ namespace BudgetExecution
         public Source Source { get; set; }
 
         /// <summary>
+        /// Gets the total number of items in the underlying list, 
+        /// taking the current 
+        /// <see cref="P:System.Windows.Forms.BindingSource.Filter" /> value into consideration.
+        /// </summary>
+        public new int Count { get; set; }
+
+        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <value>
@@ -145,8 +152,10 @@ namespace BudgetExecution
             DataTable = (DataTable)bindingSource.DataSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
+            SeriesConfig = new SeriesConfig( );
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
+            Count = BindingSource.Count;
             SeriesConfig = new SeriesConfig( );
             Changed += OnCurrentChanged;
         }
@@ -165,10 +174,12 @@ namespace BudgetExecution
 
             Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
             DataTable = (DataTable)BindingSource.DataSource;
+            SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
+            Count = BindingSource.Count;
             SeriesConfig = new SeriesConfig( );
             Changed += OnCurrentChanged;
         }
@@ -182,11 +193,13 @@ namespace BudgetExecution
 
             Data = dataSet.Tables[ 0 ]?.Rows.ToList<DataRow>();
             DataTable = dataSet.Tables[ 0 ];
+            SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataSet = dataSet;
             Record = DataTable.Rows[ 0 ];
             AllowNew = true;
             SeriesConfig = new SeriesConfig( );
+            Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
 
@@ -206,6 +219,7 @@ namespace BudgetExecution
             DataSource = dataTable;
             Record = (DataRow)Current;
             AllowNew = true;
+            Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
 
@@ -221,6 +235,7 @@ namespace BudgetExecution
             DataSource = DataTable;
             Record = (DataRow)Current;
             AllowNew = true;
+            Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
 

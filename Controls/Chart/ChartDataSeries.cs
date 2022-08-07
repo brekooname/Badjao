@@ -84,10 +84,16 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
-            BindingSource = ChartBinding.BindingSource;
             DataPoints = GetDataPoints( );
         }
 
+        public ChartDataSeries( ChartBinding chartBinding )
+            : base( chartBinding )
+        {
+            ChartBinding = chartBinding;
+            BindingSource = ChartBinding.BindingSource;
+            DataPoints = GetDataPoints( );
+        }
         public ChartDataSeries( DataTable dataTable )
             : base( dataTable )
         {

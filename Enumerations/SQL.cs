@@ -25,6 +25,11 @@ namespace BudgetExecution
         SELECTALL,
 
         /// <summary>
+        /// The selectdistinct
+        /// </summary>
+        SELECTDISTINCT,
+
+        /// <summary>
         /// Defines the INSERT
         /// </summary>
         INSERT,

@@ -239,41 +239,5 @@ namespace BudgetExecution
 
             return default( IEnumerable<int> );
         }
-
-        /// <summary>
-        /// Gets the column ordinals.
-        /// </summary>
-        /// <param name="dataColumns">The Data columns.</param>
-        /// <returns></returns>
-        public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
-        {
-            if( dataColumns?.Any( ) == true )
-            {
-                try
-                {
-                    var _list = dataColumns.ToList( );
-                    var _values = new List<int>( );
-
-                    if( _list?.Any( ) == true )
-                    {
-                        foreach( var column in _list )
-                        {
-                            _values.Add( column.Ordinal );
-                        }
-                    }
-
-                    return _values?.Any( ) == true
-                        ? _values.ToArray( )
-                        : default( int[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<int> );
-                }
-            }
-
-            return default( IEnumerable<int> );
-        }
     }
 }

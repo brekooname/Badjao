@@ -7,10 +7,12 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// 
     /// </summary>
+    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class DataConfig
     {
         /// <summary>
@@ -52,6 +54,14 @@ namespace BudgetExecution
         /// The Data table
         /// </summary>
         public virtual DataTable DataTable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
+        public virtual IEnumerable<DataColumn> Columns { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.

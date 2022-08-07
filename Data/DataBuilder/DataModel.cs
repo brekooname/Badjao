@@ -17,19 +17,19 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="BuilderBase" />
-    /// <seealso cref="IBuilder" />
+    /// <seealso cref="ModelBase" />
+    /// <seealso cref="IModelBuilder" />
     [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public class DataModel : BuilderBase, IBuilder
+    public class DataModel : ModelBase, IModelBuilder
     {
         /// <summary>
         /// The program elements
         /// </summary>
-        public IDictionary<string, IEnumerable<string>> ProgramElements { get;  }
+        public IDictionary<string, IEnumerable<string>> DataElements { get;  }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModel"/> class.
@@ -51,7 +51,8 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable(  );
-            ProgramElements = CreateSeries( DataTable );
+            Columns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
             Record = GetData(   )?.FirstOrDefault(   );
             Args = Record?.ToDictionary(   );
         }
@@ -69,8 +70,9 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
-            DataTable = GetDataTable(  );
-            ProgramElements = CreateSeries( DataTable );
+            DataTable = GetDataTable( );
+            Columns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
             Record = GetRecord(   );
             Args = Record?.ToDictionary(   );
         }
@@ -87,8 +89,9 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
-            DataTable = GetDataTable(  );
-            ProgramElements = CreateSeries( DataTable );
+            DataTable = GetDataTable( );
+            Columns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
             Record = GetRecord(   );
             Args = Record?.ToDictionary(   );
         }
@@ -104,8 +107,9 @@ namespace BudgetExecution
             Provider = query.Provider;
             ConnectionBuilder = query.GetConnectionBuilder(   );
             SqlStatement = query.GetSqlStatement(  );
-            DataTable = GetDataTable(  );
-            ProgramElements = CreateSeries( DataTable );
+            DataTable = GetDataTable( );
+            Columns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
             Record = GetRecord(   );
             Args = Record?.ToDictionary(   );
         }
@@ -393,7 +397,7 @@ namespace BudgetExecution
         /// Gets the Verify.
         /// </summary>
         /// <returns></returns>
-        public IBuilder GetBuilder( )
+        public IModelBuilder GetBuilder( )
         {
             try
             {
@@ -404,7 +408,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IBuilder );
+                return default( IModelBuilder );
             }
         }
 
