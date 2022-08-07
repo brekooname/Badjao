@@ -101,7 +101,6 @@ namespace BudgetExecution
         {
             //Basic Control Properties
             Size = new Size( 600, 400 );
-            ShowLegend = false;
             ShowToolbar = true;
             ToolBar.Orientation = ChartOrientation.Horizontal;
             ToolBar.ButtonBackColor = Color.FromArgb( 15, 15, 15 );
@@ -166,7 +165,7 @@ namespace BudgetExecution
 
             //Chart Legend Setting;
             ShowLegend = true;
-            Legend.Font = new Font( "Roboto", 6 );
+            Legend.Font = new Font( "Roboto", 8 );
             Legend.ItemsSize = new Size( 10, 10 );
             Legend.VisibleCheckBox = true;
             Legend.BackInterior = new BrushInfo( Color.FromArgb( 15, 15, 15 ) );
@@ -195,6 +194,8 @@ namespace BudgetExecution
             SeriesModel = new SeriesModel( chartBinding );
             DataMetric = SourceModel.DataMetric;
             TableName = chartBinding.DataTable.TableName;
+            Header.Text = TableName;
+            Titles.Add( Header );
             DataSeries = new ChartDataSeries( chartBinding.DataTable );
             Series.Add( DataSeries );
         }
@@ -207,7 +208,9 @@ namespace BudgetExecution
             SeriesConfig = SeriesModel.SeriesConfig;
             DataMetric = new DataMetric( dataTable?.AsEnumerable( ));
             TableName = dataTable?.TableName;
-            TitleInfo = new TitleInfo( TableName );
+            Header.Text = TableName;
+            Text = Header.Text.SplitPascal( );
+            Titles.Add( Header );
             Series.Add( DataSeries );
         }
 
@@ -221,10 +224,11 @@ namespace BudgetExecution
             SeriesModel = new SeriesModel( bindingSource );
             DataSeries = new ChartDataSeries( bindingSource );
             SeriesConfig = SeriesModel.SeriesConfig;
+            BindingSource = new ChartBinding( bindingSource );
             DataMetric = new DataMetric( bindingSource );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
-            Titles.Add( Header );
+            Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );
         }
 
@@ -241,7 +245,7 @@ namespace BudgetExecution
             SeriesModel = new SeriesModel( sourceModel.ChartBinding );
             TableName = sourceModel.ChartBinding.DataTable.TableName;
             Header.Text = TableName;
-            Titles.Add( Header );
+            Text = Header.Text.SplitPascal( );
             DataMetric = new DataMetric( sourceModel.Data );
             DataSeries = new ChartDataSeries( sourceModel.Data );
             Series.Add( DataSeries );
@@ -259,7 +263,7 @@ namespace BudgetExecution
             DataMetric = SourceModel.DataMetric;
             TableName = dataTable.TableName;
             Header.Text = TableName;
-            Titles.Add( Header );
+            Text = Header.Text.SplitPascal( );
             DataSeries = new ChartDataSeries( dataTable );
             Series.Add( DataSeries );
         }
@@ -277,7 +281,7 @@ namespace BudgetExecution
             DataMetric = SeriesModel.DataMetric;
             TableName = dataRows.CopyToDataTable( ).TableName;
             Header.Text = TableName;
-            Titles.Add( Header );
+            Text = Header.Text.SplitPascal( );
             DataSeries = new ChartDataSeries( dataRows );
             Series.Add( DataSeries );
         }
@@ -296,7 +300,7 @@ namespace BudgetExecution
             SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
             TableName = sourceModel.ChartBinding.DataTable.TableName;
             Header.Text = titleInfo.GetMainText( ) ?? TableName;
-            Titles.Add( Header );
+            Text = Header.Text.SplitPascal( );
             DataMetric = new DataMetric( sourceModel.Data );
             SeriesModel = new SeriesModel( sourceModel.ChartBinding );
             DataSeries = new ChartDataSeries( sourceModel.Data );
@@ -318,7 +322,8 @@ namespace BudgetExecution
             SourceModel = seriesModel.SourceModel;
             TableName = SourceModel.ChartBinding.DataTable.TableName;
             Header.Text = titleInfo.GetMainText( ) ?? TableName;
-            Titles.Add( Header );
+            Header.Text = TableName;
+            Text = Header.Text.SplitPascal( );
             DataMetric = new DataMetric( SourceModel.Data );
             DataSeries = new ChartDataSeries( SourceModel.Data );
             Series.Add( DataSeries );

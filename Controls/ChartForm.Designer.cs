@@ -29,16 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Chart.ChartSeries chartSeries1 = new Syncfusion.Windows.Forms.Chart.ChartSeries();
-            Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo chartCustomShapeInfo1 = new Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo();
-            Syncfusion.Windows.Forms.Chart.ChartLineInfo chartLineInfo1 = new Syncfusion.Windows.Forms.Chart.ChartLineInfo();
-            Syncfusion.Windows.Forms.Chart.ChartSeries chartSeries2 = new Syncfusion.Windows.Forms.Chart.ChartSeries();
-            Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo chartCustomShapeInfo2 = new Syncfusion.Windows.Forms.Chart.ChartCustomShapeInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ToolTip = new BudgetExecution.ToolTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.TextBox = new BudgetExecution.ToolStripTextBox();
-            this.ToolTip = new BudgetExecution.ToolTip();
             this.Separator1 = new BudgetExecution.ToolSeparator();
             this.Label = new BudgetExecution.ToolStripLabel();
             this.Separator2 = new BudgetExecution.ToolSeparator();
@@ -73,10 +68,29 @@
             this.HomeButton = new BudgetExecution.ToolStripButton();
             this.Separator18 = new BudgetExecution.ToolSeparator();
             this.Separator16 = new BudgetExecution.ToolSeparator();
-            this.ChartControl = new BudgetExecution.ChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.ToolStrip.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 5000;
+            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.ToolTip.BindingSource = null;
+            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ToolTip.ForeColor = System.Drawing.Color.White;
+            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.Name = null;
+            this.ToolTip.OwnerDraw = true;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
+            this.ToolTip.StyleManager = null;
+            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
+            this.ToolTip.ThemeName = "Budget Execution";
+            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.TipText = null;
+            this.ToolTip.TipTitle = null;
             // 
             // ToolStrip
             // 
@@ -174,26 +188,6 @@
             this.TextBox.Size = new System.Drawing.Size(150, 26);
             this.TextBox.Tag = "";
             this.TextBox.ToolTip = this.ToolTip;
-            // 
-            // ToolTip
-            // 
-            this.ToolTip.AutoPopDelay = 5000;
-            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.ToolTip.BindingSource = null;
-            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.ToolTip.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ToolTip.ForeColor = System.Drawing.Color.White;
-            this.ToolTip.InitialDelay = 500;
-            this.ToolTip.Name = null;
-            this.ToolTip.OwnerDraw = true;
-            this.ToolTip.ReshowDelay = 100;
-            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
-            this.ToolTip.StyleManager = null;
-            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
-            this.ToolTip.ThemeName = "Budget Execution";
-            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ToolTip.TipText = null;
-            this.ToolTip.TipTitle = null;
             // 
             // Separator1
             // 
@@ -646,118 +640,6 @@
             this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator16.Size = new System.Drawing.Size(6, 36);
             // 
-            // ChartControl
-            // 
-            this.ChartControl.AllowGradientPalette = true;
-            this.ChartControl.AllowUserEditStyles = true;
-            this.ChartControl.AutoHighlight = true;
-            this.ChartControl.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.ChartControl.BindingSource = this.BindingSource;
-            this.ChartControl.ChartArea.AutoScale = true;
-            this.ChartControl.ChartArea.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.ChartControl.ChartArea.BorderColor = System.Drawing.Color.Transparent;
-            this.ChartControl.ChartArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ChartControl.ChartArea.CursorLocation = new System.Drawing.Point(0, 0);
-            this.ChartControl.ChartArea.CursorReDraw = false;
-            this.ChartControl.ChartAreaMargins = new Syncfusion.Windows.Forms.Chart.ChartMargins(3, 3, 3, 3);
-            this.ChartControl.SeriesModel = null;
-            this.ChartControl.ChartInterior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.LightSteelBlue, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.ChartControl.SeriesConfig = null;
-            this.ChartControl.DataFilter = null;
-            this.ChartControl.DataMetric = null;
-            this.ChartControl.DataSeries = null;
-            this.ChartControl.DataSourceName = "[none]";
-            this.ChartControl.Depth = 250F;
-            this.ChartControl.DisplayChartContextMenu = false;
-            this.ChartControl.DisplaySeriesContextMenu = false;
-            this.ChartControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChartControl.EnableMouseRotation = true;
-            this.ChartControl.Field = BudgetExecution.Field.RpioActivityCode;
-            this.ChartControl.HoverText = null;
-            this.ChartControl.IsWindowLess = false;
-            // 
-            // 
-            // 
-            this.ChartControl.Legend.BackInterior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))));
-            this.ChartControl.Legend.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ChartControl.Legend.ItemsAlignment = System.Drawing.StringAlignment.Center;
-            this.ChartControl.Legend.ItemsSize = new System.Drawing.Size(12, 12);
-            this.ChartControl.Legend.Location = new System.Drawing.Point(1275, 68);
-            this.ChartControl.Legend.ShowItemsShadow = true;
-            this.ChartControl.Legend.ShowSymbol = true;
-            this.ChartControl.Legend.VisibleCheckBox = true;
-            this.ChartControl.Localize = null;
-            this.ChartControl.Location = new System.Drawing.Point(0, 0);
-            this.ChartControl.Name = "ChartControl";
-            this.ChartControl.Numeric = BudgetExecution.Numeric.NS;
-            this.ChartControl.Padding = new System.Windows.Forms.Padding(1);
-            this.ChartControl.Palette = Syncfusion.Windows.Forms.Chart.ChartColorPalette.Metro;
-            this.ChartControl.PrimaryXAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
-            this.ChartControl.PrimaryXAxis.Margin = true;
-            this.ChartControl.PrimaryXAxis.TitleColor = System.Drawing.Color.LightGray;
-            this.ChartControl.PrimaryYAxis.LogLabelsDisplayMode = Syncfusion.Windows.Forms.Chart.LogLabelsDisplayMode.Default;
-            this.ChartControl.PrimaryYAxis.Margin = true;
-            this.ChartControl.PrimaryYAxis.TitleColor = System.Drawing.Color.LightGray;
-            this.ChartControl.RealMode3D = true;
-            this.ChartControl.Rotation = 0.1F;
-            chartSeries1.FancyToolTip.ResizeInsideSymbol = true;
-            chartSeries1.Name = "Default0";
-            chartSeries1.Resolution = 0D;
-            chartSeries1.StackingGroup = "Default Group";
-            chartSeries1.Style.AltTagFormat = "";
-            chartSeries1.Style.DrawTextShape = false;
-            chartLineInfo1.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
-            chartLineInfo1.Color = System.Drawing.SystemColors.ControlText;
-            chartLineInfo1.DashPattern = null;
-            chartLineInfo1.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            chartLineInfo1.Width = 1F;
-            chartCustomShapeInfo1.Border = chartLineInfo1;
-            chartCustomShapeInfo1.Color = System.Drawing.SystemColors.HighlightText;
-            chartCustomShapeInfo1.Type = Syncfusion.Windows.Forms.Chart.ChartCustomShape.Square;
-            chartSeries1.Style.TextShape = chartCustomShapeInfo1;
-            chartSeries1.Text = "Default0";
-            chartSeries2.FancyToolTip.ResizeInsideSymbol = true;
-            chartSeries2.Name = "Default1";
-            chartSeries2.Resolution = 0D;
-            chartSeries2.StackingGroup = "Default Group";
-            chartSeries2.Style.AltTagFormat = "";
-            chartSeries2.Style.DrawTextShape = false;
-            chartCustomShapeInfo2.Border = chartLineInfo1;
-            chartCustomShapeInfo2.Color = System.Drawing.SystemColors.HighlightText;
-            chartCustomShapeInfo2.Type = Syncfusion.Windows.Forms.Chart.ChartCustomShape.Square;
-            chartSeries2.Style.TextShape = chartCustomShapeInfo2;
-            chartSeries2.Text = "Default1";
-            this.ChartControl.Series.Add(chartSeries1);
-            this.ChartControl.Series.Add(chartSeries2);
-            this.ChartControl.Series3D = true;
-            this.ChartControl.SeriesHighlight = true;
-            this.ChartControl.ShadowColor = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.PathRectangle, System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15))))), System.Drawing.Color.Silver);
-            this.ChartControl.ShowScrollBars = false;
-            this.ChartControl.ShowToolbar = true;
-            this.ChartControl.Size = new System.Drawing.Size(1388, 711);
-            this.ChartControl.Source = BudgetExecution.Source.NS;
-            this.ChartControl.SourceModel = null;
-            this.ChartControl.Spacing = 5F;
-            this.ChartControl.SpacingBetweenPoints = 5F;
-            this.ChartControl.Style = null;
-            this.ChartControl.Style3D = true;
-            this.ChartControl.TabIndex = 5;
-            this.ChartControl.Text = "Chart Title";
-            this.ChartControl.Tilt = 5F;
-            // 
-            // 
-            // 
-            this.ChartControl.Title.Name = "Default";
-            this.ChartControl.TitleInfo = null;
-            this.ChartControl.Titles.Add(this.ChartControl.Title);
-            this.ChartControl.ToolBar.ButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ChartControl.ToolBar.Position = Syncfusion.Windows.Forms.Chart.ChartDock.Bottom;
-            this.ChartControl.ToolBar.ShowBorder = false;
-            this.ChartControl.ToolBar.ShowGrip = false;
-            this.ChartControl.ToolBar.Visible = true;
-            this.ChartControl.ToolTip = null;
-            this.ChartControl.VisualTheme = "";
-            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -771,7 +653,6 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1388, 763);
-            this.Controls.Add(this.ChartControl);
             this.Controls.Add(this.ToolStrip);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
@@ -831,7 +712,6 @@
         private ToolSeparator Separator17;
         private ToolSeparator Separator18;
         public ToolTip ToolTip;
-        public ChartControl ChartControl;
-        private System.Windows.Forms.BindingSource BindingSource;
+        protected System.Windows.Forms.BindingSource BindingSource;
     }
 }

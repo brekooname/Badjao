@@ -107,7 +107,6 @@ namespace BudgetExecution
         /// </summary>
         public static readonly Source[ ] ObjectClassSources =
         {
-            Source.FullTimeEquivalents,
             Source.PayrollAuthority
         };
 
@@ -139,13 +138,10 @@ namespace BudgetExecution
             Source.ProgramAreas,
             Source.Projects,
             Source.ProgramProjects,
-            Source.ProgramDescriptions,
             Source.Providers,
             Source.ResponsibilityCenters,
-            Source.InformationTechnology,
             Source.WorkCodes,
-            Source.FiscalYears,
-            Source.AppropriationBills
+            Source.FiscalYears
         };
 
         /// <summary>
@@ -159,7 +155,6 @@ namespace BudgetExecution
             Source.BudgetDocuments,
             Source.BudgetControls,
             Source.CarryoverSurvey,
-            Source.FullTimeEquivalents,
             Source.HeadquartersAuthority,
             Source.PayrollAuthority,
             Source.RegionalAuthority,

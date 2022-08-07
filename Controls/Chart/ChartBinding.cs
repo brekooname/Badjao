@@ -11,6 +11,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
+    using Syncfusion.Data.Extensions;
 
     /// <summary>
     /// 
@@ -161,11 +162,29 @@ namespace BudgetExecution
             {
                 DataSource = bindingList
             };
+
             Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
             DataTable = (DataTable)BindingSource.DataSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            SeriesConfig = new SeriesConfig( );
+            Changed += OnCurrentChanged;
+        }
+
+        public ChartBinding( DataSet dataSet )
+        {
+            BindingSource = new BindingSource
+            {
+                DataSource = dataSet
+            };
+
+            Data = dataSet.Tables[ 0 ]?.Rows.ToList<DataRow>();
+            DataTable = dataSet.Tables[ 0 ];
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            DataSet = dataSet;
+            Record = DataTable.Rows[ 0 ];
             AllowNew = true;
             SeriesConfig = new SeriesConfig( );
             Changed += OnCurrentChanged;

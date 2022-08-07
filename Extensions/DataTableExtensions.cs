@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Configuration;
     using System.Data;
     using System.Data.OleDb;
@@ -436,7 +437,34 @@ namespace BudgetExecution
                 return default( Dictionary<string, int> );
             }
         }
-        
+
+        /// <summary>
+        /// Converts to bindinglist.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns></returns>
+        public static BindingList<DataRow> ToBindingList( this DataTable dataTable )
+        {
+            if( dataTable?.Columns.Count > 0 )
+            {
+                try
+                {
+                    var _query = new BindingList<DataRow>( );
+
+                    return _query?.Any( ) == true
+                        ? _query
+                        : default(  BindingList<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default(  BindingList<DataRow> );
+                }
+            }
+
+            return default(  BindingList<DataRow> );
+        }
+
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )

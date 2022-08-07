@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -134,6 +135,38 @@ namespace BudgetExecution
             }
 
             return default( IEnumerable<int> );
+        }
+
+        /// <summary>
+        /// Converts IEnumerable to BindingList.
+        /// </summary>
+        /// <param name="dataRows">The IEnumerable</param>
+        /// <returns></returns>
+        public static BindingList<DataRow> ToBindingList( this IEnumerable<DataRow> dataRows )
+        {
+            if( dataRows?.Any() == true )
+            {
+                try
+                {
+                    var _list = new BindingList<DataRow>( );
+
+                    foreach( var item in dataRows )
+                    {
+                        _list.Add( item );
+                    }
+
+                    return _list?.Any( ) == true
+                        ? _list
+                        : default( BindingList<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( BindingList<DataRow> );
+                }
+            }
+
+            return default( BindingList<DataRow> );
         }
 
         /// <summary>

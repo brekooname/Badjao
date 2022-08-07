@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// The axis.
         /// </value>
         public string Axis { get; }
-
+    
         /// <summary>
         /// Initializes a new instance of the <see cref="TitleInfo"/> class.
         /// </summary>
@@ -42,7 +42,6 @@ namespace BudgetExecution
         public TitleInfo( string main )
         {
             Main = main;
-            Axis = string.Empty;
         }
 
         /// <summary>
@@ -50,9 +49,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="main">The main.</param>
         /// <param name="axis">The axis.</param>
-        public TitleInfo( string main, string axis )
+        public TitleInfo( string main, string axis ) 
+            : this( main )
         {
-            Main = main;
             Axis = axis;
         }
 
@@ -85,7 +84,7 @@ namespace BudgetExecution
         /// Sets the main title.
         /// </summary>
         /// <returns></returns>
-        public string GetMainText()
+        public string GetMainText( )
         {
             if( !string.IsNullOrEmpty( Main ) )
             {
@@ -107,7 +106,7 @@ namespace BudgetExecution
         /// Sets the axis title.
         /// </summary>
         /// <returns></returns>
-        public string GetAxisText()
+        public string GetAxisText( )
         {
             if( !string.IsNullOrEmpty( Axis ) )
             {
@@ -160,7 +159,7 @@ namespace BudgetExecution
         /// Gets the main title.
         /// </summary>
         /// <returns></returns>
-        public ChartTitle GetChartMainTitle()
+        public ChartTitle GetChartMainTitle( )
         {
             if( !string.IsNullOrEmpty( Main ) )
             {
@@ -190,7 +189,7 @@ namespace BudgetExecution
         /// Gets the axis title.
         /// </summary>
         /// <returns></returns>
-        public ChartTitle GetChartAxisTitle()
+        public ChartTitle GetChartAxisTitle( )
         {
             if( !string.IsNullOrEmpty( Axis ) )
             {

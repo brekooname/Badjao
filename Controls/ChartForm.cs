@@ -7,6 +7,8 @@ namespace BudgetExecution
 
     public partial class ChartForm : MetroForm
     {
+        public ChartControl Chart { get; set; }
+
         public ChartForm()
         {
             InitializeComponent( );
@@ -18,7 +20,12 @@ namespace BudgetExecution
             ToolStrip.Office12Mode = true;
             BindingSource = bindingSource;
             ToolStrip.BindingSource = bindingSource;
-            ChartControl = new ChartControl( bindingSource );
+            Chart = new ChartControl( bindingSource )
+            {
+                Dock = DockStyle.Fill
+            };
+
+            Controls.Add( Chart );
         }
     }
 }

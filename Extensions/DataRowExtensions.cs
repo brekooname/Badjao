@@ -178,45 +178,7 @@ namespace BudgetExecution
                 return default( IDictionary<string, object> );
             }
         }
-
-        /// <summary>
-        /// Converts to sortedlist.
-        /// </summary>
-        /// <param name="dataRow">The data row.</param>
-        /// <returns></returns>
-        public static SortedList<string, object> ToSortedList( this DataRow dataRow )
-        {
-            try
-            {
-                if( dataRow?.ItemArray.Length > 0 )
-                {
-                    var _sortedlist = new SortedList<string, object>( );
-                    var _table = dataRow?.Table;
-                    var _column = _table?.Columns;
-                    var _items = dataRow?.ItemArray;
-
-                    for( var i = 0; i < _column?.Count; i++ )
-                    {
-                        if( !string.IsNullOrEmpty( _column[ i ]?.ColumnName ) )
-                        {
-                            _sortedlist?.Add( _column[ i ].ColumnName, _items[ i ] ?? default( object ) );
-                        }
-                    }
-
-                    return _sortedlist?.Count > 0
-                        ? _sortedlist
-                        : default( SortedList<string, object> );
-                }
-
-                return default( SortedList<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( SortedList<string, object> );
-            }
-        }
-
+        
         /// <summary>
         /// Gets the bytes.
         /// </summary>
