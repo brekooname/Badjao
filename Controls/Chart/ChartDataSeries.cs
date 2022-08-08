@@ -94,6 +94,7 @@ namespace BudgetExecution
             BindingSource = ChartBinding.BindingSource;
             DataPoints = GetDataPoints( );
         }
+
         public ChartDataSeries( DataTable dataTable )
             : base( dataTable )
         {

@@ -111,5 +111,34 @@ namespace BudgetExecution
 
             return default( IEnumerable<DataRow> );
         }
+
+        public IEnumerable<DataRow> FilterData( IDictionary<string, object> dict )
+        {
+            if( dict?.Any( ) == true )
+            {
+                try
+                {
+                    var _query = string.Empty;
+                    
+                    foreach( var kvp in dict )
+                    {
+                        _query += $"{ kvp.Key } = '{ kvp.Value }' AND ";
+                    }
+                     var _retString = _query.TrimEnd( " AND ".ToCharArray(  ) );
+                    var _data = DataTable.Select( _retString );
+
+                    return _data?.Length > 0
+                        ? _data
+                        : default( IEnumerable<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
     }
 }

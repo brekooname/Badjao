@@ -12,6 +12,7 @@ namespace BudgetExecution
     using System.Linq;
     using System.Windows.Forms;
     using Syncfusion.Data.Extensions;
+    using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
@@ -109,6 +110,14 @@ namespace BudgetExecution
         public BindingSource BindingSource { get; set; }
 
         /// <summary>
+        /// Gets or sets the label model.
+        /// </summary>
+        /// <value>
+        /// The label model.
+        /// </value>
+        public ChartDataBindAxisLabelModel LabelModel { get; set; }
+
+        /// <summary>
         /// Gets or sets the field.
         /// </summary>
         /// <value>
@@ -147,17 +156,19 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         public ChartBinding( BindingSource bindingSource )
         {
+            SeriesConfig = new SeriesConfig( );
             BindingSource = bindingSource;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
             DataTable = (DataTable)bindingSource.DataSource;
+            LabelModel = new ChartDataBindAxisLabelModel( DataTable );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
-            SeriesConfig = new SeriesConfig( );
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
-            SeriesConfig = new SeriesConfig( );
             Changed += OnCurrentChanged;
+
         }
 
         /// <summary>
@@ -167,6 +178,7 @@ namespace BudgetExecution
         [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public ChartBinding( IBindingList bindingList )
         {
+            SeriesConfig = new SeriesConfig( );
             BindingSource = new BindingSource
             {
                 DataSource = bindingList
@@ -174,36 +186,32 @@ namespace BudgetExecution
 
             Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
             DataTable = (DataTable)BindingSource.DataSource;
-            SeriesConfig = new SeriesConfig( );
+            LabelModel = new ChartDataBindAxisLabelModel( DataTable );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
-            SeriesConfig = new SeriesConfig( );
             Changed += OnCurrentChanged;
         }
 
         public ChartBinding( DataSet dataSet )
         {
+            SeriesConfig = new SeriesConfig( );
+            DataSet = dataSet;
+            Source = (Source)Enum.Parse( typeof( Source ), dataSet.Tables[ 0 ].TableName );
             BindingSource = new BindingSource
             {
                 DataSource = dataSet
             };
 
-            Data = dataSet.Tables[ 0 ]?.Rows.ToList<DataRow>();
-            DataTable = dataSet.Tables[ 0 ];
-            SeriesConfig = new SeriesConfig( );
-
-            if ( DataTable != null )
-            {
-                Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
-                DataSet = dataSet;
-                Record = DataTable.Rows[ 0 ];
-            }
-
+            DataTable = dataSet.Tables[ $"{ Source }" ];
+            DataSource = DataTable;
+            LabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            Data = dataSet.Tables[ $"{ Source }" ]?.AsEnumerable( );
+            Record = Data?.FirstOrDefault();
             AllowNew = true;
-            SeriesConfig = new SeriesConfig( );
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
@@ -219,9 +227,9 @@ namespace BudgetExecution
             SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
+            DataSource = DataTable;
+            LabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataSet = dataTable.DataSet;
-            BindingSource.DataSource = dataTable;
-            DataSource = dataTable;
             Record = (DataRow)Current;
             AllowNew = true;
             Count = BindingSource.Count;
@@ -235,9 +243,9 @@ namespace BudgetExecution
             SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataTable = data.CopyToDataTable( );
-            DataSet = DataTable.DataSet;
-            BindingSource.DataSource = DataTable;
             DataSource = DataTable;
+            LabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            DataSet = DataTable.DataSet;
             Record = (DataRow)Current;
             AllowNew = true;
             Count = BindingSource.Count;

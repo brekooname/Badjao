@@ -73,7 +73,7 @@ namespace BudgetExecution
             DataTable = GetDataTable( );
             Columns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
-            Record = GetRecord(   );
+            Record = GetData(  )?.FirstOrDefault(  );
             Args = Record?.ToDictionary(   );
         }
 
@@ -92,7 +92,7 @@ namespace BudgetExecution
             DataTable = GetDataTable( );
             Columns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
-            Record = GetRecord(   );
+            Record = GetData( )?.FirstOrDefault( );
             Args = Record?.ToDictionary(   );
         }
 
@@ -110,7 +110,7 @@ namespace BudgetExecution
             DataTable = GetDataTable( );
             Columns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
-            Record = GetRecord(   );
+            Record = GetData( )?.FirstOrDefault( );
             Args = Record?.ToDictionary(   );
         }
 

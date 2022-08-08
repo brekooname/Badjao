@@ -62,7 +62,7 @@ namespace BudgetExecution
         /// <value>
         /// The series categories.
         /// </value>
-        public virtual IEnumerable<string> Names { get; set; }
+        public virtual IEnumerable<string> Categories { get; set; }
 
         /// <summary>
         /// Gets the series values.
@@ -93,7 +93,7 @@ namespace BudgetExecution
             ValueMetric = SeriesConfig.ValueMetric;
             DataValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
-            Names = SeriesDataModel?.Categories;
+            Categories = SeriesDataModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -120,7 +120,7 @@ namespace BudgetExecution
             ValueMetric = SeriesConfig.ValueMetric;
             DataValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
-            Names = SeriesDataModel?.Categories;
+            Categories = SeriesDataModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -147,7 +147,7 @@ namespace BudgetExecution
             ValueMetric = SeriesConfig.ValueMetric;
             DataValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
-            Names = SeriesDataModel?.Categories;
+            Categories = SeriesDataModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -174,7 +174,7 @@ namespace BudgetExecution
             SeriesDataModel = seriesModel;
             DataValues = SeriesDataModel?.DataMetric?.CalculateStatistics( );
             Values = seriesModel?.Values;
-            Names = seriesModel?.Categories;
+            Categories = seriesModel?.Categories;
             SmartLabels = SeriesConfig.SmartLabels;
             Visible = SeriesConfig.Visible;
             ShowTicks = SeriesConfig.ShowTicks;
@@ -258,10 +258,13 @@ namespace BudgetExecution
                 {
                     var _points = new ChartPointIndexer( this );
                     Points.Clear( );
-                    foreach( var kvp in DataValues )
+                    var _point = new ChartCustomPoint(  );
+                    var _pidx = DataValues.Count;
+                    for( var i = 0; i < _pidx; i++ )
                     {
-                        Points.Add( kvp.Key, kvp.Value );
-                        _points.Add( kvp.Key, kvp.Value );
+                        _point.PointIndex = i;
+                        Points.Add( _point );
+                        _points.Add();
                     }
 
                     return _points.Count > 0

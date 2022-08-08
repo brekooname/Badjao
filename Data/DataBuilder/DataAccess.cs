@@ -127,7 +127,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Record.ItemArray.Length > 0
+                return Record?.ItemArray?.Length > 0
                     ? Record
                     : default( DataRow );
             }
