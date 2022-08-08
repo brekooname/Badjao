@@ -84,7 +84,6 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
-            DataPoints = GetDataPoints( );
         }
 
         public ChartDataSeries( ChartBinding chartBinding )
@@ -92,7 +91,6 @@ namespace BudgetExecution
         {
             ChartBinding = chartBinding;
             BindingSource = ChartBinding.BindingSource;
-            DataPoints = GetDataPoints( );
         }
 
         public ChartDataSeries( DataTable dataTable )
@@ -100,7 +98,6 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding( dataTable );
             BindingSource = ChartBinding.BindingSource;
-            DataPoints = GetDataPoints( );
         }
 
         /// <summary>
@@ -111,7 +108,6 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding(  );
             BindingSource = ChartBinding.BindingSource;
-            DataPoints = GetDataPoints( );
         }
 
         /// <summary>
@@ -122,7 +118,6 @@ namespace BudgetExecution
         {
             ChartBinding = new ChartBinding( bindingList );
             BindingSource = ChartBinding.BindingSource;
-            DataPoints = GetDataPoints( );
         }
 
         /// <summary>

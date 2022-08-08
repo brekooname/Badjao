@@ -31,7 +31,7 @@ namespace BudgetExecution
         /// <value>
         /// The series data.
         /// </value>
-        IDictionary<string, double> SeriesData { get; set; }
+        IDictionary<string, IEnumerable<double>> SeriesData { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.

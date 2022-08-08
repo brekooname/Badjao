@@ -68,7 +68,7 @@ namespace BudgetExecution
         /// <summary>
         /// The statistics
         /// </summary>
-        public virtual IDictionary<string, double> Statistics { get; set; }
+        public virtual IDictionary<string, IEnumerable<double>> Statistics { get; set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.

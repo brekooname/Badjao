@@ -254,31 +254,16 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public IDictionary<string, double> CalculateStatistics( )
+        public IDictionary<string, IEnumerable<double>> CalculateStatistics()
         {
             try
             {
-                if( Statistics != null )
-                {
-                    return Statistics;
-                }
-                else
-                {
-                    var _stats = new Dictionary<string, double>(  );
-                    _stats.Add( "TOTAL", CalculateTotals( Data, Numeric ) );
-                    _stats.Add( "AVERAGE", CalculateTotals( Data, Numeric ) / GetCount( Data, Numeric ) );
-                    _stats.Add( "VARIANCE", CalculateDeviation( Data, Numeric ) );
-                    _stats.Add( "DEVIATION", CalculateDeviation( Data, Numeric ) );
-
-                    return _stats?.Any(  ) == true
-                        ? _stats
-                        : default( Dictionary<string, double> );
-                }
+                return Statistics;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, double> );
+                return default( IDictionary<string, IEnumerable<double>> );
             }
         }
 
@@ -367,7 +352,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<double> );
         }
-        
+
         /// <summary>
         /// Calculates the statistics.
         /// </summary>
@@ -382,16 +367,16 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
+        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow,
             Field field, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && Enum.IsDefined( typeof( Numeric ), numeric ) )
+                && Validate.IsField( field )
+                && Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    var _dictionary = new Dictionary<string, double>( );
+                    var _dictionary = new Dictionary<string, IEnumerable<double>>( );
                     var _codes = GetCodes( dataRow, field );
 
                     if( _codes?.Any( ) == true )
@@ -399,28 +384,28 @@ namespace BudgetExecution
                         foreach( var filter in _codes )
                         {
                             var _select = dataRow
-                                ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
+                                ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                                 ?.Select( p => p );
 
-                            _dictionary.Add( "TOTAL", CalculateTotals( _select, numeric ) );
-                            _dictionary.Add( "AVERAGE", CalculateAverage( _select, numeric ) );
-                            _dictionary.Add( "VARIANCE", CalculateVariances( _select, field ) );
-                            _dictionary.Add( "DEVIATION", CalculateDeviations( _select, field ) );
+                            if( CalculateTotals( _select, numeric ) > 0 )
+                            {
+                                _dictionary.Add( filter, CalculateStatistics( _select, numeric )?.ToArray( ) );
+                            }
                         }
 
-                        return _dictionary?.Any( ) == true
+                        return _dictionary?.Count > 0.0
                             ? _dictionary
-                            : default( IDictionary<string, double> );
+                            : default( Dictionary<string, IEnumerable<double>> );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, double> );
+                    return default( IDictionary<string, IEnumerable<double>> );
                 }
             }
 
-            return default( IDictionary<string, double> );
+            return default( IDictionary<string, IEnumerable<double>> );
         }
     }
 }

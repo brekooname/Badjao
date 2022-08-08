@@ -45,6 +45,8 @@ namespace BudgetExecution
         /// </value>
         public override BindingSource BindingSource { get; set; }
 
+        public  IChartBinding ChartBinding { get; set; }
+
         /// <summary>
         /// Gets or sets the field.
         /// </summary>
@@ -192,20 +194,22 @@ namespace BudgetExecution
         public ChartControl( IChartBinding chartBinding )
             : this( )
         {
+            ChartBinding = chartBinding;
+            BindingSource = (BindingSource)ChartBinding;
             SeriesConfig = chartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( chartBinding );
             DataMetric = SourceModel.DataMetric;
             TableName = chartBinding.DataTable.TableName;
             Header.Text = TableName;
-            Titles.Add( Header );
             DataSeries = new ChartDataSeries( chartBinding.DataTable );
             Series.Add( DataSeries );
-            SeriesConfig.SetPoints( DataSeries.DataValues, ChartSeriesType.Column, STAT.Total );
         }
 
         public ChartControl( DataTable dataTable )
             : this( )
         {
+            ChartBinding = new ChartBinding( dataTable );
+            BindingSource = (BindingSource)ChartBinding;
             SeriesModel = new SeriesModel( dataTable );
             DataSeries = new ChartDataSeries( dataTable );
             SeriesConfig = SeriesModel.SeriesConfig;
@@ -213,7 +217,6 @@ namespace BudgetExecution
             TableName = dataTable?.TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
-            Titles.Add( Header );
             Series.Add( DataSeries );
         }
 
@@ -224,10 +227,11 @@ namespace BudgetExecution
         public ChartControl( BindingSource bindingSource )
             : this( )
         {
+            ChartBinding = new ChartBinding( bindingSource );
+            BindingSource = (BindingSource)ChartBinding;
             SeriesModel = new SeriesModel( bindingSource );
             DataSeries = new ChartDataSeries( bindingSource );
             SeriesConfig = SeriesModel.SeriesConfig;
-            BindingSource = DataSerie;
             DataMetric = new DataMetric( bindingSource );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
@@ -246,7 +250,8 @@ namespace BudgetExecution
             SeriesModel = new SeriesModel( bindingSource );
             DataSeries = new ChartDataSeries( bindingSource );
             SeriesConfig = seriesConfig;
-            BindingSource = new ChartBinding( bindingSource );
+            ChartBinding = new ChartBinding( bindingSource );
+            BindingSource = (BindingSource)ChartBinding;
             DataMetric = new DataMetric( bindingSource );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
@@ -263,13 +268,15 @@ namespace BudgetExecution
         public ChartControl( ISeries sourceModel )
             : this( )
         {
+            ChartBinding = sourceModel.ChartBinding;
+            BindingSource = (BindingSource)ChartBinding;
             SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( sourceModel.ChartBinding );
-            TableName = sourceModel.ChartBinding.DataTable.TableName;
-            Header.Text = TableName;
-            Text = Header.Text.SplitPascal( );
             DataMetric = new DataMetric( sourceModel.Data );
             DataSeries = new ChartDataSeries( sourceModel.Data );
+            TableName = ChartBinding.DataTable.TableName;
+            Header.Text = TableName;
+            Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );
         }
         /// <summary>
@@ -280,13 +287,15 @@ namespace BudgetExecution
         public ChartControl( DataTable dataTable, ISeriesConfig seriesConfig )
             : this( )
         {
+            ChartBinding = new ChartBinding( dataTable, seriesConfig );
+            BindingSource = (BindingSource)ChartBinding;
             SourceModel = new SeriesModel( dataTable, seriesConfig );
             SeriesConfig = seriesConfig;
             DataMetric = SourceModel.DataMetric;
+            DataSeries = new ChartDataSeries( dataTable );
             TableName = dataTable.TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
-            DataSeries = new ChartDataSeries( dataTable );
             Series.Add( DataSeries );
         }
 
@@ -298,13 +307,15 @@ namespace BudgetExecution
         public ChartControl( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : this( )
         {
+            ChartBinding = new ChartBinding( dataRows, seriesConfig );
+            BindingSource = (BindingSource)ChartBinding;
             SeriesConfig = seriesConfig;
             SeriesModel = new SeriesModel( dataRows, seriesConfig );
             DataMetric = SeriesModel.DataMetric;
+            DataSeries = new ChartDataSeries( dataRows );
             TableName = dataRows.CopyToDataTable( ).TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
-            DataSeries = new ChartDataSeries( dataRows );
             Series.Add( DataSeries );
         }
         
@@ -318,6 +329,8 @@ namespace BudgetExecution
         public ChartControl( ISeries sourceModel, ITitleInfo titleInfo )
             : this( )
         {
+            ChartBinding = sourceModel.ChartBinding;
+            BindingSource = (BindingSource)ChartBinding;
             SourceModel = sourceModel;
             SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
             TableName = sourceModel.ChartBinding.DataTable.TableName;
@@ -342,7 +355,9 @@ namespace BudgetExecution
             SeriesModel = seriesModel;
             SeriesConfig = seriesModel.SeriesConfig;
             SourceModel = seriesModel.SourceModel;
-            TableName = SourceModel.ChartBinding.DataTable.TableName;
+            ChartBinding = SourceModel.ChartBinding;
+            BindingSource = (BindingSource)ChartBinding;
+            TableName = ChartBinding.DataTable.TableName;
             Header.Text = titleInfo.GetMainText( ) ?? TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
