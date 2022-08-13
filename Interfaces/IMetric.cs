@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        IDictionary<string, double> CalculateTotals( IEnumerable<DataRow> dataRow, Field field,
+        double CalculateTotal( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount );
 
         /// <summary>

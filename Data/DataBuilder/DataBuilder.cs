@@ -84,18 +84,18 @@ namespace BudgetExecution
         }
         
         /// <summary> Filters the Data. </summary>
-        /// <param name = "field" > The field. </param>
-        /// <param name = "filter" > The filter. </param>
+        /// <param name = "name" > The field. </param>
+        /// <param name = "value" > The filter. </param>
         /// <returns> </returns>
-        public IEnumerable<DataRow> FilterData( Field field, string filter )
+        public IEnumerable<DataRow> FilterData( Field name, string value )
         {
-            if( Validate.IsField( field )
-                && !string.IsNullOrEmpty( filter ) )
+            if( Enum.IsDefined( typeof( Field ), name.ToString( ) )
+                && !string.IsNullOrEmpty( value ) )
             {
                 try
                 {
                     var _dataRows = GetData( )
-                            ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                            ?.Where( p => p.Field<string>( $"{ name }" ).Equals( value ) )
                             ?.Select( p => p );
 
                     return _dataRows?.Any( ) == true
@@ -124,12 +124,41 @@ namespace BudgetExecution
                     {
                         _query += $"{ kvp.Key } = '{ kvp.Value }' AND ";
                     }
-                     var _retString = _query.TrimEnd( " AND ".ToCharArray(  ) );
-                    var _data = DataTable.Select( _retString );
+                     var _criteria = _query.TrimEnd( " AND ".ToCharArray(  ) );
+                    var _data = DataTable?.Select( _criteria );
 
                     return _data?.Length > 0
                         ? _data
                         : default( IEnumerable<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary>
+        /// Filters the data.
+        /// </summary>
+        /// <param name="name">The field.</param>
+        /// <param name="value">The filter.</param>
+        /// <returns></returns>
+        public IEnumerable<DataRow> FilterData( string name, string value )
+        {
+            if( !string.IsNullOrEmpty( name ) 
+                && !string.IsNullOrEmpty( value ) )
+            {
+                try
+                {
+                    var _dataRows = DataTable.Select( $"{ name } = { value }" );
+
+                    return _dataRows?.Any( ) == true
+                        ? _dataRows.ToArray( )
+                        : default( DataRow[ ] );
                 }
                 catch( Exception ex )
                 {

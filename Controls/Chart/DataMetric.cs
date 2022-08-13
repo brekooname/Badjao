@@ -18,7 +18,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref = "MetricBase"/>
     /// <seealso cref = "IDataMetric"/>
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class DataMetric : MetricBase, IDataMetric
     {
         /// <summary>
@@ -47,6 +47,7 @@ namespace BudgetExecution
         public DataMetric( BindingSource bindingSource, Numeric numeric = Numeric.Amount )
             : base( bindingSource, numeric)
         {
+            Total = CalculateTotal( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
         }
@@ -54,6 +55,7 @@ namespace BudgetExecution
         public DataMetric( DataTable dataTable, Numeric numeric = Numeric.Amount )
             : base( dataTable, numeric )
         {
+            Total = CalculateTotal( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
         }
@@ -69,6 +71,7 @@ namespace BudgetExecution
         public DataMetric( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount ) 
             : base( dataRow, numeric )
         {
+            Total = CalculateTotal( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
         }
@@ -88,9 +91,9 @@ namespace BudgetExecution
         public DataMetric( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
             : base( dataRow, field, numeric )
         {
+            Total = CalculateTotal( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Statistics = CalculateStatistics( Data, Field, Numeric );
         }
 
         /// <summary>
@@ -254,16 +257,25 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public IDictionary<string, IEnumerable<double>> CalculateStatistics()
+        public IDictionary<string, double> CalculateStats()
         {
             try
             {
-                return Statistics;
+                var _dict = new Dictionary<string, double>( );
+                _dict.Add( "COUNT", double.Parse( Count.ToString( ) ) );
+                _dict.Add( "TOTAL", Total );
+                _dict.Add( "AVERAGE", Average );
+                _dict.Add( "DEVIATION", Deviation );
+                _dict.Add( "VARIANCE", Variance );
+
+                return _dict?.Any( ) == true
+                    ? _dict
+                    : default( IDictionary<string, double> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, IEnumerable<double>> );
+                return default( IDictionary<string, double> );
             }
         }
 
@@ -322,35 +334,32 @@ namespace BudgetExecution
         /// <returns>
         /// </returns>
         [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
-        public IEnumerable<double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
         {
             if( dataRow?.Any( ) == true
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-                    var _metrics = new[ ]
-                    {
-                        GetCount( dataRow, numeric ),
-                        CalculateTotals( dataRow, numeric ),
-                        CalculateAverage( dataRow, numeric ),
-                        CalculateTotals( dataRow, numeric ) / GetCount( dataRow, numeric ),
-                        CalculateDeviation( dataRow, numeric ),
-                        CalculateVariance( dataRow, numeric )
-                    };
+                    var _metrics = new Dictionary<string, double>(  );
+                    _metrics.Add( "COUNT", GetCount( dataRow, numeric ) );
+                    _metrics.Add( "TOTAL", CalculateTotal( dataRow, numeric ) );
+                    _metrics.Add( "AVERAGE", CalculateAverage( dataRow, numeric ) );
+                    _metrics.Add( "DEVIATION", CalculateDeviation( dataRow, numeric ) );
+                    _metrics.Add( "VARIANCE", CalculateVariance( dataRow, numeric ) );
 
-                    return _metrics.Any( )
+                    return _metrics?.Any( ) == true
                         ? _metrics
-                        : default( double[ ] );
+                        : default( IDictionary<string, double> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IEnumerable<double> );
+                    return default( IDictionary<string, double> );
                 }
             }
 
-            return default( IEnumerable<double> );
+            return default( IDictionary<string, double> );
         }
 
         /// <summary>
@@ -367,16 +376,15 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow,
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
             Field field, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
-                && Validate.IsField( field )
-                && Validate.Numeric( numeric ) )
+                && Enum.IsDefined( typeof( Field ), field )
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-                    var _dictionary = new Dictionary<string, IEnumerable<double>>( );
                     var _codes = GetCodes( dataRow, field );
 
                     if( _codes?.Any( ) == true )
@@ -384,28 +392,35 @@ namespace BudgetExecution
                         foreach( var filter in _codes )
                         {
                             var _select = dataRow
-                                ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                                ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
                                 ?.Select( p => p );
 
-                            if( CalculateTotals( _select, numeric ) > 0 )
+                            if( CalculateTotal( _select, numeric ) > 0 )
                             {
-                                _dictionary.Add( filter, CalculateStatistics( _select, numeric )?.ToArray( ) );
+                                var _statistics = CalculateStatistics( _select, numeric );
+
+                                return _statistics?.Count > 0.0
+                                    ? _statistics
+                                    : default( IDictionary<string, double> );
                             }
                         }
-
-                        return _dictionary?.Count > 0.0
-                            ? _dictionary
-                            : default( Dictionary<string, IEnumerable<double>> );
+                        
+                        return default( IDictionary<string, double> );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, IEnumerable<double>> );
+                    return default( IDictionary<string, double> );
                 }
             }
 
-            return default( IDictionary<string, IEnumerable<double>> );
+            return default( IDictionary<string, double> );
+        }
+
+        public IDictionary<string, IEnumerable<double>> CalculateStatistics()
+        {
+            throw new NotImplementedException( );
         }
     }
 }

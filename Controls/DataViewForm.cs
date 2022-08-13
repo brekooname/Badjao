@@ -4,7 +4,6 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
-    using System.Data;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
@@ -40,6 +39,9 @@
             }
         }
 
+        /// <summary>
+        /// Populates the ListBox items.
+        /// </summary>
         public void PopulateListBoxItems( )
         {
             PrimaryListBox.Items.Clear();

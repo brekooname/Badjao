@@ -33,7 +33,7 @@ namespace BudgetExecution
             ToolStrip.Office12Mode = true;
             BindingSource = bindingSource;
             ToolStrip.BindingSource = bindingSource;
-            Chart = new ChartControl( bindingSource, new SeriesConfig( ) )
+            Chart = new ChartControl( bindingSource )
             {
                 Dock = DockStyle.Fill
             };

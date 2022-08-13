@@ -53,17 +53,14 @@ namespace BudgetExecution
         /// Predicates the specified logic.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        /// <param name="logic">The logic.</param>
         /// <returns></returns>
-        public static string Predicate( this IDictionary<string, object> dict, Logic logic = Logic.AND )
+        public static string ToCriteria( this IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true
-                && Enum.IsDefined( typeof( Logic ), logic ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
-                    var _conjuction = logic.ToString( );
-                    var _string = "";
+                    var _criteria = "";
 
                     if( dict.HasPrimaryKey( ) )
                     {
@@ -74,11 +71,11 @@ namespace BudgetExecution
                         {
                             foreach( var kvp in dict )
                             {
-                                _string += $"{kvp.Key} = {kvp.Value}  {_conjuction} ";
+                                _criteria += $"{ kvp.Key } = { kvp.Value } AND ";
                             }
 
-                            var _sql = _string.TrimEnd( $"  {_conjuction} ".ToCharArray( ) );
-                            _sql += $" WHERE {_key.Key} = {int.Parse( _key.Value.ToString( ) )};";
+                            var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
+                            _sql += $" WHERE { _key.Key } = { int.Parse( _key.Value.ToString( ) ) };";
 
                             return !string.IsNullOrEmpty( _sql )
                                 ? _sql
@@ -89,10 +86,10 @@ namespace BudgetExecution
                     {
                         foreach( var kvp in dict )
                         {
-                            _string += $"{kvp.Key} = {kvp.Value} {_conjuction} ";
+                            _criteria += $"{ kvp.Key } = { kvp.Value } AND ";
                         }
 
-                        var _sql = _string.TrimEnd( $" {_conjuction} ".ToCharArray( ) );
+                        var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
 
                         return !string.IsNullOrEmpty( _sql )
                             ? _sql

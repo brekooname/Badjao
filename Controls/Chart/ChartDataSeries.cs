@@ -73,6 +73,7 @@ namespace BudgetExecution
         /// </summary>
         public ChartDataSeries()
         {
+
         }
 
         /// <summary>
