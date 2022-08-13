@@ -9,329 +9,25 @@ namespace BudgetExecution
     /// </summary>
     public enum Numeric
     {
-        //************************************************************************************ */
-        //*******************          Program Elements           **************************** */
-        //************************************************************************************ */
-
-        NS = 0,
+        /// <summary>
+        /// The accepted
+        /// </summary>
+        Accepted,
 
         /// <summary>
-        /// The identifier
+        /// The agency amount
         /// </summary>
-        Id,
+        AgencyAmount,
 
         /// <summary>
-        /// The year to date earned
+        /// The allocation percentage
         /// </summary>
-        YearToDateEarned,
-
-        /// <summary>
-        /// The year to date used
-        /// </summary>
-        YearToDateUsed,
-
-        /// <summary>
-        /// The maximum leave carryover
-        /// </summary>
-        MaxLeaveCarryover,
-
-        /// <summary>
-        /// The maximum carryover excess
-        /// </summary>
-        MaxCarryoverExcess,
-
-        /// <summary>
-        /// The projected pay period
-        /// </summary>
-        ProjectedPayPeriod,
-
-        /// <summary>
-        /// The projected annual
-        /// </summary>
-        ProjectedAnnual,
-
-        /// <summary>
-        /// The use or lose
-        /// </summary>
-        UseOrLose,
-
-        /// <summary>
-        /// The available hours
-        /// </summary>
-        AvailableHours,
-
-        /// <summary>
-        /// The annual base hours
-        /// </summary>
-        AnnualBaseHours,
-
-        /// <summary>
-        /// The cumulative benefits
-        /// </summary>
-        CumulativeBenefits,
-
-        /// <summary>
-        /// The annual other paid
-        /// </summary>
-        AnnualOtherPaid,
-
-        /// <summary>
-        /// The annual overtime hours
-        /// </summary>
-        AnnualOvertimeHours,
-
-        /// <summary>
-        /// The expended
-        /// </summary>
-        Expended,
-
-        //************************************************************* */
-        //**************       ProgramResultsCode-   ****************** */
-        //************************************************************* */
+        AllocationPercentage,
 
         /// <summary>
         /// The amount
         /// </summary>
         Amount,
-
-        //************************************************************* */
-        //**************        OUTLAY  FIELDS       ****************** */
-        //************************************************************* */
-
-        /// <summary>
-        /// The rate
-        /// </summary>
-        Rate,
-
-        /// <summary>
-        /// The obligations
-        /// </summary>
-        Obligations,
-
-        /// <summary>
-        /// The unliquidated obligations
-        /// </summary>
-        ULO,
-
-        /// <summary>
-        /// The deobligations
-        /// </summary>
-        Deobligations,
-
-        /// <summary>
-        /// The commitments
-        /// </summary>
-        Commitments,
-
-        /// <summary>
-        /// The open commitments
-        /// </summary>
-        OpenCommitments,
-
-        /// <summary>
-        /// The expenditures
-        /// </summary>
-        Expenditures,
-
-        /// <summary>
-        /// The authority
-        /// </summary>
-        Authority,
-
-        /// <summary>
-        /// The budgeted
-        /// </summary>
-        Budgeted,
-
-        /// <summary>
-        /// The posted
-        /// </summary>
-        Posted,
-
-        /// <summary>
-        /// The balance
-        /// </summary>
-        Balance,
-
-        /// <summary>
-        /// The hours
-        /// </summary>
-        Hours,
-
-        /// <summary>
-        /// The carry in
-        /// </summary>
-        CarryIn,
-
-        /// <summary>
-        /// The carry out
-        /// </summary>
-        CarryOut,
-
-        /// <summary>
-        /// The available
-        /// </summary>
-        Available,
-
-        /// <summary>
-        /// The estimated reimbursments
-        /// </summary>
-        EstimatedReimbursments,
-
-        /// <summary>
-        /// The estimated recoveries
-        /// </summary>
-        EstimatedRecoveries,
-
-        //************************************************************* */
-        //**************  PAYROLL ACTIVITY NUMERIC FIELDS  ************ */
-        //************************************************************* */
-
-        /// <summary>
-        /// The annual overtime paid
-        /// </summary>
-        Benefits,
-
-        /// <summary>
-        /// The annual base paid
-        /// </summary>
-        BasePaid,
-
-        /// <summary>
-        /// The annual other hours
-        /// </summary>
-        BaseHours,
-
-        /// <summary>
-        /// The allocation percentage
-        /// </summary>
-        OvertimePaid,
-
-        /// <summary>
-        /// The compensation rate
-        /// </summary>
-        OvertimeHours,
-
-        //************************************************************************************ */
-        //*******************              Procurements             ************************** */
-        //************************************************************************************ */
-
-        /// <summary>
-        /// The ordered
-        /// </summary>
-        Ordered,
-
-        //************************************************************************************ */
-        //*******************              ReferenceTables             ************************** */
-        //************************************************************************************ */   
-
-        /// <summary>
-        /// The requested
-        /// </summary>
-        Requested,
-
-        /// <summary>
-        /// The closed
-        /// </summary>
-        Closed,
-
-        /// <summary>
-        /// The outstanding
-        /// </summary>
-        Outstanding,
-
-        /// <summary>
-        /// The reversed
-        /// </summary>
-        Reversed,
-
-        /// <summary>
-        /// The disbursed
-        /// </summary>
-        Disbursements,
-
-        //************************************************************************************ */
-        //*******************       CarryoverOutlays              **************************** */
-        //************************************************************************************ */
-
-        /// <summary>
-        /// The carryover
-        /// </summary>
-        Carryover,
-
-        /// <summary>
-        /// The carryover outlays
-        /// </summary>
-        CarryoverOutlays,
-
-        /// <summary>
-        /// The delta
-        /// </summary>
-        Delta,
-
-        /// <summary>
-        /// The available balance
-        /// </summary>
-        AvailableBalance,
-
-        /// <summary>
-        /// The current year adjustment
-        /// </summary>
-        CurrentYearAdjustment,
-
-        /// <summary>
-        /// The budget year adjustment
-        /// </summary>
-        BudgetYearAdjustment,
-
-        /// <summary>
-        /// The current year
-        /// </summary>
-        CurrentYear,
-
-        //************************************************************************************ */
-        //*******************      BudgetResourceExectuion        **************************** */
-        //************************************************************************************ */
-
-        /// <summary>
-        /// The november
-        /// </summary>
-        November,
-
-        /// <summary>
-        /// The january
-        /// </summary>
-        January,
-
-        /// <summary>
-        /// The feburary
-        /// </summary>
-        Feburary,
-
-        /// <summary>
-        /// The april
-        /// </summary>
-        April,
-
-        /// <summary>
-        /// The may
-        /// </summary>
-        May,
-
-        /// <summary>
-        /// The june
-        /// </summary>
-        June,
-
-        /// <summary>
-        /// The august
-        /// </summary>
-        August,
-
-        /// <summary>
-        /// The october
-        /// </summary>
-        October,
 
         /// <summary>
         /// The amount1
@@ -353,38 +49,320 @@ namespace BudgetExecution
         /// </summary>
         Amount4,
 
-        //************************************************************************************ */
-        //*******************            SF Site Activity         **************************** */
-        //************************************************************************************ */
+        /// <summary>
+        /// The annual base hours
+        /// </summary>
+        AnnualBaseHours,
 
         /// <summary>
-        /// The accepted
+        /// The annual other paid
         /// </summary>
-        Accepted,
+        AnnualOtherPaid,
 
         /// <summary>
-        /// The refunded
+        /// The annual overtime hours
         /// </summary>
-        Refunded,
+        AnnualOvertimeHours,
 
         /// <summary>
-        /// The reversal
+        /// The april
         /// </summary>
-        Reversal,
-
-        //************************************************************************************ */
-        //*******************            BudgetOutlays           **************************** */
-        //************************************************************************************ */
+        April,
 
         /// <summary>
-        /// The prior year
+        /// The august
         /// </summary>
-        PriorYear,
+        August,
+
+        /// <summary>
+        /// The authority
+        /// </summary>
+        Authority,
+
+        /// <summary>
+        /// The available
+        /// </summary>
+        Available,
+
+        /// <summary>
+        /// The available balance
+        /// </summary>
+        AvailableBalance,
+
+        /// <summary>
+        /// The available hours
+        /// </summary>
+        AvailableHours,
+
+        /// <summary>
+        /// The balance
+        /// </summary>
+        Balance,
+
+        /// <summary>
+        /// The base hours
+        /// </summary>
+        BaseHours,
+
+        /// <summary>
+        /// The base paid
+        /// </summary>
+        BasePaid,
+
+        /// <summary>
+        /// The beginning balance
+        /// </summary>
+        BeginningBalance,
+
+        /// <summary>
+        /// The benefits
+        /// </summary>
+        Benefits,
+
+        /// <summary>
+        /// The budget amount
+        /// </summary>
+        BudgetAmount,
+
+        /// <summary>
+        /// The budget authority
+        /// </summary>
+        BudgetAuthority,
+
+        /// <summary>
+        /// The budget year
+        /// </summary>
+        BudgetYear,
+
+        /// <summary>
+        /// The budget year adjustment
+        /// </summary>
+        BudgetYearAdjustment,
+
+        /// <summary>
+        /// The budget year rate
+        /// </summary>
+        BudgetYearRate,
+
+        /// <summary>
+        /// The budgeted
+        /// </summary>
+        Budgeted,
+
+        /// <summary>
+        /// The carry in
+        /// </summary>
+        CarryIn,
+
+        /// <summary>
+        /// The carry out
+        /// </summary>
+        CarryOut,
+
+        /// <summary>
+        /// The carryover
+        /// </summary>
+        Carryover,
+
+        /// <summary>
+        /// The carryover outlays
+        /// </summary>
+        CarryoverOutlays,
+
+        /// <summary>
+        /// The closed
+        /// </summary>
+        Closed,
+
+        /// <summary>
+        /// The closing amount
+        /// </summary>
+        ClosingAmount,
+
+        /// <summary>
+        /// The collections
+        /// </summary>
+        Collections,
+
+        /// <summary>
+        /// The commitments
+        /// </summary>
+        Commitments,
+
+        /// <summary>
+        /// The credit balance
+        /// </summary>
+        CreditBalance,
+
+        /// <summary>
+        /// The cumulative benefits
+        /// </summary>
+        CumulativeBenefits,
+
+        /// <summary>
+        /// The cumulative reciepts
+        /// </summary>
+        CumulativeReciepts,
+
+        /// <summary>
+        /// The current year
+        /// </summary>
+        CurrentYear,
+
+        /// <summary>
+        /// The current year adjustment
+        /// </summary>
+        CurrentYearAdjustment,
+
+        /// <summary>
+        /// The debit balance
+        /// </summary>
+        DebitBalance,
+
+        /// <summary>
+        /// The delta
+        /// </summary>
+        Delta,
+
+        /// <summary>
+        /// The deobligations
+        /// </summary>
+        Deobligations,
+
+        /// <summary>
+        /// The disbursements
+        /// </summary>
+        Disbursements,
+
+        /// <summary>
+        /// The estimate
+        /// </summary>
+        Estimate,
+
+        /// <summary>
+        /// The estimated recoveries
+        /// </summary>
+        EstimatedRecoveries,
+
+        /// <summary>
+        /// The estimated reimbursements
+        /// </summary>
+        EstimatedReimbursements,
+
+        /// <summary>
+        /// The estimated reimbursments
+        /// </summary>
+        EstimatedReimbursments,
+
+        /// <summary>
+        /// The expended
+        /// </summary>
+        Expended,
+
+        /// <summary>
+        /// The expenditures
+        /// </summary>
+        Expenditures,
+
+        /// <summary>
+        /// The feburary
+        /// </summary>
+        Feburary,
+
+        /// <summary>
+        /// The growth rate
+        /// </summary>
+        GrowthRate,
+
+        /// <summary>
+        /// The hours
+        /// </summary>
+        Hours,
+
+        /// <summary>
+        /// The identifier
+        /// </summary>
+        Id,
+
+        /// <summary>
+        /// The january
+        /// </summary>
+        January,
+
+        /// <summary>
+        /// The june
+        /// </summary>
+        June,
+
+        /// <summary>
+        /// The maximum carryover excess
+        /// </summary>
+        MaxCarryoverExcess,
+
+        /// <summary>
+        /// The maximum leave carryover
+        /// </summary>
+        MaxLeaveCarryover,
+
+        /// <summary>
+        /// The may
+        /// </summary>
+        May,
+
+        /// <summary>
+        /// The ns
+        /// </summary>
+        NS,
+
+        /// <summary>
+        /// The november
+        /// </summary>
+        November,
+
+        /// <summary>
+        /// The obligation rate
+        /// </summary>
+        ObligationRate,
+
+        /// <summary>
+        /// The obligations
+        /// </summary>
+        Obligations,
+
+        /// <summary>
+        /// The october
+        /// </summary>
+        October,
+
+        /// <summary>
+        /// The open commitments
+        /// </summary>
+        OpenCommitments,
+
+        /// <summary>
+        /// The ordered
+        /// </summary>
+        Ordered,
+
+        /// <summary>
+        /// The original amount
+        /// </summary>
+        OriginalAmount,
 
         /// <summary>
         /// The out year1
         /// </summary>
         OutYear1,
+
+        /// <summary>
+        /// The out year10
+        /// </summary>
+        OutYear10,
+
+        /// <summary>
+        /// The out year11
+        /// </summary>
+        OutYear11,
 
         /// <summary>
         /// The out year2
@@ -427,23 +405,79 @@ namespace BudgetExecution
         OutYear9,
 
         /// <summary>
-        /// The out year10
+        /// The outstanding
         /// </summary>
-        OutYear10,
+        Outstanding,
 
         /// <summary>
-        /// The out year11
+        /// The overtime hours
         /// </summary>
-        OutYear11,
-
-        //************************************************************************************ */
-        //*******************           SF Site Obligations       **************************** */
-        //************************************************************************************ */
+        OvertimeHours,
 
         /// <summary>
-        /// The collections
+        /// The overtime paid
         /// </summary>
-        Collections,
+        OvertimePaid,
+
+        /// <summary>
+        /// The posted
+        /// </summary>
+        Posted,
+
+        /// <summary>
+        /// The prior year
+        /// </summary>
+        PriorYear,
+
+        /// <summary>
+        /// The projected annual
+        /// </summary>
+        ProjectedAnnual,
+
+        /// <summary>
+        /// The projected pay period
+        /// </summary>
+        ProjectedPayPeriod,
+
+        /// <summary>
+        /// The rate
+        /// </summary>
+        Rate,
+
+        /// <summary>
+        /// The refunded
+        /// </summary>
+        Refunded,
+
+        /// <summary>
+        /// The requested
+        /// </summary>
+        Requested,
+
+        /// <summary>
+        /// The reversal
+        /// </summary>
+        Reversal,
+
+        /// <summary>
+        /// The reversed
+        /// </summary>
+        Reversed,
+
+        /// <summary>
+        /// The spending rate
+        /// </summary>
+        SpendingRate,
+
+        /// <summary>
+        /// The total spendout
+        /// </summary>
+        TotalSpendout,
+
+        /// <summary>
+        /// The ulo
+        /// </summary>
+        ULO,
 
         /// <summary>
         /// The unpaid balances
@@ -451,8 +485,18 @@ namespace BudgetExecution
         UnpaidBalances,
 
         /// <summary>
-        /// The cumulative reciepts
+        /// The use or lose
         /// </summary>
-        CumulativeReciepts
+        UseOrLose,
+
+        /// <summary>
+        /// The year to date earned
+        /// </summary>
+        YearToDateEarned,
+
+        /// <summary>
+        /// The year to date used
+        /// </summary>
+        YearToDateUsed
     }
 }

@@ -10,7 +10,6 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
-    using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
@@ -65,12 +64,13 @@ namespace BudgetExecution
             : base( bindingSource )
         {
             ChartBinding = new ChartBinding( bindingSource );
-            BindingModel = new ChartDataBindModel( ChartBinding );
             Data = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             BindingModel.Changed += OnChanged;
         }
 
@@ -78,12 +78,13 @@ namespace BudgetExecution
             : base( dataTable )
         {
             ChartBinding = new ChartBinding( dataTable );
-            BindingModel = new ChartDataBindModel( ChartBinding );
             Data = ChartBinding.Data;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             BindingModel.Changed += OnChanged;
         }
 
@@ -97,12 +98,13 @@ namespace BudgetExecution
             : base( chartBinding )
         {
             ChartBinding = chartBinding;
-            BindingModel = new ChartDataBindModel( ChartBinding );
             Data = chartBinding.Data;
             SeriesConfig = chartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             BindingModel.Changed += OnChanged;
         }
 
@@ -114,12 +116,13 @@ namespace BudgetExecution
             : base( dataRows )
         {
             ChartBinding = new ChartBinding( dataRows );
-            BindingModel = new ChartDataBindModel( ChartBinding );
             Data = dataRows;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             BindingModel.Changed += OnChanged;
         }
 
@@ -132,12 +135,13 @@ namespace BudgetExecution
             : base( dataTable, seriesConfig )
         {
             ChartBinding = new ChartBinding( dataTable, seriesConfig );
-            BindingModel = new ChartDataBindModel( ChartBinding );
             Data = dataTable.AsEnumerable( )?.ToList( );
             SeriesConfig = seriesConfig;
             Stat = seriesConfig.ValueMetric;
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             BindingModel.Changed += OnChanged;
         }
 
@@ -150,12 +154,13 @@ namespace BudgetExecution
             : base( dataRows, seriesConfig )
         {
             ChartBinding = new ChartBinding( dataRows, seriesConfig );
-            BindingModel = new ChartDataBindModel( ChartBinding );
             Data = dataRows;
             SeriesConfig = ChartBinding.SeriesConfig;
             Stat = seriesConfig.ValueMetric;
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             BindingModel.Changed += OnChanged;
         }
         
@@ -181,28 +186,7 @@ namespace BudgetExecution
                 return default( IEnumerable<double> );
             }
         }
-
-        /// <summary>
-        /// Gets the series categories.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<string> GetSeriesCategories( )
-        {
-            try
-            {
-                var _values = SeriesData?.Keys;
-
-                return _values?.Any( ) == true
-                    ? _values.ToArray( )
-                    : default( string[ ] );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<string> );
-            }
-        }
-
+        
         /// <summary>
         /// Gets the source model.
         /// </summary>

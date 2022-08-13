@@ -605,7 +605,7 @@
     <Compile Include="Abstractions\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesConfig.cs" />
-    <Compile Include="Controls\Chart\SeriesModel.cs" />
+    <Compile Include="Controls\Chart\SeriesBindingModel.cs" />
     <Compile Include="Abstractions\SeriesBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
     <Compile Include="Controls\DataGridForm.cs">

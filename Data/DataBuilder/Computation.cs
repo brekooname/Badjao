@@ -8,7 +8,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
 
     /// <summary>
     /// 
@@ -40,42 +39,6 @@ namespace BudgetExecution
         public Computation( IDataAccess data )
         {
             Data = data.GetData( );
-        }
-
-        /// <summary>
-        /// Gets the Data.
-        /// </summary>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <param name = "filter" >
-        /// </param>
-        /// <returns>
-        /// </returns>
-        public IEnumerable<DataRow> FilterData( Field field, string filter )
-        {
-            if( Data?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && !string.IsNullOrEmpty( filter ) )
-            {
-                try
-                {
-                    var _select = Data
-                        ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
-                        ?.Select( p => p );
-
-                    return _select?.Any( ) == true
-                        ? _select.ToArray( )
-                        : default( DataRow[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
-            }
-
-            return default( IEnumerable<DataRow> );
         }
     }
 }

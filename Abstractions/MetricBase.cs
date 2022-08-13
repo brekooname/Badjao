@@ -174,7 +174,8 @@ namespace BudgetExecution
         public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, Field field )
         {
             if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field ) )
+                && Enum.IsDefined( typeof( Field ), field )
+                && field != Field.NS )
             {
                 try
                 {
@@ -197,6 +198,38 @@ namespace BudgetExecution
             return default( IEnumerable<string> );
         }
 
+        /// <summary>
+        /// Gets the codes.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="filter">The filter.</param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, string filter )
+        {
+            if( dataRow?.Any( ) == true
+                && !string.IsNullOrEmpty( filter ) )
+            {
+                try
+                {
+                    var _query = dataRow
+                        ?.Select( p => p.Field<string>( filter ) )
+                        ?.Distinct( )
+                        ?.ToArray( );
+
+                    return _query.Length > 0
+                        ? _query
+                        : default( string[ ] );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<string> );
+                }
+            }
+
+            return default( IEnumerable<string> );
+        }
+        
         /// <summary>
         /// Gets the count.
         /// </summary>

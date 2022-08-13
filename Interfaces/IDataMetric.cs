@@ -47,7 +47,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        double CalculateDeviations( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount );
+        double CalculateDeviation( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount );
 
         /// <summary>
         /// Calculates the variance.
@@ -93,7 +93,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        double CalculateVariances( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount );
+        double CalculateVariance( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount );
 
         /// <summary>
         /// Calculates the statistics.

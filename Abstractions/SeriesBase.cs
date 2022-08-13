@@ -92,13 +92,7 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         protected SeriesBase( BindingSource bindingSource )
         {
-            ChartBinding = new ChartBinding( bindingSource );
             BindingModel = new ChartDataBindModel( bindingSource );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = ChartBinding.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>
@@ -107,13 +101,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The data table.</param>
         protected SeriesBase( DataTable dataTable )
         {
-            ChartBinding = new ChartBinding( dataTable );
             BindingModel = new ChartDataBindModel( dataTable );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = ChartBinding.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>
@@ -122,13 +110,7 @@ namespace BudgetExecution
         /// <param name="dataRows">The data rows.</param>
         protected SeriesBase( IEnumerable<DataRow> dataRows )
         {
-            ChartBinding = new ChartBinding( dataRows );
             BindingModel = new ChartDataBindModel( dataRows );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = ChartBinding.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>
@@ -137,13 +119,7 @@ namespace BudgetExecution
         /// <param name="chartBinding">The binding source.</param>
         protected SeriesBase( IChartBinding chartBinding )
         {
-            ChartBinding = chartBinding;
             BindingModel = new ChartDataBindModel( chartBinding );
-            Data = chartBinding.Data;
-            SeriesConfig = chartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = chartBinding.DataMetric;
-            SeriesData = DataMetric?.CalculateStatistics( );
         }
 
         /// <summary>
