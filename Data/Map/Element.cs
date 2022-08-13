@@ -40,7 +40,7 @@ namespace BudgetExecution
         /// <summary>
         /// The default
         /// </summary>
-        public static readonly IElement Default = new Element( Field.NS );
+        public static readonly IElement Default = new Element( );
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
@@ -129,7 +129,7 @@ namespace BudgetExecution
         /// </returns>
         public override bool IsMatch( IDataUnit dataUnit )
         {
-            if( Verify.IsRef( dataUnit ) )
+            if( dataUnit != null )
             {
                 try
                 {
@@ -182,7 +182,7 @@ namespace BudgetExecution
         /// <param name = "columnName" > </param>
         protected virtual void SetName( DataRow dataRow, string columnName )
         {
-            if( Verify.IsRow( dataRow )
+            if( dataRow != null
                 && !string.IsNullOrEmpty( columnName )
                 && Enum.GetNames( typeof( Field ) )?.Contains( columnName ) == true )
             {
@@ -193,7 +193,7 @@ namespace BudgetExecution
 
                     Name = _names?.Contains( columnName ) == true
                         ? columnName
-                        : Field.NS.ToString( );
+                        : dataRow.Table.TableName;
                 }
                 catch( Exception ex )
                 {
@@ -212,9 +212,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Name = Validate.IsField( field )
+                    Name = Enum.IsDefined( typeof( Field ), field )
                         ? field.ToString( )
-                        : Field.NS.ToString( );
+                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
@@ -230,7 +230,7 @@ namespace BudgetExecution
         /// <param name = "field" > </param>
         protected virtual void SetName( DataRow dataRow, Field field )
         {
-            if( Verify.IsRow( dataRow )
+            if( dataRow != null
                 && Validate.IsField( field ) )
             {
                 try
@@ -240,7 +240,7 @@ namespace BudgetExecution
 
                     Name = _columnNames?.Contains( field.ToString( ) ) == true
                         ? field.ToString( )
-                        : Field.NS.ToString( );
+                        : dataRow.Table.TableName;
                 }
                 catch( Exception ex )
                 {
@@ -263,8 +263,8 @@ namespace BudgetExecution
                     var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
 
                     Field = !Enum.IsDefined( typeof( Field ), _input )
-                        ? Field
-                        : Field.NS;
+                        ? (Field)Enum.Parse( typeof( Field ), fieldName )
+                        : default( Field );
                 }
                 catch( Exception ex )
                 {
@@ -280,8 +280,9 @@ namespace BudgetExecution
         /// <param name = "fieldName" > </param>
         protected virtual void SetField( DataRow dataRow, string fieldName )
         {
-            if( Verify.IsRow( dataRow )
-                && !string.IsNullOrEmpty( fieldName ) )
+            if( dataRow != null
+                && !string.IsNullOrEmpty( fieldName )
+                && Enum.GetNames( typeof( Field ) )?.Contains( fieldName ) == true ) 
             {
                 try
                 {
@@ -289,11 +290,9 @@ namespace BudgetExecution
                     var _names = dataRow.Table?.GetColumnNames( );
 
                     if( _names?.Any( ) == true
-                        && _names?.Contains( $"{_input}" ) == true )
+                        && _names?.Contains( $" {_input }" ) == true )
                     {
-                        Field = Enum.GetNames( typeof( Field ) )?.Contains( $"{_input}" ) == true
-                            ? _input
-                            : Field.NS;
+                        Field = (Field)Enum.Parse( typeof( Field ), fieldName );
                     }
                 }
                 catch( Exception ex )
@@ -311,9 +310,9 @@ namespace BudgetExecution
         {
             try
             {
-                Field = Validate.IsField( field )
+                Field = Enum.IsDefined( typeof( Field ), field )
                     ? field
-                    : Field.NS;
+                    : default( Field );
             }
             catch( Exception ex )
             {
@@ -338,7 +337,7 @@ namespace BudgetExecution
 
                     Field = _names?.Contains( field.ToString( ) ) == true
                         ? field
-                        : Field.NS;
+                        : default( Field );
                 }
                 catch( Exception ex )
                 {
@@ -373,7 +372,7 @@ namespace BudgetExecution
         /// <param name = "columnName" > </param>
         protected virtual void SetValue( DataRow dataRow, string columnName )
         {
-            if( Verify.IsRow( dataRow )
+            if( dataRow != null
                 && !string.IsNullOrEmpty( columnName )
                 && Enum.GetNames( typeof( Field ) ).Contains( columnName ) )
             {
@@ -384,7 +383,7 @@ namespace BudgetExecution
 
                     Value = _names?.Contains( columnName ) == true
                         ? dataRow[ columnName ]?.ToString( )
-                        : Field.NS.ToString( );
+                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
@@ -400,8 +399,8 @@ namespace BudgetExecution
         /// <param name = "field" > </param>
         protected virtual void SetValue( DataRow dataRow, Field field )
         {
-            if( Verify.IsRow( dataRow )
-                && Validate.IsField( field ) )
+            if( dataRow != null
+               && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -409,8 +408,8 @@ namespace BudgetExecution
                         ?.GetColumnNames( );
 
                     Value = _names?.Contains( field.ToString( ) ) == true
-                        ? dataRow[ $"{field}" ]?.ToString( )
-                        : Field.NS.ToString( );
+                        ? dataRow[ $"{ field }" ]?.ToString( )
+                        : string.Empty;
                 }
                 catch( Exception ex )
                 {

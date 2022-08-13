@@ -88,7 +88,6 @@ namespace BudgetExecution
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Source = (Source)Enum.Parse( typeof( Source ),( (DataTable)bindingSource.DataSource ).TableName );
             Numeric = numeric;
-            Field = Field.NS;
             Total = CalculateTotal( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
@@ -123,7 +122,6 @@ namespace BudgetExecution
             TableName = dataTable.TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             Numeric = numeric;
-            Field = Field.NS;
             Count = Data.Count( );
             Total = CalculateTotal( Data, numeric );
             Average = CalculateAverage( Data, numeric );
@@ -140,7 +138,6 @@ namespace BudgetExecution
             TableName = dataRow.CopyToDataTable( ).TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
             Numeric = numeric;
-            Field = Field.NS;
             Count = dataRow.Count( );
             Total = CalculateTotal( dataRow, numeric );
             Average = CalculateAverage( dataRow, numeric );
@@ -174,8 +171,7 @@ namespace BudgetExecution
         public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, Field field )
         {
             if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && field != Field.NS )
+                && Enum.IsDefined( typeof( Field ), field ))
             {
                 try
                 {
@@ -202,23 +198,32 @@ namespace BudgetExecution
         /// Gets the codes.
         /// </summary>
         /// <param name="dataRow">The data row.</param>
-        /// <param name="filter">The filter.</param>
+        /// <param name = "dict" > </param>
         /// <returns></returns>
-        public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, string filter )
+        public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict )
         {
             if( dataRow?.Any( ) == true
-                && !string.IsNullOrEmpty( filter ) )
+                && dict?.Any( ) == true )
             {
                 try
                 {
-                    var _query = dataRow
-                        ?.Select( p => p.Field<string>( filter ) )
-                        ?.Distinct( )
-                        ?.ToArray( );
+                    var _criteria = dict?.ToCriteria( );
+                    if( !string.IsNullOrEmpty( _criteria ) )
+                    {
+                        var _query = dataRow.CopyToDataTable( ).Select( _criteria );
+                        var _columns = _query.CopyToDataTable( ).Columns;
+                        var _names = new string[ _columns.Count ];
 
-                    return _query.Length > 0
-                        ? _query
-                        : default( string[ ] );
+                        for( var i = 0; i < _columns.Count; i++ )
+                        {
+                            _names[ i ] = _columns[ i ].ColumnName;
+                        }
+
+                        return _names.Length > 0
+                            ? _names
+                            : default( string[ ] );
+                    }
+
                 }
                 catch( Exception ex )
                 {

@@ -84,7 +84,7 @@ namespace BudgetExecution
             {
                 Field = Enum.IsDefined( typeof( Field ), field )
                     ? field
-                    : Field.NS;
+                    : default( Field );
             }
             catch( Exception ex )
             {

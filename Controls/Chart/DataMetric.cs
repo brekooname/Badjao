@@ -52,11 +52,9 @@ namespace BudgetExecution
         public DataMetric( BindingSource bindingSource, Numeric numeric = Numeric.Amount )
             : base( bindingSource, numeric)
         {
-            Count = GetCount( Data, Numeric );
-            Total = CalculateTotal( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -67,11 +65,9 @@ namespace BudgetExecution
         public DataMetric( DataTable dataTable, Numeric numeric = Numeric.Amount )
             : base( dataTable, numeric )
         {
-            Count = GetCount( Data, Numeric );
-            Total = CalculateTotal( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -86,11 +82,9 @@ namespace BudgetExecution
         public DataMetric( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount ) 
             : base( dataRow, numeric )
         {
-            Count = GetCount( Data, Numeric );
-            Total = CalculateTotal( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -108,11 +102,9 @@ namespace BudgetExecution
         public DataMetric( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
             : base( dataRow, field, numeric )
         {
-            Count = GetCount( Data, Numeric );
-            Total = CalculateTotal( Data, Numeric );
-            Average = CalculateAverage( Data, Numeric );
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -297,32 +289,74 @@ namespace BudgetExecution
         /// <returns>
         /// </returns>
         [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
-        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
+        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
         {
             if( dataRow?.Any( ) == true
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-                    var _metrics = new Dictionary<string, double>(  );
-                    _metrics.Add( "COUNT", GetCount( dataRow, numeric ) );
-                    _metrics.Add( "TOTAL", CalculateTotal( dataRow, numeric ) );
-                    _metrics.Add( "AVERAGE", CalculateAverage( dataRow, numeric ) );
-                    _metrics.Add( "DEVIATION", CalculateDeviation( dataRow, numeric ) );
-                    _metrics.Add( "VARIANCE", CalculateVariance( dataRow, numeric ) );
 
-                    return _metrics?.Any( ) == true
-                        ? _metrics
-                        : default( IDictionary<string, double> );
+                    if( CalculateTotal( dataRow, Field, numeric ) > 0 )
+                    {
+                        var _statistics = CalculateStatistics( dataRow, Field, numeric );
+
+                        return _statistics?.Count > 0.0
+                            ? _statistics
+                            : default( IDictionary<string, IEnumerable<double>> );
+                    }
+
+                    return default( IDictionary<string, IEnumerable<double>> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, double> );
+                    return default( IDictionary<string, IEnumerable<double>> );
                 }
             }
 
-            return default( IDictionary<string, double> );
+            return default( IDictionary<string, IEnumerable<double>> );
+        }
+
+        /// <summary>
+        /// Calculates the statistics.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name = "dict" > </param>
+        /// <param name="numeric">The numeric.</param>
+        /// <returns></returns>
+        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow,
+            IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        {
+            if( dataRow?.Any( ) == true
+                && dict?.Any( ) == true
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
+            {
+                try
+                {
+                    var _criteria = dict.ToCriteria( );
+                    var _table = dataRow.CopyToDataTable( );
+                    var _select = _table.Select( _criteria );
+
+                    if( CalculateTotal( _select, Field, numeric ) > 0 )
+                    {
+                        var _statistics = CalculateStatistics( _select, Field,  numeric );
+
+                        return _statistics?.Count > 0.0
+                            ? _statistics
+                            : default( IDictionary<string, IEnumerable<double>> );
+                    }
+
+                    return default( IDictionary<string, IEnumerable<double>> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, IEnumerable<double>> );
+                }
+            }
+
+            return default( IDictionary<string, IEnumerable<double>> );
         }
 
         /// <summary>
@@ -339,7 +373,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
+        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow,
             Field field, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -355,30 +389,30 @@ namespace BudgetExecution
                         foreach( var filter in _codes )
                         {
                             var _select = dataRow
-                                ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
+                                ?.Where( p => p.Field<string>( field.ToString( ) ).Equals( filter ) )
                                 ?.Select( p => p );
 
-                            if( CalculateTotal( _select, numeric ) > 0 )
+                            if( CalculateTotal( _select, Field, numeric ) > 0 )
                             {
                                 var _statistics = CalculateStatistics( _select, numeric );
 
                                 return _statistics?.Count > 0.0
                                     ? _statistics
-                                    : default( IDictionary<string, double> );
+                                    : default( IDictionary<string, IEnumerable<double>> );
                             }
                         }
                         
-                        return default( IDictionary<string, double> );
+                        return default( IDictionary<string, IEnumerable<double>> );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, double> );
+                    return default( IDictionary<string, IEnumerable<double>>);
                 }
             }
 
-            return default( IDictionary<string, double> );
+            return default( IDictionary<string, IEnumerable<double>> );
         }
 
         /// <summary>
@@ -389,23 +423,27 @@ namespace BudgetExecution
         {
             try
             {
-                var _statistics = new Dictionary<string, IEnumerable<double>>( );
                 var _codes = GetCodes( Data, Field );
                 if( _codes?.Any( ) == true )
                 {
                     foreach( var filter in _codes )
                     {
-                        _statistics.Add( filter, CalculateStatistics( Data, Field, Numeric ).Values );
-                    }
+                        var _select = Data
+                            ?.Where( p => p.Field<string>( $"{ Field }" ).Equals( filter ) )
+                            ?.Select( p => p );
 
-                    return _statistics?.Any(  ) == true
-                        ? _statistics
-                        : default( IDictionary<string, IEnumerable<double>> );
+                        if( CalculateTotal( _select, Field, Numeric ) > 0 )
+                        {
+                            var _statistics = CalculateStatistics( _select, Field, Numeric );
+
+                            return _statistics?.Count > 0.0
+                                ? _statistics
+                                : default( IDictionary<string, IEnumerable<double>> );
+                        }
+                    }
                 }
 
-                return _statistics?.Any( ) == true
-                    ? _statistics
-                    : default( IDictionary<string, IEnumerable<double>> );
+                return default( IDictionary<string, IEnumerable<double>> );
             }
             catch( Exception ex )
             {

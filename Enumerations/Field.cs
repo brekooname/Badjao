@@ -835,12 +835,7 @@ namespace BudgetExecution
         /// The modified date
         /// </summary>
         ModifiedDate,
-
-        /// <summary>
-        /// The ns
-        /// </summary>
-        NS,
-
+        
         /// <summary>
         /// The name
         /// </summary>

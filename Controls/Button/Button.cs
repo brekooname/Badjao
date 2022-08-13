@@ -136,7 +136,6 @@ namespace BudgetExecution
         {
             Size = size;
             Location = location;
-            Field = Field.NS;
         }
 
         /// <summary>
@@ -151,7 +150,6 @@ namespace BudgetExecution
             : this( size, location )
         {
             Parent = parent;
-            Field = Field.NS;
         }
 
         /// <summary>
@@ -168,7 +166,6 @@ namespace BudgetExecution
             : this( size, location, parent )
         {
             Text = text;
-            Field = Field.NS;
         }
 
         /// <summary>
@@ -183,7 +180,6 @@ namespace BudgetExecution
         {
             Parent = parent;
             Text = text;
-            Field = Field.NS;
         }
 
         /// <summary>
@@ -196,7 +192,6 @@ namespace BudgetExecution
             : this( )
         {
             Parent = parent;
-            Field = Field.NS;
         }
 
         /// <summary>

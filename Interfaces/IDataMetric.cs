@@ -98,6 +98,15 @@ namespace BudgetExecution
         /// <summary>
         /// Calculates the statistics.
         /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="numeric">The numeric.</param>
+        /// <returns></returns>
+        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric );
+
+        /// <summary>
+        /// Calculates the statistics.
+        /// </summary>
         /// <param name = "dataRow" >
         /// The dataRow.
         /// </param>
@@ -106,7 +115,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric );
+        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric );
 
         /// <summary>
         /// Calculates the statistics.
@@ -122,7 +131,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Field field,
+        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount );
     }
 }
