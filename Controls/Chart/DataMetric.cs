@@ -54,7 +54,23 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
+        }
+
+        public DataMetric( BindingSource bindingSource, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+            : base( bindingSource, dict, numeric )
+        {
+            Variance = CalculateVariance( Data, Numeric );
+            Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
+        }
+
+        public DataMetric( BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
+            : base( bindingSource, field, numeric )
+        {
+            Variance = CalculateVariance( Data, Numeric );
+            Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -67,8 +83,9 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DataMetric"/> class.
         /// </summary>
@@ -79,7 +96,15 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
+        }
+
+        public DataMetric( DataTable dataTable, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+            : base( dataTable, dict, numeric )
+        {
+            Variance = CalculateVariance( Data, Numeric );
+            Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -96,7 +121,15 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( Data, Numeric  );
+            Statistics = CalculateStatistics( Data, Numeric  );
+        }
+
+        public DataMetric( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+            : base( dataRow, dict, numeric )
+        {
+            Variance = CalculateVariance( Data, Numeric );
+            Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -114,9 +147,9 @@ namespace BudgetExecution
         public DataMetric( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
             : base( dataRow, field, numeric )
         {
-            Variance = CalculateVariance( Data, Field, Numeric );
-            Deviation = CalculateDeviation( Data, Field, Numeric );
-            Values = CalculateStatistics( Data, Field, Numeric );
+            Variance = CalculateVariance( Data, Numeric );
+            Deviation = CalculateDeviation( Data, Numeric );
+            Statistics = CalculateStatistics( Data, Field, Numeric );
         }
 
         /// <summary>
@@ -300,7 +333,6 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
         public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
         {
             if( dataRow?.Any( ) == true

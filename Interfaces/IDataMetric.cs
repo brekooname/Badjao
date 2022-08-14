@@ -76,7 +76,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        IDictionary<string, double> CalculateTotals( IEnumerable<DataRow> dataRow, Field field,
+        IDictionary<string, double> CalculateAmounts( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount );
 
         /// <summary>

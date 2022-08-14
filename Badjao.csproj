@@ -448,6 +448,9 @@
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Access.cs">
+      <DependentUpon>Access.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Access.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

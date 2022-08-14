@@ -11,8 +11,11 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Configuration;
     using System.Data;
+    using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
+    using Syncfusion.Drawing;
+    using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
@@ -23,6 +26,14 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
     public abstract class ChartBase : Syncfusion.Windows.Forms.Chart.ChartControl
     {
+        /// <summary>
+        /// Gets or sets the header.
+        /// </summary>
+        /// <value>
+        /// The header.
+        /// </value>
+        public ChartTitle Header { get; set; }
+
         /// <summary>
         /// Gets or sets the binding source.
         /// </summary>
@@ -129,6 +140,86 @@ namespace BudgetExecution
         /// </summary>
         protected ChartBase()
         {
+            //Basic Control Properties
+            Size = new Size( 600, 400 );
+            ShowToolbar = true;
+            ShowToolTips = true;
+            ToolBar.Orientation = ChartOrientation.Horizontal;
+            ToolBar.ButtonBackColor = Color.FromArgb( 15, 15, 15 );
+            ToolBar.Position = ChartDock.Bottom;
+            ToolBar.ShowGrip = false;
+            ToolBar.ShowBorder = false;
+            ShowScrollBars = false;
+            EnableMouseRotation = true;
+            Padding = new Padding( 1 );
+            Margin = new Padding( 3 );
+            Anchor = AnchorStyles.Top & AnchorStyles.Left;
+            AllowGapForEmptyPoints = true;
+            AllowGradientPalette = true;
+            AllowUserEditStyles = true;
+            PrintColorMode = ChartPrintColorMode.CheckPrinter;
+            BackInterior = new BrushInfo( Color.FromArgb( 15, 15, 15 ) );
+            BackColor = Color.FromArgb( 15, 15, 15 );
+
+            ChartInterior = new BrushInfo( GradientStyle.PathRectangle, Color.LightSteelBlue,
+                Color.FromArgb( 15, 15, 15 ) );
+
+            CalcRegions = true;
+
+            //ChartArea Properties
+            ChartArea.AdjustPlotAreaMargins = ChartSetMode.AutoSet;
+            ChartArea.AutoScale = true;
+            ChartArea.BackInterior = new BrushInfo( Color.FromArgb( 15, 15, 15 ) );
+            ChartArea.BorderWidth = 1;
+            ChartArea.BorderColor = Color.Transparent;
+            ChartArea.BorderStyle = BorderStyle.FixedSingle;
+            ChartAreaMargins = new ChartMargins( 3, 3, 3, 3 );
+
+            //ChartSeries Properties
+            DropSeriesPoints = false;
+            AddRandomSeries = true;
+            Series3D = true;
+            SeriesHighlight = true;
+            SeriesHighlightIndex = -1;
+            ShadowWidth = 5;
+            ShadowColor = new BrushInfo( GradientStyle.PathRectangle, Color.FromArgb( 15, 15, 15 ), Color.Silver );
+            Depth = 250;
+            ElementsSpacing = 10;
+            ColumnDrawMode = ChartColumnDrawMode.InDepthMode;
+            ColumnFixedWidth = 20;
+
+            //Chart Appearance Setting
+            Palette = ChartColorPalette.Metro;
+            Skins = Skins.None;
+            RealMode3D = true;
+            Rotation = 0.1f;
+            Spacing = 5;
+            AutoHighlight = true;
+            SpacingBetweenPoints = 5;
+            SpacingBetweenSeries = 10;
+            Style3D = true;
+            TextAlignment = StringAlignment.Center;
+            TextPosition = ChartTextPosition.Top;
+            Tilt = 5;
+            ScrollPrecision = 100;
+            RadarStyle = ChartRadarAxisStyle.Polygon;
+
+            //Chart Legend Setting;
+            ShowLegend = true;
+            Legend.Font = new Font( "Roboto", 8 );
+            Legend.ItemsSize = new Size( 10, 10 );
+            Legend.VisibleCheckBox = true;
+            Legend.BackInterior = new BrushInfo( Color.FromArgb( 15, 15, 15 ) );
+            Legend.ItemsAlignment = StringAlignment.Center;
+            Legend.ItemsTextAligment = VerticalAlignment.Center;
+            Legend.Orientation = ChartOrientation.Vertical;
+            Legend.FloatingAutoSize = true;
+            Legend.ShowSymbol = true;
+            Legend.ShowItemsShadow = true;
+            Legend.ShowBorder = false;
+            Legend.Visible = true;
+
+            Header = new ChartTitle( );
         }
 
         /// <summary>

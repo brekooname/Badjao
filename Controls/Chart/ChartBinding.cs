@@ -85,14 +85,6 @@ namespace BudgetExecution
         public DataRow Record { get; set; }
         
         /// <summary>
-        /// Gets the metric.
-        /// </summary>
-        /// <value>
-        /// The metric.
-        /// </value>
-        public IDataMetric DataMetric { get; set; }
-
-        /// <summary>
         /// Gets or sets the binding source.
         /// </summary>
         /// <value>

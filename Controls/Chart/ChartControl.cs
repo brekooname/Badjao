@@ -14,7 +14,6 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Drawing;
     using Syncfusion.Windows.Forms.Chart;
-    using Color = System.Drawing.Color;
 
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
@@ -52,14 +51,6 @@ namespace BudgetExecution
         /// </value>
         public string TableName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the header.
-        /// </summary>
-        /// <value>
-        /// The header.
-        /// </value>
-        public ChartTitle Header { get; set; }
-        
         // Initializes Properties
         /// <summary>
         /// Initializes a new instance
@@ -67,6 +58,7 @@ namespace BudgetExecution
         /// </summary>
         public ChartControl()
         {
+            SmoothingMode = SmoothingMode.AntiAlias;
             //Basic Control Properties
             Size = new Size( 600, 400 );
             ShowToolbar = true;
@@ -120,13 +112,12 @@ namespace BudgetExecution
             Skins = Skins.None;
             RealMode3D = true;
             Rotation = 0.1f;
-            SmoothingMode = SmoothingMode.AntiAlias;
             Spacing = 5;
             AutoHighlight = true;
             SpacingBetweenPoints = 5;
             SpacingBetweenSeries = 10;
             Style3D = true;
-            TextAlignment = StringAlignment.Center ;
+            TextAlignment = StringAlignment.Center;
             TextPosition = ChartTextPosition.Top;
             Tilt = 5;
             ScrollPrecision = 100;
@@ -147,7 +138,7 @@ namespace BudgetExecution
             Legend.ShowBorder = false;
             Legend.Visible = true;
 
-            Header = new ChartTitle(  );
+            Header = new ChartTitle( );
         }
 
         /// <summary>
@@ -163,7 +154,7 @@ namespace BudgetExecution
             BindingSource = (BindingSource)chartBinding;
             DataSource = BindingSource.DataSource;
             SeriesModel = new SeriesBindingModel( chartBinding );
-            DataMetric = chartBinding.DataMetric;
+            DataMetric = DataSeries.DataMetric;
             TableName = chartBinding.DataTable.TableName;
             Header.Text = TableName;
             DataSeries = new ChartSeries( chartBinding.DataTable );
@@ -179,7 +170,7 @@ namespace BudgetExecution
             DataSource = BindingSource.DataSource;
             SeriesModel = new SeriesBindingModel( dataTable );
             DataSeries = new ChartSeries( dataTable );
-            DataMetric = ChartBinding.DataMetric;
+            DataMetric = DataSeries.DataMetric;
             TableName = dataTable?.TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
@@ -197,7 +188,23 @@ namespace BudgetExecution
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
             DataSeries = new ChartSeries( bindingSource );
-            DataMetric = new DataMetric( bindingSource );
+            DataMetric = DataSeries.DataMetric;
+            DataValues = DataSeries.DataValues;
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            Header.Text = TableName;
+            Text = Header.Text.SplitPascal( );
+            Series.Add( DataSeries );
+        }
+
+        public ChartControl( BindingSource bindingSource, Field field )
+            : this( )
+        {
+            Field = field;
+            ChartBinding = new ChartBinding( bindingSource );
+            BindingSource = (BindingSource)ChartBinding;
+            DataSource = BindingSource.DataSource;
+            DataSeries = new ChartSeries( bindingSource, field );
+            DataMetric = DataSeries.DataMetric;
             DataValues = DataSeries.DataValues;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
@@ -238,46 +245,6 @@ namespace BudgetExecution
 
                     switch( DataSeries.Type )
                     {
-                        case ChartSeriesType.Column:
-                        case ChartSeriesType.Line:
-                        case ChartSeriesType.Spline:
-                        case ChartSeriesType.SplineArea:
-                        case ChartSeriesType.Area:
-                        case ChartSeriesType.Bar:
-                        case ChartSeriesType.BoxAndWhisker:
-                        case ChartSeriesType.Bubble:
-                        case ChartSeriesType.Candle:
-                        case ChartSeriesType.ColumnRange:
-                        case ChartSeriesType.HeatMap:
-                        case ChartSeriesType.HiLo:
-                        case ChartSeriesType.HiLoOpenClose:
-                        case ChartSeriesType.Histogram:
-                        case ChartSeriesType.Kagi:
-                        case ChartSeriesType.PointAndFigure:
-                        case ChartSeriesType.Polar:
-                        case ChartSeriesType.Radar:
-                        case ChartSeriesType.RangeArea:
-                        case ChartSeriesType.RotatedSpline:
-                        case ChartSeriesType.Scatter:
-                        case ChartSeriesType.StackingArea:
-                        case ChartSeriesType.StackingArea100:
-                        case ChartSeriesType.StackingBar:
-                        case ChartSeriesType.StackingBar100:
-                        case ChartSeriesType.StackingColumn100:
-                        case ChartSeriesType.StepArea:
-                        case ChartSeriesType.StepLine:
-                        case ChartSeriesType.ThreeLineBreak:
-                        case ChartSeriesType.Tornado:
-                        case ChartSeriesType.StackingColumn:
-                        {
-                            foreach( var kvp in DataValues )
-                            {
-                                DataSeries.Points.Add( kvp.Key, kvp.Value );
-                            }
-
-                            break;
-                        }
-
                         case ChartSeriesType.Pyramid:
                         case ChartSeriesType.Funnel:
                         case ChartSeriesType.Pie:
@@ -288,7 +255,7 @@ namespace BudgetExecution
 
                                 if( DataSeries.STAT != STAT.Percentage )
                                 {
-                                    DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:N1}";
+                                    DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:N01}";
                                 }
                                 else if( DataSeries.STAT == STAT.Percentage )
                                 {
@@ -298,6 +265,16 @@ namespace BudgetExecution
 
                             break;
                         }
+                        default:
+                        {
+                            foreach( var kvp in DataValues )
+                            {
+                                DataSeries.Points.Add( kvp.Key, kvp.Value );
+                            }
+
+                            break;
+                        }
+
                     }
                 }
                 catch( Exception ex )

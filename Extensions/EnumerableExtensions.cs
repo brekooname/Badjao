@@ -285,6 +285,49 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Filters the specified field.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="filter">The filter.</param>
+        /// <returns></returns>
+        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, Field field,
+            string filter )
+        {
+            if( dataRow?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field )
+                && !string.IsNullOrEmpty( filter ) )
+            {
+                try
+                {
+                    var _row = dataRow?.First( );
+
+                    var _columns = _row
+                        ?.Table
+                        ?.Columns;
+
+                    if( _columns?.Contains( field.ToString( ) ) == true )
+                    {
+                        var _enumerable = dataRow
+                            ?.Where( p => p.Field<string>( field.ToString( ) ).Equals( filter ) )
+                            ?.Select( p => p );
+
+                        return _enumerable?.Any( ) == true
+                            ? _enumerable.ToArray( )
+                            : default( DataRow[ ] );
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary>
         /// Converts to excel.
         /// </summary>
         /// <typeparam name="T"></typeparam>

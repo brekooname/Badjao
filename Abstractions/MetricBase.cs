@@ -14,9 +14,9 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class MetricBase 
     {
@@ -77,13 +77,21 @@ namespace BudgetExecution
         /// <value>
         /// The amounts.
         /// </value>
-        public virtual IEnumerable<double> Amounts { get; set; }
+        public virtual IDictionary<string, double> Amounts { get; set; }
         
         /// <summary>
         /// The statistics
         /// </summary>
+        public virtual IDictionary<string, double> Statistics { get; set; }
+
+        /// <summary>
+        /// Gets or sets the values.
+        /// </summary>
+        /// <value>
+        /// The values.
+        /// </value>
         public virtual IDictionary<string, double> Values { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
@@ -123,6 +131,7 @@ namespace BudgetExecution
             Total = CalculateTotal( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Amounts = CalculateAmounts( Data, Field );
         }
 
         protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
@@ -144,6 +153,17 @@ namespace BudgetExecution
         protected MetricBase( DataTable dataTable, Numeric numeric = Numeric.Amount )
         {
             Data = dataTable.AsEnumerable( );
+            TableName = dataTable.TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
+            Numeric = numeric;
+            Count = Data.Count( );
+            Total = CalculateTotal( Data, numeric );
+            Average = CalculateAverage( Data, numeric );
+        }
+
+        protected MetricBase( DataTable dataTable, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        {
+            Data = dataTable.Select( dict.ToCriteria( ) );
             TableName = dataTable.TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             Numeric = numeric;
@@ -179,7 +199,8 @@ namespace BudgetExecution
             Average = CalculateAverage( dataRow, numeric );
         }
 
-        protected MetricBase( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        protected MetricBase( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, 
+            Numeric numeric = Numeric.Amount )
         {
             Numeric = numeric;
             Data = dataRow.Filter( dict );
@@ -206,6 +227,7 @@ namespace BudgetExecution
             Count = dataRow.Count( );
             Total = CalculateTotal( dataRow, numeric );
             Average = CalculateAverage( dataRow, Numeric );
+            Amounts = CalculateAmounts( Data, Field );
         }
 
         /// <summary>
@@ -327,7 +349,7 @@ namespace BudgetExecution
                         ?.Select( p => p.Field<decimal>( $"{ numeric }" ) );
 
                     return _select?.Any( ) == true && _select?.Sum( ) > 0
-                        ? double.Parse( _select.Sum( ).ToString( ) )
+                        ? double.Parse( _select.Sum( ).ToString( "N01" ) )
                         : 0.0d;
                 }
                 catch( Exception ex )
@@ -338,7 +360,7 @@ namespace BudgetExecution
 
             return default( double );
         }
-
+        
         /// <summary>
         /// Calculates the totals.
         /// </summary>
@@ -346,7 +368,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public virtual IDictionary<string, double> CalculateTotals( IEnumerable<DataRow> dataRow, Field field,
+        public virtual IDictionary<string, double> CalculateAmounts( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -355,17 +377,21 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _codes = GetCodes( dataRow, field );
+                    var _fields = GetCodes( dataRow, field );
                     var _dict = new Dictionary<string, double>( );
 
-                    if( _codes?.Any( ) == true )
+                    if( _fields?.Any( ) == true )
                     {
-                        foreach( var filter in _codes )
+                        foreach( var name in _fields )
                         {
-                            var _sum = dataRow.Filter( field.ToString( ), filter )
-                                ?.Sum( p => p.Field<decimal>( $"{ numeric }" ) );
-                            
-                            _dict.Add( filter, double.Parse( _sum.ToString( ) ) );
+                            var _sum = dataRow.Filter( field.ToString(), name )
+                                .Sum( p => p.Field<decimal>( $"{ numeric }" ) );
+
+                            var _seriesName = dataRow.Filter( field.ToString( ), name )
+                                .Select( p => p.Field<string>( field.ToString( ) ) )
+                                .First();
+
+                            _dict.Add( _seriesName, double.Parse( _sum.ToString( "N01" ) ) );
                         }
                     }
                 }
@@ -398,7 +424,7 @@ namespace BudgetExecution
                         ?.Average( );
 
                     return _query > 0
-                        ? double.Parse( _query?.ToString( ) )
+                        ? double.Parse( _query?.ToString( "N01" ) )
                         : 0.0d;
                 }
                 catch( Exception ex )
@@ -410,45 +436,7 @@ namespace BudgetExecution
 
             return 0.0d;
         }
-
-        /// <summary>
-        /// Calculates the totals.
-        /// </summary>
-        /// <param name = "dataRow" >
-        /// The dataRow.
-        /// </param>
-        /// <param name = "dict" > </param>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        public double CalculateTotal( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
-        {
-            if( dataRow?.Any( ) == true
-                && dict?.Any( ) == true
-                && Enum.IsDefined( typeof( Numeric ), numeric ) )
-            {
-                try
-                {
-                    var _query = dataRow.Filter( dict )
-                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.Select( p => p.Field<decimal>( $"{ numeric }" ) )
-                        ?.Sum( );
-
-                    return _query > 0
-                        ? double.Parse( _query?.ToString( ) )
-                        : 0.0d;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return 0.0d;
-                }
-            }
-
-            return 0.0d;
-        }
+        
 
         /// <summary>
         /// Calculates the averages.

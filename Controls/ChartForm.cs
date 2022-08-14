@@ -35,7 +35,7 @@ namespace BudgetExecution
             BindingSource = bindingSource;
             ToolStrip.BindingSource = bindingSource;
             ToolStrip.BindingSource.DataSource = bindingSource.DataSource;
-            Chart = new ChartControl( bindingSource )
+            Chart = new ChartControl( bindingSource, Field.ProgramProjectName )
             {
                 Dock = DockStyle.Fill
               

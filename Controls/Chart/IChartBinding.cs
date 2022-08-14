@@ -58,14 +58,6 @@
         DataRow Record { get; set; }
         
         /// <summary>
-        /// Gets the metric.
-        /// </summary>
-        /// <value>
-        /// The metric.
-        /// </value>
-        IDataMetric DataMetric { get; set; }
-        
-        /// <summary>
         /// Called when [current changed].
         /// </summary>
         /// <param name="sender">The sender.</param>

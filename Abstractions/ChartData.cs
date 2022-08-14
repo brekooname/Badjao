@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
-    using System.Linq;
     using System.Threading;
 
     /// <summary>
@@ -127,6 +126,7 @@ namespace BudgetExecution
         protected ChartData( BindingSource bindingSource )
             : this( )
         {
+            BindingSource = bindingSource;
             Name = ( (DataTable)bindingSource.DataSource ).TableName;
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
@@ -142,7 +142,27 @@ namespace BudgetExecution
                 DataSource = bindingSource.DataSource
             };
         }
-    
+
+        protected ChartData( BindingSource bindingSource, Field field )
+            : this( )
+        {
+            BindingSource = bindingSource;
+            Name = ( (DataTable)bindingSource.DataSource ).TableName;
+            Type = ChartSeriesType.Column;
+            STAT = STAT.Total;
+            DataMetric = new DataMetric( bindingSource, field );
+
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = bindingSource.DataSource
+            };
+
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = bindingSource.DataSource
+            };
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
@@ -153,6 +173,11 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( dataRows );
+
+            BindingSource = new BindingSource
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
 
             BindingModel = new ChartDataBindModel
             {
@@ -176,6 +201,11 @@ namespace BudgetExecution
             STAT = STAT.Total;
             DataMetric = new DataMetric( dataTable );
 
+            BindingSource = new BindingSource
+            {
+                DataSource = dataTable
+            };
+
             BindingModel = new ChartDataBindModel
             {
                 DataSource = dataTable
@@ -197,6 +227,11 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( );
+
+            BindingSource = new BindingSource
+            {
+                DataSource = dataSet.Tables[ 0 ]
+            };
 
             BindingModel = new ChartDataBindModel
             {
@@ -236,248 +271,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindingList">The bindingsource.</param>
-        /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
-            where T1 : IBindingList
-            where T2 : IDictionary<string, object>
-        {
-            try
-            {
-                if( Verify.IsBindable( bindingList )
-                    && dict?.Any(  ) == true )
-                {
-                    try
-                    {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
-
-                        foreach( var _kvp in dict )
-                        {
-                            if( !string.IsNullOrEmpty( _kvp.Key )
-                                && _kvp.Value != null )
-                            {
-                                _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
-                            }
-                        }
-
-                        if( _filter?.Length > 0
-                            && _list?.DataSource != null )
-                        {
-                            BindingSource.DataSource = _list?.DataSource;
-                            BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray(  ) );
-                        }
-                    }
-                    catch( Exception ex )
-                    {
-                        Fail( ex );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data )
-            where T1 : IEnumerable<DataRow>
-        {
-            if( data?.Any(  ) == true )
-            {
-                try
-                {
-                    BindingSource.DataSource = data?.ToList(  );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <param name="data">The data.</param>
-        /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
-            where T1 : IEnumerable<DataRow>
-        {
-            if( data?.Any(  ) == true )
-            {
-                try
-                {
-                    var _filter = string.Empty;
-
-                    foreach( var _kvp in dict )
-                    {
-                        if( !string.IsNullOrEmpty( _kvp.Key )
-                            && _kvp.Value != null )
-                        {
-                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
-                        }
-                    }
-
-                    BindingSource.DataSource = data?.ToList(  );
-                    BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray(  ) );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <typeparam name="T3">The type of the 3.</typeparam>
-        /// <param name="data">The data.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The dictionary.</param>
-        public virtual void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
-            where T1 : IEnumerable<DataRow>
-            where T2 : struct
-        {
-            if( data?.Any(  ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && !string.IsNullOrEmpty( filter?.ToString(  ) ) )
-            {
-                try
-                {
-                    if( !string.IsNullOrEmpty( filter?.ToString(  ) ) )
-                    {
-                        BindingSource.DataSource = data.ToList(  );
-                        BindingSource.DataMember = field.ToString(  );
-                        BindingSource.Filter = $"{ field } = { filter }";
-                    }
-                    else
-                    {
-                        BindingSource.DataSource = data.ToList(  );
-                        BindingSource.DataMember = field.ToString(  );
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <param name="data">The data.</param>
-        /// <param name="field">The field.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
-            where T1 : IEnumerable<DataRow>
-        {
-            if( data?.Any(  ) == true )
-            {
-                try
-                {
-                    if( !string.IsNullOrEmpty( field?.ToString(  ) ) )
-                    {
-                        BindingSource.DataSource = data.ToList(  );
-                        BindingSource.DataMember = field?.ToString(  );
-                    }
-                    else
-                    {
-                        BindingSource.DataSource = data.ToList(  );
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the bindings.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param>The numeric.</param>
-        /// <param name = "dict" > </param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
-            where T1 : IEnumerable<DataRow>
-            where T2 : IDictionary<string, object>
-        {
-            if( data?.Any(  ) == true
-                && dict?.Any(  ) == true )
-            {
-                try
-                {
-                    var _filter = string.Empty;
-
-                    foreach( var _kvp in dict )
-                    {
-                        if( !string.IsNullOrEmpty( _kvp.Key )
-                            && _kvp.Value != null )
-                        {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
-                        }
-                    }
-
-                    BindingSource.DataSource = data?.ToList(  );
-                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray(  ) );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
-            where T1 : IEnumerable<DataRow>
-            where T2 : struct
-        {
-            if( data?.Any(  ) == true
-                && Enum.IsDefined( typeof( Field ), field ) )
-            {
-                try
-                {
-                    if( !string.IsNullOrEmpty( filter?.ToString(  ) ) )
-                    {
-                        BindingSource.DataSource = data.ToList(  );
-                        BindingSource.DataMember = field.ToString(  );
-                        BindingSource.Filter = $"{field} = {filter}";
-                    }
-                    else
-                    {
-                        BindingSource.DataSource = data.ToList(  );
-                        BindingSource.DataMember = field.ToString(  );
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-    
+        
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

@@ -95,6 +95,12 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( bindingSource );
         }
 
+        public ChartSeries( BindingSource bindingSource, Field field )
+            : base( bindingSource, field )
+        {
+            BindingSource = bindingSource;
+            ChartBinding = new ChartBinding( bindingSource );
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
@@ -235,46 +241,6 @@ namespace BudgetExecution
 
                     switch( type )
                     {
-                        case ChartSeriesType.Column:
-                        case ChartSeriesType.Line:
-                        case ChartSeriesType.Spline:
-                        case ChartSeriesType.SplineArea:
-                        case ChartSeriesType.Area:
-                        case ChartSeriesType.Bar:
-                        case ChartSeriesType.BoxAndWhisker:
-                        case ChartSeriesType.Bubble:
-                        case ChartSeriesType.Candle:
-                        case ChartSeriesType.ColumnRange:
-                        case ChartSeriesType.HeatMap:
-                        case ChartSeriesType.HiLo:
-                        case ChartSeriesType.HiLoOpenClose:
-                        case ChartSeriesType.Histogram:
-                        case ChartSeriesType.Kagi:
-                        case ChartSeriesType.PointAndFigure:
-                        case ChartSeriesType.Polar:
-                        case ChartSeriesType.Radar:
-                        case ChartSeriesType.RangeArea:
-                        case ChartSeriesType.RotatedSpline:
-                        case ChartSeriesType.Scatter:
-                        case ChartSeriesType.StackingArea:
-                        case ChartSeriesType.StackingArea100:
-                        case ChartSeriesType.StackingBar:
-                        case ChartSeriesType.StackingBar100:
-                        case ChartSeriesType.StackingColumn100:
-                        case ChartSeriesType.StepArea:
-                        case ChartSeriesType.StepLine:
-                        case ChartSeriesType.ThreeLineBreak:
-                        case ChartSeriesType.Tornado:
-                        case ChartSeriesType.StackingColumn:
-                        {
-                            foreach( var _kvp in data )
-                            {
-                                Points.Add( _kvp.Key, _kvp.Value );
-                            }
-
-                            break;
-                        }
-
                         case ChartSeriesType.Pyramid:
                         case ChartSeriesType.Funnel:
                         case ChartSeriesType.Pie:
@@ -299,6 +265,15 @@ namespace BudgetExecution
                                         Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:P}";
                                     }
                                 }
+                            }
+
+                            break;
+                        }
+                        default:
+                        {
+                            foreach( var _kvp in data )
+                            {
+                                Points.Add( _kvp.Key, _kvp.Value );
                             }
 
                             break;
