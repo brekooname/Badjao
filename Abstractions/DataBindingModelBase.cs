@@ -8,7 +8,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Chart;
 
@@ -16,12 +15,12 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ChartDataBindModel" />
-    /// <seealso cref="ISeries" />
+    /// <seealso />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class SeriesBase : ChartDataBindModel, ISeries
+    public abstract class DataBindingModelBase : ChartDataBindModel
     {
         /// <summary>
         /// Gets the data.
@@ -54,15 +53,7 @@ namespace BudgetExecution
         /// The metric.
         /// </value>
         public virtual IDataMetric DataMetric { get; set; }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public virtual ISeriesConfig SeriesConfig { get; set; }
-
+        
         /// <summary>
         /// Gets the value.
         /// </summary>
@@ -94,35 +85,25 @@ namespace BudgetExecution
         /// The series categories.
         /// </value>
         public virtual IEnumerable<string> Categories { get; set; }
-
-        /// <summary>
-        /// Gets or sets the source model.
-        /// </summary>
-        /// <value>
-        /// The source model.
-        /// </value>
-        public virtual ISeries SourceModel { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="SeriesBase" /> class.
+        /// of the <see cref="DataBindingModelBase" /> class.
         /// </summary>
-        protected SeriesBase( )
+        protected DataBindingModelBase( )
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
+        /// Initializes a new instance of the <see cref="DataBindingModelBase" /> struct.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        protected SeriesBase( BindingSource bindingSource )
+        protected DataBindingModelBase( BindingSource bindingSource )
         {
             BindingModel = new ChartDataBindModel( bindingSource );
             ChartBinding = new ChartBinding( bindingSource );
             Data = ChartBinding.Data;
             DataSource = Data.CopyToDataTable( );
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
@@ -130,17 +111,15 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase"/> class.
+        /// Initializes a new instance of the <see cref="DataBindingModelBase"/> class.
         /// </summary>
         /// <param name="dataTable">The data table.</param>
-        protected SeriesBase( DataTable dataTable )
+        protected DataBindingModelBase( DataTable dataTable )
         {
             BindingModel = new ChartDataBindModel( dataTable );
             ChartBinding = new ChartBinding( dataTable );
             Data = ChartBinding.Data;
             DataSource = Data.CopyToDataTable( );
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( dataTable );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
@@ -148,17 +127,15 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase"/> class.
+        /// Initializes a new instance of the <see cref="DataBindingModelBase"/> class.
         /// </summary>
         /// <param name="dataRows">The data rows.</param>
-        protected SeriesBase( IEnumerable<DataRow> dataRows )
+        protected DataBindingModelBase( IEnumerable<DataRow> dataRows )
         {
             BindingModel = new ChartDataBindModel( dataRows );
             ChartBinding = new ChartBinding( dataRows );
             Data = dataRows;
             DataSource = Data.CopyToDataTable( );
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( dataRows );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
@@ -166,61 +143,21 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> struct.
+        /// Initializes a new instance of the <see cref="DataBindingModelBase" /> struct.
         /// </summary>
         /// <param name="chartBinding">The binding source.</param>
-        protected SeriesBase( IChartBinding chartBinding )
+        protected DataBindingModelBase( IChartBinding chartBinding )
         {
             BindingModel = new ChartDataBindModel( chartBinding );
             ChartBinding = chartBinding;
             Data = ChartBinding.Data;
             DataSource = Data.CopyToDataTable( );
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
             BindingModel.Changed += OnChanged;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
-        /// </summary>
-        /// <param name = "dataRows" > </param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        protected SeriesBase( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig ) 
-            : this( dataRows )
-        {
-            SeriesConfig = seriesConfig;
-            ChartBinding = new ChartBinding( dataRows, seriesConfig );
-            Data = dataRows;
-            DataSource = Data.CopyToDataTable( );
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = seriesConfig.ValueMetric;
-            DataMetric = new DataMetric( dataRows );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesBase" /> class.
-        /// </summary>
-        /// <param name="dataTable">The table.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        protected SeriesBase( DataTable dataTable, ISeriesConfig seriesConfig )
-        {
-            SeriesConfig = seriesConfig;
-            ChartBinding = new ChartBinding( dataTable, seriesConfig );
-            Data = dataTable.AsEnumerable( )?.ToList( );
-            DataSource = Data.CopyToDataTable( );
-            SeriesConfig = seriesConfig;
-            Stat = seriesConfig.ValueMetric;
-            DataMetric = new DataMetric( dataTable );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
+        
 
         /// <summary>
         /// Called when [changed].

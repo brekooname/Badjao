@@ -25,20 +25,12 @@ namespace BudgetExecution
     public abstract class ChartData : ChartSeries, IDataSeries
     {
         /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public virtual ISeriesConfig SeriesConfig { get; set; }
-
-        /// <summary>
         /// Gets the metric.
         /// </summary>
         /// <value>
         /// The metric.
         /// </value>
-        public virtual STAT ValueMetric { get; set; }
+        public virtual STAT STAT { get; set; }
 
         /// <summary>
         /// Gets the source model.
@@ -78,35 +70,18 @@ namespace BudgetExecution
         /// <value>
         /// The type of the chart.
         /// </value>
-        public ChartSeriesType ChartType { get; set; }
+        public virtual ChartSeriesType ChartType { get; set; }
 
         /// <summary>
         /// Gets the numeric.
         /// </summary>
-        public Numeric Numeric { get; set; }
+        public virtual Numeric Numeric { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
         protected ChartData( )
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartData"/> class.
-        /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        protected ChartData( BindingSource bindingSource )
-            : this( )
-        {
-            SeriesDataModel = new SeriesModel( bindingSource );
-            SeriesConfig = SeriesDataModel.SeriesConfig;
-            Name = SeriesConfig.Name;
-            Type = SeriesConfig.Type;
-            ValueMetric = SeriesConfig.ValueMetric;
-            PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
-            Values = SeriesDataModel?.Values;
-            Categories = SeriesDataModel?.Categories;
             SmartLabels = true;
             Visible = true;
             ShowTicks = true;
@@ -118,8 +93,8 @@ namespace BudgetExecution
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
             Numeric = Numeric.Amount;
-            ValueMetric = STAT.Total;
-            ChartType = ChartSeriesType.Column;
+            STAT = STAT.Total;
+            Type = ChartSeriesType.Column;
 
             // Basic Properties
             SmartLabels = true;
@@ -143,6 +118,22 @@ namespace BudgetExecution
             Style.Callout.Font = ChartConfig.SetFont( );
             Style.DisplayText = true;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartData"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        protected ChartData( BindingSource bindingSource )
+            : this( )
+        {
+            SeriesDataModel = new SeriesModel( bindingSource );
+            Name = ( (DataTable)bindingSource.DataSource ).TableName;
+            Type = ChartSeriesType.Column;
+            STAT = STAT.Total;
+            PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
+            Values = SeriesDataModel?.Values;
+            Categories = SeriesDataModel?.Categories;
+        }
     
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
@@ -152,31 +143,11 @@ namespace BudgetExecution
             : this( )
         {
             SeriesDataModel = new SeriesModel( dataRows );
-            SeriesConfig = SeriesDataModel.SeriesConfig;
-            Name = SeriesConfig.Name;
-            Type = SeriesConfig.Type;
-            ValueMetric = SeriesConfig.ValueMetric;
+            Type = ChartSeriesType.Column;
+            STAT = STAT.Total;
             PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
             Categories = SeriesDataModel?.Categories;
-            SmartLabels = true;
-            Visible = true;
-            ShowTicks = true;
-            Rotate = true;
-            EnableAreaToolTip = true;
-            EnableStyles = true;
-            OptimizePiePointPositions = true;
-            LegendItemUseSeriesStyle = true;
-            SmartLabelsBorderColor = Color.SteelBlue;
-            SmartLabelsBorderWidth = 1;
-            Style.DisplayText = true;
-            Style.Callout.Enable = true;
-            Style.Callout.Position = LabelPosition.Top;
-            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
-            Style.Callout.Border.Color = Color.SteelBlue;
-            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
-            Style.Callout.Font = ChartConfig.SetFont( );
-            Style.DisplayText = true;
         }
 
         /// <summary>
@@ -187,31 +158,11 @@ namespace BudgetExecution
             : this( )
         {
             SeriesDataModel = new SeriesModel( dataTable );
-            SeriesConfig = SeriesDataModel.SeriesConfig;
-            Name = SeriesConfig.Name;
-            Type = SeriesConfig.Type;
-            ValueMetric = SeriesConfig.ValueMetric;
+            Type = ChartSeriesType.Column;
+            STAT = STAT.Total;
             PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
             Categories = SeriesDataModel?.Categories;
-            SmartLabels = true;
-            Visible = true;
-            ShowTicks = true;
-            Rotate = true;
-            EnableAreaToolTip = true;
-            EnableStyles = true;
-            OptimizePiePointPositions = true;
-            LegendItemUseSeriesStyle = true;
-            SmartLabelsBorderColor = Color.SteelBlue;
-            SmartLabelsBorderWidth = 1;
-            Style.DisplayText = true;
-            Style.Callout.Enable = true;
-            Style.Callout.Position = LabelPosition.Top;
-            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
-            Style.Callout.Border.Color = Color.SteelBlue;
-            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
-            Style.Callout.Font = ChartConfig.SetFont( );
-            Style.DisplayText = true;
         }
 
         /// <summary>
@@ -221,33 +172,12 @@ namespace BudgetExecution
         protected ChartData( ISeriesModel seriesModel )
             : this( )
         {
-            SeriesConfig = seriesModel.SeriesConfig;
-            Name = SeriesConfig.Name;
-            Type = SeriesConfig.Type;
-            ValueMetric = SeriesConfig.ValueMetric;
+            Type = ChartSeriesType.Column;
+            STAT = STAT.Total;
             SeriesDataModel = seriesModel;
             PointValues = SeriesDataModel?.DataMetric?.CalculateStatistics( );
             Values = seriesModel?.Values;
             Categories = seriesModel?.Categories;
-            SmartLabels = true;
-            Visible = true;
-            ShowTicks = true;
-            Rotate = true;
-            EnableAreaToolTip = true;
-            EnableStyles = true;
-            OptimizePiePointPositions = true;
-            LegendItemUseSeriesStyle = true;
-            LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
-            SmartLabelsBorderColor = Color.SteelBlue;
-            SmartLabelsBorderWidth = 1;
-            Style.DisplayText = true;
-            Style.Callout.Enable = true;
-            Style.Callout.Position = LabelPosition.Top;
-            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
-            Style.Callout.Border.Color = Color.SteelBlue;
-            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
-            Style.Callout.Font = ChartConfig.SetFont( );
-            Style.DisplayText = true;
         }
         
         /// <summary>

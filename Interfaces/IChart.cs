@@ -59,23 +59,7 @@ namespace BudgetExecution
         /// The source.
         /// </value>
         Source Source { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data model.
-        /// </summary>
-        /// <value>
-        /// The data model.
-        /// </value>
-        ISeries SourceModel { get; set; }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        ISeriesConfig SeriesConfig { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the data.
         /// </summary>

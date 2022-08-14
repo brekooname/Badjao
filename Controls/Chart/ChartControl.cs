@@ -200,7 +200,6 @@ namespace BudgetExecution
             ChartBinding = chartBinding;
             BindingSource = (BindingSource)chartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesConfig = chartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( chartBinding );
             DataMetric = chartBinding.DataMetric;
             TableName = chartBinding.DataTable.TableName;
@@ -218,7 +217,6 @@ namespace BudgetExecution
             DataSource = BindingSource.DataSource;
             SeriesModel = new SeriesModel( dataTable );
             DataSeries = new ChartDataSeries( dataTable );
-            SeriesConfig = SeriesModel.SeriesConfig;
             DataMetric = ChartBinding.DataMetric;
             TableName = dataTable?.TableName;
             Header.Text = TableName;
@@ -241,92 +239,27 @@ namespace BudgetExecution
             DataMetric = new DataMetric( bindingSource );
             DataValues = DataSeries.PointValues;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
-            SeriesConfig = SeriesModel.SeriesConfig;
-            Header.Text = TableName;
-            Text = Header.Text.SplitPascal( );
-            SeriesConfig.SetPoints( DataValues, ChartSeriesType.Column, STAT.Total );
-            Series.Add( DataSeries );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartControl"/> class.
-        /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        /// <param name="seriesConfig">The series configuration.</param>
-        public ChartControl( BindingSource bindingSource, ISeriesConfig seriesConfig )
-            : this( )
-        {
-            SeriesModel = new SeriesModel( bindingSource );
-            DataSeries = new ChartDataSeries( bindingSource );
-            SeriesConfig = seriesConfig;
-            ChartBinding = new ChartBinding( bindingSource );
-            BindingSource = (BindingSource)ChartBinding;
-            DataSource = BindingSource.DataSource;
-            DataMetric = ChartBinding.DataMetric;
-            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );
         }
-
+        
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ChartControl" />
         /// class.
         /// </summary>
-        /// <param name="sourceModel">The sourceModel.</param>
-        public ChartControl( ISeries sourceModel )
+        /// <param name="seriesModel">The sourceModel.</param>
+        public ChartControl( ISeriesModel seriesModel )
             : this( )
         {
-            ChartBinding = sourceModel.ChartBinding;
+            ChartBinding = seriesModel.ChartBinding;
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
-            SeriesModel = new SeriesModel( sourceModel.ChartBinding );
+            SeriesModel = new SeriesModel( seriesModel.ChartBinding );
             DataMetric = ChartBinding.DataMetric;
-            DataSeries = new ChartDataSeries( sourceModel.Data );
+            DataSeries = new ChartDataSeries( seriesModel.Data );
             TableName = ChartBinding.DataTable.TableName;
-            Header.Text = TableName;
-            Text = Header.Text.SplitPascal( );
-            Series.Add( DataSeries );
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartControl" /> class.
-        /// </summary>
-        /// <param name="dataTable">The table.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartControl( DataTable dataTable, ISeriesConfig seriesConfig )
-            : this( )
-        {
-            ChartBinding = new ChartBinding( dataTable, seriesConfig );
-            BindingSource = (BindingSource)ChartBinding;
-            DataSource = BindingSource.DataSource;
-            SourceModel = new SeriesModel( dataTable, seriesConfig );
-            SeriesConfig = seriesConfig;
-            DataMetric = SourceModel.DataMetric;
-            DataSeries = new ChartDataSeries( dataTable );
-            TableName = dataTable.TableName;
-            Header.Text = TableName;
-            Text = Header.Text.SplitPascal( );
-            Series.Add( DataSeries );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartControl" /> class.
-        /// </summary>
-        /// <param name="dataRows">The data.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartControl( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
-            : this( )
-        {
-            ChartBinding = new ChartBinding( dataRows, seriesConfig );
-            BindingSource = (BindingSource)ChartBinding;
-            DataSource = BindingSource.DataSource;
-            SeriesConfig = seriesConfig;
-            SeriesModel = new SeriesModel( dataRows, seriesConfig );
-            DataMetric = SeriesModel.DataMetric;
-            DataSeries = new ChartDataSeries( dataRows );
-            TableName = dataRows.CopyToDataTable( ).TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );
@@ -337,7 +270,7 @@ namespace BudgetExecution
         /// </summary>
         public void SetPoints( )
         {
-            if( Enum.IsDefined( typeof( ChartSeriesType ), SeriesConfig.Type ) 
+            if( Enum.IsDefined( typeof( ChartSeriesType ), DataSeries.ChartType ) 
                 && DataValues?.Any( ) == true )
             {
                 try
@@ -347,7 +280,7 @@ namespace BudgetExecution
                         Series[ 0 ].Points.Clear( );
                     }
 
-                    switch( SeriesConfig.Type )
+                    switch( DataSeries.ChartType )
                     {
                         case ChartSeriesType.Column:
                         case ChartSeriesType.Line:
@@ -397,11 +330,11 @@ namespace BudgetExecution
                             {
                                 DataSeries.Points.Add( kvp.Key, kvp.Value );
 
-                                if( SeriesConfig.ValueMetric != STAT.Percentage )
+                                if( DataSeries.STAT != STAT.Percentage )
                                 {
                                     DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:N1}";
                                 }
-                                else if( SeriesConfig.ValueMetric == STAT.Percentage )
+                                else if( DataSeries.STAT == STAT.Percentage )
                                 {
                                     DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:P}";
                                 }

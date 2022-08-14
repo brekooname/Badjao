@@ -83,15 +83,7 @@ namespace BudgetExecution
         /// The record.
         /// </value>
         public DataRow Record { get; set; }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public ISeriesConfig SeriesConfig { get; set; }
-
+        
         /// <summary>
         /// Gets the metric.
         /// </summary>
@@ -155,7 +147,6 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         public ChartBinding( BindingSource bindingSource )
         {
-            SeriesConfig = new SeriesConfig( );
             BindingSource = bindingSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
@@ -177,7 +168,6 @@ namespace BudgetExecution
         [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public ChartBinding( IBindingList bindingList )
         {
-            SeriesConfig = new SeriesConfig( );
             BindingSource = new BindingSource
             {
                 DataSource = bindingList
@@ -196,12 +186,11 @@ namespace BudgetExecution
 
         public ChartBinding( DataSet dataSet )
         {
-            SeriesConfig = new SeriesConfig( );
             DataSet = dataSet;
             Source = (Source)Enum.Parse( typeof( Source ), dataSet.Tables[ 0 ].TableName );
             BindingSource = new BindingSource
             {
-                DataSource = dataSet
+                DataSource = dataSet.Tables[$"{ Source }"]
             };
 
             DataTable = dataSet.Tables[ $"{ Source }" ];
@@ -223,7 +212,6 @@ namespace BudgetExecution
         {
             BindingSource = new BindingSource( );
             Data = dataTable.AsEnumerable( );
-            SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
             DataSource = DataTable;
@@ -239,7 +227,6 @@ namespace BudgetExecution
         {
             BindingSource = new BindingSource( );
             Data = data;
-            SeriesConfig = new SeriesConfig( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataTable = data.CopyToDataTable( );
             DataSource = DataTable;
@@ -249,30 +236,6 @@ namespace BudgetExecution
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartBinding" /> class.
-        /// </summary>
-        /// <param name="dataTable">The table.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( DataTable dataTable, ISeriesConfig seriesConfig ) 
-            : this( dataTable )
-        {
-            SeriesConfig = seriesConfig;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChartBinding" />
-        /// class.
-        /// </summary>
-        /// <param name="dataRows">The data.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        public ChartBinding( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig ) 
-            : this( dataRows )
-        {
-            SeriesConfig = seriesConfig;
         }
         
         /// <summary>
@@ -284,8 +247,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _numeric = SeriesConfig?.Numeric;
-                return double.Parse( Record[ $"{ _numeric }" ].ToString( ) ) > 0;
+                return double.Parse( Record[ $"{ Numeric }" ].ToString( ) ) > 0;
             }
             catch( Exception ex )
             {
@@ -303,10 +265,8 @@ namespace BudgetExecution
         {
             try
             {
-                var _numeric = SeriesConfig?.Numeric;
-
                 return !GetEmpty( xIndex )
-                    ? double.Parse( Record[ $"{ _numeric }" ].ToString( ) )
+                    ? double.Parse( Record[ $"{ Numeric }" ].ToString( ) )
                     : 0d;
             }
             catch( Exception ex )
@@ -325,10 +285,8 @@ namespace BudgetExecution
         {
             try
             {
-                var _numeric = SeriesConfig?.Numeric;
-
                 return !GetEmpty( xIndex )
-                    ? double.Parse( Record[ $@"{ _numeric }" ].ToString( ) )
+                    ? double.Parse( Record[ $@"{ Numeric }" ].ToString( ) )
                     : 0;
             }
             catch( Exception ex )

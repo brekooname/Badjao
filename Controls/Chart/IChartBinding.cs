@@ -56,15 +56,7 @@
         /// The record.
         /// </value>
         DataRow Record { get; set; }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        ISeriesConfig SeriesConfig { get; set; }
-
+        
         /// <summary>
         /// Gets the metric.
         /// </summary>

@@ -453,6 +453,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Chart\ISeriesModel.cs" />
     <Compile Include="Data\DataBuilder\Computation.cs" />
     <Compile Include="Controls\Chart\ChartControl.cs">
       <SubType>Component</SubType>
@@ -603,9 +604,8 @@
     <Compile Include="Controls\Chart\ChartDataSeries.cs" />
     <Compile Include="Abstractions\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
-    <Compile Include="Controls\Chart\SeriesConfig.cs" />
     <Compile Include="Controls\Chart\SeriesModel.cs" />
-    <Compile Include="Abstractions\SeriesBase.cs" />
+    <Compile Include="Abstractions\DataBindingModelBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
     <Compile Include="Controls\DataGridForm.cs">
       <SubType>Form</SubType>
@@ -632,9 +632,6 @@
     <Compile Include="Interfaces\IDataSeries.cs" />
     <Compile Include="Interfaces\IDataSource.cs" />
     <Compile Include="Interfaces\IGrid.cs" />
-    <Compile Include="Interfaces\ISeriesConfig.cs" />
-    <Compile Include="Interfaces\ISeriesModel.cs" />
-    <Compile Include="Interfaces\ISeries.cs" />
     <Compile Include="Interfaces\ISpreadsheet.cs" />
     <Compile Include="Interfaces\ITitleInfo.cs" />
     <Compile Include="Data\Adapter\AdapterBuilder.cs">

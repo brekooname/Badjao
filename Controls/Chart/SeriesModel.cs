@@ -19,7 +19,7 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class SeriesModel : SeriesBase, ISeriesModel
+    public class SeriesModel : DataBindingModelBase, ISeriesModel
     {
         /// <summary>
         /// Initializes a new instance of the
@@ -69,28 +69,6 @@ namespace BudgetExecution
         {
             Values = GetSeriesValues( );
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesModel" /> class.
-        /// </summary>
-        /// <param name="dataTable">The table.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        public SeriesModel( DataTable dataTable, ISeriesConfig seriesConfig )
-            : base( dataTable, seriesConfig )
-        {
-            Values = GetSeriesValues( );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesModel" /> class.
-        /// </summary>
-        /// <param name="dataRows">The data.</param>
-        /// <param name="seriesConfig">The seriesConfig.</param>
-        public SeriesModel( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
-            : base( dataRows, seriesConfig )
-        {
-            Values = GetSeriesValues( );
-        }
         
         /// <summary>
         /// Gets the data.
@@ -119,16 +97,16 @@ namespace BudgetExecution
         /// Gets the source model.
         /// </summary>
         /// <returns></returns>
-        public ISeries GetSeriesModel( )
+        public ISeriesModel GetSeriesModel( )
         {
             try
             {
-                return (SeriesBase)MemberwiseClone( );
+                return (SeriesModel)MemberwiseClone( );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ISeries );
+                return default( ISeriesModel );
             }
         }
     }

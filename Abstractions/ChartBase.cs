@@ -94,23 +94,7 @@ namespace BudgetExecution
         /// The source.
         /// </value>
         public virtual Source Source { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data model.
-        /// </summary>
-        /// <value>
-        /// The data model.
-        /// </value>
-        public virtual ISeries SourceModel { get; set; }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        public virtual ISeriesConfig SeriesConfig { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the metric.
         /// </summary>

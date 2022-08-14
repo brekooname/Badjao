@@ -43,15 +43,7 @@ namespace BudgetExecution
         /// The field.
         /// </value>
         public Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the data points.
         /// </summary>
@@ -87,6 +79,10 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( bindingSource );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
+        /// </summary>
+        /// <param name="chartBinding">The chart binding.</param>
         public ChartDataSeries( ChartBinding chartBinding )
             : base( chartBinding )
         {
@@ -94,6 +90,10 @@ namespace BudgetExecution
             BindingSource = ChartBinding.BindingSource;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartDataSeries"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
         public ChartDataSeries( DataTable dataTable )
             : base( dataTable )
         {
