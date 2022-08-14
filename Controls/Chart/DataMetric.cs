@@ -54,7 +54,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( );
+            Values = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( );
+            Values = CalculateStatistics( Data, Numeric );
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Values = CalculateStatistics( );
+            Values = CalculateStatistics( Data, Numeric  );
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Field, Numeric );
             Deviation = CalculateDeviation( Data, Field, Numeric );
-            Values = CalculateStatistics( );
+            Values = CalculateStatistics( Data, Field, Numeric );
         }
 
         /// <summary>

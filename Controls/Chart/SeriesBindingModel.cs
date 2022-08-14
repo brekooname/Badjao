@@ -19,30 +19,30 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    public class SeriesModel : DataBindingModelBase, ISeriesModel
+    public class SeriesBindingModel : BindingModelBase, ISeriesModel
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="SeriesModel" />
+        /// <see cref="SeriesBindingModel" />
         /// class.
         /// </summary>
-        public SeriesModel( )
+        public SeriesBindingModel( )
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="SeriesModel" />
+        /// <see cref="SeriesBindingModel" />
         /// class.
         /// </summary>
-        public SeriesModel( BindingSource bindingSource ) 
+        public SeriesBindingModel( BindingSource bindingSource ) 
             : base( bindingSource )
         {
             Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
         }
 
-        public SeriesModel( DataTable dataTable )
+        public SeriesBindingModel( DataTable dataTable )
             : base( dataTable )
         {
             Values = GetSeriesValues( );
@@ -50,21 +50,21 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="SeriesModel" />
+        /// <see cref="SeriesBindingModel" />
         /// class.
         /// </summary>
         /// <param name="chartBinding"></param>
-        public SeriesModel( IChartBinding chartBinding ) 
+        public SeriesBindingModel( IChartBinding chartBinding ) 
             : base( chartBinding )
         {
             Values = GetSeriesValues( );
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeriesModel"/> class.
+        /// Initializes a new instance of the <see cref="SeriesBindingModel"/> class.
         /// </summary>
         /// <param name="dataRows">The data rows.</param>
-        public SeriesModel( IEnumerable<DataRow> dataRows )
+        public SeriesBindingModel( IEnumerable<DataRow> dataRows )
             : base( dataRows )
         {
             Values = GetSeriesValues( );
@@ -101,7 +101,7 @@ namespace BudgetExecution
         {
             try
             {
-                return (SeriesModel)MemberwiseClone( );
+                return (SeriesBindingModel)MemberwiseClone( );
             }
             catch( Exception ex )
             {

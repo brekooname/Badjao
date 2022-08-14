@@ -11,11 +11,8 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Configuration;
     using System.Data;
-    using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using Syncfusion.Drawing;
-    using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
@@ -117,7 +114,7 @@ namespace BudgetExecution
         /// <value>
         /// The data series.
         /// </value>
-        public virtual ChartData DataSeries { get; set; }
+        public virtual SeriesDataModel DataSeries { get; set; }
 
         /// <summary>
         /// Gets the default title.
@@ -132,36 +129,6 @@ namespace BudgetExecution
         /// </summary>
         protected ChartBase()
         {
-        }
-
-        /// <summary>
-        /// Sets the legend configuration.
-        /// </summary>
-        /// <param name="font">The font.</param>
-        /// <param name="size">The size.</param>
-        /// <param name="backColor">The back color.</param>
-        public virtual void SetLegend( Font font, Size size, Color backColor )
-        {
-            try
-            {
-                ShowLegend = true;
-                Legend.Font = font;
-                Legend.ItemsSize = size;
-                Legend.VisibleCheckBox = true;
-                Legend.BackInterior = new BrushInfo( backColor );
-                Legend.ItemsAlignment = StringAlignment.Center;
-                Legend.ItemsTextAligment = VerticalAlignment.Center;
-                Legend.Orientation = ChartOrientation.Vertical;
-                Legend.FloatingAutoSize = true;
-                Legend.ShowSymbol = true;
-                Legend.ShowItemsShadow = true;
-                Legend.ShowBorder = false;
-                Legend.Visible = true;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
 
         /// <summary>

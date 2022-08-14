@@ -62,6 +62,14 @@ namespace BudgetExecution
         /// The average
         /// </summary>
         public virtual double Average { get; set; }
+
+        /// <summary>
+        /// Gets or sets the amounts.
+        /// </summary>
+        /// <value>
+        /// The amounts.
+        /// </value>
+        public virtual double Amounts { get; set; }
         
         /// <summary>
         /// The statistics
@@ -406,7 +414,7 @@ namespace BudgetExecution
                 try
                 {
                     var _query = dataRow
-                        .Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
                         ?.Select( p => p.Field<decimal>( $"{ numeric }" ) )
                         ?.Sum( );
 

@@ -6,8 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
@@ -23,40 +21,20 @@ namespace BudgetExecution
     public class ChartControl : ChartBase
     {
         /// <summary>
-        /// Gets or sets the tool tip.
+        /// Gets or sets the chart binding.
         /// </summary>
         /// <value>
-        /// The tool tip.
+        /// The chart binding.
         /// </value>
-        public override ToolTip ToolTip { get; set; }
+        public IChartBinding ChartBinding { get; set; }
 
         /// <summary>
-        /// Gets or sets the hover text.
+        /// Gets or sets the data values.
         /// </summary>
         /// <value>
-        /// The hover text.
+        /// The data values.
         /// </value>
-        public override string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the binding source.
-        /// </summary>
-        /// <value>
-        /// The binding source.
-        /// </value>
-        public override BindingSource BindingSource { get; set; }
-
-        public  IChartBinding ChartBinding { get; set; }
-
         public IDictionary<string, double> DataValues { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public override Field Field { get; set; }
         
         /// <summary>
         /// Gets or sets the data source.
@@ -81,23 +59,7 @@ namespace BudgetExecution
         /// The header.
         /// </value>
         public ChartTitle Header { get; set; }
-
-        /// <summary>
-        /// Gets or sets the filter.
-        /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
-        public override IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         // Initializes Properties
         /// <summary>
         /// Initializes a new instance
@@ -200,13 +162,13 @@ namespace BudgetExecution
             ChartBinding = chartBinding;
             BindingSource = (BindingSource)chartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesModel( chartBinding );
+            SeriesModel = new SeriesBindingModel( chartBinding );
             DataMetric = chartBinding.DataMetric;
             TableName = chartBinding.DataTable.TableName;
             Header.Text = TableName;
-            DataSeries = new ChartDataSeries( chartBinding.DataTable );
+            DataSeries = new SeriesDataModel( chartBinding.DataTable );
             Series.Add( DataSeries );
-            DataValues = DataSeries.PointValues;
+            DataValues = DataSeries.DataValues;
         }
 
         public ChartControl( DataTable dataTable )
@@ -215,8 +177,8 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( dataTable );
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesModel( dataTable );
-            DataSeries = new ChartDataSeries( dataTable );
+            SeriesModel = new SeriesBindingModel( dataTable );
+            DataSeries = new SeriesDataModel( dataTable );
             DataMetric = ChartBinding.DataMetric;
             TableName = dataTable?.TableName;
             Header.Text = TableName;
@@ -234,10 +196,10 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( bindingSource );
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesModel( bindingSource );
-            DataSeries = new ChartDataSeries( bindingSource );
+            SeriesModel = new SeriesBindingModel( bindingSource );
+            DataSeries = new SeriesDataModel( bindingSource );
             DataMetric = new DataMetric( bindingSource );
-            DataValues = DataSeries.PointValues;
+            DataValues = DataSeries.DataValues;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
@@ -256,9 +218,9 @@ namespace BudgetExecution
             ChartBinding = seriesModel.ChartBinding;
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesModel( seriesModel.ChartBinding );
+            SeriesModel = new SeriesBindingModel( seriesModel.ChartBinding );
             DataMetric = ChartBinding.DataMetric;
-            DataSeries = new ChartDataSeries( seriesModel.Data );
+            DataSeries = new SeriesDataModel( seriesModel.Data );
             TableName = ChartBinding.DataTable.TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
@@ -270,7 +232,7 @@ namespace BudgetExecution
         /// </summary>
         public void SetPoints( )
         {
-            if( Enum.IsDefined( typeof( ChartSeriesType ), DataSeries.ChartType ) 
+            if( Enum.IsDefined( typeof( ChartSeriesType ), DataSeries.Type ) 
                 && DataValues?.Any( ) == true )
             {
                 try
@@ -280,7 +242,7 @@ namespace BudgetExecution
                         Series[ 0 ].Points.Clear( );
                     }
 
-                    switch( DataSeries.ChartType )
+                    switch( DataSeries.Type )
                     {
                         case ChartSeriesType.Column:
                         case ChartSeriesType.Line:

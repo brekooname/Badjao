@@ -38,12 +38,17 @@ namespace BudgetExecution
             Chart = new ChartControl( bindingSource )
             {
                 Dock = DockStyle.Fill
+              
             };
 
             Chart.SetPoints( );
             Controls.Add( Chart );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartForm"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
         public ChartForm( DataTable dataTable )
             : this( )
         {

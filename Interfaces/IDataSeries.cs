@@ -15,8 +15,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the point configuration.
         /// </summary>
-        /// <param name="stat">The stat.</param>
-        void SetPointConfig( STAT stat = STAT.Total );
+        void SetPointConfig( );
 
         /// <summary>
         /// Sets the points.

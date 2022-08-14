@@ -9,6 +9,7 @@ namespace BudgetExecution
     using Syncfusion.Windows.Forms.Chart;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Data;
     using System.Drawing;
     using System.Linq;
@@ -22,8 +23,16 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class ChartData : ChartSeries, IDataSeries
+    public abstract class ChartData : ChartSeries
     {
+        /// <summary>
+        /// Gets or sets the binding source.
+        /// </summary>
+        /// <value>
+        /// The binding source.
+        /// </value>
+        public virtual BindingSource BindingSource { get; set; }
+
         /// <summary>
         /// Gets the metric.
         /// </summary>
@@ -31,51 +40,35 @@ namespace BudgetExecution
         /// The metric.
         /// </value>
         public virtual STAT STAT { get; set; }
-
-        /// <summary>
-        /// Gets the source model.
-        /// </summary>
-        /// <value>
-        /// The source model.
-        /// </value>
-        public virtual ISeriesModel SeriesDataModel { get; set; }
-
-        /// <summary>
-        /// Gets the series data.
-        /// </summary>
-        /// <value>
-        /// The series data.
-        /// </value>
-        public virtual IDictionary<string, double> PointValues { get; set; }
-
-        /// <summary>
-        /// Gets the series categories.
-        /// </summary>
-        /// <value>
-        /// The series categories.
-        /// </value>
-        public virtual IEnumerable<string> Categories { get; set; }
-
-        /// <summary>
-        /// Gets the series values.
-        /// </summary>
-        /// <value>
-        /// The series values.
-        /// </value>
-        public virtual IEnumerable<double> Values { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the chart.
-        /// </summary>
-        /// <value>
-        /// The type of the chart.
-        /// </value>
-        public virtual ChartSeriesType ChartType { get; set; }
-
+        
         /// <summary>
         /// Gets the numeric.
         /// </summary>
         public virtual Numeric Numeric { get; set; }
+
+        /// <summary>
+        /// Gets or sets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        public virtual IDataMetric DataMetric { get; set; }
+
+        /// <summary>
+        /// Gets the binding model.
+        /// </summary>
+        /// <value>
+        /// The binding model.
+        /// </value>
+        public virtual ChartDataBindModel BindingModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the axis label model.
+        /// </summary>
+        /// <value>
+        /// The axis label model.
+        /// </value>
+        public virtual ChartDataBindAxisLabelModel AxisLabelModel { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
@@ -126,13 +119,20 @@ namespace BudgetExecution
         protected ChartData( BindingSource bindingSource )
             : this( )
         {
-            SeriesDataModel = new SeriesModel( bindingSource );
             Name = ( (DataTable)bindingSource.DataSource ).TableName;
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
-            PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
-            Values = SeriesDataModel?.Values;
-            Categories = SeriesDataModel?.Categories;
+            DataMetric = new DataMetric( bindingSource );
+
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = bindingSource.DataSource
+            };
+
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = bindingSource.DataSource
+            };
         }
     
         /// <summary>
@@ -142,12 +142,19 @@ namespace BudgetExecution
         protected ChartData( IEnumerable<DataRow> dataRows )
             : this( )
         {
-            SeriesDataModel = new SeriesModel( dataRows );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
-            PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
-            Values = SeriesDataModel?.Values;
-            Categories = SeriesDataModel?.Categories;
+            DataMetric = new DataMetric( dataRows );
+
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
+
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
         }
 
         /// <summary>
@@ -157,92 +164,203 @@ namespace BudgetExecution
         protected ChartData( DataTable dataTable )
             : this( )
         {
-            SeriesDataModel = new SeriesModel( dataTable );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
-            PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
-            Values = SeriesDataModel?.Values;
-            Categories = SeriesDataModel?.Categories;
+            DataMetric = new DataMetric( dataTable );
+
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = dataTable
+            };
+
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = dataTable
+            };
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
-        /// <param name="seriesModel">The chart data.</param>
-        protected ChartData( ISeriesModel seriesModel )
+        /// <param name="dataSet">The data set.</param>
+        protected ChartData( DataSet dataSet )
             : this( )
         {
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
-            SeriesDataModel = seriesModel;
-            PointValues = SeriesDataModel?.DataMetric?.CalculateStatistics( );
-            Values = seriesModel?.Values;
-            Categories = seriesModel?.Categories;
+            DataMetric = new DataMetric( );
+
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = dataSet.Tables[ 0 ]
+            };
+
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = dataSet.Tables[ 0 ]
+            };
         }
-        
+
         /// <summary>
-        /// Sets the point configuration.
+        /// Sets the binding source.
         /// </summary>
-        /// <param name="stat">The value.</param>
-        public void SetPointConfig( STAT stat = STAT.Total )
+        /// <param name="bindingSource">The bindingsource.</param>
+        public virtual void SetDataSource<T1>( T1 bindingSource )
+            where T1 : IBindingList
         {
-            if( Validate.STAT( stat ) )
+            try
+            {
+                if( bindingSource is BindingSource binder
+                    && binder?.DataSource != null )
+                {
+                    try
+                    {
+                        BindingSource.DataSource = binder.DataSource;
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2">The type of the 2.</typeparam>
+        /// <param name="bindingList">The bindingsource.</param>
+        /// <param name="dict">The dictionary.</param>
+        public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
+            where T1 : IBindingList
+            where T2 : IDictionary<string, object>
+        {
+            try
+            {
+                if( Verify.IsBindable( bindingList )
+                    && dict?.Any(  ) == true )
+                {
+                    try
+                    {
+                        var _list = bindingList as BindingSource;
+                        var _filter = string.Empty;
+
+                        foreach( var _kvp in dict )
+                        {
+                            if( !string.IsNullOrEmpty( _kvp.Key )
+                                && _kvp.Value != null )
+                            {
+                                _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
+                            }
+                        }
+
+                        if( _filter?.Length > 0
+                            && _list?.DataSource != null )
+                        {
+                            BindingSource.DataSource = _list?.DataSource;
+                            BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray(  ) );
+                        }
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data )
+            where T1 : IEnumerable<DataRow>
+        {
+            if( data?.Any(  ) == true )
             {
                 try
                 {
-                    switch( stat )
+                    BindingSource.DataSource = data?.ToList(  );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <typeparam name="T1">The type of the 1.</typeparam>
+        /// <param name="data">The data.</param>
+        /// <param name="dict">The dictionary.</param>
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+            where T1 : IEnumerable<DataRow>
+        {
+            if( data?.Any(  ) == true )
+            {
+                try
+                {
+                    var _filter = string.Empty;
+
+                    foreach( var _kvp in dict )
                     {
-                        case STAT.Total:
-                        case STAT.Average:
+                        if( !string.IsNullOrEmpty( _kvp.Key )
+                            && _kvp.Value != null )
                         {
-                            Style.TextFormat = "{0:C}";
-                            break;
-                        }
-
-                        case STAT.Percentage:
-                        {
-                            Style.TextFormat = "{0:P}";
-                            break;
-                        }
-
-                        case STAT.Count:
-                        {
-                            Style.TextFormat = "{0}";
-                            break;
+                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                         }
                     }
 
-                    if( Type != ChartSeriesType.Pie )
+                    BindingSource.DataSource = data?.ToList(  );
+                    BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray(  ) );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <typeparam name="T1">The type of the 1.</typeparam>
+        /// <typeparam name="T2">The type of the 2.</typeparam>
+        /// <typeparam name="T3">The type of the 3.</typeparam>
+        /// <param name="data">The data.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="filter">The dictionary.</param>
+        public virtual void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
+            where T1 : IEnumerable<DataRow>
+            where T2 : struct
+        {
+            if( data?.Any(  ) == true
+                && Enum.IsDefined( typeof( Field ), field )
+                && !string.IsNullOrEmpty( filter?.ToString(  ) ) )
+            {
+                try
+                {
+                    if( !string.IsNullOrEmpty( filter?.ToString(  ) ) )
                     {
-                        SmartLabels = true;
-                        SortPoints = true;
-                        Style.DisplayText = true;
-                        Style.TextOffset = 50.0F;
-                        Style.TextOrientation = ChartTextOrientation.Up;
-                        Style.DisplayShadow = true;
-                        Style.TextColor = Color.White;
-                        Style.Font.Size = 10F;
-                        Style.Font.FontStyle = FontStyle.Bold;
-                        Style.Font.Facename = "Roboto";
-                        ShowTicks = true;
-                        ConfigItems.ColumnItem.ShadingMode = ChartColumnShadingMode.PhongCylinder;
-                        ConfigItems.ColumnItem.PhongAlpha = 20d;
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
+                        BindingSource.Filter = $"{ field } = { filter }";
                     }
                     else
                     {
-                        SmartLabels = true;
-                        SortPoints = true;
-                        Style.DisplayText = true;
-                        Style.TextOffset = 50.0F;
-                        Style.TextOrientation = ChartTextOrientation.Up;
-                        Style.DisplayShadow = true;
-                        Style.TextColor = Color.White;
-                        Style.Font.Size = 10F;
-                        Style.Font.FontStyle = FontStyle.Bold;
-                        Style.Font.Facename = "Roboto";
-                        ShowTicks = true;
-                        ConfigItems.ColumnItem.ShadingMode = ChartColumnShadingMode.PhongCylinder;
-                        ConfigItems.ColumnItem.PhongAlpha = 20d;
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
                     }
                 }
                 catch( Exception ex )
@@ -253,93 +371,26 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the points.
+        /// Sets the binding source.
         /// </summary>
+        /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
-        /// <param name="type">The type.</param>
-        /// <param name="stat">The stat.</param>
-        public void SetPoints( IDictionary<string, double> data, ChartSeriesType type = ChartSeriesType.Column,
-            STAT stat = STAT.Total )
+        /// <param name="field">The field.</param>
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
+            where T1 : IEnumerable<DataRow>
         {
-            if( Enum.IsDefined( typeof( ChartSeriesType ), type ) )
+            if( data?.Any(  ) == true )
             {
                 try
                 {
-                    if( Points.Count > 0 )
+                    if( !string.IsNullOrEmpty( field?.ToString(  ) ) )
                     {
-                        Points.Clear( );
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field?.ToString(  );
                     }
-
-                    switch( type )
+                    else
                     {
-                        case ChartSeriesType.Column:
-                        case ChartSeriesType.Line:
-                        case ChartSeriesType.Spline:
-                        case ChartSeriesType.SplineArea:
-                        case ChartSeriesType.Area:
-                        case ChartSeriesType.Bar:
-                        case ChartSeriesType.BoxAndWhisker:
-                        case ChartSeriesType.Bubble:
-                        case ChartSeriesType.Candle:
-                        case ChartSeriesType.ColumnRange:
-                        case ChartSeriesType.HeatMap:
-                        case ChartSeriesType.HiLo:
-                        case ChartSeriesType.HiLoOpenClose:
-                        case ChartSeriesType.Histogram:
-                        case ChartSeriesType.Kagi:
-                        case ChartSeriesType.PointAndFigure:
-                        case ChartSeriesType.Polar:
-                        case ChartSeriesType.Radar:
-                        case ChartSeriesType.RangeArea:
-                        case ChartSeriesType.RotatedSpline:
-                        case ChartSeriesType.Scatter:
-                        case ChartSeriesType.StackingArea:
-                        case ChartSeriesType.StackingArea100:
-                        case ChartSeriesType.StackingBar:
-                        case ChartSeriesType.StackingBar100:
-                        case ChartSeriesType.StackingColumn100:
-                        case ChartSeriesType.StepArea:
-                        case ChartSeriesType.StepLine:
-                        case ChartSeriesType.ThreeLineBreak:
-                        case ChartSeriesType.Tornado:
-                        case ChartSeriesType.StackingColumn:
-                        {
-                            foreach( var _kvp in data )
-                            {
-                                Points.Add( _kvp.Key, _kvp.Value );
-                            }
-
-                            break;
-                        }
-
-                        case ChartSeriesType.Pyramid:
-                        case ChartSeriesType.Funnel:
-                        case ChartSeriesType.Pie:
-                        {
-                            foreach( var _kvp in data )
-                            {
-                                Points.Add( _kvp.Key, _kvp.Value );
-                                var _keys = data.Keys.Select( k => k.ToString( ) ).ToArray( );
-                                var _vals = data.Values.Select( v => v ).ToArray( );
-
-                                if( stat != STAT.Percentage )
-                                {
-                                    for( var i = 0; i < data.Keys.Count; i++ )
-                                    {
-                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:N1}";
-                                    }
-                                }
-                                else if( stat == STAT.Percentage )
-                                {
-                                    for( var i = 0; i < data.Keys.Count; i++ )
-                                    {
-                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:P}";
-                                    }
-                                }
-                            }
-
-                            break;
-                        }
+                        BindingSource.DataSource = data.ToList(  );
                     }
                 }
                 catch( Exception ex )
@@ -348,7 +399,76 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Sets the bindings.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param>The numeric.</param>
+        /// <param name = "dict" > </param>
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
+            where T1 : IEnumerable<DataRow>
+            where T2 : IDictionary<string, object>
+        {
+            if( data?.Any(  ) == true
+                && dict?.Any(  ) == true )
+            {
+                try
+                {
+                    var _filter = string.Empty;
+
+                    foreach( var _kvp in dict )
+                    {
+                        if( !string.IsNullOrEmpty( _kvp.Key )
+                            && _kvp.Value != null )
+                        {
+                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                        }
+                    }
+
+                    BindingSource.DataSource = data?.ToList(  );
+                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray(  ) );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the binding source.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="filter">The filter.</param>
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+            where T1 : IEnumerable<DataRow>
+            where T2 : struct
+        {
+            if( data?.Any(  ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
+            {
+                try
+                {
+                    if( !string.IsNullOrEmpty( filter?.ToString(  ) ) )
+                    {
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
+                        BindingSource.Filter = $"{field} = {filter}";
+                    }
+                    else
+                    {
+                        BindingSource.DataSource = data.ToList(  );
+                        BindingSource.DataMember = field.ToString(  );
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
     
         /// <summary>
         /// Get Error Dialog.

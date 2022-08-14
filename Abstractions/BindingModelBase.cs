@@ -20,7 +20,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class DataBindingModelBase : ChartDataBindModel
+    public abstract class BindingModelBase : ChartDataBindModel
     {
         /// <summary>
         /// Gets the data.
@@ -45,6 +45,14 @@ namespace BudgetExecution
         /// The binding model.
         /// </value>
         public virtual ChartDataBindModel BindingModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the axis label model.
+        /// </summary>
+        /// <value>
+        /// The axis label model.
+        /// </value>
+        public virtual ChartDataBindAxisLabelModel AxisLabelModel { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.
@@ -88,22 +96,23 @@ namespace BudgetExecution
         
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="DataBindingModelBase" /> class.
+        /// of the <see cref="BindingModelBase" /> class.
         /// </summary>
-        protected DataBindingModelBase( )
+        protected BindingModelBase( )
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataBindingModelBase" /> struct.
+        /// Initializes a new instance of the <see cref="BindingModelBase" /> struct.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        protected DataBindingModelBase( BindingSource bindingSource )
+        protected BindingModelBase( BindingSource bindingSource )
         {
             BindingModel = new ChartDataBindModel( bindingSource );
             ChartBinding = new ChartBinding( bindingSource );
             Data = ChartBinding.Data;
             DataSource = Data.CopyToDataTable( );
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
@@ -111,15 +120,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataBindingModelBase"/> class.
+        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
         /// </summary>
         /// <param name="dataTable">The data table.</param>
-        protected DataBindingModelBase( DataTable dataTable )
+        protected BindingModelBase( DataTable dataTable )
         {
             BindingModel = new ChartDataBindModel( dataTable );
             ChartBinding = new ChartBinding( dataTable );
             Data = ChartBinding.Data;
-            DataSource = Data.CopyToDataTable( );
+            DataSource = dataTable;
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( dataTable );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
@@ -127,15 +137,33 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataBindingModelBase"/> class.
+        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
+        /// </summary>
+        /// <param name="dataSet">The data table.</param>
+        protected BindingModelBase( DataSet dataSet )
+        {
+            BindingModel = new ChartDataBindModel( dataSet );
+            ChartBinding = new ChartBinding( dataSet );
+            Data = ChartBinding.Data;
+            DataSource = dataSet.Tables[ 0 ];
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            DataMetric = new DataMetric( Data );
+            SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            BindingModel.Changed += OnChanged;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
         /// </summary>
         /// <param name="dataRows">The data rows.</param>
-        protected DataBindingModelBase( IEnumerable<DataRow> dataRows )
+        protected BindingModelBase( IEnumerable<DataRow> dataRows )
         {
             BindingModel = new ChartDataBindModel( dataRows );
             ChartBinding = new ChartBinding( dataRows );
             Data = dataRows;
             DataSource = Data.CopyToDataTable( );
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( dataRows );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
@@ -143,15 +171,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataBindingModelBase" /> struct.
+        /// Initializes a new instance of the <see cref="BindingModelBase" /> struct.
         /// </summary>
         /// <param name="chartBinding">The binding source.</param>
-        protected DataBindingModelBase( IChartBinding chartBinding )
+        protected BindingModelBase( IChartBinding chartBinding )
         {
             BindingModel = new ChartDataBindModel( chartBinding );
             ChartBinding = chartBinding;
             Data = ChartBinding.Data;
             DataSource = Data.CopyToDataTable( );
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
