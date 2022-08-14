@@ -38,6 +38,14 @@ namespace BudgetExecution
         public double Deviation { get; set; }
 
         /// <summary>
+        /// Gets or sets the values.
+        /// </summary>
+        /// <value>
+        /// The values.
+        /// </value>
+        public IDictionary<string, double> Values { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref = "DataMetric"/> class.
         /// </summary>
         public DataMetric( ) 
@@ -71,6 +79,7 @@ namespace BudgetExecution
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
             Statistics = CalculateStatistics( Data, Numeric );
+            Values = Amounts;
         }
 
         /// <summary>
@@ -150,6 +159,7 @@ namespace BudgetExecution
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
             Statistics = CalculateStatistics( Data, Field, Numeric );
+            Values = Amounts;
         }
 
         /// <summary>

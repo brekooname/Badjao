@@ -78,6 +78,14 @@ namespace BudgetExecution
         public virtual ChartDataBindAxisLabelModel AxisLabelModel { get; set; }
 
         /// <summary>
+        /// Gets the series data.
+        /// </summary>
+        /// <value>
+        /// The series data.
+        /// </value>
+        public IDictionary<string, double> DataValues { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
         protected ChartData( )
@@ -131,7 +139,7 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource );
-
+           
             BindingModel = new ChartDataBindModel
             {
                 DataSource = bindingSource.DataSource
@@ -144,13 +152,14 @@ namespace BudgetExecution
         }
 
         protected ChartData( BindingSource bindingSource, Field field )
-            : this( )
         {
             BindingSource = bindingSource;
             Name = ( (DataTable)bindingSource.DataSource ).TableName;
+            Text = Name.SplitPascal(  );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource, field );
+            DataValues = new DataMetric( bindingSource, field ).Values;
 
             BindingModel = new ChartDataBindModel
             {

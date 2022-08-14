@@ -53,14 +53,6 @@ namespace BudgetExecution
         public IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets the series data.
-        /// </summary>
-        /// <value>
-        /// The series data.
-        /// </value>
-        public IDictionary<string, double> DataValues { get; set; }
-
-        /// <summary>
         /// Gets the series categories.
         /// </summary>
         /// <value>
@@ -93,6 +85,7 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
+
         }
 
         public ChartSeries( BindingSource bindingSource, Field field )

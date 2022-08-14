@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -85,14 +86,6 @@ namespace BudgetExecution
         public virtual IDictionary<string, double> Statistics { get; set; }
 
         /// <summary>
-        /// Gets or sets the values.
-        /// </summary>
-        /// <value>
-        /// The values.
-        /// </value>
-        public virtual IDictionary<string, double> Values { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
         protected MetricBase( )
@@ -131,7 +124,7 @@ namespace BudgetExecution
             Total = CalculateTotal( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-            Amounts = CalculateAmounts( Data, Field );
+            Amounts = CalculateAmounts( Data, field, numeric );
         }
 
         protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
@@ -227,7 +220,7 @@ namespace BudgetExecution
             Count = dataRow.Count( );
             Total = CalculateTotal( dataRow, numeric );
             Average = CalculateAverage( dataRow, Numeric );
-            Amounts = CalculateAmounts( Data, Field );
+            Amounts = CalculateAmounts( Data, field, numeric );
         }
 
         /// <summary>
@@ -377,23 +370,24 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _fields = GetCodes( dataRow, field );
                     var _dict = new Dictionary<string, double>( );
-
-                    if( _fields?.Any( ) == true )
+                    foreach( var row in dataRow )
                     {
-                        foreach( var name in _fields )
+                        var _field = field.ToString( );
+                        var _numeric = numeric.ToString( );
+                        var _name = row[ _field ].ToString(   );
+                        var _value = double.Parse( ((decimal)(row[ _numeric ])).ToString( "N01" ) );
+
+                        if ( !string.IsNullOrEmpty( _name ) )
                         {
-                            var _sum = dataRow.Filter( field.ToString(), name )
-                                .Sum( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                            var _seriesName = dataRow.Filter( field.ToString( ), name )
-                                .Select( p => p.Field<string>( field.ToString( ) ) )
-                                .First();
-
-                            _dict.Add( _seriesName, double.Parse( _sum.ToString( "N01" ) ) );
+                            _dict.Add( _name, _value );
                         }
                     }
+
+                    return _dict?.Any(   ) == true
+                        ? _dict
+                        : default( IDictionary<string, double> );
                 }
                 catch( Exception ex )
                 {
