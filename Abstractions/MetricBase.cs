@@ -64,12 +64,20 @@ namespace BudgetExecution
         public virtual double Average { get; set; }
 
         /// <summary>
+        /// Gets or sets the categories.
+        /// </summary>
+        /// <value>
+        /// The categories.
+        /// </value>
+        public virtual IEnumerable<string> Categories { get; set; }
+
+        /// <summary>
         /// Gets or sets the amounts.
         /// </summary>
         /// <value>
         /// The amounts.
         /// </value>
-        public virtual double Amounts { get; set; }
+        public virtual IEnumerable<double> Amounts { get; set; }
         
         /// <summary>
         /// The statistics
@@ -138,6 +146,17 @@ namespace BudgetExecution
             Data = dataTable.AsEnumerable( );
             TableName = dataTable.TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
+            Numeric = numeric;
+            Count = Data.Count( );
+            Total = CalculateTotal( Data, numeric );
+            Average = CalculateAverage( Data, numeric );
+        }
+
+        protected MetricBase( DataSet dataSet, Numeric numeric = Numeric.Amount )
+        {
+            Data = dataSet.Tables[ 0 ].AsEnumerable( );
+            TableName = dataSet.Tables[ 0 ].TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), TableName );
             Numeric = numeric;
             Count = Data.Count( );
             Total = CalculateTotal( Data, numeric );
@@ -398,22 +417,21 @@ namespace BudgetExecution
         /// <param name = "dataRow" >
         /// The dataRow.
         /// </param>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
+        /// <param name = "dict" > </param>
         /// <param name = "numeric" >
         /// The numeric.
         /// </param>
         /// <returns>
         /// </returns>
-        public double CalculateTotal( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
+        public double CalculateTotal( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
+                && dict?.Any( ) == true
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-                    var _query = dataRow
+                    var _query = dataRow.Filter( dict )
                         ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
                         ?.Select( p => p.Field<decimal>( $"{ numeric }" ) )
                         ?.Sum( );

@@ -166,7 +166,7 @@ namespace BudgetExecution
             DataMetric = chartBinding.DataMetric;
             TableName = chartBinding.DataTable.TableName;
             Header.Text = TableName;
-            DataSeries = new SeriesDataModel( chartBinding.DataTable );
+            DataSeries = new ChartSeries( chartBinding.DataTable );
             Series.Add( DataSeries );
             DataValues = DataSeries.DataValues;
         }
@@ -178,7 +178,7 @@ namespace BudgetExecution
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
             SeriesModel = new SeriesBindingModel( dataTable );
-            DataSeries = new SeriesDataModel( dataTable );
+            DataSeries = new ChartSeries( dataTable );
             DataMetric = ChartBinding.DataMetric;
             TableName = dataTable?.TableName;
             Header.Text = TableName;
@@ -196,8 +196,7 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( bindingSource );
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesBindingModel( bindingSource );
-            DataSeries = new SeriesDataModel( bindingSource );
+            DataSeries = new ChartSeries( bindingSource );
             DataMetric = new DataMetric( bindingSource );
             DataValues = DataSeries.DataValues;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
@@ -205,23 +204,18 @@ namespace BudgetExecution
             Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );
         }
-        
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChartControl" />
-        /// class.
-        /// </summary>
-        /// <param name="seriesModel">The sourceModel.</param>
-        public ChartControl( ISeriesModel seriesModel )
+
+
+        public ChartControl( DataSet dataSet )
             : this( )
         {
-            ChartBinding = seriesModel.ChartBinding;
+            ChartBinding = new ChartBinding( dataSet );
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesBindingModel( seriesModel.ChartBinding );
-            DataMetric = ChartBinding.DataMetric;
-            DataSeries = new SeriesDataModel( seriesModel.Data );
-            TableName = ChartBinding.DataTable.TableName;
+            DataSeries = new ChartSeries( dataSet );
+            DataMetric = new DataMetric( dataSet );
+            DataValues = DataSeries.DataValues;
+            TableName = dataSet.Tables[ 0 ].TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );

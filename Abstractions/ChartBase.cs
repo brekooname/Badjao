@@ -64,6 +64,14 @@ namespace BudgetExecution
         public virtual Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        public virtual Source Source { get; set; }
+
+        /// <summary>
         /// Gets or sets the filter.
         /// </summary>
         /// <value>
@@ -84,14 +92,6 @@ namespace BudgetExecution
         /// </summary>
         public virtual IChartConfig Style { get; set; }
 
-        /// <summary>
-        /// Gets or sets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
-        public virtual Source Source { get; set; }
-        
         /// <summary>
         /// Gets or sets the metric.
         /// </summary>
@@ -114,7 +114,7 @@ namespace BudgetExecution
         /// <value>
         /// The data series.
         /// </value>
-        public virtual SeriesDataModel DataSeries { get; set; }
+        public virtual ChartSeries DataSeries { get; set; }
 
         /// <summary>
         /// Gets the default title.

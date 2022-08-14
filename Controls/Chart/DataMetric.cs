@@ -60,6 +60,18 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="DataMetric"/> class.
         /// </summary>
+        /// <param name="dataSet">The data row.</param>
+        /// <param name="numeric">The numeric.</param>
+        public DataMetric( DataSet dataSet, Numeric numeric = Numeric.Amount )
+            : base( dataSet, numeric )
+        {
+            Variance = CalculateVariance( Data, Numeric );
+            Deviation = CalculateDeviation( Data, Numeric );
+            Values = CalculateStatistics( Data, Numeric );
+        }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataMetric"/> class.
+        /// </summary>
         /// <param name="dataTable">The data row.</param>
         /// <param name="numeric">The numeric.</param>
         public DataMetric( DataTable dataTable, Numeric numeric = Numeric.Amount )
@@ -297,7 +309,7 @@ namespace BudgetExecution
                 try
                 {
 
-                    if( CalculateTotal( dataRow, Field, numeric ) > 0 )
+                    if( CalculateTotal( dataRow, numeric ) > 0 )
                     {
                         var _statistics = CalculateStatistics( dataRow, numeric );
 
@@ -325,7 +337,7 @@ namespace BudgetExecution
         /// <param name = "dict" > </param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, 
             IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -338,9 +350,9 @@ namespace BudgetExecution
                     var _table = dataRow.CopyToDataTable( );
                     var _select = _table.Select( _criteria );
 
-                    if( CalculateTotal( _select, Field, numeric ) > 0 )
+                    if( CalculateTotal( _select, numeric ) > 0 )
                     {
-                        var _statistics = CalculateStatistics( _select, Field,  numeric );
+                        var _statistics = CalculateStatistics( _select,  numeric );
 
                         return _statistics?.Count > 0.0
                             ? _statistics

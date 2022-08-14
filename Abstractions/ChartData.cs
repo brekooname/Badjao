@@ -18,12 +18,12 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="ChartSeries" />
+    /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartSeries" />
     /// <seealso cref="IDataSeries" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class ChartData : ChartSeries
+    public abstract class ChartData : Syncfusion.Windows.Forms.Chart.ChartSeries
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -45,6 +45,14 @@ namespace BudgetExecution
         /// Gets the numeric.
         /// </summary>
         public virtual Numeric Numeric { get; set; }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public virtual IEnumerable<DataRow> Data { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.

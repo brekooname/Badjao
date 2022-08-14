@@ -601,7 +601,7 @@
     <Compile Include="Controls\Chart\ChartBinding.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Chart\SeriesDataModel.cs" />
+    <Compile Include="Controls\Chart\ChartSeries.cs" />
     <Compile Include="Abstractions\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesBindingModel.cs" />
