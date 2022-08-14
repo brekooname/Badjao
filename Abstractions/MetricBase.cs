@@ -14,13 +14,11 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="IMetric" />
-    /// <seealso cref="IDataFilter" />
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
     [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class MetricBase : IMetric, IDataFilter
+    public abstract class MetricBase 
     {
         /// <summary>
         /// Gets the source.
@@ -68,7 +66,7 @@ namespace BudgetExecution
         /// <summary>
         /// The statistics
         /// </summary>
-        public virtual IDictionary<string, IEnumerable<double>> Statistics { get; set; }
+        public virtual IDictionary<string, double> Values { get; set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
@@ -111,6 +109,17 @@ namespace BudgetExecution
             Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
         }
 
+        protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        {
+            Data = ( (DataTable)bindingSource.DataSource ).Select( dict.ToCriteria( ));
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            Numeric = numeric;
+            Total = CalculateTotal( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
@@ -143,6 +152,16 @@ namespace BudgetExecution
             Average = CalculateAverage( dataRow, numeric );
         }
 
+        protected MetricBase( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        {
+            Numeric = numeric;
+            Data = dataRow.Filter( dict );
+            TableName = dataRow.CopyToDataTable( ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
+            Count = Data.Count( );
+            Total = CalculateTotal( Data, Numeric );
+            Average = CalculateAverage( Data, Numeric );
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.

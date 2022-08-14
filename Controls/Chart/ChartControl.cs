@@ -12,6 +12,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Drawing.Drawing2D;
+    using System.Linq;
     using System.Windows.Forms;
     using Syncfusion.Drawing;
     using Syncfusion.Windows.Forms.Chart;
@@ -19,7 +20,7 @@ namespace BudgetExecution
 
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    public class ChartControl : ChartBase, IChart
+    public class ChartControl : ChartBase
     {
         /// <summary>
         /// Gets or sets the tool tip.
@@ -197,17 +198,16 @@ namespace BudgetExecution
             : this( )
         {
             ChartBinding = chartBinding;
-            BindingSource = (BindingSource)ChartBinding;
+            BindingSource = (BindingSource)chartBinding;
             DataSource = BindingSource.DataSource;
             SeriesConfig = chartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( chartBinding );
-            DataMetric = SourceModel.DataMetric;
+            DataMetric = chartBinding.DataMetric;
             TableName = chartBinding.DataTable.TableName;
             Header.Text = TableName;
             DataSeries = new ChartDataSeries( chartBinding.DataTable );
             Series.Add( DataSeries );
-            DataValues = DataMetric.CalculateTotals( DataMetric.Data, Field.FundName );
-            SeriesConfig.SetPoints( DataValues, ChartSeriesType.Column, STAT.Total );
+            DataValues = DataSeries.PointValues;
         }
 
         public ChartControl( DataTable dataTable )
@@ -219,7 +219,7 @@ namespace BudgetExecution
             SeriesModel = new SeriesModel( dataTable );
             DataSeries = new ChartDataSeries( dataTable );
             SeriesConfig = SeriesModel.SeriesConfig;
-            DataMetric = new DataMetric( dataTable?.AsEnumerable( ));
+            DataMetric = ChartBinding.DataMetric;
             TableName = dataTable?.TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
@@ -238,13 +238,13 @@ namespace BudgetExecution
             DataSource = BindingSource.DataSource;
             SeriesModel = new SeriesModel( bindingSource );
             DataSeries = new ChartDataSeries( bindingSource );
-            SeriesConfig = SeriesModel.SeriesConfig;
             DataMetric = new DataMetric( bindingSource );
-            DataValues = DataMetric.CalculateTotals( ChartBinding.Data, Field.FundName );
-            SeriesConfig.SetPoints( DataValues, ChartSeriesType.Column, STAT.Total );
+            DataValues = DataSeries.PointValues;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+            SeriesConfig = SeriesModel.SeriesConfig;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
+            SeriesConfig.SetPoints( DataValues, ChartSeriesType.Column, STAT.Total );
             Series.Add( DataSeries );
         }
 
@@ -262,7 +262,7 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( bindingSource );
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
-            DataMetric = new DataMetric( bindingSource );
+            DataMetric = ChartBinding.DataMetric;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );
@@ -283,7 +283,7 @@ namespace BudgetExecution
             DataSource = BindingSource.DataSource;
             SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
             SeriesModel = new SeriesModel( sourceModel.ChartBinding );
-            DataMetric = new DataMetric( sourceModel.Data );
+            DataMetric = ChartBinding.DataMetric;
             DataSeries = new ChartDataSeries( sourceModel.Data );
             TableName = ChartBinding.DataTable.TableName;
             Header.Text = TableName;
@@ -331,109 +331,85 @@ namespace BudgetExecution
             Text = Header.Text.SplitPascal( );
             Series.Add( DataSeries );
         }
-        
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChartControl" />
-        /// class.
-        /// </summary>
-        /// <param name="sourceModel">The sourceModel.</param>
-        /// <param name="titleInfo">The titleInfo.</param>
-        public ChartControl( ISeries sourceModel, ITitleInfo titleInfo )
-            : this( )
-        {
-            ChartBinding = sourceModel.ChartBinding;
-            BindingSource = (BindingSource)ChartBinding;
-            DataSource = BindingSource.DataSource;
-            SourceModel = sourceModel;
-            SeriesConfig = sourceModel.ChartBinding.SeriesConfig;
-            TableName = sourceModel.ChartBinding.DataTable.TableName;
-            Header.Text = titleInfo.GetMainText( ) ?? TableName;
-            Text = Header.Text.SplitPascal( );
-            DataMetric = new DataMetric( sourceModel.Data );
-            SeriesModel = new SeriesModel( sourceModel.ChartBinding );
-            DataSeries = new ChartDataSeries( sourceModel.Data );
-            Series.Add( DataSeries );
-        }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="ChartControl" />
-        /// class.
+        /// Sets the points.
         /// </summary>
-        /// <param name="seriesModel">The chartData.</param>
-        /// <param name="titleInfo">The titleInfo.</param>
-        public ChartControl( ISeriesModel seriesModel, ITitleInfo titleInfo )
-            : this( )
+        public void SetPoints( )
         {
-            SeriesModel = seriesModel;
-            SeriesConfig = seriesModel.SeriesConfig;
-            SourceModel = seriesModel.SourceModel;
-            ChartBinding = SourceModel.ChartBinding;
-            BindingSource = (BindingSource)ChartBinding;
-            DataSource = BindingSource.DataSource;
-            TableName = ChartBinding.DataTable.TableName;
-            Header.Text = titleInfo.GetMainText( ) ?? TableName;
-            Header.Text = TableName;
-            Text = Header.Text.SplitPascal( );
-            DataMetric = new DataMetric( SourceModel.Data );
-            DataSeries = new ChartDataSeries( SourceModel.Data );
-            Series.Add( DataSeries );
-        }
-
-        /// <summary>
-        /// Sets the size.
-        /// </summary>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
-        public void SetSize( int width = 600, int height = 400 )
-        {
-            if( width > 0
-                && height > 0 )
+            if( Enum.IsDefined( typeof( ChartSeriesType ), SeriesConfig.Type ) 
+                && DataValues?.Any( ) == true )
             {
                 try
                 {
-                    Size = new Size( width, height );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
+                    if( Series[ 0 ].Points.Count > 0 )
+                    {
+                        Series[ 0 ].Points.Clear( );
+                    }
 
-        /// <summary>
-        /// Sets the location.
-        /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        public void SetLocation( int x = 1, int y = 1 )
-        {
-            if( x > 0
-                && y > 0 )
-            {
-                try
-                {
-                    Location = new Point( x, y );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
+                    switch( SeriesConfig.Type )
+                    {
+                        case ChartSeriesType.Column:
+                        case ChartSeriesType.Line:
+                        case ChartSeriesType.Spline:
+                        case ChartSeriesType.SplineArea:
+                        case ChartSeriesType.Area:
+                        case ChartSeriesType.Bar:
+                        case ChartSeriesType.BoxAndWhisker:
+                        case ChartSeriesType.Bubble:
+                        case ChartSeriesType.Candle:
+                        case ChartSeriesType.ColumnRange:
+                        case ChartSeriesType.HeatMap:
+                        case ChartSeriesType.HiLo:
+                        case ChartSeriesType.HiLoOpenClose:
+                        case ChartSeriesType.Histogram:
+                        case ChartSeriesType.Kagi:
+                        case ChartSeriesType.PointAndFigure:
+                        case ChartSeriesType.Polar:
+                        case ChartSeriesType.Radar:
+                        case ChartSeriesType.RangeArea:
+                        case ChartSeriesType.RotatedSpline:
+                        case ChartSeriesType.Scatter:
+                        case ChartSeriesType.StackingArea:
+                        case ChartSeriesType.StackingArea100:
+                        case ChartSeriesType.StackingBar:
+                        case ChartSeriesType.StackingBar100:
+                        case ChartSeriesType.StackingColumn100:
+                        case ChartSeriesType.StepArea:
+                        case ChartSeriesType.StepLine:
+                        case ChartSeriesType.ThreeLineBreak:
+                        case ChartSeriesType.Tornado:
+                        case ChartSeriesType.StackingColumn:
+                        {
+                            foreach( var kvp in DataValues )
+                            {
+                                DataSeries.Points.Add( kvp.Key, kvp.Value );
+                            }
 
-        /// <summary>
-        /// Sets the parent.
-        /// </summary>
-        /// <param name="parent">The parent.</param>
-        public void SetParent( Control parent )
-        {
-            if( parent != null )
-            {
-                try
-                {
-                    Parent = parent;
+                            break;
+                        }
+
+                        case ChartSeriesType.Pyramid:
+                        case ChartSeriesType.Funnel:
+                        case ChartSeriesType.Pie:
+                        {
+                            foreach( var kvp in DataValues )
+                            {
+                                DataSeries.Points.Add( kvp.Key, kvp.Value );
+
+                                if( SeriesConfig.ValueMetric != STAT.Percentage )
+                                {
+                                    DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:N1}";
+                                }
+                                else if( SeriesConfig.ValueMetric == STAT.Percentage )
+                                {
+                                    DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:P}";
+                                }
+                            }
+
+                            break;
+                        }
+                    }
                 }
                 catch( Exception ex )
                 {
@@ -455,37 +431,6 @@ namespace BudgetExecution
                 PrimaryXAxis.Title = text;
                 PrimaryXAxis.TitleColor = color;
                 PrimaryXAxis.TitleFont = font;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the main titleInfo.
-        /// </summary>
-        /// <param name="text">The t.</param>
-        /// <param name="font"></param>
-        /// <param name="color"></param>
-        public void SetMainTitle( string text, Font font, Color color )
-        {
-            try
-            {
-                if( Titles?.Count > 0 )
-                {
-                    Titles.Clear( );
-                }
-
-                using( var title = new ChartTitle(  ) )
-                {
-                    title.Visible = true;
-                    title.Font = font;
-                    title.BackColor = Color.FromArgb( 15, 15, 15 );
-                    title.ForeColor = color;
-                    title.Text = text;
-                    Titles?.Add( title );
-                }
             }
             catch( Exception ex )
             {

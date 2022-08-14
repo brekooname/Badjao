@@ -10,7 +10,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    public interface IDataMetric : IMetric, ISource
+    public interface IDataMetric : ISource
     {
         /// <summary>
         /// Gets or sets the data.
@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        IDictionary<string, IEnumerable<double>> CalculateStatistics();
+        IDictionary<string, double> CalculateStatistics();
 
         /// <summary>
         /// Calculates the totals.
@@ -102,7 +102,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric );
+        IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric );
 
         /// <summary>
         /// Calculates the statistics.
@@ -115,7 +115,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric );
+        IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric );
 
         /// <summary>
         /// Calculates the statistics.
@@ -131,7 +131,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Field field,
+        IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount );
     }
 }

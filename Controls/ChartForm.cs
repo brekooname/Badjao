@@ -2,6 +2,7 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Data;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
 
@@ -33,11 +34,33 @@ namespace BudgetExecution
             ToolStrip.Office12Mode = true;
             BindingSource = bindingSource;
             ToolStrip.BindingSource = bindingSource;
+            ToolStrip.BindingSource.DataSource = bindingSource.DataSource;
             Chart = new ChartControl( bindingSource )
             {
                 Dock = DockStyle.Fill
             };
 
+            Chart.SetPoints( );
+            Controls.Add( Chart );
+        }
+
+        public ChartForm( DataTable dataTable )
+            : this( )
+        {
+            ToolStrip.Office12Mode = true;
+            BindingSource = new BindingSource
+            {
+                DataSource = dataTable
+            };
+
+            ToolStrip.BindingSource = BindingSource;
+            ToolStrip.BindingSource.DataSource = BindingSource.DataSource;
+            Chart = new ChartControl( dataTable )
+            {
+                Dock = DockStyle.Fill
+            };
+
+            Chart.SetPoints( );
             Controls.Add( Chart );
         }
     }

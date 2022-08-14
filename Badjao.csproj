@@ -502,7 +502,6 @@
     </Compile>
     <Compile Include="Interfaces\IDataFilter.cs" />
     <Compile Include="Interfaces\IDataMetric.cs" />
-    <Compile Include="Interfaces\IMetric.cs" />
     <Compile Include="Interfaces\IClock.cs" />
     <Compile Include="Abstractions\ImageListBase.cs">
       <SubType>Component</SubType>
@@ -605,7 +604,7 @@
     <Compile Include="Abstractions\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesConfig.cs" />
-    <Compile Include="Controls\Chart\SeriesBindingModel.cs" />
+    <Compile Include="Controls\Chart\SeriesModel.cs" />
     <Compile Include="Abstractions\SeriesBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
     <Compile Include="Controls\DataGridForm.cs">

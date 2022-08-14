@@ -13,11 +13,6 @@ namespace BudgetExecution
     public interface IDataSeries
     {
         /// <summary>
-        /// Sets the call out.
-        /// </summary>
-        void SetCallOut( );
-        
-        /// <summary>
         /// Sets the point configuration.
         /// </summary>
         /// <param name="stat">The stat.</param>

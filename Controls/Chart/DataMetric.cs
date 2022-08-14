@@ -54,7 +54,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Statistics = CalculateStatistics( Data, Numeric );
+            Values = CalculateStatistics( );
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Statistics = CalculateStatistics( Data, Numeric );
+            Values = CalculateStatistics( );
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace BudgetExecution
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
-            Statistics = CalculateStatistics( Data, Numeric );
+            Values = CalculateStatistics( );
         }
 
         /// <summary>
@@ -102,9 +102,9 @@ namespace BudgetExecution
         public DataMetric( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
             : base( dataRow, field, numeric )
         {
-            Variance = CalculateVariance( Data, Numeric );
-            Deviation = CalculateDeviation( Data, Numeric );
-            Statistics = CalculateStatistics( Data, Numeric );
+            Variance = CalculateVariance( Data, Field, Numeric );
+            Deviation = CalculateDeviation( Data, Field, Numeric );
+            Values = CalculateStatistics( );
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace BudgetExecution
         /// <returns>
         /// </returns>
         [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
-        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
         {
             if( dataRow?.Any( ) == true
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
@@ -299,23 +299,23 @@ namespace BudgetExecution
 
                     if( CalculateTotal( dataRow, Field, numeric ) > 0 )
                     {
-                        var _statistics = CalculateStatistics( dataRow, Field, numeric );
+                        var _statistics = CalculateStatistics( dataRow, numeric );
 
                         return _statistics?.Count > 0.0
                             ? _statistics
-                            : default( IDictionary<string, IEnumerable<double>> );
+                            : default( IDictionary<string, double> );
                     }
 
-                    return default( IDictionary<string, IEnumerable<double>> );
+                    return default( IDictionary<string, double> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, IEnumerable<double>> );
+                    return default( IDictionary<string, double> );
                 }
             }
 
-            return default( IDictionary<string, IEnumerable<double>> );
+            return default( IDictionary<string, double> );
         }
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace BudgetExecution
         /// <param name = "dict" > </param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow,
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
             IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -344,19 +344,19 @@ namespace BudgetExecution
 
                         return _statistics?.Count > 0.0
                             ? _statistics
-                            : default( IDictionary<string, IEnumerable<double>> );
+                            : default( IDictionary<string, double> );
                     }
 
-                    return default( IDictionary<string, IEnumerable<double>> );
+                    return default( IDictionary<string, double> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, IEnumerable<double>> );
+                    return default( IDictionary<string, double> );
                 }
             }
 
-            return default( IDictionary<string, IEnumerable<double>> );
+            return default( IDictionary<string, double> );
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public IDictionary<string, IEnumerable<double>> CalculateStatistics( IEnumerable<DataRow> dataRow,
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
             Field field, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -383,72 +383,55 @@ namespace BudgetExecution
                 try
                 {
                     var _codes = GetCodes( dataRow, field );
-
                     if( _codes?.Any( ) == true )
                     {
                         foreach( var filter in _codes )
                         {
-                            var _select = dataRow
-                                ?.Where( p => p.Field<string>( field.ToString( ) ).Equals( filter ) )
-                                ?.Select( p => p );
-
-                            if( CalculateTotal( _select, Field, numeric ) > 0 )
+                            var _select = dataRow.Filter( field.ToString(), filter );
+                            if( CalculateTotal( _select, numeric ) > 0 )
                             {
                                 var _statistics = CalculateStatistics( _select, numeric );
 
                                 return _statistics?.Count > 0.0
                                     ? _statistics
-                                    : default( IDictionary<string, IEnumerable<double>> );
+                                    : default( IDictionary<string, double> );
                             }
                         }
                         
-                        return default( IDictionary<string, IEnumerable<double>> );
+                        return default( IDictionary<string, double> );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IDictionary<string, IEnumerable<double>>);
+                    return default( IDictionary<string, double> );
                 }
             }
 
-            return default( IDictionary<string, IEnumerable<double>> );
+            return default( IDictionary<string, double> );
         }
 
         /// <summary>
         /// Calculates the statistics.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, IEnumerable<double>> CalculateStatistics()
+        public IDictionary<string, double> CalculateStatistics()
         {
             try
             {
-                var _codes = GetCodes( Data, Field );
-                if( _codes?.Any( ) == true )
-                {
-                    foreach( var filter in _codes )
-                    {
-                        var _select = Data
-                            ?.Where( p => p.Field<string>( $"{ Field }" ).Equals( filter ) )
-                            ?.Select( p => p );
+                var _stats = new Dictionary<string, double>(  );
+                _stats.Add( "COUNT", Count );
+                _stats.Add( "TOTAL", Total );
+                _stats.Add( "AVERAGE", Average );
 
-                        if( CalculateTotal( _select, Field, Numeric ) > 0 )
-                        {
-                            var _statistics = CalculateStatistics( _select, Field, Numeric );
-
-                            return _statistics?.Count > 0.0
-                                ? _statistics
-                                : default( IDictionary<string, IEnumerable<double>> );
-                        }
-                    }
-                }
-
-                return default( IDictionary<string, IEnumerable<double>> );
+                return _stats?.Any(  ) == true
+                    ? _stats
+                    : default( IDictionary<string, double> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IDictionary<string, IEnumerable<double>> );
+                return default( IDictionary<string, double> );
             }
         }
     }

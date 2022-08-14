@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// <value>
         /// The series data.
         /// </value>
-        public virtual IDictionary<string, IEnumerable<double>> PointValues { get; set; }
+        public virtual IDictionary<string, double> PointValues { get; set; }
 
         /// <summary>
         /// Gets the series categories.
@@ -71,6 +71,19 @@ namespace BudgetExecution
         /// The series values.
         /// </value>
         public virtual IEnumerable<double> Values { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the chart.
+        /// </summary>
+        /// <value>
+        /// The type of the chart.
+        /// </value>
+        public ChartSeriesType ChartType { get; set; }
+
+        /// <summary>
+        /// Gets the numeric.
+        /// </summary>
+        public Numeric Numeric { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
@@ -94,16 +107,41 @@ namespace BudgetExecution
             PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
             Categories = SeriesDataModel?.Categories;
-            SmartLabels = SeriesConfig.SmartLabels;
-            Visible = SeriesConfig.Visible;
-            ShowTicks = SeriesConfig.ShowTicks;
-            Rotate = SeriesConfig.Rotate;
-            EnableAreaToolTip = SeriesConfig.EnableAreaToolTip;
-            EnableStyles = SeriesConfig.EnableStyles;
-            OptimizePiePointPositions = SeriesConfig.OptimizePiePointPositions;
-            LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
+            Numeric = Numeric.Amount;
+            ValueMetric = STAT.Total;
+            ChartType = ChartSeriesType.Column;
+
+            // Basic Properties
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
+            SmartLabelsBorderColor = Color.SteelBlue;
+            SmartLabelsBorderWidth = 1;
+
+            // Callout Properties
+            Style.DisplayText = true;
+            Style.Callout.Enable = true;
+            Style.Callout.Position = LabelPosition.Top;
+            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
+            Style.Callout.Border.Color = Color.SteelBlue;
+            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
+            Style.Callout.Font = ChartConfig.SetFont( );
+            Style.DisplayText = true;
         }
     
         /// <summary>
@@ -121,16 +159,24 @@ namespace BudgetExecution
             PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
             Categories = SeriesDataModel?.Categories;
-            SmartLabels = SeriesConfig.SmartLabels;
-            Visible = SeriesConfig.Visible;
-            ShowTicks = SeriesConfig.ShowTicks;
-            Rotate = SeriesConfig.Rotate;
-            EnableAreaToolTip = SeriesConfig.EnableAreaToolTip;
-            EnableStyles = SeriesConfig.EnableStyles;
-            OptimizePiePointPositions = SeriesConfig.OptimizePiePointPositions;
-            LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
+            Style.DisplayText = true;
+            Style.Callout.Enable = true;
+            Style.Callout.Position = LabelPosition.Top;
+            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
+            Style.Callout.Border.Color = Color.SteelBlue;
+            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
+            Style.Callout.Font = ChartConfig.SetFont( );
+            Style.DisplayText = true;
         }
 
         /// <summary>
@@ -148,16 +194,24 @@ namespace BudgetExecution
             PointValues = SeriesDataModel?.DataMetric.CalculateStatistics( );
             Values = SeriesDataModel?.Values;
             Categories = SeriesDataModel?.Categories;
-            SmartLabels = SeriesConfig.SmartLabels;
-            Visible = SeriesConfig.Visible;
-            ShowTicks = SeriesConfig.ShowTicks;
-            Rotate = SeriesConfig.Rotate;
-            EnableAreaToolTip = SeriesConfig.EnableAreaToolTip;
-            EnableStyles = SeriesConfig.EnableStyles;
-            OptimizePiePointPositions = SeriesConfig.OptimizePiePointPositions;
-            LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
+            Style.DisplayText = true;
+            Style.Callout.Enable = true;
+            Style.Callout.Position = LabelPosition.Top;
+            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
+            Style.Callout.Border.Color = Color.SteelBlue;
+            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
+            Style.Callout.Font = ChartConfig.SetFont( );
+            Style.DisplayText = true;
         }
 
         /// <summary>
@@ -175,39 +229,26 @@ namespace BudgetExecution
             PointValues = SeriesDataModel?.DataMetric?.CalculateStatistics( );
             Values = seriesModel?.Values;
             Categories = seriesModel?.Categories;
-            SmartLabels = SeriesConfig.SmartLabels;
-            Visible = SeriesConfig.Visible;
-            ShowTicks = SeriesConfig.ShowTicks;
-            Rotate = SeriesConfig.Rotate;
-            EnableAreaToolTip = SeriesConfig.EnableAreaToolTip;
-            EnableStyles = SeriesConfig.EnableStyles;
-            OptimizePiePointPositions = SeriesConfig.OptimizePiePointPositions;
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
             LegendItemUseSeriesStyle = SeriesConfig.LegendItemUseSeriesStyle;
             SmartLabelsBorderColor = Color.SteelBlue;
             SmartLabelsBorderWidth = 1;
+            Style.DisplayText = true;
+            Style.Callout.Enable = true;
+            Style.Callout.Position = LabelPosition.Top;
+            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
+            Style.Callout.Border.Color = Color.SteelBlue;
+            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
+            Style.Callout.Font = ChartConfig.SetFont( );
+            Style.DisplayText = true;
         }
-
-        /// <summary>
-        /// Sets the call out.
-        /// </summary>
-        public virtual void SetCallOut( )
-        {
-            try
-            {
-                Style.Callout.Enable = true;
-                Style.Callout.Position = LabelPosition.Top;
-                Style.Callout.DisplayTextAndFormat = "{0} : {2}";
-                Style.Callout.Border.Color = Color.SteelBlue;
-                Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
-                Style.Callout.Font = ChartConfig.SetFont( );
-                Style.DisplayText = true;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-        
         
         /// <summary>
         /// Sets the point configuration.

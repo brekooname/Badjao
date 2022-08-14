@@ -192,7 +192,7 @@ namespace BudgetExecution
                     if( _array?.Contains( columnName ) == true )
                     {
                         var _select = dataRow
-                            ?.Where( p => p.Field<string>( columnName ).Equals( filter ) )
+                            ?.Where( p => p.Field<string>( columnName ) == filter )
                             ?.Select( p => p );
 
                         return _select?.Any( ) == true
@@ -211,17 +211,48 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Filters the specified dictionary.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, IDictionary<string, object> dict )
+        {
+            if( dataRow?.Any( ) == true
+                && dict?.Any( ) == true )
+            {
+                try
+                {
+                    var _table = dataRow.CopyToDataTable(  );
+                    var _rows = _table?.Select( dict.ToCriteria(  ) );
+
+                    return _rows?.Any(  ) == true
+                        ? _rows
+                        : default( IEnumerable<DataRow> );
+
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary>
         /// Filters the specified column.
         /// </summary>
         /// <param name="dataRow">The dataRow.</param>
-        /// <param name="column">The column.</param>
+        /// <param name="dataColumn">The column.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, DataColumn column,
+        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, DataColumn dataColumn,
             string filter )
         {
             if( dataRow?.Any( ) == true
-                && column != null
+                && dataColumn != null
                 && !string.IsNullOrEmpty( filter ) )
             {
                 try
@@ -232,10 +263,10 @@ namespace BudgetExecution
                         ?.Table
                         ?.Columns;
 
-                    if( _columns?.Contains( column?.ColumnName ) == true )
+                    if( _columns?.Contains( dataColumn?.ColumnName ) == true )
                     {
                         var _enumerable = dataRow
-                            ?.Where( p => p.Field<string>( column.ColumnName ).Equals( filter ) )
+                            ?.Where( p => p.Field<string>( dataColumn.ColumnName ).Equals( filter ) )
                             ?.Select( p => p );
 
                         return _enumerable?.Any( ) == true

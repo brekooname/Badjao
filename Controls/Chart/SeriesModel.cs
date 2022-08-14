@@ -14,7 +14,6 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="SourceModel" />
     /// <seealso cref="ISeriesModel" />
     [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
@@ -22,30 +21,6 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
     public class SeriesModel : SeriesBase, ISeriesModel
     {
-        /// <summary>
-        /// Gets or sets the series values.
-        /// </summary>
-        /// <value>
-        /// The series values.
-        /// </value>
-        public IEnumerable<double> Values { get; set; }
-
-        /// <summary>
-        /// Gets or sets the series categories.
-        /// </summary>
-        /// <value>
-        /// The series categories.
-        /// </value>
-        public IEnumerable<string> Categories { get; set; }
-
-        /// <summary>
-        /// Gets or sets the source model.
-        /// </summary>
-        /// <value>
-        /// The source model.
-        /// </value>
-        public ISeries SourceModel { get; set; }
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SeriesModel" />
@@ -63,29 +38,14 @@ namespace BudgetExecution
         public SeriesModel( BindingSource bindingSource ) 
             : base( bindingSource )
         {
-            ChartBinding = new ChartBinding( bindingSource );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = new DataMetric( bindingSource );
-            SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            BindingModel.Changed += OnChanged;
         }
 
         public SeriesModel( DataTable dataTable )
             : base( dataTable )
         {
-            ChartBinding = new ChartBinding( dataTable );
-            Data = ChartBinding.Data;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            BindingModel.Changed += OnChanged;
         }
 
         /// <summary>
@@ -97,15 +57,7 @@ namespace BudgetExecution
         public SeriesModel( IChartBinding chartBinding ) 
             : base( chartBinding )
         {
-            ChartBinding = chartBinding;
-            Data = chartBinding.Data;
-            SeriesConfig = chartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            BindingModel.Changed += OnChanged;
         }
 
         /// <summary>
@@ -115,15 +67,7 @@ namespace BudgetExecution
         public SeriesModel( IEnumerable<DataRow> dataRows )
             : base( dataRows )
         {
-            ChartBinding = new ChartBinding( dataRows );
-            Data = dataRows;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = SeriesConfig.ValueMetric;
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            BindingModel.Changed += OnChanged;
         }
 
         /// <summary>
@@ -134,15 +78,7 @@ namespace BudgetExecution
         public SeriesModel( DataTable dataTable, ISeriesConfig seriesConfig )
             : base( dataTable, seriesConfig )
         {
-            ChartBinding = new ChartBinding( dataTable, seriesConfig );
-            Data = dataTable.AsEnumerable( )?.ToList( );
-            SeriesConfig = seriesConfig;
-            Stat = seriesConfig.ValueMetric;
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            BindingModel.Changed += OnChanged;
         }
 
         /// <summary>
@@ -153,15 +89,7 @@ namespace BudgetExecution
         public SeriesModel( IEnumerable<DataRow> dataRows, ISeriesConfig seriesConfig )
             : base( dataRows, seriesConfig )
         {
-            ChartBinding = new ChartBinding( dataRows, seriesConfig );
-            Data = dataRows;
-            SeriesConfig = ChartBinding.SeriesConfig;
-            Stat = seriesConfig.ValueMetric;
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            BindingModel.Changed += OnChanged;
         }
         
         /// <summary>
@@ -174,7 +102,7 @@ namespace BudgetExecution
             {
                 var _values = SeriesData
                     ?.Values
-                    ?.SelectMany( v => v );
+                    ?.Select( v => v );
 
                 return _values?.Any( ) == true
                     ? _values.ToArray( )
@@ -191,7 +119,7 @@ namespace BudgetExecution
         /// Gets the source model.
         /// </summary>
         /// <returns></returns>
-        public ISeries GetSourceModel( )
+        public ISeries GetSeriesModel( )
         {
             try
             {

@@ -27,7 +27,6 @@
                 var _filter = new Dictionary<string, object>(  );
                 _filter.Add( "BFY", "2022"  );
                 _filter.Add( "FundCode", "B" );
-                _filter.Add( "RpioCode", "10"  );
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
                 BindingSource.DataSource = _data.DataTable;
                 PopulateListBoxItems();
