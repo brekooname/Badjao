@@ -13,6 +13,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Drawing;
     using System.Threading;
+    using Syncfusion.Data.Extensions;
 
     /// <summary>
     /// 
@@ -30,7 +31,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual BindingSource BindingSource { get; set; }
+        public BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets the metric.
@@ -38,12 +39,20 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public virtual STAT STAT { get; set; }
+        public STAT STAT { get; set; }
         
         /// <summary>
         /// Gets the numeric.
         /// </summary>
-        public virtual Numeric Numeric { get; set; }
+        public Numeric Numeric { get; set; }
+
+        /// <summary>
+        /// Gets or sets the field.
+        /// </summary>
+        /// <value>
+        /// The field.
+        /// </value>
+        public Field Field { get; set; }
 
         /// <summary>
         /// Gets the data.
@@ -51,7 +60,7 @@ namespace BudgetExecution
         /// <value>
         /// The data.
         /// </value>
-        public virtual IEnumerable<DataRow> Data { get; set; }
+        public IEnumerable<DataRow> Data { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.
@@ -59,7 +68,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public virtual IDataMetric DataMetric { get; set; }
+        public IDataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Gets the binding model.
@@ -67,7 +76,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding model.
         /// </value>
-        public virtual ChartDataBindModel BindingModel { get; set; }
+        public ChartDataBindModel BindingModel { get; set; }
 
         /// <summary>
         /// Gets or sets the axis label model.
@@ -75,7 +84,7 @@ namespace BudgetExecution
         /// <value>
         /// The axis label model.
         /// </value>
-        public virtual ChartDataBindAxisLabelModel AxisLabelModel { get; set; }
+        public ChartDataBindAxisLabelModel AxisLabelModel { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -135,7 +144,9 @@ namespace BudgetExecution
             : this( )
         {
             BindingSource = bindingSource;
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             Name = ( (DataTable)bindingSource.DataSource ).TableName;
+            Text = Name.SplitPascal(  );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource );
@@ -154,12 +165,14 @@ namespace BudgetExecution
         protected ChartData( BindingSource bindingSource, Field field )
         {
             BindingSource = bindingSource;
-            Name = ( (DataTable)bindingSource.DataSource ).TableName;
+            Field = field;
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            Name = field.ToString(  );
             Text = Name.SplitPascal(  );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource, field );
-            DataValues = new DataMetric( bindingSource, field ).Values;
+            DataValues = DataMetric.CalculateAmounts( Data, field  );
 
             BindingModel = new ChartDataBindModel
             {

@@ -204,8 +204,7 @@ namespace BudgetExecution
             BindingSource = (BindingSource)ChartBinding;
             DataSource = BindingSource.DataSource;
             DataSeries = new ChartSeries( bindingSource, field );
-            DataMetric = DataSeries.DataMetric;
-            DataValues = DataSeries.DataValues;
+            DataValues = DataSeries?.DataValues;
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
             Header.Text = TableName;
             Text = Header.Text.SplitPascal( );

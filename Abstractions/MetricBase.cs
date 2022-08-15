@@ -24,7 +24,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the source.
         /// </summary>
-        public virtual Source Source { get; set; }
+        public Source Source { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.
@@ -32,37 +32,37 @@ namespace BudgetExecution
         /// <value>
         /// The name of the table.
         /// </value>
-        public virtual string TableName { get; set; }
+        public string TableName { get; set; }
 
         /// <summary>
         /// The field
         /// </summary>
-        public virtual Field Field { get; set; }
+        public Field Field { get; set; }
 
         /// <summary>
         /// The numeric
         /// </summary>
-        public virtual Numeric Numeric { get; set; }
+        public Numeric Numeric { get; set; }
 
         /// <summary>
         /// The dataRow
         /// </summary>
-        public virtual IEnumerable<DataRow> Data { get; set; }
+        public IEnumerable<DataRow> Data { get; set; }
 
         /// <summary>
         /// The count
         /// </summary>
-        public virtual int Count { get; set; }
+        public int Count { get; set; }
 
         /// <summary>
         /// The total
         /// </summary>
-        public virtual double Total { get; set; }
+        public double Total { get; set; }
 
         /// <summary>
         /// The average
         /// </summary>
-        public virtual double Average { get; set; }
+        public double Average { get; set; }
 
         /// <summary>
         /// Gets or sets the categories.
@@ -70,7 +70,7 @@ namespace BudgetExecution
         /// <value>
         /// The categories.
         /// </value>
-        public virtual IEnumerable<string> Categories { get; set; }
+        public IEnumerable<string> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets the amounts.
@@ -78,12 +78,12 @@ namespace BudgetExecution
         /// <value>
         /// The amounts.
         /// </value>
-        public virtual IDictionary<string, double> Amounts { get; set; }
+        public IDictionary<string, double> Amounts { get; set; }
         
         /// <summary>
         /// The statistics
         /// </summary>
-        public virtual IDictionary<string, double> Statistics { get; set; }
+        public IDictionary<string, double> Statistics { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
@@ -302,7 +302,7 @@ namespace BudgetExecution
         /// <param name="dataRow">The dataRow.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public virtual int GetCount( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
+        public int GetCount( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true )
             {
@@ -332,17 +332,17 @@ namespace BudgetExecution
         /// <param name="dataRow">The dataRow.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public virtual double CalculateTotal( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
+        public double CalculateTotal( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true )
             {
                 try
                 {
                     var _select = dataRow
-                        ?.Select( p => p.Field<decimal>( $"{ numeric }" ) );
+                        .Sum( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                    return _select?.Any( ) == true && _select?.Sum( ) > 0
-                        ? double.Parse( _select.Sum( ).ToString( "N01" ) )
+                    return _select > 0
+                        ? double.Parse( _select.ToString( "N1" ) )
                         : 0.0d;
                 }
                 catch( Exception ex )
@@ -361,7 +361,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public virtual IDictionary<string, double> CalculateAmounts( IEnumerable<DataRow> dataRow, Field field,
+        public IDictionary<string, double> CalculateAmounts( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true
@@ -370,19 +370,18 @@ namespace BudgetExecution
             {
                 try
                 {
+                    var _fields = GetCodes( dataRow, field );
                     var _dict = new Dictionary<string, double>( );
-                    foreach( var row in dataRow )
+                    foreach( var name in _fields )
                     {
-                        var _field = field.ToString( );
-                        var _numeric = numeric.ToString( );
-                        var _name = row[ _field ].ToString(   );
-                        var _value = double.Parse( ((decimal)(row[ _numeric ])).ToString( "N01" ) );
+                        var _select = dataRow
+                            .Where( p => p.Field<string>( $"{ field }" ) == name )
+                            .Select( p => p  );
 
-                        if ( !string.IsNullOrEmpty( _name ) )
-                        {
+                        var _value = _select
+                            .Sum( p => p.Field<decimal>( $"{ numeric }" ) );
 
-                            _dict.Add( _name, _value );
-                        }
+                        _dict.Add( name, double.Parse( _value.ToString( "N1" ) ) );
                     }
 
                     return _dict?.Any(   ) == true
@@ -418,7 +417,7 @@ namespace BudgetExecution
                         ?.Average( );
 
                     return _query > 0
-                        ? double.Parse( _query?.ToString( "N01" ) )
+                        ? double.Parse( _query?.ToString( "N1" ) )
                         : 0.0d;
                 }
                 catch( Exception ex )
@@ -439,7 +438,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="numeric">The numeric.</param>
         /// <returns></returns>
-        public virtual IDictionary<string, double> CalculateAverages( IEnumerable<DataRow> dataRow, Field field,
+        public IDictionary<string, double> CalculateAverages( IEnumerable<DataRow> dataRow, Field field,
             Numeric numeric = Numeric.Amount )
         {
             if( dataRow?.Any( ) == true

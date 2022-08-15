@@ -29,14 +29,6 @@ namespace BudgetExecution
         public ChartBinding ChartBinding { get; set; }
 
         /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public Field Field { get; set; }
-        
-        /// <summary>
         /// Gets or sets the data points.
         /// </summary>
         /// <value>
