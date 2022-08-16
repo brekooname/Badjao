@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Data.Common;
     using System.Data.OleDb;
     using System.Data.SqlClient;
@@ -121,6 +122,33 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return default( SortedDictionary<TKey, TValue> );
+            }
+        }
+
+        /// <summary>
+        /// Converts to bindinglist.
+        /// </summary>
+        /// <param name="nvc">The NVC.</param>
+        /// <returns></returns>
+        public static BindingList<KeyValuePair<string, object>> ToBindingList( this IDictionary<string, object> nvc )
+        {
+            try
+            {
+                var _bindingList = new BindingList<KeyValuePair<string, object>>( );
+
+                foreach( var kvp in nvc )
+                {
+                    _bindingList.Add( kvp );
+                }
+
+                return _bindingList?.Any(  ) == true
+                    ? _bindingList
+                    : default( BindingList<KeyValuePair<string, object>> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( BindingList<KeyValuePair<string, object>> );
             }
         }
 

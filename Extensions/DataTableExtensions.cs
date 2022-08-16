@@ -283,17 +283,18 @@ namespace BudgetExecution
         /// Gets the unique values.
         /// </summary>
         /// <param name="dataTable">The dataTable.</param>
-        /// <param name="column">The column.</param>
+        /// <param name="columnName">The column.</param>
         /// <returns></returns>
-        public static string[ ] GetUniqueValues( this DataTable dataTable, string column )
+        public static string[ ] GetUniqueFieldValues( this DataTable dataTable, string columnName )
         {
             if( dataTable.Rows.Count > 0
-                && !string.IsNullOrEmpty( column ) )
+                && !string.IsNullOrEmpty( columnName )
+                && dataTable.Columns.Contains( columnName ) )
             {
                 try
                 {
                     var _enumerable = dataTable?.AsEnumerable( )
-                        ?.Select( p => p.Field<string>( column ) )
+                        ?.Select( p => p.Field<string>( columnName ) )
                         ?.Distinct( );
 
                     var _array = _enumerable as string[ ] ?? _enumerable.ToArray( );
@@ -318,16 +319,16 @@ namespace BudgetExecution
         /// <param name="dataTable">The dataTable.</param>
         /// <param name="field">The field.</param>
         /// <returns></returns>
-        public static string[ ] GetUniqueValues( this DataTable dataTable, Field field )
+        public static string[ ] GetUniqueFieldValues( this DataTable dataTable, Field field )
         {
-            if( dataTable?.Rows.Count > 0
+            if( dataTable.Rows.Count > 0
                 && Enum.IsDefined( typeof( Field ), field )
-                && dataTable.Columns.Contains( $"{field}" ) )
+                && dataTable.Columns.Contains( $"{ field }" ) )
             {
                 try
                 {
-                    var _enumerable = dataTable?.AsEnumerable( )
-                        ?.Select( p => p.Field<string>( $"{field}" ) )
+                    var _enumerable = dataTable.AsEnumerable( )
+                        ?.Select( p => p.Field<string>( $"{ field }" ) )
                         ?.Distinct( );
 
                     var _array = _enumerable as string[ ] ?? _enumerable.ToArray( );
@@ -350,25 +351,90 @@ namespace BudgetExecution
         /// Filters the specified field.
         /// </summary>
         /// <param name="dataTable">The dataTable.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
+        /// <param name="name">The field.</param>
+        /// <param name="value">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this DataTable dataTable, Field field, string filter )
+        public static IEnumerable<DataRow> Filter( this DataTable dataTable, string name, string value )
         {
-            if( dataTable?.Columns.Count > 0
-                && Enum.IsDefined( typeof( Field ), field )
-                && !string.IsNullOrEmpty( filter )
-                && dataTable.Columns.Contains( $"{field}" ) )
+            if( dataTable.Columns.Count > 0
+                && !string.IsNullOrEmpty( name )
+                && !string.IsNullOrEmpty( value )
+                && dataTable.Columns.Contains( name ) )
             {
                 try
                 {
-                    var _query = dataTable?.AsEnumerable( )
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var _query = dataTable.AsEnumerable( )
+                        ?.Where( p => p.Field<string>( name ).Equals( value ) )
                         ?.Select( p => p );
 
                     return _query?.Any( ) == true
                         ? _query
                         : default( EnumerableRowCollection<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary>
+        /// Filters the specified name.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static IEnumerable<DataRow> Filter( this DataTable dataTable, Field name, string value )
+        {
+            if( dataTable?.Columns.Count > 0
+                && Enum.IsDefined( typeof( Field ), name )
+                && !string.IsNullOrEmpty( value )
+                && dataTable.Columns?.Contains( name.ToString(  ) ) == true )
+            {
+                try
+                {
+                    var _query = dataTable?.AsEnumerable( )
+                        ?.Where( p => p.Field<string>( name.ToString( ) ).Equals( value ) )
+                        ?.Select( p => p );
+
+                    return _query?.Any( ) == true
+                        ? _query
+                        : default( IEnumerable<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary>
+        /// Filters the specified dictionary.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        public static IEnumerable<DataRow> Filter( this DataTable dataTable, IDictionary<string, object> dict )
+        {
+            if( dataTable?.Columns.Count > 0
+                && dict?.Any( ) == true )
+            {
+                try
+                {
+                    var _query = dataTable
+                        .Select( dict.ToCriteria(  ) )
+                        ?.ToList(  );
+
+                    return _query?.Any( ) == true
+                        ? _query
+                        : default( IEnumerable<DataRow> );
                 }
                 catch( Exception ex )
                 {
@@ -449,10 +515,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = new BindingList<DataRow>( );
+                    var _bindingList = new BindingList<DataRow>( );
 
-                    return _query?.Any( ) == true
-                        ? _query
+                    foreach( DataRow row in dataTable.Rows )
+                    {
+                        _bindingList.Add( row );
+                    }
+
+                    return _bindingList?.Any( ) == true
+                        ? _bindingList
                         : default(  BindingList<DataRow> );
                 }
                 catch( Exception ex )

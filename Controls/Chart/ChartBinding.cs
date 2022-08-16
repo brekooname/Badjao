@@ -74,7 +74,23 @@ namespace BudgetExecution
         /// The data table.
         /// </value>
         public DataTable DataTable { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        public string TableName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the binding list.
+        /// </summary>
+        /// <value>
+        /// The binding list.
+        /// </value>
+        public BindingList<DataRow> BindingList { get; set; }
+
         /// <summary>
         /// Gets or sets the record.
         /// </summary>
@@ -132,8 +148,10 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            BindingList = Data.ToBindingList( );
             DataTable = (DataTable)bindingSource.DataSource;
+            TableName = Source.ToString( );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
             Record = bindingSource.GetCurrentDataRow( );
@@ -156,8 +174,10 @@ namespace BudgetExecution
             };
 
             Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
+            BindingList = Data.ToBindingList( );
             DataTable = (DataTable)BindingSource.DataSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
+            TableName = Source.ToString( );
             DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
@@ -175,9 +195,11 @@ namespace BudgetExecution
             };
 
             DataTable = dataSet.Tables[ $"{ Source }" ];
+            TableName = Source.ToString( );
             DataSource = DataTable;
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             Data = dataSet.Tables[ $"{ Source }" ]?.AsEnumerable( );
+            BindingList = Data.ToBindingList( );
             Record = Data?.FirstOrDefault();
             AllowNew = true;
             Count = BindingSource.Count;
@@ -192,8 +214,10 @@ namespace BudgetExecution
         {
             BindingSource = new BindingSource( );
             Data = dataTable.AsEnumerable( );
+            BindingList = Data.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
+            TableName = Source.ToString( );
             DataSource = DataTable;
             DataSet = dataTable.DataSet;
             Record = (DataRow)Current;
@@ -206,8 +230,10 @@ namespace BudgetExecution
         {
             BindingSource = new BindingSource( );
             Data = data;
+            BindingList = data.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataTable = data.CopyToDataTable( );
+            TableName = Source.ToString( );
             DataSource = DataTable;
             DataSet = DataTable.DataSet;
             Record = (DataRow)Current;
