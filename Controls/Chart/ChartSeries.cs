@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// <value>
         /// The data points.
         /// </value>
-        public ChartPointIndexer DataPoints { get; set; }
+        public ChartPointIndexer PointIndexer { get; set; }
 
         /// <summary>
         /// Gets or sets the filter.
@@ -85,6 +85,8 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
+            Categories = DataValues.Keys.Select( s => s );
+            Values = DataValues.Values.Select( d => d );
         }
 
         /// <summary>

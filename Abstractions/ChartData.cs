@@ -184,6 +184,29 @@ namespace BudgetExecution
             };
         }
 
+        protected ChartData( BindingSource bindingSource, string dataMember )
+        {
+            BindingSource = bindingSource;
+            Field = (Field)Enum.Parse( typeof( Field ), dataMember );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            Name = dataMember;
+            Text = Name.SplitPascal( );
+            Type = ChartSeriesType.Column;
+            STAT = STAT.Total;
+            DataMetric = new DataMetric( bindingSource, Field );
+            DataValues = DataMetric.CalculateAmounts( Data, Field );
+
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = bindingSource.DataSource
+            };
+
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = bindingSource.DataSource
+            };
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
