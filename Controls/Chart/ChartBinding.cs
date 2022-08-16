@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
-    using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
@@ -91,15 +90,7 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public BindingSource BindingSource { get; set; }
-
-        /// <summary>
-        /// Gets or sets the label model.
-        /// </summary>
-        /// <value>
-        /// The label model.
-        /// </value>
-        public ChartDataBindAxisLabelModel LabelModel { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the field.
         /// </summary>
@@ -143,7 +134,6 @@ namespace BudgetExecution
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(  );
             DataTable = (DataTable)bindingSource.DataSource;
-            LabelModel = new ChartDataBindAxisLabelModel( DataTable );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
             Record = bindingSource.GetCurrentDataRow( );
@@ -167,7 +157,6 @@ namespace BudgetExecution
 
             Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
             DataTable = (DataTable)BindingSource.DataSource;
-            LabelModel = new ChartDataBindAxisLabelModel( DataTable );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
@@ -187,7 +176,6 @@ namespace BudgetExecution
 
             DataTable = dataSet.Tables[ $"{ Source }" ];
             DataSource = DataTable;
-            LabelModel = new ChartDataBindAxisLabelModel( DataSource );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             Data = dataSet.Tables[ $"{ Source }" ]?.AsEnumerable( );
             Record = Data?.FirstOrDefault();
@@ -207,7 +195,6 @@ namespace BudgetExecution
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
             DataSource = DataTable;
-            LabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataSet = dataTable.DataSet;
             Record = (DataRow)Current;
             AllowNew = true;
@@ -222,7 +209,6 @@ namespace BudgetExecution
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataTable = data.CopyToDataTable( );
             DataSource = DataTable;
-            LabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataSet = DataTable.DataSet;
             Record = (DataRow)Current;
             AllowNew = true;

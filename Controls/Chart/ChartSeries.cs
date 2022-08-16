@@ -86,6 +86,7 @@ namespace BudgetExecution
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
         }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
@@ -108,6 +109,10 @@ namespace BudgetExecution
             BindingSource = ChartBinding.BindingSource;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartSeries"/> class.
+        /// </summary>
+        /// <param name="dataSet">The data set.</param>
         public ChartSeries( DataSet dataSet )
             : base( dataSet )
         {
@@ -153,6 +158,13 @@ namespace BudgetExecution
                             break;
                         }
 
+                        case STAT.Variance:
+                        case STAT.StandardDeviation:
+                        {
+                            Style.TextFormat = "{0:N1}";
+                            break;
+                        }
+
                         case STAT.Percentage:
                         {
                             Style.TextFormat = "{0:P}";
@@ -162,6 +174,12 @@ namespace BudgetExecution
                         case STAT.Count:
                         {
                             Style.TextFormat = "{0}";
+                            break;
+                        }
+
+                        default:
+                        {
+                            Style.TextFormat = "{0:N2}";
                             break;
                         }
                     }
