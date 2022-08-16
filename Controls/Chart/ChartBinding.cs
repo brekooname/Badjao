@@ -147,13 +147,34 @@ namespace BudgetExecution
         public ChartBinding( BindingSource bindingSource )
         {
             BindingSource = bindingSource;
+            DataTable = (DataTable)bindingSource.DataSource;
+            DataSet = DataTable.DataSet;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            BindingList = Data.ToBindingList( );
+            TableName = Source.ToString( );
+            DataSource = bindingSource;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
+            Record = bindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            Count = BindingSource.Count;
+            Changed += OnCurrentChanged;
+
+        }
+
+        public ChartBinding( BindingSource bindingSource, string dataMember )
+        {
+            BindingSource = bindingSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             BindingList = Data.ToBindingList( );
             DataTable = (DataTable)bindingSource.DataSource;
-            TableName = Source.ToString( );
+            DataSource = (DataTable)bindingSource.DataSource;
+            DataMember = dataMember;
+            TableName = Source.ToString(  );
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
+            DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
@@ -176,6 +197,7 @@ namespace BudgetExecution
             Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
             BindingList = Data.ToBindingList( );
             DataTable = (DataTable)BindingSource.DataSource;
+            DataSource = bindingList;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
             TableName = Source.ToString( );
             DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
@@ -196,11 +218,11 @@ namespace BudgetExecution
 
             DataTable = dataSet.Tables[ $"{ Source }" ];
             TableName = Source.ToString( );
-            DataSource = DataTable;
+            DataSource = dataSet.Tables[ $"{ Source }" ];
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             Data = dataSet.Tables[ $"{ Source }" ]?.AsEnumerable( );
             BindingList = Data.ToBindingList( );
-            Record = Data?.FirstOrDefault();
+            Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
@@ -212,31 +234,40 @@ namespace BudgetExecution
         /// <param name="dataTable">The data table.</param>
         public ChartBinding( DataTable dataTable )
         {
-            BindingSource = new BindingSource( );
+            BindingSource = new BindingSource
+            {
+                DataSource = dataTable
+            };
+
             Data = dataTable.AsEnumerable( );
             BindingList = Data.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             DataTable = dataTable;
+            DataSource = dataTable;
             TableName = Source.ToString( );
             DataSource = DataTable;
             DataSet = dataTable.DataSet;
-            Record = (DataRow)Current;
+            Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
 
-        public ChartBinding( IEnumerable<DataRow> data )
+        public ChartBinding( IEnumerable<DataRow> dataRows )
         {
-            BindingSource = new BindingSource( );
-            Data = data;
-            BindingList = data.ToBindingList( );
+            BindingSource = new BindingSource
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
+
+            Data = dataRows;
+            BindingList = dataRows.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
-            DataTable = data.CopyToDataTable( );
+            DataTable = dataRows.CopyToDataTable( );
             TableName = Source.ToString( );
             DataSource = DataTable;
             DataSet = DataTable.DataSet;
-            Record = (DataRow)Current;
+            Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
@@ -324,33 +355,6 @@ namespace BudgetExecution
             }
         }
         
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <param name="bindingSource">The bindingsource.</param>
-        public void SetDataSource<T1>( T1 bindingSource )
-            where T1 : IBindingList
-        {
-            try
-            {
-                if( bindingSource is BindingSource binding
-                    && binding?.DataSource != null )
-                {
-                    try
-                    {
-                        BindingSource.DataSource = binding.DataSource;
-                    }
-                    catch( Exception ex )
-                    {
-                        Fail( ex );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
 
         /// <summary>
         /// Sets the binding source.
@@ -428,43 +432,6 @@ namespace BudgetExecution
                     BindingSource.DataSource = data?.ToList( );
                     BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
                 }  
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-        
-        
-        /// <summary>
-        /// Sets the bindings.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param>The numeric.</param>
-        /// <param name = "dict" > </param>
-        public void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
-            where T1 : IEnumerable<DataRow>
-            where T2 : IDictionary<string, object>
-        {
-            if( data?.Any( ) == true
-                && dict?.Any( ) == true )
-            {
-                try
-                {
-                    var _filter = string.Empty;
-
-                    foreach( var _kvp in dict )
-                    {
-                        if( !string.IsNullOrEmpty( _kvp.Key )
-                            && _kvp.Value != null )
-                        {
-                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
-                        }
-                    }
-
-                    BindingSource.DataSource = data?.ToList( );
-                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
-                }
                 catch( Exception ex )
                 {
                     Fail( ex );

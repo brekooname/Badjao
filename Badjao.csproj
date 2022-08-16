@@ -1192,6 +1192,7 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="Data\Database\MSSQL\DataModels\CREATE\DATABASE\Data.sql" />
     <Content Include="Data\Database\Access\DataModels\ALTERTABLE\AlterTableAddColumn.sql" />
     <Content Include="Data\Database\Access\DataModels\ALTERTABLE\AlterTableRenameColumn.sql" />
     <Content Include="Data\Database\Access\DataModels\ALTERTABLE\AlterTableRenameTable.sql" />
@@ -1408,7 +1409,6 @@
     <Content Include="Data\Database\Access\DataModels\Data.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\Database\MSSQL\DataModels\CREATE\DATABASE\R6.sql" />
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\Actuals.sql" />
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\Allocations.sql" />
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\ApplicationTables.sql" />
