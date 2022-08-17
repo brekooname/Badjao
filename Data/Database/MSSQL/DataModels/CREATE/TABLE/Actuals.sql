@@ -1,39 +1,49 @@
-IF NOT EXISTS ( SELECT * 
-				FROM INFORMATION_SCHEMA.TABLES 
-				WHERE TABLE_NAME = N'Actuals' )
-BEGIN
-CREATE TABLE [dbo].[Actuals]
+USE [Data]
+GO
+
+/****** Object:  Table [dbo].[Actuals]    Script Date: 8/17/2022 7:42:57 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Actuals](
+	[ActualsId] [int] IDENTITY(1,1) NOT NULL,
+	[BFY] [nvarchar](80) NULL,
+	[EFY] [nvarchar](80) NULL,
+	[RpioCode] [nvarchar](80) NULL,
+	[RpioName] [nvarchar](80) NULL,
+	[AhCode] [nvarchar](80) NULL,
+	[AhName] [nvarchar](80) NULL,
+	[FundCode] [nvarchar](80) NULL,
+	[FundName] [nvarchar](80) NULL,
+	[AppropriationCode] [nvarchar](80) NULL,
+	[AppropriationName] [nvarchar](80) NULL,
+	[SubAppropriationCode] [nvarchar](80) NULL,
+	[SubAppropriationName] [nvarchar](80) NULL,
+	[OrgCode] [nvarchar](80) NULL,
+	[OrgName] [nvarchar](80) NULL,
+	[AccountCode] [nvarchar](80) NULL,
+	[ProgramProjectCode] [nvarchar](80) NULL,
+	[ProgramProjectName] [nvarchar](80) NULL,
+	[RpioActivityCode] [nvarchar](80) NULL,
+	[RpioActivityName] [nvarchar](80) NULL,
+	[BocCode] [nvarchar](80) NULL,
+	[BocName] [nvarchar](80) NULL,
+	[ULO] [decimal](18, 0) NULL,
+	[Obligations] [decimal](18, 0) NULL,
+	[Balance] [decimal](18, 0) NULL,
+	[ProgramAreaCode] [nvarchar](80) NULL,
+	[ProgramAreaName] [nvarchar](80) NULL,
+	[GoalCode] [nvarchar](80) NULL,
+	[GoalName] [nvarchar](80) NULL,
+	[ObjectiveCode] [nvarchar](80) NULL,
+	[ObjectiveName] [nvarchar](80) NULL,
+ CONSTRAINT [PK_Actuals] PRIMARY KEY CLUSTERED 
 (
-	[ActualsId] INT IDENTITY(1,1) NOT NULL,
-	[BFY] VARCHAR(80) NULL DEFAULT ('NS'),
-	[EFY] VARCHAR(80) NULL DEFAULT ('NS'),
-	[RpioCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[RpioName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[AhCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[AhName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[FundCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[FundName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[AppropriationCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[AppropriationName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[SubAppropriationCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[SubAppropriationName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[OrgCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[OrgName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[AccountCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[ProgramProjectCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[ProgramProjectName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[RpioActivityCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[RpioActivityName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[BocCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[BocName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[ULO] FLOAT NULL DEFAULT 0,
-	[Obligations] FLOAT NULL DEFAULT 0,
-	[Balance] FLOAT NULL DEFAULT 0,
-	[ProgramAreaCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[ProgramAreaName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[GoalCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[GoalName] VARCHAR(80) NULL DEFAULT ('NS'),
-	[ObjectiveCode] VARCHAR(80) NULL DEFAULT ('NS'),
-	[ObjectiveName] VARCHAR(80) NULL DEFAULT ('NS')
-);
-END
+	[ActualsId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+

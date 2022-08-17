@@ -160,7 +160,6 @@ namespace BudgetExecution
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
-
         }
 
         public ChartBinding( BindingSource bindingSource, string dataMember )
@@ -179,7 +178,6 @@ namespace BudgetExecution
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
-
         }
 
         /// <summary>
