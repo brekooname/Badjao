@@ -161,7 +161,12 @@ namespace BudgetExecution
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="dict">The dictionary.</param>
         public ChartBinding( BindingSource bindingSource, IDictionary<string, object> dict )
         {
             BindingSource = bindingSource;
@@ -232,6 +237,11 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dict">The dictionary.</param>
         public ChartBinding( DataTable dataTable, IDictionary<string, object> dict )
         {
             BindingSource = new BindingSource
@@ -253,6 +263,10 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
         public ChartBinding( IEnumerable<DataRow> dataRows )
         {
             BindingSource = new BindingSource
@@ -273,6 +287,11 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
+        /// <param name="dict">The dictionary.</param>
         public ChartBinding( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict)
         {
             BindingSource = new BindingSource
