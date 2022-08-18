@@ -75,6 +75,14 @@ namespace BudgetExecution
         public virtual Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the stat.
+        /// </summary>
+        /// <value>
+        /// The stat.
+        /// </value>
+        public virtual STAT Stat { get; set; }
+
+        /// <summary>
         /// Gets or sets the source.
         /// </summary>
         /// <value>
@@ -220,6 +228,18 @@ namespace BudgetExecution
             Legend.Visible = true;
 
             Header = new ChartTitle( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBase"/> class.
+        /// </summary>
+        /// <param name="numeric">The numeric.</param>
+        /// <param name="stat">The stat.</param>
+        protected ChartBase( Numeric numeric = Numeric.Amount, STAT stat = STAT.Total ) 
+            : this( )
+        {
+            Numeric = numeric;
+            Stat = STAT.Total;
         }
 
         /// <summary>

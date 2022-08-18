@@ -232,6 +232,27 @@ namespace BudgetExecution
             Changed += OnCurrentChanged;
         }
 
+        public ChartBinding( DataTable dataTable, IDictionary<string, object> dict )
+        {
+            BindingSource = new BindingSource
+            {
+                DataSource = dataTable.Select( dict.ToCriteria(  ) )
+            };
+
+            Data = dataTable.Select( dict.ToCriteria( ) );
+            DataTable = Data.CopyToDataTable( );
+            BindingList = Data.ToBindingList( );
+            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
+            DataSource = dataTable;
+            TableName = dataTable.ToString( ) ?? Source.ToString(  );
+            DataSource = DataTable.ToBindingList(  );
+            DataSet = dataTable.DataSet;
+            Record = BindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            Count = BindingSource.Count;
+            Changed += OnCurrentChanged;
+        }
+
         public ChartBinding( IEnumerable<DataRow> dataRows )
         {
             BindingSource = new BindingSource
@@ -244,14 +265,34 @@ namespace BudgetExecution
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataTable = dataRows.CopyToDataTable( );
             TableName = Source.ToString( );
-            DataSource = DataTable;
+            DataSource = DataTable.ToBindingList(  );
             DataSet = DataTable.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
-        
+
+        public ChartBinding( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict)
+        {
+            BindingSource = new BindingSource
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
+
+            Data = dataRows.Filter( dict );
+            BindingList = Data.ToBindingList( );
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            DataTable = Data.CopyToDataTable( );
+            TableName = Source.ToString( );
+            DataSource = DataTable.ToBindingList( );
+            DataSet = DataTable.DataSet;
+            Record = BindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            Count = BindingSource.Count;
+            Changed += OnCurrentChanged;
+        }
+
         /// <summary>
         /// Gets the empty.
         /// </summary>
