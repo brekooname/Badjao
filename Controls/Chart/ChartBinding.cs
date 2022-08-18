@@ -11,6 +11,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
+    using DataTable = System.Data.DataTable;
 
     /// <summary>
     /// 
@@ -108,14 +109,6 @@ namespace BudgetExecution
         public BindingSource BindingSource { get; set; }
         
         /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public Field Field { get; set; }
-
-        /// <summary>
         /// Gets or sets the numeric.
         /// </summary>
         /// <value>
@@ -157,30 +150,6 @@ namespace BudgetExecution
             DataMember = TableName;
             Record = bindingSource.GetCurrentDataRow( );
             DataSource = bindingSource;
-            AllowNew = true;
-            Count = BindingSource.Count;
-            Changed += OnCurrentChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
-        /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        /// <param name="dict">The dictionary.</param>
-        public ChartBinding( BindingSource bindingSource, IDictionary<string, object> dict )
-        {
-            BindingSource = bindingSource;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
-            DataTable = (DataTable)bindingSource.DataSource;
-            Data = DataTable.Select( dict.ToCriteria( ) );
-            BindingList = Data.ToBindingList( );
-            BindingSource.DataSource = BindingList;
-            DataSource = (DataTable)bindingSource.DataSource;
-            TableName = Source.ToString( );
-            DataMember = TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
@@ -240,32 +209,6 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBinding"/> class.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
-        /// <param name="dict">The dictionary.</param>
-        public ChartBinding( DataTable dataTable, IDictionary<string, object> dict )
-        {
-            BindingSource = new BindingSource
-            {
-                DataSource = dataTable.Select( dict.ToCriteria(  ) )
-            };
-
-            Data = dataTable.Select( dict.ToCriteria( ) );
-            DataTable = Data.CopyToDataTable( );
-            BindingList = Data.ToBindingList( );
-            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
-            DataSource = dataTable;
-            TableName = dataTable.ToString( ) ?? Source.ToString(  );
-            DataSource = DataTable.ToBindingList(  );
-            DataSet = dataTable.DataSet;
-            Record = BindingSource.GetCurrentDataRow( );
-            AllowNew = true;
-            Count = BindingSource.Count;
-            Changed += OnCurrentChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
-        /// </summary>
         /// <param name="dataRows">The data rows.</param>
         public ChartBinding( IEnumerable<DataRow> dataRows )
         {
@@ -290,6 +233,58 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBinding"/> class.
         /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="dict">The dictionary.</param>
+        public ChartBinding( BindingSource bindingSource, IDictionary<string, object> dict )
+        {
+            BindingSource = bindingSource;
+            DataFilter = dict;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
+            DataTable = (DataTable)bindingSource.DataSource;
+            Data = DataTable.Select( dict.ToCriteria( ) );
+            BindingList = Data.ToBindingList( );
+            BindingSource.DataSource = BindingList;
+            DataSource = (DataTable)bindingSource.DataSource;
+            TableName = Source.ToString( );
+            DataMember = TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+            Record = bindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            Count = BindingSource.Count;
+            Changed += OnCurrentChanged;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dict">The dictionary.</param>
+        public ChartBinding( DataTable dataTable, IDictionary<string, object> dict )
+        {
+            BindingSource = new BindingSource
+            {
+                DataSource = dataTable.Select( dict.ToCriteria( ) )
+            };
+
+            DataFilter = dict;
+            Data = dataTable.Select( dict.ToCriteria( ) );
+            DataTable = Data.CopyToDataTable( );
+            BindingList = Data.ToBindingList( );
+            Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
+            DataSource = dataTable;
+            TableName = dataTable.ToString( ) ?? Source.ToString( );
+            DataSource = DataTable.ToBindingList( );
+            DataSet = dataTable.DataSet;
+            Record = BindingSource.GetCurrentDataRow( );
+            AllowNew = true;
+            Count = BindingSource.Count;
+            Changed += OnCurrentChanged;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartBinding"/> class.
+        /// </summary>
         /// <param name="dataRows">The data rows.</param>
         /// <param name="dict">The dictionary.</param>
         public ChartBinding( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict)
@@ -299,6 +294,7 @@ namespace BudgetExecution
                 DataSource = dataRows.CopyToDataTable( )
             };
 
+            DataFilter = dict;
             Data = dataRows.Filter( dict );
             BindingList = Data.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
@@ -421,7 +417,7 @@ namespace BudgetExecution
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && Verify.IsRef( _kvp.Value ) )
                             {
-                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                                _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                             }
                         }
 
@@ -464,7 +460,7 @@ namespace BudgetExecution
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
                         {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
                         }
                     }
 
