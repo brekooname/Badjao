@@ -6,7 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
@@ -80,15 +79,6 @@ namespace BudgetExecution
 
         }
 
-        public ChartSeries( BindingSource bindingSource, Field field )
-            : base( bindingSource, field )
-        {
-            BindingSource = bindingSource;
-            ChartBinding = new ChartBinding( bindingSource );
-            Categories = DataValues.Keys.Select( s => s );
-            Values = DataValues.Values.Select( d => d );
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
@@ -129,16 +119,6 @@ namespace BudgetExecution
         public ChartSeries( IEnumerable<DataRow> data )
         {
             ChartBinding = new ChartBinding(  );
-            BindingSource = ChartBinding.BindingSource;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartSeries"/> class.
-        /// </summary>
-        /// <param name="bindingList">The binding list.</param>
-        public ChartSeries( IBindingList bindingList )
-        {
-            ChartBinding = new ChartBinding( bindingList );
             BindingSource = ChartBinding.BindingSource;
         }
         

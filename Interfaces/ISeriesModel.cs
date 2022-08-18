@@ -54,7 +54,7 @@
         /// <value>
         /// The metric.
         /// </value>
-        IDataMetric DataMetric { get; set; }
+        DataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Gets the value.

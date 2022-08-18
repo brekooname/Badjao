@@ -60,7 +60,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public virtual IDataMetric DataMetric { get; set; }
+        public virtual DataMetric DataMetric { get; set; }
         
         /// <summary>
         /// Gets the value.

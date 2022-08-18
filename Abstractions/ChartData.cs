@@ -33,6 +33,14 @@ namespace BudgetExecution
         public BindingSource BindingSource { get; set; }
 
         /// <summary>
+        /// Gets or sets the data member.
+        /// </summary>
+        /// <value>
+        /// The data member.
+        /// </value>
+        public string DataMember { get; set; }
+
+        /// <summary>
         /// Gets the metric.
         /// </summary>
         /// <value>
@@ -67,7 +75,7 @@ namespace BudgetExecution
         /// <value>
         /// The metric.
         /// </value>
-        public IDataMetric DataMetric { get; set; }
+        public DataMetric DataMetric { get; set; }
 
         /// <summary>
         /// Gets the binding model.
@@ -150,52 +158,6 @@ namespace BudgetExecution
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource );
            
-            BindingModel = new ChartDataBindModel
-            {
-                DataSource = bindingSource.DataSource
-            };
-
-            AxisLabelModel = new ChartDataBindAxisLabelModel
-            {
-                DataSource = bindingSource.DataSource
-            };
-        }
-
-        protected ChartData( BindingSource bindingSource, Field field )
-        {
-            BindingSource = bindingSource;
-            Field = field;
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
-            Name = field.ToString(  );
-            Text = Name.SplitPascal(  );
-            Type = ChartSeriesType.Column;
-            STAT = STAT.Total;
-            DataMetric = new DataMetric( bindingSource, field );
-            DataValues = DataMetric.CalculateAmounts( Data, field  );
-
-            BindingModel = new ChartDataBindModel
-            {
-                DataSource = bindingSource.DataSource
-            };
-
-            AxisLabelModel = new ChartDataBindAxisLabelModel
-            {
-                DataSource = bindingSource.DataSource
-            };
-        }
-
-        protected ChartData( BindingSource bindingSource, string dataMember )
-        {
-            BindingSource = bindingSource;
-            Field = (Field)Enum.Parse( typeof( Field ), dataMember );
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
-            Name = dataMember;
-            Text = Name.SplitPascal( );
-            Type = ChartSeriesType.Column;
-            STAT = STAT.Total;
-            DataMetric = new DataMetric( bindingSource, Field );
-            DataValues = DataMetric.CalculateAmounts( Data, Field );
-
             BindingModel = new ChartDataBindModel
             {
                 DataSource = bindingSource.DataSource

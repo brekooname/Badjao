@@ -129,7 +129,7 @@ namespace BudgetExecution
         /// <value>
         /// The filter.
         /// </value>
-        public IDictionary<string, object> Criteria { get; set; }
+        public IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the
@@ -148,32 +148,33 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             DataTable = (DataTable)bindingSource.DataSource;
-            DataSet = DataTable.DataSet;
+            DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             BindingList = Data.ToBindingList( );
+            BindingSource.DataSource = BindingList;
             TableName = Source.ToString( );
-            DataSource = bindingSource;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            DataSet = ( (DataTable)bindingSource.DataSource )?.DataSet;
+            DataMember = TableName;
             Record = bindingSource.GetCurrentDataRow( );
+            DataSource = bindingSource;
             AllowNew = true;
             Count = BindingSource.Count;
             Changed += OnCurrentChanged;
         }
-
-        public ChartBinding( BindingSource bindingSource, string dataMember )
+        
+        public ChartBinding( BindingSource bindingSource, IDictionary<string, object> dict )
         {
             BindingSource = bindingSource;
             Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
-            BindingList = Data.ToBindingList( );
-            DataTable = (DataTable)bindingSource.DataSource;
-            DataSource = (DataTable)bindingSource.DataSource;
-            DataMember = dataMember;
-            TableName = Source.ToString(  );
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
+            DataTable = (DataTable)bindingSource.DataSource;
+            Data = DataTable.Select( dict.ToCriteria( ) );
+            BindingList = Data.ToBindingList( );
+            BindingSource.DataSource = BindingList;
+            DataSource = (DataTable)bindingSource.DataSource;
+            TableName = Source.ToString( );
+            DataMember = TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
@@ -183,28 +184,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartBinding"/> class.
         /// </summary>
-        /// <param name="bindingList">The binding list.</param>
-        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
-        public ChartBinding( IBindingList bindingList )
-        {
-            BindingSource = new BindingSource
-            {
-                DataSource = bindingList
-            };
-
-            Data = ( (DataTable)BindingSource.DataSource ).AsEnumerable( );
-            BindingList = Data.ToBindingList( );
-            DataTable = (DataTable)BindingSource.DataSource;
-            DataSource = bindingList;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)BindingSource.DataSource ).TableName );
-            TableName = Source.ToString( );
-            DataSet = ( (DataTable)BindingSource.DataSource )?.DataSet;
-            Record = BindingSource.GetCurrentDataRow( );
-            AllowNew = true;
-            Count = BindingSource.Count;
-            Changed += OnCurrentChanged;
-        }
-
+        /// <param name="dataSet">The data set.</param>
         public ChartBinding( DataSet dataSet )
         {
             DataSet = dataSet;
@@ -216,6 +196,7 @@ namespace BudgetExecution
 
             DataTable = dataSet.Tables[ $"{ Source }" ];
             TableName = Source.ToString( );
+            DataMember = TableName;
             DataSource = dataSet.Tables[ $"{ Source }" ];
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             Data = dataSet.Tables[ $"{ Source }" ]?.AsEnumerable( );

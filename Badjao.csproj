@@ -461,7 +461,7 @@
     <Compile Include="Controls\Chart\ChartControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Chart\IChartBinding.cs" />
+    <Compile Include="Interfaces\IChartBinding.cs" />
     <Compile Include="Controls\StyleConfig\AlignConfig.cs" />
     <Compile Include="Controls\StyleConfig\BorderConfig.cs" />
     <Compile Include="Controls\StyleConfig\ChartConfig.cs" />
@@ -505,7 +505,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\IDataFilter.cs" />
-    <Compile Include="Interfaces\IDataMetric.cs" />
     <Compile Include="Interfaces\IClock.cs" />
     <Compile Include="Abstractions\ImageListBase.cs">
       <SubType>Component</SubType>

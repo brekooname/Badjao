@@ -44,6 +44,14 @@ namespace BudgetExecution
         public Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the data member.
+        /// </summary>
+        /// <value>
+        /// The data member.
+        /// </value>
+        public string DataMember { get; set; }
+
+        /// <summary>
         /// The dataRow
         /// </summary>
         public IEnumerable<DataRow> Data { get; set; }
@@ -107,25 +115,6 @@ namespace BudgetExecution
             Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MetricBase"/> class.
-        /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="numeric">The numeric.</param>
-        protected MetricBase( BindingSource bindingSource, Field field, Numeric numeric = Numeric.Amount )
-        {
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
-            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
-            Numeric = numeric;
-            Field = field;
-            Total = CalculateTotal( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-            Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-            Amounts = CalculateAmounts( Data, field, numeric );
-        }
-
         protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
         {
             Data = ( (DataTable)bindingSource.DataSource ).Select( dict.ToCriteria( ));
@@ -136,7 +125,7 @@ namespace BudgetExecution
             Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
             Average = CalculateAverage( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
         }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
@@ -153,6 +142,12 @@ namespace BudgetExecution
             Average = CalculateAverage( Data, numeric );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="numeric">The numeric.</param>
         protected MetricBase( DataTable dataTable, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
         {
             Data = dataTable.Select( dict.ToCriteria( ) );
@@ -163,18 +158,7 @@ namespace BudgetExecution
             Total = CalculateTotal( Data, numeric );
             Average = CalculateAverage( Data, numeric );
         }
-
-        protected MetricBase( DataSet dataSet, Numeric numeric = Numeric.Amount )
-        {
-            Data = dataSet.Tables[ 0 ].AsEnumerable( );
-            TableName = dataSet.Tables[ 0 ].TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), TableName );
-            Numeric = numeric;
-            Count = Data.Count( );
-            Total = CalculateTotal( Data, numeric );
-            Average = CalculateAverage( Data, numeric );
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
@@ -204,86 +188,33 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MetricBase"/> class.
-        /// </summary>
-        /// <param name="dataRow">The data row.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="numeric">The numeric.</param>
-        protected MetricBase( IEnumerable<DataRow> dataRow, Field field, Numeric numeric = Numeric.Amount )
-        {
-            Field = field;
-            Numeric = numeric;
-            Data = dataRow;
-            TableName = dataRow.CopyToDataTable( ).TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
-            Count = dataRow.Count( );
-            Total = CalculateTotal( dataRow, numeric );
-            Average = CalculateAverage( dataRow, Numeric );
-            Amounts = CalculateAmounts( Data, field, numeric );
-        }
-
-        /// <summary>
-        /// Gets the codes.
-        /// </summary>
-        /// <param name="dataRow">The dataRow.</param>
-        /// <param name="field">The field.</param>
-        /// <returns></returns>
-        public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, Field field )
-        {
-            if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field ))
-            {
-                try
-                {
-                    var _query = dataRow
-                        ?.Select( p => p.Field<string>( $"{ field }" ) )
-                        ?.Distinct( )
-                        ?.ToArray( );
-
-                    return _query.Length > 0
-                        ? _query
-                        : default( string[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<string> );
-                }
-            }
-
-            return default( IEnumerable<string> );
-        }
-
-        /// <summary>
         /// Gets the codes.
         /// </summary>
         /// <param name="dataRow">The data row.</param>
-        /// <param name = "dict" > </param>
+        /// <param name = "dataMember" > </param>
         /// <returns></returns>
-        public static IEnumerable<string> GetCodes( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict )
+        public static IEnumerable<string> GetUniqueValues( IEnumerable<DataRow> dataRow, string dataMember )
         {
-            if( dataRow?.Any( ) == true
-                && dict?.Any( ) == true )
+            if( dataRow?.Any( ) == true 
+                && !string.IsNullOrEmpty( dataMember ) )
             {
                 try
                 {
-                    var _criteria = dict?.ToCriteria( );
-                    if( !string.IsNullOrEmpty( _criteria ) )
+                    var _columns = dataRow
+                        .CopyToDataTable( )
+                        .GetColumnNames( );
+
+                    if ( _columns?.Contains( dataMember ) == true )
                     {
-                        var _query = dataRow.CopyToDataTable( ).Select( _criteria );
-                        var _columns = _query.CopyToDataTable( ).Columns;
-                        var _names = new string[ _columns.Count ];
 
-                        for( var i = 0; i < _columns.Count; i++ )
-                        {
-                            _names[ i ] = _columns[ i ].ColumnName;
-                        }
+                        var _query = dataRow.Select( p => p.Field<string>( dataMember ) )
+                            ?.Distinct( )
+                            ?.ToArray( );
 
-                        return _names.Length > 0
-                            ? _names
-                            : default( string[ ] );
+                        return _query?.Any(  ) == true
+                            ? _query
+                            : default( IEnumerable<string> );
                     }
-
                 }
                 catch( Exception ex )
                 {
@@ -352,50 +283,6 @@ namespace BudgetExecution
 
             return default( double );
         }
-        
-        /// <summary>
-        /// Calculates the totals.
-        /// </summary>
-        /// <param name="dataRow">The dataRow.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="numeric">The numeric.</param>
-        /// <returns></returns>
-        public IDictionary<string, double> CalculateAmounts( IEnumerable<DataRow> dataRow, Field field,
-            Numeric numeric = Numeric.Amount )
-        {
-            if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && Enum.IsDefined( typeof( Numeric ), numeric ) )
-            {
-                try
-                {
-                    var _fields = GetCodes( dataRow, field );
-                    var _dict = new Dictionary<string, double>( );
-                    foreach( var name in _fields )
-                    {
-                        var _select = dataRow
-                            .Where( p => p.Field<string>( $"{ field }" ) == name )
-                            .Select( p => p  );
-
-                        var _value = _select
-                            .Sum( p => p.Field<decimal>( $"{ numeric }" ) );
-
-                        _dict.Add( name, double.Parse( _value.ToString( "N1" ) ) );
-                    }
-
-                    return _dict?.Any(   ) == true
-                        ? _dict
-                        : default( IDictionary<string, double> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, double> );
-                }
-            }
-
-            return default( IDictionary<string, double> );
-        }
 
         /// <summary>
         /// Calculates the average.
@@ -427,58 +314,6 @@ namespace BudgetExecution
             }
 
             return 0.0d;
-        }
-        
-
-        /// <summary>
-        /// Calculates the averages.
-        /// </summary>
-        /// <param name="dataRow">The dataRow.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="numeric">The numeric.</param>
-        /// <returns></returns>
-        public IDictionary<string, double> CalculateAverages( IEnumerable<DataRow> dataRow, Field field,
-            Numeric numeric = Numeric.Amount )
-        {
-            if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && Enum.IsDefined( typeof( Numeric ), numeric ) )
-            {
-                try
-                {
-                    var _dictionary = new Dictionary<string, double>( );
-                    var _filters = GetCodes( dataRow, field );
-
-                    if( _filters.Any( ) )
-                    {
-                        foreach( var filter in _filters )
-                        {
-                            var _query = dataRow?.Filter( field.ToString( ), filter );
-
-                            if( _query?.Any( ) == true )
-                            {
-                                var _value = CalculateAverage( _query, numeric );
-
-                                if( _value > 0 )
-                                {
-                                    _dictionary?.Add( filter, _value );
-                                }
-                            }
-                        }
-
-                        return _dictionary?.Any( ) == true
-                            ? _dictionary
-                            : default( Dictionary<string, double> );
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, double> );
-                }
-            }
-
-            return default( IDictionary<string, double> );
         }
 
         /// <summary>
