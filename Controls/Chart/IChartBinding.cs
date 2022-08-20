@@ -28,7 +28,7 @@
         /// taking the current 
         /// <see cref="P:System.Windows.Forms.BindingSource.Filter" /> value into consideration.
         /// </summary>
-        new int Count { get; set; }
+        int Count { get; set; }
 
         /// <summary>
         /// Gets the data.

@@ -36,14 +36,6 @@ namespace BudgetExecution
         public ChartPointIndexer PointIndexer { get; set; }
 
         /// <summary>
-        /// Gets or sets the filter.
-        /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
-        public IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
         /// Gets the series categories.
         /// </summary>
         /// <value>
@@ -82,17 +74,6 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
-        /// <param name="chartBinding">The chart binding.</param>
-        public ChartSeries( ChartBinding chartBinding )
-            : base( chartBinding )
-        {
-            ChartBinding = chartBinding;
-            BindingSource = ChartBinding.BindingSource;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartSeries"/> class.
-        /// </summary>
         /// <param name="dataTable">The data table.</param>
         public ChartSeries( DataTable dataTable )
             : base( dataTable )
@@ -100,18 +81,7 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( dataTable );
             BindingSource = ChartBinding.BindingSource;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ChartSeries"/> class.
-        /// </summary>
-        /// <param name="dataSet">The data set.</param>
-        public ChartSeries( DataSet dataSet )
-            : base( dataSet )
-        {
-            ChartBinding = new ChartBinding( dataSet );
-            BindingSource = ChartBinding.BindingSource;
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
@@ -121,7 +91,21 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding(  );
             BindingSource = ChartBinding.BindingSource;
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChartSeries"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name = "dict" > </param>
+        public ChartSeries( BindingSource bindingSource, IDictionary<string, object> dict )
+            : base( bindingSource )
+        {
+            DataFilter = dict;
+            BindingSource = bindingSource;
+            ChartBinding = new ChartBinding( bindingSource );
+
+        }
+
         /// <summary>
         /// Sets the point configuration.
         /// </summary>

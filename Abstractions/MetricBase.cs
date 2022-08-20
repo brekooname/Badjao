@@ -34,11 +34,6 @@ namespace BudgetExecution
         public string TableName { get; set; }
 
         /// <summary>
-        /// The field
-        /// </summary>
-        public Field Field { get; set; }
-
-        /// <summary>
         /// The numeric
         /// </summary>
         public Numeric Numeric { get; set; }
@@ -207,7 +202,8 @@ namespace BudgetExecution
                     if ( _columns?.Contains( dataMember ) == true )
                     {
 
-                        var _query = dataRow.Select( p => p.Field<string>( dataMember ) )
+                        var _query = dataRow
+                            ?.Select( p => p.Field<string>( dataMember ) )
                             ?.Distinct( )
                             ?.ToArray( );
 

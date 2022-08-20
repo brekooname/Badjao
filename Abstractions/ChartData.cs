@@ -13,6 +13,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Drawing;
     using System.Threading;
+    using DataTable = System.Data.DataTable;
 
     /// <summary>
     /// 
@@ -92,6 +93,14 @@ namespace BudgetExecution
         /// The axis label model.
         /// </value>
         public ChartDataBindAxisLabelModel AxisLabelModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -226,27 +235,28 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartData"/> class.
         /// </summary>
-        /// <param name="dataSet">The data set.</param>
-        protected ChartData( DataSet dataSet )
+        /// <param name = "bindingSource" > </param>
+        /// <param name = "dict" > </param>
+        protected ChartData( BindingSource bindingSource, IDictionary<string, object> dict )
             : this( )
         {
+            DataFilter = dict;
+            BindingSource = bindingSource;
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            Name = ( (DataTable)bindingSource.DataSource ).TableName;
+            Text = Name.SplitPascal( );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
-            DataMetric = new DataMetric( );
-
-            BindingSource = new BindingSource
-            {
-                DataSource = dataSet.Tables[ 0 ]
-            };
+            DataMetric = new DataMetric( bindingSource, dict );
 
             BindingModel = new ChartDataBindModel
             {
-                DataSource = dataSet.Tables[ 0 ]
+                DataSource = bindingSource.DataSource
             };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
             {
-                DataSource = dataSet.Tables[ 0 ]
+                DataSource = bindingSource.DataSource
             };
         }
 
