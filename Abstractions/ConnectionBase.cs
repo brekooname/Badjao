@@ -5,9 +5,11 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Collections.Specialized;
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
 
     /// <summary>
     /// 
@@ -23,6 +25,7 @@ namespace BudgetExecution
         public virtual ConnectionStringSettingsCollection ConnectionPaths { get; } =
             ConfigurationManager.ConnectionStrings;
 
+        public virtual NameValueCollection ClientPaths { get; } = ConfigurationManager.AppSettings;
         /// <summary>
         /// The source
         /// </summary>
@@ -71,7 +74,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="provider">The provider.</param>
         /// <returns></returns>
-        public virtual string GetFilePath( Provider provider )
+        public virtual string GetClientPath( Provider provider )
         {
             if( Enum.IsDefined( typeof( Provider ), provider ) )
             {
@@ -79,55 +82,40 @@ namespace BudgetExecution
                 {
                     switch( provider )
                     {
-                        case Provider.OleDb:
-                        {
-                            FilePath = ConfigurationManager.AppSettings[ "OleDb" ];
-                            break;
-                        }
                         case Provider.Access:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "Access" ];
-                            break;
+                            return ClientPaths[ "ACCDB" ];
                         }
                         case Provider.SQLite:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
-                            break;
+                            return ClientPaths[ "DB" ];
                         }
                         case Provider.SqlCe:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SqlCe" ];
-                            break;
+                            return ClientPaths[ "SDF" ];
                         }
                         case Provider.Excel:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "Excel" ];
-                            break;
+                            return ClientPaths[ "XLSX" ];
                         }
                         case Provider.SqlServer:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SqlServer" ];
-                            break;
+                            return ClientPaths[ "MDF" ];
                         }
                         case Provider.CSV:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "CSV" ];
-                            break;
+                            return ClientPaths[ "CSV" ];
                         }
                         default:
                         {
-                            FilePath = ConfigurationManager.AppSettings[ "SQLite" ];
-                            break;
+                            return ClientPaths[ "ACCDB" ];
                         }
                     }
-
-                    return !string.IsNullOrEmpty( FilePath )
-                        ? FilePath
-                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
+                    return string.Empty;
                 }
             }
 
@@ -157,7 +145,7 @@ namespace BudgetExecution
         /// Sets the provider path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        protected string GetProviderPath( string filePath )
+        public virtual string GetClientPath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
                && File.Exists( filePath )
@@ -165,60 +153,19 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _extension = Path.GetExtension( filePath );
+                    var _file = Path.GetExtension( filePath )?.Replace( ".", "" );
 
-                    if( _extension != null )
+                    if( _file != null )
                     {
-                        var _provider = (EXT)Enum.Parse( typeof( EXT ), _extension );
-
-                        switch( _provider )
+                        var _extension = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
+                        var _names = Enum.GetNames( typeof( EXT ) );
+                        if( _names.Contains( _extension.ToString(    ) ) )
                         {
-                            case EXT.MDB:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "OleDbFilePath" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            case EXT.ACCDB:
+                            var _clientPath = ClientPaths[ $"{ _extension }" ];
 
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "Access" ];
-                                return _path;
-                            }
-                            case EXT.DB:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "SQLite" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            case EXT.XLSX:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "Excel" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            case EXT.CSV:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "CSV" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            case EXT.MDF:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "SqlServer" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            case EXT.SDF:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "SqlCe" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            case EXT.TXT:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "CSV" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
-                            default:
-                            {
-                                var _path = ConfigurationManager.AppSettings[ "SQLite" ];
-                                return _path?.Replace( "{FilePath}", filePath );
-                            }
+                            return !string.IsNullOrEmpty( _clientPath )
+                                ? _clientPath
+                                : string.Empty;
                         }
                     }
                 }
@@ -255,6 +202,41 @@ namespace BudgetExecution
 
                             return !string.IsNullOrEmpty( _connection )
                                 ? _connection?.Replace( "{FilePath}", FilePath )
+                                : string.Empty;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+
+            return string.Empty;
+        }
+
+        protected string GetConnectionString( string filePath )
+        {
+            if( !string.IsNullOrEmpty( filePath )
+               && File.Exists( filePath )
+               && Path.HasExtension( filePath ) )
+            {
+                try
+                {
+                    var _file = Path.GetExtension( filePath );
+
+                    if( _file != null )
+                    {
+                        var _extension = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
+                        var _names = Enum.GetNames( typeof( EXT ) );
+
+                        if ( _names?.Contains( _extension.ToString(  ) ) == true )
+                        {
+                            var _connectionString =
+                                ConnectionPaths[ $"{ _extension }" ].ConnectionString;
+
+                            return !string.IsNullOrEmpty( _connectionString )
+                                ? _connectionString
                                 : string.Empty;
                         }
                     }
