@@ -63,6 +63,14 @@ namespace BudgetExecution
         public IDataCommand CommandBuilder { get; set; }
 
         /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
+        public DbConnection Connection { get; set; }
+
+        /// <summary>
         /// Gets the command.
         /// </summary>
         /// <value>
