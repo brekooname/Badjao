@@ -88,7 +88,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="provider">The provider.</param>
         /// <returns></returns>
-        public string GetClientPath( Provider provider )
+        public string GetDbClientPath( Provider provider )
         {
             if( Enum.IsDefined( typeof( Provider ), provider ) )
             {
@@ -159,7 +159,7 @@ namespace BudgetExecution
         /// Sets the provider path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        public string GetClientPath( string filePath )
+        public string GetDbClientPath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
                && File.Exists( filePath )
@@ -171,11 +171,11 @@ namespace BudgetExecution
 
                     if( _file != null )
                     {
-                        var _extension = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
+                        var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
                         var _names = Enum.GetNames( typeof( EXT ) );
-                        if( _names.Contains( _extension.ToString(    ) ) )
+                        if( _names.Contains( _ext.ToString(    ) ) )
                         {
-                            var _clientPath = DbClientPath[ $"{ _extension }" ];
+                            var _clientPath = DbClientPath[ $"{ _ext }" ];
 
                             return !string.IsNullOrEmpty( _clientPath )
                                 ? _clientPath
@@ -198,7 +198,7 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public string GetConnectionString( Provider provider )
         {
-            if( Validate.IsProvider( provider ) )
+            if( Enum.IsDefined( typeof( Provider ), provider ) )
             {
                 try
                 {
@@ -229,7 +229,12 @@ namespace BudgetExecution
             return string.Empty;
         }
 
-        protected string GetConnectionString( string filePath )
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns></returns>
+        public string GetConnectionString( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
                && File.Exists( filePath )
@@ -241,13 +246,12 @@ namespace BudgetExecution
 
                     if( _file != null )
                     {
-                        var _extension = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
+                        var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
                         var _names = Enum.GetNames( typeof( EXT ) );
 
-                        if ( _names?.Contains( _extension.ToString(  ) ) == true )
+                        if ( _names?.Contains( _ext.ToString(  ) ) == true )
                         {
-                            var _connectionString =
-                                ConnectionPath[ $"{ _extension }" ].ConnectionString;
+                            var _connectionString = ConnectionPath[ $"{ _ext }" ].ConnectionString;
 
                             return !string.IsNullOrEmpty( _connectionString )
                                 ? _connectionString

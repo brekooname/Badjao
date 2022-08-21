@@ -61,12 +61,12 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            FilePath = GetClientPath( provider );
+            FilePath = GetDbClientPath( provider );
             PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
             Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
             TableName = source.ToString( );
-            ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
+            ProviderPath = DbClientPath[ Extension.ToString( ) ];
             ConnectionString = GetConnectionString( provider );
             Connection = GetConnection( );
         }

@@ -53,12 +53,14 @@ namespace BudgetExecution
         {
             try
             {
-                var _columns = Record?.ToDictionary( )
+                var _columns = Record
+                    ?.ToDictionary( )
                     ?.Keys?.ToArray( );
 
                 if( _columns?.Any( ) == true )
                 {
-                    var _fields = _columns?.Select( e => e.ToEnum<Field>( ) );
+                    var _fields = _columns
+                        ?.Select( e => e.ToEnum<Field>( ) );
 
                     return _fields?.Any( ) == true
                         ? _fields

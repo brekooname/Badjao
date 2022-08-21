@@ -1,9 +1,10 @@
-CREATE TABLE IF NOT EXISTS NationalPrograms 
+CREATE TABLE NationalPrograms 
 (
-	NationalProgramsId	INTEGER NOT NULL UNIQUE,
-	Code	TEXT(255) NOT NULL,
-	Name	TEXT(255),
-	RpioCode	TEXT(255),
-	Title	TEXT(255),
-	CONSTRAINT PrimaryKeyNationalPrograms PRIMARY KEY(NationalProgramsId AUTOINCREMENT)
+    NationalProgramsId AUTOINCREMENT NOT NULL UNIQUE,
+    Code TEXT(80) NOT NULL,
+    Name TEXT(80) NULL DEFAULT NS,
+    RpioCode TEXT(80) NULL DEFAULT NS,
+    Title TEXT(80) NULL DEFAULT NS,
+    CONSTRAINT PrimaryKeyNationalPrograms 
+        PRIMARY KEY(NationalProgramsId)
 );

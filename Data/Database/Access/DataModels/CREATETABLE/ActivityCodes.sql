@@ -1,7 +1,9 @@
-CREATE TABLE IF NOT EXISTS ActivityCodes (
-	ActivityCodesId	INTEGER NOT NULL UNIQUE,
-	Code	TEXT(255),
-	Name	TEXT(255),
-	Title	TEXT(255)
-	PRIMARY KEY(ActivityCodesId AUTOINCREMENT)
+CREATE TABLE ActivityCodes 
+(
+    ActivityCodesId AUTOINCREMENT NOT NULL UNIQUE,
+    Code TEXT(80) NULL DEFAULT NS,
+    Name TEXT(80) NULL DEFAULT NS,
+    Title TEXT(80)
+    CONSTRAINT ActivityCodesPrimaryKey
+        PRIMARY KEY(ActivityCodesId)
 );

@@ -1,9 +1,11 @@
-CREATE TABLE PublicLaws (
-	PublicLawsId	INTEGER NOT NULL UNIQUE,
-	LawNumber	TEXT(255),
-	BillTitle	TEXT(255),
-	EnactedDate	TEXT(255),
-	Congress	TEXT(255),
-	BFY	TEXT(255),
-	PRIMARY KEY(PublicLawsId AUTOINCREMENT)
-)
+CREATE TABLE PublicLaws 
+(
+    PublicLawsId AUTOINCREMENT NOT NULL UNIQUE,
+    LawNumber TEXT(80) NULL DEFAULT NS,
+    BillTitle TEXT(80) NULL DEFAULT NS,
+    EnactedDate TEXT(80) NULL DEFAULT NS,
+    Congress TEXT(80) NULL DEFAULT NS,
+    BFY TEXT(80) NULL DEFAULT NS,
+    CONSTRAINT PublicLawsPrimaryKey
+        PRIMARY KEY(PublicLawsId)
+);

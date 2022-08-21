@@ -1,8 +1,10 @@
-﻿CREATE TABLE [AppropriationBills]
+﻿CREATE TABLE AppropriationBills
 (
-   [ID] INT NOT NULL IDENTITY (1,1),
-   [BFY] NVARCHAR(255) DEFAULT ('NS'),
-   [Title] NVARCHAR(255) DEFAULT ('NS'),
-   [PublicLaw] NVARCHAR(255) DEFAULT ('NS'),
-   [EnactedDate] NVARCHAR(255) DEFAULT ('NS')
+   AppropriationBillsId AUTOINCREMENT NOT NULL UNIQUE,
+   BFY TEXT(80) NULL DEFAULT NS,
+   Title TEXT(80) NULL DEFAULT NS,
+   PublicLaw TEXT(80) NULL DEFAULT NS,
+   EnactedDate TEXT(80) DEFAULT (NS),
+   CONSTRAINT AppropriationBillsPrimaryKey
+      PRIMARY KEY(AppropriationBills)
 );

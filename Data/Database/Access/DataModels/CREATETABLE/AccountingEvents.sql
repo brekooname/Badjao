@@ -1,7 +1,8 @@
-CREATE TABLE IF NOT EXISTS AccountingEvents 
+CREATE TABLE AccountingEvents 
 (
-	AccountingEventsId	INTEGER NOT NULL UNIQUE,
-	Code	TEXT(255),
-	Name	TEXT(255),
-	CONSTRAINT PrimaryKeyAccountingEvents PRIMARY KEY(AccountingEventsId AUTOINCREMENT)
+ AccountingEventsId AUTOINCREMENT NOT NULL UNIQUE,
+ Code TEXT(80) NULL DEFAULT NS,
+ Name TEXT(80) NULL DEFAULT NS,
+ CONSTRAINT AccountingEventsPrimaryKey 
+  PRIMARY KEY(AccountingEventsId)
 );

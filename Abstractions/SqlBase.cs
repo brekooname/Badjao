@@ -62,7 +62,7 @@ namespace BudgetExecution
         /// <value>
         /// The columns.
         /// </value>
-        public virtual IEnumerable<DataColumn> Columns { get; set; }
+        public virtual IEnumerable<DataColumn> DataColumns { get; set; }
 
         /// <summary>
         /// The command text
@@ -85,7 +85,7 @@ namespace BudgetExecution
         /// <summary>
         /// The provider path
         /// </summary>
-        public virtual NameValueCollection ProviderPath { get; set; } = ConfigurationManager.AppSettings;
+        public virtual NameValueCollection DbClientPath { get; set; } = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The file name
@@ -100,21 +100,176 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        protected SqlBase( Source source, Provider provider )
+        {
+            CommandType = SQL.SELECTALL;
+            Source = source;
+            TableName = source.ToString( );
+            Provider = provider;
+            Args = null;
+            Criteria = null;
+            DataColumns = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected SqlBase( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
+            : this( source, provider )
+        {
+            Source = source;
+            TableName = source.ToString( );
+            Provider = provider;
+            Args = null;
+            Criteria = null;
+            DataColumns = null;
+            CommandType = commandType;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected SqlBase( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECT )
+        {
+            CommandType = commandType;
+            Source = connectionBuilder.Source;
+            TableName = Source.ToString( );
+            Provider = connectionBuilder.Provider;
+            Args = null;
+            Criteria = null;
+            DataColumns = null;
+            CommandText = GetSelectStatement( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="dict">The dictionary.</param>
+        protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict )
+        {
+            CommandType = SQL.SELECT;
+            Source = connectionBuilder.Source;
+            TableName = Source.ToString( );
+            Provider = connectionBuilder.Provider;
+            Args = dict;
+            DataColumns = null;
+            CommandText = GetSelectStatement( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="dict">The dictionary.</param>
+        protected SqlBase( IConnectionBuilder connectionBuilder, IEnumerable<DataColumn> columns, 
+            IDictionary<string, object> dict )
+        {
+            CommandType = SQL.SELECT;
+            Source = connectionBuilder.Source;
+            TableName = Source.ToString( );
+            Provider = connectionBuilder.Provider;
+            Args = dict;
+            DataColumns = columns;
+            CommandText = CreateSelectStatement( DataColumns, Args );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        protected SqlBase( Source source, Provider provider, IDictionary<string, object> dict )
+        {
+            CommandType = SQL.SELECTALL;
+            Source = source;
+            Provider = provider;
+            TableName = Source.ToString( );
+            Args = dict;
+            DataColumns = null;
+            CommandText = GetSelectStatement( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="commandType">Type of the command.</param>
+        /// <param name="dict">The dictionary.</param>
+        protected SqlBase( Source source, Provider provider, SQL commandType, IDictionary<string, object> dict )
+        {
+            CommandType = commandType;
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            TableName = Source.ToString( );
+            DataColumns = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
+            SQL commandType = SQL.SELECTALL )
+        {
+            CommandType = commandType;
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
+            TableName = Source.ToString( );
+            Args = dict;
+            DataColumns = null;
+        }
+
+        /// <summary>
         /// Sets the select statement.
         /// </summary>
         public virtual string GetSelectStatement( )
         {
-            try
+            if( Args != null )
             {
-                return CommandType == SQL.SELECTALL && Enum.IsDefined( typeof( Source ), Source )
-                    ? $"SELECT * FROM { Source };"
-                    : string.Empty;
+                try
+                {
+                    var _values = string.Empty;
+
+                    foreach( var kvp in Args )
+                    {
+                        _values += $"{kvp.Key} = '{kvp.Value}' AND ";
+                    }
+
+                    _values = _values.TrimEnd( " AND".ToCharArray( ) );
+                    CommandText = $"SELECT * FROM { Source } WHERE { _values };";
+
+                    return !string.IsNullOrEmpty( CommandText )
+                        ? CommandText
+                        : default( string );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( string );
+                }
             }
-            catch( Exception ex )
+            else if( Args == null )
             {
-                Fail( ex );
-                return string.Empty;
+                return $"SELECT * FROM { Source };";
             }
+
+            return default( string );
         }
 
         /// <summary>
@@ -328,76 +483,6 @@ namespace BudgetExecution
                 {
                     Fail( ex );
                     return string.Empty;
-                }
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Sets the command text.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        /// <param name="commandType">Type of the command.</param>
-        public virtual string GetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
-        {
-            if( dict?.Any( ) == true
-                && Enum.IsDefined( typeof( Source ), Source ) )
-            {
-                try
-                {
-                    switch( commandType )
-                    {
-                        case SQL.SELECT:
-
-                        {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-
-                        case SQL.SELECTALL:
-                        {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-
-                        case SQL.INSERT:
-                        {
-                            var _queryText = CreateInsertStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-
-                        case SQL.UPDATE:
-                        {
-                            var _queryText = CreateUpdateStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-
-                        case SQL.DELETE:
-                        {
-                            var _queryText = CreateDeleteStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
                 }
             }
 

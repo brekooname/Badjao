@@ -13,11 +13,23 @@ namespace BudgetExecution
 
     /// <summary> </summary>
     /// <seealso cref = "SqlStatement"/>
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public class SqlFactory : SqlBase
     {
+        /// <summary>
+        /// Gets or sets the SQL statement.
+        /// </summary>
+        /// <value>
+        /// The SQL statement.
+        /// </value>
         public ISqlStatement SqlStatement { get; set; }
 
+        /// <summary>
+        /// Gets or sets the connection builder.
+        /// </summary>
+        /// <value>
+        /// The connection builder.
+        /// </value>
         public IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
@@ -34,20 +46,31 @@ namespace BudgetExecution
             Provider = provider;
             CommandType = command;
             SqlStatement = new SqlStatement( source, provider, command );
-            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString( ) ] );
+            FilePath = Path.GetFullPath( DbClientPath[ Provider.ToString( ) ] );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlFactory"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="command">The command.</param>
         public SqlFactory( IConnectionBuilder connectionBuilder, IEnumerable<DataColumn> columns, SQL command = SQL.SELECTALL )
         {
             Source = connectionBuilder.Source;
             Provider = connectionBuilder.Provider;
             CommandType = command;
             SqlStatement = new SqlStatement( connectionBuilder, command );
-            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString( ) ] );
+            FilePath = Path.GetFullPath( DbClientPath[ Provider.ToString( ) ] );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlFactory"/> class.
+        /// </summary>
+        /// <param name="conectionBuilder">The conection builder.</param>
+        /// <param name="command">The command.</param>
         public SqlFactory( IConnectionBuilder conectionBuilder, SQL command = SQL.SELECTALL )
         {
             Source = conectionBuilder.Source;
@@ -55,7 +78,7 @@ namespace BudgetExecution
             CommandType = command;
             ConnectionBuilder = conectionBuilder;
             SqlStatement = new SqlStatement( conectionBuilder, command );
-            FilePath = SqlStatement.GetFilePath( conectionBuilder.Provider );
+            FilePath = SqlStatement.GetDbClientPath( conectionBuilder.Provider );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 
@@ -88,7 +111,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _directory = ProviderPath[ $"{ Provider }" ] + $@"\{ CommandType }";
+                    var _directory = DbClientPath[ $"{ Provider }" ] + $@"\{ CommandType }";
                     var _scriptFiles = new Dictionary<string, string>( );
                     if( !string.IsNullOrEmpty( _directory )
                         && Directory.Exists( _directory ) )

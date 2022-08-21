@@ -68,7 +68,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection.
         /// </value>
-        public DbConnection Connection { get; set; }
+        public DbConnection DataConnection { get; set; }
 
         /// <summary>
         /// Gets the command.
@@ -76,7 +76,7 @@ namespace BudgetExecution
         /// <value>
         /// The command.
         /// </value>
-        public DbCommand Command { get; set; }
+        public DbCommand DataCommand { get; set; }
         
         /// <summary>
         /// Gets the adapter.
@@ -84,7 +84,7 @@ namespace BudgetExecution
         /// <value>
         /// The adapter.
         /// </value>
-        public DbDataAdapter Adapter { get; set; }
+        public DbDataAdapter DataAdapter { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is disposed.
@@ -115,7 +115,110 @@ namespace BudgetExecution
         protected QueryBase()
         {
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected QueryBase( Source source, Provider provider = Provider.SQLite,
+            SQL commandType = SQL.SELECT )
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict,
+            SQL commandType )
+        {
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        protected QueryBase( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        {
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
+            ConnectionBuilder = connectionBuilder;
+            ConnectionFactory = new ConnectionFactory( connectionBuilder );
+            SqlStatement = sqlStatement;
+            CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
+            DataAdapter = new AdapterFactory( connectionBuilder, sqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict )
+        {
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="fullPath">The full path.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected QueryBase( string fullPath, SQL commandType = SQL.SELECT )
+        {
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
+            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
+            SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="fullPath">The full path.</param>
+        /// <param name="commandType">Type of the command.</param>
+        /// <param name="dict">The dictionary.</param>
+        protected QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
+        {
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
+            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
         /// <inheritdoc/>
         /// <summary>
         /// Gets the connection.
@@ -171,7 +274,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Adapter ?? default( DbDataAdapter );
+                return DataAdapter ?? default( DbDataAdapter );
             }
             catch( Exception ex )
             {

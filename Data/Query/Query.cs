@@ -38,17 +38,9 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( Source source, Provider provider = Provider.SQLite,
-            SQL commandType = SQL.SELECT )
+        public Query( Source source, Provider provider = Provider.SQLite, SQL commandType = SQL.SELECT ) 
+            : base( source, provider, commandType )
         {
-            Source = source;
-            Provider = provider;
-            ConnectionBuilder = new ConnectionBuilder( source, provider );
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter( );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -66,18 +58,9 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The type of sql command.
         /// </param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict,
-            SQL commandType )
+        public Query( Source source, Provider provider, IDictionary<string, object> dict, SQL commandType ) 
+            : base( source, provider, dict, commandType )
         {
-            Source = source;
-            Provider = provider;
-            Args = dict;
-            ConnectionBuilder = new ConnectionBuilder( source, provider );
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter( );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -89,16 +72,9 @@ namespace BudgetExecution
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public Query( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        public Query( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement ) 
+            : base( connectionBuilder, sqlStatement )
         {
-            Source = connectionBuilder.Source;
-            Provider = connectionBuilder.Provider;
-            ConnectionBuilder = connectionBuilder;
-            ConnectionFactory = new ConnectionFactory( connectionBuilder );
-            SqlStatement = sqlStatement;
-            CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
-            Adapter = new AdapterFactory( connectionBuilder, sqlStatement )?.GetAdapter( );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -113,17 +89,9 @@ namespace BudgetExecution
         /// <param name = "dict" >
         /// The dictionary.
         /// </param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict )
+        public Query( Source source, Provider provider, IDictionary<string, object> dict ) : 
+            base( source, provider, dict )
         {
-            Source = source;
-            Provider = provider;
-            Args = dict;
-            ConnectionBuilder = new ConnectionBuilder( source, provider );
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter( );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -135,16 +103,9 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( string fullPath, SQL commandType = SQL.SELECT )
+        public Query( string fullPath, SQL commandType = SQL.SELECT ) 
+            : base( fullPath, commandType )
         {
-            ConnectionBuilder = new ConnectionBuilder( fullPath );
-            Source = ConnectionBuilder.Source;
-            Provider = ConnectionBuilder.Provider;
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter( );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -159,16 +120,9 @@ namespace BudgetExecution
         /// <param name = "dict" >
         /// The dictionary.
         /// </param>
-        public Query( string fullPath, SQL commandType, IDictionary<string, object> dict )
+        public Query( string fullPath, SQL commandType, IDictionary<string, object> dict ) 
+            : base( fullPath, commandType, dict)
         {
-            ConnectionBuilder = new ConnectionBuilder( fullPath );
-            Source = ConnectionBuilder.Source;
-            Provider = ConnectionBuilder.Provider;
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter( );
-            IsDisposed = false;
         }
 
         /// <inheritdoc/>
@@ -186,7 +140,7 @@ namespace BudgetExecution
         public DbDataReader GetDataReader( DbCommand command,
             CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
-            if( Command?.Connection != null
+            if( DataCommand?.Connection != null
                && !string.IsNullOrEmpty( command?.CommandText )
                && Enum.IsDefined( typeof( CommandBehavior ), behavior ) )
             {

@@ -64,23 +64,15 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="provider">The provider.</param>
         /// <returns></returns>
-        string GetFilePath( Provider provider );
+        string GetDbClientPath( Provider provider );
 
         /// <summary>
         /// Gets the file path.
         /// </summary>
         /// <param name="command">The command.</param>
         /// <returns></returns>
-        string GetFilePath( SQL command );
-
-        /// <summary>
-        /// Gets the command text.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        /// <param name="commandType">Type of the command.</param>
-        /// <returns></returns>
-        string GetCommandText( IDictionary<string, object> dict, SQL commandType );
-
+        string GetSqlFilePath( SQL command );
+        
         /// <summary>
         /// Gets the select statement.
         /// </summary>

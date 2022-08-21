@@ -1,8 +1,10 @@
 CREATE TABLE Objectives
 (
-	ObjectivesId INTEGER NOT NULL UNIQUE CONSTRAINT PrimaryKeyObjectives PRIMARY KEY AUTOINCREMENT,
-	Code TEXT(255) NULL,
-	Name TEXT(255) NULL,
-	Title TEXT(255) NULL
+    ObjectivesId AUTOINCREMENT NOT NULL UNIQUE, 
+    Code TEXT(80) NULL DEFAULT NS,
+    Name TEXT(80) NULL DEFAULT NS,
+    Title TEXT(80) NULL DEFAULT NS,
+    CONSTRAINT PrimaryKeyObjectives
+        PRIMARY KEY(ObjectivesId)
 );
 
