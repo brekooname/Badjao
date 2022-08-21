@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// <summary>
         /// The extension
         /// </summary>
-        public readonly EXT Extension = EXT.SQL;
+        public EXT Extension { get; set; }
 
         /// <summary>
         /// The source
@@ -91,7 +91,13 @@ namespace BudgetExecution
         /// The file name
         /// </summary>
         public virtual string FileName { get; set; }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        protected SqlBase()
+        {
+        }
 
         /// <summary>
         /// Sets the select statement.
@@ -115,7 +121,7 @@ namespace BudgetExecution
         /// Sets the select statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string GetSelectStatement( IDictionary<string, object> dict )
+        public virtual string CreateSelectStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true )
             {
@@ -148,7 +154,7 @@ namespace BudgetExecution
         /// <param name="columnNames">The column names.</param>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public virtual string GetSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> dict )
+        public virtual string CreateSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true 
                 && columnNames?.Any( ) == true )
@@ -181,8 +187,14 @@ namespace BudgetExecution
 
             return string.Empty;
         }
-        
-        public virtual string GetSelectStatement( IEnumerable<DataColumn> columns, IDictionary<string, object> dict )
+
+        /// <summary>
+        /// Gets the select statement.
+        /// </summary>
+        /// <param name="columns">The columns.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        public virtual string CreateSelectStatement( IEnumerable<DataColumn> columns, IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true
                 && columns?.Any( ) == true )
@@ -229,7 +241,7 @@ namespace BudgetExecution
         /// Sets the update statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string GetUpdateStatement( IDictionary<string, object> dict )
+        public virtual string CreateUpdateStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
@@ -260,7 +272,7 @@ namespace BudgetExecution
         /// Sets the insert statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string GetInsertStatement( IDictionary<string, object> dict )
+        public virtual string CreateInsertStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true 
                 && Enum.IsDefined( typeof( Source ), Source ) )
@@ -295,7 +307,7 @@ namespace BudgetExecution
         /// Sets the delete statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string GetDeleteStatement( IDictionary<string, object> dict )
+        public virtual string CreateDeleteStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
@@ -339,7 +351,7 @@ namespace BudgetExecution
                         case SQL.SELECT:
 
                         {
-                            var _queryText = GetSelectStatement( dict );
+                            var _queryText = CreateSelectStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -348,7 +360,7 @@ namespace BudgetExecution
 
                         case SQL.SELECTALL:
                         {
-                            var _queryText = GetSelectStatement( dict );
+                            var _queryText = CreateSelectStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -357,7 +369,7 @@ namespace BudgetExecution
 
                         case SQL.INSERT:
                         {
-                            var _queryText = GetInsertStatement( dict );
+                            var _queryText = CreateInsertStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -366,7 +378,7 @@ namespace BudgetExecution
 
                         case SQL.UPDATE:
                         {
-                            var _queryText = GetUpdateStatement( dict );
+                            var _queryText = CreateUpdateStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -375,7 +387,7 @@ namespace BudgetExecution
 
                         case SQL.DELETE:
                         {
-                            var _queryText = GetDeleteStatement( dict );
+                            var _queryText = CreateDeleteStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText

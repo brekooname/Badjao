@@ -171,7 +171,7 @@ namespace BudgetExecution
                 {
                     var _dataSet = new DataSet( );
                     var _dataTable = new DataTable( );
-                    var _fileName = GetConnectionBuilder( )?.FileName;
+                    var _fileName = ConnectionBuilder?.FileName;
 
                     if ( _fileName != null )
                     {

@@ -22,10 +22,12 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class CommandFactory : ICommandFactory
     {
+        public DbConnection Connection { get; set; }
+
         /// <summary>
         /// The command builder
         /// </summary>
-        public ICommandBuilder CommandBuilder { get; set; }
+        public IDataCommand Command { get; set; }
 
         /// <summary>
         /// Gets the connection builder.
@@ -71,20 +73,20 @@ namespace BudgetExecution
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict );
-            CommandBuilder = new CommandBuilder( SqlStatement );
+            Command = new CommandBuilder( SqlStatement );
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.
         /// </summary>
         /// <param name="commandBuilder">The command builder.</param>
-        public CommandFactory( ICommandBuilder commandBuilder )
+        public CommandFactory( IDataCommand commandBuilder )
         {
-            CommandBuilder = commandBuilder;
-            Source = CommandBuilder.Source;
-            Provider = CommandBuilder.Provider;
-            ConnectionBuilder = CommandBuilder.ConnectionBuilder;
-            SqlStatement = CommandBuilder.SqlStatement;
+            Command = commandBuilder;
+            Source = Command.Source;
+            Provider = Command.Provider;
+            ConnectionBuilder = Command.ConnectionBuilder;
+            SqlStatement = Command.SqlStatement;
         }
 
         /// <summary>
@@ -341,7 +343,7 @@ namespace BudgetExecution
         {
             if( dataTable != null
                 && !string.IsNullOrEmpty( name )
-                && CommandBuilder != null )
+                && Command != null )
             {
                 try
                 {
@@ -404,7 +406,7 @@ namespace BudgetExecution
             try
             {
                 var _sql = new SqlStatement( ConnectionBuilder, SQL.SELECT );
-                return CommandBuilder?.GetSqlCommand( _sql );
+                return Command?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
@@ -422,7 +424,7 @@ namespace BudgetExecution
             try
             {
                 var _sql = new SqlStatement( ConnectionBuilder, SQL.INSERT );
-                return CommandBuilder?.GetSqlCommand( _sql );
+                return Command?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
@@ -440,7 +442,7 @@ namespace BudgetExecution
             try
             {
                 var _sql = new SqlStatement( ConnectionBuilder, SQL.UPDATE );
-                return CommandBuilder?.GetSqlCommand( _sql );
+                return Command?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
@@ -458,7 +460,7 @@ namespace BudgetExecution
             try
             {
                 var _sql = new SqlStatement( ConnectionBuilder, SQL.DELETE );
-                return CommandBuilder?.GetSqlCommand( _sql );
+                return Command?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {

@@ -92,7 +92,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        string GetSelectStatement( IDictionary<string, object> dict );
+        string CreateSelectStatement( IDictionary<string, object> dict );
 
         /// <summary>
         /// Gets the update statement.
@@ -102,7 +102,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the update statement. </summary>
         /// <returns> </returns>
-        string GetUpdateStatement( IDictionary<string, object> dict );
+        string CreateUpdateStatement( IDictionary<string, object> dict );
 
         /// <summary>
         /// Gets the insert statement.
@@ -112,7 +112,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the insert statement. </summary>
         /// <returns> </returns>
-        string GetInsertStatement( IDictionary<string, object> dict);
+        string CreateInsertStatement( IDictionary<string, object> dict);
 
         /// <summary>
         /// Gets the delete statement.
@@ -122,6 +122,6 @@ namespace BudgetExecution
 
         /// <summary> Gets the delete statement. </summary>
         /// <returns> </returns>
-        string GetDeleteStatement( IDictionary<string, object> dict );
+        string CreateDeleteStatement( IDictionary<string, object> dict );
     }
 }

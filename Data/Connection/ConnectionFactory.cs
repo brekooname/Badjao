@@ -26,6 +26,8 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     public class ConnectionFactory : ISource, IProvider, IConnectionFactory
     {
+        public DbConnection Connection { get; set; }
+
         /// <summary>
         /// Gets the source.
         /// </summary>
@@ -42,15 +44,7 @@ namespace BudgetExecution
         /// The connection connectionBuilder.
         /// </value>
         public IConnectionBuilder ConnectionBuilder { get; set; }
-
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
-        public DbConnection Connection { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance of
         /// the <see cref = "ConnectionFactory"/> class.

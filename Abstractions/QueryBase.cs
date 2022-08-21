@@ -8,8 +8,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
-    using System.Linq;
 
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public abstract class QueryBase
@@ -62,7 +60,7 @@ namespace BudgetExecution
         /// <value>
         /// The commander.
         /// </value>
-        public ICommandBuilder CommandBuilder { get; set; }
+        public IDataCommand CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets the command.
@@ -70,7 +68,6 @@ namespace BudgetExecution
         /// <value>
         /// The command.
         /// </value>
-        [SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" )]
         public DbCommand Command { get; set; }
 
         /// <summary>
@@ -105,192 +102,12 @@ namespace BudgetExecution
         public DbDataReader DataReader { get; set; }
 
         /// <summary>
-        /// Gets the source.
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        public Source GetSource()
+        protected QueryBase()
         {
-            try
-            {
-                return ConnectionBuilder?.Source ?? default( Source );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( Source );
-            }
         }
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public Provider GetProvider()
-        {
-            try
-            {
-                return ConnectionBuilder?.Provider ?? Provider.SQLite;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( Provider );
-            }
-        }
-
-        /// <summary>
-        /// Sets the arguments.
-        /// </summary>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        protected IDictionary<string, object> SetArgs( IDictionary<string, object> dict )
-        {
-            try
-            {
-                return dict?.Any( ) == true
-                    ? dict
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the arguments.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public IDictionary<string, object> GetArgs( )
-        {
-            try
-            {
-                return Verify.IsMap( Args )
-                    ? Args
-                    : default( IDictionary<string, object> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, object> );
-            }
-        }
-
-        /// <summary>
-        /// Sets the connection manager.
-        /// </summary>
-        /// <param name = "source" >
-        /// The source.
-        /// </param>
-        /// <param name = "provider" >
-        /// The provider.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        protected void SetConnectionBuilder( Source source, Provider provider )
-        {
-            if( Enum.IsDefined( typeof( Source ), source )
-                && Enum.IsDefined( typeof( Provider ), provider ) )
-            {
-                try
-                {
-                    ConnectionBuilder = new ConnectionBuilder( source, provider );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the connection manager.
-        /// </summary>
-        /// <param name = "fullPath" >
-        /// The fullPath.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        protected void SetConnectionBuilder( string fullPath )
-        {
-            if( !string.IsNullOrEmpty( fullPath )
-                && File.Exists( fullPath ) )
-            {
-                try
-                {
-                    ConnectionBuilder = new ConnectionBuilder( fullPath );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public IConnectionBuilder GetConnectionBuilder()
-        {
-            try
-            {
-                return ConnectionBuilder ?? default( IConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IConnectionBuilder );
-            }
-        }
-
-        /// <summary>
-        /// Gets the command builder.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public ICommandBuilder GetCommandBuilder()
-        {
-            try
-            {
-                return CommandBuilder ?? default( ICommandBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( ICommandBuilder );
-            }
-        }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public ISqlStatement GetSqlStatement()
-        {
-            try
-            {
-                return SqlStatement ?? default( ISqlStatement );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( ISqlStatement );
-            }
-        }
-
+        
         /// <inheritdoc/>
         /// <summary>
         /// Gets the connection.

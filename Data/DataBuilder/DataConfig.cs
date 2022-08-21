@@ -61,7 +61,7 @@ namespace BudgetExecution
         /// <value>
         /// The columns.
         /// </value>
-        public virtual IEnumerable<DataColumn> Columns { get; set; }
+        public virtual IEnumerable<DataColumn> DataColumns { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.

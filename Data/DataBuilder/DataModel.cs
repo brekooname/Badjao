@@ -51,7 +51,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable(  );
-            Columns = GetDataColumns( );
+            DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData(   )?.FirstOrDefault(   );
             Args = Record?.ToDictionary(   );
@@ -71,7 +71,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable( );
-            Columns = GetDataColumns( );
+            DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData(  )?.FirstOrDefault(  );
             Args = Record?.ToDictionary(   );
@@ -90,7 +90,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable( );
-            Columns = GetDataColumns( );
+            DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
             Args = Record?.ToDictionary(   );
@@ -105,10 +105,10 @@ namespace BudgetExecution
             Query = query;
             Source = query.Source;
             Provider = query.Provider;
-            ConnectionBuilder = query.GetConnectionBuilder(   );
-            SqlStatement = query.GetSqlStatement(  );
+            ConnectionBuilder = query.ConnectionBuilder;
+            SqlStatement = query.SqlStatement;
             DataTable = GetDataTable( );
-            Columns = GetDataColumns( );
+            DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
             Args = Record?.ToDictionary(   );

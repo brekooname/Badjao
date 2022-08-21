@@ -16,11 +16,11 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="ICommandBuilder" />
+    /// <seealso cref="IDataCommand" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-    public class CommandBuilder : ICommandBuilder
+    public class CommandBuilder : IDataCommand
     {
         /// <summary>
         /// The command

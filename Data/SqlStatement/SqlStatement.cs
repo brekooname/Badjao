@@ -26,6 +26,11 @@ namespace BudgetExecution
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
         public SqlStatement( Source source, Provider provider )
         {
             CommandType = SQL.SELECTALL;
@@ -38,6 +43,12 @@ namespace BudgetExecution
             Columns = null;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="commandType">Type of the command.</param>
         public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL ) 
             : this( source, provider )
         {
@@ -93,7 +104,7 @@ namespace BudgetExecution
             Provider = connectionBuilder.Provider;
             Args = dict;
             Columns = columns;
-            CommandText = GetSelectStatement( Columns, Args );
+            CommandText = CreateSelectStatement( Columns, Args );
         }
 
         public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict )
@@ -245,7 +256,7 @@ namespace BudgetExecution
             try
             {
                 return Args?.Any( ) == true
-                    ? GetDeleteStatement( Args )
+                    ? CreateDeleteStatement( Args )
                     : $"DELETE * FROM { Source };";
             }
             catch( Exception ex )
@@ -400,7 +411,7 @@ namespace BudgetExecution
                     {
                         case SQL.SELECT:
                         {
-                            var _queryText = GetSelectStatement( columns, dict );
+                            var _queryText = CreateSelectStatement( columns, dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -409,7 +420,7 @@ namespace BudgetExecution
 
                         case SQL.SELECTDISTINCT:
                         {
-                            var _queryText = GetSelectStatement( columns, dict );
+                            var _queryText = CreateSelectStatement( columns, dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -447,7 +458,7 @@ namespace BudgetExecution
                             var _cols = columns?.Where( s => s.DataType == typeof( string ) )
                                 ?.Select( p => p.ColumnName ).ToList( );
 
-                            var _queryText = GetSelectStatement( _cols, dict );
+                            var _queryText = CreateSelectStatement( _cols, dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -456,7 +467,7 @@ namespace BudgetExecution
 
                         case SQL.SELECTDISTINCT:
                         {
-                            var _queryText = GetSelectStatement( columns, dict );
+                            var _queryText = CreateSelectStatement( columns, dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText

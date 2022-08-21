@@ -310,11 +310,12 @@ namespace BudgetExecution
         /// </param>
         public void CsvExport( DataGridView dataGrid )
         {
-            if( dataGrid?.DataSource != null )
+            if( dataGrid?.DataSource != null 
+                && ConnectionBuilder != null )
             {
                 try
                 {
-                    var _filePath = GetConnectionBuilder( ).ProviderPath;
+                    var _filePath = ConnectionBuilder.ProviderPath;
 
                     using( var _excelPackage = new ExcelPackage( new FileInfo( _filePath ) ) )
                     {

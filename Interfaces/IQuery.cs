@@ -20,25 +20,28 @@ namespace BudgetExecution
         bool IsDisposed { get; set; }
 
         /// <summary>
-        /// Gets the arguments.
+        /// Gets or sets the arguments.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        IDictionary<string, object> GetArgs();
+        /// <value>
+        /// The arguments.
+        /// </value>
+        IDictionary<string, object>  Args { get; set; }
 
         /// <summary>
-        /// Gets the connection manager.
+        /// Gets or sets the connection builder.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        IConnectionBuilder GetConnectionBuilder();
+        /// <value>
+        /// The connection builder.
+        /// </value>
+        IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
-        /// Gets the SQL statement.
+        /// Gets or sets the SQL statement.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        ISqlStatement GetSqlStatement();
+        /// <value>
+        /// The SQL statement.
+        /// </value>
+        ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// Gets the connection.

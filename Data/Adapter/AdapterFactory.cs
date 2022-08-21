@@ -21,12 +21,6 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class AdapterFactory : IDisposable
     {
-        /// <summary>
-        /// Gets or sets the connection.
-        /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
         public DbConnection Connection { get; set; }
 
         /// <summary>
@@ -43,13 +37,13 @@ namespace BudgetExecution
         /// <value>
         /// The command builder.
         /// </value>
-        public ICommandBuilder CommandBuilder { get; set; }
+        public IDataCommand CommandBuilder { get; set; }
 
         /// <summary>
-        /// Gets or sets the connection builder.
+        /// Gets or sets the connectionBuilder builder.
         /// </summary>
         /// <value>
-        /// The connection builder.
+        /// The connectionBuilder builder.
         /// </value>
         public IConnectionBuilder ConnectionBuilder { get; set; }
 
@@ -77,7 +71,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterFactory"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="connectionBuilder">The connectionBuilder builder.</param>
         /// <param name="sqlStatement">The SQL statement.</param>
         public AdapterFactory( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
@@ -91,9 +85,9 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterFactory"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="connectionBuilder">The connectionBuilder builder.</param>
         /// <param name="commandBuilder">The command builder.</param>
-        public AdapterFactory( IConnectionBuilder connectionBuilder, ICommandBuilder commandBuilder )
+        public AdapterFactory( IConnectionBuilder connectionBuilder, IDataCommand commandBuilder )
         {
             ConnectionBuilder = connectionBuilder;
             CommandBuilder = commandBuilder;
@@ -108,7 +102,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbDataAdapter GetAdapter()
         {
-            if( !string.IsNullOrEmpty( ConnectionBuilder.ConnectionString )
+            if( !string.IsNullOrEmpty( Connection.ConnectionString )
                 && !string.IsNullOrEmpty( SqlStatement.GetSelectStatement( ) ) )
             {
                 try
@@ -163,7 +157,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connectionString = ConnectionBuilder?.ConnectionString;
+                    var _connectionString = Connection?.ConnectionString;
 
                     return !string.IsNullOrEmpty( _connectionString )
                         ? new OleDbDataAdapter( SqlStatement.GetSelectStatement( ), _connectionString )
@@ -189,7 +183,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connectionString = ConnectionBuilder?.ConnectionString;
+                    var _connectionString = Connection?.ConnectionString;
 
                     return !string.IsNullOrEmpty( _connectionString )
                         ? new SqlDataAdapter( SqlStatement.GetSelectStatement( ), _connectionString )
@@ -237,7 +231,8 @@ namespace BudgetExecution
         /// <returns></returns>
         private SQLiteDataAdapter GetSQLiteAdapter()
         {
-            if( SqlStatement != null )
+            if( !string.IsNullOrEmpty( Connection?.ConnectionString )
+                && !string.IsNullOrEmpty( SqlStatement?.GetSelectStatement( ) ) )
             {
                 try
                 {

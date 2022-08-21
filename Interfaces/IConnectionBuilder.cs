@@ -4,10 +4,20 @@
 
 namespace BudgetExecution
 {
+    using System.Data.Common;
+
     /// <summary>
     /// </summary>
     public interface IConnectionBuilder
     {
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
+        DbConnection Connection { get; set; }
+
         /// <summary>
         /// Gets the source.
         /// </summary>

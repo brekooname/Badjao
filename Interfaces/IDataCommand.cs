@@ -9,7 +9,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    public interface ICommandBuilder
+    public interface IDataCommand
     {
         /// <summary>
         /// The command

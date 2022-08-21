@@ -6,6 +6,11 @@ namespace BudgetExecution
 {
     using System;
     using System.Configuration;
+    using System.Data.Common;
+    using System.Data.OleDb;
+    using System.Data.SqlClient;
+    using System.Data.SqlServerCe;
+    using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
@@ -16,13 +21,21 @@ namespace BudgetExecution
     /// <seealso cref="ISource" />
     /// <seealso cref="IProvider" />
     /// <seealso cref="IConnectionBuilder" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
-    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
-    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
+    [SuppressMessage( "ReSharper", "InconsistentNaming" )]
+    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
     public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
     {
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
+        public DbConnection Connection { get; set; }
+
         /// <summary>
         /// The provider path
         /// </summary>
@@ -33,7 +46,7 @@ namespace BudgetExecution
         /// <see cref="ConnectionBuilder" />
         /// class.
         /// </summary>
-        public ConnectionBuilder( )
+        public ConnectionBuilder()
         {
         }
 
@@ -55,6 +68,7 @@ namespace BudgetExecution
             TableName = source.ToString( );
             ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
             ConnectionString = GetConnectionString( provider );
+            Connection = GetConnection( );
         }
 
         /// <summary>
@@ -74,6 +88,7 @@ namespace BudgetExecution
             ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
             TableName = FileName;
             ConnectionString = GetConnectionString( Provider );
+            Connection = GetConnection( );
         }
 
         /// <summary>
@@ -94,6 +109,74 @@ namespace BudgetExecution
             ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
             TableName = FileName;
             ConnectionString = GetConnectionString( provider );
+            Connection = GetConnection( );
+        }
+
+
+        private DbConnection GetConnection(  )
+        {
+            if( Enum.IsDefined( typeof( Provider ), Provider ) )
+            {
+                try
+                {
+                    switch( Provider )
+                    {
+                        case Provider.SQLite:
+
+                        {
+                            var _connectionString = ConnectionPath[ $"{ Provider.SQLite }" ]
+                                ?.ConnectionString;
+
+                            return !string.IsNullOrEmpty( _connectionString )
+                                ? new SQLiteConnection( _connectionString )
+                                : default( DbConnection );
+                        }
+
+                        case Provider.SqlCe:
+
+                        {
+                            var _connectionString = ConnectionPath[ $"{ Provider.SqlCe }" ]
+                                ?.ConnectionString;
+
+                            return !string.IsNullOrEmpty( _connectionString )
+                                ? new SqlCeConnection( _connectionString )
+                                : default( DbConnection );
+                        }
+
+                        case Provider.SqlServer:
+
+                        {
+                            var _connectionString = ConnectionPath[ $"{ Provider.SqlServer }" ]
+                                ?.ConnectionString;
+
+                            return !string.IsNullOrEmpty( _connectionString )
+                                ? new SqlConnection( _connectionString )
+                                : default( DbConnection );
+                        }
+
+                        case Provider.Excel:
+                        case Provider.CSV:
+                        case Provider.Access:
+                        case Provider.OleDb:
+
+                        {
+                            var _connectionString = ConnectionPath[ $"{ Provider.OleDb }" ]
+                                ?.ConnectionString;
+
+                            return !string.IsNullOrEmpty( _connectionString )
+                                ? new OleDbConnection( _connectionString )
+                                : default( DbConnection );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( DbConnection );
+                }
+            }
+
+            return default( DbConnection );
         }
     }
 }
