@@ -364,24 +364,27 @@ namespace BudgetExecution
                                     )";
 
             SQLiteConnection.CreateFile( "databaseFile.db3" );
-            var _connection = new SQLiteConnection( "Data source=databaseFile.db3" );
-            var _command = new SQLiteCommand( _connection );
-            _connection.Open( );
-            _command.CommandText = _commandText;
-            _command.ExecuteNonQuery( );
-            _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
-            _command.ExecuteNonQuery( );
-            _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
-            _command.ExecuteNonQuery( );
-            _command.CommandText = "Select * FROM MyTable";
-            var _reader = _command.ExecuteReader( );
 
-            while( _reader.Read( ) )
+            using( var _connection = new SQLiteConnection( "Data source=databaseFile.db3" ) )
             {
-                Console.WriteLine( _reader[ "Key" ] + " : " + _reader[ "Value" ] );
-            }
+                var _command = new SQLiteCommand( _connection );
+                _connection.Open( );
+                _command.CommandText = _commandText;
+                _command.ExecuteNonQuery( );
+                _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
+                _command.ExecuteNonQuery( );
+                _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
+                _command.ExecuteNonQuery( );
+                _command.CommandText = "Select * FROM MyTable";
+                var _reader = _command.ExecuteReader( );
 
-            _connection.Close( );
+                while( _reader.Read( ) )
+                {
+                    Console.WriteLine( _reader[ "Key" ] + " : " + _reader[ "Value" ] );
+                }
+
+                _connection.Close( );
+            }
         }
 
         /// <summary>
