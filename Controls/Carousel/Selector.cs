@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// The provider path.
         /// </value>
         public string ProviderPath { get; set; } =
-            ConfigurationManager.AppSettings[ "ProviderPath" ];
+            ConfigurationManager.AppSettings[ "DbPath" ];
 
         /// <summary>
         /// Gets or sets the provider path.

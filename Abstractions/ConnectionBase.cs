@@ -7,6 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Collections.Specialized;
     using System.Configuration;
+    using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
@@ -32,6 +33,19 @@ namespace BudgetExecution
         /// The client path.
         /// </value>
         public NameValueCollection DbClientPath { get; } = ConfigurationManager.AppSettings;
+
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
+        public DbConnection Connection { get; set; }
+
+        /// <summary>
+        /// The provider path
+        /// </summary>
+        public string DbPath { get; set; }
 
         /// <summary>
         /// The source
@@ -81,6 +95,32 @@ namespace BudgetExecution
         /// </summary>
         protected ConnectionBase( )
         {
+        }
+
+        protected ConnectionBase( Source source, Provider provider = Provider.SQLite )
+        {
+            Source = source;
+            Provider = provider;
+            FilePath = GetDbClientPath( provider );
+            PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
+            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            TableName = source.ToString( );
+            DbPath = DbClientPath[ Extension.ToString( ) ];
+            ConnectionString = GetConnectionString( provider );
+        }
+
+        protected ConnectionBase( string fullPath )
+        {
+            Source = Source.External;
+            FilePath = fullPath;
+            FileName = Path.GetFileNameWithoutExtension( fullPath );
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
+            Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
+            DbPath = DbClientPath[ Extension.ToString( ) ];
+            TableName = FileName;
+            ConnectionString = GetConnectionString( Provider );
         }
 
         /// <summary>
@@ -162,14 +202,13 @@ namespace BudgetExecution
         public string GetDbClientPath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-               && File.Exists( filePath )
                && Path.HasExtension( filePath ) )
             {
                 try
                 {
                     var _file = Path.GetExtension( filePath )?.Replace( ".", "" );
 
-                    if( _file != null )
+                    if( !string.IsNullOrEmpty( _file ) )
                     {
                         var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
                         var _names = Enum.GetNames( typeof( EXT ) );
@@ -198,7 +237,8 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public string GetConnectionString( Provider provider )
         {
-            if( Enum.IsDefined( typeof( Provider ), provider ) )
+            if( Enum.IsDefined( typeof( Provider ), provider ) 
+                && !string.IsNullOrEmpty( FilePath ) )
             {
                 try
                 {

@@ -647,7 +647,6 @@
     <Compile Include="Interfaces\ICommandFactory.cs" />
     <Compile Include="Abstractions\ConnectionBase.cs" />
     <Compile Include="Data\Connection\ConnectionBuilder.cs" />
-    <Compile Include="Data\Connection\ConnectionFactory.cs" />
     <Compile Include="Interfaces\IConnectionBuilder.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
     <Compile Include="Interfaces\IProvider.cs" />

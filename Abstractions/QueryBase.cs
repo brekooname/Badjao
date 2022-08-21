@@ -141,7 +141,6 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
@@ -158,7 +157,6 @@ namespace BudgetExecution
             Source = connectionBuilder.Source;
             Provider = connectionBuilder.Provider;
             ConnectionBuilder = connectionBuilder;
-            ConnectionFactory = new ConnectionFactory( connectionBuilder );
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
             DataAdapter = new AdapterFactory( connectionBuilder, sqlStatement )?.GetDataAdapter( );
@@ -177,7 +175,6 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
@@ -194,7 +191,6 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
@@ -212,7 +208,6 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
-            ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
@@ -229,7 +224,7 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionFactory?.Connection ?? default( DbConnection );
+                return ConnectionBuilder?.Connection ?? default( DbConnection );
             }
             catch( Exception ex )
             {

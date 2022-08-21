@@ -5,7 +5,6 @@
 namespace BudgetExecution
 {
     using System;
-    using System.Configuration;
     using System.Data.Common;
     using System.Data.OleDb;
     using System.Data.SqlClient;
@@ -29,19 +28,6 @@ namespace BudgetExecution
     public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
     {
         /// <summary>
-        /// Gets or sets the connection.
-        /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
-        public DbConnection Connection { get; set; }
-
-        /// <summary>
-        /// The provider path
-        /// </summary>
-        public string ProviderPath { get; set; }
-
-        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ConnectionBuilder" />
         /// class.
@@ -57,17 +43,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        public ConnectionBuilder( Source source, Provider provider = Provider.SQLite )
+        public ConnectionBuilder( Source source, Provider provider = Provider.SQLite ) 
+            : base( source, provider )
         {
-            Source = source;
-            Provider = provider;
-            FilePath = GetDbClientPath( provider );
-            PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
-            FileName = Path.GetFileNameWithoutExtension( FilePath );
-            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            TableName = source.ToString( );
-            ProviderPath = DbClientPath[ Extension.ToString( ) ];
-            ConnectionString = GetConnectionString( provider );
             Connection = GetConnection( );
         }
 
@@ -85,7 +63,7 @@ namespace BudgetExecution
             PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
             Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
             Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
-            ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
+            DbPath = DbClientPath[ Extension.ToString( ) ];
             TableName = FileName;
             ConnectionString = GetConnectionString( Provider );
             Connection = GetConnection( );
@@ -106,7 +84,7 @@ namespace BudgetExecution
             FileName = Path.GetFileNameWithoutExtension( fullPath );
             PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
             Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            ProviderPath = ConfigurationManager.AppSettings[ Extension.ToString( ) ];
+            DbPath = DbClientPath[ Extension.ToString( ) ];
             TableName = FileName;
             ConnectionString = GetConnectionString( provider );
             Connection = GetConnection( );

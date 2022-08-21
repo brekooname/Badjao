@@ -44,7 +44,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        string ProviderPath { get; set; }
+        string DbPath { get; set; }
 
         /// <summary>
         /// Gets the connection string.
