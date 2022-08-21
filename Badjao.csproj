@@ -1024,7 +1024,6 @@
     <None Include="Clients\SqlCe\CompactView.exe.manifest" />
     <None Include="Data\Database\SQLite\DataModels\Data.db" />
     <None Include="Data\Database\SQLite\ReferenceModels\CREATE\TABLE\logs\xvba_debug.log.docx" />
-    <None Include="Data\Database\SQLite\ReferenceModels\References.db" />
     <None Include="Clients\SQLite\App\AppInfo\appinfo.ini" />
     <None Include="Clients\SQLite\App\AppInfo\Launcher\SQLiteDatabaseBrowserPortable.ini" />
     <None Include="Clients\SQLite\App\AppInfo\pac_installer_log.ini" />
@@ -1406,9 +1405,7 @@
     <Content Include="Data\Database\Access\DataModels\UPDATE\UpdateStatusOfFundsFundNames.sql" />
     <Content Include="Data\Database\Access\DataModels\UPDATE\UpdateStatusOfFundsProgramProjectNames.sql" />
     <Content Include="Resources\Images\Ninja\BudExNinjaGrey.ico" />
-    <Content Include="Data\Database\Access\DataModels\Data.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Data\Database\Access\DataModels\Data.accdb"/>
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\Actuals.sql" />
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\Allocations.sql" />
     <Content Include="Data\Database\MSSQL\DataModels\CREATE\TABLE\ApplicationTables.sql" />
@@ -1610,13 +1607,6 @@
     <Content Include="Data\Database\MSSQL\ReferenceModels\CREATE\TABLE\ReferenceTables.sql" />
     <Content Include="Data\Database\MSSQL\ReferenceModels\CREATE\TABLE\ResourcePlanningOffices.sql" />
     <Content Include="Data\Database\MSSQL\ReferenceModels\CREATE\TABLE\ResponsibilityCenters.sql" />
-    <Content Include="Data\Database\MSSQL\ReferenceModels\References.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Database\MSSQL\ReferenceModels\References_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>References.mdf</DependentUpon>
-    </Content>
     <Content Include="Data\Database\SqlCe\DataModels\CREATE\TABLE\Allocations.sql" />
     <Content Include="Data\Database\SqlCe\DataModels\CREATE\TABLE\ApplicationTables.sql" />
     <Content Include="Data\Database\SqlCe\DataModels\CREATE\TABLE\BackUp.sql" />
@@ -1745,10 +1735,6 @@
     <Content Include="Data\Database\SqlCe\ReferenceModels\CREATE\TABLE\Projects.sql" />
     <Content Include="Data\Database\SqlCe\ReferenceModels\CREATE\TABLE\ResourcePlanningOffices.sql" />
     <Content Include="Data\Database\SqlCe\ReferenceModels\CREATE\TABLE\ResponsibilityCenters.sql" />
-    <Content Include="Data\Database\SqlCe\ReferenceModels\References.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Database\SqlCe\ReferenceModels\References.sql" />
     <Content Include="Clients\SqlCe\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
     <Content Include="Clients\SqlCe\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
     <Content Include="Clients\SqlCe\amd64\sqlceca40.dll" />
@@ -1963,7 +1949,6 @@
     <Content Include="Data\Database\SQLite\ReferenceModels\CREATE\TABLE\ResourcePlanningOffices.sql" />
     <Content Include="Data\Database\SQLite\ReferenceModels\CREATE\TABLE\ResponsibilityCenters.sql" />
     <Content Include="Data\Database\SQLite\ReferenceModels\CREATE\TABLE\StateOrganizations.sql" />
-    <Content Include="Data\Database\SQLite\ReferenceModels\References.sql" />
     <Content Include="Clients\SQLite\App\AppInfo\appicon.ico" />
     <Content Include="Clients\SQLite\App\AppInfo\appicon_128.png" />
     <Content Include="Clients\SQLite\App\AppInfo\appicon_16.png" />
