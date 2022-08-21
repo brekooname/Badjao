@@ -77,7 +77,7 @@ namespace BudgetExecution
         /// The command.
         /// </value>
         public DbCommand Command { get; set; }
-
+        
         /// <summary>
         /// Gets the adapter.
         /// </summary>

@@ -274,8 +274,8 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
                         var _csvquery = new CsvQuery( _cstring );
-                        var _select = _csvquery.GetCommand( );
-                        var _connection = _csvquery.GetConnection( ) as OleDbConnection;
+                        var _select = _csvquery.Command;
+                        var _connection = _csvquery.Connection as OleDbConnection;
                         var _adapter = new OleDbDataAdapter( _select.CommandText, _connection );
                         _adapter?.Fill( _dataSet, sheetName );
 
