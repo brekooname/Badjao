@@ -2,15 +2,13 @@
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Diagnostics.CodeAnalysis;
-
 namespace BudgetExecution
 {
-    using System.Data;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// 
@@ -157,11 +155,32 @@ namespace BudgetExecution
             TableName = Source.ToString( );
             Provider = connectionBuilder.Provider;
             Criteria = dict;
-            Columns = commandType == SQL.UPDATE
+            Columns = commandType == SQL.UPDATE || commandType == SQL.INSERT
                 ? dict.Keys
                 : null;
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
+            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL )
+        {
+            DbClientPath = connectionBuilder.DbPath;
+            CommandType = commandType;
+            Source = connectionBuilder.Source;
+            Provider = connectionBuilder.Provider;
+            TableName = connectionBuilder.Source.ToString( );
+            Criteria = where;
+            Columns = commandType == SQL.UPDATE || commandType == SQL.INSERT
+                ? dict.Keys
+                : null;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
@@ -178,6 +197,20 @@ namespace BudgetExecution
             Provider = provider;
             TableName = Source.ToString( );
             Criteria = dict;
+            Columns = commandType == SQL.UPDATE
+                ? dict.Keys
+                : null;
+        }
+
+        protected SqlBase( Source source, Provider provider, IDictionary<string, object> dict,
+            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL )
+        {
+            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            CommandType = commandType;
+            Source = source;
+            Provider = provider;
+            TableName = Source.ToString( );
+            Criteria = where;
             Columns = commandType == SQL.UPDATE
                 ? dict.Keys
                 : null;
@@ -318,56 +351,7 @@ namespace BudgetExecution
 
             return string.Empty;
         }
-
-        /// <summary>
-        /// Gets the select statement.
-        /// </summary>
-        /// <param name="columns">The columns.</param>
-        /// <param name="dict">The dictionary.</param>
-        /// <returns></returns>
-        public virtual string CreateSelectStatement( IEnumerable<DataColumn> columns, IDictionary<string, object> dict )
-        {
-            if( dict?.Any( ) == true
-                && columns?.Any( ) == true )
-            {
-                try
-                {
-                    var _empty = string.Empty;
-                    var _columns = string.Empty;
-                    foreach( var _kvp in dict )
-                    {
-                        _empty += $"{ _kvp.Key } = '{ _kvp.Value }' AND";
-                    }
-
-                    foreach( var name in columns )
-                    {
-                        if( name.GetType(  ) == typeof( string ) )
-                        {
-                            _columns += $"{ name }, ";
-                        }
-                        else if( name.GetType(  ) == typeof( decimal ) )
-                        {
-                            _columns += $"SUM({ name }), ";
-                        }
-                    }
-
-                    var _criteria = _empty.TrimEnd( " AND".ToCharArray( ) );
-                    var _tableName = TableName;
-                    var _columnString = _columns.TrimEnd( ", ".ToCharArray( ) );
-
-                    return
-                        $"SELECT DISTINCT { _columnString } FROM { _tableName } WHERE { _criteria } GROUP BY { _columnString }";
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return string.Empty;
-                }
-            }
-
-            return string.Empty;
-        }
-
+        
         /// <summary>
         /// Sets the update statement.
         /// </summary>

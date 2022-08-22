@@ -57,6 +57,20 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
+            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL )
+            : base( connectionBuilder, dict, where, commandType )
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict"></param>
@@ -64,6 +78,20 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECTALL )
             : base( source, provider, dict, commandType )
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict,
+            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL ) 
+            : base( source, provider, dict, where, commandType )
         {
         }
 

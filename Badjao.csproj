@@ -701,7 +701,6 @@
     <Compile Include="Data\Query\SqlCeQuery.cs" />
     <Compile Include="Data\Query\SQLiteQuery.cs" />
     <Compile Include="Data\Query\SqlServerQuery.cs" />
-    <Compile Include="Data\Schema\DataSchema.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Abstractions\SqlBase.cs" />
     <Compile Include="Data\SqlStatement\SqlStatement.cs" />
