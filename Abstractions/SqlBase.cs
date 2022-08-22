@@ -123,64 +123,7 @@ namespace BudgetExecution
             Columns = null;
             CommandText = sqlText;
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name = "sqlText" > </param>
-        protected SqlBase( IConnectionBuilder connectionBuilder, string sqlText  )
-        {
-            DbClientPath = connectionBuilder.DbPath;
-            Source = connectionBuilder.Source;
-            TableName = connectionBuilder.Source.ToString( );
-            Provider = connectionBuilder.Provider;
-            CommandType = SQL.NS;
-            Criteria = null;
-            Columns = null;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="dict">The dictionary.</param>
-        /// <param name = "commandType" > </param>
-        protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
-            SQL commandType = SQL.SELECTALL )
-        {
-            DbClientPath = connectionBuilder.DbPath;
-            CommandType = commandType;
-            Source = connectionBuilder.Source;
-            TableName = Source.ToString( );
-            Provider = connectionBuilder.Provider;
-            Criteria = dict;
-            Columns = commandType == SQL.UPDATE || commandType == SQL.INSERT
-                ? dict.Keys
-                : null;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="dict">The dictionary.</param>
-        /// <param name="where">The where.</param>
-        /// <param name="commandType">Type of the command.</param>
-        protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
-            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL )
-        {
-            DbClientPath = connectionBuilder.DbPath;
-            CommandType = commandType;
-            Source = connectionBuilder.Source;
-            Provider = connectionBuilder.Provider;
-            TableName = connectionBuilder.Source.ToString( );
-            Criteria = where;
-            Columns = commandType == SQL.UPDATE || commandType == SQL.INSERT
-                ? dict.Keys
-                : null;
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>

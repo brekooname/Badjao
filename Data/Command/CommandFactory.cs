@@ -72,7 +72,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
+            SqlStatement = new SqlStatement( source, provider, dict );
             Command = new CommandBuilder( SqlStatement );
         }
 

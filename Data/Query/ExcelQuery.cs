@@ -64,10 +64,9 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ExcelQuery"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
         /// <param name="sqlStatement">The sqlStatement.</param>
-        public ExcelQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
-            : base( connectionBuilder, sqlStatement )
+        public ExcelQuery( ISqlStatement sqlStatement )
+            : base( sqlStatement )
         {
         }
 

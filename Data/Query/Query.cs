@@ -82,14 +82,23 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
-        /// <param name = "connectionBuilder" >
-        /// The connectionBuilder.
-        /// </param>
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public Query( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement ) 
-            : base( connectionBuilder, sqlStatement )
+        public Query( ISqlStatement sqlStatement ) 
+            : base( sqlStatement.Source, sqlStatement.Provider, sqlStatement )
+        {
+            DataCommand = CommandBuilder.Command;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Query"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="sqlText">The SQL text.</param>
+        public Query( Source source, Provider provider, string sqlText )
+            : base( source, provider, sqlText )
         {
             DataCommand = CommandBuilder.Command;
         }

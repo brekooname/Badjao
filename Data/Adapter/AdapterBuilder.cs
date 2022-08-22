@@ -70,21 +70,20 @@ namespace BudgetExecution
         {
             SqlStatement = commandBuilder.SqlStatement;
             ConnectionBuilder = new ConnectionBuilder( commandBuilder.Source, commandBuilder.Provider );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            CommandBuilder = new CommandBuilder( SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connectionbuilder.</param>
         /// <param name="sqlStatement">The sqlstatement.</param>
-        public AdapterBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        public AdapterBuilder( ISqlStatement sqlStatement )
             : this( )
         {
             SqlStatement = sqlStatement;
-            ConnectionBuilder = connectionBuilder;
-            CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
+            ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
+            CommandBuilder = new CommandBuilder( sqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
         }
         

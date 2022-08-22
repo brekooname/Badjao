@@ -65,20 +65,21 @@ namespace BudgetExecution
             ConnectionBuilder = adapterBuilder.ConnectionBuilder;
             Connection = adapterBuilder.ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( adapterBuilder.ConnectionBuilder.Source, adapterBuilder.ConnectionBuilder.Provider );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterFactory"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder builder.</param>
+        /// <param name = "provider" > </param>
         /// <param name="sqlStatement">The SQL statement.</param>
-        public AdapterFactory( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        /// <param name = "source" > </param>
+        public AdapterFactory( Source source, Provider provider, ISqlStatement sqlStatement )
         {
-            ConnectionBuilder = connectionBuilder;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = sqlStatement;
-            AdapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            AdapterBuilder = new AdapterBuilder( SqlStatement );
+            CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace BudgetExecution
             ConnectionBuilder = connectionBuilder;
             CommandBuilder = commandBuilder;
             SqlStatement = commandBuilder.SqlStatement;
-            AdapterBuilder = new AdapterBuilder( connectionBuilder, commandBuilder.SqlStatement );
+            AdapterBuilder = new AdapterBuilder( commandBuilder.SqlStatement );
             Connection = connectionBuilder?.Connection;
         }
 

@@ -66,14 +66,11 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "SQLiteQuery"/> class.
         /// </summary>
-        /// <param name = "connectionBuilder" >
-        /// The connectionBuilder.
-        /// </param>
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public SQLiteQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
-            : base( connectionBuilder, sqlStatement )
+        public SQLiteQuery( ISqlStatement sqlStatement )
+            : base( sqlStatement )
         {
         }
 

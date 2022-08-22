@@ -64,8 +64,8 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, dict );
             Command = GetCommand( SqlStatement );
         }
 
@@ -84,22 +84,7 @@ namespace BudgetExecution
             Source = ConnectionBuilder.Source;
             Command = GetCommand( SqlStatement );
         }
-
-        /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref="CommandBuilder"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="sqlStatement">The SQL statement.</param>
-        public CommandBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
-        {
-            SqlStatement = sqlStatement;
-            ConnectionBuilder = connectionBuilder;
-            Provider = ConnectionBuilder.Provider;
-            Source = ConnectionBuilder.Source;
-            Command = GetCommand( SqlStatement );
-        }
-
+        
         /// <summary>
         /// Sets the command.
         /// </summary>

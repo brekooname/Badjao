@@ -44,41 +44,7 @@ namespace BudgetExecution
             : base( source, provider, commandType )
         {
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
-        /// <param name="sqlText">The SQL Command Text.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, string sqlText ) 
-            :base( connectionBuilder, sqlText )
-        {
-        }
         
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="dict">The dictionary.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict ) 
-            : base( connectionBuilder, dict )
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="dict">The dictionary.</param>
-        /// <param name="where">The where.</param>
-        /// <param name="commandType">Type of the command.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
-            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL )
-            : base( connectionBuilder, dict, where, commandType )
-        {
-
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
@@ -117,19 +83,7 @@ namespace BudgetExecution
             : base( source, provider, dict, commandType )
         {
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
-        /// <param name="dict">The dictionary.</param>
-        /// <param name="commandType">Type of the commandType.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
-            SQL commandType = SQL.SELECTALL )
-        {
-        }
         
-
         /// <summary>
         /// Gets the update statement.
         /// </summary>

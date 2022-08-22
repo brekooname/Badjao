@@ -45,14 +45,11 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "AccessQuery"/> class.
         /// </summary>
-        /// <param name = "connectionBuilder" >
-        /// The connectionBuilder.
-        /// </param>
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public AccessQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
-            : base( connectionBuilder, sqlStatement )
+        public AccessQuery( ISqlStatement sqlStatement )
+            : base( sqlStatement )
         {
         }
 

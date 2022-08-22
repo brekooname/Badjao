@@ -49,7 +49,7 @@ namespace BudgetExecution
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( source, provider, SQL.SELECTALL );
-            Query = new Query( ConnectionBuilder, SqlStatement );
+            Query = new Query( SqlStatement );
             DataTable = GetDataTable(  );
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
@@ -68,8 +68,8 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
-            Query = new Query( ConnectionBuilder, SqlStatement );
+            SqlStatement = new SqlStatement( source, provider, dict );
+            Query = new Query( SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
@@ -86,9 +86,9 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = Provider.Access;
-            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
-            Query = new Query( ConnectionBuilder, SqlStatement );
+            ConnectionBuilder = new ConnectionBuilder( source, Provider.Access );
+            SqlStatement = new SqlStatement( source, Provider.Access, dict );
+            Query = new Query( SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );

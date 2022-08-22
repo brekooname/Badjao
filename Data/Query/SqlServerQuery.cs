@@ -41,10 +41,9 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlServerQuery"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
         /// <param name="sqlStatement">The sqlStatement.</param>
-        public SqlServerQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
-            : base( connectionBuilder, sqlStatement )
+        public SqlServerQuery( ISqlStatement sqlStatement )
+            : base( sqlStatement )
         {
         }
 

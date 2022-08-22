@@ -84,14 +84,11 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "CsvQuery"/> class.
         /// </summary>
-        /// <param name = "connectionBuilder" >
-        /// The connectionBuilder.
-        /// </param>
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public CsvQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
-            : base( connectionBuilder, sqlStatement )
+        public CsvQuery( ISqlStatement sqlStatement )
+            : base( sqlStatement )
         {
         }
 

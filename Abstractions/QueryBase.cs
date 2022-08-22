@@ -141,9 +141,9 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            SqlStatement = new SqlStatement( source, provider, dict, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter = new AdapterFactory( source, provider, SqlStatement )?.GetDataAdapter( );
             DataCommand = CommandBuilder.Command;
             IsDisposed = false;
         }
@@ -151,16 +151,17 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name = "provider" > </param>
         /// <param name="sqlStatement">The SQL statement.</param>
-        protected QueryBase( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        /// <param name = "source" > </param>
+        protected QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
         {
-            Source = connectionBuilder.Source;
-            Provider = connectionBuilder.Provider;
-            ConnectionBuilder = connectionBuilder;
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider);
             SqlStatement = sqlStatement;
-            CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
-            DataAdapter = new AdapterFactory( connectionBuilder, sqlStatement )?.GetDataAdapter( );
+            CommandBuilder = new CommandBuilder( sqlStatement );
+            DataAdapter = new AdapterFactory( source, provider, sqlStatement )?.GetDataAdapter( );
             DataCommand = CommandBuilder.Command;
             IsDisposed = false;
         }
@@ -177,9 +178,9 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            SqlStatement = new SqlStatement( source, provider, dict, SQL.SELECT );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter = new AdapterFactory( source, provider, SqlStatement )?.GetDataAdapter( );
             IsDisposed = false;
         }
 
@@ -198,9 +199,9 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, where, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            SqlStatement = new SqlStatement( source, provider, dict, where, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter = new AdapterFactory( source, provider, SqlStatement )?.GetDataAdapter( );
             IsDisposed = false;
         }
 
@@ -209,9 +210,9 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, sqlText );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            SqlStatement = new SqlStatement( source, provider, sqlText );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter = new AdapterFactory( source, provider, SqlStatement )?.GetDataAdapter( );
             IsDisposed = false;
             Args = null;
         }
@@ -227,9 +228,11 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = Source.External;
             Provider = ConnectionBuilder.Provider;
-            SqlStatement = new SqlStatement( ConnectionBuilder, sqlText );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider, sqlText );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter = 
+                new AdapterFactory( ConnectionBuilder.Source, ConnectionBuilder.Provider, SqlStatement )
+                    ?.GetDataAdapter( );
             IsDisposed = false;
         }
 
@@ -244,9 +247,9 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
-            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter =  new AdapterFactory( Source, Provider, SqlStatement )?.GetDataAdapter( );
             IsDisposed = false;
         }
 
