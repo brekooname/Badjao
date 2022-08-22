@@ -34,15 +34,7 @@ namespace BudgetExecution
         /// The name of the file.
         /// </value>
         string FileName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the file path.
-        /// </summary>
-        /// <value>
-        /// The file path.
-        /// </value>
-        string FilePath { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the command text.
         /// </summary>
@@ -57,21 +49,7 @@ namespace BudgetExecution
         /// <value>
         /// The arguments.
         /// </value>
-        IDictionary<string, object> Args { get; set; }
-
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        /// <returns></returns>
-        string GetDbClientPath( Provider provider );
-
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <param name="command">The command.</param>
-        /// <returns></returns>
-        string GetSqlFilePath( SQL command );
+        IDictionary<string, object> Criteria { get; set; }
         
         /// <summary>
         /// Gets the select statement.

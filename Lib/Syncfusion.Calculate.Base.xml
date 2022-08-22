@@ -5535,7 +5535,7 @@
         </member>
         <member name="M:Syncfusion.Calculate.FormulaComputedEventArgs.#ctor(System.String,System.String,System.String,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Calculate.FormulaComputedEventArgs">FormulaComputedEventArgs</see> class.
+            Initializes a new instance of the <see cref="T:Syncfusion.Calculate.FormulaComputedEventCriteria">FormulaComputedEventArgs</see> class.
             </summary>
             <param name="formula">Currently calculated formula.</param>
             <param name="computedValue">The CalculatedValue for the formula.</param>

@@ -3082,7 +3082,7 @@
             event of an INotifyPropertyChanging interface.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Data.Portable.PropertyChangingEventArgs">PropertyChangingEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Data.Portable.PropertyChangingEventCriteria">PropertyChangingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.DataSource.INotifyPropertyChanging">
             <summary>

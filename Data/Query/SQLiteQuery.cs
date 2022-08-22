@@ -216,7 +216,7 @@ namespace BudgetExecution
                     var _cstring = GetExcelFilePath( );
                     var _sql = "SELECT * FROM [" + sheetName + "]";
                     var _msg = "Sheet Does Not Exist!";
-                    var _excelQuery = new ExcelQuery( _cstring );
+                    var _excelQuery = new ExcelQuery( _cstring, _sql );
                     var _connection = _excelQuery.GetConnection( ) as OleDbConnection;
                     _connection?.Open( );
                     var _table = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
@@ -269,11 +269,12 @@ namespace BudgetExecution
                     _dataSet.DataSetName = fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
+                    var _sql = $"SELECT * FROM [{ sheetName }]";
                     var _cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
-                        var _csvquery = new CsvQuery( _cstring );
+                        var _csvquery = new CsvQuery( _cstring, _sql );
                         var _select = _csvquery.DataCommand;
                         var _connection = _csvquery.DataConnection as OleDbConnection;
                         var _adapter = new OleDbDataAdapter( _select.CommandText, _connection );

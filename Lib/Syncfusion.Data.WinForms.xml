@@ -4754,7 +4754,7 @@
             event of an <see cref="T:Syncfusion.Data.INotifyPropertyChanging"/> interface.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Data.PropertyChangingEventArgs">PropertyChangingEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Data.PropertyChangingEventCriteria">PropertyChangingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Data.INotifyPropertyChanging">
             <summary>

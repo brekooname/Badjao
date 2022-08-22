@@ -401,17 +401,17 @@ namespace BudgetExecution
         /// Gets the select command.
         /// </summary>
         /// <returns></returns>
-        public DbCommand GetSelectCommand()
+        public string GetSelectCommand()
         {
             try
             {
-                var _sql = new SqlStatement( ConnectionBuilder, SQL.SELECT );
-                return Command?.GetSqlCommand( _sql );
+                var _sql = new SqlStatement( Source, Provider, SQL.SELECTALL );
+                return _sql.SelectCommand;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( DbCommand );
+                return string.Empty;
             }
         }
 
@@ -419,17 +419,16 @@ namespace BudgetExecution
         /// Gets the insert command.
         /// </summary>
         /// <returns></returns>
-        public DbCommand GetInsertCommand()
+        public string GetInsertCommand()
         {
             try
             {
-                var _sql = new SqlStatement( ConnectionBuilder, SQL.INSERT );
-                return Command?.GetSqlCommand( _sql );
+                return SqlStatement.GetInsertStatement(  );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( DbCommand );
+                return string.Empty;
             }
         }
 
@@ -437,17 +436,16 @@ namespace BudgetExecution
         /// Gets the update commande.
         /// </summary>
         /// <returns></returns>
-        public DbCommand GetUpdateCommand()
+        public string GetUpdateCommand()
         {
             try
             {
-                var _sql = new SqlStatement( ConnectionBuilder, SQL.UPDATE );
-                return Command?.GetSqlCommand( _sql );
+                return SqlStatement.GetUpdateStatement(  );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( DbCommand );
+                return string.Empty;
             }
         }
 
@@ -455,17 +453,16 @@ namespace BudgetExecution
         /// Gets the delete command.
         /// </summary>
         /// <returns></returns>
-        public DbCommand GetDeleteCommand()
+        public string GetDeleteCommand()
         {
             try
             {
-                var _sql = new SqlStatement( ConnectionBuilder, SQL.DELETE );
-                return Command?.GetSqlCommand( _sql );
+                return SqlStatement.GetDeleteStatement(  );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( DbCommand );
+                return string.Empty;
             }
         }
         

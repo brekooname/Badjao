@@ -41,6 +41,7 @@ namespace BudgetExecution
         public Query( Source source, Provider provider = Provider.SQLite, SQL commandType = SQL.SELECT ) 
             : base( source, provider, commandType )
         {
+            DataCommand = CommandBuilder.Command;
         }
 
         /// <summary>
@@ -61,6 +62,7 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict, SQL commandType ) 
             : base( source, provider, dict, commandType )
         {
+            DataCommand = CommandBuilder.Command;
         }
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace BudgetExecution
         public Query( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement ) 
             : base( connectionBuilder, sqlStatement )
         {
+            DataCommand = CommandBuilder.Command;
         }
 
         /// <summary>
@@ -92,6 +95,7 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict ) : 
             base( source, provider, dict )
         {
+            DataCommand = CommandBuilder.Command;
         }
 
         /// <summary>
@@ -100,12 +104,14 @@ namespace BudgetExecution
         /// <param name = "fullPath" >
         /// The fullpath.
         /// </param>
+        /// <param name = "sqlText" > </param>
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( string fullPath, SQL commandType = SQL.SELECT ) 
-            : base( fullPath, commandType )
+        public Query( string fullPath, string sqlText, SQL commandType = SQL.SELECT ) 
+            : base( fullPath, sqlText, commandType )
         {
+            DataCommand = CommandBuilder.Command;
         }
 
         /// <summary>
@@ -123,45 +129,42 @@ namespace BudgetExecution
         public Query( string fullPath, SQL commandType, IDictionary<string, object> dict ) 
             : base( fullPath, commandType, dict)
         {
+            DataCommand = CommandBuilder.Command;
         }
 
         /// <inheritdoc/>
         /// <summary>
         /// Sets the Data reader.
         /// </summary>
-        /// <param name = "command" >
-        /// The command.
-        /// </param>
         /// <param name = "behavior" >
         /// The behavior.
         /// </param>
         /// <returns>
         /// </returns>
-        public DbDataReader GetDataReader( DbCommand command,
-            CommandBehavior behavior = CommandBehavior.CloseConnection )
+        public DbDataReader GetDataReader( CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
             if( DataCommand?.Connection != null
-               && !string.IsNullOrEmpty( command?.CommandText )
+               && !string.IsNullOrEmpty( DataCommand?.CommandText )
                && Enum.IsDefined( typeof( CommandBehavior ), behavior ) )
             {
                 try
                 {
-                    if( command?.Connection?.State != ConnectionState.Open )
+                    if( DataCommand.Connection?.State != ConnectionState.Open )
                     {
-                        command?.Connection?.Open( );
-                        return command?.ExecuteReader( CommandBehavior.CloseConnection );
+                        DataCommand.Connection?.Open( );
+                        return DataCommand.ExecuteReader( CommandBehavior.CloseConnection );
                     }
 
-                    if( command?.Connection?.State == ConnectionState.Open )
+                    if( DataCommand.Connection?.State == ConnectionState.Open )
                     {
-                        return command?.ExecuteReader( CommandBehavior.CloseConnection );
+                        return DataCommand.ExecuteReader( CommandBehavior.CloseConnection );
                     }
                 }
                 catch( Exception ex )
                 {
-                    if( command?.Connection?.State == ConnectionState.Open )
+                    if( DataCommand.Connection?.State == ConnectionState.Open )
                     {
-                        command?.Connection?.Close( );
+                        DataCommand.Connection?.Close( );
                     }
 
                     Fail( ex );

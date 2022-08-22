@@ -11985,19 +11985,19 @@
             Provides data of <see cref="T:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventHandler"/>.
             </summary>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.#ctor(Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.Type)">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.#ctor(Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventCriteria.Type)">
             <summary>
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs"/> class.
             </summary>
             <param name="type">The type.</param>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.FromListChangedEventArgs(System.ComponentModel.ListChangedEventArgs,Syncfusion.Windows.Forms.Chart.IChartSeriesModel)">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.FromListChangedEventCriteria(System.ComponentModel.ListChangedEventCriteria,Syncfusion.Windows.Forms.Chart.IChartSeriesModel)">
             <summary>
-            Helper method that creates ChartDataChangedEventArgs from ListChangedEventArgs.
+            Helper method that creates ChartDataChangedEventArgs from ListChangedEventCriteria.
             </summary>
             <param name="args" type="System.ComponentModel.ListChangedEventArgs">
                 <para>
-                ListChangedEventArgs object; information that will be used to create the ChartDataChangedEventArgs object.
+                ListChangedEventArgs object; information that will be used to create the ChartDataChangedEventCriteria object.
                 </para>
             </param>
             <param name="chartData" type="Syncfusion.Windows.Forms.Chart.IChartSeriesModel">
@@ -12018,25 +12018,25 @@
             </returns>
             <internalonly/>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateResetEventArgs">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateResetEventCriteria">
             <summary>
             Creates the reset event args.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateInsertEventArgs">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateInsertEventCriteria">
             <summary>
             Creates the insert event args.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateRemovedEventArgs">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateRemovedEventCriteria">
             <summary>
             Creates the removed event args.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateChangedEventArgs">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesChangedEventArgs.CreateChangedEventCriteria">
             <summary>
             Creates the changed event args.
             </summary>
@@ -29169,14 +29169,14 @@
             </summary>
             /// <internalonly/>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventArgs.CreateResetEventArgs">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventArgs.CreateResetEventCriteria">
             <summary>
             Creates the Reset typeof arguments.
             </summary>
             <returns>Returns ChartStyleChangedEventArgs object.</returns>
             <internalonly/>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventArgs.#ctor(Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventArgs.Type,System.Int32)">
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventArgs.#ctor(Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventCriteria.Type,System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartStyleChangedEventArgs"/> class.
             </summary>

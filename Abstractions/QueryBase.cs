@@ -144,6 +144,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            DataCommand = CommandBuilder.Command;
             IsDisposed = false;
         }
 
@@ -160,6 +161,7 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( connectionBuilder, sqlStatement );
             DataAdapter = new AdapterFactory( connectionBuilder, sqlStatement )?.GetDataAdapter( );
+            DataCommand = CommandBuilder.Command;
             IsDisposed = false;
         }
 
@@ -185,13 +187,14 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
         /// <param name="fullPath">The full path.</param>
+        /// <param name = "sqlText" > </param>
         /// <param name="commandType">Type of the command.</param>
-        protected QueryBase( string fullPath, SQL commandType = SQL.SELECT )
+        protected QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
             ConnectionBuilder = new ConnectionBuilder( fullPath );
-            Source = ConnectionBuilder.Source;
+            Source = Source.External;
             Provider = ConnectionBuilder.Provider;
-            SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
+            SqlStatement = new SqlStatement( ConnectionBuilder, sqlText );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
             IsDisposed = false;
@@ -231,32 +234,6 @@ namespace BudgetExecution
                 Fail( ex );
                 return default( DbConnection );
             }
-        }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the command.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public DbCommand GetCommand()
-        {
-            if( SqlStatement != null
-                && CommandBuilder != null )
-            {
-                try
-                {
-                    var _commandFactory = new CommandFactory( CommandBuilder );
-                    return _commandFactory.GetSelectCommand( );
-
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-
-            return default( DbCommand );
         }
 
         /// <inheritdoc/>

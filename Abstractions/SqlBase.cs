@@ -4,10 +4,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Threading;
-using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 
 namespace BudgetExecution
@@ -46,28 +44,25 @@ namespace BudgetExecution
         /// <summary>
         /// The arguments
         /// </summary>
-        public virtual IDictionary<string, object> Args { get; set; }
-
-        /// <summary>
-        /// Gets or sets the criteria.
-        /// </summary>
-        /// <value>
-        /// The criteria.
-        /// </value>
         public virtual IDictionary<string, object> Criteria { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the columns.
         /// </summary>
         /// <value>
         /// The columns.
         /// </value>
-        public virtual IEnumerable<DataColumn> DataColumns { get; set; }
+        public virtual IEnumerable<string> Columns { get; set; }
 
         /// <summary>
         /// The command text
         /// </summary>
         public virtual string CommandText { get; set; }
+
+        /// <summary>
+        /// The command text
+        /// </summary>
+        public virtual string SelectCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.
@@ -76,16 +71,11 @@ namespace BudgetExecution
         /// The name of the table.
         /// </value>
         public virtual string TableName { get; set; }
-
-        /// <summary>
-        /// The file path
-        /// </summary>
-        public virtual string FilePath { get; set; }
-
+        
         /// <summary>
         /// The provider path
         /// </summary>
-        public virtual NameValueCollection DbClientPath { get; set; } = ConfigurationManager.AppSettings;
+        public virtual string DbClientPath { get; set; }
 
         /// <summary>
         /// The file name
@@ -98,23 +88,7 @@ namespace BudgetExecution
         protected SqlBase()
         {
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
-        protected SqlBase( Source source, Provider provider )
-        {
-            CommandType = SQL.SELECTALL;
-            Source = source;
-            TableName = source.ToString( );
-            Provider = provider;
-            Args = null;
-            Criteria = null;
-            DataColumns = null;
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
@@ -122,66 +96,16 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
         protected SqlBase( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
-            : this( source, provider )
         {
+            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            CommandType = commandType;
             Source = source;
             TableName = source.ToString( );
             Provider = provider;
-            Args = null;
             Criteria = null;
-            DataColumns = null;
-            CommandType = commandType;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="commandType">Type of the command.</param>
-        protected SqlBase( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECT )
-        {
-            CommandType = commandType;
-            Source = connectionBuilder.Source;
-            TableName = Source.ToString( );
-            Provider = connectionBuilder.Provider;
-            Args = null;
-            Criteria = null;
-            DataColumns = null;
-            CommandText = GetSelectStatement( );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="dict">The dictionary.</param>
-        protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict )
-        {
-            CommandType = SQL.SELECT;
-            Source = connectionBuilder.Source;
-            TableName = Source.ToString( );
-            Provider = connectionBuilder.Provider;
-            Args = dict;
-            DataColumns = null;
-            CommandText = GetSelectStatement( );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connection builder.</param>
-        /// <param name="columns">The columns.</param>
-        /// <param name="dict">The dictionary.</param>
-        protected SqlBase( IConnectionBuilder connectionBuilder, IEnumerable<DataColumn> columns, 
-            IDictionary<string, object> dict )
-        {
-            CommandType = SQL.SELECT;
-            Source = connectionBuilder.Source;
-            TableName = Source.ToString( );
-            Provider = connectionBuilder.Provider;
-            Args = dict;
-            DataColumns = columns;
-            CommandText = CreateSelectStatement( DataColumns, Args );
+            Columns = null;
+            SelectCommand = GetSelectStatement( );
+            CommandText = SelectCommand;
         }
 
         /// <summary>
@@ -189,33 +113,33 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
-        protected SqlBase( Source source, Provider provider, IDictionary<string, object> dict )
+        /// <param name="sqlText">The SQL text.</param>
+        protected SqlBase( Source source, Provider provider, string sqlText )
         {
-            CommandType = SQL.SELECTALL;
+            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
             Source = source;
+            TableName = source.ToString( );
             Provider = provider;
-            TableName = Source.ToString( );
-            Args = dict;
-            DataColumns = null;
-            CommandText = GetSelectStatement( );
+            CommandType = SQL.NS;
+            Criteria = null;
+            Columns = null;
+            CommandText = sqlText;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
-        /// <param name="commandType">Type of the command.</param>
-        /// <param name="dict">The dictionary.</param>
-        protected SqlBase( Source source, Provider provider, SQL commandType, IDictionary<string, object> dict )
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name = "sqlText" > </param>
+        protected SqlBase( IConnectionBuilder connectionBuilder, string sqlText  )
         {
-            CommandType = commandType;
-            Source = source;
-            Provider = provider;
-            Args = dict;
-            TableName = Source.ToString( );
-            DataColumns = null;
+            DbClientPath = connectionBuilder.DbPath;
+            Source = connectionBuilder.Source;
+            TableName = connectionBuilder.Source.ToString( );
+            Provider = connectionBuilder.Provider;
+            CommandType = SQL.NS;
+            Criteria = null;
+            Columns = null;
         }
 
         /// <summary>
@@ -223,16 +147,60 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="connectionBuilder">The connection builder.</param>
         /// <param name="dict">The dictionary.</param>
-        /// <param name="commandType">Type of the command.</param>
+        /// <param name = "commandType" > </param>
         protected SqlBase( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECTALL )
         {
+            DbClientPath = connectionBuilder.DbPath;
             CommandType = commandType;
             Source = connectionBuilder.Source;
-            Provider = connectionBuilder.Provider;
             TableName = Source.ToString( );
-            Args = dict;
-            DataColumns = null;
+            Provider = connectionBuilder.Provider;
+            Criteria = dict;
+            Columns = commandType == SQL.UPDATE
+                ? dict.Keys
+                : null;
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name = "dict" > </param>
+        /// <param name = "commandType" > </param>
+        protected SqlBase( Source source, Provider provider, IDictionary<string, object> dict,
+            SQL commandType = SQL.SELECTALL )
+        {
+            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            CommandType = commandType;
+            Source = source;
+            Provider = provider;
+            TableName = Source.ToString( );
+            Criteria = dict;
+            Columns = commandType == SQL.UPDATE
+                ? dict.Keys
+                : null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected SqlBase( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
+        {
+            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            CommandType = commandType;
+            Source = source;
+            Provider = provider;
+            TableName = Source.ToString( );
+            Criteria = dict;
+            Columns = columns;
         }
 
         /// <summary>
@@ -240,19 +208,26 @@ namespace BudgetExecution
         /// </summary>
         public virtual string GetSelectStatement( )
         {
-            if( Args != null )
+            if( Columns?.Any( ) == true 
+                && Criteria?.Any( ) == true )
             {
                 try
                 {
                     var _values = string.Empty;
+                    var _columns = string.Empty;
 
-                    foreach( var kvp in Args )
+                    foreach( var kvp in Criteria )
                     {
-                        _values += $"{kvp.Key} = '{kvp.Value}' AND ";
+                        _values += $" {kvp.Key} = '{kvp.Value}' AND";
+                    }
+
+                    foreach( var col in Columns )
+                    {
+                        _columns += $" { col },";
                     }
 
                     _values = _values.TrimEnd( " AND".ToCharArray( ) );
-                    CommandText = $"SELECT * FROM { Source } WHERE { _values };";
+                    CommandText = $"SELECT { _columns } FROM { Source } WHERE { _values };";
 
                     return !string.IsNullOrEmpty( CommandText )
                         ? CommandText
@@ -264,7 +239,8 @@ namespace BudgetExecution
                     return default( string );
                 }
             }
-            else if( Args == null )
+            else if( Columns == null
+                && Criteria?.Any( ) != true )
             {
                 return $"SELECT * FROM { Source };";
             }

@@ -66,6 +66,7 @@ namespace BudgetExecution
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict );
+            Command = GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -81,6 +82,7 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
+            Command = GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -95,6 +97,7 @@ namespace BudgetExecution
             ConnectionBuilder = connectionBuilder;
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
+            Command = GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -160,7 +163,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetSQLiteCommand( ISqlStatement sqlStatement )
         {
-            if( Verify.IsRef( sqlStatement ) )
+            if( sqlStatement != null )
             {
                 try
                 {
@@ -176,7 +179,6 @@ namespace BudgetExecution
                                 ? new SQLiteCommand( _sql, _connection as SQLiteConnection )
                                 : default( SQLiteCommand );
                         }
-
                         case SQL.INSERT:
                         {
                             var _sql = sqlStatement?.GetInsertStatement( );
@@ -185,7 +187,6 @@ namespace BudgetExecution
                                 ? new SQLiteCommand( _sql, _connection as SQLiteConnection )
                                 : default( SQLiteCommand );
                         }
-
                         case SQL.UPDATE:
                         {
                             var _sql = sqlStatement?.GetUpdateStatement( );
@@ -194,7 +195,6 @@ namespace BudgetExecution
                                 ? new SQLiteCommand( _sql, _connection as SQLiteConnection )
                                 : default( SQLiteCommand );
                         }
-
                         case SQL.DELETE:
                         {
                             var _sql = sqlStatement?.GetDeleteStatement( );
@@ -203,7 +203,6 @@ namespace BudgetExecution
                                 ? new SQLiteCommand( _sql, _connection as SQLiteConnection )
                                 : default( SQLiteCommand );
                         }
-
                         default:
                         {
                             var _sql = sqlStatement?.GetSelectStatement( );

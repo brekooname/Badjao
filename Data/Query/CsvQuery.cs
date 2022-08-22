@@ -41,11 +41,12 @@ namespace BudgetExecution
         /// <param name = "filePath" >
         /// The filePath.
         /// </param>
+        /// <param name = "sqlText" > </param>
         /// <param name = "command" >
         /// The command.
         /// </param>
-        public CsvQuery( string filePath, SQL command = SQL.SELECT )
-            : base( filePath, command )
+        public CsvQuery( string filePath, string sqlText, SQL command = SQL.SELECT )
+            : base( filePath, sqlText, command )
         {
         }
 

@@ -49,14 +49,7 @@ namespace BudgetExecution
         /// <returns>
         /// </returns>
         DbConnection GetConnection();
-
-        /// <summary>
-        /// Gets the command.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        DbCommand GetCommand();
-
+        
         /// <summary>
         /// Gets the adapter.
         /// </summary>
@@ -67,15 +60,11 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the Data reader.
         /// </summary>
-        /// <param name = "command" >
-        /// The command.
-        /// </param>
         /// <param name = "behavior" >
         /// The behavior.
         /// </param>
         /// <returns>
         /// </returns>
-        DbDataReader GetDataReader( DbCommand command,
-            CommandBehavior behavior = CommandBehavior.CloseConnection );
+        DbDataReader GetDataReader(  CommandBehavior behavior = CommandBehavior.CloseConnection );
     }
 }

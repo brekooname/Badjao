@@ -500,14 +500,14 @@
             <summary>
             Raises the OnExpanding event.
             </summary>
-            <param name="expandingEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.ExpandingEventArgs"/> instance containing the event data.</param>
+            <param name="expandingEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.ExpandingEventCriteria"/> instance containing the event data.</param>
             <param name="OriginalCell">Information about specific cell.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.RaiseOnCollapsing(Syncfusion.Windows.Forms.PivotAnalysis.CollapsingEventArgs,Syncfusion.Windows.Forms.Grid.GridStyleInfo)">
             <summary>
             Raises the OnCollapsing Event.
             </summary>
-            <param name="collapsingEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.CollapsingEventArgs"/> instance containing the event data.</param>
+            <param name="collapsingEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.CollapsingEventCriteria"/> instance containing the event data.</param>
             <param name="styleInfo">Stores the information about cell.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.CellStyle_PropertyChanged(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
@@ -582,19 +582,19 @@
             <summary>
             Raises the Grid Selection event.
             </summary>
-            <param name="SelectionChangingEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridSelectionChangedEventArgs"/> instance containing the event data.</param>
+            <param name="SelectionChangingEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridSelectionChangedEventCriteria"/> instance containing the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.RaiseOnCollapsed(Syncfusion.Windows.Forms.PivotAnalysis.CollapsedEventArgs)">
             <summary>
             Raises the OnCollapsed Event.
             </summary>
-            <param name="collapsedEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.CollapsedEventArgs"/> instance containing the event data.</param>
+            <param name="collapsedEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.CollapsedEventCriteria"/> instance containing the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.RaiseHyperlinkCellClick(Syncfusion.Windows.Forms.PivotAnalysis.HyperlinkCellClickEventArgs)">
             <summary>
             Raises the hyper-link cell click.
             </summary>
-            <param name="hyperlinkCellClickEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.HyperlinkCellClickEventArgs"/> instance containing the event data.</param>
+            <param name="hyperlinkCellClickEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.HyperlinkCellClickEventCriteria"/> instance containing the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.RaiseDataRefreshing(Syncfusion.Windows.Forms.PivotAnalysis.DataRefreshingEventArgs)">
             <summary>
@@ -612,7 +612,7 @@
             <summary>
             Raises the on OnExpanded Event.
             </summary>
-            <param name="expandedEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.ExpandedEventArgs"/> instance containing the event data.</param>
+            <param name="expandedEventArgs">The <see cref="T:Syncfusion.Windows.Forms.PivotAnalysis.ExpandedEventCriteria"/> instance containing the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotAnalysis.PivotGridControlBase.EnableBusyAnimationIcon">
             <summary>

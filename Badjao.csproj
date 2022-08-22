@@ -704,7 +704,6 @@
     <Compile Include="Data\Schema\DataSchema.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Abstractions\SqlBase.cs" />
-    <Compile Include="Data\SqlStatement\SqlFactory.cs" />
     <Compile Include="Data\SqlStatement\SqlStatement.cs" />
     <Compile Include="Data\DataWorker\DataWorker.cs">
       <SubType>Component</SubType>

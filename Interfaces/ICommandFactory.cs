@@ -93,24 +93,24 @@ namespace BudgetExecution
         /// Gets the select command.
         /// </summary>
         /// <returns></returns>
-        DbCommand GetSelectCommand();
+        string GetSelectCommand();
 
         /// <summary>
         /// Gets the insert command.
         /// </summary>
         /// <returns></returns>
-        DbCommand GetInsertCommand();
+        string GetInsertCommand();
 
         /// <summary>
         /// Gets the update command.
         /// </summary>
         /// <returns></returns>
-        DbCommand GetUpdateCommand();
+        string GetUpdateCommand();
 
         /// <summary>
         /// Gets the delete command.
         /// </summary>
         /// <returns></returns>
-        DbCommand GetDeleteCommand();
+        string GetDeleteCommand();
     }
 }

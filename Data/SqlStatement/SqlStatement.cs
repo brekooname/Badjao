@@ -18,15 +18,9 @@ namespace BudgetExecution
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
-        public SqlStatement( Source source, Provider provider ) 
-            : base( source, provider )
+        public SqlStatement( Source source, Provider provider, string sqlText )
+            : base( source, provider, sqlText )
         {
-            FilePath = GetDbClientPath( provider );
         }
 
         /// <summary>
@@ -36,18 +30,7 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
         public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL ) 
-            : this( source, provider )
-        {
-            FilePath = GetDbClientPath( provider );
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
-        /// <param name="commandType">The commandType.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECTALL ) 
-            :base( connectionBuilder, commandType )
+            : base( source, provider, commandType )
         {
         }
 
@@ -55,29 +38,45 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
         /// <param name="connectionBuilder">The connectionBuilder.</param>
+        /// <param name="sqlText">The SQL Command Text.</param>
+        public SqlStatement( IConnectionBuilder connectionBuilder, string sqlText ) 
+            :base( connectionBuilder, sqlText )
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
         /// <param name="dict">The dictionary.</param>
-        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict )
+        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict ) 
             : base( connectionBuilder, dict )
         {
         }
 
-        public SqlStatement( IConnectionBuilder connectionBuilder, IEnumerable<DataColumn> columns, 
-            IDictionary<string, object> dict ) 
-            : base( connectionBuilder, columns, dict )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict"></param>
+        /// <param name="commandType"></param>
+        public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict,
+            SQL commandType = SQL.SELECTALL )
+            : base( source, provider, dict, commandType )
         {
         }
 
-        public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict ) 
-            : base( source, provider, dict )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="commandType">Type of the command.</param>
+        /// <param name="dict">The arguments.</param>
+        public SqlStatement( Source source, Provider provider, SQL commandType, IDictionary<string, object> dict ) 
+            : base( source, provider, dict, commandType )
         {
-        }
-
-        public SqlStatement( Source source, Provider provider, SQL commandType, 
-            IDictionary<string, object> dict ) 
-            : base( source, provider, commandType, dict )
-        {
-            FilePath = GetDbClientPath( provider );
-            CommandText = GetSelectStatement(  );
         }
 
         /// <summary>
@@ -89,8 +88,6 @@ namespace BudgetExecution
         public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECTALL )
         {
-            FilePath = GetDbClientPath( connectionBuilder.Provider );
-            CommandText = GetSelectStatement(  );
         }
         
 
@@ -100,11 +97,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetUpdateStatement( ) 
         {
-            if( Args != null )
+            if( Criteria != null )
             {
                 try
                 {
-                    var _update = CreateUpdateStatement( Args );
+                    var _update = CreateUpdateStatement( Criteria );
 
                     return !string.IsNullOrEmpty( _update )
                         ? _update
@@ -128,7 +125,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _insert = CreateInsertStatement( Args );
+                var _insert = CreateInsertStatement( Criteria );
 
                 return !string.IsNullOrEmpty( _insert )
                     ? _insert
@@ -149,8 +146,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Args?.Any( ) == true
-                    ? CreateDeleteStatement( Args )
+                return Criteria?.Any( ) == true
+                    ? CreateDeleteStatement( Criteria )
                     : $"DELETE * FROM { Source };";
             }
             catch( Exception ex )
@@ -159,42 +156,71 @@ namespace BudgetExecution
                 return default( string );
             }
         }
-
+        
         /// <summary>
-        /// Gets the file path.
+        /// Gets the command text.
         /// </summary>
-        /// <param name="command">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        public string GetSqlFilePath( SQL command )
+        public string GetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
-            if( Enum.IsDefined( typeof( SQL ), command ) )
+            if( dict?.Any( ) == true
+                && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
-                    return DbClientPath[ $"{ command }" ];
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
+                    switch( commandType )
+                    {
+                        case SQL.SELECT:
+                        {
+                            var _queryText = CreateSelectStatement( dict );
 
-            return string.Empty;
-        }
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.SELECTALL:
+                        {
+                            var _queryText = CreateSelectStatement( dict );
 
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.SELECTDISTINCT:
+                        {
+                            var _queryText = CreateSelectStatement( dict );
 
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        /// <returns></returns>
-        public virtual string GetDbClientPath( Provider provider )
-        {
-            if( Enum.IsDefined( typeof( Provider ), provider ) )
-            {
-                try
-                {
-                    return DbClientPath[ $"{ provider }" ];
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.INSERT:
+                        {
+                            var _queryText = CreateInsertStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.UPDATE:
+                        {
+                            var _queryText = CreateUpdateStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.DELETE:
+                        {
+                            var _queryText = CreateDeleteStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                    }
                 }
                 catch( Exception ex )
                 {
@@ -231,10 +257,41 @@ namespace BudgetExecution
                                 ? _queryText
                                 : string.Empty;
                         }
+                        case SQL.SELECTALL:
+                        {
+                            var _queryText = CreateSelectStatement( dict );
 
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
                         case SQL.SELECTDISTINCT:
                         {
                             var _queryText = CreateSelectStatement( columns, dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.INSERT:
+                        {
+                            var _queryText = CreateInsertStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.UPDATE:
+                        {
+                            var _queryText = CreateUpdateStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.DELETE:
+                        {
+                            var _queryText = CreateDeleteStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
@@ -265,24 +322,54 @@ namespace BudgetExecution
             {
                 try
                 {
+                    var _cols = columns?.Where( s => s.DataType == typeof( string ) )
+                        ?.Select( p => p.ColumnName ).ToList( );
+
                     switch( commandType )
                     {
                         case SQL.SELECT:
-
                         {
-                            var _cols = columns?.Where( s => s.DataType == typeof( string ) )
-                                ?.Select( p => p.ColumnName ).ToList( );
-
                             var _queryText = CreateSelectStatement( _cols, dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText
                                 : string.Empty;
                         }
+                        case SQL.SELECTALL:
+                        {
+                            var _queryText = CreateSelectStatement( dict );
 
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
                         case SQL.SELECTDISTINCT:
                         {
-                            var _queryText = CreateSelectStatement( columns, dict );
+                            var _queryText = CreateSelectStatement( _cols, dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.INSERT:
+                        {
+                            var _queryText = CreateInsertStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.UPDATE:
+                        {
+                            var _queryText = CreateUpdateStatement( dict );
+
+                            return !string.IsNullOrEmpty( _queryText )
+                                ? _queryText
+                                : string.Empty;
+                        }
+                        case SQL.DELETE:
+                        {
+                            var _queryText = CreateDeleteStatement( dict );
 
                             return !string.IsNullOrEmpty( _queryText )
                                 ? _queryText

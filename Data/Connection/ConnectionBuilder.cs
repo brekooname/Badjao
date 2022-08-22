@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Data.SqlServerCe;
     using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
 
     /// <summary>
     /// 
@@ -55,17 +54,9 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="fullPath">The fullPath.</param>
-        public ConnectionBuilder( string fullPath )
+        public ConnectionBuilder( string fullPath ) 
+            : base( fullPath )
         {
-            Source = Source.External;
-            FilePath = fullPath;
-            FileName = Path.GetFileNameWithoutExtension( fullPath );
-            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
-            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
-            DbPath = DbClientPath[ Extension.ToString( ) ];
-            TableName = FileName;
-            ConnectionString = GetConnectionString( Provider );
             Connection = GetConnection( );
         }
 
@@ -76,17 +67,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="fullPath">The fullPath.</param>
         /// <param name="provider">The provider.</param>
-        public ConnectionBuilder( string fullPath, Provider provider = Provider.SQLite )
+        public ConnectionBuilder( string fullPath, Provider provider = Provider.SQLite ) 
+            : base( fullPath, provider )
         {
-            Source = Source.External;
-            Provider = provider;
-            FilePath = fullPath;
-            FileName = Path.GetFileNameWithoutExtension( fullPath );
-            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
-            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            DbPath = DbClientPath[ Extension.ToString( ) ];
-            TableName = FileName;
-            ConnectionString = GetConnectionString( provider );
             Connection = GetConnection( );
         }
 

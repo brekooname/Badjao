@@ -33,9 +33,10 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ExcelQuery"/> class.
         /// </summary>
         /// <param name="filePath">The file path.</param>
+        /// <param name = "sqlText" > </param>
         /// <param name="command">The command.</param>
-        public ExcelQuery( string filePath, SQL command = SQL.SELECT )
-            : base( filePath, command )
+        public ExcelQuery( string filePath, string sqlText, SQL command = SQL.SELECT )
+            : base( filePath, sqlText, command )
         {
         }
 

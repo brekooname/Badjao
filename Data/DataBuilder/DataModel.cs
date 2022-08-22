@@ -48,7 +48,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
+            SqlStatement = new SqlStatement( source, provider, SQL.SELECTALL );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable(  );
             DataColumns = GetDataColumns( );
@@ -68,7 +68,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
@@ -85,9 +85,9 @@ namespace BudgetExecution
         public DataModel( Source source, IDictionary<string, object> dict )
         {
             Source = source;
-            Provider = Provider.SQLite;
+            Provider = Provider.Access;
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
             Query = new Query( ConnectionBuilder, SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );

@@ -5205,7 +5205,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.FormulaComputedEventArgs.#ctor(System.String,System.String,System.String,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.FormulaComputedEventArgs">FormulaComputedEventArgs</see> class.
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.FormulaComputedEventCriteria">FormulaComputedEventArgs</see> class.
             </summary>
             <param name="formula">Currently calculated formula.</param>
             <param name="computedValue">The CalculatedValue for the formula.</param>
@@ -5610,21 +5610,21 @@
             <summary>
             Occurs when key down on <see cref="P:Syncfusion.Windows.Forms.CellGrid.SfCellGrid.VisualContainer"/>.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <returns>True or False.</returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.SfCellGrid.OnCellRequestNavigateEvent(Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs)">
             <summary>
             Helper method to raise Hyperlink Requset Navigate event.
             </summary>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs">CellRequestNavigateEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventCriteria">CellRequestNavigateEventArgs</see> that contains the event data.</param>
             <returns>True or False.</returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.SfCellGrid.OnCurrentCellEndEdit(Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs)">
             <summary>
             Helper method to raise Current Cell Begin Edit Event.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <returns>True or False.</returns>s
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.SfCellGrid.DeleteValuesFromSelectedRanges">
@@ -8355,7 +8355,7 @@
             Represents a method that will handle the CurrentCell BeginEdit Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventArgs">CurrentCellBeginEditEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventCriteria">CurrentCellBeginEditEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventArgs">
             <summary>
@@ -8385,7 +8385,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventArgs">CurrentCellBeginEditEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventCriteria">CurrentCellBeginEditEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellBeginEditEventArgs.RowcolumnIndex">
@@ -8399,7 +8399,7 @@
             Represents a method that will handle the CurrentCell EndEdit event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs">CurrentCellEndEditEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventCriteria">CurrentCellEndEditEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs">
@@ -8409,7 +8409,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs">CurrentCellEndEditEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventCriteria">CurrentCellEndEditEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs.RowcolumnIndex">
@@ -8423,7 +8423,7 @@
             Represents a method that will handle the CurrentCell Validating event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventArgs">CurrentCellValidatingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventCriteria">CurrentCellValidatingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventArgs">
             <summary>
@@ -8432,7 +8432,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventArgs">CurrentCellValidatingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventCriteria">CurrentCellValidatingEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatingEventArgs.RowcolumnIndex">
@@ -8469,7 +8469,7 @@
             Represents a method that will handle the CurrentCell Validated event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventArgs">CurrentCellValidatedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventCriteria">CurrentCellValidatedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventArgs">
             <summary>
@@ -8478,7 +8478,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventArgs">CurrentCellValidatedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventCriteria">CurrentCellValidatedEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValidatedEventArgs.RowcolumnIndex">
@@ -8504,7 +8504,7 @@
             Represents a method that will handle the currentcell value changed event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventArgs">CurrentCellValueChangedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventCriteria">CurrentCellValueChangedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventArgs">
             <summary>
@@ -8513,7 +8513,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventArgs">CurrentCellValueChangedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventCriteria">CurrentCellValueChangedEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellValueChangedEventArgs.RowcolumnIndex">
@@ -8533,7 +8533,7 @@
             Represents a method that will handle the CurrentCell Activating Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellActivatingEventArgs">CurrentCellActivatingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellActivatingEventCriteria">CurrentCellActivatingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellActivatingEventArgs">
             <summary>
@@ -8563,7 +8563,7 @@
             Represents a method that will handle the CurrentCell Activated Event
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellActivatedEventArgs">CurrentCellActivatedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellActivatedEventCriteria">CurrentCellActivatedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellActivatedEventArgs">
             <summary>
@@ -8593,7 +8593,7 @@
             Represents a method that will handle the CellRequest Navigate Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs">CellRequestNavigateEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventCriteria">CellRequestNavigateEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs">
             <summary>
@@ -8602,7 +8602,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs">CellRequestNavigateEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventCriteria">CellRequestNavigateEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.CellRequestNavigateEventArgs.Name">
@@ -8834,7 +8834,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingReason">
             <summary>
-            A <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingReason"/> is used by <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventArgs"/> and <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventArgs"/> to give a hint
+            A <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingReason"/> is used by <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventArgs"/> and <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventCriteria"/> to give a hint
             about the current state of the user action and reason for this event.
             </summary>
         </member>
@@ -8896,7 +8896,7 @@
             Represents a method that will handlw the Grid RoutedEvent.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventArgs">GridRoutedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventCriteria">GridRoutedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventArgs">
             <summary>
@@ -8906,12 +8906,12 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventArgs">GridRoutedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventCriteria">GridRoutedEventArgs</see> class. 
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventArgs.#ctor(System.Object)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventArgs">GridRoutedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRoutedEventCriteria">GridRoutedEventArgs</see> class. 
             </summary>
             <param name="source">Source of the event.</param>
         </member>
@@ -8926,7 +8926,7 @@
             Represents a method that will handle the Grid CancelRouted Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventArgs">GridCancelRoutedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventCriteria">GridCancelRoutedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventArgs">
             <summary>
@@ -8935,12 +8935,12 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventArgs">GridCancelRoutedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventCriteria">GridCancelRoutedEventArgs</see> class. 
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventArgs.#ctor(System.Object)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventArgs">GridCancelRoutedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelRoutedEventCriteria">GridCancelRoutedEventArgs</see> class. 
             </summary>
             <param name="source">Source of the event.</param>
         </member>
@@ -8955,7 +8955,7 @@
             Represents a method that will handle the Grid CancelEvent.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelEventArgs">GridCancelEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCancelEventCriteria">GridCancelEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellContextMenuOpeningEventArgs">
             <summary>
@@ -8979,7 +8979,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CellContextMenuOpeningEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellContextMenuOpeningEventArgs">CellContextMenuOpeningEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellContextMenuOpeningEventCriteria">CellContextMenuOpeningEventArgs</see> class. 
             </summary>
             <param name="cell"></param>
         </member>
@@ -9135,7 +9135,7 @@
             Represents a method that will handle the Resizing column Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventArgs">ResizingColumnsEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventCriteria">ResizingColumnsEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventArgs">
@@ -9145,7 +9145,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventArgs.#ctor(System.Object)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventArgs">ResizingColumnsEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingColumnsEventCriteria">ResizingColumnsEventArgs</see> class. 
             </summary>
             <param name="originalSource">Source of the event.</param>
         </member>
@@ -9172,7 +9172,7 @@
             Represents a method that will handle the Resizing row Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventArgs">ResizingRowsEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventCriteria">ResizingRowsEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventArgs">
@@ -9182,7 +9182,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventArgs.#ctor(System.Object)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventArgs">ResizingRowsEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.ResizingRowsEventCriteria">ResizingRowsEventArgs</see> class. 
             </summary>
             <param name="originalSource">Source of the event.</param>
         </member>
@@ -9209,7 +9209,7 @@
             Represents a method that will handle the cell comment opening event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellCommentOpeningEventArgs">CellCommentOpeningEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellCommentOpeningEventCriteria">CellCommentOpeningEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellCommentOpeningEventArgs">
             <summary>
@@ -9218,7 +9218,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.CellCommentOpeningEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellCommentOpeningEventArgs">CellCommentOpeningEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellCommentOpeningEventCriteria">CellCommentOpeningEventArgs</see> class. 
             </summary>
             <param name="cell">An instance of <see cref="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex"/>.</param>
         </member>
@@ -9257,7 +9257,7 @@
             Represents a method that will handle the cell Tooltip opening event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellTooltipOpeningEventArgs">CellTooltipOpeningEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellTooltipOpeningEventCriteria">CellTooltipOpeningEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CellTooltipOpeningEventArgs">
@@ -9288,7 +9288,7 @@
             Represents a method that will handle the Selection changing event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.SelectionChangingEventArgs">SelectionChangingEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.SelectionChangingEventCriteria">SelectionChangingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.SelectionChangingEventArgs">
             <summary>
@@ -9324,7 +9324,7 @@
             Represents a method that will handle the Selection Changed Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.SelectionChangedEventArgs">SelectionChangedEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.SelectionChangedEventCriteria">SelectionChangedEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.SelectionChangedEventArgs">
@@ -9361,7 +9361,7 @@
             Represents a method that will handle the Grid CellClick Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventArgs">GridCellClickEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventCriteria">GridCellClickEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventArgs">
             <summary>
@@ -9370,7 +9370,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventArgs.#ctor(System.Int32,System.Int32,System.Object)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventArgs">GridCellClickEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventCriteria">GridCellClickEventArgs</see> class. 
             </summary>
             <param name="row">Row Index.</param>
             <param name="col">Column Index.</param>
@@ -9388,7 +9388,7 @@
             </summary>
             <value>Column index</value>
         </member>
-        <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventArgs.OriginalEventArgs">
+        <member name="P:Syncfusion.Windows.Forms.CellGrid.Helpers.GridCellClickEventArgs.OriginalEventCriteria">
             <summary>
             Gets the event argument the cell click.
             </summary>
@@ -9724,25 +9724,25 @@
             <summary>
             Occurs when the pointer moves in SfCellGrid.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseEventArgs">MouseEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseEventCriteria">MouseEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ColumnResizingController.OnPointerPressed(System.Windows.Forms.MouseEventArgs)">
             <summary>
             Occurs when the pointer is pressed in SfCellGrid.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ColumnResizingController.OnPointerReleased(System.Windows.Forms.MouseEventArgs)">
             <summary>
             Occurs when the pointer is released in SfCellGrid.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ColumnResizingController.DoubleTapped(System.Windows.Forms.MouseEventArgs)">
             <summary>
              Occurs when the pointer double tapped in the cell.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ColumnResizingController.SetDragLine(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.VisibleLineInfo)">
             <summary>
@@ -9828,25 +9828,25 @@
             <summary>
             Occurs when the pointer moves in SfCellGrid.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseEventArgs">MouseEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseEventCriteria">MouseEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.RowResizingController.OnPointerPressed(System.Windows.Forms.MouseEventArgs)">
             <summary>
             Occurs when the pointer is pressed in SfCellGrid.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.RowResizingController.OnPointerReleased(System.Windows.Forms.MouseEventArgs)">
             <summary>
             Occurs when the pointer is released in SfCellGrid.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.RowResizingController.DoubleTapped(System.Windows.Forms.MouseEventArgs)">
             <summary>
             Occurs when the mouse pointer is double tapped on the cell.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.RowResizingController.SetDragLine(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.VisibleLineInfo)">
             <summary>
@@ -10572,7 +10572,7 @@
             Represents a method that will handle the AutoScroller Valuechanged Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.AutoScrollerValueChangedEventArgs">AutoScrollerValueChangedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.AutoScrollerValueChangedEventCriteria">AutoScrollerValueChangedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.AutoScrollerValueChangedEventArgs">
              <summary>
@@ -11071,7 +11071,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.GridPointerEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.PointerOperation,System.Object)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.GridPointerEventArgs">GridPointerEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.GridPointerEventCriteria">GridPointerEventArgs</see> class. 
             </summary>
             <param name="operation">One of the pointer options while selection. </param>
             <param name="eventArgs">Argument related with pointer.</param>
@@ -11081,7 +11081,7 @@
             Gets the type of PointerOperation. 
             </summary>
         </member>
-        <member name="P:Syncfusion.Windows.Forms.CellGrid.GridPointerEventArgs.OriginalEventArgs">
+        <member name="P:Syncfusion.Windows.Forms.CellGrid.GridPointerEventArgs.OriginalEventCriteria">
             <summary>
             Gets the pointer event arguments.
             </summary>
@@ -11441,7 +11441,7 @@
             <summary>
             Method which returns the mouse position in SfCellGrid.
             </summary>
-            <param name="args">An <see cref="T:System.Windows.Input.MouseEventArgs">MouseEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:System.Windows.Input.MouseEventCriteria">MouseEventArgs</see> that contains the event data.</param>
             <param name="relativeTo">UIElement.</param>
             <returns>Position of the pointer.</returns>
         </member>
@@ -17343,7 +17343,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RangeChangedEventArgs">
             <summary>
-            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RangeChangedEventArgs.From"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RangeChangedEventArgs.To"/> integer properties.
+            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RangeChangedEventArgs.From"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RangeChangedEventCriteria.To"/> integer properties.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RangeChangedEventArgs.#ctor(System.Int32,System.Int32)">
@@ -17374,7 +17374,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesRemovedEventArgs">
             <summary>
-            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesRemovedEventArgs.RemoveAt"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesRemovedEventArgs.Count"/> integer properties.
+            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesRemovedEventArgs.RemoveAt"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesRemovedEventCriteria.Count"/> integer properties.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesRemovedEventArgs.#ctor(System.Int32,System.Int32)">
@@ -17405,7 +17405,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesInsertedEventArgs">
             <summary>
-            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesInsertedEventArgs.InsertAt"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesInsertedEventArgs.Count"/> integer properties.
+            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesInsertedEventArgs.InsertAt"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesInsertedEventCriteria.Count"/> integer properties.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LinesInsertedEventArgs.#ctor(System.Int32,System.Int32)">
@@ -17436,7 +17436,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.HiddenRangeChangedEventArgs">
             <summary>
-            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.HiddenRangeChangedEventArgs.From"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.HiddenRangeChangedEventArgs.To"/> integer properties.
+            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.HiddenRangeChangedEventArgs.From"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.HiddenRangeChangedEventCriteria.To"/> integer properties.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.HiddenRangeChangedEventArgs.#ctor(System.Int32,System.Int32,System.Boolean)">
@@ -17685,7 +17685,7 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ValueChangingEventArgs">
             <summary>
-            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ValueChangingEventArgs.NewValue"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ValueChangingEventArgs.OldValue"/> properties.
+            Holds <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ValueChangingEventArgs.NewValue"/> and <see cref="P:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ValueChangingEventCriteria.OldValue"/> properties.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ValueChangingEventArgs.#ctor(System.Double,System.Double)">
@@ -21386,7 +21386,7 @@
             <summary>
             Invoked when the pointer is pressed on <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCell"/> and performs the operations.
             </summary>
-            <param name="args">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
             <param name="cell">An instance of <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCell"/></param>      
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicSelectionController.MoveSelectionToGrid">
@@ -21445,7 +21445,7 @@
             <summary>
             Used to select the GraphicCells when pointer pressed [WPF and WF] or released[UWP].
             </summary>
-            <param name="args">An <see cref="T:System.Windows.Input.MouseButtonEventArgs">MouseButtonEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:System.Windows.Input.MouseButtonEventCriteria">MouseButtonEventArgs</see> that contains the event data.</param>
             <param name="cell">An instance of <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCell"/></param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicSelectionController.Dispose">
@@ -21515,14 +21515,14 @@
             <summary>
              Move the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellControl"/> when appropriate key is pressed
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <param name="graphicCellControl">An instance of <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellControl"/></param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.MoveResizeController.ResizeUsingKey(System.Windows.Forms.PreviewKeyDownEventArgs,Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellControl)">
             <summary>
             Used to resize the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellControl"/> when appropriate key is pressed
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <param name="graphicCellControl">An instance of <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellControl"/></param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.MoveResizeController.Resize(System.Int32,System.Int32,Syncfusion.XlsIO.Implementation.Shapes.ShapeImpl)">
@@ -22665,7 +22665,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellContextMenuOpeningEventArgs.#ctor(Syncfusion.XlsIO.IShape)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellContextMenuOpeningEventArgs">GraphicCellContextMenuOpeningEventArgs</see>class.
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.GraphicCells.GraphicCellContextMenuOpeningEventCriteria">GraphicCellContextMenuOpeningEventArgs</see>class.
             </summary>
             <param name="Shape">An instance of <see cref="T:Syncfusion.XlsIO.IShape"/></param>
         </member>
@@ -23773,7 +23773,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetQueryRangeEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex,System.String,System.Object,Syncfusion.XlsIO.IWorksheet,Syncfusion.XlsIO.IRange,Syncfusion.XlsIO.IStyle)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetQueryRangeEventArgs">SpreadsheetQueryRangeEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetQueryRangeEventCriteria">SpreadsheetQueryRangeEventArgs</see> class. 
             </summary>
             <param name="cell">Coordinates of a cell.</param>
             <param name="celltype">Type of cell.</param>
@@ -23832,7 +23832,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetCopyingEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.GridRangeInfo,System.Boolean,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetCopyingEventArgs">SpreadsheetCopyingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetCopyingEventCriteria">SpreadsheetCopyingEventArgs</see> class. 
             </summary>
             <param name="range">Copying range.</param>
             <param name="iscut">If True, cut operation, else copy operation.</param>
@@ -23870,7 +23870,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetCopiedEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.GridRangeInfo,System.Boolean,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetCopiedEventArgs">SpreadsheetCopiedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetCopiedEventCriteria">SpreadsheetCopiedEventArgs</see> class. 
             </summary>
             <param name="range">Copied range.</param>
             <param name="iscut">If True, cut operation, else copy operation.</param>
@@ -23908,7 +23908,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPastingEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.GridRangeInfo,Syncfusion.Windows.Forms.CellGrid.GridRangeInfo,System.Boolean,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid,Syncfusion.Windows.Forms.Spreadsheet.PasteOptions)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPastingEventArgs">SpreadsheetPastingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPastingEventCriteria">SpreadsheetPastingEventArgs</see> class. 
             </summary>
             <param name="range">Copied range.</param>
             <param name="range1">Pasted range.</param>
@@ -23960,7 +23960,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPastedEventArgs.#ctor(Syncfusion.Windows.Forms.CellGrid.GridRangeInfo,Syncfusion.Windows.Forms.CellGrid.GridRangeInfo,System.Boolean,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid,Syncfusion.Windows.Forms.Spreadsheet.PasteOptions)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPastedEventArgs">SpreadsheetPastedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPastedEventCriteria">SpreadsheetPastedEventArgs</see> class. 
             </summary>
             <param name="range">Copied range.</param>
             <param name="range1">Pasted range.</param>
@@ -24003,7 +24003,7 @@
             Represents a method that will handle the WorkbookCreating Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventArgs">WorkbookCreatingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventCriteria">WorkbookCreatingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventArgs">
             <summary>
@@ -24012,7 +24012,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventArgs">WorkbookCreatingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventCriteria">WorkbookCreatingEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookCreatingEventArgs.SheetCount">
@@ -24026,7 +24026,7 @@
             Represents the method that will handle the WorksheetRemoving Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventArgs">WorksheetRemovingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventCriteria">WorksheetRemovingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventArgs">
             <summary>
@@ -24035,7 +24035,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventArgs">WorksheetRemovingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventCriteria">WorksheetRemovingEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovingEventArgs.SheetName">
@@ -24055,7 +24055,7 @@
             Represents a method that will handle the WorksheetRemoved Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventArgs">WorksheetRemovedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventCriteria">WorksheetRemovedEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventArgs">
@@ -24065,7 +24065,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventArgs">WorksheetRemovedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventCriteria">WorksheetRemovedEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetRemovedEventArgs.SheetName">
@@ -24079,7 +24079,7 @@
             Represents a method that will handle the WorksheetAdding Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventArgs">WorksheetAddingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventCriteria">WorksheetAddingEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventArgs">
             <summary>
@@ -24088,7 +24088,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventArgs">WorksheetAddingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventCriteria">WorksheetAddingEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventArgs.SheetName">
@@ -24108,7 +24108,7 @@
             Represents a method that will handle the WorksheetAdded Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventArgs">WorksheetAddedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventCriteria">WorksheetAddedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventArgs">
             <summary>
@@ -24117,7 +24117,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventArgs">WorksheetAddedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventCriteria">WorksheetAddedEventArgs</see> class. 
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddedEventArgs.SheetName">
@@ -24131,7 +24131,7 @@
             Represents a method that will handle the WorkbookLoaded Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventArgs">WorkbookLoadedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventCriteria">WorkbookLoadedEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventArgs">
@@ -24141,12 +24141,12 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventArgs">WorkbookLoadedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventCriteria">WorkbookLoadedEventArgs</see> class. 
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventArgs.#ctor(Syncfusion.XlsIO.IWorkbook,System.Collections.Generic.List{Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid})">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventArgs">WorkbookLoadedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookLoadedEventCriteria">WorkbookLoadedEventArgs</see> class. 
             </summary>
             <param name="workbook">An instance of <see cref="T:Syncfusion.XlsIO.IWorkbook"/>.</param>
             <param name="gridCollection">Collection of Grid.</param>
@@ -24168,7 +24168,7 @@
             Represents a method that will handle the WorkbookUnloaded event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventArgs">WorkbookUnloadedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventCriteria">WorkbookUnloadedEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventArgs">
@@ -24178,12 +24178,12 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventArgs.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventArgs">WorkbookUnloadedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventCriteria">WorkbookUnloadedEventArgs</see> class. 
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventArgs.#ctor(Syncfusion.XlsIO.IWorkbook,System.Collections.Generic.List{Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid})">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventArgs">WorkbookUnloadedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorkbookUnloadedEventCriteria">WorkbookUnloadedEventArgs</see> class. 
             </summary>
             <param name="workbook"><see cref="T:Syncfusion.XlsIO.IWorkbook"/>.</param>
             <param name="gridCollection">Collection of SpreadsheetGrid.</param>
@@ -24225,7 +24225,7 @@
             Represents a method that will handle the ZoomFactorChanging Event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangingEventArgs">ZoomFactorChangingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangingEventCriteria">ZoomFactorChangingEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangingEventArgs">
@@ -24235,7 +24235,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangingEventArgs.#ctor(System.String,System.Int32,Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomTrigger)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangingEventArgs">ZoomFactorChangingEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangingEventCriteria">ZoomFactorChangingEventArgs</see> class. 
             </summary>
             <param name="sheetName">Name of the sheet.</param>
             <param name="zoomfactor">Size to zoom.</param>
@@ -24264,7 +24264,7 @@
             Represents the method that will handle the ZoomFactorChanged event.
             </summary>
             <param name="sender">The source of the event.</param>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangedEventArgs">ZoomFactorChangedEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangedEventCriteria">ZoomFactorChangedEventArgs</see> that contains the event data.</param>
             <remarks></remarks>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangedEventArgs">
@@ -24274,7 +24274,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangedEventArgs.#ctor(System.String,System.Int32,Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomTrigger)">
             <summary>
-            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangedEventArgs">ZoomFactorChangedEventArgs</see> class. 
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.ZoomFactorChangedEventCriteria">ZoomFactorChangedEventArgs</see> class. 
             </summary>
             <param name="sheetName">Name of the sheet.</param>
             <param name="zoomfactor">Size to zoom.</param>
@@ -26571,7 +26571,7 @@
             <summary>
             Handles the key down events that occurs when a key is pressed while the current cell has its focus.
             </summary>
-            <param name="args">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <returns>True or False.</returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetCurrentCell.ResetCurrentCellState">
@@ -26639,25 +26639,25 @@
             <summary>
             Invoked after a range of columns in SfSpreadsheet is removed.
             </summary>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeRemovedEventArgs">GridRangeRemovedEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeRemovedEventCriteria">GridRangeRemovedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGridModel.OnColumnsInserted(Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeInsertedEventArgs)">
             <summary>
             Invoked after a range of columns in SfSpreadsheet is inserted.
             </summary>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeInsertedEventArgs">GridRangeInsertedEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeInsertedEventCriteria">GridRangeInsertedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGridModel.OnRowsRemoved(Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeRemovedEventArgs)">
             <summary>
             Invoked after a range of rows in SfSpreadsheet is removed.
             </summary>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeRemovedEventArgs">GridRangeRemovedEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeRemovedEventCriteria">GridRangeRemovedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGridModel.OnRowsInserted(Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeInsertedEventArgs)">
             <summary>
              Invoked after a range of rows in SfSpreadsheet is inserted.
             </summary>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeInsertedEventArgs">GridRangeInsertedEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.GridRangeInsertedEventCriteria">GridRangeInsertedEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGridModel.RemoveColumns(System.Int32,System.Int32)">
             <summary>
@@ -26962,7 +26962,7 @@
             <summary>
             Commits and ends the edit operation on the current cell in <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet"/>.
             </summary>
-            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventArgs">CurrentCellEndEditEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.Helpers.CurrentCellEndEditEventCriteria">CurrentCellEndEditEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid.ShowHidePopup(System.Boolean)">
             <summary>
@@ -27074,7 +27074,7 @@
             <summary>
             Occurs before the KeyDown event when a key is pressed while focus is on this control.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetGrid.OnKeyUp(System.Windows.Forms.KeyEventArgs)">
             <summary>
@@ -27322,7 +27322,7 @@
             <summary>
             Handles the mouse pointer operations in SfSpreadsheet
             </summary>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.GridPointerEventArgs">GridPointerEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.CellGrid.GridPointerEventCriteria">GridPointerEventArgs</see> that contains the event data.</param>
             <param name="rowcolIndex">The row and column index where the pointer is positioned</param>
             <returns>True or False</returns>
             <remarks>Based on the one of the enumeration <see cref="T:Syncfusion.Windows.Forms.CellGrid.PointerOperation"/> values, corresponding pointer operation is performed in SfSpreadsheet</remarks>
@@ -27401,7 +27401,7 @@
             <summary>
             Handles the key down operations in SfSpreadsheet.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <returns>True or False.</returns>
             <remarks>Invoked when the key is pressed while the <see cref="!:SfSpreadsheet"/> has its focus and handles the key navigations/operations for the selected formula ranges.</remarks>
         </member>
@@ -27409,7 +27409,7 @@
             <summary>
             Invoked when the mouse pointer is pressed while the <see cref="!:SfSpreadsheet"/> has its focus.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseEventArgs">MouseEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseEventCriteria">MouseEventArgs</see> that contains the event data.</param>
             <param name="rowColIndex">The row and column index where the mouse pointer is pressed.</param>
             <returns>True or False.</returns>
             <remarks>The mouse interactions are received, processed, and managed as pointer input in SfSpreadsheet.Clicking on any of the mouse buttons(left,wheel,right) invokes this function which
@@ -27419,7 +27419,7 @@
             <summary>
             Invoked when the mouse pointer is moved while the <see cref="!:SfSpreadsheet"/> has its focus.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseEventArgs">MouseEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseEventCriteria">MouseEventArgs</see> that contains the event data.</param>
             <param name="rowColIndex">The row and column index where the mouse pointer is positioned.</param>
             <returns>True or False.</returns>
             <remarks>The mouse interactions are received, processed, and managed as pointer input in SfSpreadsheet. Hence whenever the mouse moves over an element's bounds, even if no mouse button is pressed at the time also invokes this function which
@@ -27430,7 +27430,7 @@
             <summary>
             Invoked when the mouse pointer is released while the <see cref="!:SfSpreadsheet"/> has its focus.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.MouseEventArgs">MouseEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.MouseEventCriteria">MouseEventArgs</see> that contains the event data.</param>
             <param name="rowColIndex">The row and column index where the mouse pointer is positioned.</param>
             <returns>True or False</returns>
             <remarks>The mouse interactions are received, processed, and managed as pointer input in SfSpreadsheet.
@@ -27447,14 +27447,14 @@
             <summary>
             Process and selects the formula ranges when any arrow key is pressed along with Shift key.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <remarks>Invoked by ProcessKeyNavigation method and maintains the last selected row and column index of the formula range.</remarks>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.FormulaRangeSelectionController.ProcessKeyNavigation(System.Windows.Forms.KeyEventArgs)">
             <summary>
             Process and selects the formula ranges when any arrow key is pressed.
             </summary>
-            <param name="e">An <see cref="T:System.Windows.Input.KeyEventArgs">KeyEventArgs</see> that contains the event data.</param>
+            <param name="e">An <see cref="T:System.Windows.Input.KeyEventCriteria">KeyEventArgs</see> that contains the event data.</param>
             <remarks>To customize the Keyboard interactions in <see cref="!:SfSpreadsheet"/>.</remarks>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.FormulaRangeSelectionController.ParseRendererText(System.String)">
@@ -29092,7 +29092,7 @@
             <summary>
             Invoked when a new worksheet is going to be added in <see cref="!:SfSpreadsheet"/>.
             </summary>
-            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventArgs">WorksheetAddingEventArgs</see> that contains the event data.</param>
+            <param name="args">An <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Helpers.WorksheetAddingEventCriteria">WorksheetAddingEventArgs</see> that contains the event data.</param>
             <returns>True or False.</returns>
             <remarks>This method raises the <see cref="E:Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet.WorksheetAdding"/> event.</remarks>
         </member>

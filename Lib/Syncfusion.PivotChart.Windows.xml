@@ -1214,7 +1214,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotChart.SchemaChangedEventArgs.#ctor(Syncfusion.Windows.Forms.PivotChart.SchemaAction)">
             <summary>
-            Initialize a new instance for the <see cref="T:Syncfusion.Windows.Forms.PivotChart.SchemaChangedEventArgs"/> class with the specified <see cref="P:Syncfusion.Windows.Forms.PivotChart.SchemaChangedEventArgs.SchemaAction"/>.
+            Initialize a new instance for the <see cref="T:Syncfusion.Windows.Forms.PivotChart.SchemaChangedEventArgs"/> class with the specified <see cref="P:Syncfusion.Windows.Forms.PivotChart.SchemaChangedEventCriteria.SchemaAction"/>.
             </summary>
             <param name="schemaAction">The action that is performed on the schema designer.</param>
         </member>
@@ -1235,7 +1235,7 @@
         </member>
         <member name="M:Syncfusion.Windows.Forms.PivotChart.SchemaChangingEventArgs.#ctor(Syncfusion.Windows.Forms.PivotChart.SchemaAction)">
             <summary>
-            Initialize a new instance for the <see cref="T:Syncfusion.Windows.Forms.PivotChart.SchemaChangingEventArgs"/> class with the specified <see cref="P:Syncfusion.Windows.Forms.PivotChart.SchemaChangingEventArgs.SchemaAction"/>.
+            Initialize a new instance for the <see cref="T:Syncfusion.Windows.Forms.PivotChart.SchemaChangingEventArgs"/> class with the specified <see cref="P:Syncfusion.Windows.Forms.PivotChart.SchemaChangingEventCriteria.SchemaAction"/>.
             </summary>
             <param name="schemaAction">The action that is being performed on the schema designer.</param>
         </member>

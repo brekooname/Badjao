@@ -125,11 +125,12 @@ namespace BudgetExecution
                     _dataSet.DataSetName = fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
+                    var _sql = $"SELECT * FROM { sheetName}$";
                     var cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( cstring ) )
                     {
-                        var _excelQuery = new ExcelQuery( cstring );
+                        var _excelQuery = new ExcelQuery( cstring, _sql );
                         var _connection = _excelQuery.GetConnection( ) as OleDbConnection;
                         _connection?.Open( );
 
@@ -184,7 +185,8 @@ namespace BudgetExecution
 
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
-                        var _csvQuery = new CsvQuery( _cstring );
+                        var _sql = $"SELECT * FROM {sheetName}$";
+                        var _csvQuery = new CsvQuery( _cstring, _sql );
                         var _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
                         _dataAdapter?.Fill( _dataSet, sheetName );
 

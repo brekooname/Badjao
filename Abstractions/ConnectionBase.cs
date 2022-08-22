@@ -101,13 +101,17 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
+            TableName = source.ToString( );
+            ConnectionString = GetConnectionString( provider );
             FilePath = GetDbClientPath( provider );
             PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
-            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            TableName = source.ToString( );
-            DbPath = DbClientPath[ Extension.ToString( ) ];
-            ConnectionString = GetConnectionString( provider );
+
+            if ( PathExtension != null )
+            {
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper( ) );
+                DbPath = DbClientPath[ Extension.ToString( ) ];
+            }
         }
 
         protected ConnectionBase( string fullPath )
@@ -115,12 +119,33 @@ namespace BudgetExecution
             Source = Source.External;
             FilePath = fullPath;
             FileName = Path.GetFileNameWithoutExtension( fullPath );
-            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
-            Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper( ) );
-            Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
-            DbPath = DbClientPath[ Extension.ToString( ) ];
             TableName = FileName;
-            ConnectionString = GetConnectionString( Provider );
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+
+            if ( PathExtension != null )
+            {
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper(  ) );
+                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
+                DbPath = DbClientPath[ Extension.ToString( ) ];
+                ConnectionString = GetConnectionString( Provider );
+            }
+        }
+
+        protected ConnectionBase( string fullPath, Provider provider )
+        {
+            Source = Source.External;
+            FilePath = fullPath;
+            FileName = Path.GetFileNameWithoutExtension( fullPath );
+            TableName = FileName;
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+
+            if ( PathExtension != null )
+            {
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper(  ) );
+                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
+                DbPath = DbClientPath[ Extension.ToString( ) ];
+                ConnectionString = GetConnectionString( Provider );
+            }
         }
 
         /// <summary>
