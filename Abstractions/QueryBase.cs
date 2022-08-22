@@ -186,6 +186,39 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict, 
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+        {
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, where, commandType );
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
+        protected QueryBase( Source source, Provider provider, string sqlText )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( ConnectionBuilder, sqlText );
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            DataAdapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+            Args = null;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
         /// <param name="fullPath">The full path.</param>
         /// <param name = "sqlText" > </param>
         /// <param name="commandType">Type of the command.</param>

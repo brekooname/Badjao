@@ -66,6 +66,20 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Query"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public Query( Source source, Provider provider, IDictionary<string, object> dict,
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+            : base( source, provider, dict, where, commandType )
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
         /// <param name = "connectionBuilder" >

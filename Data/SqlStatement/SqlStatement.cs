@@ -8,7 +8,12 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.SqlBase" />
+    /// <seealso cref="BudgetExecution.ISqlStatement" />
     public class SqlStatement : SqlBase, ISqlStatement
     {
         /// <summary>
@@ -18,6 +23,12 @@ namespace BudgetExecution
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="sqlText">The SQL text.</param>
         public SqlStatement( Source source, Provider provider, string sqlText )
             : base( source, provider, sqlText )
         {
