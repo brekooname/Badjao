@@ -6,25 +6,33 @@ namespace BudgetExecution
 {
     using System.Collections.Generic;
 
-    /// <summary> </summary>
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ISqlStatement
     {
         /// <summary>
-        /// The source
+        /// Gets or sets the source.
         /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
         Source Source { get; set; }
 
         /// <summary>
-        /// The provider
+        /// Gets or sets the provider.
         /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
         Provider Provider { get; set; }
 
         /// <summary>
-                                                      /// Gets or sets the type of the command.
-                                                      /// </summary>
-                                                      /// <value>
-                                                      /// The type of the command.
-                                                      /// </value>
+        /// Gets or sets the type of the command.
+        /// </summary>
+        /// <value>
+        /// The type of the command.
+        /// </value>
         SQL CommandType { get; set; }
 
         /// <summary>
@@ -34,7 +42,7 @@ namespace BudgetExecution
         /// The name of the file.
         /// </value>
         string FileName { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the command text.
         /// </summary>
@@ -44,13 +52,37 @@ namespace BudgetExecution
         string CommandText { get; set; }
 
         /// <summary>
-        /// Gets or sets the arguments.
+        /// Gets or sets the columns.
         /// </summary>
         /// <value>
-        /// The arguments.
+        /// The columns.
+        /// </value>
+        IEnumerable<string> Columns { get; set; }
+
+        /// <summary>
+        /// Gets or sets the updates.
+        /// </summary>
+        /// <value>
+        /// The updates.
+        /// </value>
+        IDictionary<string, object> Updates { get; set; }
+
+        /// <summary>
+        /// Gets or sets the criteria.
+        /// </summary>
+        /// <value>
+        /// The criteria.
         /// </value>
         IDictionary<string, object> Criteria { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        string TableName { get; set; }
+
         /// <summary>
         /// Gets the select statement.
         /// </summary>
@@ -58,21 +90,25 @@ namespace BudgetExecution
         string GetSelectStatement( );
 
         /// <summary>
-        /// Gets the select statement.
+        /// Creates the select statement.
         /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
         string CreateSelectStatement( IDictionary<string, object> dict );
 
         /// <summary>
         /// Gets the update statement.
         /// </summary>
         /// <returns></returns>
-        string GetUpdateStatement( ); 
+        string GetUpdateStatement( );
 
-        /// <summary> Gets the update statement. </summary>
-        /// <returns> </returns>
-        string CreateUpdateStatement( IDictionary<string, object> dict );
+        /// <summary>
+        /// Creates the update statement.
+        /// </summary>
+        /// <param name = "updates" > </param>
+        /// <param name="where">The where.</param>
+        /// <returns></returns>
+        string CreateUpdateStatement( IDictionary<string, object> updates, IDictionary<string, object> where );
 
         /// <summary>
         /// Gets the insert statement.
@@ -80,8 +116,11 @@ namespace BudgetExecution
         /// <returns></returns>
         string GetInsertStatement( );
 
-        /// <summary> Gets the insert statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Creates the insert statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
         string CreateInsertStatement( IDictionary<string, object> dict);
 
         /// <summary>
@@ -90,8 +129,11 @@ namespace BudgetExecution
         /// <returns></returns>
         string GetDeleteStatement( );
 
-        /// <summary> Gets the delete statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Creates the delete statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
         string CreateDeleteStatement( IDictionary<string, object> dict );
     }
 }

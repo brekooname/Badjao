@@ -406,7 +406,7 @@ namespace BudgetExecution
             try
             {
                 var _sql = new SqlStatement( Source, Provider, SQL.SELECTALL );
-                return _sql.SelectCommand;
+                return _sql.CommandText;
             }
             catch( Exception ex )
             {

@@ -46,11 +46,11 @@ namespace BudgetExecution
         /// <param name = "source" >
         /// The source.
         /// </param>
-        /// <param name = "dict" >
+        /// <param name = "updates" >
         /// The dictionary.
         /// </param>
-        public SqlCeQuery( Source source, IDictionary<string, object> dict )
-            : base( source, Provider.SqlCe, dict, SQL.SELECT )
+        public SqlCeQuery( Source source, IDictionary<string, object> updates )
+            : base( source, Provider.SqlCe, updates, SQL.SELECT )
         {
         }
 

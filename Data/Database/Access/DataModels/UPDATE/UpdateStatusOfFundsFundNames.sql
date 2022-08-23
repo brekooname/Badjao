@@ -1,6 +1,6 @@
 UPDATE StatusOfFunds 
-INNER JOIN ProgramProjects 
-ON ProgramProjects.Code = StatusOfFunds.ProgramProjectCode 
-SET StatusOfFunds.ProgramProjectName = ProgramProjects.Name
-WHERE IsNull(StatusOfFunds.ProgramProjectName)
-OR StatusOfFunds.ProgramProjectName <> ProgramProjects.Name;
+INNER JOIN Funds 
+ON StatusOfFunds.FundCode = Funds.Code 
+SET StatusOfFunds.FundName = Funds.Name
+WHERE StatusOfFunds.FundCode = Funds.Code
+AND StatusOfFunds.FundName <> Funds.Name;

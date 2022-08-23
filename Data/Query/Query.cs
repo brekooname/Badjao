@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( Source source, Provider provider = Provider.SQLite, SQL commandType = SQL.SELECT ) 
+        public Query( Source source, Provider provider = Provider.SQLite, SQL commandType = SQL.SELECTALL ) 
             : base( source, provider, commandType )
         {
             DataCommand = CommandBuilder.Command;
@@ -70,12 +70,26 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name = "updates" > </param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict,
-            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
-            : base( source, provider, dict, where, commandType )
+        public Query( Source source, Provider provider, IDictionary<string, object> updates,
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
+            : base( source, provider, updates, where, commandType )
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Query"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public Query( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+            : base( source, provider, columns, criteria, commandType )
         {
         }
 

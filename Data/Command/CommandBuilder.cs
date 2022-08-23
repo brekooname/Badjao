@@ -70,6 +70,32 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="updates">The updates.</param>
+        /// <param name="criteria">The criteria.</param>
+        public CommandBuilder( Source source, Provider provider, IDictionary<string, object> updates,
+            IDictionary<string, object> criteria )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, updates, criteria );
+            Command = GetCommand( SqlStatement );
+        }
+
+        public CommandBuilder( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> criteria )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, columns, criteria );
+            Command = GetCommand( SqlStatement );
+        }
+        /// <summary>
         /// Initializes a new instance of the
         /// <see cref="CommandBuilder"/> class.
         /// </summary>
@@ -80,8 +106,6 @@ namespace BudgetExecution
             Source = sqlStatement.Source;
             Provider = sqlStatement.Provider;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
-            Provider = ConnectionBuilder.Provider;
-            Source = ConnectionBuilder.Source;
             Command = GetCommand( SqlStatement );
         }
         
@@ -92,11 +116,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetCommand( ISqlStatement sqlStatement )
         {
-            if( Enum.IsDefined( typeof( Provider ), ConnectionBuilder.Provider ) )
+            if( Enum.IsDefined( typeof( Provider ), sqlStatement.Provider ) )
             {
                 try
                 {
-                    switch( Provider )
+                    switch( sqlStatement.Provider )
                     {
                         case Provider.SQLite:
                         {

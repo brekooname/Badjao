@@ -12,7 +12,7 @@ namespace BudgetExecution
         /// <summary>
         /// Defines the None
         /// </summary>
-        NS = 0,
+        TEXT = -1,
 
         /// <summary>
         /// Defines the SELECT
@@ -23,12 +23,7 @@ namespace BudgetExecution
         /// The selectall
         /// </summary>
         SELECTALL,
-
-        /// <summary>
-        /// The selectdistinct
-        /// </summary>
-        SELECTDISTINCT,
-
+        
         /// <summary>
         /// Defines the INSERT
         /// </summary>
@@ -67,16 +62,6 @@ namespace BudgetExecution
         /// <summary>
         /// Defines the ALTER
         /// </summary>
-        ALTERTABLE,
-
-        /// <summary>
-        /// The attach
-        /// </summary>
-        ATTACH,
-
-        /// <summary>
-        /// The detach
-        /// </summary>
-        DETACH
+        ALTERTABLE
     }
 }

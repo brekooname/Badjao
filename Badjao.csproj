@@ -887,6 +887,7 @@
     <Compile Include="Abstractions\SplashBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="SqlBuilder.cs" />
     <Compile Include="SqlServer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

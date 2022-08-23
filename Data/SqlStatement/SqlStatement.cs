@@ -6,8 +6,9 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
+    using System.Data.Entity.Core.Metadata.Edm;
     using System.Linq;
+    using Syncfusion.HTMLUI.Base;
 
     /// <summary>
     /// 
@@ -31,6 +32,19 @@ namespace BudgetExecution
         /// <param name="sqlText">The SQL text.</param>
         public SqlStatement( Source source, Provider provider, string sqlText )
             : base( source, provider, sqlText )
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="sqlText">The SQL text.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public SqlStatement( Source source, Provider provider, string sqlText,
+            SQL commandType = SQL.SELECT )
+            : base( source, provider, sqlText, commandType )
         {
         }
 
@@ -63,12 +77,12 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name = "updates" > </param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-        public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict,
-            IDictionary<string, object> where, SQL commandType = SQL.SELECTALL ) 
-            : base( source, provider, dict, where, commandType )
+        public SqlStatement( Source source, Provider provider, IDictionary<string, object> updates,
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE ) 
+            : base( source, provider, updates, where, commandType )
         {
         }
 
@@ -83,18 +97,33 @@ namespace BudgetExecution
             : base( source, provider, dict, commandType )
         {
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="criteria">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public SqlStatement( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+            : base( source, provider, columns, criteria, commandType )
+        {
+        }
+
         /// <summary>
         /// Gets the update statement.
         /// </summary>
         /// <returns></returns>
         public string GetUpdateStatement( ) 
         {
-            if( Criteria != null )
+            if( Criteria != null 
+                && Updates!= null )
             {
                 try
                 {
-                    var _update = CreateUpdateStatement( Criteria );
+                    var _update = CreateUpdateStatement( Updates, Criteria );
 
                     return !string.IsNullOrEmpty( _update )
                         ? _update
@@ -116,18 +145,21 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetInsertStatement( )
         {
-            try
+            if ( Criteria?.Any( ) == true )
             {
-                var _insert = CreateInsertStatement( Criteria );
+                try
+                {
+                    var _insert = CreateInsertStatement( Updates, Criteria );
 
-                return !string.IsNullOrEmpty( _insert )
-                    ? _insert
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
+                    return !string.IsNullOrEmpty( _insert )
+                        ? _insert
+                        : string.Empty;
+                }
+                catch( Exception ex )
+                {
+                    SqlStatement.Fail( ex );
+                    return default( string );
+                }
             }
         }
 
@@ -167,51 +199,19 @@ namespace BudgetExecution
                     {
                         case SQL.SELECT:
                         {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateSelectStatement( dict );
                         }
                         case SQL.SELECTALL:
                         {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-                        case SQL.SELECTDISTINCT:
-                        {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateSelectStatement( dict );
                         }
                         case SQL.INSERT:
                         {
-                            var _queryText = CreateInsertStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-                        case SQL.UPDATE:
-                        {
-                            var _queryText = CreateUpdateStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateInsertStatement( dict );
                         }
                         case SQL.DELETE:
                         {
-                            var _queryText = CreateDeleteStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateDeleteStatement( dict );
                         }
                     }
                 }
@@ -231,12 +231,11 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        public string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> dict,
-            SQL commandType = SQL.SELECT )
+        public string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
             if( dict?.Any( ) == true
-                && Enum.IsDefined( typeof( Source ), Source )
-                && columns?.Any( ) == true )
+                && columns?.Any( ) == true
+                && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
@@ -244,51 +243,19 @@ namespace BudgetExecution
                     {
                         case SQL.SELECT:
                         {
-                            var _queryText = CreateSelectStatement( columns, dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return GetCommandText( columns, dict );
                         }
                         case SQL.SELECTALL:
                         {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-                        case SQL.SELECTDISTINCT:
-                        {
-                            var _queryText = CreateSelectStatement( columns, dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateSelectStatement( dict );
                         }
                         case SQL.INSERT:
                         {
-                            var _queryText = CreateInsertStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-                        case SQL.UPDATE:
-                        {
-                            var _queryText = CreateUpdateStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateInsertStatement( dict );
                         }
                         case SQL.DELETE:
                         {
-                            var _queryText = CreateDeleteStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateDeleteStatement( dict );
                         }
                     }
                 }
@@ -302,71 +269,44 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the command text.
+        /// Gets the command text.
         /// </summary>
-        /// <param name = "columns" > </param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name = "updates" > </param>
+        /// <param name = "where" > </param>
         /// <param name="commandType">Type of the command.</param>
-        public string GetCommandText( IEnumerable<DataColumn> columns, IDictionary<string, object> dict,
-            SQL commandType = SQL.SELECT )
+        /// <returns></returns>
+        public string GetCommandText( IDictionary<string, object> updates, IDictionary<string, object> where,
+            SQL commandType = SQL.UPDATE )
         {
-            if( dict?.Any( ) == true
-                && Enum.IsDefined( typeof( Source ), Source ) )
+            if( where?.Any( ) == true
+                && Enum.IsDefined( typeof( Source ), Source )
+                && updates?.Any( ) == true )
             {
                 try
                 {
-                    var _cols = columns?.Where( s => s.DataType == typeof( string ) )
-                        ?.Select( p => p.ColumnName ).ToList( );
-
                     switch( commandType )
                     {
                         case SQL.SELECT:
-                        {
-                            var _queryText = CreateSelectStatement( _cols, dict );
 
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                        {
+                            var _cols = updates.Keys.ToList( );
+                            return CreateSelectStatement( _cols, where );
                         }
                         case SQL.SELECTALL:
                         {
-                            var _queryText = CreateSelectStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
-                        }
-                        case SQL.SELECTDISTINCT:
-                        {
-                            var _queryText = CreateSelectStatement( _cols, dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateSelectStatement( where );
                         }
                         case SQL.INSERT:
                         {
-                            var _queryText = CreateInsertStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateInsertStatement( where );
                         }
                         case SQL.UPDATE:
                         {
-                            var _queryText = CreateUpdateStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateUpdateStatement( updates, where );
                         }
                         case SQL.DELETE:
                         {
-                            var _queryText = CreateDeleteStatement( dict );
-
-                            return !string.IsNullOrEmpty( _queryText )
-                                ? _queryText
-                                : string.Empty;
+                            return CreateDeleteStatement( where );
                         }
                     }
                 }
@@ -378,7 +318,7 @@ namespace BudgetExecution
 
             return string.Empty;
         }
-
+        
         /// <summary>
         /// Converts to string.
         /// </summary>

@@ -55,11 +55,11 @@ namespace BudgetExecution
         /// <param name = "source" >
         /// The source.
         /// </param>
-        /// <param name = "dict" >
+        /// <param name = "updates" >
         /// The dictionary.
         /// </param>
-        public SQLiteQuery( Source source, IDictionary<string, object> dict )
-            : base( source, Provider.SQLite, dict, SQL.SELECT )
+        public SQLiteQuery( Source source, IDictionary<string, object> updates )
+            : base( source, Provider.SQLite, updates, SQL.SELECT )
         {
         }
 

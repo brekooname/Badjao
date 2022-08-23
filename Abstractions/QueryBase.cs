@@ -189,17 +189,30 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name = "updates" > </param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict, 
-            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> updates, 
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
             Source = source;
             Provider = provider;
-            Args = dict;
+            Args = updates;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, dict, where, commandType );
+            SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataAdapter = new AdapterFactory( source, provider, SqlStatement )?.GetDataAdapter( );
+            IsDisposed = false;
+        }
+
+        protected QueryBase( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+        {
+            Source = source;
+            Provider = provider;
+            Args = criteria;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataAdapter = new AdapterFactory( source, provider, SqlStatement )?.GetDataAdapter( );
             IsDisposed = false;
