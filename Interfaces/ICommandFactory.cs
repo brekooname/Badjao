@@ -16,7 +16,7 @@ namespace BudgetExecution
         /// <summary>
         /// The command builder
         /// </summary>
-        IDataCommand Command { get; }
+        ICommandBuilder Command { get; }
 
         /// <summary>
         /// Gets the connection builder.

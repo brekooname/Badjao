@@ -36,11 +36,25 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, dict );
             Connection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, dict );
             Command = GetCommand( SqlStatement );
         }
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandFactory"/> class.
+        /// </summary>
+        /// <param name="commandBuilder">The command builder.</param>
+        public CommandFactory( ICommandBuilder commandBuilder )
+        {
+            Source = commandBuilder.Source;
+            Provider = commandBuilder.Provider;
+            ConnectionBuilder = commandBuilder.ConnectionBuilder;
+            Connection = ConnectionBuilder.Connection;
+            SqlStatement = commandBuilder.SqlStatement;
+            Command = commandBuilder.Command;
+        }
+
         /// <summary>
         /// Gets the create table command.
         /// </summary>
@@ -353,18 +367,49 @@ namespace BudgetExecution
         /// Gets the select command.
         /// </summary>
         /// <returns></returns>
-        public string GetSelectCommand()
+        public DbCommand GetSelectCommand()
         {
-            try
+            if ( Enum.IsDefined( typeof( Provider ), Provider )
+                && SqlStatement != null)
             {
-                var _sql = new SqlStatement( Source, Provider, SQL.SELECTALL );
-                return _sql.CommandText;
+                try
+                {
+                    var _sql = SqlStatement.GetSelectStatement( );
+                    switch( Provider )
+                    {
+                        case Provider.SQLite:
+                        {
+                            return new SQLiteCommand( _sql );
+                        }
+                        case Provider.SqlCe:
+                        {
+                            return new SqlCeCommand( _sql );
+                        }
+                        case Provider.SqlServer:
+                        {
+                            return new SqlCommand( _sql );
+                        }
+                        case Provider.Excel:
+                        case Provider.CSV:
+                        case Provider.Access:
+                        case Provider.OleDb:
+                        {
+                            return new OleDbCommand( _sql );
+                        }
+                        default:
+                        {
+                            return new OleDbCommand( _sql );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( DbCommand );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
+
+            return default( DbCommand );
         }
 
         /// <summary>
@@ -415,19 +460,6 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return string.Empty;
-            }
-        }
-        
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private static void Fail( Exception ex )
-        {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
             }
         }
     }

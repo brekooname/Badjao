@@ -456,6 +456,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
     <Compile Include="Data\SqlStatement\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />
@@ -645,7 +646,7 @@
     <Compile Include="Interfaces\IAdapter.cs" />
     <Compile Include="Data\Command\CommandBuilder.cs" />
     <Compile Include="Data\Command\CommandFactory.cs" />
-    <Compile Include="Interfaces\IDataCommand.cs" />
+    <Compile Include="Interfaces\ICommandBuilder.cs" />
     <Compile Include="Interfaces\ICommandFactory.cs" />
     <Compile Include="Abstractions\ConnectionBase.cs" />
     <Compile Include="Data\Connection\ConnectionBuilder.cs" />

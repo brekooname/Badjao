@@ -61,7 +61,7 @@ namespace BudgetExecution
         /// <value>
         /// The commander.
         /// </value>
-        public IDataCommand CommandBuilder { get; set; }
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets or sets the connection.
@@ -85,7 +85,7 @@ namespace BudgetExecution
         /// <value>
         /// The adapter.
         /// </value>
-        public virtual DbDataAdapter DataAdapter { get; set; }
+        public DbDataAdapter DataAdapter { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is disposed.
@@ -294,7 +294,7 @@ namespace BudgetExecution
         {
             try
             {
-                return new AdapterBuilder( CommandBuilder );
+                return DataAdapter;
             }
             catch( Exception ex )
             {

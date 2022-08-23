@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <value>
         /// The command builder.
         /// </value>
-        public IDataCommand CommandBuilder { get; set; }
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets the command factory.
@@ -65,15 +65,14 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
         /// <param name="commandBuilder">The commandbuilder.</param>
-        public AdapterBuilder( IDataCommand commandBuilder )
+        public AdapterBuilder( ICommandBuilder commandBuilder )
             : this( )
         {
             SqlStatement = commandBuilder.SqlStatement;
             ConnectionBuilder = new ConnectionBuilder( commandBuilder.Source, commandBuilder.Provider );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            CommandFactory = new CommandFactory( CommandBuilder );
             Connection = ConnectionBuilder.Connection;
-            SelectCommand = CommandFactory.
+            SelectCommand = CommandBuilder.GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -86,8 +85,8 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             CommandBuilder = new CommandBuilder( sqlStatement );
-            CommandFactory = new CommandFactory( CommandBuilder );
             Connection = ConnectionBuilder.Connection;
+            SelectCommand = CommandBuilder.GetCommand( SqlStatement );
         }
         
         /// <summary>

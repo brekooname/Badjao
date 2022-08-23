@@ -37,7 +37,7 @@ namespace BudgetExecution
         /// <value>
         /// The command builder.
         /// </value>
-        public IDataCommand CommandBuilder { get; set; }
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets or sets the connectionBuilder builder.
@@ -88,7 +88,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="connectionBuilder">The connectionBuilder builder.</param>
         /// <param name="commandBuilder">The command builder.</param>
-        public AdapterFactory( IConnectionBuilder connectionBuilder, IDataCommand commandBuilder )
+        public AdapterFactory( IConnectionBuilder connectionBuilder, ICommandBuilder commandBuilder )
         {
             ConnectionBuilder = connectionBuilder;
             CommandBuilder = commandBuilder;
