@@ -72,6 +72,8 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( commandBuilder.Source, commandBuilder.Provider );
             CommandBuilder = new CommandBuilder( SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
+            Connection = ConnectionBuilder.Connection;
+            SelectCommand = CommandFactory.
         }
 
         /// <summary>
@@ -85,6 +87,7 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             CommandBuilder = new CommandBuilder( sqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
+            Connection = ConnectionBuilder.Connection;
         }
         
         /// <summary>

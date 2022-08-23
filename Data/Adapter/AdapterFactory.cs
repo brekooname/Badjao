@@ -78,6 +78,7 @@ namespace BudgetExecution
         {
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = sqlStatement;
+            Connection = ConnectionBuilder.Connection;
             AdapterBuilder = new AdapterBuilder( SqlStatement );
             CommandBuilder = new CommandBuilder( SqlStatement );
         }

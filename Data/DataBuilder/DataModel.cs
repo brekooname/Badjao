@@ -49,11 +49,11 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( source, provider, SQL.SELECTALL );
             Query = new Query( SqlStatement );
-            DataTable = GetDataTable(  );
+            DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
-            Record = GetData(   )?.FirstOrDefault(   );
-            Args = Record?.ToDictionary(   );
+            Record = GetData( )?.FirstOrDefault( );
+            Args = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -72,8 +72,8 @@ namespace BudgetExecution
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
-            Record = GetData(  )?.FirstOrDefault(  );
-            Args = Record?.ToDictionary(   );
+            Record = GetData( )?.FirstOrDefault( );
+            Args = Record?.ToDictionary( );
         }
 
         /// <summary>

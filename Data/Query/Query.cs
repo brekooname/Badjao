@@ -102,7 +102,7 @@ namespace BudgetExecution
         public Query( ISqlStatement sqlStatement ) 
             : base( sqlStatement.Source, sqlStatement.Provider, sqlStatement )
         {
-            DataCommand = CommandBuilder.Command;
+            DataCommand = CommandBuilder.GetCommand( sqlStatement );
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, string sqlText )
             : base( source, provider, sqlText )
         {
-            DataCommand = CommandBuilder.Command;
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict ) : 
             base( source, provider, dict )
         {
-            DataCommand = CommandBuilder.Command;
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace BudgetExecution
         public Query( string fullPath, string sqlText, SQL commandType = SQL.SELECT ) 
             : base( fullPath, sqlText, commandType )
         {
-            DataCommand = CommandBuilder.Command;
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace BudgetExecution
         public Query( string fullPath, SQL commandType, IDictionary<string, object> dict ) 
             : base( fullPath, commandType, dict)
         {
-            DataCommand = CommandBuilder.Command;
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
         }
 
         /// <inheritdoc/>

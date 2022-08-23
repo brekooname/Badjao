@@ -20,75 +20,27 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="ICommandFactory" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class CommandFactory : ICommandFactory
+    public class CommandFactory : CommandBuilder
     {
         public DbConnection Connection { get; set; }
-
-        /// <summary>
-        /// The command builder
-        /// </summary>
-        public IDataCommand Command { get; set; }
-
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <value>
-        /// The connection builder.
-        /// </value>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
-
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
-        public ISqlStatement SqlStatement { get; set; }
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
-        public Source Source { get; set; }
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
-        public Provider Provider { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
-        public CommandFactory( Source source, Provider provider, IDictionary<string, object> dict )
+        public CommandFactory( Source source, Provider provider, IDictionary<string, object> dict ) 
+            : base( source, provider, dict )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( source, provider, dict );
-            Command = new CommandBuilder( SqlStatement );
+            Connection = ConnectionBuilder.Connection;
+            Command = GetCommand( SqlStatement );
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CommandFactory"/> class.
-        /// </summary>
-        /// <param name="commandBuilder">The command builder.</param>
-        public CommandFactory( IDataCommand commandBuilder )
-        {
-            Command = commandBuilder;
-            Source = Command.Source;
-            Provider = Command.Provider;
-            ConnectionBuilder = Command.ConnectionBuilder;
-            SqlStatement = Command.SqlStatement;
-        }
-
+        
         /// <summary>
         /// Gets the create table command.
         /// </summary>
