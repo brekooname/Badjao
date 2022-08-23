@@ -1,6 +1,10 @@
-UPDATE Transfers 
-INNER JOIN BudgetObjectClasses 
-ON Transfers.BocCode = BudgetObjectClasses.Code 
-SET Transfers.BocName = BudgetObjectClasses.Name
-WHERE Transfers.BocCode = BudgetObjectClasses.Code
-AND Transfers.BocName <> BudgetObjectClasses.Name;
+UPDATE AnnualCarryoverEstimates 
+INNER JOIN FundSymbols 
+ON (AnnualCarryoverEstimates.BFY = FundSymbols.BFY) 
+AND (AnnualCarryoverEstimates.EFY = FundSymbols.EFY) 
+AND (AnnualCarryoverEstimates.FundCode = FundSymbols.FundCode) 
+SET AnnualCarryoverEstimates.TreasuryAccountCode = FundSymbols.TreasuryAccountCode
+WHERE AnnualCarryoverEstimates.BFY = FundSymbols.BFY
+AND AnnualCarryoverEstimates.EFY = FundSymbols.EFY
+AND AnnualCarryoverEstimates.FundCode = FundSymbols.FundCode
+AND AnnualCarryoverEstimates.TreasuryAccountCode IS NULL;

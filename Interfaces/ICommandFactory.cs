@@ -87,7 +87,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        DbCommand GetAlterCommand( DataTable dataTable, string name );
+        DbCommand GetRenameTableCommand( DataTable dataTable, string name );
 
         /// <summary>
         /// Gets the select command.

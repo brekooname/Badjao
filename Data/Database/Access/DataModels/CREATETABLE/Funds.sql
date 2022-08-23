@@ -7,13 +7,15 @@ CREATE TABLE Funds
     Name TEXT(80) NULL DEFAULT NS,
     ShortName TEXT(80) NULL DEFAULT NS,
     Status TEXT(80) NULL DEFAULT NS,
+    StartDate datetime NULL
+    EndDate datetime NULL
     SubLevelPrefix TEXT(80) NULL DEFAULT NS,
     ATA TEXT(80) NULL DEFAULT NS,
+    AID TEXT(80) NULL DEFAULT NS,
     BeginningPeriodOfAvailability TEXT(80) NULL DEFAULT NS,
     EndingPeriodOfAvailability TEXT(80) NULL DEFAULT NS,
-    MAIN TEXT(80) NULL DEFAULT NS,
     A TEXT(80) NULL DEFAULT NS,
-    AID TEXT(80) NULL DEFAULT NS,
+    MAIN TEXT(80) NULL DEFAULT NS,
     SUB TEXT(80) NULL DEFAULT NS,
     FundCategory TEXT(80) NULL DEFAULT NS,
     AppropriationCode TEXT(80) NULL DEFAULT NS,
@@ -21,12 +23,18 @@ CREATE TABLE Funds
     FundGroup TEXT(80) NULL DEFAULT NS,
     NoYear TEXT(80) NULL DEFAULT NS,
     Carryover TEXT(80) NULL DEFAULT NS,
-    CancelledYearSpendingAccount TEXT(80) NULL DEFAULT NS,
+    AllowSpendAgainstCanceled TEXT(80) NULL DEFAULT NS,
+    AllowNewSpendAgainstExpired TEXT(80) NULL DEFAULT NS,
+    CanceledYearSpendingAccount TEXT(80) NULL DEFAULT NS,
     ApplyAtAllLevels TEXT(80) NULL DEFAULT NS,
     BatsFund TEXT(80) NULL DEFAULT NS,
     BatsEndDate TEXT(80) NULL DEFAULT NS,
     BatsOptionId TEXT(80) NULL DEFAULT NS,
     SecurityOrg TEXT(80) NULL DEFAULT NS,
-    CONSTRAINT FundsPrimaryKey
-        PRIMARY KEY(FundsId)
+    BudgetAccountCode TEXT(80) NULL DEFAULT NS,
+    BudgetAccountName TEXT(80) NULL DEFAULT NS,
+    TreasuryAccountCode TEXT(80) NULL DEFAULT NS,
+    TreasuryAccountName TEXT(80) NULL DEFAULT NS,
+    ApportionmentAccountCode TEXT(80) NULL DEFAULT NS,
+    PRIMARY KEY(FundsId)
 );

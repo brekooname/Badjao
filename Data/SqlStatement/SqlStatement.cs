@@ -6,9 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity.Core.Metadata.Edm;
     using System.Linq;
-    using Syncfusion.HTMLUI.Base;
 
     /// <summary>
     /// 
@@ -145,21 +143,16 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetInsertStatement( )
         {
-            if ( Criteria?.Any( ) == true )
+            try
             {
-                try
-                {
-                    var _insert = CreateInsertStatement( Updates, Criteria );
-
-                    return !string.IsNullOrEmpty( _insert )
-                        ? _insert
-                        : string.Empty;
-                }
-                catch( Exception ex )
-                {
-                    SqlStatement.Fail( ex );
-                    return default( string );
-                }
+                return Updates?.Any( ) == true
+                    ? CreateInsertStatement( Updates )
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( string );
             }
         }
 
