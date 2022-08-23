@@ -18,13 +18,12 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ModelBase" />
-    /// <seealso cref="IModelBuilder" />
     [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public class DataModel : ModelBase, IModelBuilder
+    public class DataModel : ModelBase
     {
         /// <summary>
         /// The program elements
@@ -43,7 +42,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        public DataModel( Source source, Provider provider = Provider.SQLite )
+        public DataModel( Source source, Provider provider = Provider.Access )
         {
             Source = source;
             Provider = provider;
@@ -81,6 +80,52 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="DataModel"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="updates">The updates.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public DataModel( Source source, Provider provider, IDictionary<string, object> updates,
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
+            Query = new Query( SqlStatement );
+            DataTable = GetDataTable( );
+            DataColumns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
+            Record = GetData( )?.FirstOrDefault( );
+            Args = Record?.ToDictionary( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataModel"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public DataModel( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
+            Query = new Query( SqlStatement );
+            DataTable = GetDataTable( );
+            DataColumns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
+            Record = GetData( )?.FirstOrDefault( );
+            Args = Record?.ToDictionary( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataModel"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
         /// <param name="dict">The dictionary.</param>
         public DataModel( Source source, IDictionary<string, object> dict )
         {
@@ -94,6 +139,46 @@ namespace BudgetExecution
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
             Args = Record?.ToDictionary(   );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataModel"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="sqlText">The SQL text.</param>
+        public DataModel( Source source, Provider provider, string sqlText )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, sqlText );
+            Query = new Query( SqlStatement );
+            DataTable = GetDataTable( );
+            DataColumns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
+            Record = GetData( )?.FirstOrDefault( );
+            Args = Record?.ToDictionary( );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataModel"/> class.
+        /// </summary>
+        /// <param name="fullPath">The full path.</param>
+        /// <param name="sqlText">The SQL text.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public DataModel( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
+        {
+            ConnectionBuilder  = new ConnectionBuilder( fullPath );
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
+            SqlStatement = new SqlStatement( Source, Provider, sqlText, commandType );
+            Query = new Query( SqlStatement );
+            DataTable = GetDataTable( );
+            DataColumns = GetDataColumns( );
+            DataElements = CreateSeries( DataTable );
+            Record = GetData( )?.FirstOrDefault( );
+            Args = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -341,111 +426,7 @@ namespace BudgetExecution
 
             return default( DataTable );
         }
-
-        /// <summary>
-        /// Gets the series.
-        /// </summary>
-        /// <param name="dataRows">The dataRows.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
-        /// <returns></returns>
-        public static IDictionary<string, IEnumerable<string>> CreateSeries(
-            IEnumerable<DataRow> dataRows, Field field, string filter )
-        {
-            if( dataRows?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && !string.IsNullOrEmpty( filter ) )
-            {
-                try
-                {
-                    var _dataTable = dataRows.CopyToDataTable( );
-                    var _columns = _dataTable?.Columns;
-                    var _dict = new Dictionary<string, IEnumerable<string>>( );
-                    var _values = GetValues( dataRows, field, filter );
-
-                    if( _values?.Any( ) == true )
-                    {
-                        for( var i = 0; i < _columns?.Count; i++ )
-                        {
-                            var _columnName = _columns[ i ].ColumnName;
-
-                            if( !string.IsNullOrEmpty( _columnName )
-                                && _columns[ i ]?.DataType == typeof( string ) )
-                            {
-                                _dict.Add( _columns[ i ].ColumnName, _values );
-                            }
-                        }
-
-                        return _dict?.Any( ) == true
-                            ? _dict
-                            : default( Dictionary<string, IEnumerable<string>> );
-                    }
-
-                    return default( IDictionary<string, IEnumerable<string>> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, IEnumerable<string>> );
-                }
-            }
-
-            return default( IDictionary<string, IEnumerable<string>> );
-        }
-
-        /// <summary>
-        /// Gets the Verify.
-        /// </summary>
-        /// <returns></returns>
-        public IModelBuilder GetBuilder( )
-        {
-            try
-            {
-                return Query != null
-                    ? MemberwiseClone( ) as DataModel
-                    : default( DataModel );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IModelBuilder );
-            }
-        }
-
-        /// <summary>
-        /// Filters the dataRows.
-        /// </summary>
-        /// <param name="dataRows">The dataRows.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
-        /// <returns></returns>
-        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, Field field,
-            string filter )
-        {
-            if( dataRows?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && Validate.IsField( field ) )
-            {
-                try
-                {
-                    var _query = dataRows
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
-                        ?.Select( p => p );
-
-                    return _query?.Any( ) == true
-                        ? _query.ToArray( )
-                        : default( DataRow[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
-            }
-
-            return default( IEnumerable<DataRow> );
-        }
-
+        
         /// <summary>
         /// Gets the series.
         /// </summary>

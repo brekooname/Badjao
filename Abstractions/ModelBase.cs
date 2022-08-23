@@ -116,7 +116,37 @@ namespace BudgetExecution
                 return default( IEnumerable<IElement> );
             }
         }
-        
+
+        /// <summary>
+        /// Filters the data.
+        /// </summary>
+        /// <param name = "dataRows" > </param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict )
+        {
+            if( dict?.Any( ) == true )
+            {
+                try
+                {
+                    var _criteria = dict.ToCriteria( );
+                    var _dataTable = dataRows.CopyToDataTable( );
+                    var _data = _dataTable.Select( _criteria );
+
+                    return _data?.Length > 0
+                        ? _data
+                        : default( IEnumerable<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
         /// <summary>
         /// Gets the columns.
         /// </summary>

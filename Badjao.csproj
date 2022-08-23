@@ -457,6 +457,8 @@
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
     <Compile Include="Controls\Chart\IChartBinding.cs" />
+    <Compile Include="Data\SqlStatement\ISqlStatement.cs" />
+    <Compile Include="Interfaces\IDataModel.cs" />
     <Compile Include="Interfaces\ISeriesModel.cs" />
     <Compile Include="Data\DataBuilder\Computation.cs" />
     <Compile Include="Controls\Chart\ChartControl.cs">
@@ -676,9 +678,7 @@
     <Compile Include="Data\DataBuilder\DataAccess.cs" />
     <Compile Include="Data\DataBuilder\DataBuilder.cs" />
     <Compile Include="Data\DataBuilder\DataConfig.cs" />
-    <Compile Include="Interfaces\IModelBuilder.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
-    <Compile Include="Interfaces\IDataBuilder.cs" />
     <Compile Include="Interfaces\IDataSchema.cs" />
     <Compile Include="Data\Map\Amount.cs" />
     <Compile Include="Data\Map\Arg.cs" />
@@ -701,7 +701,6 @@
     <Compile Include="Data\Query\SqlCeQuery.cs" />
     <Compile Include="Data\Query\SQLiteQuery.cs" />
     <Compile Include="Data\Query\SqlServerQuery.cs" />
-    <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Abstractions\SqlBase.cs" />
     <Compile Include="Data\SqlStatement\SqlStatement.cs" />
     <Compile Include="Data\DataWorker\DataWorker.cs">
@@ -887,7 +886,7 @@
     <Compile Include="Abstractions\SplashBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SqlBuilder.cs" />
+    <Compile Include="Data\SqlStatement\SqlBuilder.cs" />
     <Compile Include="SqlServer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
