@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( Source source, Provider provider = Provider.SQLite, SQL commandType = SQL.SELECTALL ) 
+        public Query( Source source, Provider provider = Provider.Access, SQL commandType = SQL.SELECTALL ) 
             : base( source, provider, commandType )
         {
             DataCommand = CommandBuilder.Command;

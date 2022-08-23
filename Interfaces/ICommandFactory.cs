@@ -79,7 +79,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         /// <param name="dataColumn">The Data column.</param>
         /// <returns></returns>
-        DbCommand GetAlterCommand( DataTable dataTable, DataColumn dataColumn );
+        DbCommand GetAddColumnCommand( DataTable dataTable, DataColumn dataColumn );
 
         /// <summary>
         /// Gets the alter command.

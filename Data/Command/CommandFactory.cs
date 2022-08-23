@@ -274,7 +274,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         /// <param name="dataColumn">The Data column.</param>
         /// <returns></returns>
-        public DbCommand GetAlterCommand( DataTable dataTable, DataColumn dataColumn )
+        public DbCommand GetAddColumnCommand( DataTable dataTable, DataColumn dataColumn )
         {
             if( dataTable != null
                 && dataColumn != null
@@ -339,7 +339,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public DbCommand GetAlterCommand( DataTable dataTable, string name )
+        public DbCommand GetRenameTableCommand( DataTable dataTable, string name )
         {
             if( dataTable != null
                 && !string.IsNullOrEmpty( name )

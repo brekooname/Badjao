@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the Provider
         /// </summary>
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         /// <summary>
         /// Gets the arguments.
