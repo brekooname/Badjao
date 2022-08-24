@@ -53,22 +53,21 @@ namespace BudgetExecution
         {
             try
             {
-                var _dataSet = new DataSet
+                DataSet = new DataSet
                 {
                     DataSetName = $"{ Provider }"
                 };
 
-                DataSet = _dataSet;
-                DataSetName = _dataSet.DataSetName;
-                var _dataTable = new DataTable( $"{ Source }" );
-                TableName = _dataTable.TableName;
-                _dataSet.Tables.Add( _dataTable );
+                DataSetName = DataSet.DataSetName;
+                DataTable = new DataTable( $"{ Source }" );
+                TableName = DataTable.TableName;
+                DataSet.Tables.Add( DataTable );
                 var _adapter = Query.GetAdapter( );
-                _adapter?.Fill( _dataSet, _dataTable?.TableName );
-                SetColumnCaptions( _dataTable );
+                _adapter?.Fill( DataSet, DataTable.TableName );
+                SetColumnCaptions( DataTable );
 
-                return _dataTable?.Rows?.Count > 0
-                    ? _dataTable
+                return DataTable?.Rows?.Count > 0
+                    ? DataTable
                     : default( DataTable );
             }
             catch( Exception ex )

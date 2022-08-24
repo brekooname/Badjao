@@ -7,6 +7,10 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data.Common;
+    using System.Data.OleDb;
+    using System.Data.SqlClient;
+    using System.Data.SqlServerCe;
+    using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
 
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
@@ -142,11 +146,9 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, dict, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            DataCommand = CommandBuilder.Command;
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -159,12 +161,11 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            ConnectionBuilder = new ConnectionBuilder( source, provider);
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
+            Args = sqlStatement.Criteria ?? null;
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( sqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            DataCommand = CommandBuilder.Command;
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -179,10 +180,9 @@ namespace BudgetExecution
             Provider = provider;
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, dict, SQL.SELECT );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -198,12 +198,11 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = updates;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            IsDisposed = false;
         }
 
         protected QueryBase( Source source, Provider provider, IEnumerable<string> columns,
@@ -213,22 +212,20 @@ namespace BudgetExecution
             Provider = provider;
             Args = criteria;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            IsDisposed = false;
         }
 
         protected QueryBase( Source source, Provider provider, string sqlText )
         {
             Source = source;
             Provider = provider;
+            Args = null;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, sqlText );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            IsDisposed = false;
-            Args = null;
         }
 
         /// <summary>
@@ -239,13 +236,13 @@ namespace BudgetExecution
         /// <param name="commandType">Type of the command.</param>
         protected QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
+            Args = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
-            Source = Source.External;
             Provider = ConnectionBuilder.Provider;
+            Source = ConnectionBuilder.Source;
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider, sqlText );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            IsDisposed = false;
         }
 
         /// <summary>
@@ -256,13 +253,13 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
         {
+            Args = dict;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
-            IsDisposed = false;
         }
 
         /// <inheritdoc/>
@@ -292,15 +289,42 @@ namespace BudgetExecution
         /// </returns>
         public DbDataAdapter GetAdapter()
         {
-            try
+            if( Enum.IsDefined( typeof( Provider ), Provider ) )
             {
-                return DataAdapter;
+                try
+                {
+                    switch( Provider )
+                    {
+                        case Provider.Access:
+                        {
+                            return DataAdapter as OleDbDataAdapter;
+                        }
+                        case Provider.SQLite:
+                        {
+                            return DataAdapter as SQLiteDataAdapter;
+                        }
+                        case Provider.SqlCe:
+                        {
+                            return DataAdapter as SqlCeDataAdapter;
+                        }
+                        case Provider.SqlServer:
+                        {
+                            return DataAdapter as SqlDataAdapter;
+                        }
+                        default:
+                        {
+                            return DataAdapter as OleDbDataAdapter;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( DbDataAdapter );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DbDataAdapter );
-            }
+
+            return default( DbDataAdapter );
         }
     
         /// <summary>

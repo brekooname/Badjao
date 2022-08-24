@@ -8,9 +8,6 @@
     using System.Data.SqlServerCe;
     using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class CommandBase
@@ -40,11 +37,22 @@
         /// </summary>
         public ISqlStatement SqlStatement { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBase"/> class.
+        /// </summary>
         protected CommandBase( )
         {
         }
 
-        protected CommandBase( Source source, Provider provider, IDictionary<string, object> dict, SQL commandType = SQL.SELECTALL )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        protected CommandBase( Source source, Provider provider, IDictionary<string, object> dict,
+            SQL commandType = SQL.SELECTALL )
         {
             Source = source;
             Provider = provider;
@@ -53,6 +61,14 @@
             Command = GetCommand( SqlStatement );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="updates">The updates.</param>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="commandType">Type of the command.</param>
         protected CommandBase( Source source, Provider provider, IDictionary<string, object> updates,
             IDictionary<string, object> criteria, SQL commandType = SQL.UPDATE )
         {
@@ -63,6 +79,14 @@
             Command = GetCommand( SqlStatement );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="criteria">The criteria.</param>
+        /// <param name="commandType">Type of the command.</param>
         protected CommandBase( Source source, Provider provider, IEnumerable<string> columns,
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECTALL )
         {
@@ -73,6 +97,10 @@
             Command = GetCommand( SqlStatement );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBase"/> class.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
         protected CommandBase( ISqlStatement sqlStatement )
         {
             SqlStatement = sqlStatement;
@@ -147,39 +175,38 @@
         {
             if( sqlStatement != null 
                 && Enum.IsDefined( typeof( SQL ), sqlStatement.CommandType ) 
-                && ConnectionBuilder != null )
+                && ConnectionBuilder?.Connection != null )
             {
                 try
                 {
-                    var _connection = ConnectionBuilder?.Connection;
-
+                    var _connection = ConnectionBuilder?.Connection as SQLiteConnection;
                     switch( sqlStatement?.CommandType )
                     {
                         case SQL.SELECTALL:
                         case SQL.SELECT:
                         {
                             var _sql = sqlStatement?.GetSelectStatement( );
-                            return new SQLiteCommand( _sql, _connection as SQLiteConnection );
+                            return new SQLiteCommand( _sql, _connection );
                         }
                         case SQL.INSERT:
                         {
                             var _sql = sqlStatement?.GetInsertStatement( );
-                            return  new SQLiteCommand( _sql, _connection as SQLiteConnection );
+                            return  new SQLiteCommand( _sql, _connection );
                         }
                         case SQL.UPDATE:
                         {
                             var _sql = sqlStatement?.GetUpdateStatement( );
-                            return  new SQLiteCommand( _sql, _connection as SQLiteConnection );
+                            return  new SQLiteCommand( _sql, _connection );
                         }
                         case SQL.DELETE:
                         {
                             var _sql = sqlStatement?.GetDeleteStatement( );
-                            return new SQLiteCommand( _sql, _connection as SQLiteConnection );
+                            return new SQLiteCommand( _sql, _connection );
                         }
                         default:
                         {
                             var _sql = sqlStatement?.GetSelectStatement( );
-                            return  new SQLiteCommand( _sql, _connection as SQLiteConnection );
+                            return  new SQLiteCommand( _sql, _connection );
                         }
                     }
                 }
@@ -202,12 +229,11 @@
         {
             if( sqlStatement != null
                 && Enum.IsDefined( typeof( SQL ), sqlStatement.CommandType )
-                && ConnectionBuilder != null )
+                && ConnectionBuilder?.Connection != null )
             {
                 try
                 {
-                    var _connection = ConnectionBuilder.Connection;
-
+                    var _connection = ConnectionBuilder.Connection as SqlCeConnection;
                     if( !string.IsNullOrEmpty( _connection?.ConnectionString ) )
                     {
                         switch( sqlStatement?.CommandType )
@@ -216,27 +242,27 @@
                             case SQL.SELECT:
                             {
                                 var _sql = sqlStatement?.GetSelectStatement( );
-                                return new SqlCeCommand( _sql, _connection as SqlCeConnection );
+                                return new SqlCeCommand( _sql, _connection );
                             }
                             case SQL.INSERT:
                             {
                                 var _sql = sqlStatement?.GetInsertStatement( );
-                                return new SqlCeCommand( _sql, _connection as SqlCeConnection );
+                                return new SqlCeCommand( _sql, _connection );
                             }
                             case SQL.UPDATE:
                             {
                                 var _sql = sqlStatement?.GetUpdateStatement( );
-                                return new SqlCeCommand( _sql, _connection as SqlCeConnection );
+                                return new SqlCeCommand( _sql, _connection );
                             }
                             case SQL.DELETE:
                             {
                                 var _sql = sqlStatement?.GetDeleteStatement( );
-                                return new SqlCeCommand( _sql, _connection as SqlCeConnection );
+                                return new SqlCeCommand( _sql, _connection );
                             }
                             default:
                             {
                                 var _sql = sqlStatement?.GetSelectStatement( );
-                                return new SqlCeCommand( _sql, _connection as SqlCeConnection );
+                                return new SqlCeCommand( _sql, _connection );
                             }
                         }
                     }
@@ -260,11 +286,11 @@
         {
             if( sqlStatement != null
                 && Enum.IsDefined( typeof( SQL ), sqlStatement.CommandType )
-                && ConnectionBuilder != null )
+                && ConnectionBuilder?.Connection != null )
             {
                 try
                 {
-                    var _connection = ConnectionBuilder?.Connection;
+                    var _connection = ConnectionBuilder?.Connection as SqlConnection;
                     using( _connection )
                     {
                         switch( sqlStatement?.CommandType )
@@ -273,28 +299,28 @@
                             case SQL.SELECT:
                             {
                                 var _sql = sqlStatement?.GetSelectStatement( );
-                                return  new SqlCommand( _sql, _connection as SqlConnection );
+                                return  new SqlCommand( _sql, _connection );
                             }
                             case SQL.INSERT:
                             {
                                 var _sql = sqlStatement?.GetInsertStatement( );
-                                return new SqlCommand( _sql, _connection as SqlConnection );
+                                return new SqlCommand( _sql, _connection );
                             }
 
                             case SQL.UPDATE:
                             {
                                 var _sql = sqlStatement?.GetUpdateStatement( );
-                                return new SqlCommand( _sql, _connection as SqlConnection );
+                                return new SqlCommand( _sql, _connection );
                             }
                             case SQL.DELETE:
                             {
                                 var _sql = sqlStatement?.GetDeleteStatement( );
-                                return new SqlCommand( _sql, _connection as SqlConnection );
+                                return new SqlCommand( _sql, _connection );
                             }
                             default:
                             {
                                 var _sql = sqlStatement?.GetSelectStatement( );
-                                return  new SqlCommand( _sql, _connection as SqlConnection );
+                                return  new SqlCommand( _sql, _connection );
                             }
                         }
                     }
@@ -318,39 +344,38 @@
         {
             if( sqlStatement != null
                 && Enum.IsDefined( typeof( SQL ), sqlStatement.CommandType )
-                && ConnectionBuilder != null )
+                && ConnectionBuilder?.Connection != null )
             {
                 try
                 {
-                    var _connection = ConnectionBuilder?.Connection;
-
+                    var _connection = ConnectionBuilder?.Connection as OleDbConnection;
                     switch( sqlStatement?.CommandType )
                     {
                         case SQL.SELECTALL:
                         case SQL.SELECT:
                         {
                             var _sql = sqlStatement?.GetSelectStatement( );
-                            return new OleDbCommand( _sql, _connection as OleDbConnection );
+                            return new OleDbCommand( _sql, _connection );
                         }
                         case SQL.INSERT:
                         {
                             var _sql = sqlStatement?.GetInsertStatement( );
-                            return new OleDbCommand( _sql, _connection as OleDbConnection );
+                            return new OleDbCommand( _sql, _connection );
                         }
                         case SQL.UPDATE:
                         {
                             var _sql = sqlStatement.GetUpdateStatement( );
-                            return new OleDbCommand( _sql, _connection as OleDbConnection );
+                            return new OleDbCommand( _sql, _connection );
                         }
                         case SQL.DELETE:
                         {
                             var _sql = sqlStatement?.GetDeleteStatement( );
-                            return new OleDbCommand( _sql, _connection as OleDbConnection );
+                            return new OleDbCommand( _sql, _connection );
                         }
                         default:
                         {
                             var _sql = sqlStatement?.GetSelectStatement( );
-                            return new OleDbCommand( _sql, _connection as OleDbConnection );
+                            return new OleDbCommand( _sql, _connection );
                         }
                     }
                 }

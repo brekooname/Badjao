@@ -68,11 +68,11 @@ namespace BudgetExecution
         public AdapterBuilder( ICommandBuilder commandBuilder )
             : this( )
         {
+            CommandBuilder = commandBuilder;
             SqlStatement = commandBuilder.SqlStatement;
-            ConnectionBuilder = new ConnectionBuilder( commandBuilder.Source, commandBuilder.Provider );
-            CommandBuilder = new CommandBuilder( SqlStatement );
+            ConnectionBuilder = commandBuilder.ConnectionBuilder;
             Connection = ConnectionBuilder.Connection;
-            SelectCommand = CommandBuilder.GetCommand( SqlStatement );
+            SelectCommand = commandBuilder.GetCommand( SqlStatement );
         }
 
         /// <summary>

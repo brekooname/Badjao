@@ -41,7 +41,15 @@ namespace BudgetExecution
         public Query( Source source, Provider provider = Provider.Access, SQL commandType = SQL.SELECTALL ) 
             : base( source, provider, commandType )
         {
-            DataCommand = CommandBuilder.Command;
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -62,7 +70,16 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict, SQL commandType ) 
             : base( source, provider, dict, commandType )
         {
-            DataCommand = CommandBuilder.Command;
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, dict, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -77,6 +94,16 @@ namespace BudgetExecution
             IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
             : base( source, provider, updates, where, commandType )
         {
+            Source = source;
+            Provider = provider;
+            Args = where;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -91,6 +118,16 @@ namespace BudgetExecution
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
             : base( source, provider, columns, criteria, commandType )
         {
+            Source = source;
+            Provider = provider;
+            Args = criteria;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+            DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -102,7 +139,16 @@ namespace BudgetExecution
         public Query( ISqlStatement sqlStatement ) 
             : base( sqlStatement.Source, sqlStatement.Provider, sqlStatement )
         {
+            Source = sqlStatement.Source;
+            Provider = sqlStatement.Provider;
+            Args = sqlStatement.Criteria;
+            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = sqlStatement;
+            CommandBuilder = new CommandBuilder( sqlStatement );
             DataCommand = CommandBuilder.GetCommand( sqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -114,7 +160,15 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, string sqlText )
             : base( source, provider, sqlText )
         {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, sqlText );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
+            Args = null;
         }
 
         /// <summary>
@@ -132,7 +186,15 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict ) : 
             base( source, provider, dict )
         {
+            Source = source;
+            Provider = provider;
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, dict );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -148,7 +210,16 @@ namespace BudgetExecution
         public Query( string fullPath, string sqlText, SQL commandType = SQL.SELECT ) 
             : base( fullPath, sqlText, commandType )
         {
+            Args = null;
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
+            Provider = ConnectionBuilder.Provider;
+            Source = ConnectionBuilder.Source;
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider, sqlText );
+            CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <summary>
@@ -166,7 +237,16 @@ namespace BudgetExecution
         public Query( string fullPath, SQL commandType, IDictionary<string, object> dict ) 
             : base( fullPath, commandType, dict)
         {
+            Args = dict;
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
+            DataAdapter = new AdapterBuilder( CommandBuilder );
+            IsDisposed = false;
         }
 
         /// <inheritdoc/>
