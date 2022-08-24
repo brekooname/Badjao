@@ -4,7 +4,6 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
-    using Syncfusion.Linq;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -18,6 +17,8 @@
         {
             InitializeComponent( );
             Load += OnLoad;
+            TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
+            ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
         }
 
         
@@ -35,16 +36,9 @@
                 FormFilter.Add( "FundCode", "B" );
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
-                DataGrid.BindingSource = BindingSource;
+                DataGrid.DataSource = BindingSource;
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
-                TableListBox.Text = "Data Tables";
-                ColumnListBox.Text = "Data Columns";
-                ElementListBox.Text = "Unique Fields";
-                ColumnListBox.Visible = !ColumnListBox.Visible;
-                ElementListBox.Visible = !ElementListBox.Visible;
-                TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
-                ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
                 ToolStrip.Office12Mode = true;
             }
             catch( Exception ex )
@@ -62,8 +56,7 @@
             var _names = Enum.GetNames( typeof( Source ) );
             foreach( var name in _names )
             {
-                if( name != "NS" 
-                    || name != "External")
+                if( name != "NS" )
                 {
                     TableListBox.Items.Add( name );
                 }
@@ -91,7 +84,7 @@
             {
                 var _source = (Source)Enum.Parse( typeof( Source ), _table );
                 DataModel = new DataBuilder( _source, Provider.Access );
-                DataGrid.BindingSource.DataSource = DataModel.GetDataTable(  );
+                DataGrid.DataSource = DataModel.GetDataTable(  );
                 var _columns = DataModel.GetDataColumns(   );
 
                 foreach( var col in _columns )

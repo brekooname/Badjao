@@ -29,51 +29,54 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle5 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle6 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle7 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle8 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo2 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GridPanel = new System.Windows.Forms.Panel();
             this.DataGrid = new BudgetExecution.DataView();
             this.ElementListBox = new BudgetExecution.ListBox();
-            this.ColumnListBox = new BudgetExecution.ListBox();
             this.ToolTip = new BudgetExecution.ToolTip();
+            this.ColumnListBox = new BudgetExecution.ListBox();
             this.ToolStrip = new BudgetExecution.ToolStrip();
+            this.ToolStripDropDown = new BudgetExecution.ToolStripDropDown();
+            this.ToolStripLabel = new BudgetExecution.ToolStripLabel();
             this.toolSeparator1 = new BudgetExecution.ToolSeparator();
+            this.ToolStripTextBox = new BudgetExecution.ToolStripTextBox();
             this.toolSeparator2 = new BudgetExecution.ToolSeparator();
             this.toolSeparator3 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator4 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator5 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator6 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator7 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator8 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator9 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator10 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator11 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator12 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator13 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator14 = new BudgetExecution.ToolSeparator();
-            this.toolSeparator15 = new BudgetExecution.ToolSeparator();
-            this.ToolStripLabel = new BudgetExecution.ToolStripLabel();
-            this.ToolStripTextBox = new BudgetExecution.ToolStripTextBox();
-            this.ToolStripDropDown = new BudgetExecution.ToolStripDropDown();
             this.ToolStripFirstButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator4 = new BudgetExecution.ToolSeparator();
             this.ToolStripPreviousButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator5 = new BudgetExecution.ToolSeparator();
             this.ToolStripNextButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator6 = new BudgetExecution.ToolSeparator();
             this.ToolStripLastButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator7 = new BudgetExecution.ToolSeparator();
             this.ToolStripEditButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator8 = new BudgetExecution.ToolSeparator();
             this.ToolStripAddButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator9 = new BudgetExecution.ToolSeparator();
             this.ToolStripDeleteButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator10 = new BudgetExecution.ToolSeparator();
             this.ToolStripRefreshButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator11 = new BudgetExecution.ToolSeparator();
             this.ToolStripSaveButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator12 = new BudgetExecution.ToolSeparator();
             this.ToolStripCalculatorButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator13 = new BudgetExecution.ToolSeparator();
             this.ToolStripExcelButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator15 = new BudgetExecution.ToolSeparator();
             this.ToolStripChartButton = new BudgetExecution.ToolStripButton();
+            this.toolSeparator14 = new BudgetExecution.ToolSeparator();
             this.ToolStripHomeButton = new BudgetExecution.ToolStripButton();
             this.TableListBox = new BudgetExecution.ListBox();
+            this.visualLabel1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
+            this.visualLabel2 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
+            this.visualLabel3 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
@@ -93,35 +96,35 @@
             this.DataGrid.AllowDragSelectedCols = true;
             this.DataGrid.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            gridBaseStyle1.Name = "Column Header";
-            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
-            gridBaseStyle1.StyleInfo.Enabled = false;
-            gridBaseStyle1.StyleInfo.Font.Bold = true;
-            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridBaseStyle2.Name = "Header";
-            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle2.StyleInfo.CellType = "Header";
-            gridBaseStyle2.StyleInfo.Font.Bold = true;
-            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
-            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-            gridBaseStyle3.Name = "Standard";
-            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
-            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
-            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-            gridBaseStyle4.Name = "Row Header";
-            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
-            gridBaseStyle4.StyleInfo.Enabled = true;
-            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            gridBaseStyle5.Name = "Column Header";
+            gridBaseStyle5.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle5.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle5.StyleInfo.Enabled = false;
+            gridBaseStyle5.StyleInfo.Font.Bold = true;
+            gridBaseStyle5.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle6.Name = "Header";
+            gridBaseStyle6.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle6.StyleInfo.CellType = "Header";
+            gridBaseStyle6.StyleInfo.Font.Bold = true;
+            gridBaseStyle6.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle6.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle7.Name = "Standard";
+            gridBaseStyle7.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle7.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle7.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle8.Name = "Row Header";
+            gridBaseStyle8.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle8.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle8.StyleInfo.Enabled = true;
+            gridBaseStyle8.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
             this.DataGrid.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle1,
-            gridBaseStyle2,
-            gridBaseStyle3,
-            gridBaseStyle4});
+            gridBaseStyle5,
+            gridBaseStyle6,
+            gridBaseStyle7,
+            gridBaseStyle8});
             this.DataGrid.BindingSource = this.BindingSource;
             this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2016Black;
             this.DataGrid.DataFilter = null;
@@ -152,18 +155,18 @@
             this.DataGrid.SmartSizeBox = false;
             this.DataGrid.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.DataGrid.TabIndex = 0;
-            gridStyleInfo1.AutoFit = Syncfusion.Windows.Forms.Grid.AutoFitOptions.Both;
-            gridStyleInfo1.Font.Bold = false;
-            gridStyleInfo1.Font.Facename = "Roboto";
-            gridStyleInfo1.Font.Italic = false;
-            gridStyleInfo1.Font.Size = 8F;
-            gridStyleInfo1.Font.Strikeout = false;
-            gridStyleInfo1.Font.Underline = false;
-            gridStyleInfo1.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
-            gridStyleInfo1.Themed = true;
-            gridStyleInfo1.WrapText = false;
-            this.DataGrid.TableStyle = gridStyleInfo1;
+            gridStyleInfo2.AutoFit = Syncfusion.Windows.Forms.Grid.AutoFitOptions.Both;
+            gridStyleInfo2.Font.Bold = false;
+            gridStyleInfo2.Font.Facename = "Roboto";
+            gridStyleInfo2.Font.Italic = false;
+            gridStyleInfo2.Font.Size = 8F;
+            gridStyleInfo2.Font.Strikeout = false;
+            gridStyleInfo2.Font.Underline = false;
+            gridStyleInfo2.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridStyleInfo2.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
+            gridStyleInfo2.Themed = true;
+            gridStyleInfo2.WrapText = false;
+            this.DataGrid.TableStyle = gridStyleInfo2;
             this.DataGrid.Text = "dataView1";
             this.DataGrid.ThemesEnabled = true;
             this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -234,7 +237,7 @@
             this.ElementListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ElementListBox.Name = "ElementListBox";
             this.ElementListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.ElementListBox.Size = new System.Drawing.Size(247, 148);
+            this.ElementListBox.Size = new System.Drawing.Size(247, 132);
             this.ElementListBox.TabIndex = 4;
             this.ElementListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.ElementListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -244,6 +247,26 @@
             this.ElementListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.ElementListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ElementListBox.ToolTip = this.ToolTip;
+            // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 5000;
+            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
+            this.ToolTip.BindingSource = null;
+            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.ToolTip.Field = BudgetExecution.Field.AccountCode;
+            this.ToolTip.ForeColor = System.Drawing.Color.White;
+            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.Name = null;
+            this.ToolTip.OwnerDraw = true;
+            this.ToolTip.ReshowDelay = 100;
+            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
+            this.ToolTip.StyleManager = null;
+            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
+            this.ToolTip.ThemeName = "Budget Execution";
+            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ToolTip.TipText = null;
+            this.ToolTip.TipTitle = null;
             // 
             // ColumnListBox
             // 
@@ -269,11 +292,11 @@
             this.ColumnListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.ColumnListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ColumnListBox.ItemSelected = System.Drawing.Color.SteelBlue;
-            this.ColumnListBox.Location = new System.Drawing.Point(1064, 328);
+            this.ColumnListBox.Location = new System.Drawing.Point(1064, 315);
             this.ColumnListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnListBox.Name = "ColumnListBox";
             this.ColumnListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.ColumnListBox.Size = new System.Drawing.Size(247, 161);
+            this.ColumnListBox.Size = new System.Drawing.Size(247, 145);
             this.ColumnListBox.TabIndex = 1;
             this.ColumnListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.ColumnListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -283,26 +306,6 @@
             this.ColumnListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.ColumnListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ColumnListBox.ToolTip = this.ToolTip;
-            // 
-            // ToolTip
-            // 
-            this.ToolTip.AutoPopDelay = 5000;
-            this.ToolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(5)))), ((int)(((byte)(5)))));
-            this.ToolTip.BindingSource = null;
-            this.ToolTip.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.ToolTip.Field = BudgetExecution.Field.AccountCode;
-            this.ToolTip.ForeColor = System.Drawing.Color.White;
-            this.ToolTip.InitialDelay = 500;
-            this.ToolTip.Name = null;
-            this.ToolTip.OwnerDraw = true;
-            this.ToolTip.ReshowDelay = 100;
-            this.ToolTip.Style = MetroSet_UI.Design.Style.Custom;
-            this.ToolTip.StyleManager = null;
-            this.ToolTip.ThemeAuthor = "Terry D. Eppler";
-            this.ToolTip.ThemeName = "Budget Execution";
-            this.ToolTip.TipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ToolTip.TipText = null;
-            this.ToolTip.TipTitle = null;
             // 
             // ToolStrip
             // 
@@ -319,7 +322,7 @@
             this.ToolStrip.DropDown = this.ToolStripDropDown;
             this.ToolStrip.Field = BudgetExecution.Field.AccountCode;
             this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStrip.ForeColor = System.Drawing.Color.Black;
+            this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
             this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ToolStrip.Image = null;
             this.ToolStrip.ImageDirectory = null;
@@ -384,156 +387,6 @@
             this.ToolStrip.ThemeStyle.HoverItemForeColor = System.Drawing.Color.White;
             this.ToolStrip.VisualStyle = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016DarkGray;
             // 
-            // toolSeparator1
-            // 
-            this.toolSeparator1.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator1.Name = "toolSeparator1";
-            this.toolSeparator1.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator1.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator2
-            // 
-            this.toolSeparator2.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator2.Name = "toolSeparator2";
-            this.toolSeparator2.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator2.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator3
-            // 
-            this.toolSeparator3.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator3.Name = "toolSeparator3";
-            this.toolSeparator3.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator3.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator4
-            // 
-            this.toolSeparator4.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator4.Name = "toolSeparator4";
-            this.toolSeparator4.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator4.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator5
-            // 
-            this.toolSeparator5.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator5.Name = "toolSeparator5";
-            this.toolSeparator5.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator5.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator6
-            // 
-            this.toolSeparator6.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator6.Name = "toolSeparator6";
-            this.toolSeparator6.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator6.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator7
-            // 
-            this.toolSeparator7.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator7.Name = "toolSeparator7";
-            this.toolSeparator7.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator7.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator8
-            // 
-            this.toolSeparator8.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator8.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator8.Name = "toolSeparator8";
-            this.toolSeparator8.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator8.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator9
-            // 
-            this.toolSeparator9.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator9.Name = "toolSeparator9";
-            this.toolSeparator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator9.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator10
-            // 
-            this.toolSeparator10.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator10.Name = "toolSeparator10";
-            this.toolSeparator10.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator10.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator11
-            // 
-            this.toolSeparator11.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator11.Name = "toolSeparator11";
-            this.toolSeparator11.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator11.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator12
-            // 
-            this.toolSeparator12.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator12.Name = "toolSeparator12";
-            this.toolSeparator12.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator12.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator13
-            // 
-            this.toolSeparator13.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator13.Name = "toolSeparator13";
-            this.toolSeparator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator13.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator14
-            // 
-            this.toolSeparator14.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator14.Name = "toolSeparator14";
-            this.toolSeparator14.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator14.Size = new System.Drawing.Size(6, 36);
-            // 
-            // toolSeparator15
-            // 
-            this.toolSeparator15.ForeColor = System.Drawing.Color.Black;
-            this.toolSeparator15.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.toolSeparator15.Name = "toolSeparator15";
-            this.toolSeparator15.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.toolSeparator15.Size = new System.Drawing.Size(6, 36);
-            // 
-            // ToolStripLabel
-            // 
-            this.ToolStripLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.ToolStripLabel.BindingSource = null;
-            this.ToolStripLabel.DataFilter = null;
-            this.ToolStripLabel.Field = BudgetExecution.Field.AccountCode;
-            this.ToolStripLabel.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStripLabel.ForeColor = System.Drawing.Color.White;
-            this.ToolStripLabel.HoverText = null;
-            this.ToolStripLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.ToolStripLabel.Name = "ToolStripLabel";
-            this.ToolStripLabel.Size = new System.Drawing.Size(89, 26);
-            this.ToolStripLabel.Tag = "";
-            this.ToolStripLabel.Text = "toolStripLabel1";
-            this.ToolStripLabel.ToolTip = null;
-            // 
-            // ToolStripTextBox
-            // 
-            this.ToolStripTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ToolStripTextBox.BindingSource = null;
-            this.ToolStripTextBox.Field = BudgetExecution.Field.AccountCode;
-            this.ToolStripTextBox.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStripTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
-            this.ToolStripTextBox.HoverText = "";
-            this.ToolStripTextBox.Margin = new System.Windows.Forms.Padding(5);
-            this.ToolStripTextBox.Name = "ToolStripTextBox";
-            this.ToolStripTextBox.Size = new System.Drawing.Size(150, 26);
-            this.ToolStripTextBox.Tag = "";
-            this.ToolStripTextBox.ToolTip = null;
-            // 
             // ToolStripDropDown
             // 
             this.ToolStripDropDown.AllowDrop = true;
@@ -555,6 +408,60 @@
             this.ToolStripDropDown.ToolTip = this.ToolTip;
             this.ToolStripDropDown.ToolTipText = "Make Selection";
             // 
+            // ToolStripLabel
+            // 
+            this.ToolStripLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.ToolStripLabel.BindingSource = null;
+            this.ToolStripLabel.DataFilter = null;
+            this.ToolStripLabel.Field = BudgetExecution.Field.AccountCode;
+            this.ToolStripLabel.Font = new System.Drawing.Font("Roboto", 9F);
+            this.ToolStripLabel.ForeColor = System.Drawing.Color.White;
+            this.ToolStripLabel.HoverText = null;
+            this.ToolStripLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.ToolStripLabel.Name = "ToolStripLabel";
+            this.ToolStripLabel.Size = new System.Drawing.Size(89, 26);
+            this.ToolStripLabel.Tag = "";
+            this.ToolStripLabel.Text = "toolStripLabel1";
+            this.ToolStripLabel.ToolTip = null;
+            // 
+            // toolSeparator1
+            // 
+            this.toolSeparator1.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator1.Name = "toolSeparator1";
+            this.toolSeparator1.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator1.Size = new System.Drawing.Size(6, 36);
+            // 
+            // ToolStripTextBox
+            // 
+            this.ToolStripTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.ToolStripTextBox.BindingSource = null;
+            this.ToolStripTextBox.Field = BudgetExecution.Field.AccountCode;
+            this.ToolStripTextBox.Font = new System.Drawing.Font("Roboto", 9F);
+            this.ToolStripTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.ToolStripTextBox.HoverText = "";
+            this.ToolStripTextBox.Margin = new System.Windows.Forms.Padding(5);
+            this.ToolStripTextBox.Name = "ToolStripTextBox";
+            this.ToolStripTextBox.Size = new System.Drawing.Size(150, 26);
+            this.ToolStripTextBox.Tag = "";
+            this.ToolStripTextBox.ToolTip = null;
+            // 
+            // toolSeparator2
+            // 
+            this.toolSeparator2.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator2.Name = "toolSeparator2";
+            this.toolSeparator2.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator2.Size = new System.Drawing.Size(6, 36);
+            // 
+            // toolSeparator3
+            // 
+            this.toolSeparator3.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator3.Name = "toolSeparator3";
+            this.toolSeparator3.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator3.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripFirstButton
             // 
             this.ToolStripFirstButton.AutoToolTip = false;
@@ -574,6 +481,14 @@
             this.ToolStripFirstButton.Text = "toolStripButton1";
             this.ToolStripFirstButton.ToolTip = this.ToolTip;
             this.ToolStripFirstButton.ToolType = BudgetExecution.ToolType.FirstButton;
+            // 
+            // toolSeparator4
+            // 
+            this.toolSeparator4.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator4.Name = "toolSeparator4";
+            this.toolSeparator4.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator4.Size = new System.Drawing.Size(6, 36);
             // 
             // ToolStripPreviousButton
             // 
@@ -595,6 +510,14 @@
             this.ToolStripPreviousButton.ToolTip = null;
             this.ToolStripPreviousButton.ToolType = BudgetExecution.ToolType.PreviousButton;
             // 
+            // toolSeparator5
+            // 
+            this.toolSeparator5.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator5.Name = "toolSeparator5";
+            this.toolSeparator5.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator5.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripNextButton
             // 
             this.ToolStripNextButton.AutoToolTip = false;
@@ -614,6 +537,14 @@
             this.ToolStripNextButton.Text = "toolStripButton3";
             this.ToolStripNextButton.ToolTip = null;
             this.ToolStripNextButton.ToolType = BudgetExecution.ToolType.NextButton;
+            // 
+            // toolSeparator6
+            // 
+            this.toolSeparator6.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator6.Name = "toolSeparator6";
+            this.toolSeparator6.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator6.Size = new System.Drawing.Size(6, 36);
             // 
             // ToolStripLastButton
             // 
@@ -635,6 +566,14 @@
             this.ToolStripLastButton.ToolTip = null;
             this.ToolStripLastButton.ToolType = BudgetExecution.ToolType.LastButton;
             // 
+            // toolSeparator7
+            // 
+            this.toolSeparator7.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator7.Name = "toolSeparator7";
+            this.toolSeparator7.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator7.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripEditButton
             // 
             this.ToolStripEditButton.AutoToolTip = false;
@@ -654,6 +593,14 @@
             this.ToolStripEditButton.Text = "toolStripButton5";
             this.ToolStripEditButton.ToolTip = null;
             this.ToolStripEditButton.ToolType = BudgetExecution.ToolType.EditButton;
+            // 
+            // toolSeparator8
+            // 
+            this.toolSeparator8.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator8.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator8.Name = "toolSeparator8";
+            this.toolSeparator8.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator8.Size = new System.Drawing.Size(6, 36);
             // 
             // ToolStripAddButton
             // 
@@ -675,6 +622,14 @@
             this.ToolStripAddButton.ToolTip = null;
             this.ToolStripAddButton.ToolType = BudgetExecution.ToolType.AddButton;
             // 
+            // toolSeparator9
+            // 
+            this.toolSeparator9.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator9.Name = "toolSeparator9";
+            this.toolSeparator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator9.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripDeleteButton
             // 
             this.ToolStripDeleteButton.AutoToolTip = false;
@@ -694,6 +649,14 @@
             this.ToolStripDeleteButton.Text = "toolStripButton7";
             this.ToolStripDeleteButton.ToolTip = null;
             this.ToolStripDeleteButton.ToolType = BudgetExecution.ToolType.DeleteButton;
+            // 
+            // toolSeparator10
+            // 
+            this.toolSeparator10.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator10.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator10.Name = "toolSeparator10";
+            this.toolSeparator10.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator10.Size = new System.Drawing.Size(6, 36);
             // 
             // ToolStripRefreshButton
             // 
@@ -715,6 +678,14 @@
             this.ToolStripRefreshButton.ToolTip = null;
             this.ToolStripRefreshButton.ToolType = BudgetExecution.ToolType.RefreshButton;
             // 
+            // toolSeparator11
+            // 
+            this.toolSeparator11.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator11.Name = "toolSeparator11";
+            this.toolSeparator11.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator11.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripSaveButton
             // 
             this.ToolStripSaveButton.AutoToolTip = false;
@@ -734,6 +705,14 @@
             this.ToolStripSaveButton.Text = "toolStripButton9";
             this.ToolStripSaveButton.ToolTip = null;
             this.ToolStripSaveButton.ToolType = BudgetExecution.ToolType.SaveButton;
+            // 
+            // toolSeparator12
+            // 
+            this.toolSeparator12.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator12.Name = "toolSeparator12";
+            this.toolSeparator12.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator12.Size = new System.Drawing.Size(6, 36);
             // 
             // ToolStripCalculatorButton
             // 
@@ -755,6 +734,14 @@
             this.ToolStripCalculatorButton.ToolTip = null;
             this.ToolStripCalculatorButton.ToolType = BudgetExecution.ToolType.CalculatorButton;
             // 
+            // toolSeparator13
+            // 
+            this.toolSeparator13.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator13.Name = "toolSeparator13";
+            this.toolSeparator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator13.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripExcelButton
             // 
             this.ToolStripExcelButton.AutoToolTip = false;
@@ -775,6 +762,14 @@
             this.ToolStripExcelButton.ToolTip = null;
             this.ToolStripExcelButton.ToolType = BudgetExecution.ToolType.ExcelButton;
             // 
+            // toolSeparator15
+            // 
+            this.toolSeparator15.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator15.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator15.Name = "toolSeparator15";
+            this.toolSeparator15.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator15.Size = new System.Drawing.Size(6, 36);
+            // 
             // ToolStripChartButton
             // 
             this.ToolStripChartButton.AutoToolTip = false;
@@ -794,6 +789,14 @@
             this.ToolStripChartButton.Text = "toolStripButton12";
             this.ToolStripChartButton.ToolTip = null;
             this.ToolStripChartButton.ToolType = BudgetExecution.ToolType.ChartButton;
+            // 
+            // toolSeparator14
+            // 
+            this.toolSeparator14.ForeColor = System.Drawing.Color.Black;
+            this.toolSeparator14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.toolSeparator14.Name = "toolSeparator14";
+            this.toolSeparator14.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.toolSeparator14.Size = new System.Drawing.Size(6, 36);
             // 
             // ToolStripHomeButton
             // 
@@ -839,11 +842,11 @@
             this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TableListBox.ItemSelected = System.Drawing.Color.SteelBlue;
-            this.TableListBox.Location = new System.Drawing.Point(1064, 129);
+            this.TableListBox.Location = new System.Drawing.Point(1064, 97);
             this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableListBox.Name = "TableListBox";
             this.TableListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.TableListBox.Size = new System.Drawing.Size(247, 168);
+            this.TableListBox.Size = new System.Drawing.Size(247, 155);
             this.TableListBox.TabIndex = 5;
             this.TableListBox.Text = "listBox1";
             this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -854,6 +857,96 @@
             this.TableListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.TableListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.TableListBox.ToolTip = null;
+            // 
+            // visualLabel1
+            // 
+            this.visualLabel1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visualLabel1.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.visualLabel1.Location = new System.Drawing.Point(1064, 68);
+            this.visualLabel1.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.visualLabel1.Name = "visualLabel1";
+            this.visualLabel1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.visualLabel1.Outline = false;
+            this.visualLabel1.OutlineColor = System.Drawing.Color.Red;
+            this.visualLabel1.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.visualLabel1.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel1.ReflectionSpacing = 0;
+            this.visualLabel1.ShadowColor = System.Drawing.Color.Black;
+            this.visualLabel1.ShadowDirection = 315;
+            this.visualLabel1.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.visualLabel1.ShadowOpacity = 100;
+            this.visualLabel1.Size = new System.Drawing.Size(247, 23);
+            this.visualLabel1.TabIndex = 6;
+            this.visualLabel1.Text = "Data Tables";
+            this.visualLabel1.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.visualLabel1.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel1.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.visualLabel1.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel1.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel1.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel1.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel1.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel1.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            // 
+            // visualLabel2
+            // 
+            this.visualLabel2.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visualLabel2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.visualLabel2.Location = new System.Drawing.Point(1064, 286);
+            this.visualLabel2.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.visualLabel2.Name = "visualLabel2";
+            this.visualLabel2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.visualLabel2.Outline = false;
+            this.visualLabel2.OutlineColor = System.Drawing.Color.Red;
+            this.visualLabel2.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.visualLabel2.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel2.ReflectionSpacing = 0;
+            this.visualLabel2.ShadowColor = System.Drawing.Color.Black;
+            this.visualLabel2.ShadowDirection = 315;
+            this.visualLabel2.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.visualLabel2.ShadowOpacity = 100;
+            this.visualLabel2.Size = new System.Drawing.Size(247, 23);
+            this.visualLabel2.TabIndex = 7;
+            this.visualLabel2.Text = "Data Columns";
+            this.visualLabel2.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.visualLabel2.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel2.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.visualLabel2.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel2.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel2.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel2.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel2.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel2.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            // 
+            // visualLabel3
+            // 
+            this.visualLabel3.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visualLabel3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.visualLabel3.Location = new System.Drawing.Point(1064, 493);
+            this.visualLabel3.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.visualLabel3.Name = "visualLabel3";
+            this.visualLabel3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.visualLabel3.Outline = false;
+            this.visualLabel3.OutlineColor = System.Drawing.Color.Red;
+            this.visualLabel3.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.visualLabel3.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel3.ReflectionSpacing = 0;
+            this.visualLabel3.ShadowColor = System.Drawing.Color.Black;
+            this.visualLabel3.ShadowDirection = 315;
+            this.visualLabel3.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.visualLabel3.ShadowOpacity = 100;
+            this.visualLabel3.Size = new System.Drawing.Size(247, 23);
+            this.visualLabel3.TabIndex = 8;
+            this.visualLabel3.Text = "Unique Values";
+            this.visualLabel3.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.visualLabel3.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel3.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.visualLabel3.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel3.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel3.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.visualLabel3.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel3.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.visualLabel3.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             // 
             // DataViewForm
             // 
@@ -868,6 +961,9 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1388, 763);
+            this.Controls.Add(this.visualLabel3);
+            this.Controls.Add(this.visualLabel2);
+            this.Controls.Add(this.visualLabel1);
             this.Controls.Add(this.TableListBox);
             this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.ElementListBox);
@@ -937,5 +1033,8 @@
         public ToolStripLabel ToolStripLabel;
         public ToolStripDropDown ToolStripDropDown;
         public ListBox TableListBox;
+        public VisualPlus.Toolkit.Controls.Interactivity.VisualLabel visualLabel1;
+        public VisualPlus.Toolkit.Controls.Interactivity.VisualLabel visualLabel2;
+        public VisualPlus.Toolkit.Controls.Interactivity.VisualLabel visualLabel3;
     }
 }
