@@ -35,8 +35,10 @@
                 FormFilter.Add( "BFY", "2022"  );
                 FormFilter.Add( "FundCode", "B" );
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
-                BindingSource.DataSource = DataModel.DataTable;
-                DataGrid.DataSource = BindingSource;
+                DataGrid.DataSource = DataModel.GetDataTable(  );
+                BindingSource.DataSource = DataGrid.DataSource;
+                ToolStrip.BindingSource = BindingSource;
+                DataSourceLabel.Text = DataModel.DataTable.TableName.SplitPascal(  );
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
                 ToolStrip.Office12Mode = true;
@@ -78,11 +80,13 @@
         public void OnTableListBoxSelectionChanged( object sender, EventArgs e )
         {
             ColumnListBox.Items.Clear( );
+            ElementListBox.Items.Clear( );
             var _listBox = sender as VisualListBox;
-            var _table = _listBox?.SelectedItem.ToString( );
-            if( !string.IsNullOrEmpty( _table ) )
+            var _value = _listBox?.SelectedItem.ToString( );
+            if( !string.IsNullOrEmpty( _value ) )
             {
-                var _source = (Source)Enum.Parse( typeof( Source ), _table );
+                DataSourceLabel.Text = _value.SplitPascal(   );
+                var _source = (Source)Enum.Parse( typeof( Source ), _value );
                 DataModel = new DataBuilder( _source, Provider.Access );
                 DataGrid.DataSource = DataModel.GetDataTable(  );
                 var _columns = DataModel.GetDataColumns(   );

@@ -64,17 +64,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataSet = new DataSet( $"{ Provider }" );
-                    var _dataTable = new DataTable( $"{ Source }" );
-                    _dataSet.Tables.Add( _dataTable );
+                    DataSet = new DataSet( $"{ Provider }" );
+                    DataTable = new DataTable( $"{ Source }" );
+                    DataSet.Tables.Add( DataTable );
 
                     using( var _adapter = Query.GetAdapter(  ) )
                     {
-                        _adapter?.Fill( _dataSet, _dataTable.TableName );
-                        SetColumnCaptions( _dataTable );
+                        _adapter?.Fill( DataSet, DataTable.TableName );
+                        SetColumnCaptions( DataTable );
 
-                        return _dataTable?.Rows?.Count > 0
-                            ? _dataTable
+                        return DataTable?.Rows?.Count > 0
+                            ? DataTable
                             : default( DataTable );
                     }
                 }

@@ -150,7 +150,7 @@ namespace BudgetExecution
         public static readonly Source[ ] AuthoritySources =
         {
             Source.Allocations,
-            Source.Apportionments,
+            Source.ApportionmentData,
             Source.AppropriationDocuments,
             Source.BudgetDocuments,
             Source.BudgetControls,

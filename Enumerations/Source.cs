@@ -47,17 +47,19 @@ namespace BudgetExecution
         /// <summary>
         /// The appropriated carryover estimates
         /// </summary>
-        AppropriatedCarryoverEstimates,
+        AnnualCarryoverEstimates,
 
         /// <summary>
         /// The appropriated reimbursable estimates
         /// </summary>
-        AppropriatedReimbursableEstimates,
+        AnnualReimbursableEstimates,
 
         /// <summary>
         /// The appropriation documents
         /// </summary>
         AppropriationDocuments,
+
+        ApportionmentData,
 
         /// <summary>
         /// The budget documents
@@ -298,12 +300,7 @@ namespace BudgetExecution
         /// The allowance holders
         /// </summary>
         AllowanceHolders,
-
-        /// <summary>
-        /// The apportionments
-        /// </summary>
-        Apportionments,
-
+        
         /// <summary>
         /// The appropriations
         /// </summary>
