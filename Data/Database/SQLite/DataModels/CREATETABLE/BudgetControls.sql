@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS "BudgetControlValues" 
+CREATE TABLE IF NOT EXISTS "BudgetControls" 
 (
-	"BudgetControlValuesId"	INTEGER NOT NULL UNIQUE,
+	"BudgetControlsId"	INTEGER NOT NULL UNIQUE,
 	"Code"	TEXT(80) NULL DEFAULT 'NS',
 	"Name"	TEXT(80) NULL DEFAULT 'NS',
 	"BudgetedTransType"	TEXT(80) NULL DEFAULT 'NS',
@@ -38,5 +38,5 @@ CREATE TABLE IF NOT EXISTS "BudgetControlValues"
 	"FteSpendingControl"	TEXT(80) NULL DEFAULT 'NS',
 	"TransactionTypeControl"	TEXT(80) NULL DEFAULT 'NS',
 	"AuthorityDistributionControl"	TEXT(80) NULL DEFAULT 'NS',
-	PRIMARY KEY("BudgetControlValuesId" AUTOINCREMENT)
+	PRIMARY KEY("BudgetControlsId" AUTOINCREMENT)
 );

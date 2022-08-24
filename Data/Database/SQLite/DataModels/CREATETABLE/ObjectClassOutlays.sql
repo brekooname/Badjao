@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS "ObjectClassOutlays"
 	"ObjectClassGroupNumber"	TEXT(80) NULL DEFAULT 'NS',
 	"ObjectClassGroupName"	TEXT(80) NULL DEFAULT 'NS',
 	"FinanceObjectClass"	TEXT(80) NULL DEFAULT 'NS',
-	"PriorYear"	NUMERIC NULL DEFAULT 0,
-	"CurrentYear"	NUMERIC NULL DEFAULT 0,
-	"BudgetYear"	NUMERIC NULL DEFAULT 0,
+	"PriorYear"	DECIMAL NULL DEFAULT 0,
+	"CurrentYear"	DECIMAL NULL DEFAULT 0,
+	"BudgetYear"	DECIMAL NULL DEFAULT 0,
 	PRIMARY KEY("ObjectClassOutlaysId" AUTOINCREMENT)
 );

@@ -16,9 +16,9 @@ CREATE TABLE IF NOT EXISTS "ProgramFinancingSchedule"
 	"AccountSequence"	TEXT(80) NULL DEFAULT 'NS',
 	"AgencyName"	TEXT(80) NULL DEFAULT 'NS',
 	"FundName"	TEXT(80) NULL DEFAULT 'NS',
-	"OriginalAmount"	NUMERIC NULL DEFAULT 0,
-	"BudgetAmount"	NUMERIC NULL DEFAULT 0,
-	"AgencyAmount"	NUMERIC NULL DEFAULT 0,
-	"Amount"	NUMERIC NULL DEFAULT 0,
+	"OriginalAmount"	DECIMAL NULL DEFAULT 0,
+	"BudgetAmount"	DECIMAL NULL DEFAULT 0,
+	"AgencyAmount"	DECIMAL NULL DEFAULT 0,
+	"Amount"	DECIMAL NULL DEFAULT 0,
 	PRIMARY KEY("ProgramFinancingScheduleId" AUTOINCREMENT)
 );

@@ -32,6 +32,6 @@ CREATE TABLE IF NOT EXISTS 'UnliquidatedObligations'
 	'NpmName'	TEXT(80) NULL DEFAULT 'NS',
 	'VendorCode'	TEXT(80) NULL DEFAULT 'NS',
 	'VendorName'	TEXT(80) NULL DEFAULT 'NS',
-	'Amount'	NUMERIC NULL DEFAULT 0,
+	'Amount'	DECIMAL NULL DEFAULT 0,
 	PRIMARY KEY('UnliquidatedObligationsId' AUTOINCREMENT)
 );

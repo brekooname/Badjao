@@ -35,9 +35,8 @@
                 FormFilter.Add( "BFY", "2022"  );
                 FormFilter.Add( "FundCode", "B" );
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
-                DataGrid.DataSource = DataModel.GetDataTable(  );
-                BindingSource.DataSource = DataGrid.DataSource;
-                ToolStrip.BindingSource = BindingSource;
+                BindingSource.DataSource = DataModel.GetDataTable( );
+                DataGrid.DataSource = BindingSource.DataSource;
                 DataSourceLabel.Text = DataModel.DataTable.TableName.SplitPascal(  );
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
@@ -76,6 +75,7 @@
                 }
             }
         }
+        
 
         public void OnTableListBoxSelectionChanged( object sender, EventArgs e )
         {
@@ -88,7 +88,8 @@
                 DataSourceLabel.Text = _value.SplitPascal(   );
                 var _source = (Source)Enum.Parse( typeof( Source ), _value );
                 DataModel = new DataBuilder( _source, Provider.Access );
-                DataGrid.DataSource = DataModel.GetDataTable(  );
+                BindingSource.DataSource = DataModel.GetDataTable( );
+                DataGrid.DataSource = BindingSource.DataSource;
                 var _columns = DataModel.GetDataColumns(   );
 
                 foreach( var col in _columns )
