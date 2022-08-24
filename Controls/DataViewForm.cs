@@ -4,11 +4,14 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
+    using Syncfusion.Linq;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
     {
+        public DataBuilder DataModel { get; set; }
+
         public DataViewForm( )
         {
             InitializeComponent( );
@@ -28,11 +31,12 @@
                 var _filter = new Dictionary<string, object>(  );
                 _filter.Add( "BFY", "2022"  );
                 _filter.Add( "FundCode", "B" );
-                var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
-                var _columns = _data.GetDataColumns(   );
-                BindingSource.DataSource = _data.DataTable;
-                DataView.BindingSource = BindingSource;
+                DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
+                var _columns = DataModel.GetDataColumns(   );
+                BindingSource.DataSource = DataModel.DataTable;
+                DataGrid.BindingSource = BindingSource;
                 PopulateToolBarDropDownItems(  );
+                SecondaryListBox.Visible = false;
                 PrimaryListBox.SelectedValueChanged += OnPrimaryListBoxSelectionChanged;
                 foreach( var col in _columns )
                 {
@@ -79,14 +83,17 @@
 
         public void OnPrimaryListBoxSelectionChanged( object sender, EventArgs e )
         {
+            SecondaryListBox.Items.Clear(  );
             var _listBox = sender as VisualListBox;
-            var _column = _listBox?.SelectedValue.ToString(  );
-            var _msg = $"The Selection made is:  { _column.SplitPascal(   ) } ";
+            var _column = _listBox?.SelectedItem.ToString(  );
+            var _series = DataModel.DataElements;
 
-            using( var msg  = new Message( _msg ) )
+            foreach( var item in _series[ _column ] )
             {
-                msg.ShowDialog(   );
+                SecondaryListBox.Items.Add( item );
             }
+
+            SecondaryListBox.Visible = true;
 
         }
 
