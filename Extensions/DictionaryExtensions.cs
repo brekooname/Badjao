@@ -72,7 +72,7 @@ namespace BudgetExecution
                         {
                             foreach( var kvp in dict )
                             {
-                                _criteria += $"{ kvp.Key } = { kvp.Value } AND ";
+                                _criteria += $"{ kvp.Key } = '{ kvp.Value }' AND ";
                             }
 
                             var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
@@ -87,7 +87,7 @@ namespace BudgetExecution
                     {
                         foreach( var kvp in dict )
                         {
-                            _criteria += $"{ kvp.Key } = { kvp.Value } AND ";
+                            _criteria += $"{ kvp.Key } = '{ kvp.Value }' AND ";
                         }
 
                         var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );

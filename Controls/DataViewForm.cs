@@ -4,6 +4,7 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
+    using VisualPlus.Toolkit.Controls.DataManagement;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
@@ -28,9 +29,18 @@
                 _filter.Add( "BFY", "2022"  );
                 _filter.Add( "FundCode", "B" );
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
+                var _columns = _data.GetDataColumns(   );
                 BindingSource.DataSource = _data.DataTable;
                 DataView.BindingSource = BindingSource;
-                PopulateListBoxItems();
+                PopulateToolBarDropDownItems(  );
+                PrimaryListBox.SelectedValueChanged += OnPrimaryListBoxSelectionChanged;
+                foreach( var col in _columns )
+                {
+                    if( col?.ColumnName != null )
+                    {
+                        PrimaryListBox.Items.Add( col?.ColumnName );
+                    }
+                }
                 ToolStrip.Office12Mode = true;
             }
             catch( Exception ex )
@@ -53,6 +63,31 @@
                     PrimaryListBox.Items.Add( name.SplitPascal( ) );
                 }
             }
+        }
+
+        public void PopulateToolBarDropDownItems( )
+        {
+            var _names = Enum.GetNames( typeof( Source ) );
+            foreach( var name in _names )
+            {
+                if( name != "NS" )
+                {
+                    ToolStrip.DropDown.Items.Add( name  );
+                }
+            }
+        }
+
+        public void OnPrimaryListBoxSelectionChanged( object sender, EventArgs e )
+        {
+            var _listBox = sender as VisualListBox;
+            var _column = _listBox?.SelectedValue.ToString(  );
+            var _msg = $"The Selection made is:  { _column.SplitPascal(   ) } ";
+
+            using( var msg  = new Message( _msg ) )
+            {
+                msg.ShowDialog(   );
+            }
+
         }
 
         /// <summary>
