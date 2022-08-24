@@ -23,6 +23,10 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     public abstract class DataAccess : DataConfig, ISource, IProvider
     {
+        protected DataAccess( )
+        {
+        }
+
         /// <summary>
         /// Gets the Data.
         /// </summary>
@@ -53,21 +57,15 @@ namespace BudgetExecution
         {
             try
             {
-                DataSet = new DataSet
-                {
-                    DataSetName = $"{ Provider }"
-                };
+                var _dataSet = new DataSet( $"{ Provider }" );
+                var _dataTable = new DataTable( $"{ Source }" );
+                _dataSet.Tables.Add( _dataTable );
+                var _adapter = Query?.GetAdapter( );
+                _adapter?.Fill( _dataSet, _dataTable.TableName );
+                SetColumnCaptions( _dataTable );
 
-                DataSetName = DataSet.DataSetName;
-                DataTable = new DataTable( $"{ Source }" );
-                TableName = DataTable.TableName;
-                DataSet.Tables.Add( DataTable );
-                var _adapter = Query.GetAdapter( );
-                _adapter?.Fill( DataSet, DataTable.TableName );
-                SetColumnCaptions( DataTable );
-
-                return DataTable?.Rows?.Count > 0
-                    ? DataTable
+                return _dataTable?.Rows?.Count > 0
+                    ? _dataTable
                     : default( DataTable );
             }
             catch( Exception ex )

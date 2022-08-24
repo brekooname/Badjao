@@ -29,6 +29,7 @@
                 _filter.Add( "FundCode", "B" );
                 var _data = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
                 BindingSource.DataSource = _data.DataTable;
+                DataView.BindingSource = BindingSource;
                 PopulateListBoxItems();
                 ToolStrip.Office12Mode = true;
             }

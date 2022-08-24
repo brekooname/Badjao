@@ -15,6 +15,10 @@ namespace BudgetExecution
     /// <seealso cref="DataAccess" />
     public abstract class ModelBase : DataAccess
     {
+        protected ModelBase( )
+        {
+        }
+
         /// <summary>
         /// Gets the column ordinals.
         /// </summary>
@@ -123,7 +127,8 @@ namespace BudgetExecution
         /// <param name = "dataRows" > </param>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict )
+        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, 
+            IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true )
             {

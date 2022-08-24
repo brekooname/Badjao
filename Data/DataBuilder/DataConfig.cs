@@ -88,6 +88,13 @@ namespace BudgetExecution
         public virtual string DataSetName { get; set; }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="DataConfig"/> class.
+        /// </summary>
+        protected DataConfig( )
+        {
+        }
+
+        /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>

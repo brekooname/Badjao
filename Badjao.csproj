@@ -458,7 +458,7 @@
     </Compile>
     <Compile Include="CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
-    <Compile Include="Data\SqlStatement\ISqlStatement.cs" />
+    <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />
     <Compile Include="Interfaces\ISeriesModel.cs" />
     <Compile Include="Data\DataBuilder\Computation.cs" />

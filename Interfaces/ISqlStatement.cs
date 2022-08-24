@@ -5,6 +5,65 @@
     public interface ISqlStatement
     {
         /// <summary>
+        /// The extension
+        /// </summary>
+        EXT Extension { get; set; }
+
+        /// <summary>
+        /// The source
+        /// </summary>
+        Source Source { get; set; }
+
+        /// <summary>
+        /// The provider
+        /// </summary>
+        Provider Provider { get; set; }
+
+        /// <summary>
+        /// The command type
+        /// </summary>
+        SQL CommandType { get; set; }
+
+        /// <summary>
+        /// The arguments
+        /// </summary>
+        IDictionary<string, object> Criteria { get; set; }
+
+        /// <summary>
+        /// Gets or sets the updates.
+        /// </summary>
+        /// <value>
+        /// The updates.
+        /// </value>
+        IDictionary<string, object> Updates { get; set; }
+
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
+        IEnumerable<string> Columns { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        string TableName { get; set; }
+
+        /// <summary>
+        /// The provider path
+        /// </summary>
+        string DbClientPath { get; set; }
+
+        /// <summary>
+        /// The file name
+        /// </summary>
+        string FileName { get; set; }
+
+        /// <summary>
         /// Gets the update statement.
         /// </summary>
         /// <returns></returns>
@@ -56,70 +115,6 @@
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
         string ToString( );
-
-        /// <summary>
-        /// The extension
-        /// </summary>
-        EXT Extension { get; set; }
-
-        /// <summary>
-        /// The source
-        /// </summary>
-        Source Source { get; set; }
-
-        /// <summary>
-        /// The provider
-        /// </summary>
-        Provider Provider { get; set; }
-
-        /// <summary>
-        /// The command type
-        /// </summary>
-        SQL CommandType { get; set; }
-
-        /// <summary>
-        /// The arguments
-        /// </summary>
-        IDictionary<string, object> Criteria { get; set; }
-
-        /// <summary>
-        /// Gets or sets the updates.
-        /// </summary>
-        /// <value>
-        /// The updates.
-        /// </value>
-        IDictionary<string, object> Updates { get; set; }
-
-        /// <summary>
-        /// Gets or sets the columns.
-        /// </summary>
-        /// <value>
-        /// The columns.
-        /// </value>
-        IEnumerable<string> Columns { get; set; }
-
-        /// <summary>
-        /// The command text
-        /// </summary>
-        string CommandText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the table.
-        /// </summary>
-        /// <value>
-        /// The name of the table.
-        /// </value>
-        string TableName { get; set; }
-
-        /// <summary>
-        /// The provider path
-        /// </summary>
-        string DbClientPath { get; set; }
-
-        /// <summary>
-        /// The file name
-        /// </summary>
-        string FileName { get; set; }
 
         /// <summary>
         /// Sets the select statement.

@@ -16,9 +16,9 @@ namespace BudgetExecution
     public class SqlStatement : SqlBase, ISqlStatement
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-        /// </summary>
-        public SqlStatement()
+                                                           /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+                                                           /// </summary>
+        public SqlStatement( )
         {
         }
 
@@ -31,6 +31,7 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, string sqlText )
             : base( source, provider, sqlText )
         {
+            CommandText = sqlText;
         }
 
         /// <summary>
@@ -44,6 +45,7 @@ namespace BudgetExecution
             SQL commandType = SQL.SELECT )
             : base( source, provider, sqlText, commandType )
         {
+            CommandText = sqlText;
         }
 
         /// <summary>
@@ -55,6 +57,7 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL ) 
             : base( source, provider, commandType )
         {
+            CommandText = GetSelectStatement(   );
         }
         
         /// <summary>
@@ -68,6 +71,7 @@ namespace BudgetExecution
             SQL commandType = SQL.SELECTALL )
             : base( source, provider, dict, commandType )
         {
+            CommandText = GetCommandText( dict, commandType );
         }
 
         /// <summary>
@@ -82,6 +86,7 @@ namespace BudgetExecution
             IDictionary<string, object> where, SQL commandType = SQL.UPDATE ) 
             : base( source, provider, updates, where, commandType )
         {
+            CommandText = GetCommandText( updates, where, commandType );
         }
 
         /// <summary>
@@ -94,6 +99,7 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, SQL commandType, IDictionary<string, object> dict ) 
             : base( source, provider, dict, commandType )
         {
+            CommandText = GetCommandText( dict, commandType );
         }
 
         /// <summary>
@@ -108,6 +114,7 @@ namespace BudgetExecution
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
             : base( source, provider, columns, criteria, commandType )
         {
+            CommandText = GetCommandText( columns, criteria, commandType );
         }
 
         /// <summary>
@@ -280,7 +287,6 @@ namespace BudgetExecution
                     switch( commandType )
                     {
                         case SQL.SELECT:
-
                         {
                             var _cols = updates.Keys.ToList( );
                             return CreateSelectStatement( _cols, where );
@@ -323,7 +329,7 @@ namespace BudgetExecution
             try
             {
                 return !string.IsNullOrEmpty( CommandText )
-                    ? CommandText
+                    ? CommandText 
                     : string.Empty;
             }
             catch( Exception ex )

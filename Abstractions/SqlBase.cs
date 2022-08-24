@@ -38,12 +38,12 @@ namespace BudgetExecution
         /// <summary>
         /// The command type
         /// </summary>
-        public virtual SQL CommandType { get; set; }
+        public SQL CommandType { get; set; }
 
         /// <summary>
         /// The arguments
         /// </summary>
-        public virtual IDictionary<string, object> Criteria { get; set; }
+        public IDictionary<string, object> Criteria { get; set; }
 
         /// <summary>
         /// Gets or sets the updates.
@@ -51,7 +51,7 @@ namespace BudgetExecution
         /// <value>
         /// The updates.
         /// </value>
-        public virtual IDictionary<string, object> Updates { get; set; }
+        public IDictionary<string, object> Updates { get; set; }
 
         /// <summary>
         /// Gets or sets the columns.
@@ -59,12 +59,7 @@ namespace BudgetExecution
         /// <value>
         /// The columns.
         /// </value>
-        public virtual IEnumerable<string> Columns { get; set; }
-
-        /// <summary>
-        /// The command text
-        /// </summary>
-        public virtual string CommandText { get; set; }
+        public IEnumerable<string> Columns { get; set; }
         
         /// <summary>
         /// Gets or sets the name of the table.
@@ -72,18 +67,26 @@ namespace BudgetExecution
         /// <value>
         /// The name of the table.
         /// </value>
-        public virtual string TableName { get; set; }
+        public string TableName { get; set; }
         
         /// <summary>
         /// The provider path
         /// </summary>
-        public virtual string DbClientPath { get; set; }
+        public string DbClientPath { get; set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        public virtual string FileName { get; set; }
+        public string FileName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the select statement.
+        /// </summary>
+        /// <value>
+        /// The select statement.
+        /// </value>
+        public string CommandText { get; set; }
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
@@ -106,7 +109,6 @@ namespace BudgetExecution
             Provider = provider;
             Criteria = null;
             Columns = null;
-            CommandText = GetSelectStatement( );
         }
 
         /// <summary>
@@ -123,7 +125,6 @@ namespace BudgetExecution
             Provider = provider;
             Criteria = null;
             Columns = null;
-            CommandText = sqlText;
         }
 
         /// <summary>
@@ -143,7 +144,6 @@ namespace BudgetExecution
             Updates = null;
             Criteria = null;
             Columns = null;
-            CommandText = sqlText;
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the select statement.
         /// </summary>
-        public virtual string GetSelectStatement( )
+        public string GetSelectStatement( )
         {
             if( Columns?.Any( ) == true 
                 && Criteria?.Any( ) == true )
@@ -242,7 +242,7 @@ namespace BudgetExecution
         /// Sets the select statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string CreateSelectStatement( IDictionary<string, object> dict )
+        public string CreateSelectStatement( IDictionary<string, object> dict )
         {
             if( Enum.IsDefined( typeof( Source ), Source ) 
                 && dict?.Any( ) == true ) 
@@ -268,7 +268,7 @@ namespace BudgetExecution
         /// <param name="columnNames">The column names.</param>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public virtual string CreateSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> dict )
+        public string CreateSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> dict )
         {
             if( Enum.IsDefined( typeof( Source ), Source )
                 && dict?.Any( ) == true 
@@ -301,7 +301,8 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="updates">The dictionary.</param>
         /// <param name = "where" > </param>
-        public virtual string CreateUpdateStatement( IDictionary<string, object> updates, IDictionary<string, object> where )
+        public string CreateUpdateStatement( IDictionary<string, object> updates, 
+            IDictionary<string, object> where )
         {
             if( updates?.Any( ) == true
                 && where?.Any( ) == true
@@ -343,7 +344,7 @@ namespace BudgetExecution
         /// Sets the insert statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string CreateInsertStatement( IDictionary<string, object> dict )
+        public string CreateInsertStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true 
                 && Enum.IsDefined( typeof( Source ), Source ) )
@@ -378,7 +379,7 @@ namespace BudgetExecution
         /// Sets the delete statement.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
-        public virtual string CreateDeleteStatement( IDictionary<string, object> dict )
+        public string CreateDeleteStatement( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
