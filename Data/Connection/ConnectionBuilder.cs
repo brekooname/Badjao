@@ -74,6 +74,10 @@ namespace BudgetExecution
         }
 
 
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <returns></returns>
         public DbConnection GetConnection(  )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider ) )

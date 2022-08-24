@@ -7,6 +7,10 @@ namespace BudgetExecution
     using System;
     using System.Data;
     using System.Data.Common;
+    using System.Data.OleDb;
+    using System.Data.SqlClient;
+    using System.Data.SqlServerCe;
+    using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
@@ -17,6 +21,22 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class AdapterBuilder : DbDataAdapter
     {
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        public Source Source { get; set; }
+
+        /// <summary>
+        /// Gets or sets the provider.
+        /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
+        public Provider Provider { get; set; }
+
         /// <summary>
         /// The connection
         /// </summary>
@@ -48,6 +68,8 @@ namespace BudgetExecution
         /// </value>
         public ICommandFactory CommandFactory { get; set; }
 
+        public string CommandText { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
@@ -68,11 +90,13 @@ namespace BudgetExecution
         public AdapterBuilder( ICommandBuilder commandBuilder )
             : this( )
         {
+            Source = commandBuilder.Source;
+            Provider = commandBuilder.Provider;
             CommandBuilder = commandBuilder;
             SqlStatement = commandBuilder.SqlStatement;
             ConnectionBuilder = commandBuilder.ConnectionBuilder;
             Connection = ConnectionBuilder.Connection;
-            SelectCommand = commandBuilder.GetCommand( SqlStatement );
+            CommandText = SqlStatement.CommandText;
         }
 
         /// <summary>
@@ -82,13 +106,61 @@ namespace BudgetExecution
         public AdapterBuilder( ISqlStatement sqlStatement )
             : this( )
         {
+            Source = sqlStatement.Source;
+            Provider = sqlStatement.Provider;
             SqlStatement = sqlStatement;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             CommandBuilder = new CommandBuilder( sqlStatement );
             Connection = ConnectionBuilder.Connection;
-            SelectCommand = CommandBuilder.GetCommand( SqlStatement );
+            Connection = ConnectionBuilder.Connection;
+            CommandText = sqlStatement.CommandText;
         }
-        
+
+        /// <summary>
+        /// Gets the adapter.
+        /// </summary>
+        /// <returns></returns>
+        public DbDataAdapter GetAdapter( )
+        {
+            if( Enum.IsDefined( typeof( Provider ), Provider ) 
+                && Connection != null 
+                && !string.IsNullOrEmpty( CommandText ))
+            {
+                try
+                {
+                    switch( Provider )
+                    {
+                        case Provider.SQLite:
+                        {
+                            return new SQLiteDataAdapter( CommandText, Connection as SQLiteConnection );
+                        }
+                        case Provider.SqlCe:
+                        {
+                            return new SqlCeDataAdapter( CommandText, Connection as SqlCeConnection );
+                        }
+                        case Provider.SqlServer:
+                        {
+                            return new SqlDataAdapter( CommandText, Connection as SqlConnection );
+                        }
+                        case Provider.Excel:
+                        case Provider.CSV:
+                        case Provider.Access:
+                        case Provider.OleDb:
+                        {
+                            return new OleDbDataAdapter( CommandText, Connection as OleDbConnection );
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( DbDataAdapter );
+                }
+            }
+
+            return default( DbDataAdapter);
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

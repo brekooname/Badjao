@@ -70,7 +70,7 @@ namespace BudgetExecution
 
                     using( var _adapter = Query.GetAdapter(  ) )
                     {
-                        _adapter?.Fill( _dataTable );
+                        _adapter?.Fill( _dataSet, _dataTable.TableName );
                         SetColumnCaptions( _dataTable );
 
                         return _dataTable?.Rows?.Count > 0
@@ -80,7 +80,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    DataAccess.Fail( ex );
+                    Fail( ex );
                     return default( DataTable );
                 }
             }

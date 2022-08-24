@@ -25,6 +25,14 @@
         SQL CommandType { get; set; }
 
         /// <summary>
+        /// Gets or sets the command text.
+        /// </summary>
+        /// <value>
+        /// The command text.
+        /// </value>
+        string CommandText { get; set; }
+
+        /// <summary>
         /// The arguments
         /// </summary>
         IDictionary<string, object> Criteria { get; set; }

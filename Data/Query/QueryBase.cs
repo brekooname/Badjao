@@ -297,33 +297,41 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public DbDataAdapter GetAdapter()
+        public DbDataAdapter GetAdapter( )
         {
-            if( Enum.IsDefined( typeof( Provider ), Provider ) )
+            if( Enum.IsDefined( typeof( Provider ), Provider ) 
+                && !string.IsNullOrEmpty( SqlStatement?.CommandText ) 
+                && ConnectionBuilder?.Connection != null )
             {
                 try
                 {
+                    var _commandText = SqlStatement.CommandText;
                     switch( Provider )
                     {
                         case Provider.Access:
                         {
-                            return DataAdapter as OleDbDataAdapter;
+                            var _connection = ConnectionBuilder.Connection as OleDbConnection;
+                            return new OleDbDataAdapter( _commandText, _connection ); 
                         }
                         case Provider.SQLite:
                         {
-                            return DataAdapter as SQLiteDataAdapter;
+                            var _connection = ConnectionBuilder.Connection as SQLiteConnection;
+                            return new SQLiteDataAdapter( _commandText, _connection );
                         }
                         case Provider.SqlCe:
                         {
-                            return DataAdapter as SqlCeDataAdapter;
+                            var _connection = ConnectionBuilder.Connection as SqlCeConnection;
+                            return new SqlCeDataAdapter( _commandText, _connection );
                         }
                         case Provider.SqlServer:
                         {
-                            return DataAdapter as SqlDataAdapter;
+                            var _connection = ConnectionBuilder.Connection as SqlConnection;
+                            return new SqlDataAdapter( _commandText, _connection );
                         }
                         default:
                         {
-                            return DataAdapter as OleDbDataAdapter;
+                            var _connection = ConnectionBuilder.Connection as OleDbConnection;
+                            return new OleDbDataAdapter( _commandText, _connection );
                         }
                     }
                 }

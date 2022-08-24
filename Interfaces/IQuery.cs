@@ -48,14 +48,14 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        DbConnection GetConnection();
+        DbConnection GetConnection( );
         
         /// <summary>
         /// Gets the adapter.
         /// </summary>
         /// <returns>
         /// </returns>
-        DbDataAdapter GetAdapter();
+        DbDataAdapter GetAdapter( );
 
         /// <summary>
         /// Sets the Data reader.

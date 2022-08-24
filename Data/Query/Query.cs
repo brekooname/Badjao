@@ -48,7 +48,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -78,7 +78,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, dict, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -102,7 +102,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -126,7 +126,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -147,7 +147,7 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( sqlStatement );
             DataCommand = CommandBuilder.GetCommand( sqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -166,7 +166,7 @@ namespace BudgetExecution
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, sqlText );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
             Args = null;
         }
@@ -193,7 +193,7 @@ namespace BudgetExecution
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, dict );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -218,7 +218,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider, sqlText );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
@@ -245,7 +245,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
             IsDisposed = false;
         }
 
