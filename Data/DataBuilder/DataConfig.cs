@@ -13,7 +13,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    public abstract class DataConfig
+    public class DataConfig
     {
         /// <summary>
         /// The source
@@ -90,7 +90,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="DataConfig"/> class.
         /// </summary>
-        protected DataConfig( )
+        public DataConfig( )
         {
         }
 

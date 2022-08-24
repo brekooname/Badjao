@@ -18,7 +18,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class ConnectionBase 
+    public class ConnectionBase 
     {
         /// <summary>
         /// The connector
@@ -93,11 +93,16 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionBase"/> class.
         /// </summary>
-        protected ConnectionBase( )
+        public ConnectionBase( )
         {
         }
 
-        protected ConnectionBase( Source source, Provider provider = Provider.SQLite )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        public ConnectionBase( Source source, Provider provider = Provider.SQLite )
         {
             Source = source;
             Provider = provider;
@@ -114,7 +119,11 @@ namespace BudgetExecution
             }
         }
 
-        protected ConnectionBase( string fullPath )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionBase"/> class.
+        /// </summary>
+        /// <param name="fullPath">The full path.</param>
+        public ConnectionBase( string fullPath )
         {
             Source = Source.External;
             FilePath = fullPath;
@@ -122,16 +131,21 @@ namespace BudgetExecution
             TableName = FileName;
             PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
 
-            if ( PathExtension != null )
+            if( PathExtension != null )
             {
-                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper(  ) );
-                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper(  ) );
+                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension.ToUpper( ) );
                 DbPath = DbClientPath[ Extension.ToString( ) ];
                 ConnectionString = GetConnectionString( Provider );
             }
         }
 
-        protected ConnectionBase( string fullPath, Provider provider )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionBase"/> class.
+        /// </summary>
+        /// <param name="fullPath">The full path.</param>
+        /// <param name="provider">The provider.</param>
+        public ConnectionBase( string fullPath, Provider provider )
         {
             Source = Source.External;
             FilePath = fullPath;
@@ -139,10 +153,10 @@ namespace BudgetExecution
             TableName = FileName;
             PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
 
-            if ( PathExtension != null )
+            if( PathExtension != null )
             {
-                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension?.ToUpper(  ) );
-                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension?.ToUpper( ) );
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper(  ) );
+                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension.ToUpper( ) );
                 DbPath = DbClientPath[ Extension.ToString( ) ];
                 ConnectionString = GetConnectionString( Provider );
             }

@@ -21,9 +21,12 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
-    public abstract class DataAccess : DataConfig, ISource, IProvider
+    public class DataAccess : DataConfig, ISource, IProvider
     {
-        protected DataAccess( )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataAccess"/> class.
+        /// </summary>
+        public DataAccess( )
         {
         }
 
@@ -55,24 +58,34 @@ namespace BudgetExecution
         /// <returns></returns>
         public virtual DataTable GetDataTable( )
         {
-            try
+            if ( Enum.IsDefined( typeof( Provider ), Provider ) 
+                && Enum.IsDefined( typeof( Source ), Source  ) 
+                && Query != null )
             {
-                var _dataSet = new DataSet( $"{ Provider }" );
-                var _dataTable = new DataTable( $"{ Source }" );
-                _dataSet.Tables.Add( _dataTable );
-                var _adapter = Query?.GetAdapter( );
-                _adapter?.Fill( _dataSet, _dataTable.TableName );
-                SetColumnCaptions( _dataTable );
+                try
+                {
+                    var _dataSet = new DataSet( $"{ Provider }" );
+                    var _dataTable = new DataTable( $"{ Source }" );
+                    _dataSet.Tables.Add( _dataTable );
 
-                return _dataTable?.Rows?.Count > 0
-                    ? _dataTable
-                    : default( DataTable );
+                    using( var _adapter = Query.GetAdapter(  ) )
+                    {
+                        _adapter?.Fill( _dataTable );
+                        SetColumnCaptions( _dataTable );
+
+                        return _dataTable?.Rows?.Count > 0
+                            ? _dataTable
+                            : default( DataTable );
+                    }
+                }
+                catch( Exception ex )
+                {
+                    DataAccess.Fail( ex );
+                    return default( DataTable );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DataTable );
-            }
+
+            return default( DataTable );
         }
 
         /// <summary>
@@ -81,7 +94,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataSet GetDataSet( )
         {
-            if( Enum.IsDefined( typeof( Source ), Source ) )
+            if( Enum.IsDefined( typeof( Provider ), Provider )
+                && Enum.IsDefined( typeof( Source ), Source )
+                && Query != null )
             {
                 try
                 {
@@ -96,7 +111,7 @@ namespace BudgetExecution
                     TableName = _table?.TableName;
                     _dataSet.Tables.Add( _table );
 
-                    using( var _adapter = Query?.GetAdapter(  ) )
+                    using( var _adapter = Query.GetAdapter(  ) )
                     {
                         _adapter?.Fill( _dataSet, _table?.TableName );
                         SetColumnCaptions( _table );

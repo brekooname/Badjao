@@ -10,7 +10,7 @@
     using System.Diagnostics.CodeAnalysis;
 
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    public abstract class CommandBase
+    public class CommandBase
     {
         /// <summary>
         /// The command
@@ -40,7 +40,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandBase"/> class.
         /// </summary>
-        protected CommandBase( )
+        public CommandBase( )
         {
         }
 
@@ -51,7 +51,7 @@
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected CommandBase( Source source, Provider provider, IDictionary<string, object> dict,
+        public CommandBase( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECTALL )
         {
             Source = source;
@@ -69,7 +69,7 @@
         /// <param name="updates">The updates.</param>
         /// <param name="criteria">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected CommandBase( Source source, Provider provider, IDictionary<string, object> updates,
+        public CommandBase( Source source, Provider provider, IDictionary<string, object> updates,
             IDictionary<string, object> criteria, SQL commandType = SQL.UPDATE )
         {
             Source = source;
@@ -87,7 +87,7 @@
         /// <param name="columns">The columns.</param>
         /// <param name="criteria">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected CommandBase( Source source, Provider provider, IEnumerable<string> columns,
+        public CommandBase( Source source, Provider provider, IEnumerable<string> columns,
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECTALL )
         {
             Source = source;
@@ -101,7 +101,7 @@
         /// Initializes a new instance of the <see cref="CommandBase"/> class.
         /// </summary>
         /// <param name="sqlStatement">The SQL statement.</param>
-        protected CommandBase( ISqlStatement sqlStatement )
+        public CommandBase( ISqlStatement sqlStatement )
         {
             SqlStatement = sqlStatement;
             Source = sqlStatement.Source;

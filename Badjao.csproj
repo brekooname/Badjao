@@ -648,7 +648,7 @@
     <Compile Include="Data\Command\CommandFactory.cs" />
     <Compile Include="Interfaces\ICommandBuilder.cs" />
     <Compile Include="Interfaces\ICommandFactory.cs" />
-    <Compile Include="Abstractions\ConnectionBase.cs" />
+    <Compile Include="Data\Connection\ConnectionBase.cs" />
     <Compile Include="Data\Connection\ConnectionBuilder.cs" />
     <Compile Include="Interfaces\IConnectionBuilder.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
@@ -675,7 +675,7 @@
     <Compile Include="Data\Conversion\sdf\TriggerSchema.cs" />
     <Compile Include="Data\Conversion\sdf\ViewSchema.cs" />
     <Compile Include="Data\DataBuilder\DataModel.cs" />
-    <Compile Include="Abstractions\ModelBase.cs" />
+    <Compile Include="Data\DataBuilder\ModelBase.cs" />
     <Compile Include="Data\DataBuilder\DataAccess.cs" />
     <Compile Include="Data\DataBuilder\DataBuilder.cs" />
     <Compile Include="Data\DataBuilder\DataConfig.cs" />
@@ -698,11 +698,11 @@
     <Compile Include="Data\Query\ExcelQuery.cs" />
     <Compile Include="Interfaces\IQuery.cs" />
     <Compile Include="Data\Query\Query.cs" />
-    <Compile Include="Abstractions\QueryBase.cs" />
+    <Compile Include="Data\Query\QueryBase.cs" />
     <Compile Include="Data\Query\SqlCeQuery.cs" />
     <Compile Include="Data\Query\SQLiteQuery.cs" />
     <Compile Include="Data\Query\SqlServerQuery.cs" />
-    <Compile Include="Abstractions\SqlBase.cs" />
+    <Compile Include="Data\SqlStatement\SqlBase.cs" />
     <Compile Include="Data\SqlStatement\SqlStatement.cs" />
     <Compile Include="Data\DataWorker\DataWorker.cs">
       <SubType>Component</SubType>

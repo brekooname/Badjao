@@ -42,7 +42,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        public ConnectionBuilder( Source source, Provider provider = Provider.SQLite ) 
+        public ConnectionBuilder( Source source, Provider provider = Provider.Access ) 
             : base( source, provider )
         {
             Connection = GetConnection( );
@@ -67,66 +67,40 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="fullPath">The fullPath.</param>
         /// <param name="provider">The provider.</param>
-        public ConnectionBuilder( string fullPath, Provider provider = Provider.SQLite ) 
+        public ConnectionBuilder( string fullPath, Provider provider = Provider.Access ) 
             : base( fullPath, provider )
         {
             Connection = GetConnection( );
         }
 
 
-        private DbConnection GetConnection(  )
+        public DbConnection GetConnection(  )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider ) )
             {
                 try
                 {
+                    var _connectionString = ConnectionPath[ $"{ Provider }" ]?.ConnectionString;
                     switch( Provider )
                     {
                         case Provider.SQLite:
-
                         {
-                            var _connectionString = ConnectionPath[ $"{ Provider.SQLite }" ]
-                                ?.ConnectionString;
-
-                            return !string.IsNullOrEmpty( _connectionString )
-                                ? new SQLiteConnection( _connectionString )
-                                : default( DbConnection );
+                            return new SQLiteConnection( _connectionString );
                         }
-
                         case Provider.SqlCe:
-
                         {
-                            var _connectionString = ConnectionPath[ $"{ Provider.SqlCe }" ]
-                                ?.ConnectionString;
-
-                            return !string.IsNullOrEmpty( _connectionString )
-                                ? new SqlCeConnection( _connectionString )
-                                : default( DbConnection );
+                            return new SqlCeConnection( _connectionString );
                         }
-
                         case Provider.SqlServer:
-
                         {
-                            var _connectionString = ConnectionPath[ $"{ Provider.SqlServer }" ]
-                                ?.ConnectionString;
-
-                            return !string.IsNullOrEmpty( _connectionString )
-                                ? new SqlConnection( _connectionString )
-                                : default( DbConnection );
+                            return  new SqlConnection( _connectionString );
                         }
-
                         case Provider.Excel:
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
-
                         {
-                            var _connectionString = ConnectionPath[ $"{ Provider.OleDb }" ]
-                                ?.ConnectionString;
-
-                            return !string.IsNullOrEmpty( _connectionString )
-                                ? new OleDbConnection( _connectionString )
-                                : default( DbConnection );
+                            return new OleDbConnection( _connectionString );
                         }
                     }
                 }

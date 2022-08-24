@@ -13,9 +13,12 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="DataAccess" />
-    public abstract class ModelBase : DataAccess
+    public  class ModelBase : DataAccess
     {
-        protected ModelBase( )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModelBase"/> class.
+        /// </summary>
+        public ModelBase( )
         {
         }
 

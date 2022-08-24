@@ -18,7 +18,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "ConvertIfStatementToSwitchStatement" ) ]
-    public abstract class SqlBase 
+    public class SqlBase 
     {
         /// <summary>
         /// The extension
@@ -90,7 +90,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
-        protected SqlBase()
+        public SqlBase()
         {
         }
         
@@ -100,7 +100,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected SqlBase( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
+        public SqlBase( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
         {
             DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
             CommandType = commandType;
@@ -117,7 +117,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="sqlText">The SQL text.</param>
-        protected SqlBase( Source source, Provider provider, string sqlText )
+        public SqlBase( Source source, Provider provider, string sqlText )
         {
             DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
             Source = source;
@@ -134,7 +134,7 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name="sqlText">The SQL text.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected SqlBase( Source source, Provider provider, string sqlText, SQL commandType = SQL.SELECT )
+        public SqlBase( Source source, Provider provider, string sqlText, SQL commandType = SQL.SELECT )
         {
             DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
             Source = source;
@@ -153,7 +153,7 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name = "dict" > </param>
         /// <param name = "commandType" > </param>
-        protected SqlBase( Source source, Provider provider, IDictionary<string, object> dict,
+        public SqlBase( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECTALL )
         {
             DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
@@ -166,7 +166,7 @@ namespace BudgetExecution
             Columns = null;
         }
 
-        protected SqlBase( Source source, Provider provider, IDictionary<string, object> updates,
+        public SqlBase( Source source, Provider provider, IDictionary<string, object> updates,
             IDictionary<string, object> criteria, SQL commandType = SQL.UPDATE )
         {
             DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
@@ -187,7 +187,7 @@ namespace BudgetExecution
         /// <param name="columns">The columns.</param>
         /// <param name="criteria">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected SqlBase( Source source, Provider provider, IEnumerable<string> columns,
+        public SqlBase( Source source, Provider provider, IEnumerable<string> columns,
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
         {
             DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
