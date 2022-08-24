@@ -12,6 +12,8 @@
     {
         public DataBuilder DataModel { get; set; }
 
+        public IDictionary<string, object> FormFilter { get; set; }
+
         public DataViewForm( )
         {
             InitializeComponent( );
@@ -28,23 +30,21 @@
         {
             try
             {
-                var _filter = new Dictionary<string, object>(  );
-                _filter.Add( "BFY", "2022"  );
-                _filter.Add( "FundCode", "B" );
-                DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, _filter );
-                var _columns = DataModel.GetDataColumns(   );
+                FormFilter = new Dictionary<string, object>(  );
+                FormFilter.Add( "BFY", "2022"  );
+                FormFilter.Add( "FundCode", "B" );
+                DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
                 DataGrid.BindingSource = BindingSource;
+                PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
-                SecondaryListBox.Visible = false;
-                PrimaryListBox.SelectedValueChanged += OnPrimaryListBoxSelectionChanged;
-                foreach( var col in _columns )
-                {
-                    if( col?.ColumnName != null )
-                    {
-                        PrimaryListBox.Items.Add( col?.ColumnName );
-                    }
-                }
+                TableListBox.Text = "Data Tables";
+                ColumnListBox.Text = "Data Columns";
+                ElementListBox.Text = "Unique Fields";
+                ColumnListBox.Visible = !ColumnListBox.Visible;
+                ElementListBox.Visible = !ElementListBox.Visible;
+                TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
+                ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
                 ToolStrip.Office12Mode = true;
             }
             catch( Exception ex )
@@ -56,22 +56,23 @@
         /// <summary>
         /// Populates the ListBox items.
         /// </summary>
-        public void PopulateListBoxItems( )
+        public void PopulateTableListBoxItems( )
         {
-            PrimaryListBox.Items.Clear();
+            TableListBox.Items.Clear();
             var _names = Enum.GetNames( typeof( Source ) );
             foreach( var name in _names )
             {
-                if( name != "NS" )
+                if( name != "NS" 
+                    || name != "External")
                 {
-                    PrimaryListBox.Items.Add( name.SplitPascal( ) );
+                    TableListBox.Items.Add( name );
                 }
             }
         }
 
         public void PopulateToolBarDropDownItems( )
         {
-            var _names = Enum.GetNames( typeof( Source ) );
+            var _names = Enum.GetNames( typeof( SQL ) );
             foreach( var name in _names )
             {
                 if( name != "NS" )
@@ -81,20 +82,39 @@
             }
         }
 
-        public void OnPrimaryListBoxSelectionChanged( object sender, EventArgs e )
+        public void OnTableListBoxSelectionChanged( object sender, EventArgs e )
         {
-            SecondaryListBox.Items.Clear(  );
+            ColumnListBox.Items.Clear( );
+            var _listBox = sender as VisualListBox;
+            var _table = _listBox?.SelectedItem.ToString( );
+            if( !string.IsNullOrEmpty( _table ) )
+            {
+                var _source = (Source)Enum.Parse( typeof( Source ), _table );
+                DataModel = new DataBuilder( _source, Provider.Access );
+                DataGrid.BindingSource.DataSource = DataModel.GetDataTable(  );
+                var _columns = DataModel.GetDataColumns(   );
+
+                foreach( var col in _columns )
+                {
+                    ColumnListBox.Items.Add( col.ColumnName );
+                }
+            }
+        }
+
+        public void OnColumnListBoxSelectionChanged( object sender, EventArgs e )
+        {
+            ElementListBox.Items.Clear(  );
             var _listBox = sender as VisualListBox;
             var _column = _listBox?.SelectedItem.ToString(  );
             var _series = DataModel.DataElements;
 
-            foreach( var item in _series[ _column ] )
+            if( !string.IsNullOrEmpty( _column ) )
             {
-                SecondaryListBox.Items.Add( item );
+                foreach( var item in _series[ _column ] )
+                {
+                    ElementListBox.Items.Add( item );
+                }
             }
-
-            SecondaryListBox.Visible = true;
-
         }
 
         /// <summary>
