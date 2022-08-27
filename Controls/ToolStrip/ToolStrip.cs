@@ -105,6 +105,8 @@ namespace BudgetExecution
             ThemeStyle.ComboBoxStyle.HoverBorderColor = Color.SteelBlue;
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
+            Buttons = GetButtons( );
+            VisibleChanged += OnVisible;
         }
 
         /// <summary>
@@ -144,28 +146,12 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         protected void OnVisible( object sender, EventArgs e )
         {
-            if( sender is ToolStrip )
+            if( sender is ToolStrip toolStrip )
             {
-                if( Items.Count > 0 )
+                foreach( var button in toolStrip.Buttons.Values )
                 {
-                    Items.Clear(   );
+                    button.BindingSource = BindingSource;
                 }
-
-                Items.Add( Label );
-                Items.Add( TextBox ); 
-                Items.Add( FirstButton ); 
-                Items.Add( PreviousButton ); 
-                Items.Add( NextButton ); 
-                Items.Add( LastButton ); 
-                Items.Add( EditButton);  
-                Items.Add( AddButton ); 
-                Items.Add( DeleteButton ); 
-                Items.Add( SaveButton ); 
-                Items.Add( RefreshButton ); 
-                Items.Add( ExcelButton ); 
-                Items.Add( CalculatorButton ); 
-                Items.Add( ChartButton ); 
-                Items.Add( HomeButton ); 
             }
         }
         

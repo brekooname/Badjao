@@ -59,7 +59,7 @@ namespace BudgetExecution
         /// <value>
         /// The progress bar.
         /// </value>
-        public virtual ToolStripProgressBar ProgressBar { get; protected set; }
+        public virtual ToolStripProgressBar ProgressBar { get; set; }
 
         /// <summary>
         /// Gets or sets the first button.
@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// <value>
         /// The first button.
         /// </value>
-        public virtual ToolStripButton FirstButton { get; protected set; }
+        public virtual ToolStripButton FirstButton { get; set; }
 
         /// <summary>
         /// Gets or sets the previous button.
@@ -75,7 +75,7 @@ namespace BudgetExecution
         /// <value>
         /// The previous button.
         /// </value>
-        public virtual ToolStripButton PreviousButton { get; protected set; }
+        public virtual ToolStripButton PreviousButton { get; set; }
 
         /// <summary>
         /// Gets or sets the next button.
@@ -83,7 +83,7 @@ namespace BudgetExecution
         /// <value>
         /// The next button.
         /// </value>
-        public virtual ToolStripButton NextButton { get; protected set; }
+        public virtual ToolStripButton NextButton { get; set; }
 
         /// <summary>
         /// Gets or sets the last button.
@@ -91,7 +91,7 @@ namespace BudgetExecution
         /// <value>
         /// The last button.
         /// </value>
-        public virtual ToolStripButton LastButton { get; protected set; }
+        public virtual ToolStripButton LastButton { get; set; }
 
         /// <summary>
         /// Gets or sets the edit button.
@@ -99,7 +99,7 @@ namespace BudgetExecution
         /// <value>
         /// The edit button.
         /// </value>
-        public virtual ToolStripButton EditButton { get; protected set; }
+        public virtual ToolStripButton EditButton { get; set; }
 
         /// <summary>
         /// Gets or sets the add button.
@@ -107,7 +107,7 @@ namespace BudgetExecution
         /// <value>
         /// The add button.
         /// </value>
-        public virtual ToolStripButton AddButton { get; protected set; }
+        public virtual ToolStripButton AddButton { get; set; }
 
         /// <summary>
         /// Gets or sets the delete button.
@@ -115,7 +115,7 @@ namespace BudgetExecution
         /// <value>
         /// The delete button.
         /// </value>
-        public virtual ToolStripButton DeleteButton { get; protected set; }
+        public virtual ToolStripButton DeleteButton { get; set; }
 
         /// <summary>
         /// Gets or sets the save button.
@@ -123,7 +123,7 @@ namespace BudgetExecution
         /// <value>
         /// The save button.
         /// </value>
-        public virtual ToolStripButton SaveButton { get; protected set; }
+        public virtual ToolStripButton SaveButton { get; set; }
 
         /// <summary>
         /// Gets or sets the refresh button.
@@ -131,7 +131,7 @@ namespace BudgetExecution
         /// <value>
         /// The refresh button.
         /// </value>
-        public virtual ToolStripButton RefreshButton { get; protected set; }
+        public virtual ToolStripButton RefreshButton { get; set; }
 
         /// <summary>
         /// Gets or sets the excel button.
@@ -139,7 +139,7 @@ namespace BudgetExecution
         /// <value>
         /// The excel button.
         /// </value>
-        public virtual ToolStripButton ExcelButton { get; protected set; }
+        public virtual ToolStripButton ExcelButton { get; set; }
 
         /// <summary>
         /// Gets or sets the calculator button.
@@ -147,7 +147,7 @@ namespace BudgetExecution
         /// <value>
         /// The calculator button.
         /// </value>
-        public virtual ToolStripButton CalculatorButton { get; protected set; }
+        public virtual ToolStripButton CalculatorButton { get; set; }
 
         /// <summary>
         /// Gets or sets the chart button.
@@ -155,7 +155,7 @@ namespace BudgetExecution
         /// <value>
         /// The chart button.
         /// </value>
-        public virtual ToolStripButton ChartButton { get; protected set; }
+        public virtual ToolStripButton ChartButton { get; set; }
 
         /// <summary>
         /// Gets or sets the home button.
@@ -163,7 +163,7 @@ namespace BudgetExecution
         /// <value>
         /// The home button.
         /// </value>
-        public virtual ToolStripButton HomeButton { get; protected set; }
+        public virtual ToolStripButton HomeButton { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolStripBase"/> class.
