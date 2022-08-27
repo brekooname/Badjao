@@ -25,9 +25,7 @@
         /// The form filter.
         /// </value>
         public IDictionary<string, object> FormFilter { get; set; }
-
-        public ToolStrip ToolStrip { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="DataViewForm"/> class.
         /// </summary>
