@@ -10,10 +10,25 @@
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
     {
+        /// <summary>
+        /// Gets or sets the data model.
+        /// </summary>
+        /// <value>
+        /// The data model.
+        /// </value>
         public DataBuilder DataModel { get; set; }
 
+        /// <summary>
+        /// Gets or sets the form filter.
+        /// </summary>
+        /// <value>
+        /// The form filter.
+        /// </value>
         public IDictionary<string, object> FormFilter { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataViewForm"/> class.
+        /// </summary>
         public DataViewForm( )
         {
             InitializeComponent( );
@@ -22,6 +37,11 @@
             ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataViewForm"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
         public DataViewForm( Source source, Provider provider )
         {
             InitializeComponent( );
@@ -46,7 +66,6 @@
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
                 DataGrid.DataSource = BindingSource;
-                ToolStrip.BindingSource = BindingSource;
                 DataSourceLabel.Text = DataModel.DataTable.TableName.SplitPascal(  );
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
@@ -74,6 +93,9 @@
             }
         }
 
+        /// <summary>
+        /// Populates the tool bar drop down items.
+        /// </summary>
         public void PopulateToolBarDropDownItems( )
         {
             var _names = Enum.GetNames( typeof( SQL ) );
@@ -85,8 +107,13 @@
                 }
             }
         }
-        
 
+
+        /// <summary>
+        /// Called when [table ListBox selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnTableListBoxSelectionChanged( object sender, EventArgs e )
         {
             FormFilter.Clear( );
@@ -104,9 +131,7 @@
                 {
                     DataSource = DataModel.DataTable
                 };
-
-                DataGrid.DataSource = BindingSource;
-                ToolStrip.BindingSource = BindingSource;
+                
                 var _columns = DataModel.GetDataColumns( );
 
                 foreach( var col in _columns )
@@ -116,6 +141,11 @@
             }
         }
 
+        /// <summary>
+        /// Called when [column ListBox selection changed].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnColumnListBoxSelectionChanged( object sender, EventArgs e )
         {
             ElementListBox.Items.Clear(  );

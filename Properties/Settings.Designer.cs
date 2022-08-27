@@ -26,8 +26,8 @@ namespace BudgetExecution.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\Data\\Database\\Acces" +
-            "s\\DataModels\\Data.accdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\terry\\source\\repos\\Badjao\\" +
+            "Data\\Database\\Access\\DataModels\\Data.accdb")]
         public string ACCDB {
             get {
                 return ((string)(this["ACCDB"]));

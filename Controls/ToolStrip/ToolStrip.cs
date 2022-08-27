@@ -106,7 +106,6 @@ namespace BudgetExecution
             ThemeStyle.HoverItemBackColor = Color.SteelBlue;
             ThemeStyle.HoverItemForeColor = Color.White;
             Buttons = GetButtons( );
-            VisibleChanged += OnVisible;
         }
 
         /// <summary>
