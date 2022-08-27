@@ -26,6 +26,8 @@
         /// </value>
         public IDictionary<string, object> FormFilter { get; set; }
 
+        public ToolStrip ToolStrip { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DataViewForm"/> class.
         /// </summary>
@@ -173,6 +175,11 @@
                 _error?.SetText( );
                 _error?.ShowDialog( );
             }
+        }
+
+        private void DataViewForm_Load( object sender, EventArgs e )
+        {
+
         }
     }
 }

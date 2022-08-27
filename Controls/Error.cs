@@ -108,6 +108,7 @@ namespace BudgetExecution
         public Error( string message )
         {
             InitializeComponent( );
+            Exception = null;
             TextBox.Text = message;
         }
 
@@ -130,16 +131,16 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the text.
         /// </summary>
-        public void SetText( Exception ex )
+        public void SetText( Exception exc )
         {
             try
             {
-                var _logString = ex?.ToLogString( "" );
+                var _logString = exc?.ToLogString( "" );
                 TextBox.Text = _logString;
             }
-            catch ( Exception e )
+            catch( Exception ex )
             {
-                Console.WriteLine( e.StackTrace );
+                Console.WriteLine( ex.StackTrace );
             }
         }
 
@@ -153,7 +154,10 @@ namespace BudgetExecution
 
         public void OnClick( object sender, EventArgs e )
         {
-            Close( );
+            if( sender is  Button )
+            {
+                Close( );
+            }
         }
     }
 }

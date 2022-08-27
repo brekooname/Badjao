@@ -33,12 +33,12 @@ namespace BudgetExecution
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
             ExcelLikeAlignment = true;
-            BackColor = Color.FromArgb( 30, 30, 30 );
+            BackColor = Color.FromArgb( 50, 50, 50 );
             ForeColor = Color.LightSteelBlue;
-            Font = new Font( "Roboto", 8, FontStyle.Regular );
+            Font = new Font( "Roboto", 9, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
-            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
-            ColorStyles = ColorStyles.Office2016Black;
+            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Blue;
+            ColorStyles = ColorStyles.Office2010Blue;
             GridVisualStyles = GridVisualStyles.Metro;
             GridLineColor = SystemColors.GradientActiveCaption;
             HorizontalScrollTips = true;
@@ -49,7 +49,7 @@ namespace BudgetExecution
             AlphaBlendSelectionColor = Color.FromArgb( 130, 1, 115, 199 );
 
             // ThemStyle Properties
-            ThemeStyle.CellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
+            ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
 
             // Model Properties
             Model.Rows.DefaultSize = 22;
@@ -70,10 +70,10 @@ namespace BudgetExecution
             TableStyle.HorizontalAlignment = GridHorizontalAlignment.Center;
             TableStyle.AutoFit = AutoFitOptions.Both;
             TableStyle.Font.Facename = "Roboto";
-            TableStyle.Font.Size = 8;
-            TableStyle.BackColor = Color.FromArgb( 30, 30, 30 );
+            TableStyle.Font.Size = 9;
+            TableStyle.BackColor = Color.FromArgb( 50, 50, 50 );
 
-            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 30, 30, 30 );
+            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 50, 50, 50 );
             ThemeStyle.CellStyle.TextColor = Color.LightSteelBlue;
             ThemeStyle.HeaderStyle.HoverTextColor = Color.White;
             ThemeStyle.HeaderStyle.HoverBackColor = Color.SteelBlue;

@@ -30,16 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle5 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle6 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle7 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle8 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo2 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+            Syncfusion.Windows.Forms.Grid.GridStyleInfo gridStyleInfo1 = new Syncfusion.Windows.Forms.Grid.GridStyleInfo();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TablesListBoxLabel = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.FieldListBoxLabel = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.ValuesListBoxLabel = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
-            this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
@@ -79,14 +78,13 @@
             this.DataSourceLabel = new BudgetExecution.Label();
             this.DataGridLabel = new BudgetExecution.Label();
             this.GridPanel = new BudgetExecution.Layout();
-            this.DataGrid = new BudgetExecution.DataView();
             this.TableListBox = new BudgetExecution.ListBox();
             this.ElementListBox = new BudgetExecution.ListBox();
             this.ColumnListBox = new BudgetExecution.ListBox();
             this.toolSeparator8 = new BudgetExecution.ToolSeparator();
             this.toolSeparator15 = new BudgetExecution.ToolSeparator();
+            this.DataGrid = new BudgetExecution.DataView();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
-            this.ToolStrip.SuspendLayout();
             this.GridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.SuspendLayout();
@@ -94,7 +92,7 @@
             // TablesListBoxLabel
             // 
             this.TablesListBoxLabel.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TablesListBoxLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.TablesListBoxLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.TablesListBoxLabel.Location = new System.Drawing.Point(1039, 68);
             this.TablesListBoxLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TablesListBoxLabel.Name = "TablesListBoxLabel";
@@ -108,7 +106,7 @@
             this.TablesListBoxLabel.ShadowDirection = 315;
             this.TablesListBoxLabel.ShadowLocation = new System.Drawing.Point(0, 0);
             this.TablesListBoxLabel.ShadowOpacity = 100;
-            this.TablesListBoxLabel.Size = new System.Drawing.Size(275, 23);
+            this.TablesListBoxLabel.Size = new System.Drawing.Size(321, 23);
             this.TablesListBoxLabel.TabIndex = 6;
             this.TablesListBoxLabel.Text = "Tables";
             this.TablesListBoxLabel.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -124,7 +122,7 @@
             // FieldListBoxLabel
             // 
             this.FieldListBoxLabel.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FieldListBoxLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.FieldListBoxLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.FieldListBoxLabel.Location = new System.Drawing.Point(1039, 276);
             this.FieldListBoxLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.FieldListBoxLabel.Name = "FieldListBoxLabel";
@@ -138,7 +136,7 @@
             this.FieldListBoxLabel.ShadowDirection = 315;
             this.FieldListBoxLabel.ShadowLocation = new System.Drawing.Point(0, 0);
             this.FieldListBoxLabel.ShadowOpacity = 100;
-            this.FieldListBoxLabel.Size = new System.Drawing.Size(275, 23);
+            this.FieldListBoxLabel.Size = new System.Drawing.Size(321, 23);
             this.FieldListBoxLabel.TabIndex = 7;
             this.FieldListBoxLabel.Text = "Columns";
             this.FieldListBoxLabel.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -154,7 +152,7 @@
             // ValuesListBoxLabel
             // 
             this.ValuesListBoxLabel.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ValuesListBoxLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.ValuesListBoxLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.ValuesListBoxLabel.Location = new System.Drawing.Point(1039, 474);
             this.ValuesListBoxLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValuesListBoxLabel.Name = "ValuesListBoxLabel";
@@ -168,7 +166,7 @@
             this.ValuesListBoxLabel.ShadowDirection = 315;
             this.ValuesListBoxLabel.ShadowLocation = new System.Drawing.Point(0, 0);
             this.ValuesListBoxLabel.ShadowOpacity = 100;
-            this.ValuesListBoxLabel.Size = new System.Drawing.Size(275, 23);
+            this.ValuesListBoxLabel.Size = new System.Drawing.Size(321, 23);
             this.ValuesListBoxLabel.TabIndex = 8;
             this.ValuesListBoxLabel.Text = "Values";
             this.ValuesListBoxLabel.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -180,104 +178,6 @@
             this.ValuesListBoxLabel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.ValuesListBoxLabel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.ValuesListBoxLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            // 
-            // ToolStrip
-            // 
-            this.ToolStrip.AddButton = this.AddButton;
-            this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ToolStrip.BindingSource = this.BindingSource;
-            this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
-            this.ToolStrip.CalculatorButton = this.CalculatorButton;
-            this.ToolStrip.CanOverrideStyle = true;
-            this.ToolStrip.CaptionAlignment = Syncfusion.Windows.Forms.Tools.CaptionAlignment.Near;
-            this.ToolStrip.CaptionFont = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStrip.CaptionStyle = Syncfusion.Windows.Forms.Tools.CaptionStyle.Top;
-            this.ToolStrip.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
-            this.ToolStrip.ChartButton = this.ChartButton;
-            this.ToolStrip.DataFilter = null;
-            this.ToolStrip.DeleteButton = this.DeleteButton;
-            this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ToolStrip.DropDown = this.DropDown;
-            this.ToolStrip.EditButton = this.EditButton;
-            this.ToolStrip.ExcelButton = this.ExcelButton;
-            this.ToolStrip.Field = BudgetExecution.Field.AccountCode;
-            this.ToolStrip.FirstButton = this.FirstButton;
-            this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
-            this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.ToolStrip.HomeButton = null;
-            this.ToolStrip.Image = null;
-            this.ToolStrip.ImageDirectory = null;
-            this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ToolStrip.ImageSize = new System.Drawing.Size(0, 0);
-            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolSeparator1,
-            this.Label,
-            this.toolSeparator2,
-            this.TextBox,
-            this.toolSeparator3,
-            this.DropDown,
-            this.toolSeparator4,
-            this.FirstButton,
-            this.toolSeparator5,
-            this.PreviousButton,
-            this.toolSeparator6,
-            this.NextButton,
-            this.toolSeparator7,
-            this.LastButton,
-            this.toolSeparator9,
-            this.AddButton,
-            this.toolSeparator10,
-            this.EditButton,
-            this.toolSeparator11,
-            this.DeleteButton,
-            this.toolSeparator12,
-            this.RefreshButton,
-            this.toolSeparator13,
-            this.SaveButton,
-            this.toolSeparator14,
-            this.BrowseButton,
-            this.toolSeparator16,
-            this.ExcelButton,
-            this.toolSeparator17,
-            this.CalculatorButton,
-            this.toolSeparator18,
-            this.ChartButton,
-            this.toolSeparator19,
-            this.HomeButton,
-            this.toolSeparator20});
-            this.ToolStrip.Label = null;
-            this.ToolStrip.LastButton = this.LastButton;
-            this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ToolStrip.Location = new System.Drawing.Point(0, 711);
-            this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
-            this.ToolStrip.Name = "ToolStrip";
-            this.ToolStrip.NextButton = this.NextButton;
-            this.ToolStrip.Numeric = BudgetExecution.Numeric.Accepted;
-            this.ToolStrip.Office12Mode = false;
-            this.ToolStrip.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Black;
-            this.ToolStrip.Padding = new System.Windows.Forms.Padding(1);
-            this.ToolStrip.PreviousButton = this.PreviousButton;
-            this.ToolStrip.ProgressBar = null;
-            this.ToolStrip.RefreshButton = this.RefreshButton;
-            this.ToolStrip.SaveButton = this.RefreshButton;
-            this.ToolStrip.Separators = null;
-            this.ToolStrip.ShowCaption = true;
-            this.ToolStrip.ShowLauncher = true;
-            this.ToolStrip.Size = new System.Drawing.Size(1388, 52);
-            this.ToolStrip.TabIndex = 12;
-            this.ToolStrip.TextBox = this.TextBox;
-            this.ToolStrip.ThemeName = "Office2016DarkGray";
-            this.ToolStrip.ThemeStyle.ArrowColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ToolStrip.ThemeStyle.BottomToolStripBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ToolStrip.ThemeStyle.CaptionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ToolStrip.ThemeStyle.CaptionForeColor = System.Drawing.Color.Black;
-            this.ToolStrip.ThemeStyle.ComboBoxStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ToolStrip.ThemeStyle.ComboBoxStyle.HoverBorderColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.HoverItemBackColor = System.Drawing.Color.SteelBlue;
-            this.ToolStrip.ThemeStyle.HoverItemForeColor = System.Drawing.Color.White;
-            this.ToolStrip.VisualStyle = Syncfusion.Windows.Forms.Tools.ToolStripExStyle.Office2016DarkGray;
             // 
             // AddButton
             // 
@@ -816,7 +716,7 @@
             this.DataGridLabel.DataFilter = null;
             this.DataGridLabel.Field = BudgetExecution.Field.AccountCode;
             this.DataGridLabel.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DataGridLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.DataGridLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.DataGridLabel.HoverText = null;
             this.DataGridLabel.Location = new System.Drawing.Point(50, 68);
             this.DataGridLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
@@ -852,8 +752,8 @@
             this.GridPanel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.GridPanel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.GridPanel.BindingSource = null;
-            this.GridPanel.Border.Color = System.Drawing.SystemColors.Highlight;
-            this.GridPanel.Border.HoverColor = System.Drawing.SystemColors.Highlight;
+            this.GridPanel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.GridPanel.Border.HoverColor = System.Drawing.Color.SteelBlue;
             this.GridPanel.Border.HoverVisible = true;
             this.GridPanel.Border.Rounding = 6;
             this.GridPanel.Border.Thickness = 1;
@@ -882,123 +782,6 @@
             this.GridPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.GridPanel.ToolTip = null;
             // 
-            // DataGrid
-            // 
-            this.DataGrid.AllowDragSelectedCols = true;
-            this.DataGrid.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            gridBaseStyle5.Name = "Column Header";
-            gridBaseStyle5.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle5.StyleInfo.CellType = "ColumnHeaderCell";
-            gridBaseStyle5.StyleInfo.Enabled = false;
-            gridBaseStyle5.StyleInfo.Font.Bold = true;
-            gridBaseStyle5.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridBaseStyle6.Name = "Header";
-            gridBaseStyle6.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-            gridBaseStyle6.StyleInfo.CellType = "Header";
-            gridBaseStyle6.StyleInfo.Font.Bold = true;
-            gridBaseStyle6.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
-            gridBaseStyle6.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-            gridBaseStyle7.Name = "Standard";
-            gridBaseStyle7.StyleInfo.CheckBoxOptions.CheckedValue = "True";
-            gridBaseStyle7.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
-            gridBaseStyle7.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-            gridBaseStyle8.Name = "Row Header";
-            gridBaseStyle8.StyleInfo.BaseStyle = "Header";
-            gridBaseStyle8.StyleInfo.CellType = "RowHeaderCell";
-            gridBaseStyle8.StyleInfo.Enabled = true;
-            gridBaseStyle8.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
-            this.DataGrid.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle5,
-            gridBaseStyle6,
-            gridBaseStyle7,
-            gridBaseStyle8});
-            this.DataGrid.BindingSource = this.BindingSource;
-            this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2016Black;
-            this.DataGrid.DataFilter = null;
-            this.DataGrid.DataMember = "";
-            this.DataGrid.DataSource = this.BindingSource;
-            this.DataGrid.DefaultRowHeight = 20;
-            this.DataGrid.ExcelLikeAlignment = true;
-            this.DataGrid.ExcelLikeSelectionFrame = true;
-            this.DataGrid.Field = BudgetExecution.Field.AccountCode;
-            this.DataGrid.Font = new System.Drawing.Font("Roboto", 8F);
-            this.DataGrid.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.DataGrid.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Metro;
-            this.DataGrid.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Metro;
-            this.DataGrid.HorizontalScrollTips = true;
-            this.DataGrid.HorizontalThumbTrack = true;
-            this.DataGrid.HoverText = null;
-            this.DataGrid.Location = new System.Drawing.Point(14, 13);
-            this.DataGrid.MetroScrollBars = true;
-            this.DataGrid.Name = "DataGrid";
-            this.DataGrid.Numeric = BudgetExecution.Numeric.Accepted;
-            this.DataGrid.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
-            this.DataGrid.OptimizeInsertRemoveCells = true;
-            this.DataGrid.Properties.GridLineColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.DataGrid.Properties.ThemedHeader = true;
-            this.DataGrid.Setting = null;
-            this.DataGrid.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.DataGrid.Size = new System.Drawing.Size(917, 511);
-            this.DataGrid.SmartSizeBox = false;
-            this.DataGrid.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
-            this.DataGrid.TabIndex = 0;
-            gridStyleInfo2.AutoFit = Syncfusion.Windows.Forms.Grid.AutoFitOptions.Both;
-            gridStyleInfo2.Font.Bold = false;
-            gridStyleInfo2.Font.Facename = "Roboto";
-            gridStyleInfo2.Font.Italic = false;
-            gridStyleInfo2.Font.Size = 8F;
-            gridStyleInfo2.Font.Strikeout = false;
-            gridStyleInfo2.Font.Underline = false;
-            gridStyleInfo2.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-            gridStyleInfo2.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
-            gridStyleInfo2.Themed = true;
-            gridStyleInfo2.WrapText = false;
-            this.DataGrid.TableStyle = gridStyleInfo2;
-            this.DataGrid.ThemesEnabled = true;
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonDisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(114)))), ((int)(((byte)(114)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbDisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonDisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(114)))), ((int)(((byte)(114)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbDisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.DataGrid.TransparentBackground = true;
-            this.DataGrid.UseListChangedEvent = true;
-            this.DataGrid.UseRightToLeftCompatibleTextBox = true;
-            this.DataGrid.VerticalScrollTips = true;
-            this.DataGrid.VerticalThumbTrack = true;
-            // 
             // TableListBox
             // 
             this.TableListBox.AlternateColors = false;
@@ -1006,8 +789,8 @@
             this.TableListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TableListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TableListBox.BindingSource = null;
-            this.TableListBox.Border.Color = System.Drawing.SystemColors.Highlight;
-            this.TableListBox.Border.HoverColor = System.Drawing.SystemColors.Highlight;
+            this.TableListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TableListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
             this.TableListBox.Border.HoverVisible = true;
             this.TableListBox.Border.Rounding = 6;
             this.TableListBox.Border.Thickness = 1;
@@ -1046,8 +829,8 @@
             this.ElementListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ElementListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ElementListBox.BindingSource = null;
-            this.ElementListBox.Border.Color = System.Drawing.SystemColors.Highlight;
-            this.ElementListBox.Border.HoverColor = System.Drawing.SystemColors.Highlight;
+            this.ElementListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ElementListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
             this.ElementListBox.Border.HoverVisible = true;
             this.ElementListBox.Border.Rounding = 6;
             this.ElementListBox.Border.Thickness = 1;
@@ -1085,8 +868,8 @@
             this.ColumnListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ColumnListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ColumnListBox.BindingSource = null;
-            this.ColumnListBox.Border.Color = System.Drawing.SystemColors.Highlight;
-            this.ColumnListBox.Border.HoverColor = System.Drawing.SystemColors.Highlight;
+            this.ColumnListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ColumnListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
             this.ColumnListBox.Border.HoverVisible = true;
             this.ColumnListBox.Border.Rounding = 6;
             this.ColumnListBox.Border.Thickness = 1;
@@ -1133,6 +916,121 @@
             this.toolSeparator15.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.toolSeparator15.Size = new System.Drawing.Size(6, 36);
             // 
+            // DataGrid
+            // 
+            this.DataGrid.AllowDragSelectedCols = true;
+            this.DataGrid.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.DataGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            gridBaseStyle1.Name = "Column Header";
+            gridBaseStyle1.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle1.StyleInfo.CellType = "ColumnHeaderCell";
+            gridBaseStyle1.StyleInfo.Enabled = false;
+            gridBaseStyle1.StyleInfo.Font.Bold = true;
+            gridBaseStyle1.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridBaseStyle2.Name = "Header";
+            gridBaseStyle2.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+            gridBaseStyle2.StyleInfo.CellType = "Header";
+            gridBaseStyle2.StyleInfo.Font.Bold = true;
+            gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Control);
+            gridBaseStyle2.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+            gridBaseStyle3.Name = "Standard";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.CheckedValue = "True";
+            gridBaseStyle3.StyleInfo.CheckBoxOptions.UncheckedValue = "False";
+            gridBaseStyle3.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+            gridBaseStyle4.Name = "Row Header";
+            gridBaseStyle4.StyleInfo.BaseStyle = "Header";
+            gridBaseStyle4.StyleInfo.CellType = "RowHeaderCell";
+            gridBaseStyle4.StyleInfo.Enabled = true;
+            gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+            this.DataGrid.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
+            gridBaseStyle1,
+            gridBaseStyle2,
+            gridBaseStyle3,
+            gridBaseStyle4});
+            this.DataGrid.BindingSource = null;
+            this.DataGrid.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2010Blue;
+            this.DataGrid.DataFilter = null;
+            this.DataGrid.DataSource = this.BindingSource;
+            this.DataGrid.DefaultRowHeight = 22;
+            this.DataGrid.ExcelLikeAlignment = true;
+            this.DataGrid.ExcelLikeSelectionFrame = true;
+            this.DataGrid.Field = BudgetExecution.Field.AccountCode;
+            this.DataGrid.Font = new System.Drawing.Font("Roboto", 9F);
+            this.DataGrid.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.DataGrid.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Metro;
+            this.DataGrid.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Metro;
+            this.DataGrid.HorizontalScrollTips = true;
+            this.DataGrid.HorizontalThumbTrack = true;
+            this.DataGrid.HoverText = null;
+            this.DataGrid.Location = new System.Drawing.Point(17, 16);
+            this.DataGrid.MetroScrollBars = true;
+            this.DataGrid.Name = "DataGrid";
+            this.DataGrid.Numeric = BudgetExecution.Numeric.Accepted;
+            this.DataGrid.OptimizeInsertRemoveCells = true;
+            this.DataGrid.Properties.GridLineColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.DataGrid.Properties.ThemedHeader = true;
+            this.DataGrid.Setting = null;
+            this.DataGrid.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.DataGrid.Size = new System.Drawing.Size(914, 508);
+            this.DataGrid.SmartSizeBox = false;
+            this.DataGrid.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
+            this.DataGrid.TabIndex = 0;
+            gridStyleInfo1.AutoFit = Syncfusion.Windows.Forms.Grid.AutoFitOptions.Both;
+            gridStyleInfo1.Font.Bold = false;
+            gridStyleInfo1.Font.Facename = "Roboto";
+            gridStyleInfo1.Font.Italic = false;
+            gridStyleInfo1.Font.Size = 9F;
+            gridStyleInfo1.Font.Strikeout = false;
+            gridStyleInfo1.Font.Underline = false;
+            gridStyleInfo1.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+            gridStyleInfo1.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50))))));
+            gridStyleInfo1.Themed = true;
+            gridStyleInfo1.WrapText = false;
+            this.DataGrid.TableStyle = gridStyleInfo1;
+            this.DataGrid.ThemesEnabled = true;
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonDisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(114)))), ((int)(((byte)(114)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ArrowButtonPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbDisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.DataGrid.ThemeStyle.HorizontalScrollBarStyle.ThumbPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonDisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(114)))), ((int)(((byte)(114)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(94)))), ((int)(((byte)(94)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ArrowButtonPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ScrollBarBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbDisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbDisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbHoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbPressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.DataGrid.ThemeStyle.VerticalScrollBarStyle.ThumbPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.DataGrid.TransparentBackground = true;
+            this.DataGrid.UseListChangedEvent = true;
+            this.DataGrid.UseRightToLeftCompatibleTextBox = true;
+            this.DataGrid.VerticalScrollTips = true;
+            this.DataGrid.VerticalThumbTrack = true;
+            // 
             // DataViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1146,7 +1044,6 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1388, 763);
-            this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.DataSourceLabel);
             this.Controls.Add(this.DataGridLabel);
             this.Controls.Add(this.GridPanel);
@@ -1170,9 +1067,8 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.DataViewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
-            this.ToolStrip.ResumeLayout(false);
-            this.ToolStrip.PerformLayout();
             this.GridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ResumeLayout(false);
@@ -1190,7 +1086,6 @@
         private Layout GridPanel;
         public Label DataGridLabel;
         public Label DataSourceLabel;
-        public ToolStrip ToolStrip;
         private ToolSeparator toolSeparator1;
         private ToolSeparator toolSeparator2;
         private ToolSeparator toolSeparator3;
@@ -1227,9 +1122,9 @@
         private ToolSeparator toolSeparator15;
         public ToolStripButton LastButton;
         public ToolStripLabel Label;
-        public DataView DataGrid;
         private ToolTip ToolTip;
         private System.Windows.Forms.BindingSource BindingSource;
         public ToolStripButton AddButton;
+        private DataView DataGrid;
     }
 }
