@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
+    using System.Drawing;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
@@ -70,6 +71,7 @@
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
                 ToolStrip.Office12Mode = true;
+                TableCountLabel.Text = TableListBox.Items.Count.ToString( );
             }
             catch( Exception ex )
             {
@@ -119,6 +121,8 @@
             FormFilter.Clear( );
             ColumnListBox.Items.Clear( );
             ElementListBox.Items.Clear( );
+            FieldCountLabel.Text = string.Empty;
+            ValueCountLabel.Text = string.Empty;
             var _listBox = sender as VisualListBox;
             var _value = _listBox?.SelectedItem.ToString( );
             if( !string.IsNullOrEmpty( _value ) )
@@ -138,6 +142,8 @@
                 {
                     ColumnListBox.Items.Add( col.ColumnName );
                 }
+                
+                FieldCountLabel.Text = ColumnListBox.Items.Count.ToString( );
             }
         }
 
@@ -160,6 +166,8 @@
                     ElementListBox.Items.Add( item );
                 }
             }
+
+            ValueCountLabel.Text = ElementListBox.Items.Count.ToString( );
         }
 
         /// <summary>
@@ -173,11 +181,6 @@
                 _error?.SetText( );
                 _error?.ShowDialog( );
             }
-        }
-
-        private void DataViewForm_Load( object sender, EventArgs e )
-        {
-
         }
     }
 }

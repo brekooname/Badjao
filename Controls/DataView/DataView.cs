@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Drawing;
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Grid;
+    using Syncfusion.Windows.Forms.Tools;
 
     /// <summary>
     /// 
@@ -28,19 +29,19 @@ namespace BudgetExecution
             TransparentBackground = true;
             EnableAddNew = true;
             EnableEdit = true;
-            CanOverrideStyle = false;
+            CanOverrideStyle = true;
             EnableRemove = true;
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
             ExcelLikeAlignment = true;
-            BackColor = Color.FromArgb( 50, 50, 50 );
-            ForeColor = Color.LightSteelBlue;
+            BackColor = SystemColors.GradientActiveCaption;
+            ForeColor = Color.FromArgb( 64, 64, 64 );
             Font = new Font( "Roboto", 9, FontStyle.Regular );
-            GridOfficeScrollBars = OfficeScrollBars.Office2010;
-            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Blue;
-            ColorStyles = ColorStyles.Office2010Blue;
-            GridVisualStyles = GridVisualStyles.Metro;
-            GridLineColor = SystemColors.GradientActiveCaption;
+            GridOfficeScrollBars = OfficeScrollBars.Office2016;
+            Office2016ScrollBarsColorScheme = ScrollBarOffice2016ColorScheme.Colorful;
+            ColorStyles = ColorStyles.SystemTheme;
+            GridVisualStyles = GridVisualStyles.Custom;
+            GridLineColor = SystemColors.ControlDark;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;
             VerticalScrollTips = true;
@@ -71,9 +72,9 @@ namespace BudgetExecution
             TableStyle.AutoFit = AutoFitOptions.Both;
             TableStyle.Font.Facename = "Roboto";
             TableStyle.Font.Size = 9;
-            TableStyle.BackColor = Color.FromArgb( 50, 50, 50 );
+            TableStyle.BackColor = SystemColors.GradientActiveCaption;
 
-            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 50, 50, 50 );
+            ThemeStyle.CellStyle.BackColor = SystemColors.GradientActiveCaption;
             ThemeStyle.CellStyle.TextColor = Color.LightSteelBlue;
             ThemeStyle.HeaderStyle.HoverTextColor = Color.White;
             ThemeStyle.HeaderStyle.HoverBackColor = Color.SteelBlue;
