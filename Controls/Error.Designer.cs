@@ -105,13 +105,13 @@
             this.PictureBox.DataFilter = null;
             this.PictureBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.PictureBox.HoverText = null;
-            this.PictureBox.Image = global::BudgetExecution.Properties.Resources.Error;
+            this.PictureBox.Image = ((System.Drawing.Image)(resources.GetObject("PictureBox.Image")));
             this.PictureBox.Location = new System.Drawing.Point(3, 3);
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Numeric = BudgetExecution.Numeric.NS;
             this.PictureBox.Padding = new System.Windows.Forms.Padding(1);
             this.PictureBox.Size = new System.Drawing.Size(24, 22);
-            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PictureBox.TabIndex = 14;
             this.PictureBox.TabStop = false;
             this.PictureBox.ToolTip = null;

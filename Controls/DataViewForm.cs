@@ -4,6 +4,7 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
+    using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -43,12 +44,12 @@
                 FormFilter.Add( "BFY", "2022"  );
                 FormFilter.Add( "FundCode", "B" );
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
-                BindingSource.DataSource = DataModel.DataTable;
-                DataGrid.DataSource = BindingSource;
+                FormBindingSource.DataSource = DataModel.DataTable;
+                DataGrid.DataSource = FormBindingSource;
                 DataSourceLabel.Text = DataModel.DataTable.TableName.SplitPascal(  );
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
-                ToolStrip.Office12Mode = true;
+                FormToolStrip.Office12Mode = true;
             }
             catch( Exception ex )
             {
@@ -79,7 +80,7 @@
             {
                 if( name != "NS" )
                 {
-                    ToolStrip.DropDown.Items.Add( name  );
+                    FormToolStrip.DropDown.Items.Add( name  );
                 }
             }
         }
@@ -97,8 +98,9 @@
                 DataSourceLabel.Text = _value.SplitPascal(   );
                 var _source = (Source)Enum.Parse( typeof( Source ), _value );
                 DataModel = new DataBuilder( _source, Provider.Access );
-                BindingSource.DataSource = DataModel.DataTable;
-                DataGrid.DataSource = BindingSource;
+                DataGrid.DataSource = DataModel.DataTable;
+                FormBindingSource.DataSource = DataGrid.DataSource;
+                FormToolStrip.BindingSource = FormBindingSource;
                 var _columns = DataModel.GetDataColumns( );
 
                 foreach( var col in _columns )
