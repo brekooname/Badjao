@@ -50,6 +50,7 @@ namespace BudgetExecution
             HoverText = GetHoverText( tool );
             Tag = HoverText;
             Image = GetImage( tool );
+            Click += OnClick;
         }
 
 

@@ -153,7 +153,7 @@
             this.DataGrid.Properties.ThemedHeader = true;
             this.DataGrid.Setting = null;
             this.DataGrid.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.DataGrid.Size = new System.Drawing.Size(985, 504);
+            this.DataGrid.Size = new System.Drawing.Size(907, 504);
             this.DataGrid.SmartSizeBox = false;
             this.DataGrid.SortBehavior = Syncfusion.Windows.Forms.Grid.GridSortBehavior.DoubleClick;
             this.DataGrid.TabIndex = 0;
@@ -235,11 +235,11 @@
             this.ElementListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.ElementListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ElementListBox.ItemSelected = System.Drawing.Color.SteelBlue;
-            this.ElementListBox.Location = new System.Drawing.Point(1110, 503);
+            this.ElementListBox.Location = new System.Drawing.Point(1039, 503);
             this.ElementListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ElementListBox.Name = "ElementListBox";
             this.ElementListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.ElementListBox.Size = new System.Drawing.Size(299, 132);
+            this.ElementListBox.Size = new System.Drawing.Size(321, 132);
             this.ElementListBox.TabIndex = 4;
             this.ElementListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.ElementListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -294,11 +294,11 @@
             this.ColumnListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.ColumnListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ColumnListBox.ItemSelected = System.Drawing.Color.SteelBlue;
-            this.ColumnListBox.Location = new System.Drawing.Point(1110, 305);
+            this.ColumnListBox.Location = new System.Drawing.Point(1039, 305);
             this.ColumnListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnListBox.Name = "ColumnListBox";
             this.ColumnListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.ColumnListBox.Size = new System.Drawing.Size(299, 145);
+            this.ColumnListBox.Size = new System.Drawing.Size(321, 145);
             this.ColumnListBox.TabIndex = 1;
             this.ColumnListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.ColumnListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -333,11 +333,11 @@
             this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TableListBox.ItemSelected = System.Drawing.Color.SteelBlue;
-            this.TableListBox.Location = new System.Drawing.Point(1110, 97);
+            this.TableListBox.Location = new System.Drawing.Point(1039, 97);
             this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableListBox.Name = "TableListBox";
             this.TableListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.TableListBox.Size = new System.Drawing.Size(299, 155);
+            this.TableListBox.Size = new System.Drawing.Size(321, 155);
             this.TableListBox.TabIndex = 5;
             this.TableListBox.Text = "listBox1";
             this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -353,7 +353,7 @@
             // 
             this.visualLabel1.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualLabel1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.visualLabel1.Location = new System.Drawing.Point(1110, 68);
+            this.visualLabel1.Location = new System.Drawing.Point(1039, 68);
             this.visualLabel1.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualLabel1.Name = "visualLabel1";
             this.visualLabel1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -383,7 +383,7 @@
             // 
             this.visualLabel2.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualLabel2.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.visualLabel2.Location = new System.Drawing.Point(1110, 276);
+            this.visualLabel2.Location = new System.Drawing.Point(1039, 276);
             this.visualLabel2.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualLabel2.Name = "visualLabel2";
             this.visualLabel2.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -413,7 +413,7 @@
             // 
             this.visualLabel3.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visualLabel3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.visualLabel3.Location = new System.Drawing.Point(1110, 474);
+            this.visualLabel3.Location = new System.Drawing.Point(1039, 474);
             this.visualLabel3.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.visualLabel3.Name = "visualLabel3";
             this.visualLabel3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -463,7 +463,7 @@
             this.GridPanel.Name = "GridPanel";
             this.GridPanel.Numeric = BudgetExecution.Numeric.Accepted;
             this.GridPanel.Padding = new System.Windows.Forms.Padding(1);
-            this.GridPanel.Size = new System.Drawing.Size(1019, 538);
+            this.GridPanel.Size = new System.Drawing.Size(944, 538);
             this.GridPanel.TabIndex = 9;
             this.GridPanel.Text = "layout1";
             this.GridPanel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -535,7 +535,7 @@
             this.DataSourceLabel.ShadowDirection = 315;
             this.DataSourceLabel.ShadowLocation = new System.Drawing.Point(0, 0);
             this.DataSourceLabel.ShadowOpacity = 100;
-            this.DataSourceLabel.Size = new System.Drawing.Size(878, 23);
+            this.DataSourceLabel.Size = new System.Drawing.Size(824, 23);
             this.DataSourceLabel.TabIndex = 11;
             this.DataSourceLabel.TextAlignment = System.Drawing.StringAlignment.Near;
             this.DataSourceLabel.TextLineAlignment = System.Drawing.StringAlignment.Center;
@@ -617,7 +617,7 @@
             this.ToolStrip.Separators = null;
             this.ToolStrip.ShowCaption = true;
             this.ToolStrip.ShowLauncher = true;
-            this.ToolStrip.Size = new System.Drawing.Size(1445, 52);
+            this.ToolStrip.Size = new System.Drawing.Size(1388, 52);
             this.ToolStrip.TabIndex = 12;
             this.ToolStrip.TextBox = null;
             this.ToolStrip.ThemeName = "Office2016DarkGray";
@@ -1134,7 +1134,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.ClientSize = new System.Drawing.Size(1445, 763);
+            this.ClientSize = new System.Drawing.Size(1388, 763);
             this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.DataSourceLabel);
             this.Controls.Add(this.label1);
@@ -1182,7 +1182,6 @@
         public Label label1;
         public Label DataSourceLabel;
         public ToolStrip ToolStrip;
-        private System.Windows.Forms.BindingSource BindingSource;
         private ToolSeparator toolSeparator1;
         private ToolSeparator toolSeparator2;
         private ToolSeparator toolSeparator3;
@@ -1220,5 +1219,6 @@
         private ToolSeparator toolSeparator15;
         public ToolStripButton LastButton;
         public ToolStripLabel Label;
+        public System.Windows.Forms.BindingSource BindingSource;
     }
 }

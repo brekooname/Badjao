@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
     {
         public DataBuilder DataModel { get; set; }
@@ -21,7 +21,15 @@
             ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
         }
 
-        
+        public DataViewForm( Source source, Provider provider )
+        {
+            InitializeComponent( );
+            Load += OnLoad;
+            TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
+            ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
+        }
+
+
         /// <summary>
         /// Called when [load].
         /// </summary>
@@ -35,8 +43,8 @@
                 FormFilter.Add( "BFY", "2022"  );
                 FormFilter.Add( "FundCode", "B" );
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
-                BindingSource.DataSource = DataModel.GetDataTable( );
-                DataGrid.DataSource = BindingSource.DataSource;
+                BindingSource.DataSource = DataModel.DataTable;
+                DataGrid.DataSource = BindingSource;
                 DataSourceLabel.Text = DataModel.DataTable.TableName.SplitPascal(  );
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
@@ -79,6 +87,7 @@
 
         public void OnTableListBoxSelectionChanged( object sender, EventArgs e )
         {
+            FormFilter.Clear( );
             ColumnListBox.Items.Clear( );
             ElementListBox.Items.Clear( );
             var _listBox = sender as VisualListBox;
@@ -88,9 +97,9 @@
                 DataSourceLabel.Text = _value.SplitPascal(   );
                 var _source = (Source)Enum.Parse( typeof( Source ), _value );
                 DataModel = new DataBuilder( _source, Provider.Access );
-                BindingSource.DataSource = DataModel.GetDataTable( );
-                DataGrid.DataSource = BindingSource.DataSource;
-                var _columns = DataModel.GetDataColumns(   );
+                BindingSource.DataSource = DataModel.DataTable;
+                DataGrid.DataSource = BindingSource;
+                var _columns = DataModel.GetDataColumns( );
 
                 foreach( var col in _columns )
                 {
