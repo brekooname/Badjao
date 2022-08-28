@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -20,7 +21,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -28,7 +29,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public virtual TipBase ToolTip { get; set; }
+        public virtual ToolTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -85,7 +86,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingList is System.Windows.Forms.BindingSource _binder
+                if( bindingList is BindingSource _binder
                    && _binder?.DataSource != null )
                 {
                     try
@@ -129,7 +130,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

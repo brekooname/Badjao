@@ -6,12 +6,11 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.Layout;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
@@ -24,7 +23,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -65,16 +64,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
         
-
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -84,7 +74,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _bindingSource
+                if( bindingSource is BindingSource _bindingSource
                     && _bindingSource?.DataSource != null )
                 {
                     try
@@ -121,7 +111,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindinglist as System.Windows.Forms.BindingSource;
+                        var _list = bindinglist as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var _kvp in dict )

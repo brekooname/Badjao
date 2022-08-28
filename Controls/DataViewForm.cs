@@ -159,7 +159,6 @@
             var _value = _listBox?.SelectedItem.ToString( );
             if( !string.IsNullOrEmpty( _value ) )
             {
-                DataSourceGroupBox.Text = SourcePrefix + _value.SplitPascal(   );
                 var _source = (Source)Enum.Parse( typeof( Source ), _value );
                 DataModel = new DataBuilder( _source, Provider.Access );
 
@@ -167,7 +166,10 @@
                 {
                     DataSource = DataModel.DataTable
                 };
-                
+
+                DataGrid.DataSource = BindingSource;
+                DataSourceGroupBox.Text = SourcePrefix + _value.SplitPascal( );
+
                 var _columns = DataModel.GetDataColumns( );
 
                 foreach( var col in _columns )

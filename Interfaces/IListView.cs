@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Drawing;
+    using System.Windows.Forms;
 
     public interface IListView
     {
@@ -13,7 +13,7 @@
         /// <value>
         /// The binding source.
         /// </value>
-        SourceBinding BindingSource { get; set; }
+        BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -54,15 +54,7 @@
         /// The filter.
         /// </value>
         IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        NameValueCollection Setting { get; set; }
-
+        
         /// <summary>
         /// Sets the color of the border.
         /// </summary>

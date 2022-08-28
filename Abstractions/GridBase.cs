@@ -6,10 +6,8 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Data;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
@@ -17,14 +15,6 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class GridBase : DataGridView
     {
-        /// <summary>
-        /// Gets or sets the application setting.
-        /// </summary>
-        /// <value>
-        /// The application setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
         /// <summary>
         /// Gets or sets the hover text.
         /// </summary>
@@ -47,7 +37,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.

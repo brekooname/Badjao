@@ -28,25 +28,25 @@ namespace BudgetExecution
             TransparentBackground = false;
             EnableAddNew = true;
             EnableEdit = true;
-            CanOverrideStyle = false;
+            CanOverrideStyle = true;
             EnableRemove = true;
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
             ExcelLikeAlignment = true;
-            BackColor = SystemColors.GradientActiveCaption;
-            ForeColor = Color.FromArgb( 64, 64, 64 );
+            BackColor = Color.FromArgb( 202, 222, 230 );
+            ForeColor = Color.Black;
             Font = new Font( "Roboto", 9, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
             Office2010ScrollBarsColorScheme = Office2010ColorScheme.Blue;
-            ColorStyles = ColorStyles.Office2010Black;
-            GridVisualStyles = GridVisualStyles.Office2010Black;
+            ColorStyles = ColorStyles.SystemTheme;
+            GridVisualStyles = GridVisualStyles.Custom;
             GridLineColor = SystemColors.ControlDark;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;
             VerticalScrollTips = true;
             VerticalThumbTrack = true;
             DefaultGridBorderStyle = GridBorderStyle.Dotted;
-            AlphaBlendSelectionColor = Color.FromArgb( 130, 1, 115, 199 );
+            AlphaBlendSelectionColor = Color.FromArgb( 202, 222, 230 );
 
             // ThemStyle Properties
             ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
@@ -71,10 +71,10 @@ namespace BudgetExecution
             TableStyle.AutoFit = AutoFitOptions.Both;
             TableStyle.Font.Facename = "Roboto";
             TableStyle.Font.Size = 9;
-            TableStyle.BackColor = SystemColors.GradientActiveCaption;
+            TableStyle.BackColor = Color.FromArgb( 202, 222, 230 );
 
-            ThemeStyle.CellStyle.BackColor = SystemColors.GradientActiveCaption;
-            ThemeStyle.CellStyle.TextColor = Color.LightSteelBlue;
+            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 202, 222, 230 );
+            ThemeStyle.CellStyle.TextColor = Color.Black;
             ThemeStyle.HeaderStyle.HoverTextColor = Color.White;
             ThemeStyle.HeaderStyle.HoverBackColor = Color.SteelBlue;
         }

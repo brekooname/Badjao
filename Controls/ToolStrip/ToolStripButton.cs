@@ -5,6 +5,7 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
     using System.Drawing;
@@ -333,7 +334,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _path = ImageDirectory + $"{ ToolType }.png";
+                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ] + $"{ ToolType }.png";
                     using( var _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
@@ -360,7 +361,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _path = ImageDirectory + $"{ toolType }.png";
+                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ] + $"{ toolType }.png";
                     using( var _stream = File.Open( _path, FileMode.Open ))
                     {
                         if( _stream != null )

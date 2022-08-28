@@ -7,7 +7,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -17,14 +16,6 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class DataViewBase : GridDataBoundGrid
     {
-        /// <summary>
-        /// Gets or sets the application setting.
-        /// </summary>
-        /// <value>
-        /// The application setting.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } 
-
         /// <summary>
         /// Gets or sets the hover text.
         /// </summary>

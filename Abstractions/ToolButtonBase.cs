@@ -7,7 +7,6 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using ConfigurationManager = System.Configuration.ConfigurationManager;
 
     /// <summary>
     /// 
@@ -18,14 +17,6 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolButtonBase : System.Windows.Forms.ToolStripButton
     {
-        /// <summary>
-        /// Gets or sets the setting.
-        /// </summary>
-        /// <value>
-        /// The setting.
-        /// </value>
-        public string ImageDirectory { get; } = ConfigurationManager.AppSettings[ "ToolStrip" ];
-
         /// <summary>
         /// Gets or sets the tool tip.
         /// </summary>

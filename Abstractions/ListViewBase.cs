@@ -7,11 +7,11 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Threading;
+    using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
@@ -23,7 +23,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -64,15 +64,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         /// <summary>
         /// Sets the field.
         /// </summary>
@@ -85,7 +77,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                ListViewBase.Fail( ex );
             }
         }
 
@@ -98,7 +90,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingList is System.Windows.Forms.BindingSource _binder
+                if( bindingList is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -107,13 +99,13 @@ namespace BudgetExecution
                     }
                     catch( Exception ex )
                     {
-                        Fail( ex );
+                        ListViewBase.Fail( ex );
                     }
                 }
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                ListViewBase.Fail( ex );
             }
         }
 
@@ -135,7 +127,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var kvp in dict )
@@ -156,13 +148,13 @@ namespace BudgetExecution
                     }
                     catch( Exception ex )
                     {
-                        Fail( ex );
+                        ListViewBase.Fail( ex );
                     }
                 }
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                ListViewBase.Fail( ex );
             }
         }
 
@@ -181,7 +173,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ListViewBase.Fail( ex );
                 }
             }
         }
@@ -215,7 +207,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ListViewBase.Fail( ex );
                 }
             }
         }
@@ -252,7 +244,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ListViewBase.Fail( ex );
                 }
             }
         }
@@ -282,7 +274,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ListViewBase.Fail( ex );
                 }
             }
         }
@@ -318,7 +310,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ListViewBase.Fail( ex );
                 }
             }
         }
@@ -352,7 +344,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ListViewBase.Fail( ex );
                 }
             }
         }
