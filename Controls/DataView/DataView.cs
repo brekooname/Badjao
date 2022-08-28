@@ -37,8 +37,9 @@ namespace BudgetExecution
             ForeColor = Color.FromArgb( 64, 64, 64 );
             Font = new Font( "Roboto", 9, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
-            ColorStyles = ColorStyles.Office2010Blue;
-            GridVisualStyles = GridVisualStyles.Office2010Blue;
+            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Blue;
+            ColorStyles = ColorStyles.Office2010Black;
+            GridVisualStyles = GridVisualStyles.Office2010Black;
             GridLineColor = SystemColors.ControlDark;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;
