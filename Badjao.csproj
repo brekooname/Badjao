@@ -456,7 +456,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CommandBase.cs" />
+    <Compile Include="Abstractions\CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />

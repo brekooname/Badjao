@@ -9,7 +9,6 @@ namespace BudgetExecution
     using System.Drawing;
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Grid;
-    using Syncfusion.Windows.Forms.Tools;
 
     /// <summary>
     /// 
@@ -26,10 +25,10 @@ namespace BudgetExecution
             // Control Properties
             ThemesEnabled = true;
             ApplyVisualStyles = true;
-            TransparentBackground = true;
+            TransparentBackground = false;
             EnableAddNew = true;
             EnableEdit = true;
-            CanOverrideStyle = true;
+            CanOverrideStyle = false;
             EnableRemove = true;
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
@@ -37,10 +36,9 @@ namespace BudgetExecution
             BackColor = SystemColors.GradientActiveCaption;
             ForeColor = Color.FromArgb( 64, 64, 64 );
             Font = new Font( "Roboto", 9, FontStyle.Regular );
-            GridOfficeScrollBars = OfficeScrollBars.Office2016;
-            Office2016ScrollBarsColorScheme = ScrollBarOffice2016ColorScheme.Colorful;
-            ColorStyles = ColorStyles.SystemTheme;
-            GridVisualStyles = GridVisualStyles.Custom;
+            GridOfficeScrollBars = OfficeScrollBars.Office2010;
+            ColorStyles = ColorStyles.Office2010Blue;
+            GridVisualStyles = GridVisualStyles.Office2010Blue;
             GridLineColor = SystemColors.ControlDark;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;

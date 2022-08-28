@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
-    using System.Drawing;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class DataViewForm : MetroForm
@@ -26,6 +25,38 @@
         /// The form filter.
         /// </value>
         public IDictionary<string, object> FormFilter { get; set; }
+
+        /// <summary>
+        /// Gets the source prefix.
+        /// </summary>
+        /// <value>
+        /// The source prefix.
+        /// </value>
+        public string SourcePrefix { get; } = " Data Source : ";
+
+        /// <summary>
+        /// Gets the table prefix.
+        /// </summary>
+        /// <value>
+        /// The table prefix.
+        /// </value>
+        public string TablePrefix { get; } = " Tables : ";
+
+        /// <summary>
+        /// Gets the column prefix.
+        /// </summary>
+        /// <value>
+        /// The column prefix.
+        /// </value>
+        public string ColumnPrefix { get; } = " Columns : ";
+
+        /// <summary>
+        /// Gets the value prefix.
+        /// </summary>
+        /// <value>
+        /// The value prefix.
+        /// </value>
+        public string ValuePrefix { get; } = " Values : ";
         
         /// <summary>
         /// Initializes a new instance of the <see cref="DataViewForm"/> class.
@@ -67,11 +98,12 @@
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
                 DataGrid.DataSource = BindingSource;
-                DataSourceLabel.Text = DataModel.DataTable.TableName.SplitPascal(  );
+                DataSourceGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal(  );
                 PopulateTableListBoxItems(  );
                 PopulateToolBarDropDownItems(  );
                 ToolStrip.Office12Mode = true;
-                TableCountLabel.Text = TableListBox.Items.Count.ToString( );
+                TableGroupBox.Text = TablePrefix + TableListBox.Items.Count;
+                ColumnGroupBox.Text = ColumnPrefix;
             }
             catch( Exception ex )
             {
@@ -120,14 +152,14 @@
         {
             FormFilter.Clear( );
             ColumnListBox.Items.Clear( );
-            ElementListBox.Items.Clear( );
-            FieldCountLabel.Text = string.Empty;
-            ValueCountLabel.Text = string.Empty;
+            ValueListBox.Items.Clear( );
+            ColumnGroupBox.Text = string.Empty;
+            ValueGroupBox.Text = string.Empty;
             var _listBox = sender as VisualListBox;
             var _value = _listBox?.SelectedItem.ToString( );
             if( !string.IsNullOrEmpty( _value ) )
             {
-                DataSourceLabel.Text = _value.SplitPascal(   );
+                DataSourceGroupBox.Text = SourcePrefix + _value.SplitPascal(   );
                 var _source = (Source)Enum.Parse( typeof( Source ), _value );
                 DataModel = new DataBuilder( _source, Provider.Access );
 
@@ -143,7 +175,7 @@
                     ColumnListBox.Items.Add( col.ColumnName );
                 }
                 
-                FieldCountLabel.Text = ColumnListBox.Items.Count.ToString( );
+                ColumnGroupBox.Text = ColumnPrefix + ColumnListBox.Items.Count;
             }
         }
 
@@ -154,7 +186,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnColumnListBoxSelectionChanged( object sender, EventArgs e )
         {
-            ElementListBox.Items.Clear(  );
+            ValueListBox.Items.Clear(  );
             var _listBox = sender as VisualListBox;
             var _column = _listBox?.SelectedItem.ToString(  );
             var _series = DataModel.DataElements;
@@ -163,11 +195,11 @@
             {
                 foreach( var item in _series[ _column ] )
                 {
-                    ElementListBox.Items.Add( item );
+                    ValueListBox.Items.Add( item );
                 }
             }
 
-            ValueCountLabel.Text = ElementListBox.Items.Count.ToString( );
+            ValueGroupBox.Text = ValuePrefix + ValueListBox.Items.Count;
         }
 
         /// <summary>
