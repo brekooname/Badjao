@@ -4,6 +4,7 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
@@ -64,6 +65,7 @@
         public DataViewForm( )
         {
             InitializeComponent( );
+            InitGrid( );
             Load += OnLoad;
             TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
             ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
@@ -77,6 +79,7 @@
         public DataViewForm( Source source, Provider provider )
         {
             InitializeComponent( );
+            InitGrid( );
             Load += OnLoad;
             TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
             ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
@@ -92,15 +95,15 @@
         {
             try
             {
-                FormFilter = new Dictionary<string, object>(  );
+                FormFilter = new Dictionary<string, object>( );
                 FormFilter.Add( "BFY", "2022"  );
                 FormFilter.Add( "FundCode", "B" );
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
-                DataGrid.DataSource = BindingSource;
-                DataSourceGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal(  );
-                PopulateTableListBoxItems(  );
-                PopulateToolBarDropDownItems(  );
+                DataGrid.DataSource = BindingSource.DataSource;
+                DataGridLabel.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal( );
+                PopulateTableListBoxItems( );
+                PopulateToolBarDropDownItems( );
                 ToolStrip.Office12Mode = true;
                 TableGroupBox.Text = TablePrefix + TableListBox.Items.Count;
                 ColumnGroupBox.Text = ColumnPrefix;
@@ -116,14 +119,83 @@
         /// </summary>
         public void PopulateTableListBoxItems( )
         {
-            TableListBox.Items.Clear();
-            var _names = Enum.GetNames( typeof( Source ) );
-            foreach( var name in _names )
+            try
             {
-                if( name != "NS" )
+                TableListBox.Items.Clear();
+                var _names = Enum.GetNames( typeof( Source ) );
+                foreach( var name in _names )
                 {
-                    TableListBox.Items.Add( name );
+                    if( name != "NS" )
+                    {
+                        TableListBox.Items.Add( name );
+                    }
                 }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        private void InitGrid(  )
+        {
+            try
+            {
+                DataGrid.ForeColor = Color.Black;
+                DataGrid.Font = new Font( "Roboto", 9 );
+                DataGrid.Margin = new Padding( 3 );
+                DataGrid.Padding = new Padding( 1 );
+                DataGrid.Size = new Size( 240, 150 );
+                DataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+                DataGrid.BackColor = Color.FromArgb( 40, 40, 40 );
+                DataGrid.BorderStyle = BorderStyle.None;
+                DataGrid.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+                DataGrid.BackgroundColor = Color.FromArgb( 40, 40, 40 );
+                DataGrid.GridColor = Color.FromArgb( 141, 139, 138 );
+
+                // Column SeriesConfiguration
+                DataGrid.AllowUserToOrderColumns = true;
+                DataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                DataGrid.ColumnHeadersHeight = 35;
+                DataGrid.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                DataGrid.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
+                DataGrid.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                DataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGrid.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+                DataGrid.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+                DataGrid.ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 9, FontStyle.Bold );
+                DataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+                // Row SeriesConfiguration
+                DataGrid.RowHeadersWidth = 26;
+                DataGrid.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                DataGrid.RowHeadersDefaultCellStyle.BackColor = SystemColors.ControlDark;
+                DataGrid.RowHeadersDefaultCellStyle.Font = new Font( "Roboto", 9 );
+                DataGrid.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
+                DataGrid.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
+                DataGrid.CellBorderStyle = DataGridViewCellBorderStyle.None;
+                DataGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                DataGrid.RowsDefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+                DataGrid.RowsDefaultCellStyle.Font = new Font( "Roboto", 8 );
+                DataGrid.RowsDefaultCellStyle.ForeColor = Color.LightSteelBlue;
+                DataGrid.RowsDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+                DataGrid.RowsDefaultCellStyle.SelectionForeColor = Color.White;
+                DataGrid.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+                DataGrid.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb( 240, 240, 240 );
+                DataGrid.AlternatingRowsDefaultCellStyle.Font = new Font( "Roboto", 8 );
+                DataGrid.AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+                DataGrid.AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
+
+                // Epilog
+                DataGrid.Visible = true;
+                DataGrid.Enabled = true;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -132,13 +204,20 @@
         /// </summary>
         public void PopulateToolBarDropDownItems( )
         {
-            var _names = Enum.GetNames( typeof( SQL ) );
-            foreach( var name in _names )
+            try
             {
-                if( name != "NS" )
+                var _names = Enum.GetNames( typeof( SQL ) );
+                foreach( var name in _names )
                 {
-                    ToolStrip.DropDown.Items.Add( name  );
+                    if( name != "NS" )
+                    {
+                        ToolStrip.DropDown.Items.Add( name  );
+                    }
                 }
+            }
+            catch ( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -150,34 +229,42 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnTableListBoxSelectionChanged( object sender, EventArgs e )
         {
-            FormFilter.Clear( );
-            ColumnListBox.Items.Clear( );
-            ValueListBox.Items.Clear( );
-            ColumnGroupBox.Text = string.Empty;
-            ValueGroupBox.Text = string.Empty;
-            var _listBox = sender as VisualListBox;
-            var _value = _listBox?.SelectedItem.ToString( );
-            if( !string.IsNullOrEmpty( _value ) )
+            try
             {
-                var _source = (Source)Enum.Parse( typeof( Source ), _value );
-                DataModel = new DataBuilder( _source, Provider.Access );
-
-                BindingSource = new BindingSource
+                FormFilter.Clear( );
+                ColumnListBox.Items.Clear( );
+                ValueListBox.Items.Clear( );
+                ColumnGroupBox.Text = string.Empty;
+                ValueGroupBox.Text = string.Empty;
+                var _listBox = sender as VisualListBox;
+                var _value = _listBox?.SelectedItem.ToString( );
+                if( !string.IsNullOrEmpty( _value ) )
                 {
-                    DataSource = DataModel.DataTable
-                };
+                    var _source = (Source)Enum.Parse( typeof( Source ), _value );
+                    DataModel = new DataBuilder( _source, Provider.Access );
 
-                DataGrid.DataSource = BindingSource;
-                DataSourceGroupBox.Text = SourcePrefix + _value.SplitPascal( );
+                    BindingSource = new BindingSource
+                    {
+                        DataSource = DataModel.DataTable
+                    };
 
-                var _columns = DataModel.GetDataColumns( );
+                    DataGrid.DataSource = BindingSource.DataSource;
+                    DataGridLabel.Text = SourcePrefix + _value.SplitPascal( );
 
-                foreach( var col in _columns )
-                {
-                    ColumnListBox.Items.Add( col.ColumnName );
+                    var _columns = DataModel.GetDataColumns( );
+
+                    foreach( var col in _columns )
+                    {
+                        ColumnListBox.Items.Add( col.ColumnName );
+                    }
+
+                    ColumnGroupBox.Text = ColumnPrefix + ColumnListBox.Items.Count;
+                    ValueGroupBox.Text = ValuePrefix;
                 }
-                
-                ColumnGroupBox.Text = ColumnPrefix + ColumnListBox.Items.Count;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 
@@ -188,22 +275,29 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public void OnColumnListBoxSelectionChanged( object sender, EventArgs e )
         {
-            ValueListBox.Items.Clear(  );
-            var _listBox = sender as VisualListBox;
-            var _column = _listBox?.SelectedItem.ToString(  );
-            var _series = DataModel.DataElements;
-
-            if( !string.IsNullOrEmpty( _column ) )
+            try
             {
-                foreach( var item in _series[ _column ] )
+                ValueListBox.Items.Clear(  );
+                var _listBox = sender as VisualListBox;
+                var _column = _listBox?.SelectedItem.ToString(  );
+                var _series = DataModel.DataElements;
+
+                if( !string.IsNullOrEmpty( _column ) )
                 {
-                    ValueListBox.Items.Add( item );
+                    foreach( var item in _series[ _column ] )
+                    {
+                        ValueListBox.Items.Add( item );
+                    }
                 }
+
+                ValueGroupBox.Text = ValuePrefix + ValueListBox.Items.Count;
             }
-
-            ValueGroupBox.Text = ValuePrefix + ValueListBox.Items.Count;
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
-
+        
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

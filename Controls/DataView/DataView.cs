@@ -33,23 +33,29 @@ namespace BudgetExecution
             AllowResizeToFit = true;
             ExcelLikeSelectionFrame = true;
             ExcelLikeAlignment = true;
-            BackColor = Color.FromArgb( 202, 222, 230 );
+            BackColor = Color.FromArgb( 78, 78, 79 );
             ForeColor = Color.Black;
             Font = new Font( "Roboto", 9, FontStyle.Regular );
             GridOfficeScrollBars = OfficeScrollBars.Office2010;
-            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Blue;
-            ColorStyles = ColorStyles.SystemTheme;
-            GridVisualStyles = GridVisualStyles.Custom;
-            GridLineColor = SystemColors.ControlDark;
+            Office2010ScrollBarsColorScheme = Office2010ColorScheme.Black;
+            ColorStyles = ColorStyles.Office2016DarkGray;
+            GridVisualStyles = GridVisualStyles.Metro;
+            GridLineColor = Color.Black;
             HorizontalScrollTips = true;
             HorizontalThumbTrack = true;
             VerticalScrollTips = true;
             VerticalThumbTrack = true;
             DefaultGridBorderStyle = GridBorderStyle.Dotted;
-            AlphaBlendSelectionColor = Color.FromArgb( 202, 222, 230 );
+            AlphaBlendSelectionColor = Color.SteelBlue;
 
             // ThemStyle Properties
-            ThemeStyle.CellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
+            ThemeStyle.CellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
+            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 78, 78, 79 );
+            ThemeStyle.CellStyle.TextColor = Color.Black;
+            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 78, 78, 79 );
+            ThemeStyle.CellStyle.TextColor = Color.LightSteelBlue;
+            ThemeStyle.HeaderStyle.HoverTextColor = Color.White;
+            ThemeStyle.HeaderStyle.HoverBackColor = Color.SteelBlue;
 
             // Model Properties
             Model.Rows.DefaultSize = 22;
@@ -70,13 +76,10 @@ namespace BudgetExecution
             TableStyle.HorizontalAlignment = GridHorizontalAlignment.Center;
             TableStyle.AutoFit = AutoFitOptions.Both;
             TableStyle.Font.Facename = "Roboto";
-            TableStyle.Font.Size = 9;
-            TableStyle.BackColor = Color.FromArgb( 202, 222, 230 );
-
-            ThemeStyle.CellStyle.BackColor = Color.FromArgb( 202, 222, 230 );
-            ThemeStyle.CellStyle.TextColor = Color.Black;
-            ThemeStyle.HeaderStyle.HoverTextColor = Color.White;
-            ThemeStyle.HeaderStyle.HoverBackColor = Color.SteelBlue;
+            TableStyle.Font.Size = 8;
+            TableStyle.Font.FontStyle = FontStyle.Regular;
+            TableStyle.BackColor = Color.FromArgb( 78, 78, 79 );
+            TableStyle.TextColor = Color.LightSteelBlue;
         }
     }
 }

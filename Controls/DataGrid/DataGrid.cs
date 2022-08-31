@@ -20,8 +20,40 @@ namespace BudgetExecution
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
     [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
-    public class DataGrid : GridBase, IDataGrid
+    public class DataGrid : DataGridView, IDataGrid
     {
+        /// <summary>
+        /// Gets or sets the hover text.
+        /// </summary>
+        /// <value>
+        /// The hover text.
+        /// </value>
+        public string HoverText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tool tip.
+        /// </summary>
+        /// <value>
+        /// The tool tip.
+        /// </value>
+        public ToolTip ToolTip { get; set; }
+
+        /// <summary>
+        /// Gets or sets the binding source.
+        /// </summary>
+        /// <value>
+        /// The binding source.
+        /// </value>
+        public BindingSource BindingSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public IDictionary<string, object> DataFilter { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="DataGrid" />
@@ -33,7 +65,7 @@ namespace BudgetExecution
             Font = new Font( "Roboto", 9 );
             Margin = new Padding( 3 );
             Padding = new Padding( 1 );
-            Size = new Size( 240, 150 );
+            Size = new Size( 906, 527 );
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
             BackColor = Color.FromArgb( 40, 40, 40 );
             BorderStyle = BorderStyle.None;
@@ -186,9 +218,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( base.BindingSource.Filter ) )
+                    if( !string.IsNullOrEmpty( BindingSource.Filter ) )
                     {
-                        base.BindingSource.RemoveFilter( );
+                        BindingSource.RemoveFilter( );
                     }
 
                     BindingSource.DataSource = dataRows.CopyToDataTable( );
@@ -215,9 +247,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( base.BindingSource.Filter ) )
+                    if( !string.IsNullOrEmpty( BindingSource.Filter ) )
                     {
-                        base.BindingSource.RemoveFilter( );
+                        BindingSource.RemoveFilter( );
                     }
 
                     BindingSource.DataSource = ( bindingSource.DataSource as IEnumerable<DataRow> )
@@ -331,18 +363,31 @@ namespace BudgetExecution
                     {
                         foreach( DataGridViewColumn c in Columns )
                         {
-                            _columnConfiguration ?.ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
+                            _columnConfiguration.ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
                         }
 
-                        _columnConfiguration?.ColumnListBox?.Items.Clear( );
+                        _columnConfiguration.ColumnListBox?.Items.Clear( );
                         _columnConfiguration.Location = PointToScreen( new Point( e.X, e.Y ) );
-                        _columnConfiguration?.ShowDialog( );
+                        _columnConfiguration.ShowDialog( );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
                 }
+            }
+        }
+
+        /// <summary>
+        /// Get Error Dialog.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        protected static void Fail( Exception ex )
+        {
+            using( var _error = new Error( ex ) )
+            {
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }
