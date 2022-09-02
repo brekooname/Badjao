@@ -61,17 +61,17 @@ namespace BudgetExecution
             this.ColumnListBox.Location = new System.Drawing.Point(1, 1);
             this.ColumnListBox.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.ColumnListBox.Name = "ColumnListBox";
-            this.ColumnListBox.Size = new System.Drawing.Size(210, 288);
+            this.ColumnListBox.Size = new System.Drawing.Size(210, 299);
             this.ColumnListBox.TabIndex = 3;
             // 
             // ColumnConfigPanel
             // 
             this.ColumnConfigPanel.Controls.Add(this.ColumnListBox);
             this.ColumnConfigPanel.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.ColumnConfigPanel.Location = new System.Drawing.Point(25, 23);
+            this.ColumnConfigPanel.Location = new System.Drawing.Point(25, 12);
             this.ColumnConfigPanel.Name = "ColumnConfigPanel";
             this.ColumnConfigPanel.Padding = new System.Windows.Forms.Padding(1);
-            this.ColumnConfigPanel.Size = new System.Drawing.Size(212, 290);
+            this.ColumnConfigPanel.Size = new System.Drawing.Size(212, 301);
             this.ColumnConfigPanel.TabIndex = 5;
             // 
             // ColumnConfiguration

@@ -76,6 +76,7 @@ namespace BudgetExecution
             Grid = dataGrid;
             PopUp = new System.Windows.Forms.ToolStripDropDown( );
             ColumnListBox.CheckOnClick = true;
+
         }
 
         /// <summary>

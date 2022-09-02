@@ -61,8 +61,9 @@ namespace BudgetExecution
         /// </summary>
         public DataGrid()
         {
-            ForeColor = Color.Black;
-            Font = new Font( "Roboto", 9 );
+            EnableHeadersVisualStyles = false;
+            ForeColor = Color.LightSteelBlue;
+            Font = new Font( "Roboto", 8 );
             Margin = new Padding( 3 );
             Padding = new Padding( 1 );
             Size = new Size( 906, 527 );
@@ -72,26 +73,34 @@ namespace BudgetExecution
             CellBorderStyle = DataGridViewCellBorderStyle.Single;
             BackgroundColor = Color.FromArgb( 40, 40, 40 );
             GridColor = Color.FromArgb( 141, 139, 138 );
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            AllowUserToOrderColumns = true;
+
+            // Default Cell Style
+            DefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            DefaultCellStyle.ForeColor = Color.LightSteelBlue;
+            DefaultCellStyle.SelectionBackColor = Color.SteelBlue;
+            DefaultCellStyle.SelectionForeColor = Color.White;
+            DefaultCellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
 
             // Column SeriesConfiguration
-            AllowUserToOrderColumns = true;
             ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            ColumnHeadersHeight = 35;
-            ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            ColumnHeadersHeight = 30;
+            ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
             ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
             ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 9, FontStyle.Bold );
-            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
+
 
             // Row SeriesConfiguration
-            RowHeadersWidth = 26;
-            RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            RowHeadersDefaultCellStyle.BackColor = SystemColors.ControlDark;
-            RowHeadersDefaultCellStyle.Font = new Font( "Roboto", 9 );
+            RowHeadersWidth = 20;
+            RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            RowHeadersDefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
+            RowHeadersDefaultCellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
             RowHeadersDefaultCellStyle.ForeColor = Color.Black;
             RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
             RowHeadersDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
@@ -100,14 +109,14 @@ namespace BudgetExecution
             RowsDefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
             RowsDefaultCellStyle.Font = new Font( "Roboto", 8 );
             RowsDefaultCellStyle.ForeColor = Color.LightSteelBlue;
-            RowsDefaultCellStyle.SelectionBackColor =  Color.SteelBlue;
+            RowsDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
             RowsDefaultCellStyle.SelectionForeColor = Color.White;
             RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
-            AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb( 240, 240, 240 );
+            AlternatingRowsDefaultCellStyle.ForeColor = Color.LightSteelBlue;
             AlternatingRowsDefaultCellStyle.Font = new Font( "Roboto", 8 );
-            AlternatingRowsDefaultCellStyle.SelectionBackColor =  Color.SteelBlue;
+            AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.SteelBlue;
             AlternatingRowsDefaultCellStyle.SelectionForeColor = Color.White;
 
             // Epilog
@@ -247,15 +256,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( BindingSource.Filter ) )
+                    if( !string.IsNullOrEmpty( bindingSource.Filter ) )
                     {
-                        BindingSource.RemoveFilter( );
+                        bindingSource.RemoveFilter( );
                     }
 
-                    BindingSource.DataSource = ( bindingSource.DataSource as IEnumerable<DataRow> )
+                    bindingSource.DataSource = ( bindingSource.DataSource as IEnumerable<DataRow> )
                         ?.CopyToDataTable( );
 
-                    BindingSource.Filter = GetFilterValues( dict );
+                    bindingSource.Filter = GetFilterValues( dict );
                     DataSource = BindingSource;
                     PascalizeHeaders( BindingSource.DataSource as IEnumerable<DataRow> );
                 }
@@ -272,7 +281,7 @@ namespace BudgetExecution
         /// <param name="dataRows">The data.</param>
         public void PascalizeHeaders( IEnumerable<DataRow> dataRows )
         {
-            if( Verify.IsSequence( dataRows ) )
+            if( dataRows?.Any( ) == true )
             {
                 try
                 {
@@ -310,7 +319,7 @@ namespace BudgetExecution
 
                         foreach( var _kvp in dict )
                         {
-                            _vals += $"{_kvp.Key} = '{_kvp.Value}' AND ";
+                            _vals += $"{ _kvp.Key } = '{ _kvp.Value }' AND ";
                         }
 
                         return _vals.Trim( ).Substring( 0, _vals.Length - 4 );
@@ -359,17 +368,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _columnConfiguration = new ColumnConfiguration( this ) )
-                    {
-                        foreach( DataGridViewColumn c in Columns )
-                        {
-                            _columnConfiguration.ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
-                        }
-
-                        _columnConfiguration.ColumnListBox?.Items.Clear( );
-                        _columnConfiguration.Location = PointToScreen( new Point( e.X, e.Y ) );
-                        _columnConfiguration.ShowDialog( );
-                    }
+                   var _ = new ColumnConfiguration( this );
                 }
                 catch( Exception ex )
                 {
