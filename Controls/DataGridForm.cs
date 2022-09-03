@@ -7,7 +7,7 @@
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public partial class DataViewForm : MetroForm
+    public partial class DataGridForm : MetroForm
     {
         /// <summary>
         /// Gets or sets the data model.
@@ -58,9 +58,9 @@
         public string ValuePrefix { get; } = " Values : ";
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataViewForm"/> class.
+        /// Initializes a new instance of the <see cref="DataGridForm"/> class.
         /// </summary>
-        public DataViewForm( )
+        public DataGridForm( )
         {
             InitializeComponent( );
             Load += OnLoad;
@@ -69,11 +69,11 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DataViewForm"/> class.
+        /// Initializes a new instance of the <see cref="DataGridForm"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        public DataViewForm( Source source, Provider provider )
+        public DataGridForm( Source source, Provider provider )
         {
             InitializeComponent( );
             Load += OnLoad;
@@ -102,6 +102,7 @@
                 ToolStrip.Office12Mode = true;
                 TableGroupBox.Text = TablePrefix + TableListBox.Items.Count;
                 ColumnGroupBox.Text = ColumnPrefix;
+                DataGridGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal( );
             }
             catch( Exception ex )
             {
@@ -177,7 +178,7 @@
                     BindingSource.DataSource = DataModel.DataTable;
                     DataGrid.DataSource = BindingSource;
                     ToolStrip.BindingSource = BindingSource;
-                    DataGridGroupBox.Text = SourcePrefix + _value.SplitPascal( );
+                    DataGridGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal( );
 
                     var _columns = DataModel.GetDataColumns( );
 

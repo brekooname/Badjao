@@ -1,6 +1,6 @@
 ﻿namespace BudgetExecution
 {
-    partial class DataViewForm
+    partial class DataGridForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataViewForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DataGridGroupBox = new BudgetExecution.GroupBox();
             this.GridPanel = new BudgetExecution.Layout();
+            this.DataGrid = new BudgetExecution.DataGrid();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
@@ -79,10 +80,10 @@
             this.ValueGroupBox = new BudgetExecution.GroupBox();
             this.ValueListPanel = new BudgetExecution.Layout();
             this.ValueListBox = new BudgetExecution.ListBox();
-            this.DataGrid = new BudgetExecution.DataGrid();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.DataGridGroupBox.SuspendLayout();
             this.GridPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.ToolStrip.SuspendLayout();
             this.TableGroupBox.SuspendLayout();
             this.TableListPanel.SuspendLayout();
@@ -90,7 +91,6 @@
             this.ColumnListPanel.SuspendLayout();
             this.ValueGroupBox.SuspendLayout();
             this.ValueListPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // DataGridGroupBox
@@ -172,6 +172,68 @@
             this.GridPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.GridPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.GridPanel.ToolTip = null;
+            // 
+            // DataGrid
+            // 
+            this.DataGrid.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.DataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.DataGrid.BindingSource = null;
+            this.DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGrid.DataFilter = null;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGrid.EnableHeadersVisualStyles = false;
+            this.DataGrid.Font = new System.Drawing.Font("Roboto", 8F);
+            this.DataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.DataGrid.HoverText = null;
+            this.DataGrid.Location = new System.Drawing.Point(0, 0);
+            this.DataGrid.Name = "DataGrid";
+            this.DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DataGrid.RowHeadersWidth = 20;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGrid.Size = new System.Drawing.Size(942, 497);
+            this.DataGrid.TabIndex = 0;
+            this.DataGrid.ToolTip = null;
             // 
             // ToolTip
             // 
@@ -296,7 +358,7 @@
             this.CalculatorButton.Field = BudgetExecution.Field.AccountCode;
             this.CalculatorButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.CalculatorButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.CalculatorButton.HoverText = null;
+            this.CalculatorButton.HoverText = "Launch Calculator";
             this.CalculatorButton.Image = ((System.Drawing.Image)(resources.GetObject("CalculatorButton.Image")));
             this.CalculatorButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CalculatorButton.Margin = new System.Windows.Forms.Padding(5);
@@ -315,7 +377,7 @@
             this.ChartButton.Field = BudgetExecution.Field.AccountCode;
             this.ChartButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.ChartButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.ChartButton.HoverText = null;
+            this.ChartButton.HoverText = "Data Visualizations";
             this.ChartButton.Image = ((System.Drawing.Image)(resources.GetObject("ChartButton.Image")));
             this.ChartButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ChartButton.Margin = new System.Windows.Forms.Padding(5);
@@ -334,7 +396,7 @@
             this.DeleteButton.Field = BudgetExecution.Field.AccountCode;
             this.DeleteButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.DeleteButton.HoverText = null;
+            this.DeleteButton.HoverText = "Delete Record";
             this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
             this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteButton.Margin = new System.Windows.Forms.Padding(5);
@@ -373,7 +435,7 @@
             this.EditButton.Field = BudgetExecution.Field.AccountCode;
             this.EditButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.EditButton.HoverText = null;
+            this.EditButton.HoverText = "Edit Record";
             this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
             this.EditButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditButton.Margin = new System.Windows.Forms.Padding(5);
@@ -392,7 +454,7 @@
             this.FirstButton.Field = BudgetExecution.Field.AccountCode;
             this.FirstButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.FirstButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.FirstButton.HoverText = null;
+            this.FirstButton.HoverText = "First Record";
             this.FirstButton.Image = ((System.Drawing.Image)(resources.GetObject("FirstButton.Image")));
             this.FirstButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FirstButton.Margin = new System.Windows.Forms.Padding(5);
@@ -411,7 +473,7 @@
             this.HomeButton.Field = BudgetExecution.Field.AccountCode;
             this.HomeButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.HomeButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.HomeButton.HoverText = null;
+            this.HomeButton.HoverText = "Main Menu";
             this.HomeButton.Image = ((System.Drawing.Image)(resources.GetObject("HomeButton.Image")));
             this.HomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HomeButton.Margin = new System.Windows.Forms.Padding(5);
@@ -500,7 +562,7 @@
             this.PreviousButton.Field = BudgetExecution.Field.AccountCode;
             this.PreviousButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.PreviousButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.PreviousButton.HoverText = null;
+            this.PreviousButton.HoverText = "Previous Record";
             this.PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("PreviousButton.Image")));
             this.PreviousButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.PreviousButton.Margin = new System.Windows.Forms.Padding(5);
@@ -527,7 +589,7 @@
             this.NextButton.Field = BudgetExecution.Field.AccountCode;
             this.NextButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.NextButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.NextButton.HoverText = null;
+            this.NextButton.HoverText = "Next Record";
             this.NextButton.Image = ((System.Drawing.Image)(resources.GetObject("NextButton.Image")));
             this.NextButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NextButton.Margin = new System.Windows.Forms.Padding(5);
@@ -554,7 +616,7 @@
             this.LastButton.Field = BudgetExecution.Field.AccountCode;
             this.LastButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.LastButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.LastButton.HoverText = null;
+            this.LastButton.HoverText = "Last Record";
             this.LastButton.Image = ((System.Drawing.Image)(resources.GetObject("LastButton.Image")));
             this.LastButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LastButton.Margin = new System.Windows.Forms.Padding(5);
@@ -589,7 +651,7 @@
             this.RefreshButton.Field = BudgetExecution.Field.AccountCode;
             this.RefreshButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.RefreshButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.RefreshButton.HoverText = null;
+            this.RefreshButton.HoverText = "Refresh Data";
             this.RefreshButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshButton.Image")));
             this.RefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshButton.Margin = new System.Windows.Forms.Padding(5);
@@ -624,7 +686,7 @@
             this.SaveButton.Field = BudgetExecution.Field.AccountCode;
             this.SaveButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.SaveButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.SaveButton.HoverText = null;
+            this.SaveButton.HoverText = "Save Changes";
             this.SaveButton.Image = ((System.Drawing.Image)(resources.GetObject("SaveButton.Image")));
             this.SaveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveButton.Margin = new System.Windows.Forms.Padding(5);
@@ -651,7 +713,7 @@
             this.ExcelButton.Field = BudgetExecution.Field.AccountCode;
             this.ExcelButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.ExcelButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.ExcelButton.HoverText = null;
+            this.ExcelButton.HoverText = "Excel Export";
             this.ExcelButton.Image = ((System.Drawing.Image)(resources.GetObject("ExcelButton.Image")));
             this.ExcelButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExcelButton.Margin = new System.Windows.Forms.Padding(5);
@@ -1057,69 +1119,7 @@
             this.ValueListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ValueListBox.ToolTip = this.ToolTip;
             // 
-            // DataGrid
-            // 
-            this.DataGrid.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.DataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.DataGrid.BindingSource = null;
-            this.DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGrid.DataFilter = null;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGrid.EnableHeadersVisualStyles = false;
-            this.DataGrid.Font = new System.Drawing.Font("Roboto", 8F);
-            this.DataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
-            this.DataGrid.HoverText = null;
-            this.DataGrid.Location = new System.Drawing.Point(0, 0);
-            this.DataGrid.Name = "DataGrid";
-            this.DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DataGrid.RowHeadersWidth = 20;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGrid.Size = new System.Drawing.Size(942, 497);
-            this.DataGrid.TabIndex = 0;
-            this.DataGrid.ToolTip = null;
-            // 
-            // DataViewForm
+            // DataGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1145,7 +1145,7 @@
             this.MaximizeBox = false;
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.MinimizeBox = false;
-            this.Name = "DataViewForm";
+            this.Name = "DataGridForm";
             this.ShowIcon = false;
             this.ShowMaximizeBox = false;
             this.ShowMinimizeBox = false;
@@ -1154,6 +1154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.DataGridGroupBox.ResumeLayout(false);
             this.GridPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
             this.TableGroupBox.ResumeLayout(false);
@@ -1165,7 +1166,6 @@
             this.ValueGroupBox.ResumeLayout(false);
             this.ValueListPanel.ResumeLayout(false);
             this.ValueListPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

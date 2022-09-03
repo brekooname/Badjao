@@ -491,11 +491,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Label\Label.cs" />
-    <Compile Include="Controls\DataViewForm.cs">
+    <Compile Include="Controls\DataGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\DataViewForm.Designer.cs">
-      <DependentUpon>DataViewForm.cs</DependentUpon>
+    <Compile Include="Controls\DataGridForm.Designer.cs">
+      <DependentUpon>DataGridForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\CurrencyBase.cs">
       <SubType>Component</SubType>
@@ -856,6 +856,7 @@
     <Compile Include="Controls\Form\BudgetForm.cs" />
     <Compile Include="Controls\StyleConfig\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
+    <Compile Include="Properties\Providers.Designer.cs" />
     <Compile Include="Resources\Extenstions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -932,8 +933,8 @@
     <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataViewForm.resx">
-      <DependentUpon>DataViewForm.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataGridForm.resx">
+      <DependentUpon>DataGridForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
@@ -965,6 +966,7 @@
     <EmbeddedResource Include="Controls\PivotForm.resx">
       <DependentUpon>PivotForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Providers.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

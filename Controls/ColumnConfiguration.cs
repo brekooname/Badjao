@@ -76,6 +76,7 @@ namespace BudgetExecution
             Grid = dataGrid;
             PopUp = new System.Windows.Forms.ToolStripDropDown( );
             ColumnListBox.CheckOnClick = true;
+            ColumnListBox.ItemCheck += OnListItemChecked;
 
         }
 
@@ -160,7 +161,7 @@ namespace BudgetExecution
         /// <param name = "e" >
         /// The <see cref = "ItemCheckEventArgs"/> instance containing the event data.
         /// </param>
-        private void OnDataGridItemChecked( object sender, ItemCheckEventArgs e )
+        private void OnListItemChecked( object sender, ItemCheckEventArgs e )
         {
             if( e != null )
             {
