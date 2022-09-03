@@ -4,7 +4,6 @@
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
-    using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -176,13 +175,9 @@
                 {
                     var _source = (Source)Enum.Parse( typeof( Source ), _value );
                     DataModel = new DataBuilder( _source, Provider.Access );
-
-                    BindingSource = new BindingSource
-                    {
-                        DataSource = DataModel.DataTable
-                    };
-
+                    BindingSource.DataSource = DataModel.DataTable;
                     DataGrid.DataSource = BindingSource;
+                    ToolStrip.BindingSource = BindingSource;
                     DataGridGroupBox.Text = SourcePrefix + _value.SplitPascal( );
 
                     var _columns = DataModel.GetDataColumns( );
