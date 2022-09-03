@@ -6,8 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
@@ -64,15 +62,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public override NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="Button" />
@@ -98,12 +88,12 @@ namespace BudgetExecution
             BackColor = Color.FromArgb( 15, 15, 15 );
             BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
             BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
-            BackColorState.Hover = Color.FromArgb( 41, 41, 41 );
+            BackColorState.Hover = Color.FromArgb( 40, 40, 40 );
             BackColorState.Pressed = Color.SteelBlue;
 
             // BorderColor SeriesConfiguration
             Border.Color = Color.FromArgb( 15, 15, 15 );
-            Border.HoverColor = Color.SteelBlue;
+            Border.HoverColor = Color.FromArgb( 0, 120, 212 );
             Border.HoverVisible = true;
             Border.Type = ShapeTypes.Rounded;
             Border.Thickness = 1;
@@ -114,7 +104,7 @@ namespace BudgetExecution
             // Text SeriesConfiguration
             TextStyle.Pressed = Color.White;
             TextStyle.Disabled = Color.FromArgb( 15, 15, 15 );
-            TextStyle.Enabled = Color.LightSteelBlue;
+            TextStyle.Enabled = Color.FromArgb( 0, 120, 212 );
             TextStyle.Hover = Color.White;
             TextStyle.TextAlignment = StringAlignment.Center;
             TextStyle.TextLineAlignment = StringAlignment.Center;

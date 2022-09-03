@@ -856,7 +856,6 @@
     <Compile Include="Controls\Form\BudgetForm.cs" />
     <Compile Include="Controls\StyleConfig\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
-    <Compile Include="Properties\Providers.Designer.cs" />
     <Compile Include="Resources\Extenstions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -966,7 +965,6 @@
     <EmbeddedResource Include="Controls\PivotForm.resx">
       <DependentUpon>PivotForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Providers.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
