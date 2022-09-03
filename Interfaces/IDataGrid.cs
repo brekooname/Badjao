@@ -11,29 +11,12 @@ namespace BudgetExecution
     public interface IDataGrid
     {
         /// <summary>
-        /// Sets the column configuration.
-        /// </summary>
-        void SetColumnConfiguration();
-
-        /// <summary>
-        /// Sets the row configuration.
-        /// </summary>
-        void SetRowConfiguration();
-
-        /// <summary>
         /// Sets the binding source.
         /// </summary>
         /// <param name="dataRows">The data.</param>
         /// <param name="dict">The dictionary.</param>
         void SetBindingSource( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict );
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <param name="bindingSource">The bindingSource.</param>
-        /// <param name="dict">The dictionary.</param>
-        void SetBindingSource( BindingSource bindingSource, IDictionary<string, object> dict );
-
+        
         /// <summary>
         /// Pascalizes the headers.
         /// </summary>

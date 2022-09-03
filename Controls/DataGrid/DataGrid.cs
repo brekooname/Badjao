@@ -70,7 +70,7 @@ namespace BudgetExecution
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
             BackColor = Color.FromArgb( 55, 55, 55 );
             BorderStyle = BorderStyle.None;
-            CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            CellBorderStyle = DataGridViewCellBorderStyle.None;
             BackgroundColor = Color.FromArgb( 55, 55, 55 );
             GridColor = Color.FromArgb( 141, 139, 138 );
             SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -85,21 +85,21 @@ namespace BudgetExecution
             DefaultCellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
 
             // Column SeriesConfiguration
-            ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ColumnHeadersHeight = 30;
+            ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            ColumnHeadersHeight = 26;
             ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
             ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb( 22, 39, 70 );
             ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
+            ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular);
 
 
             // Row SeriesConfiguration
             RowHeadersWidth = 20;
             RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            RowHeadersDefaultCellStyle.BackColor = Color.FromArgb( 22, 39, 70 );
+            RowHeadersDefaultCellStyle.BackColor = Color.FromArgb( 40, 40, 40 );
             RowHeadersDefaultCellStyle.Font = new Font( "Roboto", 8, FontStyle.Regular );
             RowHeadersDefaultCellStyle.ForeColor = Color.Black;
             RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter;
@@ -172,9 +172,9 @@ namespace BudgetExecution
             {
                 ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
                 {
-                    Font = new Font( "Roboto", 11, FontStyle.Bold ),
+                    Font = new Font( "Roboto", 9, FontStyle.Bold ),
                     Alignment = DataGridViewContentAlignment.MiddleCenter,
-                    ForeColor = Color.Black,
+                    ForeColor = Color.White,
                     BackColor = Color.SteelBlue
                 };
             }
@@ -243,38 +243,7 @@ namespace BudgetExecution
                 }
             }
         }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <param name="bindingSource">The bindingSource.</param>
-        /// <param name="dict">The dictionary.</param>
-        public void SetBindingSource( BindingSource bindingSource, IDictionary<string, object> dict )
-        {
-            if( bindingSource?.DataSource != null
-                && dict?.Any( ) == true )
-            {
-                try
-                {
-                    if( !string.IsNullOrEmpty( bindingSource.Filter ) )
-                    {
-                        bindingSource.RemoveFilter( );
-                    }
-
-                    bindingSource.DataSource = ( bindingSource.DataSource as IEnumerable<DataRow> )
-                        ?.CopyToDataTable( );
-
-                    bindingSource.Filter = GetFilterValues( dict );
-                    DataSource = BindingSource;
-                    PascalizeHeaders( BindingSource.DataSource as IEnumerable<DataRow> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Pascalizes the headers.
         /// </summary>
@@ -285,14 +254,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( dataRows?.CopyToDataTable( )?.Columns?.Count > 0 )
+                    if( dataRows?.CopyToDataTable(  )?.Columns?.Count > 0 )
                     {
-                        foreach( DataColumn _dataColumn in dataRows.CopyToDataTable( ).Columns )
+                        var _count = dataRows.CopyToDataTable(  ).Columns.Count;
+                        var _columns = dataRows.CopyToDataTable(  ).Columns;
+
+                        for( var i = 0; i < _count; i++ )
                         {
-                            foreach( DataGridViewColumn _gridViewColumn in Columns )
-                            {
-                                _gridViewColumn.HeaderText = _dataColumn.Caption;
-                            }
+                            Columns[ i ].HeaderText = _columns[ i ]?.ColumnName?.SplitPascal(  );
                         }
                     }
                 }
@@ -368,7 +337,19 @@ namespace BudgetExecution
             {
                 try
                 {
-                   var _ = new ColumnConfiguration( this );
+                    var _columnConfiguration = new ColumnConfiguration( this )
+                    {
+                        Location = PointToScreen( new Point( e.X, e.Y ) )
+                    };
+
+                    _columnConfiguration.ColumnListBox?.Items?.Clear( );
+
+                    foreach( DataGridViewColumn c in Columns )
+                    {
+                        _columnConfiguration.ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
+                    }
+                    
+                    _columnConfiguration.TopMost = true;
                 }
                 catch( Exception ex )
                 {

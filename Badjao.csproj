@@ -612,12 +612,6 @@
     <Compile Include="Controls\Chart\SeriesBindingModel.cs" />
     <Compile Include="Abstractions\BindingModelBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
-    <Compile Include="Controls\DataGridForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\DataGridForm.Designer.cs">
-      <DependentUpon>DataGridForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abstractions\GridBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -937,10 +931,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataGridForm.resx">
-      <DependentUpon>DataGridForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DataViewForm.resx">
       <DependentUpon>DataViewForm.cs</DependentUpon>
