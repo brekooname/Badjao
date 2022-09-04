@@ -51,7 +51,15 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the image list.
+        /// </summary>
+        /// <value>
+        /// The image list.
+        /// </value>
+        public ImageList ImageList { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="PictureBox" />

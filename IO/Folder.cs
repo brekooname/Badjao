@@ -37,8 +37,8 @@ namespace BudgetExecution
             Path = DirectoryInfo.FullName;
             Files = Directory.GetFiles( Path );
             DirectorySecurity = DirectoryInfo.GetAccessControl();
-            CreationDate = DirectoryInfo.CreationTime;
-            ChangeDate = DirectoryInfo.LastWriteTime;
+            Created = DirectoryInfo.CreationTime;
+            Modified = DirectoryInfo.LastWriteTime;
         }
         
         /// <summary>
@@ -69,8 +69,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( fullName ) 
-                    && !Directory.Exists( fullName )
+                return !string.IsNullOrEmpty( fullName ) && !Directory.Exists( fullName )
                         ? Directory.CreateDirectory( fullName )
                         : default( DirectoryInfo );
             }

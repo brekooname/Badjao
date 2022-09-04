@@ -37,6 +37,9 @@ namespace BudgetExecution
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckBoxBase"/> class.
+        /// </summary>
         protected CheckBoxBase( )
         {
         }

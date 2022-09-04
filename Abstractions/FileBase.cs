@@ -15,7 +15,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
-    public abstract class PathBase
+    public abstract class FileBase
     {
         /// <summary>
         /// The path
@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <value>
         /// The name of the file.
         /// </value>
-        public virtual string FileName { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the full name.
@@ -105,8 +105,17 @@ namespace BudgetExecution
         /// Initializes a new instance 
         /// of the <see cref="PathBase"/> class.
         /// </summary>
-        protected PathBase( )
+        protected FileBase( )
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileBase"/> class.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        protected FileBase( string input )
+        {
+            Input = input;
         }
 
         /// <summary>
@@ -228,27 +237,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString( )
-        {
-            try
-            {
-                return !string.IsNullOrEmpty( Input )
-                    ? Path.GetFullPath( Input )
-                    : string.Empty;
-            }
-            catch ( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
@@ -262,3 +250,4 @@ namespace BudgetExecution
         }
     }
 }
+

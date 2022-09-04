@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <value>
         /// The changed date.
         /// </value>
-        DateTime ChangeDate { get; set; }
+        DateTime Modified { get; set; }
 
         /// <summary>
         /// Gets the information.
@@ -69,7 +69,7 @@ namespace BudgetExecution
         /// </summary>
         /// <value>
         /// The creation date.p/// </value>
-        DateTime CreationDate { get; set; }
+        DateTime Created { get; set; }
 
         /// <summary>
         /// Gets or sets the length.

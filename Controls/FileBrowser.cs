@@ -7,12 +7,14 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.IO;
     using System.Windows.Forms;
     using System.Linq;
     using VisualPlus.Toolkit.Child;
+    using VisualPlus.Toolkit.Controls.DataManagement;
 
     public partial class FileBrowser
     {
@@ -22,7 +24,15 @@ namespace BudgetExecution
         /// <value>
         /// The extension.
         /// </value>
-        public string Extension { get; set; }
+        public EXT Extension { get; set; }
+
+        /// <summary>
+        /// Gets or sets the extension.
+        /// </summary>
+        /// <value>
+        /// The extension.
+        /// </value>
+        public string FileExtension { get; set; }
 
         /// <summary>
         /// Gets or sets the initial path.
@@ -31,6 +41,14 @@ namespace BudgetExecution
         /// The initial path.
         /// </value>
         public IEnumerable<string> InitialDirPaths { get; set; }
+
+        /// <summary>
+        /// Gets or sets the initial path.
+        /// </summary>
+        /// <value>
+        /// The initial path.
+        /// </value>
+        public IEnumerable<string> FilePaths { get; set; }
 
         /// <summary>
         /// Gets or sets the check boxes.
@@ -96,12 +114,17 @@ namespace BudgetExecution
             Size = new Size( 700, 480);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = Color.FromArgb( 15, 15, 15 );
-            CloseButton.Click += OnCloseButtonClicked;
             InitialDirPaths = GetInitialDirPaths( );
-            FileDialog.DefaultExt = ".xlsx";
-            FileDialog.InitialDirectory = 
-                Environment.GetFolderPath( Environment.SpecialFolder.Desktop );
+            CheckBoxes = GetCheckBoxes( );
+            FileExtension = "xlsx";
+            PictureBox.Image = GetImage( );
+            FilePaths = GetListViewPaths( );
+
+            FileDialog.DefaultExt = FileExtension;
+            FileDialog.InitialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
             FileDialog.CheckFileExists = true;
+
+            CloseButton.Click += OnCloseButtonClicked;
             Load += OnLoaded;
         }
 
@@ -117,15 +140,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    PdfCheckBox.CheckState = CheckState.Unchecked;
-                    SQLiteCheckBox.CheckState = CheckState.Unchecked;
-                    SqlCeCheckBox.CheckState = CheckState.Unchecked;
-                    SqlServerCheckBox.CheckState = CheckState.Unchecked;
-                    ExcelCheckBox.CheckState = CheckState.Unchecked;
-                    CsvCheckBox.CheckState = CheckState.Unchecked;
-                    WordCheckBox.CheckState = CheckState.Unchecked;
-                    AccessCheckBox.CheckState = CheckState.Unchecked;
-                    CheckBoxes = GetCheckBoxex( );
+                    InitCheckBoxes( );
+                    PopulateListView( );
                     //FileDialog.ShowDialog( );
                 }
                 catch( Exception ex )
@@ -133,6 +149,90 @@ namespace BudgetExecution
                     Fail( ex );
                 }
             }
+        }
+
+        /// <summary>
+        /// Initializes the check boxes.
+        /// </summary>
+        public void InitCheckBoxes( )
+        {
+            try
+            {
+                PdfCheckBox.CheckState = CheckState.Unchecked;
+                SQLiteCheckBox.CheckState = CheckState.Unchecked;
+                SqlCeCheckBox.CheckState = CheckState.Unchecked;
+                SqlServerCheckBox.CheckState = CheckState.Unchecked;
+                ExcelCheckBox.CheckState = CheckState.Unchecked;
+                CsvCheckBox.CheckState = CheckState.Unchecked;
+                WordCheckBox.CheckState = CheckState.Unchecked;
+                AccessCheckBox.CheckState = CheckState.Unchecked;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Gets the image.
+        /// </summary>
+        /// <returns></returns>
+        public Image GetImage( )
+        {
+            if( !string.IsNullOrEmpty( FileExtension) )
+            {
+                var _path = ConfigurationManager.AppSettings[ "Extensions" ];
+                var _files = Directory.GetFiles( _path );
+
+                if ( _files?.Any( ) == true )
+                {
+                    var _file = _files
+                        .Where( f => f.Contains( FileExtension.ToUpper( ) ) )
+                        ?.Single( );
+
+                    using( var stream = File.Open( _file, FileMode.Open ) )
+                    {
+                        return new Bitmap( stream );
+                    }
+                }
+            }
+
+            return default( Bitmap );
+        }
+
+        /// <summary>
+        /// Gets the ListView file paths.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> GetListViewPaths( )
+        {
+            if( InitialDirPaths?.Any( ) == true )
+            {
+                try
+                {
+                    var _list = new List<string>( );
+                    foreach( var path in InitialDirPaths )
+                    {
+                        var _paths = Directory.GetFiles( path );
+                        var _file = _paths
+                            .Where( f => f.EndsWith( FileExtension ) )
+                            .Select( f => f );
+
+                        _list.AddRange( _file ); 
+                    }
+
+                    return _list?.Any( ) == true
+                        ? _list
+                        : default( IEnumerable<string> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<string> );
+                }
+            }
+
+            return default( IEnumerable<string> );
         }
 
         /// <summary>
@@ -148,8 +248,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Extension = _checkBox.Tag?.ToString( );
-                    FileDialog.Filter = Extension;
+                    FileExtension = _checkBox.Tag.ToString( );
+                    FileDialog.Filter = FileExtension;
                     Close( );
                 }
                 catch( Exception ex )
@@ -163,7 +263,7 @@ namespace BudgetExecution
         /// Gets the check boxex.
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<CheckBox> GetCheckBoxex( )
+        public virtual IEnumerable<CheckBox> GetCheckBoxes( )
         {
             try
             {
@@ -175,8 +275,11 @@ namespace BudgetExecution
                 _list.Add( SqlServerCheckBox );
                 _list.Add( ExcelCheckBox );
                 _list.Add( CsvCheckBox );
+                _list.Add( TextCheckBox );
                 _list.Add( PowerPointCheckBox );
                 _list.Add( WordCheckBox );
+                _list.Add( ExecutableCheckBox );
+                _list.Add( LibraryCheckBox );
 
                 return _list?.Any( ) == true
                     ? _list
@@ -198,12 +301,8 @@ namespace BudgetExecution
             try
             {
                 var _list = new List<string>( );
-                var _myDocuments = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments );
-                var _commonDocuments = Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments );
-                var _desktop = Environment.GetFolderPath( Environment.SpecialFolder.Desktop );
-                _list.Add( _myDocuments );
-                _list.Add( _commonDocuments );
-                _list.Add( _desktop );
+                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Desktop ) );
+                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ) );
 
                 return _list?.Any( ) == true
                     ? _list
@@ -215,62 +314,20 @@ namespace BudgetExecution
                 return default( IEnumerable<string> );
             }
         }
-
+        
         /// <summary>
-        /// Called when [close button clicked].
+        /// Populates the ListView.
         /// </summary>
-        public virtual IEnumerable<string> SearchPath(  )
+        public virtual void PopulateListView( )
         {
-            if( InitialDirPaths?.Any( ) == true )
+            if( FilePaths?.Any( ) == true )
             {
                 try
                 {
-                    var _list = new List<string>( );
-                    foreach( var path in InitialDirPaths )
+                    foreach( var path in FilePaths )
                     {
-                        if ( Path.HasExtension( path ) )
-                        {
-                            var _ext = Path.GetExtension( path );
-                            if( !string.IsNullOrEmpty( _ext ) 
-                                && FileDialog.DefaultExt.Contains( _ext ) )
-                            {
-                                _list.Add( Path.GetFullPath( path ) );
-                            }
-                        }
-                    }
-
-                    return _list?.Any(  ) == true
-                        ? _list
-                        : default( IEnumerable<string> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<string> );
-                }
-            }
-
-            return default( IEnumerable<string> );
-        }
-
-        public virtual void PopulateListView()
-        {
-            if( InitialDirPaths?.Any( ) == true )
-            {
-                try
-                {
-                    var _list = new List<VisualListViewItem>( );
-                    foreach( var path in InitialDirPaths )
-                    {
-                        if( Path.HasExtension( path ) )
-                        {
-                            var _ext = Path.GetExtension( path );
-                            if( !string.IsNullOrEmpty( _ext )
-                                && FileDialog.DefaultExt.Contains( _ext ) )
-                            {
-                                _list.Add( path );
-                            }
-                        }
+                        var _item = new VisualListViewItem( path );
+                        FileList.Items.Add( _item );
                     }
                 }
                 catch( Exception ex )
@@ -293,8 +350,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Extension = _checkBox.Tag?.ToString( ); 
-                    FileDialog.Filter = Extension;
+                    FileExtension = _checkBox.Tag?.ToString( ); 
+                    FileDialog.Filter = FileExtension;
                     Close( );
                 }
                 catch( Exception ex )

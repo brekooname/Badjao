@@ -458,6 +458,8 @@
     </Compile>
     <Compile Include="Abstractions\CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
+    <Compile Include="IO\DataFile.cs" />
+    <Compile Include="Abstractions\FileBase.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />
     <Compile Include="Interfaces\ISeriesModel.cs" />

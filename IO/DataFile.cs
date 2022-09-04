@@ -8,70 +8,173 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Security.AccessControl;
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
+    using Microsoft.EntityFrameworkCore.Internal;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="PathBase" />
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
-    public class FilePath : PathBase, IFilePath
+    public class DataFile : FileBase
     {
         /// <summary>
-        /// Gets the dir sep.
+        /// The path
         /// </summary>
-        /// <value>
-        /// The dir sep.
-        /// </value>
-        public char DirSep { get; } = Path.DirectorySeparatorChar;
+        public  override string Input { get; set; }
 
         /// <summary>
-        /// Gets the path sep.
+        /// Gets or sets the name of the file.
         /// </summary>
         /// <value>
-        /// The path sep.
+        /// The name of the file.
         /// </value>
-        public char PathSep { get; } = Path.PathSeparator;
+        public  override string Name { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FilePath"/> class.
+        /// Gets or sets the full name.
         /// </summary>
-        public FilePath( )
+        /// <value>
+        /// The full name.
+        /// </value>
+        public  override string FullName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the changed date.
+        /// </summary>
+        /// <value>
+        /// The changed date.
+        /// </value>
+        public  override DateTime Modified { get; set; }
+
+        /// <summary>
+        /// Gets the information.
+        /// </summary>
+        /// <value>
+        /// The information.
+        /// </value>
+        public  override FileInfo FileInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets the extension.
+        /// </summary>
+        /// <value>
+        /// The extension.
+        /// </value>
+        public  override string Extension { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has parent.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has parent { get; set; } otherwise, <c>false</c>.
+        /// </value>
+        public  override bool HasParent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the creation date.
+        /// </summary>
+        /// <value>
+        /// The creation date.p/// </value>
+        public  override DateTime Created { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lengeth.
+        /// </summary>
+        /// <value>
+        /// The lengeth.
+        /// </value>
+        public  override long Length { get; set; }
+
+        /// <summary>
+        /// Gets or sets the attributes.
+        /// </summary>
+        /// <value>
+        /// The attributes.
+        /// </value>
+        public  override FileAttributes Attributes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the security.
+        /// </summary>
+        /// <value>
+        /// The security.
+        /// </value>
+        public  override FileSecurity FileSecurity { get; set; }
+
+        /// <summary>
+        /// Gets the invalid path character.
+        /// </summary>
+        /// <value>
+        /// The invalid path character.
+        /// </value>
+        public char[ ] InvalidPathChars { get; } = Path.GetInvalidPathChars( );
+
+        /// <summary>
+        /// Gets the invalid namehar.
+        /// </summary>
+        /// <value>
+        /// The invalid namehar.
+        /// </value>
+        public char[ ] InvalidNameChars { get; } = Path.GetInvalidFileNameChars( );
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataFile"/> class.
+        /// </summary>
+        public DataFile( )
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FilePath"/> class.
+        /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        public FilePath( string input )
+        public DataFile( string input ) 
+            : base( input )
         {
-            Input = input;
-            FileInfo = new FileInfo( input );
-            FullName = FileInfo.FullName;
-            HasParent = CheckParent();
-            Length = FileInfo.Length;
-            Attributes = FileInfo.Attributes;
-            FileSecurity = FileInfo.GetAccessControl();
-            Created = FileInfo.CreationTime;
-            Modified = FileInfo.LastWriteTime;
         }
-        
+
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
+        /// <returns></returns>
+        public FileInfo Create( )
+        {
+            if ( !string.IsNullOrEmpty( Input ) )
+            {
+                try
+                {
+                    var _file = new FileInfo( Input );
+
+                    return  _file.Exists
+                        ? _file
+                        : default( FileInfo );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( FileInfo );
+                }
+            }
+
+            return default( FileInfo );
+        }
+
         /// <summary>
         /// Creates the specified file path.
         /// </summary>
         /// <param name="filePath">
         /// The file path.
         /// </param>
-        /// <returns></returns>
+        /// <returns> FileInfo </returns>
         public static FileInfo Create( string filePath )
         {
             try
             {
-                return !string.IsNullOrEmpty( filePath )
+                return File.Exists( filePath )
                     ? new FileInfo( filePath )
                     : default( FileInfo );
             }
@@ -86,7 +189,7 @@ namespace BudgetExecution
         /// Transfers the specified folder.
         /// </summary>
         /// <param name="folder">The folder.</param>
-        public void Transfer( DirectoryInfo folder )
+        public static void Transfer( DirectoryInfo folder )
         {
             // Check if the target directory exists, if not, create it.
             if( !Directory.Exists( folder.FullName ) )
@@ -169,15 +272,16 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _input )
                         && File.Exists( _input ) )
                     {
-                        var _enumerable = Directory.EnumerateFiles( _input, pattern );
+                        var _files = 
+                            Directory.EnumerateFiles( _input, pattern, SearchOption.AllDirectories );
                         var _list = new List<FileInfo>();
 
-                        foreach( var file in _enumerable )
+                        foreach( var file in _files )
                         {
                             _list.Add( new FileInfo( file ) );
                         }
 
-                        return Verify.IsSequence( _list )
+                        return _list?.Any( ) == true
                             ? _list
                             : default( List<FileInfo> );
                     }
@@ -198,7 +302,7 @@ namespace BudgetExecution
         /// <returns>A string that represents
         /// the current object.
         /// </returns>
-        public override string ToString()
+        public override string ToString( )
         {
             try
             {

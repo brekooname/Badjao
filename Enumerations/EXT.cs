@@ -10,11 +10,6 @@ namespace BudgetExecution
     public enum EXT
     {
         /// <summary>
-        /// Defines the None
-        /// </summary>
-        NS = 0,
-
-        /// <summary>
         /// Defines the DB on SQLite database files.
         /// </summary>
         DB,

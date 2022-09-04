@@ -77,7 +77,7 @@ namespace BudgetExecution
         /// <value>
         /// The creation date.
         /// </value>
-        public DateTime CreationDate { get; set; }
+        public DateTime Created { get; set; }
 
         /// <summary>
         /// Gets or sets the changed date.
@@ -85,7 +85,7 @@ namespace BudgetExecution
         /// <value>
         /// The changed date.
         /// </value>
-        public DateTime ChangeDate { get; set; }
+        public DateTime Modified { get; set; }
         
         /// <summary>
         /// Gets the parent.
@@ -118,8 +118,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsDateTime( CreationDate ) 
-                    ? CreationDate 
+                return Verify.IsDateTime( Created ) 
+                    ? Created 
                     : default( DateTime );
             }
             catch( IOException ex )
@@ -137,8 +137,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsDateTime( ChangeDate )
-                    ? ChangeDate
+                return Verify.IsDateTime( Modified )
+                    ? Modified
                     : default( DateTime );
             }
             catch( IOException ex )
