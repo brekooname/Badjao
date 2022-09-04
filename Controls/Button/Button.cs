@@ -93,7 +93,7 @@ namespace BudgetExecution
 
             // BorderColor SeriesConfiguration
             Border.Color = Color.FromArgb( 15, 15, 15 );
-            Border.HoverColor = Color.FromArgb( 0, 120, 212 );
+            Border.HoverColor = Color.FromArgb( 40, 40, 40 );
             Border.HoverVisible = true;
             Border.Type = ShapeTypes.Rounded;
             Border.Thickness = 1;

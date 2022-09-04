@@ -13,8 +13,6 @@ namespace BudgetExecution
     using System.IO;
     using System.Windows.Forms;
     using System.Linq;
-    using VisualPlus.Toolkit.Child;
-    using VisualPlus.Toolkit.Controls.DataManagement;
 
     public partial class FileBrowser
     {
@@ -48,7 +46,7 @@ namespace BudgetExecution
         /// <value>
         /// The initial path.
         /// </value>
-        public IEnumerable<string> FilePaths { get; set; }
+        public List<string> FilePaths { get; set; }
 
         /// <summary>
         /// Gets or sets the check boxes.
@@ -125,6 +123,8 @@ namespace BudgetExecution
             FileDialog.CheckFileExists = true;
 
             CloseButton.Click += OnCloseButtonClicked;
+            FileList.SelectedValueChanged += OnPathSelected;
+
             Load += OnLoaded;
         }
 
@@ -142,7 +142,7 @@ namespace BudgetExecution
                 {
                     InitCheckBoxes( );
                     PopulateListView( );
-                    //FileDialog.ShowDialog( );
+                    FoundLabel.Text = "Found : " + FilePaths.Count;
                 }
                 catch( Exception ex )
                 {
@@ -159,13 +159,21 @@ namespace BudgetExecution
             try
             {
                 PdfCheckBox.CheckState = CheckState.Unchecked;
+                PdfCheckBox.CheckStateChanged += OnCheckBoxSelected;
                 SQLiteCheckBox.CheckState = CheckState.Unchecked;
+                SQLiteCheckBox.CheckStateChanged += OnCheckBoxSelected;
                 SqlCeCheckBox.CheckState = CheckState.Unchecked;
+                SqlCeCheckBox.CheckStateChanged += OnCheckBoxSelected;
                 SqlServerCheckBox.CheckState = CheckState.Unchecked;
-                ExcelCheckBox.CheckState = CheckState.Unchecked;
+                SqlServerCheckBox.CheckStateChanged += OnCheckBoxSelected;
+                ExcelCheckBox.CheckState = CheckState.Checked;
+                ExcelCheckBox.CheckStateChanged += OnCheckBoxSelected;
                 CsvCheckBox.CheckState = CheckState.Unchecked;
+                CsvCheckBox.CheckStateChanged += OnCheckBoxSelected;
                 WordCheckBox.CheckState = CheckState.Unchecked;
+                WordCheckBox.CheckStateChanged += OnCheckBoxSelected;
                 AccessCheckBox.CheckState = CheckState.Unchecked;
+                AccessCheckBox.CheckStateChanged += OnCheckBoxSelected;
             }
             catch( Exception ex )
             {
@@ -192,7 +200,8 @@ namespace BudgetExecution
 
                     using( var stream = File.Open( _file, FileMode.Open ) )
                     {
-                        return new Bitmap( stream );
+                        var _img = Image.FromStream( stream );
+                        return new Bitmap(  _img, 22, 22 );
                     }
                 }
             }
@@ -204,35 +213,64 @@ namespace BudgetExecution
         /// Gets the ListView file paths.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetListViewPaths( )
+        public List<string> GetListViewPaths( )
         {
             if( InitialDirPaths?.Any( ) == true )
             {
                 try
                 {
                     var _list = new List<string>( );
+                    var _pattern = "." + FileExtension;
                     foreach( var path in InitialDirPaths )
                     {
-                        var _paths = Directory.GetFiles( path );
-                        var _file = _paths
-                            .Where( f => f.EndsWith( FileExtension ) )
-                            .Select( f => f );
+                        var _first = Directory.EnumerateFiles( path )
+                            ?.Where( f => f.EndsWith( _pattern ) )
+                            ?.Select( f => Path.GetFullPath( f ) )
+                            ?.ToArray( );
 
-                        _list.AddRange( _file ); 
+                        _list.AddRange( _first );
+
+                        var _dirs = Directory.GetDirectories( path );
+                        foreach( var dir in _dirs )
+                        {
+                            if( !dir.Contains( "My " ) )
+                            {
+                                var _second = Directory.EnumerateFiles( dir )
+                                   ?.Where( s => s.EndsWith( _pattern ) )
+                                   ?.Select( s => Path.GetFullPath( s ) )
+                                   ?.ToArray( );
+
+                                _list.AddRange( _second );
+
+                                var _subdir = Directory.GetDirectories( dir );
+                                foreach( var sub in _subdir )
+                                {
+                                    var _last = Directory.EnumerateFiles( sub )
+                                        ?.Where( l => l.EndsWith( _pattern ) )
+                                        ?.Select( l => Path.GetFullPath( l ) )
+                                        ?.ToArray( );
+
+                                    _list.AddRange( _last );
+                                }
+
+                            }
+                            
+                        }
+
                     }
 
                     return _list?.Any( ) == true
                         ? _list
-                        : default( IEnumerable<string> );
+                        : default( List<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IEnumerable<string> );
+                    return default( List<string> );
                 }
             }
 
-            return default( IEnumerable<string> );
+            return default( List<string> );
         }
 
         /// <summary>
@@ -248,9 +286,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FileExtension = _checkBox.Tag.ToString( );
-                    FileDialog.Filter = FileExtension;
-                    Close( );
+                    FileExtension = _checkBox?.Tag?.ToString(  );
+                    FileList.Items.Clear(  );
+                    FilePaths?.Clear(  );
+                    SelectedPath = string.Empty;
+                    var _paths = GetListViewPaths(   );
+                    PopulateListView( _paths );
+                    PictureBox.Image = GetImage(   );
+
                 }
                 catch( Exception ex )
                 {
@@ -300,9 +343,14 @@ namespace BudgetExecution
         {
             try
             {
+                var _current = Environment.CurrentDirectory;
                 var _list = new List<string>( );
-                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Desktop ) );
                 _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ) );
+                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Personal ) );
+                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Desktop ) );
+                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments ) );
+                _list.Add( @"C:\Users\terry\source\repos\Badjao\Resources\Docs"  );
+                _list.Add( _current );
 
                 return _list?.Any( ) == true
                     ? _list
@@ -326,8 +374,25 @@ namespace BudgetExecution
                 {
                     foreach( var path in FilePaths )
                     {
-                        var _item = new VisualListViewItem( path );
-                        FileList.Items.Add( _item );
+                        FileList.Items.Add( path );
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        public virtual void PopulateListView( IEnumerable<string> filePaths )
+        {
+            if( filePaths?.Any( ) == true )
+            {
+                try
+                {
+                    foreach( var path in filePaths )
+                    {
+                        FileList.Items.Add( path );
                     }
                 }
                 catch( Exception ex )
@@ -368,14 +433,14 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void OnPathSelected( object sender, EventArgs e )
         {
-            if( sender is OpenFileDialog _fileDialog
-                && !string.IsNullOrEmpty( _fileDialog.SafeFileName )
+            if( sender is ListBox listBox 
+                && !string.IsNullOrEmpty( listBox.SelectedItem?.ToString( ) )
                 && e != null )
             {
                 try
                 {
-                    SelectedPath = _fileDialog.SafeFileName;
-                    Close( );
+                    SelectedPath = listBox.SelectedItem?.ToString(  );
+                    MessageLabel.Text = SelectedPath;
                 }
                 catch( Exception ex )
                 {

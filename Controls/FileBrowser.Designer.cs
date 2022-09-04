@@ -41,16 +41,8 @@ namespace BudgetExecution
             {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileBrowser));
-            VisualPlus.Toolkit.Child.VisualListViewColumn visualListViewColumn1 = new VisualPlus.Toolkit.Child.VisualListViewColumn();
-            VisualPlus.Toolkit.Child.VisualListViewColumn visualListViewColumn2 = new VisualPlus.Toolkit.Child.VisualListViewColumn();
-            VisualPlus.Toolkit.Child.VisualListViewColumn visualListViewColumn3 = new VisualPlus.Toolkit.Child.VisualListViewColumn();
             this.TextBoxLayout = new System.Windows.Forms.TableLayoutPanel();
             this.CheckBoxLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.FileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.TopTablePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.SelectButton = new BudgetExecution.Button();
-            this.CloseButton = new BudgetExecution.Button();
             this.TextCheckBox = new BudgetExecution.CheckBox();
             this.ExecutableCheckBox = new BudgetExecution.CheckBox();
             this.LibraryCheckBox = new BudgetExecution.CheckBox();
@@ -64,27 +56,35 @@ namespace BudgetExecution
             this.PdfCheckBox = new BudgetExecution.CheckBox();
             this.PowerPointCheckBox = new BudgetExecution.CheckBox();
             this.SqlCeCheckBox = new BudgetExecution.CheckBox();
-            this.FileList = new BudgetExecution.ListView();
+            this.FileList = new BudgetExecution.ListBox();
+            this.FoundLabel = new BudgetExecution.Label();
+            this.FileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.TopTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.Header = new BudgetExecution.Label();
             this.PictureBox = new BudgetExecution.PictureBox();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SelectButton = new BudgetExecution.Button();
+            this.CloseButton = new BudgetExecution.Button();
+            this.MessageLabel = new BudgetExecution.Label();
             this.TextBoxLayout.SuspendLayout();
             this.CheckBoxLayout.SuspendLayout();
             this.TopTablePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TextBoxLayout
             // 
             this.TextBoxLayout.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TextBoxLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TextBoxLayout.ColumnCount = 4;
-            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.53687F));
-            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.64896F));
-            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.70863F));
-            this.TextBoxLayout.Controls.Add(this.CheckBoxLayout, 3, 0);
+            this.TextBoxLayout.ColumnCount = 3;
+            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.55012F));
+            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.99126F));
+            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.4723F));
+            this.TextBoxLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TextBoxLayout.Controls.Add(this.CheckBoxLayout, 2, 0);
             this.TextBoxLayout.Controls.Add(this.FileList, 1, 0);
+            this.TextBoxLayout.Controls.Add(this.FoundLabel, 0, 0);
             this.TextBoxLayout.Dock = System.Windows.Forms.DockStyle.Top;
             this.TextBoxLayout.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.TextBoxLayout.Location = new System.Drawing.Point(0, 55);
@@ -131,106 +131,6 @@ namespace BudgetExecution
             this.CheckBoxLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.332569F));
             this.CheckBoxLayout.Size = new System.Drawing.Size(108, 306);
             this.CheckBoxLayout.TabIndex = 2;
-            // 
-            // FileDialog
-            // 
-            this.FileDialog.Filter = "Document FIles | *.PDF | *.DOCX | *.DOC ";
-            // 
-            // TopTablePanel
-            // 
-            this.TopTablePanel.ColumnCount = 3;
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.TopTablePanel.Controls.Add(this.Header, 1, 0);
-            this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
-            this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopTablePanel.Location = new System.Drawing.Point(0, 0);
-            this.TopTablePanel.Name = "TopTablePanel";
-            this.TopTablePanel.RowCount = 1;
-            this.TopTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TopTablePanel.Size = new System.Drawing.Size(688, 55);
-            this.TopTablePanel.TabIndex = 9;
-            // 
-            // SelectButton
-            // 
-            this.SelectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.SelectButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.SelectButton.BindingSource = null;
-            this.SelectButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.Border.HoverVisible = true;
-            this.SelectButton.Border.Rounding = 6;
-            this.SelectButton.Border.Thickness = 1;
-            this.SelectButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.SelectButton.Border.Visible = true;
-            this.SelectButton.DataFilter = null;
-            this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
-            this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.HoverText = "Select File";
-            this.SelectButton.Image = null;
-            this.SelectButton.Images = null;
-            this.SelectButton.Location = new System.Drawing.Point(89, 383);
-            this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
-            this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.SelectButton.Name = "SelectButton";
-            this.SelectButton.Size = new System.Drawing.Size(184, 76);
-            this.SelectButton.TabIndex = 11;
-            this.SelectButton.Text = "Select";
-            this.SelectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.SelectButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.SelectButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.SelectButton.ToolTip = null;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.CloseButton.BindingSource = null;
-            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.Border.HoverVisible = true;
-            this.CloseButton.Border.Rounding = 6;
-            this.CloseButton.Border.Thickness = 1;
-            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.CloseButton.Border.Visible = true;
-            this.CloseButton.DataFilter = null;
-            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
-            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.HoverText = "Close Window";
-            this.CloseButton.Image = null;
-            this.CloseButton.Images = null;
-            this.CloseButton.Location = new System.Drawing.Point(360, 383);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
-            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(202, 76);
-            this.CloseButton.TabIndex = 10;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.CloseButton.ToolTip = null;
             // 
             // TextCheckBox
             // 
@@ -854,99 +754,35 @@ namespace BudgetExecution
             // 
             // FileList
             // 
-            this.FileList.AllowColumnResize = true;
-            this.FileList.AlternateBackground = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.FileList.AlternatingColors = true;
-            this.FileList.AutoHeight = true;
-            this.FileList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.FileList.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.FileList.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.FileList.BackgroundStretchToFit = true;
+            this.FileList.AlternateColors = true;
+            this.FileList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.FileList.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.FileList.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.FileList.BindingSource = null;
-            this.FileList.Border.Color = System.Drawing.SystemColors.WindowFrame;
-            this.FileList.Border.HoverColor = System.Drawing.Color.SteelBlue;
-            this.FileList.Border.HoverVisible = false;
+            this.FileList.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.FileList.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.FileList.Border.HoverVisible = true;
             this.FileList.Border.Rounding = 6;
             this.FileList.Border.Thickness = 1;
-            this.FileList.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rectangle;
+            this.FileList.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.FileList.Border.Visible = true;
-            this.FileList.ColumnColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.FileList.ColumnColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.FileList.ColumnColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.FileList.ColumnColorState.Pressed = System.Drawing.Color.SteelBlue;
-            visualListViewColumn1.CheckBox = false;
-            visualListViewColumn1.CheckBoxes = false;
-            visualListViewColumn1.Checked = false;
-            visualListViewColumn1.EmbeddedType = VisualPlus.Enumerators.LVActivatedEmbeddedTypes.None;
-            visualListViewColumn1.ImageIndex = -1;
-            visualListViewColumn1.Name = "VisualListViewColumn1";
-            visualListViewColumn1.NumericSort = false;
-            visualListViewColumn1.Text = "Name";
-            visualListViewColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            visualListViewColumn1.Width = 150;
-            visualListViewColumn2.CheckBox = false;
-            visualListViewColumn2.CheckBoxes = false;
-            visualListViewColumn2.Checked = false;
-            visualListViewColumn2.EmbeddedType = VisualPlus.Enumerators.LVActivatedEmbeddedTypes.None;
-            visualListViewColumn2.ImageIndex = -1;
-            visualListViewColumn2.Name = "VisualListViewColumn2";
-            visualListViewColumn2.NumericSort = false;
-            visualListViewColumn2.Text = "Path";
-            visualListViewColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            visualListViewColumn2.Width = 150;
-            visualListViewColumn3.CheckBox = false;
-            visualListViewColumn3.CheckBoxes = false;
-            visualListViewColumn3.Checked = false;
-            visualListViewColumn3.EmbeddedType = VisualPlus.Enumerators.LVActivatedEmbeddedTypes.None;
-            visualListViewColumn3.ImageIndex = -1;
-            visualListViewColumn3.Name = "VisualListViewColumn3";
-            visualListViewColumn3.NumericSort = false;
-            visualListViewColumn3.Text = "Last Accessed";
-            visualListViewColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            visualListViewColumn3.Width = 150;
-            this.FileList.Columns.AddRange(new VisualPlus.Toolkit.Child.VisualListViewColumn[] {
-            visualListViewColumn1,
-            visualListViewColumn2,
-            visualListViewColumn3});
-            this.FileList.ControlStyle = VisualPlus.Enumerators.LVControlStyles.SuperFlat;
-            this.FileList.CornerBoxColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(244)))), ((int)(((byte)(249)))));
             this.FileList.DataFilter = null;
-            this.FileList.DisplayText = "The list is empty.";
-            this.FileList.DisplayTextColor = System.Drawing.Color.LightSteelBlue;
-            this.FileList.DisplayTextFont = new System.Drawing.Font("Roboto", 9F);
-            this.FileList.DisplayTextOnEmpty = false;
             this.FileList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FileList.Field = BudgetExecution.Field.AccountCode;
             this.FileList.Font = new System.Drawing.Font("Roboto", 9F);
             this.FileList.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.FileList.FullRowSelect = true;
-            this.FileList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.FileList.GridLines = VisualPlus.Enumerators.GridLines.Horizontal;
-            this.FileList.GridLineStyle = VisualPlus.Enumerators.GridLineStyle.Dashed;
-            this.FileList.GridTypes = VisualPlus.Enumerators.GridTypes.Normal;
-            this.FileList.HeaderHeight = 0;
-            this.FileList.HeaderVisible = false;
-            this.FileList.HeaderWordWrap = false;
-            this.FileList.HoverColumnTracking = true;
-            this.FileList.HoverEvents = false;
-            this.FileList.HoverItemTracking = true;
+            this.FileList.HorizontalScrollBar = true;
             this.FileList.HoverText = null;
-            this.FileList.HoverTime = 1;
-            this.FileList.HoverTrackingColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.FileList.ImageListColumns = null;
-            this.FileList.ImageListItems = null;
-            this.FileList.ItemHeight = 30;
-            this.FileList.ItemSelectedColor = System.Drawing.Color.SteelBlue;
-            this.FileList.ItemSelectedTextColor = System.Drawing.Color.White;
-            this.FileList.ItemWordWrap = false;
-            this.FileList.Location = new System.Drawing.Point(89, 4);
+            this.FileList.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.FileList.ItemHeight = 40;
+            this.FileList.ItemLineAlignment = System.Drawing.StringAlignment.Near;
+            this.FileList.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.FileList.ItemSelected = System.Drawing.Color.SteelBlue;
+            this.FileList.Location = new System.Drawing.Point(90, 4);
             this.FileList.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.FileList.MultiSelect = false;
             this.FileList.Name = "FileList";
             this.FileList.Numeric = BudgetExecution.Numeric.Accepted;
-            this.FileList.Selectable = true;
-            this.FileList.Size = new System.Drawing.Size(473, 306);
-            this.FileList.SortType = VisualPlus.Enumerators.SortTypes.InsertionSort;
+            this.FileList.Size = new System.Drawing.Size(480, 306);
             this.FileList.TabIndex = 3;
             this.FileList.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.FileList.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -956,6 +792,62 @@ namespace BudgetExecution
             this.FileList.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.FileList.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.FileList.ToolTip = this.ToolTip;
+            // 
+            // FoundLabel
+            // 
+            this.FoundLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.FoundLabel.BindingSource = null;
+            this.FoundLabel.DataFilter = null;
+            this.FoundLabel.Field = BudgetExecution.Field.AccountCode;
+            this.FoundLabel.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FoundLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.FoundLabel.HoverText = null;
+            this.FoundLabel.Location = new System.Drawing.Point(4, 4);
+            this.FoundLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.FoundLabel.Name = "FoundLabel";
+            this.FoundLabel.Numeric = BudgetExecution.Numeric.Accepted;
+            this.FoundLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.FoundLabel.Outline = false;
+            this.FoundLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.FoundLabel.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.FoundLabel.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.FoundLabel.ReflectionSpacing = 0;
+            this.FoundLabel.ShadowColor = System.Drawing.Color.Black;
+            this.FoundLabel.ShadowDirection = 315;
+            this.FoundLabel.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.FoundLabel.ShadowOpacity = 100;
+            this.FoundLabel.Size = new System.Drawing.Size(80, 23);
+            this.FoundLabel.TabIndex = 4;
+            this.FoundLabel.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.FoundLabel.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.FoundLabel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.FoundLabel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.FoundLabel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.FoundLabel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.FoundLabel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.FoundLabel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.FoundLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.FoundLabel.ToolTip = null;
+            // 
+            // FileDialog
+            // 
+            this.FileDialog.Filter = "Document FIles | *.PDF | *.DOCX | *.DOC ";
+            // 
+            // TopTablePanel
+            // 
+            this.TopTablePanel.ColumnCount = 3;
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.TopTablePanel.Controls.Add(this.Header, 1, 0);
+            this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
+            this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopTablePanel.Location = new System.Drawing.Point(0, 0);
+            this.TopTablePanel.Name = "TopTablePanel";
+            this.TopTablePanel.RowCount = 1;
+            this.TopTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TopTablePanel.Size = new System.Drawing.Size(688, 55);
+            this.TopTablePanel.TabIndex = 9;
             // 
             // Header
             // 
@@ -967,7 +859,7 @@ namespace BudgetExecution
             this.Header.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.Header.HoverText = null;
-            this.Header.Location = new System.Drawing.Point(89, 3);
+            this.Header.Location = new System.Drawing.Point(91, 3);
             this.Header.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Header.Name = "Header";
             this.Header.Numeric = BudgetExecution.Numeric.NS;
@@ -981,7 +873,7 @@ namespace BudgetExecution
             this.Header.ShadowDirection = 315;
             this.Header.ShadowLocation = new System.Drawing.Point(0, 0);
             this.Header.ShadowOpacity = 100;
-            this.Header.Size = new System.Drawing.Size(470, 49);
+            this.Header.Size = new System.Drawing.Size(478, 49);
             this.Header.TabIndex = 0;
             this.Header.Text = "File Search";
             this.Header.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -1008,10 +900,126 @@ namespace BudgetExecution
             this.PictureBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.PictureBox.Padding = new System.Windows.Forms.Padding(1);
             this.PictureBox.Size = new System.Drawing.Size(31, 31);
-            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PictureBox.TabIndex = 1;
             this.PictureBox.TabStop = false;
             this.PictureBox.ToolTip = this.ToolTip;
+            // 
+            // SelectButton
+            // 
+            this.SelectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SelectButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.SelectButton.BindingSource = null;
+            this.SelectButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SelectButton.Border.HoverVisible = true;
+            this.SelectButton.Border.Rounding = 6;
+            this.SelectButton.Border.Thickness = 1;
+            this.SelectButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.SelectButton.Border.Visible = true;
+            this.SelectButton.DataFilter = null;
+            this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
+            this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SelectButton.HoverText = "Select File";
+            this.SelectButton.Image = null;
+            this.SelectButton.Images = null;
+            this.SelectButton.Location = new System.Drawing.Point(40, 411);
+            this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.SelectButton.Name = "SelectButton";
+            this.SelectButton.Size = new System.Drawing.Size(120, 48);
+            this.SelectButton.TabIndex = 11;
+            this.SelectButton.Text = "Select";
+            this.SelectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.SelectButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SelectButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.SelectButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.SelectButton.ToolTip = null;
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.CloseButton.BindingSource = null;
+            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CloseButton.Border.HoverVisible = true;
+            this.CloseButton.Border.Rounding = 6;
+            this.CloseButton.Border.Thickness = 1;
+            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.CloseButton.Border.Visible = true;
+            this.CloseButton.DataFilter = null;
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
+            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CloseButton.HoverText = "Close Window";
+            this.CloseButton.Image = null;
+            this.CloseButton.Images = null;
+            this.CloseButton.Location = new System.Drawing.Point(517, 411);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
+            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(120, 48);
+            this.CloseButton.TabIndex = 10;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.CloseButton.ToolTip = null;
+            // 
+            // MessageLabel
+            // 
+            this.MessageLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.MessageLabel.BindingSource = null;
+            this.MessageLabel.DataFilter = null;
+            this.MessageLabel.Field = BudgetExecution.Field.AccountCode;
+            this.MessageLabel.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MessageLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.MessageLabel.HoverText = null;
+            this.MessageLabel.Location = new System.Drawing.Point(90, 371);
+            this.MessageLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.MessageLabel.Name = "MessageLabel";
+            this.MessageLabel.Numeric = BudgetExecution.Numeric.Accepted;
+            this.MessageLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.MessageLabel.Outline = false;
+            this.MessageLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.MessageLabel.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.MessageLabel.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.ReflectionSpacing = 0;
+            this.MessageLabel.ShadowColor = System.Drawing.Color.Black;
+            this.MessageLabel.ShadowDirection = 315;
+            this.MessageLabel.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.MessageLabel.ShadowOpacity = 100;
+            this.MessageLabel.Size = new System.Drawing.Size(488, 23);
+            this.MessageLabel.TabIndex = 12;
+            this.MessageLabel.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.MessageLabel.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.MessageLabel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.MessageLabel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.MessageLabel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.MessageLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.MessageLabel.ToolTip = null;
             // 
             // FileBrowser
             // 
@@ -1027,6 +1035,7 @@ namespace BudgetExecution
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(688, 468);
             this.ControlBox = false;
+            this.Controls.Add(this.MessageLabel);
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.TextBoxLayout);
@@ -1047,10 +1056,12 @@ namespace BudgetExecution
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TextBoxLayout.ResumeLayout(false);
+            this.TextBoxLayout.PerformLayout();
             this.CheckBoxLayout.ResumeLayout(false);
             this.TopTablePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            this.TopTablePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.ResumeLayout(false);
 
             }
@@ -1072,7 +1083,6 @@ namespace BudgetExecution
         public CheckBox SQLiteCheckBox;
         public Button CloseButton;
         public Button SelectButton;
-        public ListView FileList;
         public CheckBox TextCheckBox;
         public CheckBox ExecutableCheckBox;
         public CheckBox LibraryCheckBox;
@@ -1080,6 +1090,9 @@ namespace BudgetExecution
         public CheckBox SqlCeCheckBox;
         public BindingSource BindingSource;
         public PictureBox PictureBox;
+        public ListBox FileList;
+        public Label FoundLabel;
+        public Label MessageLabel;
     }
     
 }
