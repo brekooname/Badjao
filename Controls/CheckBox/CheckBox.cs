@@ -26,6 +26,14 @@ namespace BudgetExecution
         public BindingSource BindingSource { get; set; }
 
         /// <summary>
+        /// Gets or sets the selected item.
+        /// </summary>
+        /// <value>
+        /// The selected item.
+        /// </value>
+        public string SelectedItem { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="CheckBox"/> class.
         /// </summary>
         public CheckBox()
@@ -53,6 +61,8 @@ namespace BudgetExecution
             BoxSpacing = 4;
             MouseHover += OnMouseOver;
             MouseLeave += OnMouseLeave;
+            CheckStateChanged += OnItemChecked;
+
         }
 
 
@@ -105,6 +115,22 @@ namespace BudgetExecution
                 {
                     ToolTip.RemoveAll( );
                     ToolTip = null;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public virtual void OnItemChecked( object sender, EventArgs e )
+        {
+            try
+            {
+                if( sender is CheckBox checkBox 
+                    && checkBox.Checked )
+                {
+                    SelectedItem = checkBox.Tag?.ToString( );
                 }
             }
             catch( Exception ex )

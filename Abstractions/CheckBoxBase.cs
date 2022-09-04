@@ -37,6 +37,10 @@ namespace BudgetExecution
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
+        protected CheckBoxBase( )
+        {
+        }
+
         /// <summary>
         /// Called when [mouse over].
         /// </summary>
@@ -53,18 +57,15 @@ namespace BudgetExecution
                 if( _checkBox != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    if( !string.IsNullOrEmpty( HoverText ) )
+                    var _hoverText = _checkBox?.HoverText;
+                    var _ = new ToolTip( _checkBox, _hoverText );
+                }
+                else
+                {
+                    if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _hoverText = _checkBox?.HoverText;
-                        var _ = new ToolTip( _checkBox, _hoverText );
-                    }
-                    else
-                    {
-                        if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
-                        {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new ToolTip( _checkBox, _text );
-                        }
+                        var _text = Tag?.ToString( )?.SplitPascal( );
+                        var _ = new ToolTip( _checkBox, _text );
                     }
                 }
             }

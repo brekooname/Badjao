@@ -178,7 +178,7 @@
                     BindingSource.DataSource = DataModel.DataTable;
                     DataGrid.DataSource = BindingSource;
                     ToolStrip.BindingSource = BindingSource;
-                    DataGridGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal( );
+                    DataGridGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName?.SplitPascal( );
 
                     var _columns = DataModel.GetDataColumns( );
 
@@ -208,7 +208,7 @@
             {
                 ValueListBox.Items.Clear(  );
                 var _listBox = sender as VisualListBox;
-                var _column = _listBox?.SelectedItem.ToString(  );
+                var _column = _listBox?.SelectedItem?.ToString(  );
                 var _series = DataModel.DataElements;
 
                 if( !string.IsNullOrEmpty( _column ) )

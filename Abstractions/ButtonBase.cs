@@ -6,8 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
@@ -67,15 +65,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         /// <summary>
         /// Sets the size.
         /// </summary>
