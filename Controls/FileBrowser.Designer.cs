@@ -43,6 +43,12 @@ namespace BudgetExecution
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileBrowser));
             this.TextBoxLayout = new System.Windows.Forms.TableLayoutPanel();
             this.CheckBoxLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.FileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.TopTablePanel = new System.Windows.Forms.TableLayoutPanel();
+            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.MessageLabel = new BudgetExecution.Label();
+            this.SelectButton = new BudgetExecution.Button();
+            this.CloseButton = new BudgetExecution.Button();
             this.TextCheckBox = new BudgetExecution.CheckBox();
             this.ExecutableCheckBox = new BudgetExecution.CheckBox();
             this.LibraryCheckBox = new BudgetExecution.CheckBox();
@@ -58,19 +64,13 @@ namespace BudgetExecution
             this.SqlCeCheckBox = new BudgetExecution.CheckBox();
             this.FileList = new BudgetExecution.ListBox();
             this.FoundLabel = new BudgetExecution.Label();
-            this.FileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.TopTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.Header = new BudgetExecution.Label();
             this.PictureBox = new BudgetExecution.PictureBox();
-            this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.SelectButton = new BudgetExecution.Button();
-            this.CloseButton = new BudgetExecution.Button();
-            this.MessageLabel = new BudgetExecution.Label();
             this.TextBoxLayout.SuspendLayout();
             this.CheckBoxLayout.SuspendLayout();
             this.TopTablePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // TextBoxLayout
@@ -132,6 +132,142 @@ namespace BudgetExecution
             this.CheckBoxLayout.Size = new System.Drawing.Size(108, 306);
             this.CheckBoxLayout.TabIndex = 2;
             // 
+            // FileDialog
+            // 
+            this.FileDialog.Filter = "Document FIles | *.PDF | *.DOCX | *.DOC ";
+            // 
+            // TopTablePanel
+            // 
+            this.TopTablePanel.ColumnCount = 3;
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.TopTablePanel.Controls.Add(this.Header, 1, 0);
+            this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
+            this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopTablePanel.Location = new System.Drawing.Point(0, 0);
+            this.TopTablePanel.Name = "TopTablePanel";
+            this.TopTablePanel.RowCount = 1;
+            this.TopTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.TopTablePanel.Size = new System.Drawing.Size(688, 55);
+            this.TopTablePanel.TabIndex = 9;
+            // 
+            // MessageLabel
+            // 
+            this.MessageLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.MessageLabel.BindingSource = null;
+            this.MessageLabel.DataFilter = null;
+            this.MessageLabel.Field = BudgetExecution.Field.AccountCode;
+            this.MessageLabel.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MessageLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.MessageLabel.HoverText = null;
+            this.MessageLabel.Location = new System.Drawing.Point(90, 371);
+            this.MessageLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.MessageLabel.Name = "MessageLabel";
+            this.MessageLabel.Numeric = BudgetExecution.Numeric.Accepted;
+            this.MessageLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.MessageLabel.Outline = false;
+            this.MessageLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.MessageLabel.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.MessageLabel.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.ReflectionSpacing = 0;
+            this.MessageLabel.ShadowColor = System.Drawing.Color.Black;
+            this.MessageLabel.ShadowDirection = 315;
+            this.MessageLabel.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.MessageLabel.ShadowOpacity = 100;
+            this.MessageLabel.Size = new System.Drawing.Size(488, 23);
+            this.MessageLabel.TabIndex = 12;
+            this.MessageLabel.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.MessageLabel.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.MessageLabel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.MessageLabel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.MessageLabel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.MessageLabel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.MessageLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.MessageLabel.ToolTip = null;
+            // 
+            // SelectButton
+            // 
+            this.SelectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SelectButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.SelectButton.BindingSource = null;
+            this.SelectButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SelectButton.Border.HoverVisible = true;
+            this.SelectButton.Border.Rounding = 6;
+            this.SelectButton.Border.Thickness = 1;
+            this.SelectButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.SelectButton.Border.Visible = true;
+            this.SelectButton.DataFilter = null;
+            this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
+            this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SelectButton.HoverText = "Select File";
+            this.SelectButton.Image = null;
+            this.SelectButton.Images = null;
+            this.SelectButton.Location = new System.Drawing.Point(40, 411);
+            this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.SelectButton.Name = "SelectButton";
+            this.SelectButton.Size = new System.Drawing.Size(120, 48);
+            this.SelectButton.TabIndex = 11;
+            this.SelectButton.Text = "Select";
+            this.SelectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.SelectButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SelectButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.SelectButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.SelectButton.ToolTip = null;
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.CloseButton.BindingSource = null;
+            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CloseButton.Border.HoverVisible = true;
+            this.CloseButton.Border.Rounding = 6;
+            this.CloseButton.Border.Thickness = 1;
+            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.CloseButton.Border.Visible = true;
+            this.CloseButton.DataFilter = null;
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
+            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CloseButton.HoverText = "Close Window";
+            this.CloseButton.Image = null;
+            this.CloseButton.Images = null;
+            this.CloseButton.Location = new System.Drawing.Point(517, 411);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
+            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(120, 48);
+            this.CloseButton.TabIndex = 10;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.CloseButton.ToolTip = null;
+            // 
             // TextCheckBox
             // 
             this.TextCheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -170,7 +306,7 @@ namespace BudgetExecution
             this.TextCheckBox.Name = "TextCheckBox";
             this.TextCheckBox.Size = new System.Drawing.Size(101, 17);
             this.TextCheckBox.TabIndex = 18;
-            this.TextCheckBox.Tag = "*.txt";
+            this.TextCheckBox.Tag = "TXT";
             this.TextCheckBox.Text = " Text Files";
             this.TextCheckBox.TextSize = new System.Drawing.Size(55, 15);
             this.TextCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -220,7 +356,7 @@ namespace BudgetExecution
             this.ExecutableCheckBox.Name = "ExecutableCheckBox";
             this.ExecutableCheckBox.Size = new System.Drawing.Size(102, 17);
             this.ExecutableCheckBox.TabIndex = 17;
-            this.ExecutableCheckBox.Tag = "*.exe";
+            this.ExecutableCheckBox.Tag = "EXE";
             this.ExecutableCheckBox.Text = "  EXE Files";
             this.ExecutableCheckBox.TextSize = new System.Drawing.Size(50, 15);
             this.ExecutableCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -270,7 +406,7 @@ namespace BudgetExecution
             this.LibraryCheckBox.Name = "LibraryCheckBox";
             this.LibraryCheckBox.Size = new System.Drawing.Size(102, 24);
             this.LibraryCheckBox.TabIndex = 16;
-            this.LibraryCheckBox.Tag = "*.dll";
+            this.LibraryCheckBox.Tag = "DLL";
             this.LibraryCheckBox.Text = "  DLL Files";
             this.LibraryCheckBox.TextSize = new System.Drawing.Size(50, 15);
             this.LibraryCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -320,7 +456,7 @@ namespace BudgetExecution
             this.CsvCheckBox.Name = "CsvCheckBox";
             this.CsvCheckBox.Size = new System.Drawing.Size(101, 17);
             this.CsvCheckBox.TabIndex = 12;
-            this.CsvCheckBox.Tag = "*.csv";
+            this.CsvCheckBox.Tag = "CSV";
             this.CsvCheckBox.Text = " CSV Files";
             this.CsvCheckBox.TextSize = new System.Drawing.Size(54, 15);
             this.CsvCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -390,7 +526,7 @@ namespace BudgetExecution
             this.SqlServerCheckBox.Name = "SqlServerCheckBox";
             this.SqlServerCheckBox.Size = new System.Drawing.Size(101, 17);
             this.SqlServerCheckBox.TabIndex = 11;
-            this.SqlServerCheckBox.Tag = ".mdf";
+            this.SqlServerCheckBox.Tag = "MDF";
             this.SqlServerCheckBox.Text = " SQL Server ";
             this.SqlServerCheckBox.TextSize = new System.Drawing.Size(55, 15);
             this.SqlServerCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -440,7 +576,7 @@ namespace BudgetExecution
             this.ExcelCheckBox.Name = "ExcelCheckBox";
             this.ExcelCheckBox.Size = new System.Drawing.Size(101, 17);
             this.ExcelCheckBox.TabIndex = 10;
-            this.ExcelCheckBox.Tag = "*.xlsx";
+            this.ExcelCheckBox.Tag = "XLSX";
             this.ExcelCheckBox.Text = " Excel Files";
             this.ExcelCheckBox.TextSize = new System.Drawing.Size(60, 15);
             this.ExcelCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -490,7 +626,7 @@ namespace BudgetExecution
             this.AccessCheckBox.Name = "AccessCheckBox";
             this.AccessCheckBox.Size = new System.Drawing.Size(101, 17);
             this.AccessCheckBox.TabIndex = 11;
-            this.AccessCheckBox.Tag = ".accdb";
+            this.AccessCheckBox.Tag = "ACCDB";
             this.AccessCheckBox.Text = " Access  ";
             this.AccessCheckBox.TextSize = new System.Drawing.Size(43, 15);
             this.AccessCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -540,7 +676,7 @@ namespace BudgetExecution
             this.SQLiteCheckBox.Name = "SQLiteCheckBox";
             this.SQLiteCheckBox.Size = new System.Drawing.Size(101, 17);
             this.SQLiteCheckBox.TabIndex = 10;
-            this.SQLiteCheckBox.Tag = ".db";
+            this.SQLiteCheckBox.Tag = "DB";
             this.SQLiteCheckBox.Text = " SQLite ";
             this.SQLiteCheckBox.TextSize = new System.Drawing.Size(40, 15);
             this.SQLiteCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -590,7 +726,7 @@ namespace BudgetExecution
             this.WordCheckBox.Name = "WordCheckBox";
             this.WordCheckBox.Size = new System.Drawing.Size(101, 17);
             this.WordCheckBox.TabIndex = 10;
-            this.WordCheckBox.Tag = ".docx";
+            this.WordCheckBox.Tag = "DOCX";
             this.WordCheckBox.Text = "  Word";
             this.WordCheckBox.TextSize = new System.Drawing.Size(32, 15);
             this.WordCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -640,7 +776,7 @@ namespace BudgetExecution
             this.PdfCheckBox.Name = "PdfCheckBox";
             this.PdfCheckBox.Size = new System.Drawing.Size(101, 17);
             this.PdfCheckBox.TabIndex = 14;
-            this.PdfCheckBox.Tag = ".pdf";
+            this.PdfCheckBox.Tag = "PDF";
             this.PdfCheckBox.Text = "  PDF ";
             this.PdfCheckBox.TextSize = new System.Drawing.Size(27, 15);
             this.PdfCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -690,7 +826,7 @@ namespace BudgetExecution
             this.PowerPointCheckBox.Name = "PowerPointCheckBox";
             this.PowerPointCheckBox.Size = new System.Drawing.Size(101, 17);
             this.PowerPointCheckBox.TabIndex = 12;
-            this.PowerPointCheckBox.Tag = "*.pptx";
+            this.PowerPointCheckBox.Tag = "PPTX";
             this.PowerPointCheckBox.Text = " Power Point";
             this.PowerPointCheckBox.TextSize = new System.Drawing.Size(68, 15);
             this.PowerPointCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -740,7 +876,7 @@ namespace BudgetExecution
             this.SqlCeCheckBox.Name = "SqlCeCheckBox";
             this.SqlCeCheckBox.Size = new System.Drawing.Size(101, 17);
             this.SqlCeCheckBox.TabIndex = 13;
-            this.SqlCeCheckBox.Tag = "*.sdf";
+            this.SqlCeCheckBox.Tag = "SDF";
             this.SqlCeCheckBox.Text = " SQL Compact";
             this.SqlCeCheckBox.TextSize = new System.Drawing.Size(76, 15);
             this.SqlCeCheckBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -829,26 +965,6 @@ namespace BudgetExecution
             this.FoundLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.FoundLabel.ToolTip = null;
             // 
-            // FileDialog
-            // 
-            this.FileDialog.Filter = "Document FIles | *.PDF | *.DOCX | *.DOC ";
-            // 
-            // TopTablePanel
-            // 
-            this.TopTablePanel.ColumnCount = 3;
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.TopTablePanel.Controls.Add(this.Header, 1, 0);
-            this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
-            this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TopTablePanel.Location = new System.Drawing.Point(0, 0);
-            this.TopTablePanel.Name = "TopTablePanel";
-            this.TopTablePanel.RowCount = 1;
-            this.TopTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.TopTablePanel.Size = new System.Drawing.Size(688, 55);
-            this.TopTablePanel.TabIndex = 9;
-            // 
             // Header
             // 
             this.Header.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -859,7 +975,7 @@ namespace BudgetExecution
             this.Header.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.Header.HoverText = null;
-            this.Header.Location = new System.Drawing.Point(91, 3);
+            this.Header.Location = new System.Drawing.Point(90, 3);
             this.Header.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Header.Name = "Header";
             this.Header.Numeric = BudgetExecution.Numeric.NS;
@@ -873,7 +989,7 @@ namespace BudgetExecution
             this.Header.ShadowDirection = 315;
             this.Header.ShadowLocation = new System.Drawing.Point(0, 0);
             this.Header.ShadowOpacity = 100;
-            this.Header.Size = new System.Drawing.Size(478, 49);
+            this.Header.Size = new System.Drawing.Size(475, 49);
             this.Header.TabIndex = 0;
             this.Header.Text = "File Search";
             this.Header.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -904,122 +1020,6 @@ namespace BudgetExecution
             this.PictureBox.TabIndex = 1;
             this.PictureBox.TabStop = false;
             this.PictureBox.ToolTip = this.ToolTip;
-            // 
-            // SelectButton
-            // 
-            this.SelectButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.SelectButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.SelectButton.BindingSource = null;
-            this.SelectButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.SelectButton.Border.HoverVisible = true;
-            this.SelectButton.Border.Rounding = 6;
-            this.SelectButton.Border.Thickness = 1;
-            this.SelectButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.SelectButton.Border.Visible = true;
-            this.SelectButton.DataFilter = null;
-            this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
-            this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.HoverText = "Select File";
-            this.SelectButton.Image = null;
-            this.SelectButton.Images = null;
-            this.SelectButton.Location = new System.Drawing.Point(40, 411);
-            this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
-            this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.SelectButton.Name = "SelectButton";
-            this.SelectButton.Size = new System.Drawing.Size(120, 48);
-            this.SelectButton.TabIndex = 11;
-            this.SelectButton.Text = "Select";
-            this.SelectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.SelectButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.SelectButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.SelectButton.ToolTip = null;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.CloseButton.BindingSource = null;
-            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CloseButton.Border.HoverVisible = true;
-            this.CloseButton.Border.Rounding = 6;
-            this.CloseButton.Border.Thickness = 1;
-            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.CloseButton.Border.Visible = true;
-            this.CloseButton.DataFilter = null;
-            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
-            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.HoverText = "Close Window";
-            this.CloseButton.Image = null;
-            this.CloseButton.Images = null;
-            this.CloseButton.Location = new System.Drawing.Point(517, 411);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
-            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(120, 48);
-            this.CloseButton.TabIndex = 10;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.CloseButton.ToolTip = null;
-            // 
-            // MessageLabel
-            // 
-            this.MessageLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.MessageLabel.BindingSource = null;
-            this.MessageLabel.DataFilter = null;
-            this.MessageLabel.Field = BudgetExecution.Field.AccountCode;
-            this.MessageLabel.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MessageLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.MessageLabel.HoverText = null;
-            this.MessageLabel.Location = new System.Drawing.Point(90, 371);
-            this.MessageLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Numeric = BudgetExecution.Numeric.Accepted;
-            this.MessageLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.MessageLabel.Outline = false;
-            this.MessageLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.MessageLabel.OutlineLocation = new System.Drawing.Point(0, 0);
-            this.MessageLabel.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.MessageLabel.ReflectionSpacing = 0;
-            this.MessageLabel.ShadowColor = System.Drawing.Color.Black;
-            this.MessageLabel.ShadowDirection = 315;
-            this.MessageLabel.ShadowLocation = new System.Drawing.Point(0, 0);
-            this.MessageLabel.ShadowOpacity = 100;
-            this.MessageLabel.Size = new System.Drawing.Size(488, 23);
-            this.MessageLabel.TabIndex = 12;
-            this.MessageLabel.TextAlignment = System.Drawing.StringAlignment.Near;
-            this.MessageLabel.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.MessageLabel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            this.MessageLabel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.MessageLabel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.MessageLabel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.MessageLabel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.MessageLabel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.MessageLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.MessageLabel.ToolTip = null;
             // 
             // FileBrowser
             // 
@@ -1060,8 +1060,8 @@ namespace BudgetExecution
             this.CheckBoxLayout.ResumeLayout(false);
             this.TopTablePanel.ResumeLayout(false);
             this.TopTablePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
 
             }
