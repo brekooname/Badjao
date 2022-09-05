@@ -1,6 +1,7 @@
 ﻿namespace BudgetExecution
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
     using MetroSet_UI.Controls;
@@ -51,6 +52,9 @@
             Font = new Font( "Roboto", 8, FontStyle.Regular  );
             Dock = DockStyle.None;
             CheckState = CheckState.Unchecked;
+            CheckedChanged += OnCheckStateChanged;
+            MouseEnter += OnMouseHover;
+            MouseLeave += OnMouseLeave;
         }
 
 
@@ -61,7 +65,6 @@
         public RadioButton( string text ) : this( )
         {
             Text = text;
-            CheckedChanged += OnCheckStateChanged;
         }
 
         /// <summary>
@@ -84,6 +87,61 @@
             }
         }
 
+        /// <summary>
+        /// Called when [mouse over].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the
+        ///     event data.</param>
+        public virtual void OnMouseHover( object sender, EventArgs e )
+        {
+            try
+            {
+                var _control = sender as RadioButton;
+
+                if( _control is RadioButton _radioButton
+                    && !string.IsNullOrEmpty( HoverText ) )
+                {
+                    var tip = new ToolTip( _radioButton, HoverText );
+                    ToolTip = tip;
+                }
+                else
+                {
+                    if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
+                    {
+                        var _tool = new ToolTip( _control );
+                        ToolTip = _tool;
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse leave].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the
+        ///     event data.</param>
+        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+        public virtual void OnMouseLeave( object sender, EventArgs e )
+        {
+            try
+            {
+                if( ToolTip?.Active == true )
+                {
+                    ToolTip.RemoveAll( );
+                    ToolTip = null;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

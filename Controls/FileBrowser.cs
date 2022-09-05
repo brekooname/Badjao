@@ -13,6 +13,7 @@ namespace BudgetExecution
     using System.IO;
     using System.Windows.Forms;
     using System.Linq;
+    using CheckState = MetroSet_UI.Enums.CheckState;
 
     public partial class FileBrowser
     {
@@ -54,7 +55,7 @@ namespace BudgetExecution
         /// <value>
         /// The check boxes.
         /// </value>
-        public IEnumerable<CheckBox> CheckBoxes { get; set; }
+        public IEnumerable<RadioButton> RadioButtons { get; set; }
 
         /// <summary>
         /// Gets or sets the selected path.
@@ -81,7 +82,7 @@ namespace BudgetExecution
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = Color.FromArgb( 15, 15, 15 );
             InitialDirPaths = GetInitialDirPaths( );
-            CheckBoxes = GetCheckBoxes( );
+            RadioButtons = GetRadioButtons( );
             FileExtension = "xlsx";
             PictureBox.Image = GetImage( );
             FilePaths = GetListViewPaths( );
@@ -110,7 +111,8 @@ namespace BudgetExecution
                 {
                     PopulateListView( );
                     FoundLabel.Text = "Found : " + FilePaths?.Count( );
-                    ResetCheckBoxes( );
+                    ClearRadioButtons( );
+                    SetRadioButtonEvents( );
                 }
                 catch( Exception ex )
                 {
@@ -158,14 +160,32 @@ namespace BudgetExecution
         /// <summary>
         /// Clears the check boxes.
         /// </summary>
-        public void ResetCheckBoxes( )
+        public void ClearRadioButtons( )
         {
             try
             {
-                foreach( var box in CheckBoxes )
+                foreach( var radioButton in RadioButtons )
                 {
-                    box.CheckState = CheckState.Unchecked;
-                    box.CheckStateChanged += OnCheckBoxSelected;
+                    radioButton.CheckedChanged += null;
+                    radioButton.CheckState = CheckState.Unchecked;
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the RadioButton events.
+        /// </summary>
+        public void SetRadioButtonEvents()
+        {
+            try
+            {
+                foreach( var radioButton in RadioButtons )
+                {
+                    radioButton.CheckedChanged += OnRadioButtonSelected;
                 }
             }
             catch( Exception ex )
@@ -240,17 +260,15 @@ namespace BudgetExecution
         /// <summary>
         /// Called when [selection].
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        public virtual void OnCheckBoxSelected( object sender, EventArgs e )
+        /// <param name="sender">The sender instance containing the event data.</param>
+        public virtual void OnRadioButtonSelected( object sender )
         {
-            if( sender is CheckBox _checkBox
-                && !string.IsNullOrEmpty( _checkBox.Tag?.ToString( ) )
-                && e != null )
+            if( sender is RadioButton _radioButton
+                && !string.IsNullOrEmpty( _radioButton.Tag?.ToString( ) ) )
             {
                 try
                 {
-                    FileExtension = _checkBox?.Tag?.ToString( );
+                    FileExtension = _radioButton?.Result;
                     MessageLabel.Text = string.Empty;
                     FoundLabel.Text = string.Empty;
                     var _paths = GetListViewPaths( );
@@ -269,32 +287,32 @@ namespace BudgetExecution
         /// Gets the check boxex.
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<CheckBox> GetCheckBoxes( )
+        public virtual IEnumerable<RadioButton> GetRadioButtons( )
         {
             try
             {
-                var _list = new List<CheckBox>( );
-                _list.Add( PdfCheckBox );
-                _list.Add( AccessCheckBox );
-                _list.Add( SQLiteCheckBox );
-                _list.Add( SqlCeCheckBox );
-                _list.Add( SqlServerCheckBox );
-                _list.Add( ExcelCheckBox );
-                _list.Add( CsvCheckBox );
-                _list.Add( TextCheckBox );
-                _list.Add( PowerPointCheckBox );
-                _list.Add( WordCheckBox );
-                _list.Add( ExecutableCheckBox );
-                _list.Add( LibraryCheckBox );
+                var _list = new List<RadioButton>( );
+                _list.Add( PdfRadioButton );
+                _list.Add( AccessRadioButton );
+                _list.Add( SQLiteRadioButton );
+                _list.Add( SqlCeRadioButton );
+                _list.Add( SqlServerRadioButton );
+                _list.Add( ExcelRadioButton );
+                _list.Add( CsvRadioButton );
+                _list.Add( TextRadioButton );
+                _list.Add( PowerPointRadioButton );
+                _list.Add( WordRadioButton );
+                _list.Add( ExecutableRadioButton );
+                _list.Add( LibraryRadioButton );
 
                 return _list?.Any( ) == true
                     ? _list
-                    : default( IEnumerable<CheckBox> );
+                    : default( IEnumerable<RadioButton> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<CheckBox> );
+                return default( IEnumerable<RadioButton> );
             }
         }
 
