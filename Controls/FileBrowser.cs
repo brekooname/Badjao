@@ -82,7 +82,7 @@ namespace BudgetExecution
             BackColor = Color.FromArgb( 15, 15, 15 );
             InitialDirPaths = GetInitialDirPaths( );
             CheckBoxes = GetCheckBoxes( );
-            FileExtension = "XLSX";
+            FileExtension = "xlsx";
             PictureBox.Image = GetImage( );
             FilePaths = GetListViewPaths( );
 
@@ -104,7 +104,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
         public void OnLoaded( object sender, EventArgs e )
         {
-            if ( FileDialog != null )
+            if( FilePaths?.Any( ) == true  ) 
             {
                 try
                 {
@@ -189,7 +189,7 @@ namespace BudgetExecution
                         var _first = Directory.EnumerateFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
                             ?.Select( f => Path.GetFullPath( f ) )
-                            ?.ToArray( );
+                            ?.ToList( );
 
                         _list.AddRange( _first );
 
@@ -201,7 +201,7 @@ namespace BudgetExecution
                                 var _second = Directory.EnumerateFiles( dir )
                                    ?.Where( s => s.EndsWith( FileExtension ) )
                                    ?.Select( s => Path.GetFullPath( s ) )
-                                   ?.ToArray( );
+                                   ?.ToList( );
 
                                 _list.AddRange( _second );
 
@@ -211,7 +211,7 @@ namespace BudgetExecution
                                     var _last = Directory.EnumerateFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
                                         ?.Select( l => Path.GetFullPath( l ) )
-                                        ?.ToArray( );
+                                        ?.ToList( );
 
                                     _list.AddRange( _last );
                                 }
