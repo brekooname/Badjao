@@ -861,6 +861,9 @@
     <Compile Include="Controls\Form\BudgetForm.cs" />
     <Compile Include="Controls\StyleConfig\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
+    <Compile Include="RadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Resources\Extenstions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

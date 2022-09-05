@@ -141,7 +141,7 @@ namespace BudgetExecution
             this.TopTablePanel.ColumnCount = 3;
             this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
             this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.TopTablePanel.Controls.Add(this.Header, 1, 0);
             this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
             this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -989,7 +989,7 @@ namespace BudgetExecution
             this.Header.ShadowDirection = 315;
             this.Header.ShadowLocation = new System.Drawing.Point(0, 0);
             this.Header.ShadowOpacity = 100;
-            this.Header.Size = new System.Drawing.Size(475, 49);
+            this.Header.Size = new System.Drawing.Size(472, 49);
             this.Header.TabIndex = 0;
             this.Header.Text = "File Search";
             this.Header.TextAlignment = System.Drawing.StringAlignment.Center;

@@ -110,6 +110,7 @@ namespace BudgetExecution
                 {
                     PopulateListView( );
                     FoundLabel.Text = "Found : " + FilePaths?.Count( );
+                    ResetCheckBoxes( );
                 }
                 catch( Exception ex )
                 {
@@ -134,7 +135,7 @@ namespace BudgetExecution
                     if ( _files?.Any( ) == true )
                     {
                         var _file = _files
-                            .Where( f => f.Contains( FileExtension ) )
+                            .Where( f => f.Contains( FileExtension.ToUpper( ) ) )
                             ?.Single( );
 
                         using( var stream = File.Open( _file, FileMode.Open ) )
@@ -249,12 +250,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FileList.Items.Clear( );
                     FileExtension = _checkBox?.Tag?.ToString( );
                     MessageLabel.Text = string.Empty;
-                    var _paths = GetListViewPaths(   );
+                    FoundLabel.Text = string.Empty;
+                    var _paths = GetListViewPaths( );
                     PopulateListView( _paths );
-                    PictureBox.Image = GetImage(   );
+                    PictureBox.Image = GetImage( );
 
                 }
                 catch( Exception ex )
@@ -356,6 +357,7 @@ namespace BudgetExecution
             {
                 if( filePaths?.Any(  ) == true )
                 {
+                    FileList.Items.Clear( );
                     foreach( var path in filePaths )
                     {
                         if( !string.IsNullOrEmpty( path ) )
