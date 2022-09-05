@@ -538,7 +538,7 @@ namespace BudgetExecution
             this.TopTablePanel.ColumnCount = 3;
             this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
             this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.TopTablePanel.Controls.Add(this.Header, 1, 0);
             this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
             this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -559,7 +559,7 @@ namespace BudgetExecution
             this.Header.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.Header.HoverText = null;
-            this.Header.Location = new System.Drawing.Point(91, 3);
+            this.Header.Location = new System.Drawing.Point(90, 3);
             this.Header.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Header.Name = "Header";
             this.Header.Numeric = BudgetExecution.Numeric.NS;

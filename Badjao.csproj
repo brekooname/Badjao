@@ -459,6 +459,12 @@
     </Compile>
     <Compile Include="Abstractions\CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
+    <Compile Include="Controls\LookUpDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\LookUpDialog.Designer.cs">
+      <DependentUpon>LookUpDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="IO\DataFile.cs" />
     <Compile Include="Abstractions\FileBase.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
@@ -929,6 +935,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LookUpDialog.resx">
+      <DependentUpon>LookUpDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
