@@ -69,6 +69,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Badjao\lib\CharmNotification.dll</HintPath>
     </Reference>
+    <Reference Include="DataGridMetro">
+      <HintPath>Lib\DataGridMetro.dll</HintPath>
+    </Reference>
     <Reference Include="DataGridViewExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Badjao\lib\DataGridViewExtension.dll</HintPath>
@@ -101,9 +104,12 @@
     <Reference Include="log4net">
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>Lib\MetroFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MetroSet UI, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Badjao\lib\MetroSet UI.dll</HintPath>
+      <HintPath>Lib\MetroSet UI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -450,14 +456,6 @@
     </Compile>
     <Compile Include="Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Access.cs">
-      <DependentUpon>Access.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Access.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Access.xsd</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
@@ -890,11 +888,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\SqlStatement\SqlBuilder.cs" />
-    <Compile Include="SqlServer.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SqlServer.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Static\Resource.cs" />
     <Compile Include="Static\Static.cs" />
     <Compile Include="Static\Validate.cs" />
@@ -1001,17 +994,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include=".editorconfig" />
-    <None Include="Access.xsc">
-      <DependentUpon>Access.xsd</DependentUpon>
-    </None>
-    <None Include="Access.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Access.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Access.xss">
-      <DependentUpon>Access.xsd</DependentUpon>
-    </None>
     <None Include="Data\Data Diagram.cd" />
     <None Include="BudgetExecution.DotSettings" />
     <None Include="Controls\Chart\Chart Diagram.cd" />
@@ -1191,17 +1173,6 @@
     <None Include="Resources\Docs\USC31\PrinciplesOfFederalAppropriationsLawVolOne.pdf" />
     <None Include="Resources\Docs\USC31\PrinciplesOfFederalAppropriationsLawVolTwo.pdf" />
     <None Include="Resources\Reps\Excel.xlsx" />
-    <None Include="SqlServer.xsc">
-      <DependentUpon>SqlServer.xsd</DependentUpon>
-    </None>
-    <None Include="SqlServer.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SqlServer.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SqlServer.xss">
-      <DependentUpon>SqlServer.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

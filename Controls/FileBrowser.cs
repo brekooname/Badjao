@@ -136,9 +136,10 @@ namespace BudgetExecution
 
                     if ( _files?.Any( ) == true )
                     {
+                        var _extension = FileExtension.TrimStart( '.' ).ToUpper(  );
                         var _file = _files
-                            .Where( f => f.Contains( FileExtension.ToUpper( ) ) )
-                            ?.Single( );
+                            .Where( f => f.Contains( _extension ) )
+                            ?.First(  );
 
                         using( var stream = File.Open( _file, FileMode.Open ) )
                         {
@@ -274,6 +275,7 @@ namespace BudgetExecution
                     var _paths = GetListViewPaths( );
                     PopulateListView( _paths );
                     PictureBox.Image = GetImage( );
+                    FoundLabel.Text = _paths?.ToList(  )?.Count.ToString(  ) ?? "0";
 
                 }
                 catch( Exception ex )

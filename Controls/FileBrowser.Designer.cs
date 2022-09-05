@@ -151,7 +151,7 @@ namespace BudgetExecution
             this.LibraryRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.LibraryRadioButton.StyleManager = null;
             this.LibraryRadioButton.TabIndex = 15;
-            this.LibraryRadioButton.Tag = "dll";
+            this.LibraryRadioButton.Tag = ".dll";
             this.LibraryRadioButton.Text = "  DLL Files";
             this.LibraryRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.LibraryRadioButton.ThemeName = "Budget Execution";
@@ -176,7 +176,7 @@ namespace BudgetExecution
             this.PowerPointRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.PowerPointRadioButton.StyleManager = null;
             this.PowerPointRadioButton.TabIndex = 21;
-            this.PowerPointRadioButton.Tag = "pptx";
+            this.PowerPointRadioButton.Tag = ".pptx";
             this.PowerPointRadioButton.Text = "  Power Point";
             this.PowerPointRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.PowerPointRadioButton.ThemeName = "Budget Execution";
@@ -201,7 +201,7 @@ namespace BudgetExecution
             this.ExecutableRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.ExecutableRadioButton.StyleManager = null;
             this.ExecutableRadioButton.TabIndex = 14;
-            this.ExecutableRadioButton.Tag = "exe";
+            this.ExecutableRadioButton.Tag = ".exe";
             this.ExecutableRadioButton.Text = "  EXE Files";
             this.ExecutableRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.ExecutableRadioButton.ThemeName = "Budget Execution";
@@ -226,7 +226,7 @@ namespace BudgetExecution
             this.TextRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.TextRadioButton.StyleManager = null;
             this.TextRadioButton.TabIndex = 20;
-            this.TextRadioButton.Tag = "txt";
+            this.TextRadioButton.Tag = ".txt";
             this.TextRadioButton.Text = "  Text Files";
             this.TextRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.TextRadioButton.ThemeName = "Budget Execution";
@@ -251,7 +251,7 @@ namespace BudgetExecution
             this.SqlCeRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.SqlCeRadioButton.StyleManager = null;
             this.SqlCeRadioButton.TabIndex = 13;
-            this.SqlCeRadioButton.Tag = "sdf";
+            this.SqlCeRadioButton.Tag = ".sdf";
             this.SqlCeRadioButton.Text = "  SQL Compact";
             this.SqlCeRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.SqlCeRadioButton.ThemeName = "Budget Execution";
@@ -276,7 +276,7 @@ namespace BudgetExecution
             this.ExcelRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.ExcelRadioButton.StyleManager = null;
             this.ExcelRadioButton.TabIndex = 19;
-            this.ExcelRadioButton.Tag = "xlsx";
+            this.ExcelRadioButton.Tag = ".xlsx";
             this.ExcelRadioButton.Text = "  Excel Files";
             this.ExcelRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.ExcelRadioButton.ThemeName = "Budget Execution";
@@ -301,7 +301,7 @@ namespace BudgetExecution
             this.CsvRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.CsvRadioButton.StyleManager = null;
             this.CsvRadioButton.TabIndex = 18;
-            this.CsvRadioButton.Tag = "csv";
+            this.CsvRadioButton.Tag = ".csv";
             this.CsvRadioButton.Text = "  CSV Files";
             this.CsvRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.CsvRadioButton.ThemeName = "Budget Execution";
@@ -326,7 +326,7 @@ namespace BudgetExecution
             this.AccessRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.AccessRadioButton.StyleManager = null;
             this.AccessRadioButton.TabIndex = 17;
-            this.AccessRadioButton.Tag = "accdb";
+            this.AccessRadioButton.Tag = ".accdb";
             this.AccessRadioButton.Text = "  MS Access";
             this.AccessRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.AccessRadioButton.ThemeName = "Budget Execution";
@@ -351,7 +351,7 @@ namespace BudgetExecution
             this.SQLiteRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.SQLiteRadioButton.StyleManager = null;
             this.SQLiteRadioButton.TabIndex = 16;
-            this.SQLiteRadioButton.Tag = "db";
+            this.SQLiteRadioButton.Tag = ".db";
             this.SQLiteRadioButton.Text = "  SQLite";
             this.SQLiteRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.SQLiteRadioButton.ThemeName = "Budget Execution";
@@ -376,7 +376,7 @@ namespace BudgetExecution
             this.SqlServerRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.SqlServerRadioButton.StyleManager = null;
             this.SqlServerRadioButton.TabIndex = 15;
-            this.SqlServerRadioButton.Tag = "mdf";
+            this.SqlServerRadioButton.Tag = ".mdf";
             this.SqlServerRadioButton.Text = "  SQL Server";
             this.SqlServerRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.SqlServerRadioButton.ThemeName = "Budget Execution";
@@ -401,7 +401,7 @@ namespace BudgetExecution
             this.WordRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.WordRadioButton.StyleManager = null;
             this.WordRadioButton.TabIndex = 14;
-            this.WordRadioButton.Tag = "docx";
+            this.WordRadioButton.Tag = ".docx";
             this.WordRadioButton.Text = "  Word";
             this.WordRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.WordRadioButton.ThemeName = "Budget Execution";
@@ -426,7 +426,7 @@ namespace BudgetExecution
             this.PdfRadioButton.Style = MetroSet_UI.Design.Style.Custom;
             this.PdfRadioButton.StyleManager = null;
             this.PdfRadioButton.TabIndex = 13;
-            this.PdfRadioButton.Tag = "pdf";
+            this.PdfRadioButton.Tag = ".pdf";
             this.PdfRadioButton.Text = "  PDF";
             this.PdfRadioButton.ThemeAuthor = "Terry D. Eppler";
             this.PdfRadioButton.ThemeName = "Budget Execution";
@@ -538,7 +538,7 @@ namespace BudgetExecution
             this.TopTablePanel.ColumnCount = 3;
             this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.38461F));
             this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.61539F));
-            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.TopTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.TopTablePanel.Controls.Add(this.Header, 1, 0);
             this.TopTablePanel.Controls.Add(this.PictureBox, 0, 0);
             this.TopTablePanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -559,7 +559,7 @@ namespace BudgetExecution
             this.Header.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.Header.HoverText = null;
-            this.Header.Location = new System.Drawing.Point(89, 3);
+            this.Header.Location = new System.Drawing.Point(91, 3);
             this.Header.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Header.Name = "Header";
             this.Header.Numeric = BudgetExecution.Numeric.NS;
@@ -573,7 +573,7 @@ namespace BudgetExecution
             this.Header.ShadowDirection = 315;
             this.Header.ShadowLocation = new System.Drawing.Point(0, 0);
             this.Header.ShadowOpacity = 100;
-            this.Header.Size = new System.Drawing.Size(471, 49);
+            this.Header.Size = new System.Drawing.Size(478, 49);
             this.Header.TabIndex = 0;
             this.Header.Text = "File Search";
             this.Header.TextAlignment = System.Drawing.StringAlignment.Center;
