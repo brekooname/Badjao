@@ -18,6 +18,30 @@
         public DataBuilder DataModel { get; set; }
 
         /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        public Source Source { get; set; }
+
+        /// <summary>
+        /// Gets or sets the provider.
+        /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
+        public Provider Provider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the type of the command.
+        /// </summary>
+        /// <value>
+        /// The type of the command.
+        /// </value>
+        public SQL CommandType { get; set; }
+
+        /// <summary>
         /// Gets or sets the form filter.
         /// </summary>
         /// <value>
@@ -92,15 +116,12 @@
         {
             try
             {
-                LookupTabPage.TabVisible = true;
-                CreateTabPage.TabVisible = false;
-                AlterTabPage.TabVisible = false;
-                DropTabPage.TabVisible = false;
-                SqlTabPage.TabVisible = false;
-                EditTabPage.TabVisible = false;
-                InitLookupTab( );
+                GroupBoxes = GetGroupBoxes( );
+                ListBoxes = GetListBoxes( );
+                SetLookupTabPage( );
                 PopulateTableListBoxItems( );
-                
+                SetGroupBoxProperties( GroupBoxes );
+
             }
             catch( Exception ex )
             {
@@ -108,20 +129,17 @@
             }
         }
 
-        public void InitLookupTab( )
+        public void SetLookupTabPage( )
         {
             try
             {
-                LookupTabSqliteRadioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
-                LookupTabSqliteRadioButton.BorderColor = Color.FromArgb( 0, 120, 212 );
-                LookupTabSqliteRadioButton.CheckSignColor = Color.LimeGreen;
-                LookupTabAccessRadioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
-                LookupTabAccessRadioButton.BorderColor = Color.FromArgb( 0, 120, 212 );
-                LookupTabAccessRadioButton.CheckSignColor = Color.LimeGreen;
-                LookupTabSqlServerRadioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
-                LookupTabSqlServerRadioButton.BorderColor = Color.FromArgb( 0, 120, 212 );
-                LookupTabSqlServerRadioButton.CheckSignColor = Color.LimeGreen;
-                LookupCloseButton.Click += OnCloseButtonClicked;
+                LookupTabPage.TabVisible = true;
+                CreateTabPage.TabVisible = false;
+                AlterTabPage.TabVisible = false;
+                DropTabPage.TabVisible = false;
+                SqlTabPage.TabVisible = false;
+                EditTabPage.TabVisible = false;
+                CloseButton.Click += OnCloseButtonClicked;
                 LookupTabTableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
                 LookupTabColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
             }
@@ -151,6 +169,31 @@
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the group box properties.
+        /// </summary>
+        public void SetGroupBoxProperties( IDictionary<string, GroupBox> groupBoxes )
+        {
+            if( groupBoxes?.Any( ) == true )
+            {
+                try
+                {
+                    foreach( var _box in groupBoxes.Values )
+                    {
+                        if( _box != null && 
+                            _box.Separator != true )
+                        {
+                            _box.Separator = true;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
             }
         }
 

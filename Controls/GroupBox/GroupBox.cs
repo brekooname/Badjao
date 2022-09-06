@@ -101,7 +101,7 @@ namespace BudgetExecution
             Visible = true;
             Enabled = true;
             BackColor = Color.FromArgb( 15, 15, 15 );
-            ForeColor = Color.White;
+            ForeColor = Color.LightSteelBlue;
             Font = new Font( "Roboto", 9 );
             Margin = new Padding( 3 );
             Padding = new Padding( 1 );
@@ -126,6 +126,7 @@ namespace BudgetExecution
             BoxStyle = GroupBoxStyle.Default;
             SeparatorColor = Color.FromArgb( 64, 64, 64 );
             Separate = true;
+            Separator = true;
         }
 
         /// <summary>

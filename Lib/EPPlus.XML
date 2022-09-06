@@ -20343,7 +20343,7 @@
              <remarks>
              <para>
              This method allows callers to retrieve the collection of entries from the zipfile
-             that fit the specified criteria.  The criteria are described in a string format, and
+             that fit the specified criteria.  The dict are described in a string format, and
              can include patterns for the filename; constraints on the size of the entry;
              constraints on the last modified, created, or last accessed time for the file
              described by the entry; or the attributes of the entry.
@@ -20402,7 +20402,7 @@
              <remarks>
              <para>
              This method allows callers to retrieve the collection of entries from the zipfile
-             that fit the specified criteria.  The criteria are described in a string format, and
+             that fit the specified criteria.  The dict are described in a string format, and
              can include patterns for the filename; constraints on the size of the entry;
              constraints on the last modified, created, or last accessed time for the file
              described by the entry; or the attributes of the entry.
@@ -20469,7 +20469,7 @@
              <remarks>
              <para>
              This method allows callers to remove the collection of entries from the zipfile
-             that fit the specified criteria.  The criteria are described in a string format, and
+             that fit the specified criteria.  The dict are described in a string format, and
              can include patterns for the filename; constraints on the size of the entry;
              constraints on the last modified, created, or last accessed time for the file
              described by the entry; or the attributes of the entry.
@@ -20525,7 +20525,7 @@
              <remarks>
              <para>
              This method allows callers to remove the collection of entries from the zipfile
-             that fit the specified criteria.  The criteria are described in a string format, and
+             that fit the specified criteria.  The dict are described in a string format, and
              can include patterns for the filename; constraints on the size of the entry;
              constraints on the last modified, created, or last accessed time for the file
              described by the entry; or the attributes of the entry.

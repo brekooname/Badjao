@@ -2656,7 +2656,7 @@
             <summary>
             Sums the cells specified by some criteria.
             </summary>
-            <param name="argList">The criteria range, the criteria, and the sum range.</param>
+            <param name="argList">The criteria range, the dict, and the sum range.</param>
             <returns>A string holding the sum.</returns>
         </member>
         <member name="M:Syncfusion.Calculate.CalcEngine.FindRowColIndex(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
@@ -3249,7 +3249,7 @@
             </summary>
             <param name="s"> CellRange</param>
             <param name="op">Tokens("=",">",">=")</param>
-            <param name="criteria">The criteria used to determine which cells to add.</param>
+            <param name="dict">The criteria used to determine which cells to add.</param>
             <returns> true criteria match or false.</returns>
         </member>
         <member name="M:Syncfusion.Calculate.CalcEngine.ComputeChidist(System.String)">
@@ -3406,22 +3406,22 @@
             <summary>
             Counts the cells specified by some criteria.
             </summary>
-            <param name="argList">The criteria range, the criteria.</param>
+            <param name="argList">The criteria range, the dict.</param>
             <returns>Number of cells meeting the criteria.</returns>
         </member>
         <member name="M:Syncfusion.Calculate.CalcEngine.ComputeCountIFFunctions(System.String,System.Boolean)">
             <summary>
             Calculates the CountIF and CountIFS formula
             </summary>
-            <param name="argList"> The criteria range, the criteria</param>
+            <param name="argList"> The criteria range, the dict</param>
             <param name="isCountif"> If true, calculate CountIF formula. Else calculate CountIFS formula.</param>
             <returns>Number of cells meeting the criteria.</returns>
         </member>
         <member name="M:Syncfusion.Calculate.CalcEngine.ComputeCOUNTIFS(System.String)">
             <summary>
-            The COUNTIFS function applies criteria to cells across multiple ranges and counts the number of times all criteria are met.
+            The COUNTIFS function applies criteria to cells across multiple ranges and counts the number of times all dict are met.
             </summary>
-            <param name="argList">The criteria range, the criteria.</param>
+            <param name="argList">The criteria range, the dict.</param>
             <returns>Number of cells meeting the criteria</returns>
         </member>
         <member name="M:Syncfusion.Calculate.CalcEngine.ComputeCovar(System.String)">
@@ -6844,7 +6844,7 @@
             </summary>
             <param name="s1">CellRange</param>
             <param name="op">Tokens("=",">",">=")</param>
-            <param name="criteria">The criteria used to determine which cells to add.</param>
+            <param name="dict">The criteria used to determine which cells to add.</param>
             <param name="isNumber">the parsed criteria is number is set as true.otherwise false.</param>
             <param name="computedLevel">Computational level.</param>
             <param name="count">The length of parsed range.</param>

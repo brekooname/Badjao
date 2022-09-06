@@ -21,12 +21,12 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
-    public class DataAccess : DataConfig, ISource, IProvider
+    public abstract class DataAccess : DataConfig, ISource, IProvider
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DataAccess"/> class.
         /// </summary>
-        public DataAccess( )
+        protected DataAccess( )
         {
         }
 
@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<DataRow> GetData( )
+        public IEnumerable<DataRow> GetData( )
         {
             try
             {
@@ -56,7 +56,7 @@ namespace BudgetExecution
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        public virtual DataTable GetDataTable( )
+        public DataTable GetDataTable( )
         {
             if ( Enum.IsDefined( typeof( Provider ), Provider ) 
                 && Enum.IsDefined( typeof( Source ), Source  ) 
@@ -67,8 +67,7 @@ namespace BudgetExecution
                     DataSet = new DataSet( $"{ Provider }" );
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
-
-                    using( var _adapter = Query.GetAdapter(  ) )
+                    using( var _adapter = Query.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
@@ -100,24 +99,16 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataSet = new DataSet
-                    {
-                        DataSetName = $"{ Provider }"
-                    };
-
-                    DataSet = _dataSet;
-                    DataSetName = _dataSet.DataSetName;
-                    var _table = new DataTable( $"{ Source }" );
-                    TableName = _table?.TableName;
-                    _dataSet.Tables.Add( _table );
-
+                    DataSet = new DataSet( $"{ Provider }" );
+                    DataTable = new DataTable( $"{ Source }" );
+                    DataSet.Tables.Add( DataTable );
                     using( var _adapter = Query.GetAdapter(  ) )
                     {
-                        _adapter?.Fill( _dataSet, _table?.TableName );
-                        SetColumnCaptions( _table );
+                        _adapter?.Fill( DataSet, DataTable?.TableName );
+                        SetColumnCaptions( DataTable );
 
-                        return _table?.Rows?.Count > 0
-                            ? _dataSet
+                        return DataTable?.Rows?.Count > 0
+                            ? DataSet
                             : default( DataSet );
                     }
                 }
@@ -130,25 +121,6 @@ namespace BudgetExecution
 
             return default( DataSet );
         }
-        
-        /// <summary>
-        /// Gets the record.
-        /// </summary>
-        /// <returns></returns>
-        public DataRow GetRecord( )
-        {
-            try
-            {
-                return Record?.ItemArray?.Length > 0
-                    ? Record
-                    : default( DataRow );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DataRow );
-            }
-        }
 
         /// <summary>
         /// Sets the column captions.
@@ -156,28 +128,31 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         public void SetColumnCaptions( DataTable dataTable )
         {
-            if( dataTable?.Rows?.Count > 0  )
+            if( dataTable?.Rows?.Count > 0 )
             {
                 try
                 {
                     foreach( DataColumn column in dataTable.Columns )
                     {
-                        switch( column?.ColumnName?.Length )
+                        if( column != null 
+                            && string.IsNullOrEmpty( column.Caption ) )
                         {
-                            case 5:
+                            switch( column.ColumnName.Length )
                             {
-                                var _caption = column.ColumnName.ToUpper( );
-                                column.Caption = _caption;
-                                continue;
-                            }
-                            default:
-                            {
-                                if ( column != null )
+                                case 1:
+                                case 2:
+                                case 3:
+                                case 4:
                                 {
-                                    column.Caption = column.ColumnName.SplitPascal(   );
+                                    var _caption = column.ColumnName.ToUpper( );
+                                    column.Caption = _caption;
+                                    continue;
                                 }
-
-                                break;
+                                default:
+                                {
+                                    column.Caption = column.ColumnName.SplitPascal( );
+                                    continue;
+                                }
                             }
                         }
                     }
@@ -195,38 +170,33 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataColumnCollection GetColumnSchema( )
         {
-            try
+            if( Enum.IsDefined( typeof( Provider ), Provider ) 
+                && Enum.IsDefined( typeof( Source ), Source ) 
+                && Query != null )
             {
-                var _table = GetDataTable( );
-                SetColumnCaptions( _table );
-
-                var _dataSet = new DataSet
+                try
                 {
-                    DataSetName = $"{ Provider }"
-                };
+                    DataSet = new DataSet( $"{ Provider }" );
+                    DataTable = new DataTable( $"{ Source }" );
+                    DataSet.Tables.Add( DataTable );
+                    using( var _adapter = Query?.GetAdapter(  ) )
+                    {
+                        _adapter?.Fill( DataSet, DataTable.TableName );
+                        SetColumnCaptions( DataTable );
 
-                var _dataTable = new DataTable( $"{ Source }" )
+                        return DataTable?.Columns?.Count > 0
+                            ? DataTable.Columns
+                            : default( DataColumnCollection );
+                    }
+                }
+                catch( Exception ex )
                 {
-                    TableName = $"{Source}"
-                };
-
-                _dataSet.Tables.Add( _dataTable );
-
-                using( var _adapter = Query?.GetAdapter(  ) )
-                {
-                    _adapter?.Fill( _dataSet, _dataTable.TableName );
-                    SetColumnCaptions( _dataTable );
-
-                    return _table?.Columns?.Count > 0
-                        ? _table.Columns
-                        : default( DataColumnCollection );
+                    Fail( ex );
+                    return default( DataColumnCollection );
                 }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DataColumnCollection );
-            }
+
+            return default( DataColumnCollection );
         }
 
         /// <summary>

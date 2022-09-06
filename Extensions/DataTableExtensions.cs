@@ -48,7 +48,6 @@ namespace BudgetExecution
                 };
 
                 _xml.Add( new XElement( rootName ) );
-
                 foreach( DataRow _dataRow in dataTable.Rows )
                 {
                     var _element = new XElement( dataTable.TableName );
@@ -95,7 +94,6 @@ namespace BudgetExecution
 
                 var _excel = new ExcelPackage( );
                 var _worksheet = _excel?.Workbook?.Worksheets[ 0 ];
-
                 for( var i = 0; i < dataTable?.Columns?.Count; i++ )
                 {
                     if( _worksheet != null
@@ -256,12 +254,57 @@ namespace BudgetExecution
                     && dataTable.Columns?.Count > 0 )
                 {
                     var _list = new List<int>( );
-
                     foreach( var _row in dataTable.AsEnumerable( ) )
                     {
                         if( _row?.HasPrimaryKey( ) == true )
                         {
                             _list.Add( int.Parse( _row[ 0 ].ToString( ) ) );
+                        }
+                    }
+
+                    return _list?.Any( ) == true
+                        ? _list
+                        : default( List<int> );
+                }
+
+                return default( IEnumerable<int> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IEnumerable<int> );
+            }
+        }
+
+        /// <summary>
+        /// Gets the primary key values.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        public static IEnumerable<int> GetPrimaryKeyValues( this DataTable dataTable, 
+            IDictionary<string, object> dict )
+        {
+            try
+            {
+                if( dataTable?.Rows?.Count > 0
+                    && dict?.Any( ) == true )
+                {
+                    var _list = new List<int>( );
+                    var _criteria = dict.ToCriteria( );
+
+                    if ( !string.IsNullOrEmpty( _criteria ) )
+                    {
+                        var _dataRows = dataTable.Select( _criteria );
+                        if ( _dataRows?.Any( ) == true )
+                        {
+                            foreach( var row in _dataRows )
+                            {
+                                if( row?.HasPrimaryKey( ) == true )
+                                {
+                                    _list.Add( int.Parse( row[ 0 ].ToString( ) ) );
+                                }
+                            }
                         }
                     }
 
@@ -311,108 +354,6 @@ namespace BudgetExecution
             }
 
             return default( string[ ] );
-        }
-
-        /// <summary>
-        /// Gets the unique values.
-        /// </summary>
-        /// <param name="dataTable">The dataTable.</param>
-        /// <param name="field">The field.</param>
-        /// <returns></returns>
-        public static string[ ] GetUniqueFieldValues( this DataTable dataTable, Field field )
-        {
-            if( dataTable.Rows.Count > 0
-                && Enum.IsDefined( typeof( Field ), field )
-                && dataTable.Columns.Contains( $"{ field }" ) )
-            {
-                try
-                {
-                    var _enumerable = dataTable.AsEnumerable( )
-                        ?.Select( p => p.Field<string>( $"{ field }" ) )
-                        ?.Distinct( );
-
-                    var _array = _enumerable as string[ ] ?? _enumerable.ToArray( );
-
-                    return _array.Any( )
-                        ? _array
-                        : default( string[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( string[ ] );
-                }
-            }
-
-            return default( string[ ] );
-        }
-
-        /// <summary>
-        /// Filters the specified field.
-        /// </summary>
-        /// <param name="dataTable">The dataTable.</param>
-        /// <param name="name">The field.</param>
-        /// <param name="value">The filter.</param>
-        /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this DataTable dataTable, string name, string value )
-        {
-            if( dataTable.Columns.Count > 0
-                && !string.IsNullOrEmpty( name )
-                && !string.IsNullOrEmpty( value )
-                && dataTable.Columns.Contains( name ) )
-            {
-                try
-                {
-                    var _query = dataTable.AsEnumerable( )
-                        ?.Where( p => p.Field<string>( name ).Equals( value ) )
-                        ?.Select( p => p );
-
-                    return _query?.Any( ) == true
-                        ? _query
-                        : default( EnumerableRowCollection<DataRow> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
-            }
-
-            return default( IEnumerable<DataRow> );
-        }
-
-        /// <summary>
-        /// Filters the specified name.
-        /// </summary>
-        /// <param name="dataTable">The data table.</param>
-        /// <param name="name">The name.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this DataTable dataTable, Field name, string value )
-        {
-            if( dataTable?.Columns.Count > 0
-                && Enum.IsDefined( typeof( Field ), name )
-                && !string.IsNullOrEmpty( value )
-                && dataTable.Columns?.Contains( name.ToString(  ) ) == true )
-            {
-                try
-                {
-                    var _query = dataTable?.AsEnumerable( )
-                        ?.Where( p => p.Field<string>( name.ToString( ) ).Equals( value ) )
-                        ?.Select( p => p );
-
-                    return _query?.Any( ) == true
-                        ? _query
-                        : default( IEnumerable<DataRow> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
-            }
-
-            return default( IEnumerable<DataRow> );
         }
 
         /// <summary>
@@ -482,7 +423,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataTable">The dataTable.</param>
         /// <returns></returns>
-        public static Dictionary<string, int> GetColumnNameAndIndex( this DataTable dataTable )
+        public static IDictionary<string, int> GetColumnNameAndIndex( this DataTable dataTable )
         {
             try
             {
@@ -495,12 +436,12 @@ namespace BudgetExecution
 
                 return _index.Count > 0
                     ? _index
-                    : default( Dictionary<string, int> );
+                    : default( IDictionary<string, int> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( Dictionary<string, int> );
+                return default( IDictionary<string, int> );
             }
         }
 
@@ -524,16 +465,16 @@ namespace BudgetExecution
 
                     return _bindingList?.Any( ) == true
                         ? _bindingList
-                        : default(  BindingList<DataRow> );
+                        : default( BindingList<DataRow> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default(  BindingList<DataRow> );
+                    return default( BindingList<DataRow> );
                 }
             }
 
-            return default(  BindingList<DataRow> );
+            return default( BindingList<DataRow> );
         }
 
         /// <summary>Fails the specified ex.</summary>

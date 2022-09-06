@@ -458,10 +458,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Abstractions\CommandBase.cs" />
-    <Compile Include="ComboBox.cs">
+    <Compile Include="Controls\ComboBox\ComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ComboBoxBase.cs">
+    <Compile Include="Abstractions\ComboBoxBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\IChartBinding.cs" />
@@ -930,8 +930,8 @@
     <Compile Include="Abstractions\TileBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TextBox.cs" />
-    <Compile Include="TextBoxBase.cs" />
+    <Compile Include="Controls\TextBox\TextBox.cs" />
+    <Compile Include="Abstractions\TextBoxBase.cs" />
     <EmbeddedResource Include="Controls\CalculationForm.resx">
       <DependentUpon>CalculationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -3110,12 +3110,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clients\LINQPad\" />
-    <Folder Include="ComboBox\" />
     <Folder Include="Data\Database\SqlServer\DataModels\ALTERTABLE\" />
     <Folder Include="Data\Database\SqlServer\DataModels\SELECT\" />
     <Folder Include="Data\Database\SqlServer\DataModels\UPDATE\" />
     <Folder Include="Resources\Images\ToolStrip\ico\" />
-    <Folder Include="TextBox\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />

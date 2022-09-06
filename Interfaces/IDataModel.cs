@@ -8,12 +8,6 @@
     /// </summary>
     public interface IDataModel
     {
-        /// <summary> Filters the Data. </summary>
-        /// <param name = "name" > The field. </param>
-        /// <param name = "value" > The filter. </param>
-        /// <returns> </returns>
-        IEnumerable<DataRow> FilterData( Field name, string value );
-
         /// <summary>
         /// Filters the data.
         /// </summary>
@@ -147,13 +141,7 @@
         /// </summary>
         /// <returns></returns>
         DataSet GetDataSet( );
-
-        /// <summary>
-        /// Gets the record.
-        /// </summary>
-        /// <returns></returns>
-        DataRow GetRecord( );
-
+        
         /// <summary>
         /// Sets the column captions.
         /// </summary>

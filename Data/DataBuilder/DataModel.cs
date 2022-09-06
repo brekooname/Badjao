@@ -61,13 +61,13 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
-        public DataModel( Source source, Provider provider, IDictionary<string, object> dict )
+        /// <param name="where">The dictionary.</param>
+        public DataModel( Source source, Provider provider, IDictionary<string, object> where )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, dict );
+            SqlStatement = new SqlStatement( source, provider, where );
             Query = new Query( SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
@@ -105,15 +105,15 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="columns">The columns.</param>
-        /// <param name="criteria">The criteria.</param>
+        /// <param name="where">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
         public DataModel( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
+            SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
             Query = new Query( SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
@@ -126,13 +126,13 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="DataModel"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
-        /// <param name="dict">The dictionary.</param>
-        public DataModel( Source source, IDictionary<string, object> dict )
+        /// <param name="where">The dictionary.</param>
+        public DataModel( Source source, IDictionary<string, object> where )
         {
             Source = source;
             Provider = Provider.Access;
             ConnectionBuilder = new ConnectionBuilder( source, Provider.Access );
-            SqlStatement = new SqlStatement( source, Provider.Access, dict );
+            SqlStatement = new SqlStatement( source, Provider.Access, where );
             Query = new Query( SqlStatement );
             DataTable = GetDataTable( );
             DataColumns = GetDataColumns( );
@@ -234,21 +234,21 @@ namespace BudgetExecution
         /// Gets the values.
         /// </summary>
         /// <param name="dataRows">The dataRows.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
+        /// <param name="name">The field.</param>
+        /// <param name="value">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, Field field,
-            string filter )
+        public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, string name,
+            string value )
         {
             if( dataRows?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && !string.IsNullOrEmpty( filter ) )
+                && Enum.IsDefined( typeof( Field ), name )
+                && !string.IsNullOrEmpty( value ) )
             {
                 try
                 {
                     var _query = dataRows
-                        ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
-                        ?.Select( p => p.Field<string>( $"{ field }" ) )
+                        ?.Where( p => p.Field<string>( $"{ name }" ).Equals( value ) )
+                        ?.Select( p => p.Field<string>( $"{ name }" ) )
                         ?.Distinct(  );
 
                     return _query?.Any( ) == true
@@ -314,13 +314,11 @@ namespace BudgetExecution
                     using( var _connection = new OleDbConnection( _connectionString ) )
                     {
                         _connection?.Open( );
-
                         using( var _dataSet = new DataSet( ) )
                         {
                             using( var _schema = _connection?.GetSchema( ) )
                             {
                                 var _sheetName = string.Empty;
-
                                 if( _schema != null )
                                 {
                                     var _dataTable = _schema?.AsEnumerable( )
@@ -335,11 +333,9 @@ namespace BudgetExecution
                                 {
                                     _command.Connection = _connection;
                                     _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
-
                                     using( var _dataAdapter = new OleDbDataAdapter( _command ) )
                                     {
                                         _dataAdapter.Fill( _dataSet, "excelData" );
-
                                         using( var _table = _dataSet.Tables[ "ExcelData" ] )
                                         {
                                             _connection.Close( );
@@ -379,9 +375,8 @@ namespace BudgetExecution
                         using( var _stream = File.OpenRead( filePath ) )
                         {
                             _package.Load( _stream );
-                            var _worksheet = _package?.Workbook?.Worksheets?.First(   );
+                            var _worksheet = _package?.Workbook?.Worksheets?.First( );
                             var _table = new DataTable( _worksheet?.Name );
-
                             if( _worksheet?.Cells != null )
                             {
                                 foreach( var _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
@@ -403,7 +398,6 @@ namespace BudgetExecution
                                         _row, _worksheet.Dimension.End.Column ];
 
                                     var _dataRow = _table.Rows?.Add( );
-
                                     foreach( var cell in _excelRange )
                                     {
                                         _dataRow[ cell.Start.Column - 1 ] = cell?.Text;

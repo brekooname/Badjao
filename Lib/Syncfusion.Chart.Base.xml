@@ -10935,7 +10935,7 @@
             <summary>
             After composing the style of each series, the chart's style system will call this method before the style is used for display.
             Override this method if you wish to change the contents of the series ChartStyleInfo object that is passed in. For instance, if
-            you wish to change the back color of the series being rendered based on external criteria, you could check this criteria when this
+            you wish to change the back color of the series being rendered based on external criteria, you could check this dict when this
             method gets called and change the color of the series based on such. Note that any changes made to the style object in this method
             are not permanent but are temporary and lasts only for the current rendering cycle. This makes this method
             a convenient place to set transient data based attributes.
@@ -10956,7 +10956,7 @@
             <summary>
             After composing the style of each point in a series, the chart's style system will call this method before the style is used for display.
             Override this method if you wish to change the contents of the ChartStyleInfo object that is passed in. For instance, if
-            you wish to change the back color of the series point being rendered based on external criteria, you could check this criteria when this
+            you wish to change the back color of the series point being rendered based on external criteria, you could check this dict when this
             method gets called and change the color of the point based on such. Note that any changes made to the style object in this method
             are not permanent but are temporary and lasts only for the current rendering cycle. This makes this method
             a convenient place to set transient data based attributes.

@@ -133,7 +133,8 @@ namespace BudgetExecution
         public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, 
             IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true )
+            if( dict?.Any( ) == true 
+                && dataRows?.Any( ) == true )
             {
                 try
                 {
@@ -172,6 +173,12 @@ namespace BudgetExecution
                     {
                         foreach( DataColumn column in _data )
                         {
+                            var _caption = column.ColumnName.SplitPascal(  );
+                            if ( !string.IsNullOrEmpty( _caption ) )
+                            {
+                                column.Caption = _caption;
+                            }
+
                             _dataColumns.Add( column );
                         }
 
@@ -207,11 +214,15 @@ namespace BudgetExecution
                 {
                     var _dataColumns = new List<DataColumn>( );
                     var _data = DataTable?.Columns;
-
                     if( _data?.Count > 0 )
                     {
                         foreach( DataColumn column in _data )
                         {
+                            if( string.IsNullOrEmpty( column.Caption ) )
+                            {
+                                column.Caption = column.ColumnName.SplitPascal(  );
+                            }
+
                             _dataColumns.Add( column );
                         }
 

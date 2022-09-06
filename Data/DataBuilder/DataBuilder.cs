@@ -132,35 +132,6 @@ namespace BudgetExecution
         {
             Record = row;
         }
-        
-        /// <summary> Filters the Data. </summary>
-        /// <param name = "name" > The field. </param>
-        /// <param name = "value" > The filter. </param>
-        /// <returns> </returns>
-        public IEnumerable<DataRow> FilterData( Field name, string value )
-        {
-            if( Enum.IsDefined( typeof( Field ), name.ToString( ) )
-                && !string.IsNullOrEmpty( value ) )
-            {
-                try
-                {
-                    var _dataRows = GetData( )
-                            ?.Where( p => p.Field<string>( $"{ name }" ).Equals( value ) )
-                            ?.Select( p => p );
-
-                    return _dataRows?.Any( ) == true
-                        ? _dataRows.ToArray( )
-                        : default( DataRow[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
-            }
-
-            return default( IEnumerable<DataRow> );
-        }
 
         /// <summary>
         /// Filters the data.
@@ -223,20 +194,20 @@ namespace BudgetExecution
         /// Filters the dataRows.
         /// </summary>
         /// <param name="dataRows">The dataRows.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
+        /// <param name="name">The field.</param>
+        /// <param name="value">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, Field field,
-            string filter )
+        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, string name,
+            string value )
         {
             if( dataRows?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && Validate.IsField( field ) )
+                && !string.IsNullOrEmpty( name )
+                && !string.IsNullOrEmpty( value ) )
             {
                 try
                 {
                     var _query = dataRows
-                        ?.Where( p => p.Field<string>( $"{ field }" ).Equals( filter ) )
+                        ?.Where( p => p.Field<string>( $"{ name }" ).Equals( value ) )
                         ?.Select( p => p );
 
                     return _query?.Any( ) == true
@@ -257,29 +228,27 @@ namespace BudgetExecution
         /// Gets the series.
         /// </summary>
         /// <param name="dataRows">The dataRows.</param>
-        /// <param name="field">The field.</param>
-        /// <param name="filter">The filter.</param>
+        /// <param name="name">The field.</param>
+        /// <param name="value">The filter.</param>
         /// <returns></returns>
         public static IDictionary<string, IEnumerable<string>> CreateSeries(
-            IEnumerable<DataRow> dataRows, Field field, string filter )
+            IEnumerable<DataRow> dataRows, string name, string value )
         {
             if( dataRows?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field )
-                && !string.IsNullOrEmpty( filter ) )
+                && !string.IsNullOrEmpty( name )
+                && !string.IsNullOrEmpty( value ) )
             {
                 try
                 {
                     var _dataTable = dataRows.CopyToDataTable( );
                     var _columns = _dataTable?.Columns;
                     var _dict = new Dictionary<string, IEnumerable<string>>( );
-                    var _values = GetValues( dataRows, field, filter );
-
+                    var _values = GetValues( dataRows, name, value );
                     if( _values?.Any( ) == true )
                     {
                         for( var i = 0; i < _columns?.Count; i++ )
                         {
                             var _columnName = _columns[ i ].ColumnName;
-
                             if( !string.IsNullOrEmpty( _columnName )
                                 && _columns[ i ]?.DataType == typeof( string ) )
                             {
