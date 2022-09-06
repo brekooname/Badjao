@@ -75,31 +75,31 @@ namespace BudgetExecution
             Margin = new Padding( 3 );
             Padding = new Padding( 1 );
             Font = new Font( "Roboto", 9 );
-            ForeColor = Color.White;
+            ForeColor = Color.LightSteelBlue;
             Enabled = true;
             Visible = true;
-            AlternateColors = false;
+            AlternateColors = true;
             Text = string.Empty;
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
             // BackColor SeriesConfiguration
             BackColor = Color.FromArgb( 15, 15, 15 );
-            ForeColor = Color.White;
+            ForeColor = Color.LightSteelBlue;
             BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
             BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
 
             // Border SeriesConfiguration
             Border.Color = Color.FromArgb( 15, 15, 15 );
             Border.Thickness = 1;
-            Border.HoverColor = Color.SteelBlue;
+            Border.HoverColor = Color.FromArgb( 0, 120, 212 );
             Border.HoverVisible = true;
 
             // Item SeriesConfiguration
             ItemHeight = 30;
             ItemLineAlignment = StringAlignment.Center;
-            ItemAlternate = Color.FromArgb( 15, 15, 15 );
+            ItemAlternate = Color.FromArgb( 20, 20, 20 );
             ItemNormal = Color.FromArgb( 15, 15, 15 );
-            ItemSelected = Color.SteelBlue;
+            ItemSelected = Color.FromArgb( 22, 39, 70  );
         }
 
         /// <summary>
