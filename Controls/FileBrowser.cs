@@ -275,7 +275,8 @@ namespace BudgetExecution
                     var _paths = GetListViewPaths( );
                     PopulateListView( _paths );
                     PictureBox.Image = GetImage( );
-                    FoundLabel.Text = _paths?.ToList(  )?.Count.ToString(  ) ?? "0";
+                    FoundLabel.Text = "Found: " + 
+                        _paths?.ToList(  )?.Count ?? "0";
 
                 }
                 catch( Exception ex )
@@ -330,7 +331,6 @@ namespace BudgetExecution
                 var _list = new List<string>( );
                 _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ) );
                 _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Personal ) );
-                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Desktop ) );
                 _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments ) );
                 _list.Add( @"C:\Users\terry\source\repos\Badjao\Resources\Docs"  );
                 _list.Add( _current );

@@ -459,11 +459,11 @@
     </Compile>
     <Compile Include="Abstractions\CommandBase.cs" />
     <Compile Include="Controls\Chart\IChartBinding.cs" />
-    <Compile Include="Controls\LookUpDialog.cs">
+    <Compile Include="Controls\DataConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\LookUpDialog.Designer.cs">
-      <DependentUpon>LookUpDialog.cs</DependentUpon>
+    <Compile Include="Controls\DataConfiguration.Designer.cs">
+      <DependentUpon>DataConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\DataFile.cs" />
     <Compile Include="Abstractions\FileBase.cs" />
@@ -865,7 +865,7 @@
     <Compile Include="Controls\Form\BudgetForm.cs" />
     <Compile Include="Controls\StyleConfig\Settings.cs" />
     <Compile Include="Controls\Excel\Section.cs" />
-    <Compile Include="RadioButton.cs">
+    <Compile Include="Controls\RadioButton\RadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Resources\Extenstions.Designer.cs">
@@ -936,8 +936,8 @@
     <EmbeddedResource Include="Controls\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\LookUpDialog.resx">
-      <DependentUpon>LookUpDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\DataConfiguration.resx">
+      <DependentUpon>DataConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
