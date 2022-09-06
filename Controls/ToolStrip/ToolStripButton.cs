@@ -211,9 +211,9 @@ namespace BudgetExecution
 
                         case ToolType.EditButton:
                         {
-                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            using( var _dataConfig = new DataConfiguration( ) )
                             {
-                                _message?.ShowDialog( );
+                                _dataConfig?.ShowDialog( );
                             }
 
                             break;

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using Syncfusion.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
@@ -51,6 +52,16 @@
         public DataConfiguration()
         {
             InitializeComponent( );
+            TabControl.TabPanelBackColor = Color.FromArgb( 15, 15, 15 );
+            LookupSqliteRadioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
+            LookupSqliteRadioButton.BorderColor = Color.FromArgb( 0, 120, 212 );
+            LookupSqliteRadioButton.CheckSignColor = Color.LimeGreen;
+            LookupAccessRadioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
+            LookupAccessRadioButton.BorderColor = Color.FromArgb( 0, 120, 212 );
+            LookupAccessRadioButton.CheckSignColor = Color.LimeGreen;
+            LookupSqlServerRadioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
+            LookupSqlServerRadioButton.BorderColor = Color.FromArgb( 0, 120, 212 );
+            LookupSqlServerRadioButton.CheckSignColor = Color.LimeGreen;
             LookupCloseButton.Click += OnCloseButtonClicked;
             LookupTableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
             LookupColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
@@ -70,7 +81,7 @@
                 CreateTabPage.TabVisible = false;
                 AlterTabPage.TabVisible = false;
                 DropTabPage.TabVisible = false;
-                EditorTabPage.TabVisible = false;
+                SqlTabPage.TabVisible = false;
                 PopulateTableListBoxItems(  );
                 
             }
@@ -112,13 +123,13 @@
         {
             try
             {
-                FormFilter.Clear( );
-                LookupColumnListBox.Items.Clear( );
-                LookupValueListBox.Items.Clear( );
+                FormFilter?.Clear( );
+                LookupColumnListBox?.Items.Clear( );
+                LookupValueListBox?.Items.Clear( );
                 LookupColumnGroupBox.Text = string.Empty;
                 LookupValueGroupBox.Text = string.Empty;
                 var _listBox = sender as VisualListBox;
-                var _value = _listBox?.SelectedItem.ToString( );
+                var _value = _listBox?.SelectedItem?.ToString( );
                 if( !string.IsNullOrEmpty( _value ) )
                 {
                     var _source = (Source)Enum.Parse( typeof( Source ), _value );
@@ -130,10 +141,10 @@
 
                     foreach( var col in _columns )
                     {
-                        LookupColumnListBox.Items.Add( col.ColumnName );
+                        LookupColumnListBox?.Items.Add( col.ColumnName );
                     }
 
-                    LookupColumnGroupBox.Text = ColumnPrefix + LookupColumnListBox.Items.Count;
+                    LookupColumnGroupBox.Text = ColumnPrefix + LookupColumnListBox?.Items.Count;
                     LookupValueGroupBox.Text = ValuePrefix;
                 }
             }
