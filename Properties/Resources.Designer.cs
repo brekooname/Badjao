@@ -93,6 +93,16 @@ namespace BudgetExecution.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddRecord1 {
+            get {
+                object obj = ResourceManager.GetObject("AddRecord1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddTable {
             get {
                 object obj = ResourceManager.GetObject("AddTable", resourceCulture);
