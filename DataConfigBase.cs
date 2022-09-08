@@ -2,16 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
+    using System.Diagnostics.CodeAnalysis;
     using Syncfusion.Windows.Forms;
-
-    public abstract partial class DataConfigBase : MetroForm
+    
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    public partial class DataConfigBase : MetroForm
     {
         /// <summary>
         /// Gets or sets the source.

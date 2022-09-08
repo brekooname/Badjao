@@ -2,10 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using Microsoft.EntityFrameworkCore.Internal;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     public partial class DataConfiguration : DataConfigBase
     {
         /// <summary>
@@ -48,8 +50,13 @@
             InitializeComponent( );
             TabControl.TabPanelBackColor = Color.FromArgb( 15, 15, 15 );
             Load += OnLoad;
+            CloseButton.Click += OnCloseButtonClicked;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataConfiguration"/> class.
+        /// </summary>
+        /// <param name="toolType">Type of the tool.</param>
         public DataConfiguration( ToolType toolType ) 
             : this( )
         {
@@ -67,7 +74,7 @@
             {
                 GroupBoxes = GetGroupBoxes( );
                 ListBoxes = GetListBoxes( );
-                SetLookupTabPage( );
+                InitializeLookupTabPage( ToolType );
                 PopulateTableListBoxItems( );
                 SetGroupBoxProperties( GroupBoxes );
 
@@ -78,19 +85,69 @@
             }
         }
 
-        public void SetLookupTabPage( )
+        public void InitializeTabControl( ToolType toolType )
         {
             try
             {
-                LookupTabPage.TabVisible = true;
-                CreateTabPage.TabVisible = false;
-                AlterTabPage.TabVisible = false;
-                DropTabPage.TabVisible = false;
-                SqlTabPage.TabVisible = false;
-                EditTabPage.TabVisible = false;
-                CloseButton.Click += OnCloseButtonClicked;
-                LookupTabTableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
-                LookupTabColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
+                GroupBoxes = GetGroupBoxes( );
+                ListBoxes = GetListBoxes( );
+                InitializeLookupTabPage( toolType );
+                PopulateTableListBoxItems( );
+                SetGroupBoxProperties( GroupBoxes );
+
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public void InitializeLookupTabPage( ToolType toolType )
+        {
+            try
+            {
+                if( Enum.IsDefined( typeof( ToolType ), toolType ) )
+                {
+                    switch( toolType )
+                    {
+                        case ToolType.AddColumnButton:
+                        {
+                            break;
+                        }
+                        case ToolType.AddRecordButton:
+                        {
+                            break;
+                        }
+                        case ToolType.AddTableButton:
+                        {
+                            break;
+                        }
+                        case ToolType.CopyButton:
+                        {
+                            break;
+                        }
+                        case ToolType.EditColumnButton:
+                        {
+                            break;
+                        }
+                        case ToolType.EditRecordButton:
+                        {
+                            break;
+                        }
+                        case ToolType.DeleteColumnButton:
+                        {
+                            break;
+                        }
+                        case ToolType.DeleteRecordButton:
+                        {
+                            break;
+                        }
+                        case ToolType.DeleteTableButton:
+                        {
+                            break;
+                        }
+                    }
+                }
             }
             catch( Exception ex )
             {
