@@ -118,9 +118,9 @@ namespace BudgetExecution
 
             if( Items?.Count > 0 )
             {
-                foreach( var _control in Items )
+                foreach( var control in Items )
                 {
-                    if( _control is ToolStripButton _item )
+                    if( control is ToolStripButton _item )
                     {
                         if( !string.IsNullOrEmpty( _item?.Name ) )
                         {
@@ -143,7 +143,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        protected void OnVisible( object sender, EventArgs e )
+        public virtual void OnVisible( object sender, EventArgs e )
         {
             if( sender is ToolStrip toolStrip )
             {

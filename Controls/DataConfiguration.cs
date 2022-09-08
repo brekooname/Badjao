@@ -4,10 +4,9 @@
     using System.Collections.Generic;
     using System.Drawing;
     using Microsoft.EntityFrameworkCore.Internal;
-    using Syncfusion.Windows.Forms;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
-    public partial class DataConfiguration : MetroForm
+    public partial class DataConfiguration : DataConfigBase
     {
         /// <summary>
         /// Gets or sets the data model.
@@ -16,39 +15,7 @@
         /// The data model.
         /// </value>
         public DataBuilder DataModel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
-        public Source Source { get; set; }
-
-        /// <summary>
-        /// Gets or sets the provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
-        public Provider Provider { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the command.
-        /// </summary>
-        /// <value>
-        /// The type of the command.
-        /// </value>
-        public SQL CommandType { get; set; }
-
-        /// <summary>
-        /// Gets or sets the form filter.
-        /// </summary>
-        /// <value>
-        /// The form filter.
-        /// </value>
-        public IDictionary<string, object> FormFilter { get; set; }
-
+        
         /// <summary>
         /// Gets the table prefix.
         /// </summary>
@@ -72,39 +39,21 @@
         /// The value prefix.
         /// </value>
         public string ValuePrefix { get; } = " Values : ";
-
-        /// <summary>
-        /// Gets or sets the group boxes.
-        /// </summary>
-        /// <value>
-        /// The group boxes.
-        /// </value>
-        public IDictionary<string, GroupBox> GroupBoxes { get; set; }
-
-        /// <summary>
-        /// Gets or sets the list boxes.
-        /// </summary>
-        /// <value>
-        /// The list boxes.
-        /// </value>
-        public IDictionary<string, ListBox> ListBoxes { get; set; }
-
-        /// <summary>
-        /// Gets or sets the labels.
-        /// </summary>
-        /// <value>
-        /// The labels.
-        /// </value>
-        public IDictionary<string, Label> Labels { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="DataConfiguration"/> class.
         /// </summary>
-        public DataConfiguration()
+        public DataConfiguration( )
         {
             InitializeComponent( );
             TabControl.TabPanelBackColor = Color.FromArgb( 15, 15, 15 );
             Load += OnLoad;
+        }
+
+        public DataConfiguration( ToolType toolType ) 
+            : this( )
+        {
+            ToolType = toolType;
         }
 
         /// <summary>
@@ -152,7 +101,7 @@
         /// <summary>
         /// Populates the ListBox items.
         /// </summary>
-        public void PopulateTableListBoxItems()
+        public void PopulateTableListBoxItems( )
         {
             try
             {
@@ -181,12 +130,12 @@
             {
                 try
                 {
-                    foreach( var _box in groupBoxes.Values )
+                    foreach( var box in groupBoxes.Values )
                     {
-                        if( _box != null && 
-                            _box.Separator != true )
+                        if( box != null && 
+                            box.Separator != true )
                         {
-                            _box.Separator = true;
+                            box.Separator = true;
                         }
                     }
                 }
@@ -228,7 +177,7 @@
         /// Gets the group boxes.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, GroupBox> GetGroupBoxes()
+        public IDictionary<string, GroupBox> GetGroupBoxes( )
         {
             try
             {
@@ -258,38 +207,42 @@
         /// Gets the radio buttons.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<RadioButton> GetRadioButtons()
+        public IDictionary<string, RadioButton> GetRadioButtons( )
         {
             try
             {
-                return default( IEnumerable<RadioButton> );
+                return default( IDictionary<string, RadioButton> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<RadioButton> );
+                return default( IDictionary<string, RadioButton> );
             }
         }
 
-        public void GetEditLabels()
-        {
+        public IDictionary<string, Label> GetEditLabels( )
+        { 
             try
             {
+                return default( IDictionary<string, Label> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                return default( IDictionary<string, Label> );
             }
         }
 
-        public void GetEditBoxes()
+        public IDictionary<string, TextBox> GetTextBoxes( )
         {
             try
             {
+                return default( IDictionary<string, TextBox> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
+                return default( IDictionary<string, TextBox> );
             }
         }
 
@@ -360,30 +313,6 @@
             catch( Exception ex )
             {
                 Fail( ex );
-            }
-        }
-
-        public void OnCloseButtonClicked( object sender, EventArgs e )
-        {
-            try
-            {
-                Close( );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private static void Fail( Exception ex )
-        {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
             }
         }
     }
