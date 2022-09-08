@@ -179,16 +179,39 @@ namespace BudgetExecution
                             break;
                         }
 
+                        case ToolType.AddRecordButton:
                         case ToolType.AddButton:
                         {
-                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            using( var _dataConfig = new DataConfiguration( ToolType.AddRecordButton ) )
                             {
-                                _message?.ShowDialog( );
+                                _dataConfig?.ShowDialog( );
                             }
 
                             break;
                         }
 
+                        case ToolType.AddColumnButton:
+                        case ToolType.EditColumnButton:
+                        case ToolType.DeleteColumnButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.EditColumnButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
+
+                        case ToolType.DeleteTableButton:
+                        case ToolType.AddTableButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.AddTableButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.DeleteButton:
                         {
                             using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
@@ -208,17 +231,7 @@ namespace BudgetExecution
 
                             break;
                         }
-
-                        case ToolType.EditButton:
-                        {
-                            using( var _dataConfig = new DataConfiguration( ) )
-                            {
-                                _dataConfig?.ShowDialog( );
-                            }
-
-                            break;
-                        }
-
+                        
                         case ToolType.ExitButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
@@ -240,10 +253,16 @@ namespace BudgetExecution
                             break;
                         }
 
+                        case ToolType.EditButton:
+                        case ToolType.EditRecordButton:
+                        case ToolType.CopyButton:
                         case ToolType.UpdateButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message?.ShowDialog( );
+                            using( var _dataConfig = new DataConfiguration( ToolType.EditRecordButton) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
                             break;
                         }
 

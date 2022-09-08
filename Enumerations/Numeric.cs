@@ -170,6 +170,11 @@ namespace BudgetExecution
         CarryoverOutlays,
 
         /// <summary>
+        /// The carryover availability percentage
+        /// </summary>
+        CarryoverAvailabilityPercentage,
+
+        /// <summary>
         /// The closed
         /// </summary>
         Closed,
@@ -235,6 +240,11 @@ namespace BudgetExecution
         Disbursements,
 
         /// <summary>
+        /// The duration
+        /// </summary>
+        Duration,
+
+        /// <summary>
         /// The estimate
         /// </summary>
         Estimate,
@@ -268,6 +278,16 @@ namespace BudgetExecution
         /// The feburary
         /// </summary>
         Feburary,
+
+        /// <summary>
+        /// The funds in
+        /// </summary>
+        FundsIn,
+
+        /// <summary>
+        /// The funds out
+        /// </summary>
+        FundsOut,
 
         /// <summary>
         /// The growth rate
@@ -328,6 +348,11 @@ namespace BudgetExecution
         /// The obligations
         /// </summary>
         Obligations,
+
+        /// <summary>
+        /// The obligations paid
+        /// </summary>
+        ObligationsPaid,
 
         /// <summary>
         /// The october
@@ -452,7 +477,7 @@ namespace BudgetExecution
         /// <summary>
         /// The requested
         /// </summary>
-        Requested,
+        Request,
 
         /// <summary>
         /// The reversal
@@ -475,6 +500,16 @@ namespace BudgetExecution
         TotalSpendout,
 
         /// <summary>
+        /// The total authority
+        /// </summary>
+        TotalAuthority,
+
+        /// <summary>
+        /// The total used
+        /// </summary>
+        TotalUsed,
+
+        /// <summary>
         /// The ulo
         /// </summary>
         ULO,
@@ -488,6 +523,11 @@ namespace BudgetExecution
         /// The use or lose
         /// </summary>
         UseOrLose,
+
+        /// <summary>
+        /// The year to date amount
+        /// </summary>
+        YearToDateAmount,
 
         /// <summary>
         /// The year to date earned

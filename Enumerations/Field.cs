@@ -122,9 +122,9 @@ namespace BudgetExecution
         AllocationReason,
 
         /// <summary>
-        /// The amount
+        /// The analyst
         /// </summary>
-        Amount,
+        Analyst,
 
         /// <summary>
         /// The apportionment account code
@@ -277,6 +277,21 @@ namespace BudgetExecution
         BudgetingControls,
 
         /// <summary>
+        /// The budget formulation system
+        /// </summary>
+        BudgetFormulationSystem,
+
+        /// <summary>
+        /// The budget accout code
+        /// </summary>
+        BudgetAccoutCode,
+
+        /// <summary>
+        /// The budget account name
+        /// </summary>
+        BudgetAccountName,
+
+        /// <summary>
         /// The bureau
         /// </summary>
         Bureau,
@@ -410,11 +425,16 @@ namespace BudgetExecution
         /// The credit indicator
         /// </summary>
         CreditIndicator,
-
+        
         /// <summary>
         /// The current year adjustment
         /// </summary>
         CurrentYearAdjustment,
+
+        /// <summary>
+        /// The cycle
+        /// </summary>
+        Cycle,
 
         /// <summary>
         /// The december
@@ -465,6 +485,11 @@ namespace BudgetExecution
         /// The document date
         /// </summary>
         DocumentDate,
+
+        /// <summary>
+        /// The document title
+        /// </summary>
+        DocumentTitle,
 
         /// <summary>
         /// The document number
@@ -662,6 +687,11 @@ namespace BudgetExecution
         GrantNumber,
 
         /// <summary>
+        /// The group
+        /// </summary>
+        Group,
+
+        /// <summary>
         /// The hr org code
         /// </summary>
         HrOrgCode,
@@ -752,6 +782,11 @@ namespace BudgetExecution
         LedgerAccountCode,
 
         /// <summary>
+        /// The ledger account name
+        /// </summary>
+        LedgerAccountName,
+
+        /// <summary>
         /// The line
         /// </summary>
         Line,
@@ -780,6 +815,11 @@ namespace BudgetExecution
         /// The line section
         /// </summary>
         LineSection,
+
+        /// <summary>
+        /// The line split
+        /// </summary>
+        LineSplit, 
 
         /// <summary>
         /// The line title
@@ -1122,6 +1162,31 @@ namespace BudgetExecution
         ProjectType,
 
         /// <summary>
+        /// The project status
+        /// </summary>
+        ProjectStatus,
+
+        /// <summary>
+        /// The project officer last name
+        /// </summary>
+        ProjectOfficerLastName,
+
+        /// <summary>
+        /// The project officer first name
+        /// </summary>
+        ProjectOfficerFirstName,
+
+        /// <summary>
+        /// The project officer phone number
+        /// </summary>
+        ProjectOfficerPhoneNumber,
+
+        /// <summary>
+        /// The project officer mail code
+        /// </summary>
+        ProjectOfficerMailCode,
+
+        /// <summary>
         /// The public law
         /// </summary>
         PublicLaw,
@@ -1235,6 +1300,11 @@ namespace BudgetExecution
         /// The requested by
         /// </summary>
         RequestedBy,
+
+        /// <summary>
+        /// The request document
+        /// </summary>
+        RequestDocument,
 
         /// <summary>
         /// The resource type

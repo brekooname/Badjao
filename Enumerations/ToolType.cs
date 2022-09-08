@@ -45,6 +45,11 @@ namespace BudgetExecution
         AddTableButton,
 
         /// <summary>
+        /// The add database button
+        /// </summary>
+        AddDatabaseButton,
+
+        /// <summary>
         /// The bluetooth button
         /// </summary>
         BluetoothButton,
@@ -83,12 +88,7 @@ namespace BudgetExecution
         /// The copy button
         /// </summary>
         CopyButton,
-
-        /// <summary>
-        /// The data add button
-        /// </summary>
-        DataAddButton,
-
+        
         /// <summary>
         /// The database button
         /// </summary>
@@ -127,7 +127,7 @@ namespace BudgetExecution
         /// <summary>
         /// The data delete button
         /// </summary>
-        DataDeleteButton,
+        DeleteDatabaseButton,
 
         /// <summary>
         /// The download button
@@ -188,6 +188,11 @@ namespace BudgetExecution
         /// The excel export button
         /// </summary>
         ExcelExportButton,
+
+        /// <summary>
+        /// The filter data button
+        /// </summary>
+        FilterDataButton,
 
         /// <summary>
         /// The forward button

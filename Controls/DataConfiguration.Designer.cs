@@ -34,14 +34,6 @@
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TabControl = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.LookupTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.CreateTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.AlterTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.SqlTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.SqlEditor = new Syncfusion.Windows.Forms.Edit.EditControl();
-            this.DropTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.EditTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.tabPageAdv1 = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.SelectButton = new BudgetExecution.Button();
             this.LookupTabTableGroupBox = new BudgetExecution.GroupBox();
             this.LookupTabTableListBox = new BudgetExecution.ListBox();
             this.ToolTip = new BudgetExecution.ToolTip();
@@ -53,6 +45,7 @@
             this.LookupTabAccessRadioButton = new BudgetExecution.RadioButton();
             this.LookupTabSqlServerRadioButton = new BudgetExecution.RadioButton();
             this.LookupTabSqliteRadioButton = new BudgetExecution.RadioButton();
+            this.CreateTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.CreateTabColumnGroupBox = new BudgetExecution.GroupBox();
             this.CreateTableDataTypeComboBox = new VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox();
             this.visualLabel2 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
@@ -65,6 +58,7 @@
             this.CreateTabAccessRadioButton = new BudgetExecution.RadioButton();
             this.CreateTabSqlServerRadioButton = new BudgetExecution.RadioButton();
             this.CreateTabSqliteRadioButton = new BudgetExecution.RadioButton();
+            this.AlterTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.AlterTabTableGroupBox = new BudgetExecution.GroupBox();
             this.AlterTabTableListBox = new BudgetExecution.ListBox();
             this.listBox4 = new BudgetExecution.ListBox();
@@ -77,6 +71,9 @@
             this.AlterTabAccessRadioButton = new BudgetExecution.RadioButton();
             this.AlterTabSqlServerRadioButton = new BudgetExecution.RadioButton();
             this.AlterTabSqlitRadioButton = new BudgetExecution.RadioButton();
+            this.SqlTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
+            this.SqlEditor = new Syncfusion.Windows.Forms.Edit.EditControl();
+            this.DropTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.DropTabColumnGroupBox = new BudgetExecution.GroupBox();
             this.visualComboBox4 = new VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox();
             this.visualLabel6 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
@@ -89,12 +86,12 @@
             this.DropTabAccessRadioButton = new BudgetExecution.RadioButton();
             this.DropTabSqlServerRadioButton = new BudgetExecution.RadioButton();
             this.DropTabSqliteRadioButton = new BudgetExecution.RadioButton();
+            this.EditTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.EditTabTablePanel = new BudgetExecution.Layout();
             this.EditTabTableFrame = new System.Windows.Forms.TableLayoutPanel();
             this.EditLabel1 = new BudgetExecution.Label();
             this.EditTextBox1 = new VisualPlus.Toolkit.Controls.Editors.VisualTextBox();
-            this.RefreshButton = new BudgetExecution.Button();
-            this.CloseButton = new BudgetExecution.Button();
+            this.tabPageAdv1 = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.groupBox7 = new BudgetExecution.GroupBox();
             this.listBox5 = new BudgetExecution.ListBox();
             this.listBox6 = new BudgetExecution.ListBox();
@@ -103,6 +100,9 @@
             this.visualLabel3 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.visualLabel5 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.visualTextBox3 = new VisualPlus.Toolkit.Controls.Editors.VisualTextBox();
+            this.SelectButton = new BudgetExecution.Button();
+            this.RefreshButton = new BudgetExecution.Button();
+            this.CloseButton = new BudgetExecution.Button();
             this.groupBox2 = new BudgetExecution.GroupBox();
             this.groupBox3 = new BudgetExecution.GroupBox();
             this.groupBox4 = new BudgetExecution.GroupBox();
@@ -111,28 +111,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
             this.TabControl.SuspendLayout();
             this.LookupTabPage.SuspendLayout();
-            this.CreateTabPage.SuspendLayout();
-            this.AlterTabPage.SuspendLayout();
-            this.SqlTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SqlEditor)).BeginInit();
-            this.DropTabPage.SuspendLayout();
-            this.EditTabPage.SuspendLayout();
-            this.tabPageAdv1.SuspendLayout();
             this.LookupTabTableGroupBox.SuspendLayout();
             this.LookupTabValueGroupBox.SuspendLayout();
             this.LookupTabColumnGroupBox.SuspendLayout();
             this.LookupTabProviderGroupBox.SuspendLayout();
+            this.CreateTabPage.SuspendLayout();
             this.CreateTabColumnGroupBox.SuspendLayout();
             this.CreateTabTableGroupBox.SuspendLayout();
             this.CreateTabProviderGroupBox.SuspendLayout();
+            this.AlterTabPage.SuspendLayout();
             this.AlterTabTableGroupBox.SuspendLayout();
             this.AlterTabColumnGroupBox.SuspendLayout();
             this.AlterTabProviderGroupBox.SuspendLayout();
+            this.SqlTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SqlEditor)).BeginInit();
+            this.DropTabPage.SuspendLayout();
             this.DropTabColumnGroupBox.SuspendLayout();
             this.DropTabTableGroupBox.SuspendLayout();
             this.DropTabProviderGroupBox.SuspendLayout();
+            this.EditTabPage.SuspendLayout();
             this.EditTabTablePanel.SuspendLayout();
             this.EditTabTableFrame.SuspendLayout();
+            this.tabPageAdv1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.SuspendLayout();
@@ -197,205 +197,6 @@
             this.LookupTabPage.TabIndex = 2;
             this.LookupTabPage.Text = "Look Up";
             this.LookupTabPage.ThemesEnabled = false;
-            // 
-            // CreateTabPage
-            // 
-            this.CreateTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTabPage.Controls.Add(this.CreateTabColumnGroupBox);
-            this.CreateTabPage.Controls.Add(this.CreateTabTableGroupBox);
-            this.CreateTabPage.Controls.Add(this.CreateTabProviderGroupBox);
-            this.CreateTabPage.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.CreateTabPage.Image = null;
-            this.CreateTabPage.ImageSize = new System.Drawing.Size(16, 16);
-            this.CreateTabPage.Location = new System.Drawing.Point(0, 22);
-            this.CreateTabPage.Name = "CreateTabPage";
-            this.CreateTabPage.ShowCloseButton = true;
-            this.CreateTabPage.Size = new System.Drawing.Size(988, 466);
-            this.CreateTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTabPage.TabForeColor = System.Drawing.Color.White;
-            this.CreateTabPage.TabIndex = 3;
-            this.CreateTabPage.Text = "Create Table";
-            this.CreateTabPage.ThemesEnabled = false;
-            // 
-            // AlterTabPage
-            // 
-            this.AlterTabPage.Controls.Add(this.AlterTabTableGroupBox);
-            this.AlterTabPage.Controls.Add(this.AlterTabColumnGroupBox);
-            this.AlterTabPage.Controls.Add(this.AlterTabProviderGroupBox);
-            this.AlterTabPage.Image = null;
-            this.AlterTabPage.ImageSize = new System.Drawing.Size(16, 16);
-            this.AlterTabPage.Location = new System.Drawing.Point(0, 22);
-            this.AlterTabPage.Name = "AlterTabPage";
-            this.AlterTabPage.ShowCloseButton = true;
-            this.AlterTabPage.Size = new System.Drawing.Size(988, 466);
-            this.AlterTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.AlterTabPage.TabForeColor = System.Drawing.Color.White;
-            this.AlterTabPage.TabIndex = 4;
-            this.AlterTabPage.Text = "Alter  Column";
-            this.AlterTabPage.ThemesEnabled = false;
-            // 
-            // SqlTabPage
-            // 
-            this.SqlTabPage.Controls.Add(this.SqlEditor);
-            this.SqlTabPage.Image = null;
-            this.SqlTabPage.ImageSize = new System.Drawing.Size(16, 16);
-            this.SqlTabPage.Location = new System.Drawing.Point(0, 22);
-            this.SqlTabPage.Name = "SqlTabPage";
-            this.SqlTabPage.ShowCloseButton = true;
-            this.SqlTabPage.Size = new System.Drawing.Size(988, 466);
-            this.SqlTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SqlTabPage.TabForeColor = System.Drawing.Color.White;
-            this.SqlTabPage.TabIndex = 5;
-            this.SqlTabPage.Text = "SQL Editor";
-            this.SqlTabPage.ThemesEnabled = false;
-            // 
-            // SqlEditor
-            // 
-            this.SqlEditor.AllowZoom = false;
-            this.SqlEditor.AlwaysShowScrollers = true;
-            this.SqlEditor.BackColor = System.Drawing.Color.LightGray;
-            this.SqlEditor.BackgroundColor = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.LightGray);
-            this.SqlEditor.BookmarkTooltipBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.SqlEditor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SqlEditor.CanOverrideStyle = true;
-            this.SqlEditor.ChangedLinesMarkingLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(98)))));
-            this.SqlEditor.CodeSnipptSize = new System.Drawing.Size(100, 100);
-            this.SqlEditor.ColumnGuidesMeasuringFont = new System.Drawing.Font("Source Code Pro", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SqlEditor.Configurator = config1;
-            this.SqlEditor.ContextChoiceBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.SqlEditor.ContextChoiceBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(166)))), ((int)(((byte)(50)))));
-            this.SqlEditor.ContextChoiceForeColor = System.Drawing.Color.White;
-            this.SqlEditor.ContextPromptBackgroundBrush = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
-            this.SqlEditor.ContextPromptBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SqlEditor.ContextTooltipBackgroundBrush = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
-            this.SqlEditor.ContextTooltipBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SqlEditor.CurrentLineHighlightColor = System.Drawing.Color.SteelBlue;
-            this.SqlEditor.IndentBlockHighlightingColor = System.Drawing.Color.SteelBlue;
-            this.SqlEditor.IndentLineColor = System.Drawing.Color.SteelBlue;
-            this.SqlEditor.IndicatorMarginBackColor = System.Drawing.Color.Empty;
-            this.SqlEditor.LineNumbersColor = System.Drawing.Color.CornflowerBlue;
-            this.SqlEditor.LineNumbersFont = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SqlEditor.Location = new System.Drawing.Point(36, 30);
-            this.SqlEditor.Name = "SqlEditor";
-            this.SqlEditor.RenderRightToLeft = false;
-            this.SqlEditor.ScrollColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
-            this.SqlEditor.ScrollPosition = new System.Drawing.Point(0, 0);
-            this.SqlEditor.ScrollVisualStyle = Syncfusion.Windows.Forms.ScrollBarCustomDrawStyles.Office2016;
-            this.SqlEditor.SelectionTextColor = System.Drawing.Color.White;
-            this.SqlEditor.Size = new System.Drawing.Size(927, 416);
-            this.SqlEditor.StatusBarSettings.CoordsPanel.Width = 150;
-            this.SqlEditor.StatusBarSettings.EncodingPanel.Width = 100;
-            this.SqlEditor.StatusBarSettings.FileNamePanel.Width = 100;
-            this.SqlEditor.StatusBarSettings.InsertPanel.Width = 33;
-            this.SqlEditor.StatusBarSettings.Offcie2007ColorScheme = Syncfusion.Windows.Forms.Office2007Theme.Blue;
-            this.SqlEditor.StatusBarSettings.Offcie2010ColorScheme = Syncfusion.Windows.Forms.Office2010Theme.Blue;
-            this.SqlEditor.StatusBarSettings.StatusPanel.Width = 70;
-            this.SqlEditor.StatusBarSettings.TextPanel.Width = 214;
-            this.SqlEditor.StatusBarSettings.VisualStyle = Syncfusion.Windows.Forms.Tools.Controls.StatusBar.VisualStyle.Office2016Black;
-            this.SqlEditor.Style = Syncfusion.Windows.Forms.Edit.EditControlStyle.Office2016Black;
-            this.SqlEditor.TabIndex = 0;
-            this.SqlEditor.Text = "This is text";
-            this.SqlEditor.ThemeName = "Office2016Black";
-            this.SqlEditor.ThemeStyle.BookmarkMarginBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.SqlEditor.ThemeStyle.LineNumberFont = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SqlEditor.ThemeStyle.UserMarginBackColor = System.Drawing.Color.Black;
-            this.SqlEditor.ThemeStyle.UserMarginBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SqlEditor.UserMarginBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.SqlEditor.UserMarginTextColor = System.Drawing.Color.White;
-            this.SqlEditor.UseXPStyle = false;
-            this.SqlEditor.UseXPStyleBorder = true;
-            this.SqlEditor.VisualColumn = 1;
-            this.SqlEditor.VScrollMode = Syncfusion.Windows.Forms.Edit.ScrollMode.Immediate;
-            this.SqlEditor.WordWrap = true;
-            this.SqlEditor.WordWrapMarginLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.SqlEditor.ZoomFactor = 1F;
-            // 
-            // DropTabPage
-            // 
-            this.DropTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DropTabPage.Controls.Add(this.DropTabColumnGroupBox);
-            this.DropTabPage.Controls.Add(this.DropTabTableGroupBox);
-            this.DropTabPage.Controls.Add(this.DropTabProviderGroupBox);
-            this.DropTabPage.Image = null;
-            this.DropTabPage.ImageSize = new System.Drawing.Size(16, 16);
-            this.DropTabPage.Location = new System.Drawing.Point(0, 22);
-            this.DropTabPage.Name = "DropTabPage";
-            this.DropTabPage.ShowCloseButton = true;
-            this.DropTabPage.Size = new System.Drawing.Size(988, 466);
-            this.DropTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DropTabPage.TabForeColor = System.Drawing.Color.White;
-            this.DropTabPage.TabIndex = 6;
-            this.DropTabPage.Text = "Drop Table";
-            this.DropTabPage.ThemesEnabled = false;
-            // 
-            // EditTabPage
-            // 
-            this.EditTabPage.Controls.Add(this.EditTabTablePanel);
-            this.EditTabPage.Image = null;
-            this.EditTabPage.ImageSize = new System.Drawing.Size(16, 16);
-            this.EditTabPage.Location = new System.Drawing.Point(0, 22);
-            this.EditTabPage.Name = "EditTabPage";
-            this.EditTabPage.ShowCloseButton = true;
-            this.EditTabPage.Size = new System.Drawing.Size(988, 466);
-            this.EditTabPage.TabForeColor = System.Drawing.Color.White;
-            this.EditTabPage.TabIndex = 7;
-            this.EditTabPage.Text = "Edit Data";
-            this.EditTabPage.ThemesEnabled = false;
-            // 
-            // tabPageAdv1
-            // 
-            this.tabPageAdv1.Controls.Add(this.groupBox7);
-            this.tabPageAdv1.Controls.Add(this.groupBox8);
-            this.tabPageAdv1.Image = null;
-            this.tabPageAdv1.ImageSize = new System.Drawing.Size(16, 16);
-            this.tabPageAdv1.Location = new System.Drawing.Point(0, 0);
-            this.tabPageAdv1.Name = "tabPageAdv1";
-            this.tabPageAdv1.ShowCloseButton = true;
-            this.tabPageAdv1.Size = new System.Drawing.Size(200, 100);
-            this.tabPageAdv1.TabFont = null;
-            this.tabPageAdv1.TabIndex = 0;
-            this.tabPageAdv1.ThemesEnabled = false;
-            // 
-            // SelectButton
-            // 
-            this.SelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.SelectButton.BackColor = System.Drawing.Color.Transparent;
-            this.SelectButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.SelectButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.SelectButton.BindingSource = null;
-            this.SelectButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.SelectButton.Border.HoverVisible = true;
-            this.SelectButton.Border.Rounding = 6;
-            this.SelectButton.Border.Thickness = 1;
-            this.SelectButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.SelectButton.Border.Visible = true;
-            this.SelectButton.DataFilter = null;
-            this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
-            this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.HoverText = null;
-            this.SelectButton.Image = null;
-            this.SelectButton.Images = null;
-            this.SelectButton.Location = new System.Drawing.Point(72, 491);
-            this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
-            this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.SelectButton.Name = "SelectButton";
-            this.SelectButton.Size = new System.Drawing.Size(140, 55);
-            this.SelectButton.TabIndex = 7;
-            this.SelectButton.Text = "Select";
-            this.SelectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.SelectButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SelectButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.SelectButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.SelectButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.SelectButton.ToolTip = null;
             // 
             // LookupTabTableGroupBox
             // 
@@ -792,6 +593,25 @@
             this.LookupTabSqliteRadioButton.ThemeAuthor = "Narwin";
             this.LookupTabSqliteRadioButton.ThemeName = "MetroDark";
             this.LookupTabSqliteRadioButton.ToolTip = this.ToolTip;
+            // 
+            // CreateTabPage
+            // 
+            this.CreateTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreateTabPage.Controls.Add(this.CreateTabColumnGroupBox);
+            this.CreateTabPage.Controls.Add(this.CreateTabTableGroupBox);
+            this.CreateTabPage.Controls.Add(this.CreateTabProviderGroupBox);
+            this.CreateTabPage.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.CreateTabPage.Image = null;
+            this.CreateTabPage.ImageSize = new System.Drawing.Size(16, 16);
+            this.CreateTabPage.Location = new System.Drawing.Point(0, 22);
+            this.CreateTabPage.Name = "CreateTabPage";
+            this.CreateTabPage.ShowCloseButton = true;
+            this.CreateTabPage.Size = new System.Drawing.Size(988, 466);
+            this.CreateTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreateTabPage.TabForeColor = System.Drawing.Color.White;
+            this.CreateTabPage.TabIndex = 3;
+            this.CreateTabPage.Text = "Create Table";
+            this.CreateTabPage.ThemesEnabled = false;
             // 
             // CreateTabColumnGroupBox
             // 
@@ -1263,6 +1083,23 @@
             this.CreateTabSqliteRadioButton.ThemeName = "MetroDark";
             this.CreateTabSqliteRadioButton.ToolTip = this.ToolTip;
             // 
+            // AlterTabPage
+            // 
+            this.AlterTabPage.Controls.Add(this.AlterTabTableGroupBox);
+            this.AlterTabPage.Controls.Add(this.AlterTabColumnGroupBox);
+            this.AlterTabPage.Controls.Add(this.AlterTabProviderGroupBox);
+            this.AlterTabPage.Image = null;
+            this.AlterTabPage.ImageSize = new System.Drawing.Size(16, 16);
+            this.AlterTabPage.Location = new System.Drawing.Point(0, 22);
+            this.AlterTabPage.Name = "AlterTabPage";
+            this.AlterTabPage.ShowCloseButton = true;
+            this.AlterTabPage.Size = new System.Drawing.Size(988, 466);
+            this.AlterTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.AlterTabPage.TabForeColor = System.Drawing.Color.White;
+            this.AlterTabPage.TabIndex = 4;
+            this.AlterTabPage.Text = "Alter  Column";
+            this.AlterTabPage.ThemesEnabled = false;
+            // 
             // AlterTabTableGroupBox
             // 
             this.AlterTabTableGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1732,6 +1569,100 @@
             this.AlterTabSqlitRadioButton.ThemeAuthor = "Narwin";
             this.AlterTabSqlitRadioButton.ThemeName = "MetroDark";
             this.AlterTabSqlitRadioButton.ToolTip = this.ToolTip;
+            // 
+            // SqlTabPage
+            // 
+            this.SqlTabPage.Controls.Add(this.SqlEditor);
+            this.SqlTabPage.Image = null;
+            this.SqlTabPage.ImageSize = new System.Drawing.Size(16, 16);
+            this.SqlTabPage.Location = new System.Drawing.Point(0, 22);
+            this.SqlTabPage.Name = "SqlTabPage";
+            this.SqlTabPage.ShowCloseButton = true;
+            this.SqlTabPage.Size = new System.Drawing.Size(988, 466);
+            this.SqlTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SqlTabPage.TabForeColor = System.Drawing.Color.White;
+            this.SqlTabPage.TabIndex = 5;
+            this.SqlTabPage.Text = "SQL Editor";
+            this.SqlTabPage.ThemesEnabled = false;
+            // 
+            // SqlEditor
+            // 
+            this.SqlEditor.AllowZoom = false;
+            this.SqlEditor.AlwaysShowScrollers = true;
+            this.SqlEditor.BackColor = System.Drawing.Color.LightGray;
+            this.SqlEditor.BackgroundColor = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.LightGray);
+            this.SqlEditor.BookmarkTooltipBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.SqlEditor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SqlEditor.CanOverrideStyle = true;
+            this.SqlEditor.ChangedLinesMarkingLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(98)))));
+            this.SqlEditor.CodeSnipptSize = new System.Drawing.Size(100, 100);
+            this.SqlEditor.ColumnGuidesMeasuringFont = new System.Drawing.Font("Source Code Pro", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SqlEditor.Configurator = config1;
+            this.SqlEditor.ContextChoiceBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.SqlEditor.ContextChoiceBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(166)))), ((int)(((byte)(50)))));
+            this.SqlEditor.ContextChoiceForeColor = System.Drawing.Color.White;
+            this.SqlEditor.ContextPromptBackgroundBrush = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
+            this.SqlEditor.ContextPromptBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SqlEditor.ContextTooltipBackgroundBrush = new Syncfusion.Drawing.BrushInfo(System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30))))));
+            this.SqlEditor.ContextTooltipBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SqlEditor.CurrentLineHighlightColor = System.Drawing.Color.SteelBlue;
+            this.SqlEditor.IndentBlockHighlightingColor = System.Drawing.Color.SteelBlue;
+            this.SqlEditor.IndentLineColor = System.Drawing.Color.SteelBlue;
+            this.SqlEditor.IndicatorMarginBackColor = System.Drawing.Color.Empty;
+            this.SqlEditor.LineNumbersColor = System.Drawing.Color.CornflowerBlue;
+            this.SqlEditor.LineNumbersFont = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SqlEditor.Location = new System.Drawing.Point(36, 30);
+            this.SqlEditor.Name = "SqlEditor";
+            this.SqlEditor.RenderRightToLeft = false;
+            this.SqlEditor.ScrollColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.SqlEditor.ScrollPosition = new System.Drawing.Point(0, 0);
+            this.SqlEditor.ScrollVisualStyle = Syncfusion.Windows.Forms.ScrollBarCustomDrawStyles.Office2016;
+            this.SqlEditor.SelectionTextColor = System.Drawing.Color.White;
+            this.SqlEditor.Size = new System.Drawing.Size(927, 416);
+            this.SqlEditor.StatusBarSettings.CoordsPanel.Width = 150;
+            this.SqlEditor.StatusBarSettings.EncodingPanel.Width = 100;
+            this.SqlEditor.StatusBarSettings.FileNamePanel.Width = 100;
+            this.SqlEditor.StatusBarSettings.InsertPanel.Width = 33;
+            this.SqlEditor.StatusBarSettings.Offcie2007ColorScheme = Syncfusion.Windows.Forms.Office2007Theme.Blue;
+            this.SqlEditor.StatusBarSettings.Offcie2010ColorScheme = Syncfusion.Windows.Forms.Office2010Theme.Blue;
+            this.SqlEditor.StatusBarSettings.StatusPanel.Width = 70;
+            this.SqlEditor.StatusBarSettings.TextPanel.Width = 214;
+            this.SqlEditor.StatusBarSettings.VisualStyle = Syncfusion.Windows.Forms.Tools.Controls.StatusBar.VisualStyle.Office2016Black;
+            this.SqlEditor.Style = Syncfusion.Windows.Forms.Edit.EditControlStyle.Office2016Black;
+            this.SqlEditor.TabIndex = 0;
+            this.SqlEditor.Text = "This is text";
+            this.SqlEditor.ThemeName = "Office2016Black";
+            this.SqlEditor.ThemeStyle.BookmarkMarginBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.SqlEditor.ThemeStyle.LineNumberFont = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SqlEditor.ThemeStyle.UserMarginBackColor = System.Drawing.Color.Black;
+            this.SqlEditor.ThemeStyle.UserMarginBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SqlEditor.UserMarginBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SqlEditor.UserMarginTextColor = System.Drawing.Color.White;
+            this.SqlEditor.UseXPStyle = false;
+            this.SqlEditor.UseXPStyleBorder = true;
+            this.SqlEditor.VisualColumn = 1;
+            this.SqlEditor.VScrollMode = Syncfusion.Windows.Forms.Edit.ScrollMode.Immediate;
+            this.SqlEditor.WordWrap = true;
+            this.SqlEditor.WordWrapMarginLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.SqlEditor.ZoomFactor = 1F;
+            // 
+            // DropTabPage
+            // 
+            this.DropTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DropTabPage.Controls.Add(this.DropTabColumnGroupBox);
+            this.DropTabPage.Controls.Add(this.DropTabTableGroupBox);
+            this.DropTabPage.Controls.Add(this.DropTabProviderGroupBox);
+            this.DropTabPage.Image = null;
+            this.DropTabPage.ImageSize = new System.Drawing.Size(16, 16);
+            this.DropTabPage.Location = new System.Drawing.Point(0, 22);
+            this.DropTabPage.Name = "DropTabPage";
+            this.DropTabPage.ShowCloseButton = true;
+            this.DropTabPage.Size = new System.Drawing.Size(988, 466);
+            this.DropTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DropTabPage.TabForeColor = System.Drawing.Color.White;
+            this.DropTabPage.TabIndex = 6;
+            this.DropTabPage.Text = "Drop Table";
+            this.DropTabPage.ThemesEnabled = false;
             // 
             // DropTabColumnGroupBox
             // 
@@ -2203,6 +2134,20 @@
             this.DropTabSqliteRadioButton.ThemeName = "MetroDark";
             this.DropTabSqliteRadioButton.ToolTip = this.ToolTip;
             // 
+            // EditTabPage
+            // 
+            this.EditTabPage.Controls.Add(this.EditTabTablePanel);
+            this.EditTabPage.Image = null;
+            this.EditTabPage.ImageSize = new System.Drawing.Size(16, 16);
+            this.EditTabPage.Location = new System.Drawing.Point(0, 22);
+            this.EditTabPage.Name = "EditTabPage";
+            this.EditTabPage.ShowCloseButton = true;
+            this.EditTabPage.Size = new System.Drawing.Size(988, 466);
+            this.EditTabPage.TabForeColor = System.Drawing.Color.White;
+            this.EditTabPage.TabIndex = 7;
+            this.EditTabPage.Text = "Edit Data";
+            this.EditTabPage.ThemesEnabled = false;
+            // 
             // EditTabTablePanel
             // 
             this.EditTabTablePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -2369,87 +2314,19 @@
             this.EditTextBox1.Watermark.Visible = false;
             this.EditTextBox1.WordWrap = true;
             // 
-            // RefreshButton
+            // tabPageAdv1
             // 
-            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.RefreshButton.BackColor = System.Drawing.Color.Transparent;
-            this.RefreshButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.RefreshButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.RefreshButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.RefreshButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.RefreshButton.BindingSource = null;
-            this.RefreshButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.RefreshButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.RefreshButton.Border.HoverVisible = true;
-            this.RefreshButton.Border.Rounding = 6;
-            this.RefreshButton.Border.Thickness = 1;
-            this.RefreshButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.RefreshButton.Border.Visible = true;
-            this.RefreshButton.DataFilter = null;
-            this.RefreshButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.RefreshButton.Field = BudgetExecution.Field.AccountCode;
-            this.RefreshButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.RefreshButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.RefreshButton.HoverText = null;
-            this.RefreshButton.Image = null;
-            this.RefreshButton.Images = null;
-            this.RefreshButton.Location = new System.Drawing.Point(421, 491);
-            this.RefreshButton.Margin = new System.Windows.Forms.Padding(0);
-            this.RefreshButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(140, 55);
-            this.RefreshButton.TabIndex = 5;
-            this.RefreshButton.Text = "Clear";
-            this.RefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.RefreshButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.RefreshButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.RefreshButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.RefreshButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.RefreshButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.RefreshButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.RefreshButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.RefreshButton.ToolTip = null;
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
-            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
-            this.CloseButton.BindingSource = null;
-            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.CloseButton.Border.HoverVisible = true;
-            this.CloseButton.Border.Rounding = 6;
-            this.CloseButton.Border.Thickness = 1;
-            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.CloseButton.Border.Visible = true;
-            this.CloseButton.DataFilter = null;
-            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
-            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.HoverText = null;
-            this.CloseButton.Image = null;
-            this.CloseButton.Images = null;
-            this.CloseButton.Location = new System.Drawing.Point(802, 491);
-            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
-            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(140, 55);
-            this.CloseButton.TabIndex = 6;
-            this.CloseButton.Text = "Close";
-            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
-            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
-            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.CloseButton.ToolTip = null;
+            this.tabPageAdv1.Controls.Add(this.groupBox7);
+            this.tabPageAdv1.Controls.Add(this.groupBox8);
+            this.tabPageAdv1.Image = null;
+            this.tabPageAdv1.ImageSize = new System.Drawing.Size(16, 16);
+            this.tabPageAdv1.Location = new System.Drawing.Point(0, 0);
+            this.tabPageAdv1.Name = "tabPageAdv1";
+            this.tabPageAdv1.ShowCloseButton = true;
+            this.tabPageAdv1.Size = new System.Drawing.Size(200, 100);
+            this.tabPageAdv1.TabFont = null;
+            this.tabPageAdv1.TabIndex = 0;
+            this.tabPageAdv1.ThemesEnabled = false;
             // 
             // groupBox7
             // 
@@ -2801,6 +2678,129 @@
             this.visualTextBox3.Watermark.Visible = false;
             this.visualTextBox3.WordWrap = true;
             // 
+            // SelectButton
+            // 
+            this.SelectButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.SelectButton.BackColor = System.Drawing.Color.Transparent;
+            this.SelectButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SelectButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.SelectButton.BindingSource = null;
+            this.SelectButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.SelectButton.Border.HoverVisible = true;
+            this.SelectButton.Border.Rounding = 6;
+            this.SelectButton.Border.Thickness = 1;
+            this.SelectButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.SelectButton.Border.Visible = true;
+            this.SelectButton.DataFilter = null;
+            this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
+            this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SelectButton.HoverText = null;
+            this.SelectButton.Image = null;
+            this.SelectButton.Images = null;
+            this.SelectButton.Location = new System.Drawing.Point(72, 491);
+            this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
+            this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.SelectButton.Name = "SelectButton";
+            this.SelectButton.Size = new System.Drawing.Size(140, 55);
+            this.SelectButton.TabIndex = 7;
+            this.SelectButton.Text = "Select";
+            this.SelectButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.SelectButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.SelectButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.SelectButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.SelectButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.SelectButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.SelectButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.SelectButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.SelectButton.ToolTip = null;
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.RefreshButton.BackColor = System.Drawing.Color.Transparent;
+            this.RefreshButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.RefreshButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.RefreshButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.RefreshButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.RefreshButton.BindingSource = null;
+            this.RefreshButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.RefreshButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.RefreshButton.Border.HoverVisible = true;
+            this.RefreshButton.Border.Rounding = 6;
+            this.RefreshButton.Border.Thickness = 1;
+            this.RefreshButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.RefreshButton.Border.Visible = true;
+            this.RefreshButton.DataFilter = null;
+            this.RefreshButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.RefreshButton.Field = BudgetExecution.Field.AccountCode;
+            this.RefreshButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.RefreshButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.RefreshButton.HoverText = null;
+            this.RefreshButton.Image = null;
+            this.RefreshButton.Images = null;
+            this.RefreshButton.Location = new System.Drawing.Point(421, 491);
+            this.RefreshButton.Margin = new System.Windows.Forms.Padding(0);
+            this.RefreshButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(140, 55);
+            this.RefreshButton.TabIndex = 5;
+            this.RefreshButton.Text = "Clear";
+            this.RefreshButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.RefreshButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.RefreshButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.RefreshButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.RefreshButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.RefreshButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.RefreshButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.RefreshButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.RefreshButton.ToolTip = null;
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseButton.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CloseButton.BackColorState.Pressed = System.Drawing.Color.SteelBlue;
+            this.CloseButton.BindingSource = null;
+            this.CloseButton.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.CloseButton.Border.HoverVisible = true;
+            this.CloseButton.Border.Rounding = 6;
+            this.CloseButton.Border.Thickness = 1;
+            this.CloseButton.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.CloseButton.Border.Visible = true;
+            this.CloseButton.DataFilter = null;
+            this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
+            this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CloseButton.HoverText = null;
+            this.CloseButton.Image = null;
+            this.CloseButton.Images = null;
+            this.CloseButton.Location = new System.Drawing.Point(802, 491);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
+            this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(140, 55);
+            this.CloseButton.TabIndex = 6;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.CloseButton.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CloseButton.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CloseButton.TextStyle.Hover = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.Pressed = System.Drawing.Color.White;
+            this.CloseButton.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CloseButton.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.CloseButton.ToolTip = null;
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -3005,17 +3005,11 @@
             this.Name = "DataConfiguration";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "";
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
             this.TabControl.ResumeLayout(false);
             this.LookupTabPage.ResumeLayout(false);
-            this.CreateTabPage.ResumeLayout(false);
-            this.AlterTabPage.ResumeLayout(false);
-            this.SqlTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SqlEditor)).EndInit();
-            this.DropTabPage.ResumeLayout(false);
-            this.EditTabPage.ResumeLayout(false);
-            this.tabPageAdv1.ResumeLayout(false);
             this.LookupTabTableGroupBox.ResumeLayout(false);
             this.LookupTabTableGroupBox.PerformLayout();
             this.LookupTabValueGroupBox.ResumeLayout(false);
@@ -3023,28 +3017,34 @@
             this.LookupTabColumnGroupBox.ResumeLayout(false);
             this.LookupTabColumnGroupBox.PerformLayout();
             this.LookupTabProviderGroupBox.ResumeLayout(false);
+            this.CreateTabPage.ResumeLayout(false);
             this.CreateTabColumnGroupBox.ResumeLayout(false);
             this.CreateTabColumnGroupBox.PerformLayout();
             this.CreateTabTableGroupBox.ResumeLayout(false);
             this.CreateTabTableGroupBox.PerformLayout();
             this.CreateTabProviderGroupBox.ResumeLayout(false);
+            this.AlterTabPage.ResumeLayout(false);
             this.AlterTabTableGroupBox.ResumeLayout(false);
             this.AlterTabTableGroupBox.PerformLayout();
             this.AlterTabColumnGroupBox.ResumeLayout(false);
             this.AlterTabColumnGroupBox.PerformLayout();
             this.AlterTabProviderGroupBox.ResumeLayout(false);
+            this.SqlTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SqlEditor)).EndInit();
+            this.DropTabPage.ResumeLayout(false);
             this.DropTabColumnGroupBox.ResumeLayout(false);
             this.DropTabColumnGroupBox.PerformLayout();
             this.DropTabTableGroupBox.ResumeLayout(false);
             this.DropTabTableGroupBox.PerformLayout();
             this.DropTabProviderGroupBox.ResumeLayout(false);
+            this.EditTabPage.ResumeLayout(false);
             this.EditTabTablePanel.ResumeLayout(false);
             this.EditTabTableFrame.ResumeLayout(false);
             this.EditTabTableFrame.PerformLayout();
+            this.tabPageAdv1.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Windows.Forms;
     using Microsoft.EntityFrameworkCore.Internal;
+    using Syncfusion.Windows.Forms.Tools;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
@@ -48,6 +50,10 @@
         public DataConfiguration( )
         {
             InitializeComponent( );
+            ToolType = ToolType.FilterDataButton;
+            GroupBoxes = GetGroupBoxes( );
+            ListBoxes = GetListBoxes( );
+            TabPages = GetTabPages( );
             TabControl.TabPanelBackColor = Color.FromArgb( 15, 15, 15 );
             Load += OnLoad;
             CloseButton.Click += OnCloseButtonClicked;
@@ -72,9 +78,7 @@
         {
             try
             {
-                GroupBoxes = GetGroupBoxes( );
-                ListBoxes = GetListBoxes( );
-                InitializeLookupTabPage( ToolType );
+                SetTabControl( ToolType );
                 PopulateTableListBoxItems( );
                 SetGroupBoxProperties( GroupBoxes );
 
@@ -85,15 +89,18 @@
             }
         }
 
-        public void InitializeTabControl( ToolType toolType )
+        public void InitializeLookupTabPage( )
         {
             try
             {
-                GroupBoxes = GetGroupBoxes( );
-                ListBoxes = GetListBoxes( );
-                InitializeLookupTabPage( toolType );
-                PopulateTableListBoxItems( );
-                SetGroupBoxProperties( GroupBoxes );
+                CurrentTab = LookupTabPage;
+                foreach( TabPageAdv tab in TabControl.TabPages )
+                {
+                    if( tab != CurrentTab )
+                    {
+                        tab.TabVisible = false;
+                    }
+                }
 
             }
             catch( Exception ex )
@@ -102,7 +109,107 @@
             }
         }
 
-        public void InitializeLookupTabPage( ToolType toolType )
+        public void InitializeAlterTabPage( )
+        {
+            try
+            {
+                CurrentTab = AlterTabPage;
+                foreach( TabPageAdv tab in TabControl.TabPages )
+                {
+                    if( tab != CurrentTab )
+                    {
+                        tab.TabVisible = false;
+                    }
+                }
+
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public void InitializeEditTabPage( )
+        {
+            try
+            {
+                CurrentTab = EditTabPage;
+                foreach( TabPageAdv tab in TabControl.TabPages )
+                {
+                    if( tab != CurrentTab )
+                    {
+                        tab.TabVisible = false;
+                    }
+                }
+
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public void InitializeDropTabPage( )
+        {
+            try
+            {
+                CurrentTab = DropTabPage;
+                foreach( TabPageAdv tab in TabControl.TabPages )
+                {
+                    if( tab != CurrentTab )
+                    {
+                        tab.TabVisible = false;
+                    }
+                }
+
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public void InitializeSqlTabPage( )
+        {
+            try
+            {
+                CurrentTab = SqlTabPage;
+                foreach( TabPageAdv tab in TabControl.TabPages )
+                {
+                    if( tab != CurrentTab )
+                    {
+                        tab.TabVisible = false;
+                    }
+                }
+
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public void InitializeCreateTabPage( )
+        {
+            try
+            {
+                CurrentTab = CreateTabPage;
+                foreach( TabPageAdv tab in TabControl.TabPages )
+                {
+                    if( tab != CurrentTab )
+                    {
+                        tab.TabVisible = false;
+                    }
+                }
+
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        public void SetTabControl( ToolType toolType )
         {
             try
             {
@@ -110,40 +217,39 @@
                 {
                     switch( toolType )
                     {
-                        case ToolType.AddColumnButton:
+                        case ToolType.FilterDataButton:
                         {
-                            break;
-                        }
-                        case ToolType.AddRecordButton:
-                        {
-                            break;
-                        }
-                        case ToolType.AddTableButton:
-                        {
-                            break;
-                        }
-                        case ToolType.CopyButton:
-                        {
+                            InitializeLookupTabPage( );
                             break;
                         }
                         case ToolType.EditColumnButton:
+                        case ToolType.AddColumnButton:
                         {
+                            InitializeAlterTabPage( );
                             break;
                         }
+                        case ToolType.DeleteRecordButton:
+                        case ToolType.AddRecordButton:
+                        case ToolType.CopyButton:
                         case ToolType.EditRecordButton:
                         {
+                            InitializeEditTabPage(  );
                             break;
                         }
                         case ToolType.DeleteColumnButton:
                         {
+                            InitializeAlterTabPage( );
                             break;
                         }
-                        case ToolType.DeleteRecordButton:
-                        {
-                            break;
-                        }
+                        case ToolType.AddTableButton:
                         case ToolType.DeleteTableButton:
                         {
+                            InitializeCreateTabPage( );
+                            break;
+                        }
+                        default:
+                        {
+                            InitializeLookupTabPage( );
                             break;
                         }
                     }
@@ -204,6 +310,31 @@
         }
 
         /// <summary>
+        /// Gets the tab pages.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, TabPageAdv> GetTabPages( )
+        {
+            try
+            {
+                var _tabPages = new Dictionary<string, TabPageAdv>( );
+                foreach( TabPageAdv tabpage in TabControl.TabPages )
+                {
+                    _tabPages.Add( tabpage.Name, tabpage );
+                }
+
+                return _tabPages?.Any(  ) == true
+                    ? _tabPages
+                    : default( IDictionary<string, TabPageAdv> );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( IDictionary<string, TabPageAdv> );
+            }
+        }
+
+        /// <summary>
         /// Gets the list boxes.
         /// </summary>
         /// <returns></returns>
@@ -239,19 +370,21 @@
             try
             {
                 var _groupBoxes = new Dictionary<string, GroupBox>(  );
-                _groupBoxes.Add( LookupTabProviderGroupBox.Name, LookupTabProviderGroupBox );
-                _groupBoxes.Add( LookupTabTableGroupBox.Name, LookupTabTableGroupBox );
-                _groupBoxes.Add( LookupTabColumnGroupBox.Name, LookupTabColumnGroupBox );
-                _groupBoxes.Add( CreateTabProviderGroupBox.Name, CreateTabProviderGroupBox );
-                _groupBoxes.Add( CreateTabTableGroupBox.Name, CreateTabTableGroupBox );
-                _groupBoxes.Add( CreateTabColumnGroupBox.Name, CreateTabColumnGroupBox );
-                _groupBoxes.Add( AlterTabProviderGroupBox.Name, AlterTabProviderGroupBox );
-                _groupBoxes.Add( AlterTabTableGroupBox.Name, AlterTabTableGroupBox );
-                _groupBoxes.Add( AlterTabColumnGroupBox.Name, AlterTabColumnGroupBox );
-                _groupBoxes.Add( DropTabProviderGroupBox.Name, DropTabProviderGroupBox );
-                _groupBoxes.Add( DropTabTableGroupBox.Name, DropTabTableGroupBox );
-                _groupBoxes.Add( DropTabColumnGroupBox.Name, DropTabColumnGroupBox );
-                return default( IDictionary<string, GroupBox> );
+
+                foreach( TabPageAdv tabPage in TabControl.TabPages )
+                {
+                    foreach( Control control in tabPage.Controls )
+                    {
+                        if( control.GetType( ) == typeof( GroupBox ) )
+                        {
+                            _groupBoxes.Add( control.Name, control as GroupBox );
+                        }
+                    }
+                }
+
+                return _groupBoxes?.Any(  ) == true
+                    ? _groupBoxes
+                    : default( IDictionary<string, GroupBox> );
             }
             catch( Exception ex )
             {
@@ -277,6 +410,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets the edit labels.
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, Label> GetEditLabels( )
         { 
             try
@@ -290,6 +427,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets the text boxes.
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, TextBox> GetTextBoxes( )
         {
             try

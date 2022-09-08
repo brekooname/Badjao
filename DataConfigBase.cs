@@ -4,7 +4,8 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Syncfusion.Windows.Forms;
-    
+    using Syncfusion.Windows.Forms.Tools;
+
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public partial class DataConfigBase : MetroForm
     {
@@ -41,6 +42,14 @@
         public virtual ToolType ToolType { get; set; }
 
         /// <summary>
+        /// Gets or sets the current tab.
+        /// </summary>
+        /// <value>
+        /// The current tab.
+        /// </value>
+        public virtual TabPageAdv CurrentTab { get; set; }
+
+        /// <summary>
         /// Gets or sets the form filter.
         /// </summary>
         /// <value>
@@ -73,12 +82,21 @@
         public virtual IDictionary<string, Label> Labels { get; set; }
 
         /// <summary>
+        /// Gets or sets the tab pages.
+        /// </summary>
+        /// <value>
+        /// The tab pages.
+        /// </value>
+        public virtual IDictionary<string, TabPageAdv> TabPages { get; set; }
+
+        /// <summary>
         /// Initializes a new instance 
         /// of the <see cref="DataConfigBase"/> class.
         /// </summary>
         protected DataConfigBase()
         {
             InitializeComponent( );
+            Text = string.Empty;
         }
 
         /// <summary>

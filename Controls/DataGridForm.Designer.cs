@@ -76,9 +76,11 @@
             this.DeleteTableButton = new BudgetExecution.ToolStripButton();
             this.Separator22 = new BudgetExecution.ToolSeparator();
             this.RefreshButton = new BudgetExecution.ToolStripButton();
+            this.Separator24 = new BudgetExecution.ToolSeparator();
+            this.VerifyButton = new BudgetExecution.ToolStripButton();
             this.Separator23 = new BudgetExecution.ToolSeparator();
             this.SaveButton = new BudgetExecution.ToolStripButton();
-            this.Separator24 = new BudgetExecution.ToolSeparator();
+            this.Separator25 = new BudgetExecution.ToolSeparator();
             this.ExcelButton = new BudgetExecution.ToolStripButton();
             this.Separator13 = new BudgetExecution.ToolSeparator();
             this.BrowseButton = new BudgetExecution.ToolStripButton();
@@ -87,8 +89,6 @@
             this.Separator18 = new BudgetExecution.ToolSeparator();
             this.CalendarButton = new BudgetExecution.ToolStripButton();
             this.Separator26 = new BudgetExecution.ToolSeparator();
-            this.Separator25 = new BudgetExecution.ToolSeparator();
-            this.VerifyButton = new BudgetExecution.ToolStripButton();
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.TableGroupBox = new BudgetExecution.GroupBox();
             this.TableListPanel = new BudgetExecution.Layout();
@@ -814,7 +814,7 @@
             this.AddTableButton.Margin = new System.Windows.Forms.Padding(5);
             this.AddTableButton.Name = "AddTableButton";
             this.AddTableButton.Size = new System.Drawing.Size(24, 26);
-            this.AddTableButton.ToolTip = null;
+            this.AddTableButton.ToolTip = this.ToolTip;
             this.AddTableButton.ToolType = BudgetExecution.ToolType.AddTableButton;
             // 
             // Separator21
@@ -871,6 +871,33 @@
             this.RefreshButton.ToolTip = this.ToolTip;
             this.RefreshButton.ToolType = BudgetExecution.ToolType.RefreshButton;
             // 
+            // Separator24
+            // 
+            this.Separator24.ForeColor = System.Drawing.Color.Black;
+            this.Separator24.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator24.Name = "Separator24";
+            this.Separator24.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator24.Size = new System.Drawing.Size(6, 36);
+            // 
+            // VerifyButton
+            // 
+            this.VerifyButton.AutoToolTip = false;
+            this.VerifyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.VerifyButton.BindingSource = this.BindingSource;
+            this.VerifyButton.DataFilter = null;
+            this.VerifyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.VerifyButton.Field = BudgetExecution.Field.AccountCode;
+            this.VerifyButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.VerifyButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.VerifyButton.HoverText = "Confirm";
+            this.VerifyButton.Image = global::BudgetExecution.Properties.Resources.VerifyButton;
+            this.VerifyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.VerifyButton.Margin = new System.Windows.Forms.Padding(5);
+            this.VerifyButton.Name = "VerifyButton";
+            this.VerifyButton.Size = new System.Drawing.Size(24, 26);
+            this.VerifyButton.ToolTip = this.ToolTip;
+            this.VerifyButton.ToolType = BudgetExecution.ToolType.VerifyButton;
+            // 
             // Separator23
             // 
             this.Separator23.ForeColor = System.Drawing.Color.Black;
@@ -898,13 +925,13 @@
             this.SaveButton.ToolTip = this.ToolTip;
             this.SaveButton.ToolType = BudgetExecution.ToolType.SaveButton;
             // 
-            // Separator24
+            // Separator25
             // 
-            this.Separator24.ForeColor = System.Drawing.Color.Black;
-            this.Separator24.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator24.Name = "Separator24";
-            this.Separator24.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator24.Size = new System.Drawing.Size(6, 36);
+            this.Separator25.ForeColor = System.Drawing.Color.Black;
+            this.Separator25.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator25.Name = "Separator25";
+            this.Separator25.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator25.Size = new System.Drawing.Size(6, 36);
             // 
             // ExcelButton
             // 
@@ -1003,33 +1030,6 @@
             this.Separator26.Name = "Separator26";
             this.Separator26.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator26.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator25
-            // 
-            this.Separator25.ForeColor = System.Drawing.Color.Black;
-            this.Separator25.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator25.Name = "Separator25";
-            this.Separator25.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator25.Size = new System.Drawing.Size(6, 36);
-            // 
-            // VerifyButton
-            // 
-            this.VerifyButton.AutoToolTip = false;
-            this.VerifyButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.VerifyButton.BindingSource = this.BindingSource;
-            this.VerifyButton.DataFilter = null;
-            this.VerifyButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.VerifyButton.Field = BudgetExecution.Field.AccountCode;
-            this.VerifyButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.VerifyButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.VerifyButton.HoverText = "Confirm";
-            this.VerifyButton.Image = global::BudgetExecution.Properties.Resources.VerifyButton;
-            this.VerifyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.VerifyButton.Margin = new System.Windows.Forms.Padding(5);
-            this.VerifyButton.Name = "VerifyButton";
-            this.VerifyButton.Size = new System.Drawing.Size(24, 26);
-            this.VerifyButton.ToolTip = this.ToolTip;
-            this.VerifyButton.ToolType = BudgetExecution.ToolType.VerifyButton;
             // 
             // Separator16
             // 
