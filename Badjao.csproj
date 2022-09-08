@@ -889,17 +889,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Providers.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\ToolStrip.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ToolStrip.resx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Abstractions\RichTextBase.cs" />
     <Compile Include="Abstractions\SplashBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\SqlStatement\SqlBuilder.cs" />
+    <Compile Include="Resources\ToolStrip.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToolStrip.resx</DependentUpon>
+    </Compile>
     <Compile Include="Static\Resource.cs" />
     <Compile Include="Static\Static.cs" />
     <Compile Include="Static\Validate.cs" />
@@ -1007,8 +1006,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ToolStrip.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ToolStrip.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LastGenOutput>ToolStrip.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include=".editorconfig" />
     <None Include="Data\Data Diagram.cd" />
@@ -1729,6 +1728,15 @@
     <None Include="Resources\DataTable.png" />
     <None Include="Resources\ChartButton.png" />
     <None Include="Resources\EditButton.png" />
+    <None Include="Resources\Images\Data\AddColumn.png" />
+    <None Include="Resources\Images\Data\AddRecord.png" />
+    <None Include="Resources\Images\Data\CopyRecord.png" />
+    <None Include="Resources\Images\Data\DeleteColumn.png" />
+    <None Include="Resources\Images\Data\DeleteRecord.png" />
+    <None Include="Resources\Images\Data\EditColumn.png" />
+    <None Include="Resources\Images\Data\EditRecord.png" />
+    <None Include="Resources\Images\Data\Export.png" />
+    <None Include="Resources\Images\Data\Import.png" />
     <Content Include="Resources\Images\Dialog\ico\ApplicationError.ico" />
     <Content Include="Resources\Images\Ninja\BudExNinjaGrey.ico" />
     <Content Include="Data\Database\Access\DataModels\Data.accdb" />
