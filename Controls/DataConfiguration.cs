@@ -100,6 +100,20 @@
                     {
                         tab.TabVisible = false;
                     }
+
+                    switch( ToolType )
+                    {
+                        case ToolType.FilterDataButton:
+                        {
+                            LookupTabPage.Text = "Filter Data";
+                            break;
+                        }
+                        default:
+                        {
+                            LookupTabPage.Text = "Look Up";
+                            break;
+                        }
+                    }
                 }
 
             }
@@ -120,6 +134,30 @@
                     {
                         tab.TabVisible = false;
                     }
+
+                    switch( ToolType )
+                    {
+                        case ToolType.EditColumnButton:
+                        {
+                            AlterTabPage.Text = "Edit Column";
+                            break;
+                        }
+                        case ToolType.DeleteColumnButton:
+                        {
+                            AlterTabPage.Text = "Delete Column";
+                            break;
+                        }
+                        case ToolType.AddColumnButton:
+                        {
+                            AlterTabPage.Text = "Add Table";
+                            break;
+                        }
+                        default:
+                        {
+                            AlterTabPage.Text = "Add/Rename Column";
+                            break;
+                        }
+                    }
                 }
 
             }
@@ -133,15 +171,49 @@
         {
             try
             {
-                CurrentTab = EditTabPage;
                 foreach( TabPageAdv tab in TabControl.TabPages )
                 {
+
+                    CurrentTab = EditTabPage;
                     if( tab != CurrentTab )
                     {
                         tab.TabVisible = false;
                     }
-                }
 
+                    switch( ToolType )
+                    {
+                        case ToolType.EditRecordButton:
+                        {
+                            EditTabPage.Text = "Edit Record";
+                            break;
+                        }
+                        case ToolType.CopyButton:
+                        {
+                            EditTabPage.Text = "Copy Record";
+                            break;
+                        }
+                        case ToolType.AddRecordButton:
+                        {
+                            EditTabPage.Text = "Add Record";
+                            break;
+                        }
+                        case ToolType.DeleteRecordButton:
+                        {
+                            EditTabPage.Text = "Delete Record";
+                            break;
+                        }
+                        case ToolType.EditButton:
+                        {
+                            EditTabPage.Text = "Edit Data";
+                            break;
+                        }
+                        default:
+                        {
+                            EditTabPage.Text = "Edit Record";
+                            break;
+                        }
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -159,6 +231,25 @@
                     if( tab != CurrentTab )
                     {
                         tab.TabVisible = false;
+                    }
+
+                    switch( ToolType )
+                    {
+                        case ToolType.DeleteDatabaseButton:
+                        {
+                            DropTabPage.Text = "Delete Database";
+                            break;
+                        }
+                        case ToolType.DeleteTableButton:
+                        {
+                            DropTabPage.Text = "Delete Table";
+                            break;
+                        }
+                        default:
+                        {
+                            DropTabPage.Text = "Delete Record";
+                            break;
+                        }
                     }
                 }
 
@@ -200,6 +291,25 @@
                     {
                         tab.TabVisible = false;
                     }
+
+                    switch( ToolType )
+                    {
+                        case ToolType.AddDatabaseButton:
+                        {
+                            CreateTabPage.Text = "Create Database";
+                            break;
+                        }
+                        case ToolType.AddTableButton:
+                        {
+                            CreateTabPage.Text = "Add Table";
+                            break;
+                        }
+                        default:
+                        {
+                            CreateTabPage.Text = "Add Table";
+                            break;
+                        }
+                    }
                 }
 
             }
@@ -223,26 +333,29 @@
                             break;
                         }
                         case ToolType.EditColumnButton:
+                        case ToolType.DeleteColumnButton:
                         case ToolType.AddColumnButton:
                         {
                             InitializeAlterTabPage( );
                             break;
                         }
-                        case ToolType.DeleteRecordButton:
+                        case ToolType.DeleteDatabaseButton:
+                        case ToolType.DeleteTableButton:
+                        {
+                            InitializeDropTabPage( );
+                            break;
+                        }
                         case ToolType.AddRecordButton:
                         case ToolType.CopyButton:
+                        case ToolType.EditButton:
+                        case ToolType.DeleteRecordButton:
                         case ToolType.EditRecordButton:
                         {
                             InitializeEditTabPage(  );
                             break;
                         }
-                        case ToolType.DeleteColumnButton:
-                        {
-                            InitializeAlterTabPage( );
-                            break;
-                        }
                         case ToolType.AddTableButton:
-                        case ToolType.DeleteTableButton:
+                        case ToolType.AddDatabaseButton:
                         {
                             InitializeCreateTabPage( );
                             break;

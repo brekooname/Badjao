@@ -130,25 +130,21 @@ namespace BudgetExecution
                             BindingSource?.MoveFirst( );
                             break;
                         }
-
                         case ToolType.PreviousButton:
                         {
                             BindingSource?.MovePrevious( );
                             break;
                         }
-
                         case ToolType.NextButton:
                         {
                             BindingSource?.MoveNext( );
                             break;
                         }
-
                         case ToolType.LastButton:
                         {
                             BindingSource?.MoveLast( );
                             break;
                         }
-
                         case ToolType.ExcelButton:
                         {
                             using( var _excelForm = new ExcelForm(  ) )
@@ -158,7 +154,6 @@ namespace BudgetExecution
 
                             break;
                         }
-
                         case ToolType.PdfButton:
                         {
                             using( var _message = new PdfForm(  ) )
@@ -168,7 +163,6 @@ namespace BudgetExecution
 
                             break;
                         }
-
                         case ToolType.PrintButton:
                         {
                             using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
@@ -178,9 +172,7 @@ namespace BudgetExecution
 
                             break;
                         }
-
                         case ToolType.AddRecordButton:
-                        case ToolType.AddButton:
                         {
                             using( var _dataConfig = new DataConfiguration( ToolType.AddRecordButton ) )
                             {
@@ -189,10 +181,25 @@ namespace BudgetExecution
 
                             break;
                         }
+                        case ToolType.AddButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.AddButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
 
+                            break;
+                        }
                         case ToolType.AddColumnButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.AddColumnButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.EditColumnButton:
-                        case ToolType.DeleteColumnButton:
                         {
                             using( var _dataConfig = new DataConfiguration( ToolType.EditColumnButton ) )
                             {
@@ -201,8 +208,42 @@ namespace BudgetExecution
 
                             break;
                         }
+                        case ToolType.DeleteColumnButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteColumnButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
 
+                            break;
+                        }
                         case ToolType.DeleteTableButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteTableButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
+                        case ToolType.DeleteDatabaseButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteDatabaseButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
+                        case ToolType.DeleteRecordButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteRecordButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.AddTableButton:
                         {
                             using( var _dataConfig = new DataConfiguration( ToolType.AddTableButton ) )
@@ -214,14 +255,13 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteButton:
                         {
-                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteButton ) )
                             {
-                                _message?.ShowDialog( );
+                                _dataConfig?.ShowDialog( );
                             }
 
                             break;
                         }
-
                         case ToolType.RefreshButton:
                         {
                             using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
@@ -231,31 +271,59 @@ namespace BudgetExecution
 
                             break;
                         }
-                        
                         case ToolType.ExitButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
-
                         case ToolType.ExportButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
-
                         case ToolType.ImportButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
-
+                        case ToolType.FilterDataButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.FilterDataButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+                            break;
+                        }
                         case ToolType.EditButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.EditButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.EditRecordButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.EditRecordButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.CopyButton:
+                        {
+                            using( var _dataConfig = new DataConfiguration( ToolType.CopyButton ) )
+                            {
+                                _dataConfig?.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.UpdateButton:
                         {
                             using( var _dataConfig = new DataConfiguration( ToolType.EditRecordButton) )
@@ -265,14 +333,12 @@ namespace BudgetExecution
 
                             break;
                         }
-
                         case ToolType.InsertButton:
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
-
                         case ToolType.CalculatorButton:
                         {
                             using( var _calculator = new CalculationForm(  ) )
@@ -282,7 +348,6 @@ namespace BudgetExecution
 
                             break;
                         }
-
                         case ToolType.CalendarButton:
                         {
                             using( var _form = new CalendarForm( ) )
@@ -301,7 +366,6 @@ namespace BudgetExecution
                             
                             break;
                         }
-
                         case ToolType.HomeButton:
                         {
                             using( var _form = new MainForm( ) )
@@ -311,7 +375,6 @@ namespace BudgetExecution
 
                             break;
                         }
-
                         case ToolType.ChartButton:
                         {
                             if( BindingSource?.DataSource != null )

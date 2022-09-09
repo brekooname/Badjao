@@ -62,7 +62,7 @@
             this.LastButton = new BudgetExecution.ToolStripButton();
             this.Separator8 = new BudgetExecution.ToolSeparator();
             this.Separator9 = new BudgetExecution.ToolSeparator();
-            this.AddButton = new BudgetExecution.ToolStripButton();
+            this.FilterDataButton = new BudgetExecution.ToolStripButton();
             this.Separator11 = new BudgetExecution.ToolSeparator();
             this.EditColumnButton = new BudgetExecution.ToolStripButton();
             this.Separator10 = new BudgetExecution.ToolSeparator();
@@ -322,7 +322,7 @@
             this.Separator8,
             this.EditButton,
             this.Separator9,
-            this.AddButton,
+            this.FilterDataButton,
             this.Separator11,
             this.EditColumnButton,
             this.Separator10,
@@ -679,24 +679,24 @@
             this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator9.Size = new System.Drawing.Size(6, 36);
             // 
-            // AddButton
+            // FilterDataButton
             // 
-            this.AddButton.AutoToolTip = false;
-            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.AddButton.BindingSource = this.BindingSource;
-            this.AddButton.DataFilter = null;
-            this.AddButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.AddButton.Field = BudgetExecution.Field.AccountCode;
-            this.AddButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.AddButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.AddButton.HoverText = "Add Record";
-            this.AddButton.Image = global::BudgetExecution.Properties.Resources.AddRecord;
-            this.AddButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AddButton.Margin = new System.Windows.Forms.Padding(5);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(24, 26);
-            this.AddButton.ToolTip = this.ToolTip;
-            this.AddButton.ToolType = BudgetExecution.ToolType.AddButton;
+            this.FilterDataButton.AutoToolTip = false;
+            this.FilterDataButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.FilterDataButton.BindingSource = this.BindingSource;
+            this.FilterDataButton.DataFilter = null;
+            this.FilterDataButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FilterDataButton.Field = BudgetExecution.Field.AccountCode;
+            this.FilterDataButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.FilterDataButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.FilterDataButton.HoverText = "Add Record";
+            this.FilterDataButton.Image = global::BudgetExecution.Properties.Resources.FilterData;
+            this.FilterDataButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FilterDataButton.Margin = new System.Windows.Forms.Padding(5);
+            this.FilterDataButton.Name = "FilterDataButton";
+            this.FilterDataButton.Size = new System.Drawing.Size(24, 26);
+            this.FilterDataButton.ToolTip = this.ToolTip;
+            this.FilterDataButton.ToolType = BudgetExecution.ToolType.FilterDataButton;
             // 
             // Separator11
             // 
@@ -1517,7 +1517,7 @@
         public Layout GridPanel;
         public ToolStripButton ChartButton;
         private System.Windows.Forms.BindingSource BindingSource;
-        public ToolStripButton AddButton;
+        public ToolStripButton FilterDataButton;
         private ToolSeparator Separator19;
         public ToolStripButton BrowseButton;
         public ToolSeparator Separator18;

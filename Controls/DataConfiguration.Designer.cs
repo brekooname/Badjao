@@ -139,7 +139,7 @@
             // 
             // TabControl
             // 
-            this.TabControl.ActiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            this.TabControl.ActiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.BeforeTouchSize = new System.Drawing.Size(988, 488);
             this.TabControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -1129,7 +1129,7 @@
             this.AlterTabTableGroupBox.Name = "AlterTabTableGroupBox";
             this.AlterTabTableGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.AlterTabTableGroupBox.Padding = new System.Windows.Forms.Padding(1);
-            this.AlterTabTableGroupBox.Separator = false;
+            this.AlterTabTableGroupBox.Separator = true;
             this.AlterTabTableGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.AlterTabTableGroupBox.Size = new System.Drawing.Size(377, 189);
             this.AlterTabTableGroupBox.TabIndex = 6;
@@ -1259,7 +1259,7 @@
             this.AlterTabColumnGroupBox.Name = "AlterTabColumnGroupBox";
             this.AlterTabColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.AlterTabColumnGroupBox.Padding = new System.Windows.Forms.Padding(1);
-            this.AlterTabColumnGroupBox.Separator = false;
+            this.AlterTabColumnGroupBox.Separator = true;
             this.AlterTabColumnGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.AlterTabColumnGroupBox.Size = new System.Drawing.Size(848, 186);
             this.AlterTabColumnGroupBox.TabIndex = 5;
@@ -1480,7 +1480,7 @@
             this.AlterTabProviderGroupBox.Name = "AlterTabProviderGroupBox";
             this.AlterTabProviderGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.AlterTabProviderGroupBox.Padding = new System.Windows.Forms.Padding(1);
-            this.AlterTabProviderGroupBox.Separator = false;
+            this.AlterTabProviderGroupBox.Separator = true;
             this.AlterTabProviderGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.AlterTabProviderGroupBox.Size = new System.Drawing.Size(377, 189);
             this.AlterTabProviderGroupBox.TabIndex = 2;
@@ -3005,7 +3005,6 @@
             this.Name = "DataConfiguration";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "";
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
             this.TabControl.ResumeLayout(false);
