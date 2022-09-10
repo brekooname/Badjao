@@ -465,17 +465,23 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\IChartBinding.cs" />
-    <Compile Include="Controls\DataConfiguration.cs">
+    <Compile Include="Controls\EditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\DataConfiguration.Designer.cs">
-      <DependentUpon>DataConfiguration.cs</DependentUpon>
+    <Compile Include="Controls\EditDialog.Designer.cs">
+      <DependentUpon>EditDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataConfigBase.cs">
+    <Compile Include="Abstractions\ConfigBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataConfigBase.Designer.cs">
-      <DependentUpon>DataConfigBase.cs</DependentUpon>
+    <Compile Include="Abstractions\ConfigBase.Designer.cs">
+      <DependentUpon>ConfigBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DefinitionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\DefinitionDialog.Designer.cs">
+      <DependentUpon>DefinitionDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\DataFile.cs" />
     <Compile Include="Abstractions\FileBase.cs" />
@@ -854,6 +860,12 @@
       <DependentUpon>PivotForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\MetricBase.cs" />
+    <Compile Include="Controls\LookupDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\LookupDialog.Designer.cs">
+      <DependentUpon>LookupDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -937,6 +949,9 @@
     </Compile>
     <Compile Include="Controls\TextBox\TextBox.cs" />
     <Compile Include="Abstractions\TextBoxBase.cs" />
+    <EmbeddedResource Include="Abstractions\FormBase.resx">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\CalculationForm.resx">
       <DependentUpon>CalculationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -949,8 +964,8 @@
     <EmbeddedResource Include="Controls\ChartForm.resx">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DataConfiguration.resx">
-      <DependentUpon>DataConfiguration.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\EditDialog.resx">
+      <DependentUpon>EditDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -987,6 +1002,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\PivotForm.resx">
       <DependentUpon>PivotForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DefinitionDialog.resx">
+      <DependentUpon>DefinitionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LookupDialog.resx">
+      <DependentUpon>LookupDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

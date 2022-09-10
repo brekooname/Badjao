@@ -1,6 +1,6 @@
 ﻿namespace BudgetExecution
 {
-    partial class DataConfigBase
+    partial class ConfigBase
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container( );
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size( 800, 450 );
-            this.Text = "DataConfigBase";
+            this.Text = "ConfigBase";
         }
 
         #endregion

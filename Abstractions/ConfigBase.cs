@@ -7,7 +7,7 @@
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public partial class DataConfigBase : MetroForm
+    public partial class ConfigBase : MetroForm
     {
         /// <summary>
         /// Gets or sets the source.
@@ -47,7 +47,7 @@
         /// <value>
         /// The current tab.
         /// </value>
-        public virtual TabPageAdv CurrentTab { get; set; }
+        public virtual TabPageAdv ActiveTab { get; set; }
 
         /// <summary>
         /// Gets or sets the form filter.
@@ -79,7 +79,7 @@
         /// <value>
         /// The labels.
         /// </value>
-        public virtual IDictionary<string, Label> Labels { get; set; }
+        public virtual IEnumerable<Label> Labels { get; set; }
 
         /// <summary>
         /// Gets or sets the tab pages.
@@ -90,10 +90,18 @@
         public virtual IDictionary<string, TabPageAdv> TabPages { get; set; }
 
         /// <summary>
-        /// Initializes a new instance 
-        /// of the <see cref="DataConfigBase"/> class.
+        /// Gets or sets the radio buttons.
         /// </summary>
-        protected DataConfigBase()
+        /// <value>
+        /// The radio buttons.
+        /// </value>
+        public virtual IDictionary<string, RadioButton> RadioButtons { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance 
+        /// of the <see cref="ConfigBase"/> class.
+        /// </summary>
+        protected ConfigBase()
         {
             InitializeComponent( );
             Text = string.Empty;

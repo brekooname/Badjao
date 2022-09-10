@@ -170,7 +170,7 @@ namespace BudgetExecution
         /// <param name = "excelRange" >
         /// The excelRange.
         /// </param>
-        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
+        [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public void SetDarkColorRow( ExcelRange excelRange )
         {
             if( excelRange != null )
@@ -375,18 +375,33 @@ namespace BudgetExecution
         [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
         public void Dispose( bool disposing )
         {
-            TitleFont?.Dispose( );
-            Font?.Dispose( );
+            try
+            {
+
+                TitleFont?.Dispose( );
+                Font?.Dispose( );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources.
         /// </summary>
-        public virtual void Dispose()
+        public virtual void Dispose( )
         {
-            Dispose( true );
-            GC.SuppressFinalize( this );
+            try
+            {
+                Dispose( true );
+                GC.SuppressFinalize( this );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
     }
 

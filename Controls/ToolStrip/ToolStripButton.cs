@@ -42,15 +42,15 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// Mof the <see cref="ToolStripButton"/> class.
         /// </summary>
-        /// <param name="tool">The tool.</param>
-        public ToolStripButton( ToolType tool )
+        /// <param name="toolType">The tool.</param>
+        public ToolStripButton( ToolType toolType )
             : this( )
         {
-            ToolType = tool;
-            Name = tool.ToString( );
-            HoverText = GetHoverText( tool );
+            ToolType = toolType;
+            Name = toolType.ToString( );
+            HoverText = GetHoverText( toolType );
             Tag = HoverText;
-            Image = GetImage( tool );
+            Image = GetImage( toolType );
             Click += OnClick;
         }
 
@@ -66,7 +66,6 @@ namespace BudgetExecution
             try
             {
                 var _button = sender as ToolStripButton;
-
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
@@ -174,8 +173,9 @@ namespace BudgetExecution
                         }
                         case ToolType.AddRecordButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.AddRecordButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -183,7 +183,7 @@ namespace BudgetExecution
                         }
                         case ToolType.AddButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.AddButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
                                 _dataConfig?.ShowDialog( );
                             }
@@ -192,8 +192,9 @@ namespace BudgetExecution
                         }
                         case ToolType.AddColumnButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.AddColumnButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -201,8 +202,9 @@ namespace BudgetExecution
                         }
                         case ToolType.EditColumnButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.EditColumnButton ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -210,8 +212,9 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteColumnButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteColumnButton ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -219,8 +222,9 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteTableButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteTableButton ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -228,8 +232,9 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteDatabaseButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteDatabaseButton ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -237,8 +242,9 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteRecordButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteRecordButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -246,8 +252,9 @@ namespace BudgetExecution
                         }
                         case ToolType.AddTableButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.AddTableButton ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -255,8 +262,9 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.DeleteButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -291,15 +299,16 @@ namespace BudgetExecution
                         }
                         case ToolType.FilterDataButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.FilterDataButton ) )
+                            using( var _dataConfig = new LookupDialog( ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
                             break;
                         }
                         case ToolType.EditButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.EditButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
                                 _dataConfig?.ShowDialog( );
                             }
@@ -308,8 +317,9 @@ namespace BudgetExecution
                         }
                         case ToolType.EditRecordButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.EditRecordButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -317,8 +327,9 @@ namespace BudgetExecution
                         }
                         case ToolType.CopyButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.CopyButton ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -326,8 +337,9 @@ namespace BudgetExecution
                         }
                         case ToolType.UpdateButton:
                         {
-                            using( var _dataConfig = new DataConfiguration( ToolType.EditRecordButton) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -335,8 +347,12 @@ namespace BudgetExecution
                         }
                         case ToolType.InsertButton:
                         {
-                            var _message = new Message( "NOT YET IMPLEMENTED!" );
-                            _message?.ShowDialog( );
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            {
+                                _dataConfig.BindingSource = BindingSource;
+                                _dataConfig?.ShowDialog( );
+                            }
+
                             break;
                         }
                         case ToolType.CalculatorButton:
@@ -410,6 +426,9 @@ namespace BudgetExecution
             }
         }
 
+        /// <summary>
+        /// Sets the image.
+        /// </summary>
         public void SetImage( )
         {
             if( Enum.IsDefined( typeof( ToolType ), ToolType ) )

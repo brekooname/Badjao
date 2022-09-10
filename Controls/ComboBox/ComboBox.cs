@@ -4,8 +4,15 @@
     using System.Drawing;
     using System.Windows.Forms;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.ComboBoxBase" />
     public class ComboBox : ComboBoxBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComboBox"/> class.
+        /// </summary>
         public ComboBox( )
         {
             ButtonColor = Color.FromArgb( 0, 120, 212 );
@@ -18,6 +25,11 @@
             MenuItemHover = Color.FromArgb( 22, 39, 70  );
             MenuItemNormal = Color.FromArgb( 30, 30, 30 );
             MenuTextColor = Color.LightSteelBlue;
+            BackColorState.Disabled = Color.FromArgb( 30, 30, 30 );
+            BackColorState.Enabled = Color.FromArgb( 30, 30, 30 );
+            Border.HoverColor = Color.FromArgb( 0, 120, 212 );
+            Border.Color = Color.FromArgb( 65, 65, 65 );
+            Border.HoverVisible = true;
         }
     }
 }

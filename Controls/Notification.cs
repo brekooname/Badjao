@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Drawing;
     using System.Windows.Forms;
+    using static FormAnimator;
     using Point = System.Drawing.Point;
 
     /// <summary>
@@ -59,8 +60,8 @@ namespace BudgetExecution
         /// <param name="animation">The animation.</param>
         /// <param name="direction">The direction.</param>
         public Notification( string title, string body, int duration = 2,
-            FormAnimator.AnimationMethod animation = FormAnimator.AnimationMethod.Slide,
-            FormAnimator.AnimationDirection direction = FormAnimator.AnimationDirection.Left )
+            AnimationMethod animation = AnimationMethod.Slide,
+            AnimationDirection direction = AnimationDirection.Left )
             : this( )
         {
             InitializeComponent( );
@@ -131,7 +132,7 @@ namespace BudgetExecution
         {
             AllowFocus = true;
             Animator.Duration = 1500;
-            Animator.Direction = FormAnimator.AnimationDirection.Down;
+            Animator.Direction = AnimationDirection.Down;
         }
 
         /// <summary>

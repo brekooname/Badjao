@@ -155,21 +155,29 @@
             // 
             // ToolStrip
             // 
+            this.ToolStrip.AddButton = null;
             this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ToolStrip.BindingSource = this.BindingSource;
             this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
+            this.ToolStrip.CalculatorButton = null;
             this.ToolStrip.CanOverrideStyle = true;
             this.ToolStrip.CaptionAlignment = Syncfusion.Windows.Forms.Tools.CaptionAlignment.Near;
             this.ToolStrip.CaptionFont = new System.Drawing.Font("Roboto", 9F);
             this.ToolStrip.CaptionStyle = Syncfusion.Windows.Forms.Tools.CaptionStyle.Top;
             this.ToolStrip.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
+            this.ToolStrip.ChartButton = null;
             this.ToolStrip.DataFilter = null;
+            this.ToolStrip.DeleteButton = null;
             this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ToolStrip.DropDown = null;
+            this.ToolStrip.EditButton = null;
+            this.ToolStrip.ExcelButton = null;
             this.ToolStrip.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ToolStrip.FirstButton = null;
             this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
             this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
             this.ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ToolStrip.HomeButton = null;
             this.ToolStrip.Image = null;
             this.ToolStrip.ImageDirectory = null;
             this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -208,14 +216,20 @@
             this.Separator17,
             this.HomeButton});
             this.ToolStrip.Label = null;
+            this.ToolStrip.LastButton = null;
             this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
             this.ToolStrip.Location = new System.Drawing.Point(0, 711);
             this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
             this.ToolStrip.Name = "ToolStrip";
+            this.ToolStrip.NextButton = null;
             this.ToolStrip.Numeric = BudgetExecution.Numeric.NS;
             this.ToolStrip.Office12Mode = false;
             this.ToolStrip.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Black;
             this.ToolStrip.Padding = new System.Windows.Forms.Padding(1);
+            this.ToolStrip.PreviousButton = null;
+            this.ToolStrip.ProgressBar = null;
+            this.ToolStrip.RefreshButton = null;
+            this.ToolStrip.SaveButton = null;
             this.ToolStrip.Separators = null;
             this.ToolStrip.ShowCaption = true;
             this.ToolStrip.ShowLauncher = true;

@@ -99,7 +99,7 @@ namespace BudgetExecution
             Enabled = true;
             Visible = true;
             TextAlignment = StringAlignment.Center;
-            TextLineAlignment = StringAlignment.Center;
+            TextLineAlignment = StringAlignment.Far;
             OutlineColor = Color.FromArgb( 15, 15, 15 );
             MouseHover += OnMouseOver;
         }
