@@ -127,73 +127,125 @@
         /// Gets the group boxes.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, GroupBox> GetGroupBoxes( )
+        public IDictionary<string, GroupBox> GetGroupBoxes()
         {
-            try
+            if( TabControl?.TabPages?.Count > 0 )
             {
-                var _groupBoxes = new Dictionary<string, GroupBox>( );
-                foreach( TabPageAdv _tabPage in TabControl.TabPages )
+                try
                 {
-                    foreach( var _control in _tabPage.Controls )
+                    var _groupBoxes = new Dictionary<string, GroupBox>( );
+                    foreach( TabPageAdv _tabPage in TabControl.TabPages )
                     {
-                        if( _control is GroupBox _groupBox )
+                        foreach( var _control in _tabPage.Controls )
                         {
-                            _groupBoxes.Add( _groupBox.Name, _groupBox );
+                            if( _control is GroupBox _groupBox )
+                            {
+                                _groupBoxes.Add( _groupBox.Name, _groupBox );
+                            }
                         }
                     }
-                }
 
-                return _groupBoxes?.Any( ) == true
-                    ? _groupBoxes
-                    : default( IDictionary<string, GroupBox> );
+                    return _groupBoxes?.Any( ) == true
+                        ? _groupBoxes
+                        : default( IDictionary<string, GroupBox> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, GroupBox> );
+                }
             }
-            catch( Exception ex )
+
+            return default( IDictionary<string, GroupBox> );
+        }
+
+        /// <summary>
+        /// Gets the list boxes.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, ListBox> GetListBoxes()
+        {
+            if( TabControl?.TabPages?.Count > 0 )
             {
-                Fail( ex );
-                return default( IDictionary<string, GroupBox> );
+                try
+                {
+                    var _listBoxes = new Dictionary<string, ListBox>( );
+                    foreach( TabPageAdv _tabPage in TabControl.TabPages )
+                    {
+                        if( _tabPage?.Controls?.Count > 0 )
+                        {
+                            foreach( var _control in _tabPage.Controls )
+                            {
+                                if( _control is ListBox _listBox )
+                                {
+                                    _listBoxes.Add( _listBox.Name, _listBox );
+                                }
+                            }
+                        }
+                    }
+
+                    return _listBoxes?.Any( ) == true
+                        ? _listBoxes
+                        : default( IDictionary<string, ListBox> );
+                }
+                catch( Exception ex )
+                {
+                    DefinitionDialog.Fail( ex );
+                    return default( IDictionary<string, ListBox> );
+                }
             }
+
+            return default( IDictionary<string, ListBox> );
         }
 
         /// <summary>
         /// Gets the radio buttons.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, RadioButton> GetRadioButtons( )
+        public IDictionary<string, RadioButton> GetRadioButtons()
         {
-            try
+            if( TabControl?.TabPages?.Count > 0 )
             {
-                var _buttons = new Dictionary<string, RadioButton>( );
-                foreach( var _tabPage in TabControl.TabPages )
+                try
                 {
-                    if( _tabPage is TabPageAdv _tab )
+                    var _buttons = new Dictionary<string, RadioButton>( );
+                    foreach( var _tabPage in TabControl.TabPages )
                     {
-                        foreach( var _control in _tab.Controls )
+                        if( _tabPage is TabPageAdv _tab )
                         {
-                            if( _control is GroupBox _group )
+                            foreach( var _control in _tab.Controls )
                             {
-                                foreach( var _item in _group.Controls )
+                                if( _control is GroupBox _group )
                                 {
-                                    if( _item is RadioButton _radioButton )
+                                    foreach( var _item in _group.Controls )
                                     {
-                                        _buttons.Add( _radioButton.Name, _radioButton );
+                                        if( _item is RadioButton _radioButton )
+                                        {
+                                            _buttons.Add( _radioButton.Name, _radioButton );
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
 
-                return _buttons?.Any( ) == true
-                    ? _buttons
-                    : default( IDictionary<string, RadioButton> );
+                    return _buttons?.Any( ) == true
+                        ? _buttons
+                        : default( IDictionary<string, RadioButton> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, RadioButton> );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, RadioButton> );
-            }
+
+            return default( IDictionary<string, RadioButton> );
         }
 
+        /// <summary>
+        /// Populates the table ListBox items.
+        /// </summary>
         public void PopulateTableListBoxItems()
         {
             try
