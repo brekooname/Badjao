@@ -292,18 +292,20 @@ namespace BudgetExecution
                         }
                         case ToolType.EditButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
-                                _dataConfig?.ShowDialog( );
+                                _dataConfig.BindingSource = BindingSource;
+                                _dataConfig.ShowDialog( );
                             }
 
                             break;
                         }
                         case ToolType.EditRecordButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
+                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -311,7 +313,7 @@ namespace BudgetExecution
                         }
                         case ToolType.CopyButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -321,7 +323,7 @@ namespace BudgetExecution
                         }
                         case ToolType.UpdateButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -331,7 +333,7 @@ namespace BudgetExecution
                         }
                         case ToolType.InsertButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );

@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
@@ -50,15 +48,7 @@
         /// The current tab.
         /// </value>
         public virtual TabPageAdv ActiveTab { get; set; }
-
-        /// <summary>
-        /// Gets or sets the binding source.
-        /// </summary>
-        /// <value>
-        /// The binding source.
-        /// </value>
-        public virtual BindingSource BindingSource { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the form filter.
         /// </summary>
@@ -123,34 +113,6 @@
         {
             InitializeComponent( );
             Text = string.Empty;
-        }
-
-        /// <summary>
-        /// Sets the binding source.
-        /// </summary>
-        /// <param name="bindingList">The bindingsource.</param>
-        public virtual void SetDataSource<T1>( T1 bindingList )
-            where T1 : IBindingList
-        {
-            try
-            {
-                if( bindingList is BindingSource bindingSource
-                    && bindingSource?.DataSource != null )
-                {
-                    try
-                    {
-                        BindingSource.DataSource = bindingSource.DataSource;
-                    }
-                    catch( Exception ex )
-                    {
-                        Fail( ex );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
 
         /// <summary>

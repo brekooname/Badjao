@@ -263,18 +263,18 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingSource">The bindingsource.</param>
-        public virtual void SetDataSource<T1>( T1 bindingSource )
+        /// <param name="source">The bindingsource.</param>
+        public virtual void SetDataSource<T1>( T1 source )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingSource is BindingSource binder
-                    && binder?.DataSource != null )
+                if( source is BindingSource bindingSource
+                    && bindingSource?.DataSource != null )
                 {
                     try
                     {
-                        BindingSource.DataSource = binder.DataSource;
+                        BindingSource.DataSource = bindingSource.DataSource;
                     }
                     catch( Exception ex )
                     {

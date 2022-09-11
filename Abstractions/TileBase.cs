@@ -123,22 +123,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the image configuration.
         /// </summary>
         /// <param name="image">The image.</param>

@@ -2,10 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Data;
+    using System.Linq;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Windows.Forms;
     using Microsoft.EntityFrameworkCore.Internal;
+    using Syncfusion.Data.Extensions;
+    using Syncfusion.Linq;
     using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
@@ -19,7 +24,17 @@
         /// </value>
         public DataBuilder DataModel { get; set; }
 
+        /// <summary>
+        /// Gets or sets the current.
+        /// </summary>
+        /// <value>
+        /// The current.
+        /// </value>
         public DataRow Current { get; set; }
+
+        public DataTable DataTable { get; set; }
+
+        public IEnumerable<string> Columns { get; set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="EditDialog"/> class.
@@ -45,6 +60,26 @@
             ToolType = toolType;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditDialog"/> class.
+        /// </summary>
+        /// <param name="toolType">Type of the tool.</param>
+        /// <param name="bindingSource">The binding source.</param>
+        public EditDialog( ToolType toolType, BindingSource bindingSource )
+            : this( )
+        {
+            ToolType = toolType;
+            BindingSource = bindingSource;
+            Current = BindingSource.GetCurrentDataRow( );
+            DataTable = (DataTable)BindingSource.DataSource;
+            Columns = DataTable.GetColumnNames(  );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditDialog"/> class.
+        /// </summary>
+        /// <param name="toolType">Type of the tool.</param>
+        /// <param name="dataModel">The data model.</param>
         public EditDialog( ToolType toolType, DataBuilder dataModel )
             : this( )
         {
@@ -58,6 +93,23 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="EditDialog"/> class.
+        /// </summary>
+        /// <param name="toolType">Type of the tool.</param>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        public EditDialog( ToolType toolType, Source source, Provider provider = Provider.Access )
+            : this( )
+        {
+            ToolType = toolType;
+            Provider = provider;
+            Source = source;
+            DataModel = new DataBuilder( source, provider );
+            BindingSource.DataSource = DataModel.DataTable;
+            Current = BindingSource.GetCurrentDataRow( );
+        }
+
+        /// <summary>
         /// Called when [load].
         /// </summary>
         /// <param name="sender">The sender.</param>
@@ -67,6 +119,7 @@
             try
             {
                 SetActivetTab( );
+                SetBindings( );
             }
             catch( Exception ex )
             {
@@ -74,7 +127,7 @@
             }
         }
 
-        public void SetActivetTab()
+        public void SetActivetTab( )
         {
             if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
@@ -135,6 +188,75 @@
                 }
             }
 
+        }
+
+        public void SetBindings( )
+        {
+            Label0.Text = "ID: " + Current[ 0 ];
+            var _label = Labels.Skip( 1 )?.ToArray( );
+            var _textBox = TextBoxes.ToArray( );
+            var _items = Current.ItemArray.Skip( 1 ).ToArray(  );
+            var _columns = Current.Table.GetColumnNames( ).Skip( 1 );
+            var _header = _columns.ToArray( );
+
+            for( var i = 0; i < _items.Length; i++ )
+            {
+                _label[ i ].Text = _header[ i ];
+                _textBox[ i ].Text = _items[ i ].ToString( );
+            }
+
+        }
+
+        /// <summary>
+        /// Sets the data source.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
+        public virtual void SetDataSource( IEnumerable<DataRow> dataRows )
+        {
+            try
+            {
+                if( dataRows?.Any( ) == true )
+                {
+                    try
+                    {
+                        BindingSource.DataSource = dataRows;
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the data source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        public virtual void SetDataSource( IListSource source )
+        {
+            try
+            {
+                if( source?.ContainsListCollection == true )
+                {
+                    try
+                    {
+                        BindingSource.DataSource = source.GetList( );
+                    }
+                    catch( Exception ex )
+                    {
+                        Fail( ex );
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
         }
         
         /// <summary>
