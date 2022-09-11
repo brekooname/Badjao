@@ -9,8 +9,6 @@
     using System.Drawing;
     using System.Windows.Forms;
     using Microsoft.EntityFrameworkCore.Internal;
-    using Syncfusion.Data.Extensions;
-    using Syncfusion.Linq;
     using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
@@ -32,9 +30,29 @@
         /// </value>
         public DataRow Current { get; set; }
 
+        /// <summary>
+        /// Gets or sets the data table.
+        /// </summary>
+        /// <value>
+        /// The data table.
+        /// </value>
         public DataTable DataTable { get; set; }
 
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
         public IEnumerable<string> Columns { get; set; }
+
+        /// <summary>
+        /// Gets or sets the frames.
+        /// </summary>
+        /// <value>
+        /// The frames.
+        /// </value>
+        public IEnumerable<Frame> Frames { get;set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="EditDialog"/> class.
@@ -43,8 +61,7 @@
         {
             InitializeComponent( );
             TabPages = GetTabPages( );
-            Labels = GetLabels( );
-            TextBoxes = GetTextBoxes( );
+            Frames = GetFrames( );
             TabControl.TabPanelBackColor = Color.FromArgb( 15, 15, 15 );
             Load += OnLoad;
             CloseButton.Click += OnCloseButtonClicked;
@@ -70,9 +87,9 @@
         {
             ToolType = toolType;
             BindingSource = bindingSource;
-            Current = BindingSource.GetCurrentDataRow( );
-            DataTable = (DataTable)BindingSource.DataSource;
-            Columns = DataTable.GetColumnNames(  );
+            Current = bindingSource.GetCurrentDataRow( );
+            DataTable = (DataTable)bindingSource.DataSource;
+            Columns = DataTable.GetColumnNames( );
         }
 
         /// <summary>
@@ -89,6 +106,8 @@
             Source = dataModel.Source;
             CommandType = dataModel.SqlStatement.CommandType;
             BindingSource.DataSource = dataModel.DataTable;
+            DataTable = dataModel.DataTable;
+            Columns = DataTable.GetColumnNames( );
             Current = BindingSource.GetCurrentDataRow( );
         }
 
@@ -192,19 +211,26 @@
 
         public void SetBindings( )
         {
-            Label0.Text = "ID: " + Current[ 0 ];
-            var _label = Labels.Skip( 1 )?.ToArray( );
-            var _textBox = TextBoxes.ToArray( );
-            var _items = Current.ItemArray.Skip( 1 ).ToArray(  );
-            var _columns = Current.Table.GetColumnNames( ).Skip( 1 );
-            var _header = _columns.ToArray( );
+            var _items = Current.ItemArray;
+            var _frames = Frames.ToArray( );
+            var _cols = Columns.ToArray( );
 
-            for( var i = 0; i < _items.Length; i++ )
+            for( var i = 0; i < _cols.Length; i++ )
             {
-                _label[ i ].Text = _header[ i ];
-                _textBox[ i ].Text = _items[ i ].ToString( );
+                if( _frames[ i ].Index == i )
+                {
+                    _frames[ i ].Label.Text = _cols[ i ];
+                    _frames[ i ].TextBox.Text = _items[ i ].ToString( );
+                }
             }
 
+            foreach( var _frame in Frames )
+            {
+                if( _frame.Index > _cols.Length - 1 )
+                {
+                    _frame.Visible = false;
+                }
+            }
         }
 
         /// <summary>
@@ -291,61 +317,36 @@
 
             return default( IDictionary<string, TabPageAdv> );
         }
-        
 
-        /// <summary>
-        /// Gets the edit labels.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Label> GetLabels( )
-        { 
-            try
-            {
-                var _labels = new List<Label>( );
-                foreach( var _control in TableFrame.Controls )
-                {
-                    if( _control.GetType(   ) == typeof( Label ) )
-                    {
-                        _labels.Add( _control as Label );
-                    }
-                }
-
-                return _labels?.Any(  ) == true
-                    ? _labels
-                    : default( IEnumerable<Label> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<Label> );
-            }
-        }
-
-        /// <summary>
-        /// Gets the text boxes.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<TextBox> GetTextBoxes()
+        public IEnumerable<Frame> GetFrames( )
         {
             try
             {
-                var _textBoxes = new List<TextBox>( );
-                foreach( var _control in TableFrame.Controls )
+                var _frames = new List<Frame>( );
+                var _counter = 0;
+                foreach( var _control in FrameTable.Controls )
                 {
-                    if( _control.GetType( ) == typeof( TextBox ) )
+                    if( _control.GetType( ) == typeof( Frame ) )
                     {
-                        _textBoxes.Add( _control as TextBox );
+                        if( _control is Frame _frame )
+                        {
+                            _frame.Index = _counter;
+                            _frame.BindingSource = BindingSource;
+                            _frames.Add( _control as Frame );
+                            _counter++;
+                        }
+
                     }
                 }
 
-                return _textBoxes?.Any( ) == true
-                    ? _textBoxes
-                    : default( IEnumerable<TextBox> );
+                return _frames?.Any( ) == true
+                    ? _frames
+                    : default( IEnumerable<Frame> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<TextBox> );
+                return default( IEnumerable<Frame> );
             }
         }
     }

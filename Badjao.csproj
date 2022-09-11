@@ -483,6 +483,12 @@
     <Compile Include="Controls\DefinitionDialog.Designer.cs">
       <DependentUpon>DefinitionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frame.Designer.cs">
+      <DependentUpon>Frame.cs</DependentUpon>
+    </Compile>
     <Compile Include="IO\DataFile.cs" />
     <Compile Include="Abstractions\FileBase.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
@@ -1008,6 +1014,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LookupDialog.resx">
       <DependentUpon>LookupDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frame.resx">
+      <DependentUpon>Frame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
