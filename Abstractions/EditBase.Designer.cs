@@ -1,6 +1,6 @@
 ﻿namespace BudgetExecution
 {
-    partial class ConfigBase
+    partial class EditBase
     {
         /// <summary>
         /// Required designer variable.

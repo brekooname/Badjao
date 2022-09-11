@@ -94,14 +94,6 @@ namespace BudgetExecution
         public virtual ToolStripButton LastButton { get; set; }
 
         /// <summary>
-        /// Gets or sets the edit button.
-        /// </summary>
-        /// <value>
-        /// The edit button.
-        /// </value>
-        public virtual ToolStripButton EditButton { get; set; }
-
-        /// <summary>
         /// Gets or sets the add button.
         /// </summary>
         /// <value>
@@ -116,6 +108,86 @@ namespace BudgetExecution
         /// The delete button.
         /// </value>
         public virtual ToolStripButton DeleteButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the edit button.
+        /// </summary>
+        /// <value>
+        /// The edit button.
+        /// </value>
+        public virtual ToolStripButton EditButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the edit button.
+        /// </summary>
+        /// <value>
+        /// The edit button.
+        /// </value>
+        public virtual ToolStripButton EditColumnButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the edit record button.
+        /// </summary>
+        /// <value>
+        /// The edit record button.
+        /// </value>
+        public virtual ToolStripButton EditRecordButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SQL button.
+        /// </summary>
+        /// <value>
+        /// The SQL button.
+        /// </value>
+        public virtual ToolStripButton EditSqlButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the add table button.
+        /// </summary>
+        /// <value>
+        /// The add table button.
+        /// </value>
+        public virtual ToolStripButton AddTableButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filter data button.
+        /// </summary>
+        /// <value>
+        /// The filter data button.
+        /// </value>
+        public virtual ToolStripButton FilterDataButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the add button.
+        /// </summary>
+        /// <value>
+        /// The add button.
+        /// </value>
+        public virtual ToolStripButton AddColumnButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the delete table button.
+        /// </summary>
+        /// <value>
+        /// The delete table button.
+        /// </value>
+        public virtual ToolStripButton DeleteTableButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the delete column button.
+        /// </summary>
+        /// <value>
+        /// The delete column button.
+        /// </value>
+        public virtual ToolStripButton DeleteColumnButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the delete button.
+        /// </summary>
+        /// <value>
+        /// The delete button.
+        /// </value>
+        public virtual ToolStripButton DeleteRecordButton { get; set; }
 
         /// <summary>
         /// Gets or sets the save button.

@@ -355,6 +355,11 @@ namespace BudgetExecution
         StopButton,
 
         /// <summary>
+        /// The edit SQL button
+        /// </summary>
+        EditSqlButton,
+
+        /// <summary>
         /// The SQL server button
         /// </summary>
         SqlServerButton,

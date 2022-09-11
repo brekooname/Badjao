@@ -175,7 +175,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -190,11 +189,12 @@ namespace BudgetExecution
 
                             break;
                         }
+                        case ToolType.AddTableButton:
+                        case ToolType.AddDatabaseButton:
                         case ToolType.AddColumnButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -204,7 +204,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -214,7 +213,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -224,7 +222,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -234,7 +231,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -244,17 +240,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
-
-                            break;
-                        }
-                        case ToolType.AddTableButton:
-                        {
-                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -264,7 +249,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 

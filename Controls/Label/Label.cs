@@ -6,8 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
@@ -29,7 +27,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public override SourceBinding BindingSource { get; set; }
+        public override BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -70,15 +68,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public override NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="Label" />
@@ -171,7 +161,7 @@ namespace BudgetExecution
         /// <param name="parent">The parent.</param>
         /// <param name="bindingSource">The bindingSource.</param>
         public Label( Size size, Point location, Control parent,
-            SourceBinding bindingSource )
+            BindingSource bindingSource )
             : this( size, location, parent )
         {
             BindingSource = bindingSource;

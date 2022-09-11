@@ -471,11 +471,11 @@
     <Compile Include="Controls\EditDialog.Designer.cs">
       <DependentUpon>EditDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\ConfigBase.cs">
+    <Compile Include="Abstractions\EditBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abstractions\ConfigBase.Designer.cs">
-      <DependentUpon>ConfigBase.cs</DependentUpon>
+    <Compile Include="Abstractions\EditBase.Designer.cs">
+      <DependentUpon>EditBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DefinitionDialog.cs">
       <SubType>Form</SubType>

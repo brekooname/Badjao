@@ -10,8 +10,8 @@
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="BudgetExecution.ConfigBase" />
-    public partial class DefinitionDialog : ConfigBase
+    /// <seealso cref="EditBase" />
+    public partial class DefinitionDialog : EditBase
     {
         /// <summary>
         /// Gets or sets the data model.
@@ -58,6 +58,7 @@
             {
                 SetGroupBoxProperties( );
                 SetRadioButtonProperties( );
+                SetActivetTab(  );
             }
             catch( Exception ex )
             {
@@ -86,6 +87,97 @@
                     Fail( ex );
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets the activet tab.
+        /// </summary>
+        public void SetActivetTab( )
+        {
+            if ( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            {
+                try
+                {
+                    switch( ToolType )
+                    {
+                        case ToolType.AddColumnButton:
+                        {
+                            AlterTabPage.Text = "Add Data Column";
+                            ActiveTab = AlterTabPage;
+                            DropTabPage.TabVisible = false;
+                            DeleteColumnTabPage.TabVisible = false;
+                            CreateTabPage.TabVisible = false;
+
+                            break;
+                        }
+                        case ToolType.AddDatabaseButton:
+                        {
+                            CreateTabPage.Text = "Add Database";
+                            ActiveTab = CreateTabPage;
+                            AlterTabPage.TabVisible = false;
+                            DropTabPage.TabVisible = false;
+                            DeleteColumnTabPage.TabVisible = false;
+
+                            break;
+                        }
+                        case ToolType.AddTableButton:
+                        {
+                            CreateTabPage.Text = "Add Data Table";
+                            ActiveTab = CreateTabPage;
+                            AlterTabPage.TabVisible = false;
+                            DropTabPage.TabVisible = false;
+                            DeleteColumnTabPage.TabVisible = false;
+
+                            break;
+                        }
+                        case ToolType.EditColumnButton:
+                        {
+                            AlterTabPage.Text = "Rename Data Column";
+                            ActiveTab = AlterTabPage;
+                            CreateTabPage.TabVisible = false;
+                            DropTabPage.TabVisible = false;
+                            DeleteColumnTabPage.TabVisible = false;
+
+                            break;
+                        }
+                        case ToolType.DeleteColumnButton:
+                        {
+                            DeleteColumnTabPage.Text = "Delete Data Column";
+                            ActiveTab = DeleteColumnTabPage;
+                            CreateTabPage.TabVisible = false;
+                            DropTabPage.TabVisible = false;
+                            AlterTabPage.TabVisible = false;
+
+                            break;
+                        }
+                        case ToolType.DeleteTableButton:
+                        {
+                            DropTabPage.Text = "Drop Data Table";
+                            ActiveTab = DropTabPage;
+                            CreateTabPage.TabVisible = false;
+                            AlterTabPage.TabVisible = false;
+                            DeleteColumnTabPage.TabVisible = false;
+
+                            break;
+                        }
+                        case ToolType.DeleteDatabaseButton:
+                        {
+                            DropTabPage.Text = "Delete Database";
+                            ActiveTab = DropTabPage;
+                            CreateTabPage.TabVisible = false;
+                            AlterTabPage.TabVisible = false;
+                            DeleteColumnTabPage.TabVisible = false;
+
+                            break;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+
         }
 
         /// <summary>
@@ -141,7 +233,7 @@
                 }
                 catch( Exception ex )
                 {
-                    DefinitionDialog.Fail( ex );
+                    Fail( ex );
                     return default( IDictionary<string, ListBox> );
                 }
             }

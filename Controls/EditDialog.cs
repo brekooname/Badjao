@@ -2,13 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms.Tools;
 
     [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    public partial class EditDialog : ConfigBase
+    public partial class EditDialog : EditBase
     {
         /// <summary>
         /// Gets or sets the data model.
@@ -18,13 +19,7 @@
         /// </value>
         public DataBuilder DataModel { get; set; }
 
-        /// <summary>
-        /// Gets or sets the text boxes.
-        /// </summary>
-        /// <value>
-        /// The text boxes.
-        /// </value>
-        public IEnumerable<TextBox> TextBoxes { get; set; }
+        public DataRow Current { get; set; }
         
         /// <summary>
         /// Initializes a new instance of the <see cref="EditDialog"/> class.
@@ -50,6 +45,18 @@
             ToolType = toolType;
         }
 
+        public EditDialog( ToolType toolType, DataBuilder dataModel )
+            : this( )
+        {
+            ToolType = toolType;
+            DataModel = dataModel;
+            Provider = dataModel.Provider;
+            Source = dataModel.Source;
+            CommandType = dataModel.SqlStatement.CommandType;
+            BindingSource.DataSource = dataModel.DataTable;
+            Current = BindingSource.GetCurrentDataRow( );
+        }
+
         /// <summary>
         /// Called when [load].
         /// </summary>
@@ -59,6 +66,7 @@
         {
             try
             {
+                SetActivetTab( );
             }
             catch( Exception ex )
             {
@@ -66,84 +74,67 @@
             }
         }
 
-        /// <summary>
-        /// Initializes the edit tab page.
-        /// </summary>
-        public void InitializeEditTab( )
+        public void SetActivetTab()
         {
-            try
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
-                foreach( TabPageAdv tab in TabControl.TabPages )
+                try
                 {
-
-                    ActiveTab = DataTab;
-                    if( tab != ActiveTab )
-                    {
-                        tab.TabVisible = false;
-                    }
-
                     switch( ToolType )
                     {
                         case ToolType.EditRecordButton:
                         {
-                            DataTab.Text = "Edit Record";
+                            DataTab.Text = "Edit Data Record";
+                            ActiveTab = DataTab;
+                            SelectButton.Text = "Save";
+                            SqlTab.TabVisible = false;
+
                             break;
                         }
                         case ToolType.CopyButton:
                         {
-                            DataTab.Text = "Copy Record";
-                            break;
-                        }
-                        case ToolType.AddRecordButton:
-                        {
-                            DataTab.Text = "Add Record";
+                            DataTab.Text = "Edit/Save Copied Data";
+                            ActiveTab = DataTab;
+                            SelectButton.Text = "Save";
+                            SqlTab.TabVisible = false;
+
                             break;
                         }
                         case ToolType.DeleteRecordButton:
                         {
-                            DataTab.Text = "Delete Record";
+                            DataTab.Text = "Delete Data";
+                            ActiveTab = DataTab;
+                            SelectButton.Text = "Delete";
+                            SqlTab.TabVisible = false;
+
                             break;
                         }
-                        case ToolType.EditButton:
+                        case ToolType.EditSqlButton:
                         {
-                            DataTab.Text = "Edit Data";
+                            SqlTab.Text = "Edit SQL";
+                            ActiveTab = SqlTab;
+                            SelectButton.Text = "Save";
+                            DataTab.TabVisible = false;
+
                             break;
                         }
                         default:
                         {
-                            DataTab.Text = "Edit Record";
+                            DataTab.Text = "Edit Data Record";
+                            ActiveTab = DataTab;
+                            SelectButton.Text = "Save";
+                            SqlTab.TabVisible = false;
+
                             break;
                         }
                     }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Initializes the SQL tab page.
-        /// </summary>
-        public void InitializeSqlTab( )
-        {
-            try
-            {
-                ActiveTab = SqlTab;
-                foreach( TabPageAdv tab in TabControl.TabPages )
+                catch( Exception ex )
                 {
-                    if( tab != ActiveTab )
-                    {
-                        tab.TabVisible = false;
-                    }
+                    Fail( ex );
                 }
+            }
 
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
         }
         
         /// <summary>
@@ -152,19 +143,31 @@
         /// <returns></returns>
         public IDictionary<string, TabPageAdv> GetTabPages( )
         {
-            try
+            if( TabControl?.TabPages?.Any( ) == true )
             {
-                var _tabPages = new Dictionary<string, TabPageAdv>( );
-                _tabPages.Add( DataTab.Name, DataTab );
-                _tabPages.Add( SqlTab.Name, SqlTab );
+                try
+                {
+                    var _tabPages = new Dictionary<string, TabPageAdv>( );
+                    foreach( TabPageAdv tabpage in TabControl.TabPages )
+                    {
+                        if( tabpage != null )
+                        {
+                            _tabPages.Add( tabpage.Name, tabpage );
+                        }
+                    }
 
-                return _tabPages;
+                    return _tabPages?.Any( ) == true
+                        ? _tabPages
+                        : default( IDictionary<string, TabPageAdv> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, TabPageAdv> );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IDictionary<string, TabPageAdv> );
-            }
+
+            return default( IDictionary<string, TabPageAdv> );
         }
         
 

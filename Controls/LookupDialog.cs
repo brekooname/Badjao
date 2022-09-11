@@ -6,7 +6,7 @@
     using System.Linq;
     using Syncfusion.Windows.Forms.Tools;
 
-    public partial class LookupDialog : ConfigBase
+    public partial class LookupDialog : EditBase
     {
         /// <summary>
         /// Gets or sets the data model.

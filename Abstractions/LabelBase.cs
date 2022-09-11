@@ -6,11 +6,10 @@ namespace BudgetExecution
 {
     using System.Collections.Generic;
     using System;
-    using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.Interactivity;
 
     [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
@@ -23,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -64,14 +63,6 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
         
         /// <summary>
         /// Sets the binding source.
@@ -82,7 +73,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingList is System.Windows.Forms.BindingSource _binder
+                if( bindingList is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -119,7 +110,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
+                        var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
 
                         foreach( var kvp in dict )
