@@ -34,7 +34,7 @@ namespace BudgetExecution
             {
                 return string.IsNullOrEmpty( text ) || text.Length < 5
                     ? text
-                    : Regex.Replace( text, "([A-Z])", " $1", RegexOptions.Compiled ).Trim( );
+                    : Regex.Replace( text, "([A-Z])", " $1", RegexOptions.Compiled ).Trim(  );
             }
             catch( Exception ex )
             {

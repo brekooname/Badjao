@@ -214,12 +214,11 @@
             var _items = Current.ItemArray;
             var _frames = Frames.ToArray( );
             var _cols = Columns.ToArray( );
-
             for( var i = 0; i < _cols.Length; i++ )
             {
                 if( _frames[ i ].Index == i )
                 {
-                    _frames[ i ].Label.Text = _cols[ i ];
+                    _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
                     _frames[ i ].TextBox.Text = _items[ i ].ToString( );
                 }
             }
@@ -230,6 +229,37 @@
                 {
                     _frame.Visible = false;
                 }
+            }
+
+            if( _cols.Length < 43 )
+            {
+                FrameTable.RowCount = 6;
+                FrameTable.Location = new Point( 12, 45 );
+            }
+            else if( _cols.Length < 35 )
+            {
+                FrameTable.RowCount = 5;
+                FrameTable.Location = new Point( 12, 85 );
+            }
+            else if( _cols.Length < 28 )
+            {
+                FrameTable.RowCount = 4;
+                FrameTable.Location = new Point( 12, 105 );
+            }
+            else if( _cols.Length < 21 )
+            {
+                FrameTable.RowCount = 3;
+                FrameTable.Location = new Point( 12, 125 );
+            }
+            else if( _cols.Length < 14 )
+            {
+                FrameTable.RowCount = 2;
+                FrameTable.Location = new Point( 12, 125 );
+            }
+            else if( _cols.Length <= 7 )
+            {
+                FrameTable.RowCount = 1;
+                FrameTable.Location = new Point( 12, 125 );
             }
         }
 
@@ -348,6 +378,11 @@
                 Fail( ex );
                 return default( IEnumerable<Frame> );
             }
+        }
+
+        private void Frame14_Load( object sender, EventArgs e )
+        {
+
         }
     }
 }

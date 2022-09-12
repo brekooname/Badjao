@@ -57,7 +57,7 @@ namespace BudgetExecution
         /// Sets Basic Properties Initializes a new instance of the
         /// <see cref = "ColumnConfiguration"/> class.
         /// </summary>
-        public ColumnConfiguration()
+        public ColumnConfiguration( )
         {
             InitializeComponent( );
             Enabled = true;

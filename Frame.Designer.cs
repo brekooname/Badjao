@@ -34,6 +34,7 @@
             this.TextBox = new BudgetExecution.TextBox();
             this.Panel = new BudgetExecution.Layout();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
+            this.Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Label
@@ -60,7 +61,7 @@
             this.Label.ShadowDirection = 315;
             this.Label.ShadowLocation = new System.Drawing.Point(0, 0);
             this.Label.ShadowOpacity = 100;
-            this.Label.Size = new System.Drawing.Size(151, 23);
+            this.Label.Size = new System.Drawing.Size(177, 23);
             this.Label.TabIndex = 0;
             this.Label.Text = "Label";
             this.Label.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -77,12 +78,12 @@
             // TextBox
             // 
             this.TextBox.AlphaNumeric = false;
-            this.TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TextBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.TextBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TextBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.TextBox.BindingSource = this.BindingSource;
             this.TextBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.TextBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.TextBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.TextBox.Border.HoverVisible = true;
             this.TextBox.Border.Rounding = 6;
             this.TextBox.Border.Thickness = 1;
@@ -113,16 +114,16 @@
             this.TextBox.ImageSize = new System.Drawing.Size(16, 16);
             this.TextBox.ImageVisible = false;
             this.TextBox.ImageWidth = 35;
-            this.TextBox.Location = new System.Drawing.Point(0, 29);
+            this.TextBox.Location = new System.Drawing.Point(0, 26);
             this.TextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TextBox.Name = "TextBox";
             this.TextBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.TextBox.PasswordChar = '\0';
             this.TextBox.ReadOnly = false;
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TextBox.Size = new System.Drawing.Size(151, 25);
+            this.TextBox.Size = new System.Drawing.Size(177, 25);
             this.TextBox.TabIndex = 1;
-            this.TextBox.TextBoxWidth = 141;
+            this.TextBox.TextBoxWidth = 167;
             this.TextBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.TextBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TextBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -144,7 +145,7 @@
             this.Panel.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Panel.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Panel.BindingSource = null;
-            this.Panel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.Panel.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.Panel.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.Panel.Border.HoverVisible = true;
             this.Panel.Border.Rounding = 6;
@@ -152,6 +153,8 @@
             this.Panel.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.Panel.Border.Visible = true;
             this.Panel.Children = null;
+            this.Panel.Controls.Add(this.Label);
+            this.Panel.Controls.Add(this.TextBox);
             this.Panel.DataFilter = null;
             this.Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Panel.Field = BudgetExecution.Field.AccountCode;
@@ -162,7 +165,7 @@
             this.Panel.Name = "Panel";
             this.Panel.Numeric = BudgetExecution.Numeric.Accepted;
             this.Panel.Padding = new System.Windows.Forms.Padding(1);
-            this.Panel.Size = new System.Drawing.Size(151, 54);
+            this.Panel.Size = new System.Drawing.Size(177, 51);
             this.Panel.TabIndex = 2;
             this.Panel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.Panel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -178,16 +181,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.Controls.Add(this.Label);
-            this.Controls.Add(this.TextBox);
             this.Controls.Add(this.Panel);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Name = "Frame";
-            this.Size = new System.Drawing.Size(151, 54);
+            this.Size = new System.Drawing.Size(177, 51);
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
+            this.Panel.ResumeLayout(false);
+            this.Panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
