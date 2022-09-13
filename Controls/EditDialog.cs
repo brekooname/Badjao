@@ -379,6 +379,10 @@
             return default( IDictionary<string, TabPageAdv> );
         }
 
+        /// <summary>
+        /// Gets the frames.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Frame> GetFrames( )
         {
             try

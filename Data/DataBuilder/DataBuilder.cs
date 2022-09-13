@@ -9,8 +9,6 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using DocumentFormat.OpenXml.Drawing.Charts;
-    using DataTable = System.Data.DataTable;
 
     /// <summary> </summary>
     /// <seealso cref = "DataModel" />
