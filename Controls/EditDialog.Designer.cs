@@ -103,7 +103,6 @@
             this.groupBox3 = new BudgetExecution.GroupBox();
             this.groupBox4 = new BudgetExecution.GroupBox();
             this.groupBox9 = new BudgetExecution.GroupBox();
-            this.sfScrollFrame1 = new Syncfusion.WinForms.Controls.SfScrollFrame();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
             this.TabControl.SuspendLayout();
@@ -232,13 +231,13 @@
             this.FrameTable.Location = new System.Drawing.Point(12, 25);
             this.FrameTable.Name = "FrameTable";
             this.FrameTable.RowCount = 7;
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28745F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28745F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28502F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28502F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28502F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28502F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28502F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28964F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28709F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
             this.FrameTable.Size = new System.Drawing.Size(1051, 425);
             this.FrameTable.TabIndex = 1;
             // 
@@ -395,7 +394,6 @@
             this.Frame14.Name = "Frame14";
             this.Frame14.Size = new System.Drawing.Size(148, 54);
             this.Frame14.TabIndex = 13;
-            this.Frame14.Load += new System.EventHandler(this.Frame14_Load);
             // 
             // Frame15
             // 
@@ -713,7 +711,7 @@
             this.Frame43.Index = 0;
             this.Frame43.Location = new System.Drawing.Point(3, 363);
             this.Frame43.Name = "Frame43";
-            this.Frame43.Size = new System.Drawing.Size(145, 54);
+            this.Frame43.Size = new System.Drawing.Size(145, 59);
             this.Frame43.TabIndex = 42;
             // 
             // Frame44
@@ -724,7 +722,7 @@
             this.Frame44.Index = 0;
             this.Frame44.Location = new System.Drawing.Point(154, 363);
             this.Frame44.Name = "Frame44";
-            this.Frame44.Size = new System.Drawing.Size(144, 54);
+            this.Frame44.Size = new System.Drawing.Size(144, 59);
             this.Frame44.TabIndex = 43;
             // 
             // Frame45
@@ -735,7 +733,7 @@
             this.Frame45.Index = 0;
             this.Frame45.Location = new System.Drawing.Point(304, 363);
             this.Frame45.Name = "Frame45";
-            this.Frame45.Size = new System.Drawing.Size(143, 54);
+            this.Frame45.Size = new System.Drawing.Size(143, 59);
             this.Frame45.TabIndex = 44;
             // 
             // Frame46
@@ -746,7 +744,7 @@
             this.Frame46.Index = 0;
             this.Frame46.Location = new System.Drawing.Point(453, 363);
             this.Frame46.Name = "Frame46";
-            this.Frame46.Size = new System.Drawing.Size(143, 54);
+            this.Frame46.Size = new System.Drawing.Size(143, 59);
             this.Frame46.TabIndex = 45;
             // 
             // Frame47
@@ -757,7 +755,7 @@
             this.Frame47.Index = 0;
             this.Frame47.Location = new System.Drawing.Point(602, 363);
             this.Frame47.Name = "Frame47";
-            this.Frame47.Size = new System.Drawing.Size(143, 54);
+            this.Frame47.Size = new System.Drawing.Size(143, 59);
             this.Frame47.TabIndex = 46;
             // 
             // Frame48
@@ -768,7 +766,7 @@
             this.Frame48.Index = 0;
             this.Frame48.Location = new System.Drawing.Point(751, 363);
             this.Frame48.Name = "Frame48";
-            this.Frame48.Size = new System.Drawing.Size(143, 54);
+            this.Frame48.Size = new System.Drawing.Size(143, 59);
             this.Frame48.TabIndex = 47;
             // 
             // Frame49
@@ -779,7 +777,7 @@
             this.Frame49.Index = 0;
             this.Frame49.Location = new System.Drawing.Point(900, 363);
             this.Frame49.Name = "Frame49";
-            this.Frame49.Size = new System.Drawing.Size(148, 54);
+            this.Frame49.Size = new System.Drawing.Size(148, 59);
             this.Frame49.TabIndex = 48;
             // 
             // SqlTab
@@ -1658,6 +1656,5 @@
         private Frame Frame47;
         private Frame Frame48;
         private Frame Frame49;
-        public Syncfusion.WinForms.Controls.SfScrollFrame sfScrollFrame1;
     }
 }

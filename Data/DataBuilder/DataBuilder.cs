@@ -9,6 +9,8 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using DocumentFormat.OpenXml.Drawing.Charts;
+    using DataTable = System.Data.DataTable;
 
     /// <summary> </summary>
     /// <seealso cref = "DataModel" />
@@ -146,7 +148,6 @@ namespace BudgetExecution
                 {
                     var _criteria = dict.ToCriteria( );
                     var _data = DataTable?.Select( _criteria );
-
                     return _data?.Length > 0
                         ? _data
                         : default( IEnumerable<DataRow> );
@@ -160,36 +161,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<DataRow> );
         }
-
-        /// <summary>
-        /// Filters the data.
-        /// </summary>
-        /// <param name="name">The field.</param>
-        /// <param name="value">The filter.</param>
-        /// <returns></returns>
-        public IEnumerable<DataRow> FilterData( string name, string value )
-        {
-            if( !string.IsNullOrEmpty( name ) 
-                && !string.IsNullOrEmpty( value ) )
-            {
-                try
-                {
-                    var _dataRows = DataTable.Select( $"{ name } = { value }" );
-
-                    return _dataRows?.Any( ) == true
-                        ? _dataRows.ToArray( )
-                        : default( DataRow[ ] );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IEnumerable<DataRow> );
-                }
-            }
-
-            return default( IEnumerable<DataRow> );
-        }
-
+        
         /// <summary>
         /// Filters the dataRows.
         /// </summary>
@@ -272,6 +244,5 @@ namespace BudgetExecution
 
             return default( IDictionary<string, IEnumerable<string>> );
         }
-
     }
 }

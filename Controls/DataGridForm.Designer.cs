@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.HeaderLabel = new BudgetExecution.Label();
             this.DataGridGroupBox = new BudgetExecution.GroupBox();
             this.GridPanel = new BudgetExecution.Layout();
             this.DataGrid = new BudgetExecution.DataGrid();
@@ -68,6 +69,8 @@
             this.Separator10 = new BudgetExecution.ToolSeparator();
             this.AddColumnButton = new BudgetExecution.ToolStripButton();
             this.Separator12 = new BudgetExecution.ToolSeparator();
+            this.DeleteColumnButton = new BudgetExecution.ToolStripButton();
+            this.Separator27 = new BudgetExecution.ToolSeparator();
             this.Separator19 = new BudgetExecution.ToolSeparator();
             this.CopyButton = new BudgetExecution.ToolStripButton();
             this.Separator20 = new BudgetExecution.ToolSeparator();
@@ -89,7 +92,6 @@
             this.Separator18 = new BudgetExecution.ToolSeparator();
             this.CalendarButton = new BudgetExecution.ToolStripButton();
             this.Separator26 = new BudgetExecution.ToolSeparator();
-            this.Separator16 = new BudgetExecution.ToolSeparator();
             this.TableGroupBox = new BudgetExecution.GroupBox();
             this.TableListPanel = new BudgetExecution.Layout();
             this.TableListBox = new BudgetExecution.ListBox();
@@ -99,9 +101,8 @@
             this.ValueGroupBox = new BudgetExecution.GroupBox();
             this.ValueListPanel = new BudgetExecution.Layout();
             this.ValueListBox = new BudgetExecution.ListBox();
+            this.Separator16 = new BudgetExecution.ToolSeparator();
             this.Separator17 = new BudgetExecution.ToolSeparator();
-            this.DeleteColumnButton = new BudgetExecution.ToolStripButton();
-            this.Separator27 = new BudgetExecution.ToolSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.DataGridGroupBox.SuspendLayout();
             this.GridPanel.SuspendLayout();
@@ -114,6 +115,42 @@
             this.ValueGroupBox.SuspendLayout();
             this.ValueListPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // HeaderLabel
+            // 
+            this.HeaderLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.HeaderLabel.BindingSource = null;
+            this.HeaderLabel.DataFilter = null;
+            this.HeaderLabel.Field = BudgetExecution.Field.AccountCode;
+            this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 9F);
+            this.HeaderLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.HeaderLabel.HoverText = null;
+            this.HeaderLabel.Location = new System.Drawing.Point(50, 13);
+            this.HeaderLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.HeaderLabel.Name = "HeaderLabel";
+            this.HeaderLabel.Numeric = BudgetExecution.Numeric.Accepted;
+            this.HeaderLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.HeaderLabel.Outline = false;
+            this.HeaderLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.HeaderLabel.OutlineLocation = new System.Drawing.Point(0, 0);
+            this.HeaderLabel.ReflectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.HeaderLabel.ReflectionSpacing = 0;
+            this.HeaderLabel.ShadowColor = System.Drawing.Color.Black;
+            this.HeaderLabel.ShadowDirection = 315;
+            this.HeaderLabel.ShadowLocation = new System.Drawing.Point(0, 0);
+            this.HeaderLabel.ShadowOpacity = 100;
+            this.HeaderLabel.Size = new System.Drawing.Size(968, 31);
+            this.HeaderLabel.TabIndex = 22;
+            this.HeaderLabel.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.HeaderLabel.TextLineAlignment = System.Drawing.StringAlignment.Far;
+            this.HeaderLabel.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.HeaderLabel.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.HeaderLabel.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.HeaderLabel.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.HeaderLabel.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.HeaderLabel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.HeaderLabel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.HeaderLabel.ToolTip = null;
             // 
             // DataGridGroupBox
             // 
@@ -280,6 +317,8 @@
             // ToolStrip
             // 
             this.ToolStrip.AddButton = null;
+            this.ToolStrip.AddColumnButton = null;
+            this.ToolStrip.AddTableButton = null;
             this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ToolStrip.BindingSource = this.BindingSource;
             this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
@@ -292,11 +331,18 @@
             this.ToolStrip.ChartButton = this.ChartButton;
             this.ToolStrip.DataFilter = null;
             this.ToolStrip.DeleteButton = this.DeleteButton;
+            this.ToolStrip.DeleteColumnButton = null;
+            this.ToolStrip.DeleteRecordButton = null;
+            this.ToolStrip.DeleteTableButton = null;
             this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ToolStrip.DropDown = this.DropDown;
             this.ToolStrip.EditButton = this.EditButton;
+            this.ToolStrip.EditColumnButton = null;
+            this.ToolStrip.EditRecordButton = null;
+            this.ToolStrip.EditSqlButton = null;
             this.ToolStrip.ExcelButton = this.EditButton;
             this.ToolStrip.Field = BudgetExecution.Field.AccountCode;
+            this.ToolStrip.FilterDataButton = null;
             this.ToolStrip.FirstButton = this.FirstButton;
             this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
             this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -766,6 +812,33 @@
             this.Separator12.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator12.Size = new System.Drawing.Size(6, 36);
             // 
+            // DeleteColumnButton
+            // 
+            this.DeleteColumnButton.AutoToolTip = false;
+            this.DeleteColumnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteColumnButton.BindingSource = this.BindingSource;
+            this.DeleteColumnButton.DataFilter = null;
+            this.DeleteColumnButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DeleteColumnButton.Field = BudgetExecution.Field.AccountCode;
+            this.DeleteColumnButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.DeleteColumnButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.DeleteColumnButton.HoverText = "Delete Data Column";
+            this.DeleteColumnButton.Image = global::BudgetExecution.Properties.Resources.DeleteColumn;
+            this.DeleteColumnButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteColumnButton.Margin = new System.Windows.Forms.Padding(5);
+            this.DeleteColumnButton.Name = "DeleteColumnButton";
+            this.DeleteColumnButton.Size = new System.Drawing.Size(24, 26);
+            this.DeleteColumnButton.ToolTip = this.ToolTip;
+            this.DeleteColumnButton.ToolType = BudgetExecution.ToolType.DeleteColumnButton;
+            // 
+            // Separator27
+            // 
+            this.Separator27.ForeColor = System.Drawing.Color.Black;
+            this.Separator27.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator27.Name = "Separator27";
+            this.Separator27.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator27.Size = new System.Drawing.Size(6, 36);
+            // 
             // Separator19
             // 
             this.Separator19.ForeColor = System.Drawing.Color.Black;
@@ -1034,14 +1107,6 @@
             this.Separator26.Name = "Separator26";
             this.Separator26.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator26.Size = new System.Drawing.Size(6, 36);
-            // 
-            // Separator16
-            // 
-            this.Separator16.ForeColor = System.Drawing.Color.Black;
-            this.Separator16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator16.Name = "Separator16";
-            this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator16.Size = new System.Drawing.Size(6, 73);
             // 
             // TableGroupBox
             // 
@@ -1416,6 +1481,14 @@
             this.ValueListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ValueListBox.ToolTip = this.ToolTip;
             // 
+            // Separator16
+            // 
+            this.Separator16.ForeColor = System.Drawing.Color.Black;
+            this.Separator16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator16.Name = "Separator16";
+            this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator16.Size = new System.Drawing.Size(6, 73);
+            // 
             // Separator17
             // 
             this.Separator17.ForeColor = System.Drawing.Color.Black;
@@ -1423,33 +1496,6 @@
             this.Separator17.Name = "Separator17";
             this.Separator17.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator17.Size = new System.Drawing.Size(6, 36);
-            // 
-            // DeleteColumnButton
-            // 
-            this.DeleteColumnButton.AutoToolTip = false;
-            this.DeleteColumnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DeleteColumnButton.BindingSource = this.BindingSource;
-            this.DeleteColumnButton.DataFilter = null;
-            this.DeleteColumnButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DeleteColumnButton.Field = BudgetExecution.Field.AccountCode;
-            this.DeleteColumnButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.DeleteColumnButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.DeleteColumnButton.HoverText = "Delete Data Column";
-            this.DeleteColumnButton.Image = global::BudgetExecution.Properties.Resources.DeleteColumn;
-            this.DeleteColumnButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteColumnButton.Margin = new System.Windows.Forms.Padding(5);
-            this.DeleteColumnButton.Name = "DeleteColumnButton";
-            this.DeleteColumnButton.Size = new System.Drawing.Size(24, 26);
-            this.DeleteColumnButton.ToolTip = this.ToolTip;
-            this.DeleteColumnButton.ToolType = BudgetExecution.ToolType.DeleteColumnButton;
-            // 
-            // Separator27
-            // 
-            this.Separator27.ForeColor = System.Drawing.Color.Black;
-            this.Separator27.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator27.Name = "Separator27";
-            this.Separator27.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator27.Size = new System.Drawing.Size(6, 36);
             // 
             // DataGridForm
             // 
@@ -1464,6 +1510,7 @@
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1388, 763);
+            this.Controls.Add(this.HeaderLabel);
             this.Controls.Add(this.DataGridGroupBox);
             this.Controls.Add(this.ToolStrip);
             this.Controls.Add(this.TableGroupBox);
@@ -1571,5 +1618,6 @@
         public ToolStripButton VerifyButton;
         public ToolStripButton DeleteColumnButton;
         public ToolSeparator Separator27;
+        public Label HeaderLabel;
     }
 }

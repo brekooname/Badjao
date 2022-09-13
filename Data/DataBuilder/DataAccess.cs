@@ -168,7 +168,7 @@ namespace BudgetExecution
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        public DataColumnCollection GetColumnSchema( )
+        public DataColumnCollection GetTableSchema( )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider ) 
                 && Enum.IsDefined( typeof( Source ), Source ) 

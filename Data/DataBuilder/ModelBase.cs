@@ -56,33 +56,40 @@ namespace BudgetExecution
         /// Gets the fields.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Field> GetFields( )
+        public IDictionary<string, Type> GetSchemaDictionary( )
         {
-            try
+            if( Record != null )
             {
-                var _columns = Record
-                    ?.ToDictionary( )
-                    ?.Keys?.ToArray( );
-
-                if( _columns?.Any( ) == true )
+                try
                 {
-                    var _fields = _columns
-                        ?.Select( e => e.ToEnum<Field>( ) );
+                    var _columns = Record.Table?.Columns;
 
-                    return _fields?.Any( ) == true
-                        ? _fields
-                        : default( IEnumerable<Field> );
+                    if( _columns?.Count > 0 )
+                    {
+                        var _schema = new Dictionary<string, Type>( );
+
+                        foreach( DataColumn col in _columns )
+                        {
+                            _schema.Add( col.ColumnName, col.DataType );
+                        }
+
+                        return _schema?.Any(   ) == true
+                            ? _schema
+                            : default( IDictionary<string, Type> );
+                    }
+                    else
+                    {
+                        return default( IDictionary<string, Type> );
+                    }
                 }
-                else
+                catch( Exception ex )
                 {
-                    return default( IEnumerable<Field> );
+                    Fail( ex );
+                    return default( IDictionary<string, Type> );
                 }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<Field> );
-            }
+
+            return default( IDictionary<string, Type> );
         }
 
         /// <summary>

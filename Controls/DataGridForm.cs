@@ -56,7 +56,39 @@
         /// The value prefix.
         /// </value>
         public string ValuePrefix { get; } = " Values : ";
-        
+
+        /// <summary>
+        /// Gets or sets the selected table.
+        /// </summary>
+        /// <value>
+        /// The selected table.
+        /// </value>
+        public string SelectedTable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected column.
+        /// </summary>
+        /// <value>
+        /// The selected column.
+        /// </value>
+        public string SelectedColumn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected value.
+        /// </summary>
+        /// <value>
+        /// The selected value.
+        /// </value>
+        public string SelectedValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the SQL query.
+        /// </summary>
+        /// <value>
+        /// The SQL query.
+        /// </value>
+        public string SqlQuery { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DataGridForm"/> class.
         /// </summary>
@@ -66,6 +98,7 @@
             Load += OnLoad;
             TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
             ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
+            ValueListBox.SelectedValueChanged += OnValueListBoxSelectionChanged;
         }
 
         /// <summary>
@@ -79,6 +112,7 @@
             Load += OnLoad;
             TableListBox.SelectedValueChanged += OnTableListBoxSelectionChanged;
             ColumnListBox.SelectedValueChanged += OnColumnListBoxSelectionChanged;
+            ValueListBox.SelectedValueChanged += OnValueListBoxSelectionChanged;
         }
 
 
@@ -103,6 +137,10 @@
                 TableGroupBox.Text = TablePrefix + TableListBox.Items.Count;
                 ColumnGroupBox.Text = ColumnPrefix;
                 DataGridGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName.SplitPascal( );
+                SelectedTable = string.Empty;
+                SelectedColumn = string.Empty;
+                SelectedValue = string.Empty;
+                SqlQuery = string.Empty;
             }
             catch( Exception ex )
             {
@@ -165,12 +203,15 @@
             try
             {
                 FormFilter.Clear( );
+                SqlQuery = string.Empty;
+                HeaderLabel.Text = string.Empty;
                 ColumnListBox.Items.Clear( );
                 ValueListBox.Items.Clear( );
                 ColumnGroupBox.Text = string.Empty;
                 ValueGroupBox.Text = string.Empty;
                 var _listBox = sender as VisualListBox;
                 var _value = _listBox?.SelectedItem.ToString( );
+                SelectedTable = _value;
                 if( !string.IsNullOrEmpty( _value ) )
                 {
                     var _source = (Source)Enum.Parse( typeof( Source ), _value );
@@ -179,9 +220,7 @@
                     DataGrid.DataSource = BindingSource;
                     ToolStrip.BindingSource = BindingSource;
                     DataGridGroupBox.Text = SourcePrefix + DataModel.DataTable.TableName?.SplitPascal( );
-
                     var _columns = DataModel.GetDataColumns( );
-
                     foreach( var col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
@@ -201,18 +240,22 @@
         /// Called when [column ListBox selection changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">
+        /// The <see cref="EventArgs"/> 
+        /// instance containing the event data.</param>
         public void OnColumnListBoxSelectionChanged( object sender, EventArgs e )
         {
             try
             {
-                ValueListBox.Items.Clear(  );
+                ValueListBox.Items.Clear( );
+                SqlQuery = string.Empty;
+                HeaderLabel.Text = string.Empty;
                 var _listBox = sender as VisualListBox;
                 var _column = _listBox?.SelectedItem?.ToString(  );
                 var _series = DataModel.DataElements;
-
                 if( !string.IsNullOrEmpty( _column ) )
                 {
+                    SelectedColumn = _column?.Trim( );
                     foreach( var item in _series[ _column ] )
                     {
                         ValueListBox.Items.Add( item );
@@ -226,7 +269,35 @@
                 Fail( ex );
             }
         }
-        
+
+        public void OnValueListBoxSelectionChanged( object sender, EventArgs e )
+        {
+            try
+            {
+                SqlQuery = string.Empty;
+                HeaderLabel.Text = string.Empty;
+                var _listBox = sender as VisualListBox;
+                var _value = _listBox?.SelectedItem?.ToString( );
+                SelectedValue =_value?.Trim(  );
+                var _query = string.Empty;
+                if( !string.IsNullOrEmpty( SelectedTable ) 
+                    & !string.IsNullOrEmpty( SelectedColumn ) )
+                {
+                    FormFilter.Add( SelectedColumn, SelectedValue );
+                    _query =  $"SELECT * FROM { SelectedTable } " +
+                        $"WHERE { SelectedColumn } = '{ SelectedValue }';";
+                }
+
+                SqlQuery = _query;
+                HeaderLabel.Text = SqlQuery;
+                ValueGroupBox.Text = ValuePrefix + ValueListBox.Items.Count;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Data;
     using System.Linq;
     using System.Diagnostics.CodeAnalysis;
@@ -87,9 +86,11 @@
         {
             ToolType = toolType;
             BindingSource = bindingSource;
-            Current = bindingSource.GetCurrentDataRow( );
             DataTable = (DataTable)bindingSource.DataSource;
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            DataModel = new DataBuilder( Source, Provider.Access );
             Columns = DataTable.GetColumnNames( );
+            Current = bindingSource.GetCurrentDataRow( );
         }
 
         /// <summary>
@@ -124,7 +125,9 @@
             Provider = provider;
             Source = source;
             DataModel = new DataBuilder( source, provider );
+            DataTable = DataModel.DataTable;
             BindingSource.DataSource = DataModel.DataTable;
+            Columns = DataTable.GetColumnNames( );
             Current = BindingSource.GetCurrentDataRow( );
         }
 
@@ -138,7 +141,9 @@
             try
             {
                 SetActivetTab( );
-                SetBindings( );
+                SetFrameVisibility( );
+                SetTableLocation( );
+                BindRecordData( );
             }
             catch( Exception ex )
             {
@@ -146,6 +151,9 @@
             }
         }
 
+        /// <summary>
+        /// Sets the activet tab.
+        /// </summary>
         public void SetActivetTab( )
         {
             if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
@@ -160,7 +168,6 @@
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
                             SqlTab.TabVisible = false;
-
                             break;
                         }
                         case ToolType.CopyButton:
@@ -169,7 +176,6 @@
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
                             SqlTab.TabVisible = false;
-
                             break;
                         }
                         case ToolType.DeleteRecordButton:
@@ -178,7 +184,6 @@
                             ActiveTab = DataTab;
                             SelectButton.Text = "Delete";
                             SqlTab.TabVisible = false;
-
                             break;
                         }
                         case ToolType.EditSqlButton:
@@ -187,7 +192,6 @@
                             ActiveTab = SqlTab;
                             SelectButton.Text = "Save";
                             DataTab.TabVisible = false;
-
                             break;
                         }
                         default:
@@ -196,7 +200,6 @@
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
                             SqlTab.TabVisible = false;
-
                             break;
                         }
                     }
@@ -209,57 +212,111 @@
 
         }
 
-        public void SetBindings( )
+        /// <summary>
+        /// Sets the frame visibility.
+        /// </summary>
+        public void SetFrameVisibility( )
         {
-            var _items = Current.ItemArray;
-            var _frames = Frames.ToArray( );
-            var _cols = Columns.ToArray( );
-            for( var i = 0; i < _cols.Length; i++ )
+            try
             {
-                if( _frames[ i ].Index == i )
+                var _cols = Columns.ToArray( );
+                foreach( var _frame in Frames )
                 {
-                    _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
-                    _frames[ i ].TextBox.Text = _items[ i ].ToString( );
+                    if( _frame.Index > _cols.Length - 1 )
+                    {
+                        _frame.Visible = false;
+                    }
                 }
             }
-
-            foreach( var _frame in Frames )
+            catch( Exception ex )
             {
-                if( _frame.Index > _cols.Length - 1 )
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the row location.
+        /// </summary>
+        public void SetTableLocation(  )
+        {
+            if( FrameTable != null )
+            {
+                try
                 {
-                    _frame.Visible = false;
+
+                    var _cols = Columns.ToArray( );
+                    if( _cols.Length >= 43 )
+                    {
+                        FrameTable.RowCount = 7;
+                        FrameTable.Size = new Size( 1051, 425 );
+                        FrameTable.Location = new Point( 12, 25 );
+                    }
+                    else if( _cols.Length < 43 && _cols.Length >= 35 )
+                    {
+                        FrameTable.RowCount = 6;
+                        FrameTable.Size = new Size( 1051, 390 );
+                        FrameTable.Location = new Point( 12, 45 );
+                    }
+                    else if( _cols.Length < 35 && _cols.Length >= 28 )
+                    {
+                        FrameTable.RowCount = 5;
+                        FrameTable.Size = new Size( 1051, 325 );
+                        FrameTable.Location = new Point( 12, 85 );
+                    }
+                    else if( _cols.Length < 28 && _cols.Length >= 21 )
+                    {
+                        FrameTable.RowCount = 4;
+                        FrameTable.Size = new Size( 1051, 325 );
+                        FrameTable.Location = new Point( 12, 105 );
+                    }
+                    else if( _cols.Length < 21 && _cols.Length >= 14 )
+                    {
+                        FrameTable.RowCount = 3;
+                        FrameTable.Size = new Size( 1051, 225 );
+                        FrameTable.Location = new Point( 12, 125 );
+                    }
+                    else if( _cols.Length < 14 && _cols.Length > 7 )
+                    {
+                        FrameTable.RowCount = 2;
+                        FrameTable.Location = new Point( 12, 125 );
+                        FrameTable.Size = new Size( 1051, 225 );
+                    }
+                    else if( _cols.Length <= 7 )
+                    {
+                        FrameTable.RowCount = 1;
+                        FrameTable.Location = new Point( 12, 125 );
+                        FrameTable.Size = new Size( 1051, 225 );
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
                 }
             }
+        }
 
-            if( _cols.Length < 43 )
+        /// <summary>
+        /// Binds the record data.
+        /// </summary>
+        public void BindRecordData( )
+        {
+            try
             {
-                FrameTable.RowCount = 6;
-                FrameTable.Location = new Point( 12, 45 );
+                var _items = Current.ItemArray;
+                var _frames = Frames.ToArray( );
+                var _cols = Columns.ToArray( );
+                for( var i = 0; i < _cols.Length; i++ )
+                {
+                    if( _frames[ i ].Index == i )
+                    {
+                        _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
+                        _frames[ i ].TextBox.Text = _items[ i ].ToString( );
+                    }
+                }
             }
-            else if( _cols.Length < 35 )
+            catch( Exception ex )
             {
-                FrameTable.RowCount = 5;
-                FrameTable.Location = new Point( 12, 85 );
-            }
-            else if( _cols.Length < 28 )
-            {
-                FrameTable.RowCount = 4;
-                FrameTable.Location = new Point( 12, 105 );
-            }
-            else if( _cols.Length < 21 )
-            {
-                FrameTable.RowCount = 3;
-                FrameTable.Location = new Point( 12, 125 );
-            }
-            else if( _cols.Length < 14 )
-            {
-                FrameTable.RowCount = 2;
-                FrameTable.Location = new Point( 12, 125 );
-            }
-            else if( _cols.Length <= 7 )
-            {
-                FrameTable.RowCount = 1;
-                FrameTable.Location = new Point( 12, 125 );
+                Fail( ex );
             }
         }
 
@@ -276,32 +333,6 @@
                     try
                     {
                         BindingSource.DataSource = dataRows;
-                    }
-                    catch( Exception ex )
-                    {
-                        Fail( ex );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the data source.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        public virtual void SetDataSource( IListSource source )
-        {
-            try
-            {
-                if( source?.ContainsListCollection == true )
-                {
-                    try
-                    {
-                        BindingSource.DataSource = source.GetList( );
                     }
                     catch( Exception ex )
                     {
@@ -378,11 +409,6 @@
                 Fail( ex );
                 return default( IEnumerable<Frame> );
             }
-        }
-
-        private void Frame14_Load( object sender, EventArgs e )
-        {
-
         }
     }
 }

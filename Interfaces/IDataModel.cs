@@ -14,15 +14,7 @@
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
         IEnumerable<DataRow> FilterData( IDictionary<string, object> dict );
-
-        /// <summary>
-        /// Filters the data.
-        /// </summary>
-        /// <param name="name">The field.</param>
-        /// <param name="value">The filter.</param>
-        /// <returns></returns>
-        IEnumerable<DataRow> FilterData( string name, string value );
-
+        
         /// <summary>
         /// The program elements
         /// </summary>
@@ -105,13 +97,7 @@
         /// </summary>
         /// <returns></returns>
         IEnumerable<int> GetColumnOrdinals( );
-
-        /// <summary>
-        /// Gets the fields.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<Field> GetFields( );
-
+        
         /// <summary>
         /// Gets the elements.
         /// </summary>
@@ -152,7 +138,7 @@
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        DataColumnCollection GetColumnSchema( );
+        DataColumnCollection GetTableSchema( );
 
         /// <summary>
         /// Gets the primary indexes.
