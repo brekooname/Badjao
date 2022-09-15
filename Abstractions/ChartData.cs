@@ -160,7 +160,7 @@ namespace BudgetExecution
             : this( )
         {
             BindingSource = bindingSource;
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            Data = ((DataTable)bindingSource.DataSource).AsEnumerable( );
             Name = ( (DataTable)bindingSource.DataSource ).TableName;
             Text = Name.SplitPascal(  );
             Type = ChartSeriesType.Column;

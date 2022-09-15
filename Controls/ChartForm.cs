@@ -23,6 +23,7 @@ namespace BudgetExecution
         public ChartForm()
         {
             InitializeComponent( );
+            ToolStrip.Office12Mode = true;
         }
 
         /// <summary>
@@ -32,8 +33,8 @@ namespace BudgetExecution
         public ChartForm( BindingSource bindingSource ) 
             : this( )
         {
-            ToolStrip.Office12Mode = true;
             BindingSource = bindingSource;
+            ToolStrip.Office12Mode = true;
             ToolStrip.BindingSource = bindingSource;
             ToolStrip.BindingSource.DataSource = bindingSource.DataSource;
             Chart = new ChartControl( bindingSource )
@@ -53,12 +54,12 @@ namespace BudgetExecution
         public ChartForm( DataTable dataTable )
             : this( )
         {
-            ToolStrip.Office12Mode = true;
             BindingSource = new BindingSource
             {
                 DataSource = dataTable
             };
 
+            ToolStrip.Office12Mode = true;
             ToolStrip.BindingSource = BindingSource;
             ToolStrip.BindingSource.DataSource = BindingSource.DataSource;
             Chart = new ChartControl( dataTable )

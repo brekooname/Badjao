@@ -1781,6 +1781,7 @@
     <None Include="Resources\Images\Data\png\Connection.png" />
     <None Include="Resources\Images\Data\png\AddColumnIcon.png" />
     <None Include="Resources\Images\Database\Database.png" />
+    <None Include="Resources\Images\Database\EditDatabase.png" />
     <Content Include="Resources\Images\Dialog\ico\ApplicationError.ico" />
     <None Include="Resources\Images\Interface\Save.png" />
     <None Include="Resources\Images\Filter\png\Filter.png" />

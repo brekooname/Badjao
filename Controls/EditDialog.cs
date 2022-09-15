@@ -181,7 +181,7 @@
                         }
                         case ToolType.EditSqlButton:
                         {
-                            SqlTab.Text = "Edit SQL";
+                            SqlTab.Text = "SQL Editor";
                             ActiveTab = SqlTab;
                             SelectButton.Text = "Save";
                             DataTab.TabVisible = false;

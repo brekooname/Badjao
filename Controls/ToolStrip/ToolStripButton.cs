@@ -297,10 +297,21 @@ namespace BudgetExecution
                             }
                             break;
                         }
+                        case ToolType.EditSqlButton:
+                        {
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
+                            {
+                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                                _dataConfig.ShowDialog( );
+                            }
+
+                            break;
+                        }
                         case ToolType.EditButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
                             {
+                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
                                 _dataConfig.ShowDialog( );
                             }
 
@@ -320,7 +331,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
+                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -330,7 +341,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
+                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -340,7 +351,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
+                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -386,9 +397,10 @@ namespace BudgetExecution
                         {
                             if( BindingSource?.DataSource != null )
                             {
-                                using( var _form = new ChartForm( BindingSource ) )
+                                using( var _chartForm = new ChartForm( ) )
                                 {
-                                    _form?.ShowDialog( );
+                                    _chartForm.BindingSource = BindingSource;
+                                    _chartForm?.ShowDialog( );
                                 }
 
                             }

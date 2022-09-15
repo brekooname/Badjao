@@ -155,8 +155,8 @@
             // DataTab
             // 
             this.DataTab.Controls.Add(this.FrameTable);
-            this.DataTab.Image = null;
-            this.DataTab.ImageSize = new System.Drawing.Size(16, 16);
+            this.DataTab.Image = global::BudgetExecution.Properties.Resources.Database;
+            this.DataTab.ImageSize = new System.Drawing.Size(12, 14);
             this.DataTab.Location = new System.Drawing.Point(0, 22);
             this.DataTab.Name = "DataTab";
             this.DataTab.ShowCloseButton = true;
@@ -783,12 +783,12 @@
             // SqlTab
             // 
             this.SqlTab.Controls.Add(this.SqlEditor);
-            this.SqlTab.Image = null;
-            this.SqlTab.ImageSize = new System.Drawing.Size(16, 16);
+            this.SqlTab.Image = global::BudgetExecution.Properties.Resources.Database;
+            this.SqlTab.ImageSize = new System.Drawing.Size(12, 14);
             this.SqlTab.Location = new System.Drawing.Point(0, 22);
             this.SqlTab.Name = "SqlTab";
             this.SqlTab.ShowCloseButton = true;
-            this.SqlTab.Size = new System.Drawing.Size(1374, 466);
+            this.SqlTab.Size = new System.Drawing.Size(1368, 466);
             this.SqlTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.SqlTab.TabForeColor = System.Drawing.Color.White;
             this.SqlTab.TabIndex = 5;
@@ -821,14 +821,14 @@
             this.SqlEditor.IndicatorMarginBackColor = System.Drawing.Color.Empty;
             this.SqlEditor.LineNumbersColor = System.Drawing.Color.CornflowerBlue;
             this.SqlEditor.LineNumbersFont = new System.Drawing.Font("Source Code Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SqlEditor.Location = new System.Drawing.Point(23, 37);
+            this.SqlEditor.Location = new System.Drawing.Point(149, 33);
             this.SqlEditor.Name = "SqlEditor";
             this.SqlEditor.RenderRightToLeft = false;
             this.SqlEditor.ScrollColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
             this.SqlEditor.ScrollPosition = new System.Drawing.Point(0, 0);
             this.SqlEditor.ScrollVisualStyle = Syncfusion.Windows.Forms.ScrollBarCustomDrawStyles.Office2016;
             this.SqlEditor.SelectionTextColor = System.Drawing.Color.White;
-            this.SqlEditor.Size = new System.Drawing.Size(1040, 413);
+            this.SqlEditor.Size = new System.Drawing.Size(1040, 421);
             this.SqlEditor.StatusBarSettings.CoordsPanel.Width = 150;
             this.SqlEditor.StatusBarSettings.EncodingPanel.Width = 100;
             this.SqlEditor.StatusBarSettings.FileNamePanel.Width = 100;
