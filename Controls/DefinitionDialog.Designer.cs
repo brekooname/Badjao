@@ -206,7 +206,7 @@
             this.CreateTableColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableColumnGroupBox.HeaderText = null;
             this.CreateTableColumnGroupBox.HoverText = null;
-            this.CreateTableColumnGroupBox.Image = null;
+            this.CreateTableColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.AddColumnIcon;
             this.CreateTableColumnGroupBox.Location = new System.Drawing.Point(187, 277);
             this.CreateTableColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableColumnGroupBox.Name = "CreateTableColumnGroupBox";
@@ -453,7 +453,7 @@
             this.CreateTableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableGroupBox.HeaderText = null;
             this.CreateTableGroupBox.HoverText = null;
-            this.CreateTableGroupBox.Image = null;
+            this.CreateTableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
             this.CreateTableGroupBox.Location = new System.Drawing.Point(816, 36);
             this.CreateTableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableGroupBox.Name = "CreateTableGroupBox";
@@ -582,7 +582,7 @@
             this.CreateTableProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.CreateTableProviderGroupBox.HeaderText = "";
             this.CreateTableProviderGroupBox.HoverText = null;
-            this.CreateTableProviderGroupBox.Image = null;
+            this.CreateTableProviderGroupBox.Image = global::BudgetExecution.Properties.Resources.ConnectionIcon;
             this.CreateTableProviderGroupBox.Location = new System.Drawing.Point(187, 38);
             this.CreateTableProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableProviderGroupBox.Name = "CreateTableProviderGroupBox";
@@ -718,7 +718,7 @@
             this.AlterCoumnTableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.AlterCoumnTableGroupBox.HeaderText = null;
             this.AlterCoumnTableGroupBox.HoverText = null;
-            this.AlterCoumnTableGroupBox.Image = null;
+            this.AlterCoumnTableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
             this.AlterCoumnTableGroupBox.Location = new System.Drawing.Point(816, 36);
             this.AlterCoumnTableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.AlterCoumnTableGroupBox.Name = "AlterCoumnTableGroupBox";
@@ -1069,7 +1069,7 @@
             this.AlterColumnProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.AlterColumnProviderGroupBox.HeaderText = "";
             this.AlterColumnProviderGroupBox.HoverText = null;
-            this.AlterColumnProviderGroupBox.Image = null;
+            this.AlterColumnProviderGroupBox.Image = global::BudgetExecution.Properties.Resources.ConnectionIcon;
             this.AlterColumnProviderGroupBox.Location = new System.Drawing.Point(187, 38);
             this.AlterColumnProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.AlterColumnProviderGroupBox.Name = "AlterColumnProviderGroupBox";
@@ -1428,7 +1428,7 @@
             this.DropTableTableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DropTableTableGroupBox.HeaderText = null;
             this.DropTableTableGroupBox.HoverText = null;
-            this.DropTableTableGroupBox.Image = null;
+            this.DropTableTableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
             this.DropTableTableGroupBox.Location = new System.Drawing.Point(816, 36);
             this.DropTableTableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DropTableTableGroupBox.Name = "DropTableTableGroupBox";
@@ -1557,7 +1557,7 @@
             this.DropTableProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.DropTableProviderGroupBox.HeaderText = "";
             this.DropTableProviderGroupBox.HoverText = null;
-            this.DropTableProviderGroupBox.Image = null;
+            this.DropTableProviderGroupBox.Image = global::BudgetExecution.Properties.Resources.ConnectionIcon;
             this.DropTableProviderGroupBox.Location = new System.Drawing.Point(187, 38);
             this.DropTableProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DropTableProviderGroupBox.Name = "DropTableProviderGroupBox";
@@ -1915,7 +1915,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.groupBox5.HeaderText = null;
             this.groupBox5.HoverText = null;
-            this.groupBox5.Image = null;
+            this.groupBox5.Image = global::BudgetExecution.Properties.Resources.TableIcon;
             this.groupBox5.Location = new System.Drawing.Point(816, 36);
             this.groupBox5.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox5.Name = "groupBox5";
@@ -2044,7 +2044,7 @@
             this.DeleteColumnTabProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.DeleteColumnTabProviderGroupBox.HeaderText = "";
             this.DeleteColumnTabProviderGroupBox.HoverText = null;
-            this.DeleteColumnTabProviderGroupBox.Image = null;
+            this.DeleteColumnTabProviderGroupBox.Image = global::BudgetExecution.Properties.Resources.ConnectionIcon;
             this.DeleteColumnTabProviderGroupBox.Location = new System.Drawing.Point(187, 38);
             this.DeleteColumnTabProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnTabProviderGroupBox.Name = "DeleteColumnTabProviderGroupBox";
@@ -2862,7 +2862,6 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }

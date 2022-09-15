@@ -113,7 +113,7 @@ namespace BudgetExecution
             RowsDefaultCellStyle.SelectionForeColor = Color.White;
             RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb( 55, 55, 55 );
+            AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb( 50, 50, 50 );
             AlternatingRowsDefaultCellStyle.ForeColor = Color.LightSteelBlue;
             AlternatingRowsDefaultCellStyle.Font = new Font( "Roboto", 8 );
             AlternatingRowsDefaultCellStyle.SelectionBackColor = Color.FromArgb( 22, 39, 70 );

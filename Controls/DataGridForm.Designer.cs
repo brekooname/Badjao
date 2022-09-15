@@ -62,8 +62,8 @@
             this.Separator7 = new BudgetExecution.ToolSeparator();
             this.LastButton = new BudgetExecution.ToolStripButton();
             this.Separator8 = new BudgetExecution.ToolSeparator();
-            this.Separator9 = new BudgetExecution.ToolSeparator();
             this.FilterDataButton = new BudgetExecution.ToolStripButton();
+            this.Separator9 = new BudgetExecution.ToolSeparator();
             this.Separator11 = new BudgetExecution.ToolSeparator();
             this.EditColumnButton = new BudgetExecution.ToolStripButton();
             this.Separator10 = new BudgetExecution.ToolSeparator();
@@ -84,14 +84,16 @@
             this.Separator23 = new BudgetExecution.ToolSeparator();
             this.SaveButton = new BudgetExecution.ToolStripButton();
             this.Separator25 = new BudgetExecution.ToolSeparator();
-            this.ExcelButton = new BudgetExecution.ToolStripButton();
+            this.EditSqlButton = new BudgetExecution.ToolStripButton();
             this.Separator13 = new BudgetExecution.ToolSeparator();
-            this.BrowseButton = new BudgetExecution.ToolStripButton();
+            this.ExcelButton = new BudgetExecution.ToolStripButton();
             this.Separator14 = new BudgetExecution.ToolSeparator();
+            this.BrowseButton = new BudgetExecution.ToolStripButton();
             this.Separator15 = new BudgetExecution.ToolSeparator();
             this.Separator18 = new BudgetExecution.ToolSeparator();
-            this.CalendarButton = new BudgetExecution.ToolStripButton();
             this.Separator26 = new BudgetExecution.ToolSeparator();
+            this.CalendarButton = new BudgetExecution.ToolStripButton();
+            this.Separator28 = new BudgetExecution.ToolSeparator();
             this.TableGroupBox = new BudgetExecution.GroupBox();
             this.TableListPanel = new BudgetExecution.Layout();
             this.TableListBox = new BudgetExecution.ListBox();
@@ -173,7 +175,7 @@
             this.DataGridGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DataGridGroupBox.HeaderText = null;
             this.DataGridGroupBox.HoverText = null;
-            this.DataGridGroupBox.Image = global::BudgetExecution.Properties.Resources.DataSet;
+            this.DataGridGroupBox.Image = global::BudgetExecution.Properties.Resources.DataSetIcon;
             this.DataGridGroupBox.Location = new System.Drawing.Point(50, 97);
             this.DataGridGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DataGridGroupBox.Name = "DataGridGroupBox";
@@ -235,7 +237,7 @@
             // DataGrid
             // 
             this.DataGrid.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 8F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LightSteelBlue;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
@@ -392,16 +394,18 @@
             this.Separator23,
             this.SaveButton,
             this.Separator25,
-            this.ExcelButton,
+            this.EditSqlButton,
             this.Separator13,
-            this.BrowseButton,
+            this.ExcelButton,
             this.Separator14,
-            this.CalculatorButton,
+            this.BrowseButton,
             this.Separator15,
-            this.ChartButton,
+            this.CalculatorButton,
             this.Separator18,
-            this.CalendarButton,
+            this.ChartButton,
             this.Separator26,
+            this.CalendarButton,
+            this.Separator28,
             this.HomeButton});
             this.ToolStrip.Label = this.Label;
             this.ToolStrip.LastButton = this.LastButton;
@@ -589,9 +593,9 @@
             this.Label.HoverText = null;
             this.Label.Margin = new System.Windows.Forms.Padding(5);
             this.Label.Name = "Label";
-            this.Label.Size = new System.Drawing.Size(80, 26);
+            this.Label.Size = new System.Drawing.Size(36, 26);
             this.Label.Tag = "";
-            this.Label.Text = "Data Tool Bar";
+            this.Label.Text = "Data ";
             this.Label.ToolTip = this.ToolTip;
             // 
             // Separator2
@@ -721,14 +725,6 @@
             this.Separator8.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator8.Size = new System.Drawing.Size(6, 36);
             // 
-            // Separator9
-            // 
-            this.Separator9.ForeColor = System.Drawing.Color.Black;
-            this.Separator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator9.Name = "Separator9";
-            this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator9.Size = new System.Drawing.Size(6, 36);
-            // 
             // FilterDataButton
             // 
             this.FilterDataButton.AutoToolTip = false;
@@ -747,6 +743,14 @@
             this.FilterDataButton.Size = new System.Drawing.Size(24, 26);
             this.FilterDataButton.ToolTip = this.ToolTip;
             this.FilterDataButton.ToolType = BudgetExecution.ToolType.FilterDataButton;
+            // 
+            // Separator9
+            // 
+            this.Separator9.ForeColor = System.Drawing.Color.Black;
+            this.Separator9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator9.Name = "Separator9";
+            this.Separator9.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator9.Size = new System.Drawing.Size(6, 36);
             // 
             // Separator11
             // 
@@ -1010,6 +1014,33 @@
             this.Separator25.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator25.Size = new System.Drawing.Size(6, 36);
             // 
+            // EditSqlButton
+            // 
+            this.EditSqlButton.AutoToolTip = false;
+            this.EditSqlButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.EditSqlButton.BindingSource = this.BindingSource;
+            this.EditSqlButton.DataFilter = null;
+            this.EditSqlButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EditSqlButton.Field = BudgetExecution.Field.AccountCode;
+            this.EditSqlButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.EditSqlButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.EditSqlButton.HoverText = "SQL Editor";
+            this.EditSqlButton.Image = global::BudgetExecution.Properties.Resources.EditButton;
+            this.EditSqlButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditSqlButton.Margin = new System.Windows.Forms.Padding(5);
+            this.EditSqlButton.Name = "EditSqlButton";
+            this.EditSqlButton.Size = new System.Drawing.Size(24, 26);
+            this.EditSqlButton.ToolTip = this.ToolTip;
+            this.EditSqlButton.ToolType = BudgetExecution.ToolType.EditSqlButton;
+            // 
+            // Separator13
+            // 
+            this.Separator13.ForeColor = System.Drawing.Color.Black;
+            this.Separator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator13.Name = "Separator13";
+            this.Separator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator13.Size = new System.Drawing.Size(6, 36);
+            // 
             // ExcelButton
             // 
             this.ExcelButton.AutoToolTip = false;
@@ -1029,13 +1060,13 @@
             this.ExcelButton.ToolTip = this.ToolTip;
             this.ExcelButton.ToolType = BudgetExecution.ToolType.ExcelButton;
             // 
-            // Separator13
+            // Separator14
             // 
-            this.Separator13.ForeColor = System.Drawing.Color.Black;
-            this.Separator13.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator13.Name = "Separator13";
-            this.Separator13.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator13.Size = new System.Drawing.Size(6, 36);
+            this.Separator14.ForeColor = System.Drawing.Color.Black;
+            this.Separator14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator14.Name = "Separator14";
+            this.Separator14.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator14.Size = new System.Drawing.Size(6, 36);
             // 
             // BrowseButton
             // 
@@ -1056,14 +1087,6 @@
             this.BrowseButton.ToolTip = this.ToolTip;
             this.BrowseButton.ToolType = BudgetExecution.ToolType.BrowseButton;
             // 
-            // Separator14
-            // 
-            this.Separator14.ForeColor = System.Drawing.Color.Black;
-            this.Separator14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator14.Name = "Separator14";
-            this.Separator14.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator14.Size = new System.Drawing.Size(6, 36);
-            // 
             // Separator15
             // 
             this.Separator15.ForeColor = System.Drawing.Color.Black;
@@ -1079,6 +1102,14 @@
             this.Separator18.Name = "Separator18";
             this.Separator18.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator18.Size = new System.Drawing.Size(6, 36);
+            // 
+            // Separator26
+            // 
+            this.Separator26.ForeColor = System.Drawing.Color.Black;
+            this.Separator26.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator26.Name = "Separator26";
+            this.Separator26.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator26.Size = new System.Drawing.Size(6, 36);
             // 
             // CalendarButton
             // 
@@ -1100,13 +1131,13 @@
             this.CalendarButton.ToolTip = this.ToolTip;
             this.CalendarButton.ToolType = BudgetExecution.ToolType.CalendarButton;
             // 
-            // Separator26
+            // Separator28
             // 
-            this.Separator26.ForeColor = System.Drawing.Color.Black;
-            this.Separator26.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator26.Name = "Separator26";
-            this.Separator26.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator26.Size = new System.Drawing.Size(6, 36);
+            this.Separator28.ForeColor = System.Drawing.Color.Black;
+            this.Separator28.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator28.Name = "Separator28";
+            this.Separator28.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator28.Size = new System.Drawing.Size(6, 36);
             // 
             // TableGroupBox
             // 
@@ -1131,7 +1162,7 @@
             this.TableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.TableGroupBox.HeaderText = null;
             this.TableGroupBox.HoverText = null;
-            this.TableGroupBox.Image = global::BudgetExecution.Properties.Resources.Table;
+            this.TableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
             this.TableGroupBox.Location = new System.Drawing.Point(1039, 97);
             this.TableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableGroupBox.Name = "TableGroupBox";
@@ -1216,7 +1247,7 @@
             this.TableListBox.ItemHeight = 30;
             this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.TableListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
             this.TableListBox.Location = new System.Drawing.Point(0, 0);
             this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableListBox.Name = "TableListBox";
@@ -1341,7 +1372,7 @@
             this.ColumnListBox.ItemHeight = 30;
             this.ColumnListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.ColumnListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ColumnListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.ColumnListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
             this.ColumnListBox.Location = new System.Drawing.Point(0, 0);
             this.ColumnListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnListBox.Name = "ColumnListBox";
@@ -1465,7 +1496,7 @@
             this.ValueListBox.ItemHeight = 30;
             this.ValueListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.ValueListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ValueListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.ValueListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
             this.ValueListBox.Location = new System.Drawing.Point(0, 0);
             this.ValueListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueListBox.Name = "ValueListBox";
@@ -1619,5 +1650,7 @@
         public ToolStripButton DeleteColumnButton;
         public ToolSeparator Separator27;
         public Label HeaderLabel;
+        public ToolStripButton EditSqlButton;
+        private ToolSeparator Separator28;
     }
 }
