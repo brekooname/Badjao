@@ -1774,8 +1774,13 @@
     <None Include="Resources\Images\Data\Export.png" />
     <None Include="Resources\Images\Data\Import.png" />
     <None Include="Resources\Images\Data\FilterData.png" />
+    <None Include="Resources\Images\Data\png\DataSet.png" />
+    <None Include="Resources\Images\Data\png\Menu.png" />
+    <None Include="Resources\Images\Data\png\Table.png" />
+    <None Include="Resources\Images\Data\png\Columns.png" />
     <Content Include="Resources\Images\Dialog\ico\ApplicationError.ico" />
     <None Include="Resources\Images\Interface\Save.png" />
+    <None Include="Resources\Images\Filter\png\Filter.png" />
     <Content Include="Resources\Images\Ninja\BudExNinjaGrey.ico" />
     <Content Include="Data\Database\Access\DataModels\Data.accdb" />
     <Content Include="Data\Database\SqlCe\DataModels\CREATE\TABLE\Allocations.sql" />

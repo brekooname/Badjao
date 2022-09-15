@@ -44,7 +44,7 @@
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
             this.ChartButton = new BudgetExecution.ToolStripButton();
-            this.DeleteButton = new BudgetExecution.ToolStripButton();
+            this.DeleteRecordButton = new BudgetExecution.ToolStripButton();
             this.DropDown = new BudgetExecution.ToolStripDropDown();
             this.EditButton = new BudgetExecution.ToolStripButton();
             this.FirstButton = new BudgetExecution.ToolStripButton();
@@ -173,7 +173,7 @@
             this.DataGridGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DataGridGroupBox.HeaderText = null;
             this.DataGridGroupBox.HoverText = null;
-            this.DataGridGroupBox.Image = null;
+            this.DataGridGroupBox.Image = global::BudgetExecution.Properties.Resources.DataSet;
             this.DataGridGroupBox.Location = new System.Drawing.Point(50, 97);
             this.DataGridGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DataGridGroupBox.Name = "DataGridGroupBox";
@@ -330,7 +330,7 @@
             this.ToolStrip.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
             this.ToolStrip.ChartButton = this.ChartButton;
             this.ToolStrip.DataFilter = null;
-            this.ToolStrip.DeleteButton = this.DeleteButton;
+            this.ToolStrip.DeleteButton = this.DeleteRecordButton;
             this.ToolStrip.DeleteColumnButton = null;
             this.ToolStrip.DeleteRecordButton = null;
             this.ToolStrip.DeleteTableButton = null;
@@ -368,9 +368,9 @@
             this.Separator7,
             this.LastButton,
             this.Separator8,
-            this.EditButton,
-            this.Separator9,
             this.FilterDataButton,
+            this.Separator9,
+            this.EditButton,
             this.Separator11,
             this.EditColumnButton,
             this.Separator10,
@@ -378,7 +378,7 @@
             this.Separator12,
             this.DeleteColumnButton,
             this.Separator27,
-            this.DeleteButton,
+            this.DeleteRecordButton,
             this.Separator19,
             this.CopyButton,
             this.Separator20,
@@ -474,24 +474,24 @@
             this.ChartButton.ToolTip = this.ToolTip;
             this.ChartButton.ToolType = BudgetExecution.ToolType.ChartButton;
             // 
-            // DeleteButton
+            // DeleteRecordButton
             // 
-            this.DeleteButton.AutoToolTip = false;
-            this.DeleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DeleteButton.BindingSource = this.BindingSource;
-            this.DeleteButton.DataFilter = null;
-            this.DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DeleteButton.Field = BudgetExecution.Field.AccountCode;
-            this.DeleteButton.Font = new System.Drawing.Font("Roboto", 9F);
-            this.DeleteButton.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.DeleteButton.HoverText = "Delete Record";
-            this.DeleteButton.Image = global::BudgetExecution.Properties.Resources.DeleteRecord;
-            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteButton.Margin = new System.Windows.Forms.Padding(5);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(24, 26);
-            this.DeleteButton.ToolTip = this.ToolTip;
-            this.DeleteButton.ToolType = BudgetExecution.ToolType.DeleteRecordButton;
+            this.DeleteRecordButton.AutoToolTip = false;
+            this.DeleteRecordButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteRecordButton.BindingSource = this.BindingSource;
+            this.DeleteRecordButton.DataFilter = null;
+            this.DeleteRecordButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DeleteRecordButton.Field = BudgetExecution.Field.AccountCode;
+            this.DeleteRecordButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.DeleteRecordButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.DeleteRecordButton.HoverText = "Delete Record";
+            this.DeleteRecordButton.Image = global::BudgetExecution.Properties.Resources.DeleteRecord;
+            this.DeleteRecordButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteRecordButton.Margin = new System.Windows.Forms.Padding(5);
+            this.DeleteRecordButton.Name = "DeleteRecordButton";
+            this.DeleteRecordButton.Size = new System.Drawing.Size(24, 26);
+            this.DeleteRecordButton.ToolTip = this.ToolTip;
+            this.DeleteRecordButton.ToolType = BudgetExecution.ToolType.DeleteRecordButton;
             // 
             // DropDown
             // 
@@ -1021,7 +1021,7 @@
             this.ExcelButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.ExcelButton.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.ExcelButton.HoverText = "Excel Export";
-            this.ExcelButton.Image = global::BudgetExecution.Properties.Resources.Export;
+            this.ExcelButton.Image = global::BudgetExecution.Properties.Resources.ExcelButton;
             this.ExcelButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExcelButton.Margin = new System.Windows.Forms.Padding(5);
             this.ExcelButton.Name = "ExcelButton";
@@ -1131,7 +1131,7 @@
             this.TableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.TableGroupBox.HeaderText = null;
             this.TableGroupBox.HoverText = null;
-            this.TableGroupBox.Image = null;
+            this.TableGroupBox.Image = global::BudgetExecution.Properties.Resources.Table;
             this.TableGroupBox.Location = new System.Drawing.Point(1039, 97);
             this.TableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableGroupBox.Name = "TableGroupBox";
@@ -1572,7 +1572,7 @@
         public ToolSeparator Separator9;
         public ToolStripButton RefreshButton;
         public ToolSeparator Separator10;
-        public ToolStripButton DeleteButton;
+        public ToolStripButton DeleteRecordButton;
         public ToolSeparator Separator11;
         public ToolStripButton SaveButton;
         public ToolSeparator Separator12;

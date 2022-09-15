@@ -15,12 +15,12 @@ namespace BudgetExecution
 
     [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public class QueryBase
+    public abstract class QueryBase
     {
         /// <summary>
         /// Gets the source.
         /// </summary>
-        public Source Source { get; set; }
+        public virtual Source Source { get; set; }
 
         /// <summary>
         /// Gets the Provider
@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// <value>
         /// The arguments.
         /// </value>
-        public IDictionary<string, object> Args { get; set; }
+        public virtual IDictionary<string, object> Args { get; set; }
 
         /// <summary>
         /// Gets the connection manager.
@@ -41,7 +41,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection manager.
         /// </value>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
+        public virtual IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// Gets the SQL statement.
@@ -49,7 +49,7 @@ namespace BudgetExecution
         /// <value>
         /// The SQL statement.
         /// </value>
-        public ISqlStatement SqlStatement { get; set; }
+        public virtual ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// Gets the connector.
@@ -57,7 +57,7 @@ namespace BudgetExecution
         /// <value>
         /// The connector.
         /// </value>
-        public IConnectionFactory ConnectionFactory { get; set; }
+        public virtual IConnectionFactory ConnectionFactory { get; set; }
 
         /// <summary>
         /// Gets the commander.
@@ -65,7 +65,7 @@ namespace BudgetExecution
         /// <value>
         /// The commander.
         /// </value>
-        public ICommandBuilder CommandBuilder { get; set; }
+        public virtual ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets or sets the connection.
@@ -73,7 +73,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection.
         /// </value>
-        public DbConnection DataConnection { get; set; }
+        public virtual DbConnection DataConnection { get; set; }
 
         /// <summary>
         /// Gets the command.
@@ -81,7 +81,7 @@ namespace BudgetExecution
         /// <value>
         /// The command.
         /// </value>
-        public DbCommand DataCommand { get; set; }
+        public virtual DbCommand DataCommand { get; set; }
         
         /// <summary>
         /// Gets the adapter.
@@ -89,7 +89,7 @@ namespace BudgetExecution
         /// <value>
         /// The adapter.
         /// </value>
-        public DbDataAdapter DataAdapter { get; set; }
+        public virtual DbDataAdapter DataAdapter { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is disposed.
@@ -104,7 +104,7 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </value>
-        public bool IsDisposed { get; set; }
+        public virtual bool IsDisposed { get; set; }
 
         /// <summary>
         /// Gets or sets the Data reader.
@@ -112,12 +112,12 @@ namespace BudgetExecution
         /// <value>
         /// The Data reader.
         /// </value>
-        public DbDataReader DataReader { get; set; }
+        public virtual DbDataReader DataReader { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
-        public QueryBase()
+        protected QueryBase()
         {
         }
 
@@ -127,7 +127,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
-        public QueryBase( Source source, Provider provider = Provider.SQLite,
+         protected QueryBase( Source source, Provider provider = Provider.SQLite,
             SQL commandType = SQL.SELECT )
         {
         }
@@ -139,7 +139,7 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
-        public QueryBase( Source source, Provider provider, IDictionary<string, object> dict,
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandType )
         {
             Source = source;
@@ -157,7 +157,7 @@ namespace BudgetExecution
         /// <param name = "provider" > </param>
         /// <param name="sqlStatement">The SQL statement.</param>
         /// <param name = "source" > </param>
-        public QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
+         protected QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
         {
             Source = source;
             Provider = provider;
@@ -174,7 +174,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
-        public QueryBase( Source source, Provider provider, IDictionary<string, object> dict )
+         protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict )
         {
             Source = source;
             Provider = provider;
@@ -193,7 +193,7 @@ namespace BudgetExecution
         /// <param name = "updates" > </param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-        public QueryBase( Source source, Provider provider, IDictionary<string, object> updates, 
+         protected  QueryBase( Source source, Provider provider, IDictionary<string, object> updates, 
             IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
             Source = source;
@@ -205,7 +205,7 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-        public QueryBase( Source source, Provider provider, IEnumerable<string> columns,
+         protected QueryBase( Source source, Provider provider, IEnumerable<string> columns,
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
         {
             Source = source;
@@ -217,7 +217,7 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-        public QueryBase( Source source, Provider provider, string sqlText )
+         protected QueryBase( Source source, Provider provider, string sqlText )
         {
             Source = source;
             Provider = provider;
@@ -234,7 +234,7 @@ namespace BudgetExecution
         /// <param name="fullPath">The full path.</param>
         /// <param name = "sqlText" > </param>
         /// <param name="commandType">Type of the command.</param>
-        public QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
+         protected QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
             Args = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
@@ -251,7 +251,7 @@ namespace BudgetExecution
         /// <param name="fullPath">The full path.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <param name="dict">The dictionary.</param>
-        public QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
+         protected QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
         {
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
@@ -262,27 +262,28 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-        public QueryBase( ISqlStatement sqlStatement )
+         protected QueryBase( ISqlStatement sqlStatement )
         {
-            DataConnection = ConnectionBuilder.Connection;
             Args = null;
             Source = sqlStatement.Source;
             Provider = sqlStatement.Provider;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
+            DataConnection = ConnectionBuilder.Connection;
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( sqlStatement );
         }
+
         /// <inheritdoc/>
         /// <summary>
         /// Gets the connection.
         /// </summary>
         /// <returns>
         /// </returns>
-        public DbConnection GetConnection()
+        public DbConnection GetConnection( )
         {
             try
             {
-                return ConnectionBuilder?.Connection ?? default( DbConnection );
+                return DataConnection ?? default( DbConnection );
             }
             catch( Exception ex )
             {
@@ -301,17 +302,18 @@ namespace BudgetExecution
         {
             if( Enum.IsDefined( typeof( Provider ), Provider ) 
                 && !string.IsNullOrEmpty( SqlStatement?.CommandText ) 
-                && ConnectionBuilder?.Connection != null )
+                && DataConnection != null )
             {
                 try
                 {
                     var _commandText = SqlStatement.CommandText;
+
                     switch( Provider )
                     {
                         case Provider.Access:
                         {
                             var _connection = ConnectionBuilder.Connection as OleDbConnection;
-                            return new OleDbDataAdapter( _commandText, _connection ); 
+                            return new OleDbDataAdapter( _commandText, _connection );
                         }
                         case Provider.SQLite:
                         {

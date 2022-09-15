@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DataRow> GetData( )
+        public virtual IEnumerable<DataRow> GetData( )
         {
             try
             {
@@ -56,7 +56,7 @@ namespace BudgetExecution
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        public DataTable GetDataTable( )
+        public virtual DataTable GetDataTable( )
         {
             if ( Enum.IsDefined( typeof( Provider ), Provider ) 
                 && Enum.IsDefined( typeof( Source ), Source  ) 
@@ -91,7 +91,7 @@ namespace BudgetExecution
         /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
-        public DataSet GetDataSet( )
+        public virtual DataSet GetDataSet( )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider )
                 && Enum.IsDefined( typeof( Source ), Source )
@@ -102,7 +102,8 @@ namespace BudgetExecution
                     DataSet = new DataSet( $"{ Provider }" );
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
-                    using( var _adapter = Query.GetAdapter(  ) )
+
+                    using( var _adapter = Query.GetAdapter(   ) )
                     {
                         _adapter?.Fill( DataSet, DataTable?.TableName );
                         SetColumnCaptions( DataTable );
@@ -126,7 +127,7 @@ namespace BudgetExecution
         /// Sets the column captions.
         /// </summary>
         /// <param name="dataTable">The Data table.</param>
-        public void SetColumnCaptions( DataTable dataTable )
+        public virtual void SetColumnCaptions( DataTable dataTable )
         {
             if( dataTable?.Rows?.Count > 0 )
             {
@@ -137,23 +138,8 @@ namespace BudgetExecution
                         if( column != null 
                             && string.IsNullOrEmpty( column.Caption ) )
                         {
-                            switch( column.ColumnName.Length )
-                            {
-                                case 1:
-                                case 2:
-                                case 3:
-                                case 4:
-                                {
-                                    var _caption = column.ColumnName.ToUpper( );
-                                    column.Caption = _caption;
-                                    continue;
-                                }
-                                default:
-                                {
-                                    column.Caption = column.ColumnName.SplitPascal( );
-                                    continue;
-                                }
-                            }
+                            var _caption = column.ColumnName.SplitPascal( );
+                            column.Caption = _caption;
                         }
                     }
                 }
@@ -168,7 +154,7 @@ namespace BudgetExecution
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        public DataColumnCollection GetTableSchema( )
+        public virtual DataColumnCollection GetTableSchema( )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider ) 
                 && Enum.IsDefined( typeof( Source ), Source ) 
@@ -204,7 +190,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRows">The Data rows.</param>
         /// <returns></returns>
-        public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
+        public virtual IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
             if( dataRows?.Any( ) == true
                 && dataRows?.HasPrimaryKey( ) == true )

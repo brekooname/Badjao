@@ -175,6 +175,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -184,6 +185,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -195,6 +197,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -204,6 +207,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -213,6 +217,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -222,6 +227,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -231,6 +237,7 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
                             {
+                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
                             }
 
@@ -238,7 +245,7 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteRecordButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig?.ShowDialog( );
                             }
@@ -247,7 +254,7 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
                                 _dataConfig?.ShowDialog( );
                             }
@@ -294,7 +301,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource  ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig.ShowDialog( );
                             }
 
@@ -304,7 +310,6 @@ namespace BudgetExecution
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType, BindingSource ) )
                             {
-                                _dataConfig.BindingSource = BindingSource;
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
                                 _dataConfig?.ShowDialog( );
                             }

@@ -162,17 +162,10 @@
                 {
                     switch( ToolType )
                     {
+                        case ToolType.CopyButton:
                         case ToolType.EditRecordButton:
                         {
-                            DataTab.Text = "Edit Data Record";
-                            ActiveTab = DataTab;
-                            SelectButton.Text = "Save";
-                            SqlTab.TabVisible = false;
-                            break;
-                        }
-                        case ToolType.CopyButton:
-                        {
-                            DataTab.Text = "Edit/Save Copied Data";
+                            DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
                             SqlTab.TabVisible = false;
@@ -196,7 +189,7 @@
                         }
                         default:
                         {
-                            DataTab.Text = "Edit Data Record";
+                            DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
                             SqlTab.TabVisible = false;
@@ -248,44 +241,44 @@
                     if( _cols.Length >= 43 )
                     {
                         FrameTable.RowCount = 7;
-                        FrameTable.Size = new Size( 1051, 425 );
+                        FrameTable.Size = new Size( 1362, 399 );
                         FrameTable.Location = new Point( 12, 25 );
                     }
                     else if( _cols.Length < 43 && _cols.Length >= 35 )
                     {
                         FrameTable.RowCount = 6;
-                        FrameTable.Size = new Size( 1051, 390 );
+                        FrameTable.Size = new Size( 1362, 364 );
                         FrameTable.Location = new Point( 12, 45 );
                     }
                     else if( _cols.Length < 35 && _cols.Length >= 28 )
                     {
                         FrameTable.RowCount = 5;
-                        FrameTable.Size = new Size( 1051, 325 );
+                        FrameTable.Size = new Size( 1362, 300 );
                         FrameTable.Location = new Point( 12, 85 );
                     }
                     else if( _cols.Length < 28 && _cols.Length >= 21 )
                     {
                         FrameTable.RowCount = 4;
-                        FrameTable.Size = new Size( 1051, 325 );
+                        FrameTable.Size = new Size( 1362, 300 );
                         FrameTable.Location = new Point( 12, 105 );
                     }
                     else if( _cols.Length < 21 && _cols.Length >= 14 )
                     {
                         FrameTable.RowCount = 3;
-                        FrameTable.Size = new Size( 1051, 225 );
+                        FrameTable.Size = new Size( 1362, 225 );
                         FrameTable.Location = new Point( 12, 125 );
                     }
                     else if( _cols.Length < 14 && _cols.Length > 7 )
                     {
                         FrameTable.RowCount = 2;
                         FrameTable.Location = new Point( 12, 125 );
-                        FrameTable.Size = new Size( 1051, 225 );
+                        FrameTable.Size = new Size( 1362, 225 );
                     }
                     else if( _cols.Length <= 7 )
                     {
                         FrameTable.RowCount = 1;
                         FrameTable.Location = new Point( 12, 125 );
-                        FrameTable.Size = new Size( 1051, 225 );
+                        FrameTable.Size = new Size( 1362, 255 );
                     }
                 }
                 catch( Exception ex )
