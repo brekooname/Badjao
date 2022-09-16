@@ -141,6 +141,7 @@
             try
             {
                 SetActivetTab( );
+                SetFrameColors( );
                 SetFrameVisibility( );
                 SetTableLocation( );
                 BindRecordData( );
@@ -168,6 +169,7 @@
                             DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
+                            CloseButton.Text = "Exit";
                             SqlTab.TabVisible = false;
                             break;
                         }
@@ -176,6 +178,7 @@
                             DataTab.Text = "Delete Data";
                             ActiveTab = DataTab;
                             SelectButton.Text = "Delete";
+                            CloseButton.Text = "Exit";
                             SqlTab.TabVisible = false;
                             break;
                         }
@@ -184,6 +187,7 @@
                             SqlTab.Text = "SQL Editor";
                             ActiveTab = SqlTab;
                             SelectButton.Text = "Save";
+                            CloseButton.Text = "Exit";
                             DataTab.TabVisible = false;
                             break;
                         }
@@ -192,6 +196,7 @@
                             DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
                             SelectButton.Text = "Save";
+                            CloseButton.Text = "Exit";
                             SqlTab.TabVisible = false;
                             break;
                         }
@@ -224,6 +229,21 @@
             catch( Exception ex )
             {
                 Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the frame colors.
+        /// </summary>
+        public void SetFrameColors( )
+        {
+            if( Frames?.Any(  ) == true )
+            {
+                foreach( var frame in Frames )
+                {
+                    frame.Label.ForeColor = Color.LightSteelBlue;
+                    frame.TextBox.ForeColor = Color.White;
+                }
             }
         }
 
@@ -390,7 +410,7 @@
                         {
                             _frame.Index = _counter;
                             _frame.BindingSource = BindingSource;
-                            _frames.Add( _control as Frame );
+                            _frames.Add( _frame );
                             _counter++;
                         }
 

@@ -59,6 +59,7 @@
                 SetGroupBoxProperties( );
                 SetRadioButtonProperties( );
                 SetActivetTab(  );
+                CloseButton.Text = "Exit";
             }
             catch( Exception ex )
             {
@@ -71,7 +72,7 @@
         /// </summary>
         public void SetGroupBoxProperties( )
         {
-            if ( GroupBoxes?.Values?.Any( ) == true )
+            if( GroupBoxes?.Values?.Any( ) == true )
             {
                 try
                 {
@@ -102,70 +103,70 @@
                     {
                         case ToolType.AddColumnButton:
                         {
-                            AlterTabPage.Text = "Add Data Column";
-                            ActiveTab = AlterTabPage;
-                            DropTabPage.TabVisible = false;
+                            EditColumnTabPage.Text = "Add Column";
+                            ActiveTab = EditColumnTabPage;
+                            DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
-                            CreateTabPage.TabVisible = false;
+                            CreateTableTabPage.TabVisible = false;
 
                             break;
                         }
                         case ToolType.AddDatabaseButton:
                         {
-                            CreateTabPage.Text = "Add Database";
-                            ActiveTab = CreateTabPage;
-                            AlterTabPage.TabVisible = false;
-                            DropTabPage.TabVisible = false;
+                            CreateTableTabPage.Text = "Add Database";
+                            ActiveTab = CreateTableTabPage;
+                            EditColumnTabPage.TabVisible = false;
+                            DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
 
                             break;
                         }
                         case ToolType.AddTableButton:
                         {
-                            CreateTabPage.Text = "Add Data Table";
-                            ActiveTab = CreateTabPage;
-                            AlterTabPage.TabVisible = false;
-                            DropTabPage.TabVisible = false;
+                            CreateTableTabPage.Text = "Add Table";
+                            ActiveTab = CreateTableTabPage;
+                            EditColumnTabPage.TabVisible = false;
+                            DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
 
                             break;
                         }
                         case ToolType.EditColumnButton:
                         {
-                            AlterTabPage.Text = "Rename Data Column";
-                            ActiveTab = AlterTabPage;
-                            CreateTabPage.TabVisible = false;
-                            DropTabPage.TabVisible = false;
+                            EditColumnTabPage.Text = "Rename Column";
+                            ActiveTab = EditColumnTabPage;
+                            CreateTableTabPage.TabVisible = false;
+                            DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
 
                             break;
                         }
                         case ToolType.DeleteColumnButton:
                         {
-                            DeleteColumnTabPage.Text = "Delete Data Column";
+                            DeleteColumnTabPage.Text = "Delete Column";
                             ActiveTab = DeleteColumnTabPage;
-                            CreateTabPage.TabVisible = false;
-                            DropTabPage.TabVisible = false;
-                            AlterTabPage.TabVisible = false;
+                            CreateTableTabPage.TabVisible = false;
+                            DeleteTableTabPage.TabVisible = false;
+                            EditColumnTabPage.TabVisible = false;
 
                             break;
                         }
                         case ToolType.DeleteTableButton:
                         {
-                            DropTabPage.Text = "Drop Data Table";
-                            ActiveTab = DropTabPage;
-                            CreateTabPage.TabVisible = false;
-                            AlterTabPage.TabVisible = false;
+                            DeleteTableTabPage.Text = "Delete Table";
+                            ActiveTab = DeleteTableTabPage;
+                            CreateTableTabPage.TabVisible = false;
+                            EditColumnTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
 
                             break;
                         }
                         case ToolType.DeleteDatabaseButton:
                         {
-                            DropTabPage.Text = "Delete Database";
-                            ActiveTab = DropTabPage;
-                            CreateTabPage.TabVisible = false;
-                            AlterTabPage.TabVisible = false;
+                            DeleteTableTabPage.Text = "Delete Database";
+                            ActiveTab = DeleteTableTabPage;
+                            CreateTableTabPage.TabVisible = false;
+                            EditColumnTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
 
                             break;

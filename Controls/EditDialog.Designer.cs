@@ -155,8 +155,8 @@
             // DataTab
             // 
             this.DataTab.Controls.Add(this.FrameTable);
-            this.DataTab.Image = global::BudgetExecution.Properties.Resources.Database;
-            this.DataTab.ImageSize = new System.Drawing.Size(12, 14);
+            this.DataTab.Image = global::BudgetExecution.Properties.Resources.DataSetIcon;
+            this.DataTab.ImageSize = new System.Drawing.Size(14, 14);
             this.DataTab.Location = new System.Drawing.Point(0, 22);
             this.DataTab.Name = "DataTab";
             this.DataTab.ShowCloseButton = true;
@@ -164,7 +164,7 @@
             this.DataTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.DataTab.TabForeColor = System.Drawing.Color.White;
             this.DataTab.TabIndex = 8;
-            this.DataTab.Text = "Editor";
+            this.DataTab.Text = "  Edit Mode";
             this.DataTab.ThemesEnabled = false;
             // 
             // FrameTable
@@ -783,8 +783,8 @@
             // SqlTab
             // 
             this.SqlTab.Controls.Add(this.SqlEditor);
-            this.SqlTab.Image = global::BudgetExecution.Properties.Resources.Database;
-            this.SqlTab.ImageSize = new System.Drawing.Size(12, 14);
+            this.SqlTab.Image = global::BudgetExecution.Properties.Resources.DataSetIcon;
+            this.SqlTab.ImageSize = new System.Drawing.Size(14, 14);
             this.SqlTab.Location = new System.Drawing.Point(0, 22);
             this.SqlTab.Name = "SqlTab";
             this.SqlTab.ShowCloseButton = true;
@@ -792,7 +792,7 @@
             this.SqlTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.SqlTab.TabForeColor = System.Drawing.Color.White;
             this.SqlTab.TabIndex = 5;
-            this.SqlTab.Text = "SQL Editor";
+            this.SqlTab.Text = "  SQL Mode";
             this.SqlTab.ThemesEnabled = false;
             // 
             // SqlEditor
@@ -1578,7 +1578,6 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }

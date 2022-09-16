@@ -107,7 +107,7 @@
             this.TextBox.DataFilter = null;
             this.TextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TextBox.Field = BudgetExecution.Field.AccountCode;
-            this.TextBox.Font = new System.Drawing.Font("Roboto", 9F);
+            this.TextBox.Font = new System.Drawing.Font("Roboto Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.TextBox.HoverText = null;
             this.TextBox.Image = null;
