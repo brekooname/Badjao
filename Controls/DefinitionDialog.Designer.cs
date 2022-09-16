@@ -168,7 +168,8 @@
             this.TabControl.ThemeStyle.TabStyle.ActiveBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
             this.TabControl.ThemeStyle.TabStyle.ActiveCloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
             this.TabControl.ThemeStyle.TabStyle.ActiveCloseButtonForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TabControl.ThemeStyle.TabStyle.ActiveForeColor = System.Drawing.Color.White;
+            this.TabControl.ThemeStyle.TabStyle.ActiveFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TabControl.ThemeStyle.TabStyle.ActiveForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.TabControl.ThemeStyle.TabStyle.InactiveBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             // 
             // CreateTableTabPage
@@ -185,7 +186,7 @@
             this.CreateTableTabPage.ShowCloseButton = true;
             this.CreateTableTabPage.Size = new System.Drawing.Size(1368, 466);
             this.CreateTableTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTableTabPage.TabForeColor = System.Drawing.Color.White;
+            this.CreateTableTabPage.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CreateTableTabPage.TabIndex = 3;
             this.CreateTableTabPage.Text = "Create Table";
             this.CreateTableTabPage.ThemesEnabled = false;
@@ -656,7 +657,7 @@
             this.EditColumnTabPage.ShowCloseButton = true;
             this.EditColumnTabPage.Size = new System.Drawing.Size(1368, 466);
             this.EditColumnTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.EditColumnTabPage.TabForeColor = System.Drawing.Color.White;
+            this.EditColumnTabPage.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.EditColumnTabPage.TabIndex = 4;
             this.EditColumnTabPage.Text = "Edit Column";
             this.EditColumnTabPage.ThemesEnabled = false;
@@ -1144,7 +1145,7 @@
             this.DeleteTableTabPage.ShowCloseButton = true;
             this.DeleteTableTabPage.Size = new System.Drawing.Size(1368, 466);
             this.DeleteTableTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DeleteTableTabPage.TabForeColor = System.Drawing.Color.White;
+            this.DeleteTableTabPage.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.DeleteTableTabPage.TabIndex = 6;
             this.DeleteTableTabPage.Text = "Delete Table";
             this.DeleteTableTabPage.ThemesEnabled = false;
@@ -1631,7 +1632,7 @@
             this.DeleteColumnTabPage.ShowCloseButton = true;
             this.DeleteColumnTabPage.Size = new System.Drawing.Size(1368, 466);
             this.DeleteColumnTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DeleteColumnTabPage.TabForeColor = System.Drawing.Color.White;
+            this.DeleteColumnTabPage.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.DeleteColumnTabPage.TabIndex = 7;
             this.DeleteColumnTabPage.Text = "Delete Column";
             this.DeleteColumnTabPage.ThemesEnabled = false;

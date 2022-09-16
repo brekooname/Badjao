@@ -162,7 +162,7 @@
             this.DataTab.ShowCloseButton = true;
             this.DataTab.Size = new System.Drawing.Size(1368, 466);
             this.DataTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.DataTab.TabForeColor = System.Drawing.Color.White;
+            this.DataTab.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.DataTab.TabIndex = 8;
             this.DataTab.Text = "  Edit Mode";
             this.DataTab.ThemesEnabled = false;
@@ -790,7 +790,7 @@
             this.SqlTab.ShowCloseButton = true;
             this.SqlTab.Size = new System.Drawing.Size(1368, 466);
             this.SqlTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.SqlTab.TabForeColor = System.Drawing.Color.White;
+            this.SqlTab.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.SqlTab.TabIndex = 5;
             this.SqlTab.Text = "  SQL Mode";
             this.SqlTab.ThemesEnabled = false;

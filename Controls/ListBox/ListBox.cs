@@ -97,9 +97,10 @@ namespace BudgetExecution
             // Item SeriesConfiguration
             ItemHeight = 30;
             ItemLineAlignment = StringAlignment.Center;
-            ItemAlternate = Color.FromArgb( 20, 20, 20 );
+            ItemAlternate = Color.FromArgb( 25, 25, 25 );
             ItemNormal = Color.FromArgb( 15, 15, 15 );
             ItemSelected = Color.FromArgb( 22, 39, 70  );
+            AlternateColors = true;
         }
 
         /// <summary>

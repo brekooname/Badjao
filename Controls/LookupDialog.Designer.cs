@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LookupDialog));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TabControl = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.LookupTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
@@ -76,7 +77,7 @@
             // 
             this.TabControl.ActiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TabControl.BeforeTouchSize = new System.Drawing.Size(988, 488);
+            this.TabControl.BeforeTouchSize = new System.Drawing.Size(1368, 488);
             this.TabControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TabControl.CanOverrideStyle = true;
             this.TabControl.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -89,7 +90,7 @@
             this.TabControl.ItemSize = new System.Drawing.Size(158, 23);
             this.TabControl.Location = new System.Drawing.Point(0, 0);
             this.TabControl.Name = "TabControl";
-            this.TabControl.Size = new System.Drawing.Size(988, 488);
+            this.TabControl.Size = new System.Drawing.Size(1368, 488);
             this.TabControl.TabIndex = 8;
             this.TabControl.TabPanelBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.TabStyle = typeof(Syncfusion.Windows.Forms.Tools.TabRendererMetro);
@@ -116,14 +117,14 @@
             this.LookupTabPage.Controls.Add(this.ColumnGroupBox);
             this.LookupTabPage.Controls.Add(this.ProviderGroupBox);
             this.LookupTabPage.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.LookupTabPage.Image = null;
-            this.LookupTabPage.ImageSize = new System.Drawing.Size(10, 11);
+            this.LookupTabPage.Image = global::BudgetExecution.Properties.Resources.DataSearch;
+            this.LookupTabPage.ImageSize = new System.Drawing.Size(12, 12);
             this.LookupTabPage.Location = new System.Drawing.Point(0, 22);
             this.LookupTabPage.Name = "LookupTabPage";
             this.LookupTabPage.ShowCloseButton = true;
-            this.LookupTabPage.Size = new System.Drawing.Size(988, 466);
+            this.LookupTabPage.Size = new System.Drawing.Size(1368, 466);
             this.LookupTabPage.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.LookupTabPage.TabForeColor = System.Drawing.Color.White;
+            this.LookupTabPage.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.LookupTabPage.TabIndex = 2;
             this.LookupTabPage.Text = "  Look Up";
             this.LookupTabPage.ThemesEnabled = false;
@@ -150,14 +151,14 @@
             this.TableGroupBox.HeaderText = null;
             this.TableGroupBox.HoverText = null;
             this.TableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
-            this.TableGroupBox.Location = new System.Drawing.Point(543, 44);
+            this.TableGroupBox.Location = new System.Drawing.Point(712, 44);
             this.TableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableGroupBox.Name = "TableGroupBox";
             this.TableGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.TableGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.TableGroupBox.Separator = true;
             this.TableGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TableGroupBox.Size = new System.Drawing.Size(377, 189);
+            this.TableGroupBox.Size = new System.Drawing.Size(417, 189);
             this.TableGroupBox.TabIndex = 4;
             this.TableGroupBox.Text = "  Tables";
             this.TableGroupBox.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -201,7 +202,7 @@
             this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableListBox.Name = "TableListBox";
             this.TableListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.TableListBox.Size = new System.Drawing.Size(348, 139);
+            this.TableListBox.Size = new System.Drawing.Size(388, 139);
             this.TableListBox.TabIndex = 1;
             this.TableListBox.Text = "Tables";
             this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -255,14 +256,14 @@
             this.ValueGroupBox.HeaderText = null;
             this.ValueGroupBox.HoverText = null;
             this.ValueGroupBox.Image = global::BudgetExecution.Properties.Resources.RowIcon;
-            this.ValueGroupBox.Location = new System.Drawing.Point(543, 271);
+            this.ValueGroupBox.Location = new System.Drawing.Point(712, 259);
             this.ValueGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueGroupBox.Name = "ValueGroupBox";
             this.ValueGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.ValueGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.ValueGroupBox.Separator = true;
             this.ValueGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ValueGroupBox.Size = new System.Drawing.Size(377, 186);
+            this.ValueGroupBox.Size = new System.Drawing.Size(417, 186);
             this.ValueGroupBox.TabIndex = 3;
             this.ValueGroupBox.Text = "  Values";
             this.ValueGroupBox.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -306,7 +307,7 @@
             this.ValueListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueListBox.Name = "ValueListBox";
             this.ValueListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.ValueListBox.Size = new System.Drawing.Size(348, 139);
+            this.ValueListBox.Size = new System.Drawing.Size(388, 139);
             this.ValueListBox.TabIndex = 2;
             this.ValueListBox.Text = "listBox1";
             this.ValueListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -341,7 +342,7 @@
             this.ColumnGroupBox.HeaderText = null;
             this.ColumnGroupBox.HoverText = null;
             this.ColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
-            this.ColumnGroupBox.Location = new System.Drawing.Point(72, 271);
+            this.ColumnGroupBox.Location = new System.Drawing.Point(177, 259);
             this.ColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnGroupBox.Name = "ColumnGroupBox";
             this.ColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
@@ -429,7 +430,7 @@
             this.ProviderGroupBox.HeaderText = "";
             this.ProviderGroupBox.HoverText = null;
             this.ProviderGroupBox.Image = global::BudgetExecution.Properties.Resources.ConnectionIcon;
-            this.ProviderGroupBox.Location = new System.Drawing.Point(72, 44);
+            this.ProviderGroupBox.Location = new System.Drawing.Point(180, 44);
             this.ProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ProviderGroupBox.Name = "ProviderGroupBox";
             this.ProviderGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
@@ -912,7 +913,7 @@
             this.SelectButton.HoverText = "Not Yet Implemented!";
             this.SelectButton.Image = null;
             this.SelectButton.Images = null;
-            this.SelectButton.Location = new System.Drawing.Point(72, 491);
+            this.SelectButton.Location = new System.Drawing.Point(72, 531);
             this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
             this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.SelectButton.Name = "SelectButton";
@@ -953,7 +954,7 @@
             this.RefreshButton.HoverText = "Not Yet Implemented!";
             this.RefreshButton.Image = null;
             this.RefreshButton.Images = null;
-            this.RefreshButton.Location = new System.Drawing.Point(421, 491);
+            this.RefreshButton.Location = new System.Drawing.Point(611, 531);
             this.RefreshButton.Margin = new System.Windows.Forms.Padding(0);
             this.RefreshButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.RefreshButton.Name = "RefreshButton";
@@ -994,7 +995,7 @@
             this.CloseButton.HoverText = "Close Window";
             this.CloseButton.Image = null;
             this.CloseButton.Images = null;
-            this.CloseButton.Location = new System.Drawing.Point(802, 491);
+            this.CloseButton.Location = new System.Drawing.Point(1182, 531);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
             this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CloseButton.Name = "CloseButton";
@@ -1194,14 +1195,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.ClientSize = new System.Drawing.Size(988, 548);
+            this.ClientSize = new System.Drawing.Size(1368, 588);
             this.ControlBox = false;
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.TabControl);
@@ -1210,10 +1211,11 @@
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Name = "LookupDialog";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
             this.TabControl.ResumeLayout(false);
