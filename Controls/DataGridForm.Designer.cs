@@ -95,13 +95,13 @@
             this.CalendarButton = new BudgetExecution.ToolStripButton();
             this.Separator28 = new BudgetExecution.ToolSeparator();
             this.TableGroupBox = new BudgetExecution.GroupBox();
+            this.TableListBox = new BudgetExecution.ListBox();
             this.ColumnGroupBox = new BudgetExecution.GroupBox();
             this.ColumnListBox = new BudgetExecution.ListBox();
             this.ValueGroupBox = new BudgetExecution.GroupBox();
+            this.ValueListBox = new BudgetExecution.ListBox();
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.Separator17 = new BudgetExecution.ToolSeparator();
-            this.TableListBox = new BudgetExecution.ListBox();
-            this.ValueListBox = new BudgetExecution.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.DataGridGroupBox.SuspendLayout();
             this.GridPanel.SuspendLayout();
@@ -1179,6 +1179,45 @@
             this.TableGroupBox.TitleBoxHeight = 30;
             this.TableGroupBox.ToolTip = null;
             // 
+            // TableListBox
+            // 
+            this.TableListBox.AlternateColors = true;
+            this.TableListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.BindingSource = null;
+            this.TableListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TableListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.TableListBox.Border.HoverVisible = false;
+            this.TableListBox.Border.Rounding = 6;
+            this.TableListBox.Border.Thickness = 1;
+            this.TableListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.TableListBox.Border.Visible = false;
+            this.TableListBox.DataFilter = null;
+            this.TableListBox.Field = BudgetExecution.Field.RpioActivityCode;
+            this.TableListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.TableListBox.HoverText = null;
+            this.TableListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.TableListBox.ItemHeight = 30;
+            this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
+            this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            this.TableListBox.Location = new System.Drawing.Point(6, 35);
+            this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.TableListBox.Name = "TableListBox";
+            this.TableListBox.Numeric = BudgetExecution.Numeric.NS;
+            this.TableListBox.Size = new System.Drawing.Size(325, 113);
+            this.TableListBox.TabIndex = 2;
+            this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.TableListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableListBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableListBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.TableListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.TableListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.TableListBox.ToolTip = null;
+            // 
             // ColumnGroupBox
             // 
             this.ColumnGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1310,61 +1349,6 @@
             this.ValueGroupBox.TitleBoxHeight = 30;
             this.ValueGroupBox.ToolTip = null;
             // 
-            // Separator16
-            // 
-            this.Separator16.ForeColor = System.Drawing.Color.Black;
-            this.Separator16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator16.Name = "Separator16";
-            this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator16.Size = new System.Drawing.Size(6, 73);
-            // 
-            // Separator17
-            // 
-            this.Separator17.ForeColor = System.Drawing.Color.Black;
-            this.Separator17.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.Separator17.Name = "Separator17";
-            this.Separator17.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
-            this.Separator17.Size = new System.Drawing.Size(6, 36);
-            // 
-            // TableListBox
-            // 
-            this.TableListBox.AlternateColors = true;
-            this.TableListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.BindingSource = null;
-            this.TableListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TableListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
-            this.TableListBox.Border.HoverVisible = false;
-            this.TableListBox.Border.Rounding = 6;
-            this.TableListBox.Border.Thickness = 1;
-            this.TableListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.TableListBox.Border.Visible = false;
-            this.TableListBox.DataFilter = null;
-            this.TableListBox.Field = BudgetExecution.Field.RpioActivityCode;
-            this.TableListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TableListBox.HoverText = null;
-            this.TableListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.TableListBox.ItemHeight = 30;
-            this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.TableListBox.Location = new System.Drawing.Point(6, 35);
-            this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.TableListBox.Name = "TableListBox";
-            this.TableListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.TableListBox.Size = new System.Drawing.Size(325, 113);
-            this.TableListBox.TabIndex = 2;
-            this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            this.TableListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableListBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableListBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.TableListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.TableListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.TableListBox.ToolTip = null;
-            // 
             // ValueListBox
             // 
             this.ValueListBox.AlternateColors = true;
@@ -1404,6 +1388,22 @@
             this.ValueListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ValueListBox.ToolTip = null;
             // 
+            // Separator16
+            // 
+            this.Separator16.ForeColor = System.Drawing.Color.Black;
+            this.Separator16.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator16.Name = "Separator16";
+            this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator16.Size = new System.Drawing.Size(6, 73);
+            // 
+            // Separator17
+            // 
+            this.Separator17.ForeColor = System.Drawing.Color.Black;
+            this.Separator17.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator17.Name = "Separator17";
+            this.Separator17.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator17.Size = new System.Drawing.Size(6, 36);
+            // 
             // DataGridForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -1412,8 +1412,8 @@
             this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CaptionButtonHoverColor = System.Drawing.Color.DarkRed;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ClientSize = new System.Drawing.Size(1388, 763);

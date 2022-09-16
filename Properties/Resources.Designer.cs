@@ -93,6 +93,16 @@ namespace BudgetExecution.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddDatabaseIcon {
+            get {
+                object obj = ResourceManager.GetObject("AddDatabaseIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AddRecord {
             get {
                 object obj = ResourceManager.GetObject("AddRecord", resourceCulture);
@@ -183,6 +193,16 @@ namespace BudgetExecution.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CopyDatabaseIcon {
+            get {
+                object obj = ResourceManager.GetObject("CopyDatabaseIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CopyRecord {
             get {
                 object obj = ResourceManager.GetObject("CopyRecord", resourceCulture);
@@ -243,6 +263,26 @@ namespace BudgetExecution.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DeleteColumnIcon {
+            get {
+                object obj = ResourceManager.GetObject("DeleteColumnIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeleteDatabaseIcon {
+            get {
+                object obj = ResourceManager.GetObject("DeleteDatabaseIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeleteRecord {
             get {
                 object obj = ResourceManager.GetObject("DeleteRecord", resourceCulture);
@@ -286,6 +326,16 @@ namespace BudgetExecution.Properties {
         internal static System.Drawing.Bitmap EditDatabase {
             get {
                 object obj = ResourceManager.GetObject("EditDatabase", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EditDataIcon {
+            get {
+                object obj = ResourceManager.GetObject("EditDataIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

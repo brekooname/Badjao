@@ -898,6 +898,11 @@
     <Compile Include="Controls\RadioButton\RadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Extenstions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1020,14 +1025,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Resources\Extenstions.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Extenstions.Designer.cs</LastGenOutput>
@@ -1787,6 +1787,16 @@
     <None Include="Resources\Images\Data\png\RowIcon.png" />
     <None Include="Resources\Images\Data\png\DataSearch.png" />
     <None Include="Resources\Images\Data\png\SqlServerIcon.png" />
+    <None Include="Resources\Images\Data\png\EditDataIcon.png" />
+    <None Include="Resources\Images\Data\png\AddDatabaseIcon.png" />
+    <None Include="Resources\Images\Data\png\CopyDatabaseIcon.png" />
+    <None Include="Resources\Images\Data\png\DeleteColumnIcon.png" />
+    <None Include="Resources\Images\Data\png\DeleteDatabaseIcon.png" />
+    <None Include="Resources\Images\Data\png\DataSetIcon.png" />
+    <None Include="Resources\Images\Data\png\ConnectionIcon.png" />
+    <None Include="Resources\Images\Data\png\TableIcon.png" />
+    <None Include="Resources\Images\Data\png\MenuIcon.png" />
+    <None Include="Resources\Images\Data\png\DatabaseIcon.png" />
     <Content Include="Resources\Images\Dialog\ico\ApplicationError.ico" />
     <None Include="Resources\Images\Interface\Save.png" />
     <None Include="Resources\Images\Filter\png\Filter.png" />

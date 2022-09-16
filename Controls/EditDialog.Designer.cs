@@ -118,9 +118,11 @@
             // TabControl
             // 
             this.TabControl.ActiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TabControl.ActiveTabFont = new System.Drawing.Font("Roboto", 9F);
             this.TabControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.BeforeTouchSize = new System.Drawing.Size(1368, 488);
             this.TabControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TabControl.BorderWidth = 1;
             this.TabControl.CanOverrideStyle = true;
             this.TabControl.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.Controls.Add(this.DataTab);
@@ -155,7 +157,7 @@
             // DataTab
             // 
             this.DataTab.Controls.Add(this.FrameTable);
-            this.DataTab.Image = global::BudgetExecution.Properties.Resources.DataSetIcon;
+            this.DataTab.Image = global::BudgetExecution.Properties.Resources.EditDataIcon;
             this.DataTab.ImageSize = new System.Drawing.Size(14, 14);
             this.DataTab.Location = new System.Drawing.Point(0, 22);
             this.DataTab.Name = "DataTab";
@@ -783,7 +785,7 @@
             // SqlTab
             // 
             this.SqlTab.Controls.Add(this.SqlEditor);
-            this.SqlTab.Image = global::BudgetExecution.Properties.Resources.DataSetIcon;
+            this.SqlTab.Image = global::BudgetExecution.Properties.Resources.SqlServerIcon;
             this.SqlTab.ImageSize = new System.Drawing.Size(14, 14);
             this.SqlTab.Location = new System.Drawing.Point(0, 22);
             this.SqlTab.Name = "SqlTab";
