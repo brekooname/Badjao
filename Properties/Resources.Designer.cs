@@ -153,6 +153,26 @@ namespace BudgetExecution.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ColumnIcon {
+            get {
+                object obj = ResourceManager.GetObject("ColumnIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ColumnsIcon {
+            get {
+                object obj = ResourceManager.GetObject("ColumnsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConnectionIcon {
             get {
                 object obj = ResourceManager.GetObject("ConnectionIcon", resourceCulture);
@@ -436,6 +456,16 @@ namespace BudgetExecution.Properties {
         internal static System.Drawing.Bitmap RefreshButton {
             get {
                 object obj = ResourceManager.GetObject("RefreshButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RowIcon {
+            get {
+                object obj = ResourceManager.GetObject("RowIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

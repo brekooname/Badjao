@@ -133,8 +133,14 @@
   <data name="AddColumn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Data\AddColumn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ColumnsIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Data\png\ColumnsIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="CalendarButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\ToolStrip\png\CalendarButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Database\Database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DeleteButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeleteButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,6 +163,9 @@
   <data name="ExcelButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\ToolStrip\png\ExcelButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="EditDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Database\EditDatabase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="HomeButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,9 +186,6 @@
   </data>
   <data name="Loader" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Loader\Loader.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DeleteTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Data\DeleteTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AddColumnIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Data\png\AddColumnIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +217,8 @@
   <data name="ChartButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ChartButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DeleteColumn" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Data\DeleteColumn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DeleteTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Data\DeleteTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DataSetIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Data\png\DataSet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,6 +235,9 @@
   <data name="FirstButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\ToolStrip\png\FirstButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DeleteColumn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Data\DeleteColumn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AddButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\ToolStrip\png\AddButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -238,10 +247,10 @@
   <data name="ConnectionIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Images\Data\png\Connection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Database" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Database\Database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ColumnIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Data\png\ColumnIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EditDatabase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Images\Database\EditDatabase.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RowIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\Data\png\RowIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

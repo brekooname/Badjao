@@ -254,7 +254,7 @@
             this.ValueGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.ValueGroupBox.HeaderText = null;
             this.ValueGroupBox.HoverText = null;
-            this.ValueGroupBox.Image = global::BudgetExecution.Properties.Resources.MenuIcon;
+            this.ValueGroupBox.Image = global::BudgetExecution.Properties.Resources.RowIcon;
             this.ValueGroupBox.Location = new System.Drawing.Point(543, 271);
             this.ValueGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueGroupBox.Name = "ValueGroupBox";
@@ -340,7 +340,7 @@
             this.ColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.ColumnGroupBox.HeaderText = null;
             this.ColumnGroupBox.HoverText = null;
-            this.ColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.AddColumnIcon;
+            this.ColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
             this.ColumnGroupBox.Location = new System.Drawing.Point(72, 271);
             this.ColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnGroupBox.Name = "ColumnGroupBox";

@@ -33,7 +33,7 @@
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TabControl = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.CreateTableTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
-            this.CreateTableColumnGroupBox = new BudgetExecution.GroupBox();
+            this.CreateTableColumnsGroupBox = new BudgetExecution.GroupBox();
             this.CreateTableNameTextBox = new BudgetExecution.TextBox();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.CreateTableDataTypeComboBox = new VisualPlus.Toolkit.Controls.Interactivity.VisualComboBox();
@@ -41,7 +41,6 @@
             this.CreateTableNameLabel = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.CreateTableTablesGroupBox = new BudgetExecution.GroupBox();
             this.CreateTableTablesListBox = new BudgetExecution.ListBox();
-            this.listBox2 = new BudgetExecution.ListBox();
             this.CreateTableProviderGroupBox = new BudgetExecution.GroupBox();
             this.CreateTabAccessRadioButton = new BudgetExecution.RadioButton();
             this.CreateTabSqlServerRadioButton = new BudgetExecution.RadioButton();
@@ -101,11 +100,15 @@
             this.groupBox3 = new BudgetExecution.GroupBox();
             this.groupBox4 = new BudgetExecution.GroupBox();
             this.groupBox9 = new BudgetExecution.GroupBox();
+            this.CreatTableTablesLayout = new BudgetExecution.Layout();
+            this.EditColumnTablesLayout = new BudgetExecution.Layout();
+            this.DeleteTableTablesLayout = new BudgetExecution.Layout();
+            this.DeleteColumnTablesLayout = new BudgetExecution.Layout();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
             this.TabControl.SuspendLayout();
             this.CreateTableTabPage.SuspendLayout();
-            this.CreateTableColumnGroupBox.SuspendLayout();
+            this.CreateTableColumnsGroupBox.SuspendLayout();
             this.CreateTableTablesGroupBox.SuspendLayout();
             this.CreateTableProviderGroupBox.SuspendLayout();
             this.EditColumnTabPage.SuspendLayout();
@@ -123,6 +126,10 @@
             this.tabPageAdv1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.CreatTableTablesLayout.SuspendLayout();
+            this.EditColumnTablesLayout.SuspendLayout();
+            this.DeleteTableTablesLayout.SuspendLayout();
+            this.DeleteColumnTablesLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
@@ -167,7 +174,7 @@
             // CreateTableTabPage
             // 
             this.CreateTableTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTableTabPage.Controls.Add(this.CreateTableColumnGroupBox);
+            this.CreateTableTabPage.Controls.Add(this.CreateTableColumnsGroupBox);
             this.CreateTableTabPage.Controls.Add(this.CreateTableTablesGroupBox);
             this.CreateTableTabPage.Controls.Add(this.CreateTableProviderGroupBox);
             this.CreateTableTabPage.ForeColor = System.Drawing.Color.LightSteelBlue;
@@ -183,53 +190,53 @@
             this.CreateTableTabPage.Text = "Create Table";
             this.CreateTableTabPage.ThemesEnabled = false;
             // 
-            // CreateTableColumnGroupBox
+            // CreateTableColumnsGroupBox
             // 
-            this.CreateTableColumnGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTableColumnGroupBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTableColumnGroupBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CreateTableColumnGroupBox.BindingSource = null;
-            this.CreateTableColumnGroupBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CreateTableColumnGroupBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CreateTableColumnGroupBox.Border.HoverVisible = true;
-            this.CreateTableColumnGroupBox.Border.Rounding = 6;
-            this.CreateTableColumnGroupBox.Border.Thickness = 1;
-            this.CreateTableColumnGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.CreateTableColumnGroupBox.Border.Visible = true;
-            this.CreateTableColumnGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
-            this.CreateTableColumnGroupBox.Controls.Add(this.CreateTableNameTextBox);
-            this.CreateTableColumnGroupBox.Controls.Add(this.CreateTableDataTypeComboBox);
-            this.CreateTableColumnGroupBox.Controls.Add(this.CreateTableDataTypeLabel);
-            this.CreateTableColumnGroupBox.Controls.Add(this.CreateTableNameLabel);
-            this.CreateTableColumnGroupBox.DataFilter = null;
-            this.CreateTableColumnGroupBox.Field = BudgetExecution.Field.AccountCode;
-            this.CreateTableColumnGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
-            this.CreateTableColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.CreateTableColumnGroupBox.HeaderText = null;
-            this.CreateTableColumnGroupBox.HoverText = null;
-            this.CreateTableColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.AddColumnIcon;
-            this.CreateTableColumnGroupBox.Location = new System.Drawing.Point(187, 277);
-            this.CreateTableColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.CreateTableColumnGroupBox.Name = "CreateTableColumnGroupBox";
-            this.CreateTableColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.CreateTableColumnGroupBox.Padding = new System.Windows.Forms.Padding(1);
-            this.CreateTableColumnGroupBox.Separator = false;
-            this.CreateTableColumnGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CreateTableColumnGroupBox.Size = new System.Drawing.Size(1006, 186);
-            this.CreateTableColumnGroupBox.TabIndex = 4;
-            this.CreateTableColumnGroupBox.Text = "  Columns";
-            this.CreateTableColumnGroupBox.TextAlignment = System.Drawing.StringAlignment.Near;
-            this.CreateTableColumnGroupBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CreateTableColumnGroupBox.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.CreateTableColumnGroupBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            this.CreateTableColumnGroupBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CreateTableColumnGroupBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CreateTableColumnGroupBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CreateTableColumnGroupBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.CreateTableColumnGroupBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.CreateTableColumnGroupBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.CreateTableColumnGroupBox.TitleBoxHeight = 30;
-            this.CreateTableColumnGroupBox.ToolTip = null;
+            this.CreateTableColumnsGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreateTableColumnsGroupBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreateTableColumnsGroupBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreateTableColumnsGroupBox.BindingSource = null;
+            this.CreateTableColumnsGroupBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CreateTableColumnsGroupBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.CreateTableColumnsGroupBox.Border.HoverVisible = true;
+            this.CreateTableColumnsGroupBox.Border.Rounding = 6;
+            this.CreateTableColumnsGroupBox.Border.Thickness = 1;
+            this.CreateTableColumnsGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.CreateTableColumnsGroupBox.Border.Visible = true;
+            this.CreateTableColumnsGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
+            this.CreateTableColumnsGroupBox.Controls.Add(this.CreateTableNameTextBox);
+            this.CreateTableColumnsGroupBox.Controls.Add(this.CreateTableDataTypeComboBox);
+            this.CreateTableColumnsGroupBox.Controls.Add(this.CreateTableDataTypeLabel);
+            this.CreateTableColumnsGroupBox.Controls.Add(this.CreateTableNameLabel);
+            this.CreateTableColumnsGroupBox.DataFilter = null;
+            this.CreateTableColumnsGroupBox.Field = BudgetExecution.Field.AccountCode;
+            this.CreateTableColumnsGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
+            this.CreateTableColumnsGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.CreateTableColumnsGroupBox.HeaderText = null;
+            this.CreateTableColumnsGroupBox.HoverText = null;
+            this.CreateTableColumnsGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
+            this.CreateTableColumnsGroupBox.Location = new System.Drawing.Point(187, 277);
+            this.CreateTableColumnsGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.CreateTableColumnsGroupBox.Name = "CreateTableColumnsGroupBox";
+            this.CreateTableColumnsGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
+            this.CreateTableColumnsGroupBox.Padding = new System.Windows.Forms.Padding(1);
+            this.CreateTableColumnsGroupBox.Separator = false;
+            this.CreateTableColumnsGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CreateTableColumnsGroupBox.Size = new System.Drawing.Size(1006, 186);
+            this.CreateTableColumnsGroupBox.TabIndex = 4;
+            this.CreateTableColumnsGroupBox.Text = "  Columns";
+            this.CreateTableColumnsGroupBox.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.CreateTableColumnsGroupBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CreateTableColumnsGroupBox.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CreateTableColumnsGroupBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.CreateTableColumnsGroupBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CreateTableColumnsGroupBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CreateTableColumnsGroupBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CreateTableColumnsGroupBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.CreateTableColumnsGroupBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CreateTableColumnsGroupBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.CreateTableColumnsGroupBox.TitleBoxHeight = 30;
+            this.CreateTableColumnsGroupBox.ToolTip = null;
             // 
             // CreateTableNameTextBox
             // 
@@ -446,8 +453,7 @@
             this.CreateTableTablesGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.CreateTableTablesGroupBox.Border.Visible = true;
             this.CreateTableTablesGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
-            this.CreateTableTablesGroupBox.Controls.Add(this.CreateTableTablesListBox);
-            this.CreateTableTablesGroupBox.Controls.Add(this.listBox2);
+            this.CreateTableTablesGroupBox.Controls.Add(this.CreatTableTablesLayout);
             this.CreateTableTablesGroupBox.DataFilter = null;
             this.CreateTableTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableTablesGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
@@ -481,7 +487,6 @@
             // CreateTableTablesListBox
             // 
             this.CreateTableTablesListBox.AlternateColors = true;
-            this.CreateTableTablesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CreateTableTablesListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CreateTableTablesListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CreateTableTablesListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -494,20 +499,21 @@
             this.CreateTableTablesListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.CreateTableTablesListBox.Border.Visible = true;
             this.CreateTableTablesListBox.DataFilter = null;
+            this.CreateTableTablesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CreateTableTablesListBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableTablesListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableTablesListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableTablesListBox.HoverText = null;
-            this.CreateTableTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.CreateTableTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.CreateTableTablesListBox.ItemHeight = 30;
             this.CreateTableTablesListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.CreateTableTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreateTableTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.CreateTableTablesListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.CreateTableTablesListBox.Location = new System.Drawing.Point(15, 40);
+            this.CreateTableTablesListBox.Location = new System.Drawing.Point(0, 0);
             this.CreateTableTablesListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableTablesListBox.Name = "CreateTableTablesListBox";
             this.CreateTableTablesListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.CreateTableTablesListBox.Size = new System.Drawing.Size(348, 140);
+            this.CreateTableTablesListBox.Size = new System.Drawing.Size(350, 141);
             this.CreateTableTablesListBox.TabIndex = 2;
             this.CreateTableTablesListBox.Text = "listBox1";
             this.CreateTableTablesListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -518,47 +524,6 @@
             this.CreateTableTablesListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.CreateTableTablesListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.CreateTableTablesListBox.ToolTip = this.ToolTip;
-            // 
-            // listBox2
-            // 
-            this.listBox2.AlternateColors = true;
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.listBox2.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.listBox2.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.listBox2.BindingSource = null;
-            this.listBox2.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.listBox2.Border.HoverColor = System.Drawing.Color.SteelBlue;
-            this.listBox2.Border.HoverVisible = true;
-            this.listBox2.Border.Rounding = 6;
-            this.listBox2.Border.Thickness = 1;
-            this.listBox2.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.listBox2.Border.Visible = true;
-            this.listBox2.DataFilter = null;
-            this.listBox2.Field = BudgetExecution.Field.AccountCode;
-            this.listBox2.Font = new System.Drawing.Font("Roboto", 9F);
-            this.listBox2.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.listBox2.HoverText = null;
-            this.listBox2.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.listBox2.ItemHeight = 30;
-            this.listBox2.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.listBox2.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.listBox2.ItemSelected = System.Drawing.Color.SteelBlue;
-            this.listBox2.Location = new System.Drawing.Point(15, 40);
-            this.listBox2.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Numeric = BudgetExecution.Numeric.Accepted;
-            this.listBox2.Size = new System.Drawing.Size(348, 140);
-            this.listBox2.TabIndex = 1;
-            this.listBox2.Text = "listBox1";
-            this.listBox2.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            this.listBox2.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.listBox2.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.listBox2.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.listBox2.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.listBox2.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.listBox2.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.listBox2.ToolTip = this.ToolTip;
             // 
             // CreateTableProviderGroupBox
             // 
@@ -711,7 +676,7 @@
             this.EditColumnTablesGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.EditColumnTablesGroupBox.Border.Visible = true;
             this.EditColumnTablesGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
-            this.EditColumnTablesGroupBox.Controls.Add(this.EditColumnTablesListBox);
+            this.EditColumnTablesGroupBox.Controls.Add(this.EditColumnTablesLayout);
             this.EditColumnTablesGroupBox.Controls.Add(this.listBox4);
             this.EditColumnTablesGroupBox.DataFilter = null;
             this.EditColumnTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
@@ -746,7 +711,6 @@
             // EditColumnTablesListBox
             // 
             this.EditColumnTablesListBox.AlternateColors = true;
-            this.EditColumnTablesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.EditColumnTablesListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.EditColumnTablesListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.EditColumnTablesListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -759,20 +723,21 @@
             this.EditColumnTablesListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.EditColumnTablesListBox.Border.Visible = true;
             this.EditColumnTablesListBox.DataFilter = null;
+            this.EditColumnTablesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EditColumnTablesListBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnTablesListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnTablesListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnTablesListBox.HoverText = null;
-            this.EditColumnTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.EditColumnTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.EditColumnTablesListBox.ItemHeight = 30;
             this.EditColumnTablesListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.EditColumnTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.EditColumnTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.EditColumnTablesListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.EditColumnTablesListBox.Location = new System.Drawing.Point(15, 40);
+            this.EditColumnTablesListBox.Location = new System.Drawing.Point(0, 0);
             this.EditColumnTablesListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnTablesListBox.Name = "EditColumnTablesListBox";
             this.EditColumnTablesListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.EditColumnTablesListBox.Size = new System.Drawing.Size(348, 140);
+            this.EditColumnTablesListBox.Size = new System.Drawing.Size(348, 146);
             this.EditColumnTablesListBox.TabIndex = 2;
             this.EditColumnTablesListBox.Text = "listBox3";
             this.EditColumnTablesListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -849,7 +814,7 @@
             this.AlterColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.AlterColumnGroupBox.HeaderText = null;
             this.AlterColumnGroupBox.HoverText = null;
-            this.AlterColumnGroupBox.Image = null;
+            this.AlterColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
             this.AlterColumnGroupBox.Location = new System.Drawing.Point(187, 277);
             this.AlterColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.AlterColumnGroupBox.Name = "AlterColumnGroupBox";
@@ -1208,7 +1173,7 @@
             this.DropTableColumnsGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DropTableColumnsGroupBox.HeaderText = null;
             this.DropTableColumnsGroupBox.HoverText = null;
-            this.DropTableColumnsGroupBox.Image = null;
+            this.DropTableColumnsGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
             this.DropTableColumnsGroupBox.Location = new System.Drawing.Point(187, 277);
             this.DropTableColumnsGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DropTableColumnsGroupBox.Name = "DropTableColumnsGroupBox";
@@ -1421,7 +1386,7 @@
             this.DeleteTableTablesGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.DeleteTableTablesGroupBox.Border.Visible = true;
             this.DeleteTableTablesGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
-            this.DeleteTableTablesGroupBox.Controls.Add(this.DeleteTableTablesListBox);
+            this.DeleteTableTablesGroupBox.Controls.Add(this.DeleteTableTablesLayout);
             this.DeleteTableTablesGroupBox.Controls.Add(this.listBox8);
             this.DeleteTableTablesGroupBox.DataFilter = null;
             this.DeleteTableTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
@@ -1473,16 +1438,16 @@
             this.DeleteTableTablesListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteTableTablesListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteTableTablesListBox.HoverText = null;
-            this.DeleteTableTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.DeleteTableTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.DeleteTableTablesListBox.ItemHeight = 30;
             this.DeleteTableTablesListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.DeleteTableTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteTableTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.DeleteTableTablesListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.DeleteTableTablesListBox.Location = new System.Drawing.Point(15, 40);
+            this.DeleteTableTablesListBox.Location = new System.Drawing.Point(177, 36);
             this.DeleteTableTablesListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteTableTablesListBox.Name = "DeleteTableTablesListBox";
             this.DeleteTableTablesListBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.DeleteTableTablesListBox.Size = new System.Drawing.Size(348, 140);
+            this.DeleteTableTablesListBox.Size = new System.Drawing.Size(60, 33);
             this.DeleteTableTablesListBox.TabIndex = 2;
             this.DeleteTableTablesListBox.Text = "listBox7";
             this.DeleteTableTablesListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -1695,7 +1660,7 @@
             this.DeleteColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteColumnGroupBox.HeaderText = null;
             this.DeleteColumnGroupBox.HoverText = null;
-            this.DeleteColumnGroupBox.Image = null;
+            this.DeleteColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
             this.DeleteColumnGroupBox.Location = new System.Drawing.Point(187, 277);
             this.DeleteColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnGroupBox.Name = "DeleteColumnGroupBox";
@@ -1908,7 +1873,7 @@
             this.DeleteColumnTablesGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.DeleteColumnTablesGroupBox.Border.Visible = true;
             this.DeleteColumnTablesGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
-            this.DeleteColumnTablesGroupBox.Controls.Add(this.DeleteColumnTablesListBox);
+            this.DeleteColumnTablesGroupBox.Controls.Add(this.DeleteColumnTablesLayout);
             this.DeleteColumnTablesGroupBox.Controls.Add(this.listBox3);
             this.DeleteColumnTablesGroupBox.DataFilter = null;
             this.DeleteColumnTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
@@ -1943,7 +1908,6 @@
             // DeleteColumnTablesListBox
             // 
             this.DeleteColumnTablesListBox.AlternateColors = true;
-            this.DeleteColumnTablesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.DeleteColumnTablesListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.DeleteColumnTablesListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.DeleteColumnTablesListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -1956,16 +1920,17 @@
             this.DeleteColumnTablesListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.DeleteColumnTablesListBox.Border.Visible = true;
             this.DeleteColumnTablesListBox.DataFilter = null;
+            this.DeleteColumnTablesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DeleteColumnTablesListBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnTablesListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteColumnTablesListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteColumnTablesListBox.HoverText = null;
-            this.DeleteColumnTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.DeleteColumnTablesListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.DeleteColumnTablesListBox.ItemHeight = 30;
             this.DeleteColumnTablesListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.DeleteColumnTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteColumnTablesListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.DeleteColumnTablesListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.DeleteColumnTablesListBox.Location = new System.Drawing.Point(15, 40);
+            this.DeleteColumnTablesListBox.Location = new System.Drawing.Point(0, 0);
             this.DeleteColumnTablesListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnTablesListBox.Name = "DeleteColumnTablesListBox";
             this.DeleteColumnTablesListBox.Numeric = BudgetExecution.Numeric.Accepted;
@@ -2806,6 +2771,149 @@
             this.groupBox9.TitleBoxHeight = 30;
             this.groupBox9.ToolTip = null;
             // 
+            // CreatTableTablesLayout
+            // 
+            this.CreatTableTablesLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreatTableTablesLayout.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreatTableTablesLayout.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreatTableTablesLayout.BindingSource = null;
+            this.CreatTableTablesLayout.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CreatTableTablesLayout.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.CreatTableTablesLayout.Border.HoverVisible = true;
+            this.CreatTableTablesLayout.Border.Rounding = 6;
+            this.CreatTableTablesLayout.Border.Thickness = 1;
+            this.CreatTableTablesLayout.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.CreatTableTablesLayout.Border.Visible = true;
+            this.CreatTableTablesLayout.Children = null;
+            this.CreatTableTablesLayout.Controls.Add(this.CreateTableTablesListBox);
+            this.CreatTableTablesLayout.DataFilter = null;
+            this.CreatTableTablesLayout.Field = BudgetExecution.Field.AccountCode;
+            this.CreatTableTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.CreatTableTablesLayout.HoverText = null;
+            this.CreatTableTablesLayout.Location = new System.Drawing.Point(15, 34);
+            this.CreatTableTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.CreatTableTablesLayout.Name = "CreatTableTablesLayout";
+            this.CreatTableTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
+            this.CreatTableTablesLayout.Padding = new System.Windows.Forms.Padding(1);
+            this.CreatTableTablesLayout.Size = new System.Drawing.Size(350, 141);
+            this.CreatTableTablesLayout.TabIndex = 5;
+            this.CreatTableTablesLayout.Text = "layout1";
+            this.CreatTableTablesLayout.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.CreatTableTablesLayout.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CreatTableTablesLayout.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CreatTableTablesLayout.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CreatTableTablesLayout.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.CreatTableTablesLayout.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.CreatTableTablesLayout.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.CreatTableTablesLayout.ToolTip = null;
+            // 
+            // EditColumnTablesLayout
+            // 
+            this.EditColumnTablesLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.EditColumnTablesLayout.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.EditColumnTablesLayout.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.EditColumnTablesLayout.BindingSource = null;
+            this.EditColumnTablesLayout.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.EditColumnTablesLayout.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.EditColumnTablesLayout.Border.HoverVisible = true;
+            this.EditColumnTablesLayout.Border.Rounding = 6;
+            this.EditColumnTablesLayout.Border.Thickness = 1;
+            this.EditColumnTablesLayout.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.EditColumnTablesLayout.Border.Visible = true;
+            this.EditColumnTablesLayout.Children = null;
+            this.EditColumnTablesLayout.Controls.Add(this.EditColumnTablesListBox);
+            this.EditColumnTablesLayout.DataFilter = null;
+            this.EditColumnTablesLayout.Field = BudgetExecution.Field.AccountCode;
+            this.EditColumnTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.EditColumnTablesLayout.HoverText = null;
+            this.EditColumnTablesLayout.Location = new System.Drawing.Point(15, 34);
+            this.EditColumnTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.EditColumnTablesLayout.Name = "EditColumnTablesLayout";
+            this.EditColumnTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
+            this.EditColumnTablesLayout.Padding = new System.Windows.Forms.Padding(1);
+            this.EditColumnTablesLayout.Size = new System.Drawing.Size(348, 146);
+            this.EditColumnTablesLayout.TabIndex = 7;
+            this.EditColumnTablesLayout.Text = "layout1";
+            this.EditColumnTablesLayout.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.EditColumnTablesLayout.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.EditColumnTablesLayout.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.EditColumnTablesLayout.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.EditColumnTablesLayout.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.EditColumnTablesLayout.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.EditColumnTablesLayout.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.EditColumnTablesLayout.ToolTip = null;
+            // 
+            // DeleteTableTablesLayout
+            // 
+            this.DeleteTableTablesLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteTableTablesLayout.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteTableTablesLayout.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteTableTablesLayout.BindingSource = null;
+            this.DeleteTableTablesLayout.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteTableTablesLayout.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.DeleteTableTablesLayout.Border.HoverVisible = true;
+            this.DeleteTableTablesLayout.Border.Rounding = 6;
+            this.DeleteTableTablesLayout.Border.Thickness = 1;
+            this.DeleteTableTablesLayout.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.DeleteTableTablesLayout.Border.Visible = true;
+            this.DeleteTableTablesLayout.Children = null;
+            this.DeleteTableTablesLayout.Controls.Add(this.DeleteTableTablesListBox);
+            this.DeleteTableTablesLayout.DataFilter = null;
+            this.DeleteTableTablesLayout.Field = BudgetExecution.Field.AccountCode;
+            this.DeleteTableTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.DeleteTableTablesLayout.HoverText = null;
+            this.DeleteTableTablesLayout.Location = new System.Drawing.Point(15, 40);
+            this.DeleteTableTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.DeleteTableTablesLayout.Name = "DeleteTableTablesLayout";
+            this.DeleteTableTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
+            this.DeleteTableTablesLayout.Padding = new System.Windows.Forms.Padding(1);
+            this.DeleteTableTablesLayout.Size = new System.Drawing.Size(348, 140);
+            this.DeleteTableTablesLayout.TabIndex = 9;
+            this.DeleteTableTablesLayout.Text = "layout1";
+            this.DeleteTableTablesLayout.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.DeleteTableTablesLayout.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteTableTablesLayout.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteTableTablesLayout.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteTableTablesLayout.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.DeleteTableTablesLayout.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.DeleteTableTablesLayout.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.DeleteTableTablesLayout.ToolTip = null;
+            // 
+            // DeleteColumnTablesLayout
+            // 
+            this.DeleteColumnTablesLayout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteColumnTablesLayout.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteColumnTablesLayout.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteColumnTablesLayout.BindingSource = null;
+            this.DeleteColumnTablesLayout.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DeleteColumnTablesLayout.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.DeleteColumnTablesLayout.Border.HoverVisible = false;
+            this.DeleteColumnTablesLayout.Border.Rounding = 6;
+            this.DeleteColumnTablesLayout.Border.Thickness = 1;
+            this.DeleteColumnTablesLayout.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.DeleteColumnTablesLayout.Border.Visible = true;
+            this.DeleteColumnTablesLayout.Children = null;
+            this.DeleteColumnTablesLayout.Controls.Add(this.DeleteColumnTablesListBox);
+            this.DeleteColumnTablesLayout.DataFilter = null;
+            this.DeleteColumnTablesLayout.Field = BudgetExecution.Field.AccountCode;
+            this.DeleteColumnTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.DeleteColumnTablesLayout.HoverText = null;
+            this.DeleteColumnTablesLayout.Location = new System.Drawing.Point(15, 40);
+            this.DeleteColumnTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.DeleteColumnTablesLayout.Name = "DeleteColumnTablesLayout";
+            this.DeleteColumnTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
+            this.DeleteColumnTablesLayout.Padding = new System.Windows.Forms.Padding(1);
+            this.DeleteColumnTablesLayout.Size = new System.Drawing.Size(348, 140);
+            this.DeleteColumnTablesLayout.TabIndex = 12;
+            this.DeleteColumnTablesLayout.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.DeleteColumnTablesLayout.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteColumnTablesLayout.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteColumnTablesLayout.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DeleteColumnTablesLayout.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.DeleteColumnTablesLayout.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.DeleteColumnTablesLayout.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.DeleteColumnTablesLayout.ToolTip = null;
+            // 
             // DefinitionDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -2837,10 +2945,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
             this.TabControl.ResumeLayout(false);
             this.CreateTableTabPage.ResumeLayout(false);
-            this.CreateTableColumnGroupBox.ResumeLayout(false);
-            this.CreateTableColumnGroupBox.PerformLayout();
+            this.CreateTableColumnsGroupBox.ResumeLayout(false);
+            this.CreateTableColumnsGroupBox.PerformLayout();
             this.CreateTableTablesGroupBox.ResumeLayout(false);
-            this.CreateTableTablesGroupBox.PerformLayout();
             this.CreateTableProviderGroupBox.ResumeLayout(false);
             this.EditColumnTabPage.ResumeLayout(false);
             this.EditColumnTablesGroupBox.ResumeLayout(false);
@@ -2864,6 +2971,15 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.CreatTableTablesLayout.ResumeLayout(false);
+            this.CreatTableTablesLayout.PerformLayout();
+            this.EditColumnTablesLayout.ResumeLayout(false);
+            this.EditColumnTablesLayout.PerformLayout();
+            this.DeleteTableTablesLayout.ResumeLayout(false);
+            this.DeleteTableTablesLayout.PerformLayout();
+            this.DeleteColumnTablesLayout.ResumeLayout(false);
+            this.DeleteColumnTablesLayout.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2884,10 +3000,9 @@
         public RadioButton CreateTabSqliteRadioButton;
         public Syncfusion.Windows.Forms.Tools.TabPageAdv EditColumnTabPage;
         public Syncfusion.Windows.Forms.Tools.TabPageAdv CreateTableTabPage;
-        public GroupBox CreateTableColumnGroupBox;
+        public GroupBox CreateTableColumnsGroupBox;
         public GroupBox CreateTableTablesGroupBox;
         public ListBox CreateTableTablesListBox;
-        public ListBox listBox2;
         public GroupBox EditColumnProviderGroupBox;
         public RadioButton AlterTabAccessRadioButton;
         public RadioButton AlterTabSqlServerRadioButton;
@@ -2940,5 +3055,9 @@
         public RadioButton DeleteColumnAccessRadioButton;
         public RadioButton DeleteColumnSqlServerRadioButton;
         public RadioButton DeleteColumnSqliteRadioButton;
+        private Layout CreatTableTablesLayout;
+        public Layout EditColumnTablesLayout;
+        public Layout DeleteTableTablesLayout;
+        private Layout DeleteColumnTablesLayout;
     }
 }
