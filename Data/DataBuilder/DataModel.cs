@@ -278,7 +278,7 @@ namespace BudgetExecution
                 {
                     using( var _reader = new DataTableReader( dataTable ) )
                     {
-                        var _schema = _reader?.GetSchemaTable(   );
+                        var _schema = _reader?.GetSchemaTable(  );
 
                         return _schema?.Rows?.Count > 0
                             ? _schema

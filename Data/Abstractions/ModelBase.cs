@@ -98,37 +98,42 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<IElement> GetElements( )
         {
-            try
+            if ( Record != null )
             {
-                var _elements = new List<IElement>( );
-                var _columns = Record?.Table?.Columns;
-                var _fields = Enum.GetNames( typeof( Field ) );
-
-                if( _columns?.Count > 0 )
+                try
                 {
-                    foreach( DataColumn column in _columns )
+                    var _elements = new List<IElement>( );
+                    var _columns = Record?.Table?.Columns;
+                    var _fields = Enum.GetNames( typeof( Field ) );
+
+                    if( _columns?.Count > 0 )
                     {
-                        if( column?.DataType == typeof( string )
-                            && _fields?.Contains( column?.ColumnName ) == true )
+                        foreach( DataColumn column in _columns )
                         {
-                            _elements?.Add( new Element( Record, column?.ColumnName ) );
+                            if( column?.DataType == typeof( string )
+                                && _fields?.Contains( column?.ColumnName ) == true )
+                            {
+                                _elements?.Add( new Element( Record, column?.ColumnName ) );
+                            }
                         }
-                    }
 
-                    return _elements?.Any( ) == true
-                        ? _elements
-                        : default( IEnumerable<IElement> );
+                        return _elements?.Any( ) == true
+                            ? _elements
+                            : default( IEnumerable<IElement> );
+                    }
+                    else
+                    {
+                        return default( IEnumerable<IElement> );
+                    }
                 }
-                else
+                catch( Exception ex )
                 {
+                    Fail( ex );
                     return default( IEnumerable<IElement> );
                 }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<IElement> );
-            }
+
+            return default( IEnumerable<IElement> );
         }
 
         /// <summary>
@@ -137,7 +142,7 @@ namespace BudgetExecution
         /// <param name = "dataRows" > </param>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, 
+        public IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, 
             IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true 
@@ -167,7 +172,7 @@ namespace BudgetExecution
         /// Gets the columns.
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<DataColumn> GetDataColumns( DataTable dataTable )
+        public IEnumerable<DataColumn> GetDataColumns( DataTable dataTable )
         {
             if( dataTable?.Columns?.Count > 0 )
             {
@@ -180,12 +185,6 @@ namespace BudgetExecution
                     {
                         foreach( DataColumn column in _data )
                         {
-                            var _caption = column.ColumnName.SplitPascal(  );
-                            if ( !string.IsNullOrEmpty( _caption ) )
-                            {
-                                column.Caption = _caption;
-                            }
-
                             _dataColumns.Add( column );
                         }
 
@@ -215,7 +214,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<DataColumn> GetDataColumns(  )
         {
-            if( DataTable?.Columns?.Count > 0 )
+            if( DataTable != null 
+                && DataTable?.Columns?.Count > 0 )
             {
                 try
                 {
@@ -225,12 +225,10 @@ namespace BudgetExecution
                     {
                         foreach( DataColumn column in _data )
                         {
-                            if( string.IsNullOrEmpty( column.Caption ) )
+                            if ( column != null )
                             {
-                                column.Caption = column.ColumnName.SplitPascal(  );
+                                _dataColumns.Add( column );
                             }
-
-                            _dataColumns.Add( column );
                         }
 
                         return _dataColumns?.Any( ) == true

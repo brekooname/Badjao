@@ -1,6 +1,6 @@
-﻿// // <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -19,11 +19,11 @@ namespace BudgetExecution
     /// <seealso cref="ISource" />
     /// <seealso cref="IProvider" />
     /// <seealso cref="IConnectionBuilder" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
-    [SuppressMessage( "ReSharper", "InconsistentNaming" )]
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
     {
         /// <summary>
@@ -42,10 +42,10 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        public ConnectionBuilder( Source source, Provider provider = Provider.Access ) 
+        public ConnectionBuilder( Source source, Provider provider = Provider.Access )
             : base( source, provider )
         {
-            Connection = GetConnection( );
+            Connection = GetConnection(  );
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="fullPath">The fullPath.</param>
-        public ConnectionBuilder( string fullPath ) 
+        public ConnectionBuilder( string fullPath )
             : base( fullPath )
         {
-            Connection = GetConnection( );
+            Connection = GetConnection(  );
         }
 
         /// <summary>
@@ -67,12 +67,11 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="fullPath">The fullPath.</param>
         /// <param name="provider">The provider.</param>
-        public ConnectionBuilder( string fullPath, Provider provider = Provider.Access ) 
+        public ConnectionBuilder( string fullPath, Provider provider = Provider.Access )
             : base( fullPath, provider )
         {
-            Connection = GetConnection( );
+            Connection = GetConnection(  );
         }
-
 
         /// <summary>
         /// Gets the connection.
@@ -85,17 +84,21 @@ namespace BudgetExecution
                 try
                 {
                     var _connectionString = ConnectionPath[ $"{ Provider }" ]?.ConnectionString;
+
                     switch( Provider )
                     {
                         case Provider.SQLite:
+
                         {
                             return new SQLiteConnection( _connectionString );
                         }
                         case Provider.SqlCe:
+
                         {
                             return new SqlCeConnection( _connectionString );
                         }
                         case Provider.SqlServer:
+
                         {
                             return  new SqlConnection( _connectionString );
                         }
@@ -103,6 +106,7 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
+
                         {
                             return new OleDbConnection( _connectionString );
                         }

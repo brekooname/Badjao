@@ -451,13 +451,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\ExcelBase.cs" />
-    <Compile Include="Abstractions\RibbonBase.cs">
+    <Compile Include="Controls\Abstractions\RibbonBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\SpreadsheetBase.cs">
+    <Compile Include="Controls\Abstractions\SpreadsheetBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\CommandBase.cs" />
+    <Compile Include="Data\Abstractions\CommandBase.cs" />
     <Compile Include="Controls\ComboBox\ComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -490,7 +490,7 @@
       <DependentUpon>Frame.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\DataFile.cs" />
-    <Compile Include="Abstractions\FileBase.cs" />
+    <Compile Include="IO\Abstractions\FileBase.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />
     <Compile Include="Interfaces\ISeriesModel.cs" />
@@ -675,7 +675,7 @@
     <Compile Include="Data\Command\CommandFactory.cs" />
     <Compile Include="Interfaces\ICommandBuilder.cs" />
     <Compile Include="Interfaces\ICommandFactory.cs" />
-    <Compile Include="Data\Connection\ConnectionBase.cs" />
+    <Compile Include="Data\Abstractions\ConnectionBase.cs" />
     <Compile Include="Data\Connection\ConnectionBuilder.cs" />
     <Compile Include="Interfaces\IConnectionBuilder.cs" />
     <Compile Include="Interfaces\IConnectionFactory.cs" />
@@ -702,10 +702,10 @@
     <Compile Include="Data\Conversion\sdf\TriggerSchema.cs" />
     <Compile Include="Data\Conversion\sdf\ViewSchema.cs" />
     <Compile Include="Data\DataBuilder\DataModel.cs" />
-    <Compile Include="Data\DataBuilder\ModelBase.cs" />
-    <Compile Include="Data\DataBuilder\DataAccess.cs" />
+    <Compile Include="Data\Abstractions\ModelBase.cs" />
+    <Compile Include="Data\Abstractions\DataAccess.cs" />
     <Compile Include="Data\DataBuilder\DataBuilder.cs" />
-    <Compile Include="Data\DataBuilder\DataConfig.cs" />
+    <Compile Include="Data\Abstractions\DataConfig.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDataSchema.cs" />
     <Compile Include="Data\Map\Amount.cs" />
@@ -719,17 +719,17 @@
     <Compile Include="Interfaces\IMap.cs" />
     <Compile Include="Data\Map\Key.cs" />
     <Compile Include="Data\Map\Map.cs" />
-    <Compile Include="Abstractions\UnitBase.cs" />
+    <Compile Include="Data\Abstractions\UnitBase.cs" />
     <Compile Include="Data\Query\AccessQuery.cs" />
     <Compile Include="Data\Query\CsvQuery.cs" />
     <Compile Include="Data\Query\ExcelQuery.cs" />
     <Compile Include="Interfaces\IQuery.cs" />
     <Compile Include="Data\Query\Query.cs" />
-    <Compile Include="Data\Query\QueryBase.cs" />
+    <Compile Include="Data\Abstractions\QueryBase.cs" />
     <Compile Include="Data\Query\SqlCeQuery.cs" />
     <Compile Include="Data\Query\SQLiteQuery.cs" />
     <Compile Include="Data\Query\SqlServerQuery.cs" />
-    <Compile Include="Data\SqlStatement\SqlBase.cs" />
+    <Compile Include="Data\Abstractions\SqlBase.cs" />
     <Compile Include="Data\SqlStatement\SqlStatement.cs" />
     <Compile Include="Data\DataWorker\DataWorker.cs">
       <SubType>Component</SubType>
@@ -833,9 +833,9 @@
     <Compile Include="Controls\Excel\Heading.cs" />
     <Compile Include="IO\FilePath.cs" />
     <Compile Include="IO\Folder.cs" />
-    <Compile Include="Abstractions\FolderBase.cs" />
+    <Compile Include="IO\Abstractions\FolderBase.cs" />
     <Compile Include="Interfaces\IFolder.cs" />
-    <Compile Include="Abstractions\PathBase.cs" />
+    <Compile Include="IO\Abstractions\PathBase.cs" />
     <Compile Include="Interfaces\IFilePath.cs" />
     <Compile Include="Controls\LoadingForm.cs">
       <SubType>Form</SubType>
@@ -849,14 +849,14 @@
     <Compile Include="Interfaces\IToolStripTextBox.cs" />
     <Compile Include="Abstractions\ListBoxBase.cs" />
     <Compile Include="Abstractions\ListViewBase.cs" />
-    <Compile Include="Abstractions\PivotChartBase.cs">
+    <Compile Include="Controls\Abstractions\PivotChartBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\PivotGridBase.cs">
+    <Compile Include="Controls\Abstractions\PivotGridBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\IPictureBox.cs" />
-    <Compile Include="Abstractions\PictureBase.cs">
+    <Compile Include="Controls\Abstractions\PictureBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PivotForm.cs">
@@ -879,7 +879,7 @@
     <Compile Include="Controls\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\TipBase.cs">
+    <Compile Include="Controls\Abstractions\TipBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ToolTip\ToolTip.cs">
@@ -918,8 +918,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Providers.resx</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\RichTextBase.cs" />
-    <Compile Include="Abstractions\SplashBase.cs">
+    <Compile Include="Controls\Abstractions\RichTextBase.cs" />
+    <Compile Include="Controls\Abstractions\SplashBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\SqlStatement\SqlBuilder.cs" />
@@ -937,29 +937,29 @@
     <Compile Include="Controls\ToolStrip\ToolSeparator.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripBase.cs">
+    <Compile Include="Controls\Abstractions\ToolStripBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolButtonBase.cs">
+    <Compile Include="Controls\Abstractions\ToolButtonBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripDropDownBase.cs">
+    <Compile Include="Controls\Abstractions\ToolStripDropDownBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripLabelBase.cs">
+    <Compile Include="Controls\Abstractions\ToolStripLabelBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripProgressBase.cs">
+    <Compile Include="Controls\Abstractions\ToolStripProgressBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ToolStripTextBoxBase.cs">
+    <Compile Include="Controls\Abstractions\ToolStripTextBoxBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\TileBase.cs">
+    <Compile Include="Controls\Abstractions\TileBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TextBox\TextBox.cs" />
-    <Compile Include="Abstractions\TextBoxBase.cs" />
+    <Compile Include="Controls\Abstractions\TextBoxBase.cs" />
     <EmbeddedResource Include="Abstractions\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>

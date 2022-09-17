@@ -58,9 +58,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public virtual DataTable GetDataTable( )
         {
-            if ( Enum.IsDefined( typeof( Provider ), Provider ) 
-                && Enum.IsDefined( typeof( Source ), Source  ) 
-                && Query != null )
+            if ( Query != null )
             {
                 try
                 {
@@ -93,9 +91,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public virtual DataSet GetDataSet( )
         {
-            if( Enum.IsDefined( typeof( Provider ), Provider )
-                && Enum.IsDefined( typeof( Source ), Source )
-                && Query != null )
+            if( Query != null )
             {
                 try
                 {
@@ -156,9 +152,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public virtual DataColumnCollection GetTableSchema( )
         {
-            if( Enum.IsDefined( typeof( Provider ), Provider ) 
-                && Enum.IsDefined( typeof( Source ), Source ) 
-                && Query != null )
+            if( Query != null )
             {
                 try
                 {

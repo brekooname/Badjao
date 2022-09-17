@@ -15,8 +15,8 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="Spreadsheet" />
     /// <seealso cref="ISpreadsheet" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     public abstract class SpreadsheetBase : Spreadsheet, ISpreadsheet
     {
         /// <summary>
@@ -76,8 +76,8 @@ namespace BudgetExecution
         /// <param name="button">The button.</param>
         /// <param name="icon">The icon.</param>
         /// <returns></returns>
-        public virtual bool DisplayMessageBox( string text, string caption, MessageBoxButtons button,
-            MessageBoxIcon icon )
+        public virtual bool DisplayMessageBox( string text, string caption,
+            MessageBoxButtons button, MessageBoxIcon icon )
         {
             return false;
         }
