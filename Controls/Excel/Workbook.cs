@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetWorkbook.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "Workbook.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace BudgetExecution
     using OfficeOpenXml;
     using OfficeOpenXml.Style;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Workbook : ExcelBase
     {
         /// <summary>
@@ -138,9 +138,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _worksheet = grid.GetWorksheet(  ) )
+                    using( var _worksheet = grid.GetWorksheet( ) )
                     {
-                        using( var _range = grid.GetRange(  ) )
+                        using( var _range = grid.GetRange( ) )
                         {
                             var _row = _range.Start.Row;
                             var _column = _range.Start.Column;
@@ -201,7 +201,7 @@ namespace BudgetExecution
         /// <param name = "excelRange" >
         /// The excelRange.
         /// </param>
-        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
+        [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public void SetLightColorRow( ExcelRange excelRange )
         {
             if( excelRange != null )
@@ -242,9 +242,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _prc =
-                        Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column,
-                            excelRange.End.Row, excelRange.End.Column ];
+                    var _prc = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column,
+                        excelRange.End.Row, excelRange.End.Column ];
 
                     for( var i = excelRange.Start.Row; i < excelRange.End.Row; i++ )
                     {
@@ -310,7 +309,8 @@ namespace BudgetExecution
                 try
                 {
                     SetHeaderText( grid );
-                    using( var _range = grid.GetRange(  ) )
+
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.SetFromFont( TitleFont );
                         _range.Style.Border.BorderAround( ExcelBorderStyle.Thin );
@@ -372,12 +372,11 @@ namespace BudgetExecution
         /// </c>
         /// to release only unmanaged resources.
         /// </param>
-        [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
         public void Dispose( bool disposing )
         {
             try
             {
-
                 TitleFont?.Dispose( );
                 Font?.Dispose( );
             }
@@ -391,7 +390,7 @@ namespace BudgetExecution
         /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources.
         /// </summary>
-        public virtual void Dispose( )
+        public virtual void Dispose()
         {
             try
             {
@@ -404,6 +403,4 @@ namespace BudgetExecution
             }
         }
     }
-
 }
-

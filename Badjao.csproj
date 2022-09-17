@@ -450,7 +450,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\ExcelBase.cs" />
+    <Compile Include="Controls\Abstractions\ExcelBase.cs" />
     <Compile Include="Controls\Abstractions\RibbonBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -461,7 +461,7 @@
     <Compile Include="Controls\ComboBox\ComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ComboBoxBase.cs">
+    <Compile Include="Controls\Abstractions\ComboBoxBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\IChartBinding.cs" />
@@ -471,10 +471,10 @@
     <Compile Include="Controls\EditDialog.Designer.cs">
       <DependentUpon>EditDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\EditBase.cs">
+    <Compile Include="Controls\Abstractions\EditBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abstractions\EditBase.Designer.cs">
+    <Compile Include="Controls\Abstractions\EditBase.Designer.cs">
       <DependentUpon>EditBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DefinitionDialog.cs">
@@ -483,10 +483,10 @@
     <Compile Include="Controls\DefinitionDialog.Designer.cs">
       <DependentUpon>DefinitionDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frame.cs">
+    <Compile Include="Controls\Frame\Frame.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Frame.Designer.cs">
+    <Compile Include="Controls\Frame\Frame.Designer.cs">
       <DependentUpon>Frame.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\DataFile.cs" />
@@ -507,7 +507,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\CheckBox\CheckBox.cs" />
-    <Compile Include="Abstractions\CheckBoxBase.cs" />
+    <Compile Include="Controls\Abstractions\CheckBoxBase.cs" />
     <Compile Include="Controls\Binding\BindingData.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -520,7 +520,7 @@
     <Compile Include="Controls\ImageList\ImageList.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ClockBase.cs">
+    <Compile Include="Controls\Abstractions\ClockBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Label\Label.cs" />
@@ -530,23 +530,23 @@
     <Compile Include="Controls\DataGridForm.Designer.cs">
       <DependentUpon>DataGridForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\CurrencyBase.cs">
+    <Compile Include="Controls\Abstractions\CurrencyBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\DataMetric.cs" />
     <Compile Include="Controls\StyleConfig\FontConfig.cs" />
     <Compile Include="Controls\StyleConfig\FormConfig.cs" />
     <Compile Include="Controls\StyleConfig\SizeConfig.cs" />
-    <Compile Include="Abstractions\DataGridBase.cs">
+    <Compile Include="Controls\Abstractions\DataGridBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\IDataFilter.cs" />
     <Compile Include="Interfaces\IClock.cs" />
-    <Compile Include="Abstractions\ImageListBase.cs">
+    <Compile Include="Controls\Abstractions\ImageListBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interfaces\ILabel.cs" />
-    <Compile Include="Abstractions\LabelBase.cs" />
+    <Compile Include="Controls\Abstractions\LabelBase.cs" />
     <Compile Include="Controls\PictureBox\PictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -562,7 +562,7 @@
     <Compile Include="Controls\Layout\Layout.cs" />
     <Compile Include="Controls\GroupBox\GroupBox.cs" />
     <Compile Include="Interfaces\ILayout.cs" />
-    <Compile Include="Abstractions\LayoutBase.cs" />
+    <Compile Include="Controls\Abstractions\LayoutBase.cs" />
     <Compile Include="Controls\RichTextBox\RichTextBox.cs" />
     <Compile Include="Controls\Tile\Tile.cs">
       <SubType>Component</SubType>
@@ -622,17 +622,17 @@
     <Compile Include="Controls\ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\BindingBase.cs">
+    <Compile Include="Controls\Abstractions\BindingBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ButtonBase.cs" />
-    <Compile Include="Abstractions\CalculatorBase.cs">
+    <Compile Include="Controls\Abstractions\ButtonBase.cs" />
+    <Compile Include="Controls\Abstractions\CalculatorBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\CarouselBase.cs">
+    <Compile Include="Controls\Abstractions\CarouselBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\ChartBase.cs">
+    <Compile Include="Controls\Abstractions\ChartBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\CallOut.cs" />
@@ -640,18 +640,18 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\ChartSeries.cs" />
-    <Compile Include="Abstractions\ChartData.cs" />
+    <Compile Include="Controls\Abstractions\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\SeriesBindingModel.cs" />
-    <Compile Include="Abstractions\BindingModelBase.cs" />
+    <Compile Include="Controls\Abstractions\BindingModelBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
-    <Compile Include="Abstractions\GridBase.cs">
+    <Compile Include="Controls\Abstractions\GridBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\DataViewBase.cs">
+    <Compile Include="Controls\Abstractions\DataViewBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Abstractions\GroupBoxBase.cs" />
+    <Compile Include="Controls\Abstractions\GroupBoxBase.cs" />
     <Compile Include="Interfaces\IGroupBox.cs" />
     <Compile Include="Interfaces\IListView.cs" />
     <Compile Include="Interfaces\IDataGrid.cs" />
@@ -791,10 +791,10 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TimeSpanExtensions.cs" />
     <Compile Include="Extensions\TypeObject.cs" />
-    <Compile Include="Abstractions\FormBase.cs">
+    <Compile Include="Controls\Abstractions\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abstractions\FormBase.Designer.cs">
+    <Compile Include="Controls\Abstractions\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\FileBrowser.cs">
@@ -847,8 +847,8 @@
     <Compile Include="Interfaces\IToolStripComboBox.cs" />
     <Compile Include="Interfaces\IToolStripLabel.cs" />
     <Compile Include="Interfaces\IToolStripTextBox.cs" />
-    <Compile Include="Abstractions\ListBoxBase.cs" />
-    <Compile Include="Abstractions\ListViewBase.cs" />
+    <Compile Include="Controls\Abstractions\ListBoxBase.cs" />
+    <Compile Include="Controls\Abstractions\ListViewBase.cs" />
     <Compile Include="Controls\Abstractions\PivotChartBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -865,7 +865,7 @@
     <Compile Include="Controls\PivotForm.Designer.cs">
       <DependentUpon>PivotForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abstractions\MetricBase.cs" />
+    <Compile Include="Controls\Abstractions\MetricBase.cs" />
     <Compile Include="Controls\LookupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -960,7 +960,7 @@
     </Compile>
     <Compile Include="Controls\TextBox\TextBox.cs" />
     <Compile Include="Controls\Abstractions\TextBoxBase.cs" />
-    <EmbeddedResource Include="Abstractions\FormBase.resx">
+    <EmbeddedResource Include="Controls\Abstractions\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\CalculationForm.resx">
@@ -1020,7 +1020,7 @@
     <EmbeddedResource Include="Controls\LookupDialog.resx">
       <DependentUpon>LookupDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frame.resx">
+    <EmbeddedResource Include="Controls\Frame\Frame.resx">
       <DependentUpon>Frame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

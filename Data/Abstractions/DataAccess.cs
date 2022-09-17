@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "DataAccess.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="DataAccess"/> class.
         /// </summary>
-        protected DataAccess( )
+        protected DataAccess()
         {
         }
 
@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<DataRow> GetData( )
+        public virtual IEnumerable<DataRow> GetData()
         {
             try
             {
@@ -56,15 +56,16 @@ namespace BudgetExecution
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        public virtual DataTable GetDataTable( )
+        public virtual DataTable GetDataTable()
         {
-            if ( Query != null )
+            if( Query != null )
             {
                 try
                 {
-                    DataSet = new DataSet( $"{ Provider }" );
-                    DataTable = new DataTable( $"{ Source }" );
+                    DataSet = new DataSet( $"{Provider}" );
+                    DataTable = new DataTable( $"{Source}" );
                     DataSet.Tables.Add( DataTable );
+
                     using( var _adapter = Query.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
@@ -89,17 +90,17 @@ namespace BudgetExecution
         /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
-        public virtual DataSet GetDataSet( )
+        public virtual DataSet GetDataSet()
         {
             if( Query != null )
             {
                 try
                 {
-                    DataSet = new DataSet( $"{ Provider }" );
-                    DataTable = new DataTable( $"{ Source }" );
+                    DataSet = new DataSet( $"{Provider}" );
+                    DataTable = new DataTable( $"{Source}" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query.GetAdapter(   ) )
+                    using( var _adapter = Query.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable?.TableName );
                         SetColumnCaptions( DataTable );
@@ -131,7 +132,7 @@ namespace BudgetExecution
                 {
                     foreach( DataColumn column in dataTable.Columns )
                     {
-                        if( column != null 
+                        if( column != null
                             && string.IsNullOrEmpty( column.Caption ) )
                         {
                             var _caption = column.ColumnName.SplitPascal( );
@@ -150,16 +151,17 @@ namespace BudgetExecution
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        public virtual DataColumnCollection GetTableSchema( )
+        public virtual DataColumnCollection GetTableSchema()
         {
             if( Query != null )
             {
                 try
                 {
-                    DataSet = new DataSet( $"{ Provider }" );
-                    DataTable = new DataTable( $"{ Source }" );
+                    DataSet = new DataSet( $"{Provider}" );
+                    DataTable = new DataTable( $"{Source}" );
                     DataSet.Tables.Add( DataTable );
-                    using( var _adapter = Query?.GetAdapter(  ) )
+
+                    using( var _adapter = Query?.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
