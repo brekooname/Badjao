@@ -38,12 +38,14 @@
             // 
             // PictureBox
             // 
+            this.PictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.PictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PictureBox.Image = global::BudgetExecution.Properties.Resources.Loading;
-            this.PictureBox.Location = new System.Drawing.Point(0, 0);
+            this.PictureBox.Image = global::BudgetExecution.Properties.Resources.Processing;
+            this.PictureBox.Location = new System.Drawing.Point(367, 85);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(734, 499);
+            this.PictureBox.Size = new System.Drawing.Size(645, 445);
             this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
@@ -67,7 +69,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.CaptionFont = new System.Drawing.Font("Roboto Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(734, 499);
+            this.ClientSize = new System.Drawing.Size(1380, 600);
             this.Controls.Add(this.PictureBox);
             this.Font = new System.Drawing.Font("Roboto Condensed", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -75,6 +77,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Name = "Loader";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Loader";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);

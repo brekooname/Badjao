@@ -6,11 +6,13 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
     using VisualPlus.Enumerators;
 
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
     public class ListBox : ListBoxBase
     {
         /// <summary>
@@ -60,12 +62,12 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="ListBox"/> class.
         /// </summary>
-        public ListBox()
+        public ListBox( )
         {
             // Basic Properties
             Size = new Size( 200, 100 );
@@ -95,12 +97,13 @@ namespace BudgetExecution
             Border.HoverVisible = true;
 
             // Item SeriesConfiguration
-            ItemHeight = 30;
             ItemLineAlignment = StringAlignment.Center;
             ItemAlternate = Color.FromArgb( 25, 25, 25 );
             ItemNormal = Color.FromArgb( 15, 15, 15 );
-            ItemSelected = Color.FromArgb( 22, 39, 70  );
+            ItemSelected = Color.FromArgb( 22, 39, 70 );
             AlternateColors = true;
+
+            VisibleChanged += OnVisible;
         }
 
         /// <summary>
@@ -204,6 +207,23 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        /// Called when [visible].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        public void OnVisible( object sender, EventArgs e )
+        {
+            try
+            {
+                ItemHeight = 30;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
         /// Sets the color of the border.
         /// </summary>
         /// <param name="color">The color.</param>
@@ -233,6 +253,7 @@ namespace BudgetExecution
                 switch( hoverColor )
                 {
                     case true:
+
                     {
                         Border.Color = Color.FromArgb( 64, 64, 64 );
                         Border.Thickness = 1;
@@ -243,6 +264,7 @@ namespace BudgetExecution
                     }
 
                     case false:
+
                     {
                         Border.Color = Color.FromArgb( 15, 15, 15 );
                         Border.Thickness = 1;

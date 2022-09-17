@@ -120,7 +120,7 @@
             this.TabControl.ActiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.ActiveTabFont = new System.Drawing.Font("Roboto", 9F);
             this.TabControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TabControl.BeforeTouchSize = new System.Drawing.Size(1368, 488);
+            this.TabControl.BeforeTouchSize = new System.Drawing.Size(1362, 522);
             this.TabControl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TabControl.BorderWidth = 1;
             this.TabControl.CanOverrideStyle = true;
@@ -133,9 +133,9 @@
             this.TabControl.InactiveCloseButtonForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.InactiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.ItemSize = new System.Drawing.Size(158, 23);
-            this.TabControl.Location = new System.Drawing.Point(0, 0);
+            this.TabControl.Location = new System.Drawing.Point(3, 3);
             this.TabControl.Name = "TabControl";
-            this.TabControl.Size = new System.Drawing.Size(1368, 488);
+            this.TabControl.Size = new System.Drawing.Size(1362, 522);
             this.TabControl.TabIndex = 8;
             this.TabControl.TabPanelBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.TabControl.TabStyle = typeof(Syncfusion.Windows.Forms.Tools.TabRendererMetro);
@@ -161,8 +161,9 @@
             this.DataTab.ImageSize = new System.Drawing.Size(14, 14);
             this.DataTab.Location = new System.Drawing.Point(0, 22);
             this.DataTab.Name = "DataTab";
+            this.DataTab.Padding = new System.Windows.Forms.Padding(3);
             this.DataTab.ShowCloseButton = true;
-            this.DataTab.Size = new System.Drawing.Size(1368, 466);
+            this.DataTab.Size = new System.Drawing.Size(1362, 500);
             this.DataTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.DataTab.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.DataTab.TabIndex = 8;
@@ -174,13 +175,13 @@
             this.FrameTable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FrameTable.BackColor = System.Drawing.Color.Transparent;
             this.FrameTable.ColumnCount = 7;
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.4582F));
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.31713F));
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.24521F));
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.24521F));
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.2452F));
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.24498F));
-            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.24406F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28777F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28777F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28297F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28297F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28296F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28777F));
+            this.FrameTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28777F));
             this.FrameTable.Controls.Add(this.Frame1, 0, 0);
             this.FrameTable.Controls.Add(this.Frame2, 1, 0);
             this.FrameTable.Controls.Add(this.Frame3, 2, 0);
@@ -230,556 +231,704 @@
             this.FrameTable.Controls.Add(this.Frame47, 4, 6);
             this.FrameTable.Controls.Add(this.Frame48, 5, 6);
             this.FrameTable.Controls.Add(this.Frame49, 6, 6);
-            this.FrameTable.Location = new System.Drawing.Point(3, 35);
+            this.FrameTable.Location = new System.Drawing.Point(3, 37);
             this.FrameTable.Name = "FrameTable";
+            this.FrameTable.Padding = new System.Windows.Forms.Padding(1);
             this.FrameTable.RowCount = 7;
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28964F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28709F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
-            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28466F));
-            this.FrameTable.Size = new System.Drawing.Size(1362, 399);
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.FrameTable.Size = new System.Drawing.Size(1356, 457);
             this.FrameTable.TabIndex = 1;
             // 
             // Frame1
             // 
+            this.Frame1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame1.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame1.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame1.Index = 0;
-            this.Frame1.Location = new System.Drawing.Point(3, 3);
+            this.Frame1.Location = new System.Drawing.Point(2, 2);
+            this.Frame1.Margin = new System.Windows.Forms.Padding(1);
             this.Frame1.Name = "Frame1";
-            this.Frame1.Size = new System.Drawing.Size(190, 51);
+            this.Frame1.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame1.Size = new System.Drawing.Size(187, 59);
             this.Frame1.TabIndex = 0;
             // 
             // Frame2
             // 
+            this.Frame2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame2.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame2.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame2.Index = 0;
-            this.Frame2.Location = new System.Drawing.Point(199, 3);
+            this.Frame2.Location = new System.Drawing.Point(195, 2);
+            this.Frame2.Margin = new System.Windows.Forms.Padding(1);
             this.Frame2.Name = "Frame2";
-            this.Frame2.Size = new System.Drawing.Size(188, 51);
+            this.Frame2.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame2.Size = new System.Drawing.Size(187, 59);
             this.Frame2.TabIndex = 1;
             // 
             // Frame3
             // 
+            this.Frame3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame3.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame3.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame3.Index = 0;
-            this.Frame3.Location = new System.Drawing.Point(393, 3);
+            this.Frame3.Location = new System.Drawing.Point(388, 2);
+            this.Frame3.Margin = new System.Windows.Forms.Padding(1);
             this.Frame3.Name = "Frame3";
-            this.Frame3.Size = new System.Drawing.Size(188, 51);
+            this.Frame3.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame3.Size = new System.Drawing.Size(187, 59);
             this.Frame3.TabIndex = 2;
             // 
             // Frame4
             // 
+            this.Frame4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame4.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame4.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame4.Index = 0;
-            this.Frame4.Location = new System.Drawing.Point(587, 3);
+            this.Frame4.Location = new System.Drawing.Point(581, 2);
+            this.Frame4.Margin = new System.Windows.Forms.Padding(1);
             this.Frame4.Name = "Frame4";
-            this.Frame4.Size = new System.Drawing.Size(188, 51);
+            this.Frame4.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame4.Size = new System.Drawing.Size(187, 59);
             this.Frame4.TabIndex = 3;
             // 
             // Frame5
             // 
+            this.Frame5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame5.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame5.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame5.Index = 0;
-            this.Frame5.Location = new System.Drawing.Point(781, 3);
+            this.Frame5.Location = new System.Drawing.Point(774, 2);
+            this.Frame5.Margin = new System.Windows.Forms.Padding(1);
             this.Frame5.Name = "Frame5";
-            this.Frame5.Size = new System.Drawing.Size(188, 51);
+            this.Frame5.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame5.Size = new System.Drawing.Size(187, 59);
             this.Frame5.TabIndex = 4;
             // 
             // Frame6
             // 
+            this.Frame6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame6.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame6.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame6.Index = 0;
-            this.Frame6.Location = new System.Drawing.Point(975, 3);
+            this.Frame6.Location = new System.Drawing.Point(967, 2);
+            this.Frame6.Margin = new System.Windows.Forms.Padding(1);
             this.Frame6.Name = "Frame6";
-            this.Frame6.Size = new System.Drawing.Size(188, 51);
+            this.Frame6.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame6.Size = new System.Drawing.Size(187, 59);
             this.Frame6.TabIndex = 5;
             // 
             // Frame7
             // 
+            this.Frame7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame7.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame7.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame7.Index = 0;
-            this.Frame7.Location = new System.Drawing.Point(1169, 3);
+            this.Frame7.Location = new System.Drawing.Point(1160, 2);
+            this.Frame7.Margin = new System.Windows.Forms.Padding(1);
             this.Frame7.Name = "Frame7";
-            this.Frame7.Size = new System.Drawing.Size(190, 51);
+            this.Frame7.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame7.Size = new System.Drawing.Size(190, 59);
             this.Frame7.TabIndex = 6;
             // 
             // Frame8
             // 
+            this.Frame8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame8.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame8.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame8.Index = 0;
-            this.Frame8.Location = new System.Drawing.Point(3, 60);
+            this.Frame8.Location = new System.Drawing.Point(2, 66);
+            this.Frame8.Margin = new System.Windows.Forms.Padding(1);
             this.Frame8.Name = "Frame8";
-            this.Frame8.Size = new System.Drawing.Size(190, 51);
+            this.Frame8.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame8.Size = new System.Drawing.Size(187, 59);
             this.Frame8.TabIndex = 7;
             // 
             // Frame9
             // 
+            this.Frame9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame9.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame9.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame9.Index = 0;
-            this.Frame9.Location = new System.Drawing.Point(199, 60);
+            this.Frame9.Location = new System.Drawing.Point(195, 66);
+            this.Frame9.Margin = new System.Windows.Forms.Padding(1);
             this.Frame9.Name = "Frame9";
-            this.Frame9.Size = new System.Drawing.Size(188, 51);
+            this.Frame9.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame9.Size = new System.Drawing.Size(187, 59);
             this.Frame9.TabIndex = 8;
             // 
             // Frame10
             // 
+            this.Frame10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame10.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame10.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame10.Index = 0;
-            this.Frame10.Location = new System.Drawing.Point(393, 60);
+            this.Frame10.Location = new System.Drawing.Point(388, 66);
+            this.Frame10.Margin = new System.Windows.Forms.Padding(1);
             this.Frame10.Name = "Frame10";
-            this.Frame10.Size = new System.Drawing.Size(188, 51);
+            this.Frame10.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame10.Size = new System.Drawing.Size(187, 59);
             this.Frame10.TabIndex = 9;
             // 
             // Frame11
             // 
+            this.Frame11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame11.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame11.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame11.Index = 0;
-            this.Frame11.Location = new System.Drawing.Point(587, 60);
+            this.Frame11.Location = new System.Drawing.Point(581, 66);
+            this.Frame11.Margin = new System.Windows.Forms.Padding(1);
             this.Frame11.Name = "Frame11";
-            this.Frame11.Size = new System.Drawing.Size(188, 51);
+            this.Frame11.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame11.Size = new System.Drawing.Size(187, 59);
             this.Frame11.TabIndex = 10;
             // 
             // Frame12
             // 
+            this.Frame12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame12.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame12.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame12.Index = 0;
-            this.Frame12.Location = new System.Drawing.Point(781, 60);
+            this.Frame12.Location = new System.Drawing.Point(774, 66);
+            this.Frame12.Margin = new System.Windows.Forms.Padding(1);
             this.Frame12.Name = "Frame12";
-            this.Frame12.Size = new System.Drawing.Size(188, 51);
+            this.Frame12.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame12.Size = new System.Drawing.Size(187, 59);
             this.Frame12.TabIndex = 11;
             // 
             // Frame13
             // 
+            this.Frame13.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame13.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame13.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame13.Index = 0;
-            this.Frame13.Location = new System.Drawing.Point(975, 60);
+            this.Frame13.Location = new System.Drawing.Point(967, 66);
+            this.Frame13.Margin = new System.Windows.Forms.Padding(1);
             this.Frame13.Name = "Frame13";
-            this.Frame13.Size = new System.Drawing.Size(188, 51);
+            this.Frame13.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame13.Size = new System.Drawing.Size(187, 59);
             this.Frame13.TabIndex = 12;
             // 
             // Frame14
             // 
+            this.Frame14.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame14.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame14.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame14.Index = 0;
-            this.Frame14.Location = new System.Drawing.Point(1169, 60);
+            this.Frame14.Location = new System.Drawing.Point(1160, 66);
+            this.Frame14.Margin = new System.Windows.Forms.Padding(1);
             this.Frame14.Name = "Frame14";
-            this.Frame14.Size = new System.Drawing.Size(190, 51);
+            this.Frame14.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame14.Size = new System.Drawing.Size(190, 59);
             this.Frame14.TabIndex = 13;
             // 
             // Frame15
             // 
+            this.Frame15.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame15.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame15.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame15.Index = 0;
-            this.Frame15.Location = new System.Drawing.Point(3, 117);
+            this.Frame15.Location = new System.Drawing.Point(2, 130);
+            this.Frame15.Margin = new System.Windows.Forms.Padding(1);
             this.Frame15.Name = "Frame15";
-            this.Frame15.Size = new System.Drawing.Size(190, 50);
+            this.Frame15.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame15.Size = new System.Drawing.Size(187, 59);
             this.Frame15.TabIndex = 14;
             // 
             // Frame16
             // 
+            this.Frame16.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame16.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame16.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame16.Index = 0;
-            this.Frame16.Location = new System.Drawing.Point(199, 117);
+            this.Frame16.Location = new System.Drawing.Point(195, 130);
+            this.Frame16.Margin = new System.Windows.Forms.Padding(1);
             this.Frame16.Name = "Frame16";
-            this.Frame16.Size = new System.Drawing.Size(188, 50);
+            this.Frame16.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame16.Size = new System.Drawing.Size(187, 59);
             this.Frame16.TabIndex = 15;
             // 
             // Frame17
             // 
+            this.Frame17.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame17.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame17.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame17.Index = 0;
-            this.Frame17.Location = new System.Drawing.Point(393, 117);
+            this.Frame17.Location = new System.Drawing.Point(388, 130);
+            this.Frame17.Margin = new System.Windows.Forms.Padding(1);
             this.Frame17.Name = "Frame17";
-            this.Frame17.Size = new System.Drawing.Size(188, 50);
+            this.Frame17.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame17.Size = new System.Drawing.Size(187, 59);
             this.Frame17.TabIndex = 16;
             // 
             // Frame18
             // 
+            this.Frame18.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame18.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame18.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame18.Index = 0;
-            this.Frame18.Location = new System.Drawing.Point(587, 117);
+            this.Frame18.Location = new System.Drawing.Point(581, 130);
+            this.Frame18.Margin = new System.Windows.Forms.Padding(1);
             this.Frame18.Name = "Frame18";
-            this.Frame18.Size = new System.Drawing.Size(188, 50);
+            this.Frame18.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame18.Size = new System.Drawing.Size(187, 59);
             this.Frame18.TabIndex = 17;
             // 
             // Frame19
             // 
+            this.Frame19.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame19.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame19.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame19.Index = 0;
-            this.Frame19.Location = new System.Drawing.Point(781, 117);
+            this.Frame19.Location = new System.Drawing.Point(774, 130);
+            this.Frame19.Margin = new System.Windows.Forms.Padding(1);
             this.Frame19.Name = "Frame19";
-            this.Frame19.Size = new System.Drawing.Size(188, 50);
+            this.Frame19.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame19.Size = new System.Drawing.Size(187, 59);
             this.Frame19.TabIndex = 18;
             // 
             // Frame20
             // 
+            this.Frame20.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame20.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame20.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame20.Index = 0;
-            this.Frame20.Location = new System.Drawing.Point(975, 117);
+            this.Frame20.Location = new System.Drawing.Point(967, 130);
+            this.Frame20.Margin = new System.Windows.Forms.Padding(1);
             this.Frame20.Name = "Frame20";
-            this.Frame20.Size = new System.Drawing.Size(188, 50);
+            this.Frame20.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame20.Size = new System.Drawing.Size(187, 59);
             this.Frame20.TabIndex = 19;
             // 
             // Frame21
             // 
+            this.Frame21.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame21.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame21.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame21.Index = 0;
-            this.Frame21.Location = new System.Drawing.Point(1169, 117);
+            this.Frame21.Location = new System.Drawing.Point(1160, 130);
+            this.Frame21.Margin = new System.Windows.Forms.Padding(1);
             this.Frame21.Name = "Frame21";
-            this.Frame21.Size = new System.Drawing.Size(190, 50);
+            this.Frame21.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame21.Size = new System.Drawing.Size(190, 59);
             this.Frame21.TabIndex = 20;
             // 
             // frame22
             // 
+            this.frame22.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame22.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame22.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame22.Index = 0;
-            this.frame22.Location = new System.Drawing.Point(3, 173);
+            this.frame22.Location = new System.Drawing.Point(2, 194);
+            this.frame22.Margin = new System.Windows.Forms.Padding(1);
             this.frame22.Name = "frame22";
-            this.frame22.Size = new System.Drawing.Size(190, 50);
+            this.frame22.Padding = new System.Windows.Forms.Padding(3);
+            this.frame22.Size = new System.Drawing.Size(187, 59);
             this.frame22.TabIndex = 21;
             // 
             // frame23
             // 
+            this.frame23.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame23.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame23.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame23.Index = 0;
-            this.frame23.Location = new System.Drawing.Point(199, 173);
+            this.frame23.Location = new System.Drawing.Point(195, 194);
+            this.frame23.Margin = new System.Windows.Forms.Padding(1);
             this.frame23.Name = "frame23";
-            this.frame23.Size = new System.Drawing.Size(188, 50);
+            this.frame23.Padding = new System.Windows.Forms.Padding(3);
+            this.frame23.Size = new System.Drawing.Size(187, 59);
             this.frame23.TabIndex = 22;
             // 
             // frame24
             // 
+            this.frame24.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame24.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame24.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame24.Index = 0;
-            this.frame24.Location = new System.Drawing.Point(393, 173);
+            this.frame24.Location = new System.Drawing.Point(388, 194);
+            this.frame24.Margin = new System.Windows.Forms.Padding(1);
             this.frame24.Name = "frame24";
-            this.frame24.Size = new System.Drawing.Size(188, 50);
+            this.frame24.Padding = new System.Windows.Forms.Padding(3);
+            this.frame24.Size = new System.Drawing.Size(187, 59);
             this.frame24.TabIndex = 23;
             // 
             // frame25
             // 
+            this.frame25.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame25.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame25.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame25.Index = 0;
-            this.frame25.Location = new System.Drawing.Point(587, 173);
+            this.frame25.Location = new System.Drawing.Point(581, 194);
+            this.frame25.Margin = new System.Windows.Forms.Padding(1);
             this.frame25.Name = "frame25";
-            this.frame25.Size = new System.Drawing.Size(188, 50);
+            this.frame25.Padding = new System.Windows.Forms.Padding(3);
+            this.frame25.Size = new System.Drawing.Size(187, 59);
             this.frame25.TabIndex = 24;
             // 
             // frame26
             // 
+            this.frame26.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame26.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame26.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame26.Index = 0;
-            this.frame26.Location = new System.Drawing.Point(781, 173);
+            this.frame26.Location = new System.Drawing.Point(774, 194);
+            this.frame26.Margin = new System.Windows.Forms.Padding(1);
             this.frame26.Name = "frame26";
-            this.frame26.Size = new System.Drawing.Size(188, 50);
+            this.frame26.Padding = new System.Windows.Forms.Padding(3);
+            this.frame26.Size = new System.Drawing.Size(187, 59);
             this.frame26.TabIndex = 25;
             // 
             // frame27
             // 
+            this.frame27.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame27.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame27.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame27.Index = 0;
-            this.frame27.Location = new System.Drawing.Point(975, 173);
+            this.frame27.Location = new System.Drawing.Point(967, 194);
+            this.frame27.Margin = new System.Windows.Forms.Padding(1);
             this.frame27.Name = "frame27";
-            this.frame27.Size = new System.Drawing.Size(188, 50);
+            this.frame27.Padding = new System.Windows.Forms.Padding(3);
+            this.frame27.Size = new System.Drawing.Size(187, 59);
             this.frame27.TabIndex = 26;
             // 
             // frame28
             // 
+            this.frame28.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.frame28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.frame28.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frame28.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.frame28.Index = 0;
-            this.frame28.Location = new System.Drawing.Point(1169, 173);
+            this.frame28.Location = new System.Drawing.Point(1160, 194);
+            this.frame28.Margin = new System.Windows.Forms.Padding(1);
             this.frame28.Name = "frame28";
-            this.frame28.Size = new System.Drawing.Size(190, 50);
+            this.frame28.Padding = new System.Windows.Forms.Padding(3);
+            this.frame28.Size = new System.Drawing.Size(190, 59);
             this.frame28.TabIndex = 27;
             // 
             // Frame29
             // 
+            this.Frame29.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame29.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame29.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame29.Index = 0;
-            this.Frame29.Location = new System.Drawing.Point(3, 229);
+            this.Frame29.Location = new System.Drawing.Point(2, 258);
+            this.Frame29.Margin = new System.Windows.Forms.Padding(1);
             this.Frame29.Name = "Frame29";
-            this.Frame29.Size = new System.Drawing.Size(190, 50);
+            this.Frame29.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame29.Size = new System.Drawing.Size(187, 59);
             this.Frame29.TabIndex = 28;
             // 
             // Frame30
             // 
+            this.Frame30.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame30.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame30.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame30.Index = 0;
-            this.Frame30.Location = new System.Drawing.Point(199, 229);
+            this.Frame30.Location = new System.Drawing.Point(195, 258);
+            this.Frame30.Margin = new System.Windows.Forms.Padding(1);
             this.Frame30.Name = "Frame30";
-            this.Frame30.Size = new System.Drawing.Size(188, 50);
+            this.Frame30.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame30.Size = new System.Drawing.Size(187, 59);
             this.Frame30.TabIndex = 29;
             // 
             // Frame31
             // 
+            this.Frame31.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame31.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame31.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame31.Index = 0;
-            this.Frame31.Location = new System.Drawing.Point(393, 229);
+            this.Frame31.Location = new System.Drawing.Point(388, 258);
+            this.Frame31.Margin = new System.Windows.Forms.Padding(1);
             this.Frame31.Name = "Frame31";
-            this.Frame31.Size = new System.Drawing.Size(188, 50);
+            this.Frame31.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame31.Size = new System.Drawing.Size(187, 59);
             this.Frame31.TabIndex = 30;
             // 
             // Frame32
             // 
+            this.Frame32.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame32.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame32.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame32.Index = 0;
-            this.Frame32.Location = new System.Drawing.Point(587, 229);
+            this.Frame32.Location = new System.Drawing.Point(581, 258);
+            this.Frame32.Margin = new System.Windows.Forms.Padding(1);
             this.Frame32.Name = "Frame32";
-            this.Frame32.Size = new System.Drawing.Size(188, 50);
+            this.Frame32.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame32.Size = new System.Drawing.Size(187, 59);
             this.Frame32.TabIndex = 31;
             // 
             // Frame33
             // 
+            this.Frame33.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame33.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame33.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame33.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame33.Index = 0;
-            this.Frame33.Location = new System.Drawing.Point(781, 229);
+            this.Frame33.Location = new System.Drawing.Point(774, 258);
+            this.Frame33.Margin = new System.Windows.Forms.Padding(1);
             this.Frame33.Name = "Frame33";
-            this.Frame33.Size = new System.Drawing.Size(188, 50);
+            this.Frame33.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame33.Size = new System.Drawing.Size(187, 59);
             this.Frame33.TabIndex = 32;
             // 
             // Frame34
             // 
+            this.Frame34.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame34.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame34.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame34.Index = 0;
-            this.Frame34.Location = new System.Drawing.Point(975, 229);
+            this.Frame34.Location = new System.Drawing.Point(967, 258);
+            this.Frame34.Margin = new System.Windows.Forms.Padding(1);
             this.Frame34.Name = "Frame34";
-            this.Frame34.Size = new System.Drawing.Size(188, 50);
+            this.Frame34.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame34.Size = new System.Drawing.Size(187, 59);
             this.Frame34.TabIndex = 33;
             // 
             // Frame35
             // 
+            this.Frame35.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame35.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame35.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame35.Index = 0;
-            this.Frame35.Location = new System.Drawing.Point(1169, 229);
+            this.Frame35.Location = new System.Drawing.Point(1160, 258);
+            this.Frame35.Margin = new System.Windows.Forms.Padding(1);
             this.Frame35.Name = "Frame35";
-            this.Frame35.Size = new System.Drawing.Size(190, 50);
+            this.Frame35.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame35.Size = new System.Drawing.Size(190, 59);
             this.Frame35.TabIndex = 34;
             // 
             // Frame36
             // 
+            this.Frame36.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame36.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame36.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame36.Index = 0;
-            this.Frame36.Location = new System.Drawing.Point(3, 285);
+            this.Frame36.Location = new System.Drawing.Point(2, 322);
+            this.Frame36.Margin = new System.Windows.Forms.Padding(1);
             this.Frame36.Name = "Frame36";
-            this.Frame36.Size = new System.Drawing.Size(190, 50);
+            this.Frame36.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame36.Size = new System.Drawing.Size(187, 59);
             this.Frame36.TabIndex = 35;
             // 
             // Frame37
             // 
+            this.Frame37.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame37.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame37.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame37.Index = 0;
-            this.Frame37.Location = new System.Drawing.Point(199, 285);
+            this.Frame37.Location = new System.Drawing.Point(195, 322);
+            this.Frame37.Margin = new System.Windows.Forms.Padding(1);
             this.Frame37.Name = "Frame37";
-            this.Frame37.Size = new System.Drawing.Size(188, 50);
+            this.Frame37.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame37.Size = new System.Drawing.Size(187, 59);
             this.Frame37.TabIndex = 36;
             // 
             // Frame38
             // 
+            this.Frame38.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame38.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame38.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame38.Index = 0;
-            this.Frame38.Location = new System.Drawing.Point(393, 285);
+            this.Frame38.Location = new System.Drawing.Point(388, 322);
+            this.Frame38.Margin = new System.Windows.Forms.Padding(1);
             this.Frame38.Name = "Frame38";
-            this.Frame38.Size = new System.Drawing.Size(188, 50);
+            this.Frame38.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame38.Size = new System.Drawing.Size(187, 59);
             this.Frame38.TabIndex = 37;
             // 
             // Frame39
             // 
+            this.Frame39.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame39.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame39.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame39.Index = 0;
-            this.Frame39.Location = new System.Drawing.Point(587, 285);
+            this.Frame39.Location = new System.Drawing.Point(581, 322);
+            this.Frame39.Margin = new System.Windows.Forms.Padding(1);
             this.Frame39.Name = "Frame39";
-            this.Frame39.Size = new System.Drawing.Size(188, 50);
+            this.Frame39.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame39.Size = new System.Drawing.Size(187, 59);
             this.Frame39.TabIndex = 38;
             // 
             // Frame40
             // 
+            this.Frame40.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame40.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame40.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame40.Index = 0;
-            this.Frame40.Location = new System.Drawing.Point(781, 285);
+            this.Frame40.Location = new System.Drawing.Point(774, 322);
+            this.Frame40.Margin = new System.Windows.Forms.Padding(1);
             this.Frame40.Name = "Frame40";
-            this.Frame40.Size = new System.Drawing.Size(188, 50);
+            this.Frame40.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame40.Size = new System.Drawing.Size(187, 59);
             this.Frame40.TabIndex = 39;
             // 
             // Frame41
             // 
+            this.Frame41.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame41.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame41.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame41.Index = 0;
-            this.Frame41.Location = new System.Drawing.Point(975, 285);
+            this.Frame41.Location = new System.Drawing.Point(967, 322);
+            this.Frame41.Margin = new System.Windows.Forms.Padding(1);
             this.Frame41.Name = "Frame41";
-            this.Frame41.Size = new System.Drawing.Size(188, 50);
+            this.Frame41.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame41.Size = new System.Drawing.Size(187, 59);
             this.Frame41.TabIndex = 40;
             // 
             // Frame42
             // 
+            this.Frame42.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame42.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame42.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame42.Index = 0;
-            this.Frame42.Location = new System.Drawing.Point(1169, 285);
+            this.Frame42.Location = new System.Drawing.Point(1160, 322);
+            this.Frame42.Margin = new System.Windows.Forms.Padding(1);
             this.Frame42.Name = "Frame42";
-            this.Frame42.Size = new System.Drawing.Size(190, 50);
+            this.Frame42.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame42.Size = new System.Drawing.Size(190, 59);
             this.Frame42.TabIndex = 41;
             // 
             // Frame43
             // 
+            this.Frame43.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame43.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame43.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame43.Index = 0;
-            this.Frame43.Location = new System.Drawing.Point(3, 341);
+            this.Frame43.Location = new System.Drawing.Point(2, 386);
+            this.Frame43.Margin = new System.Windows.Forms.Padding(1);
             this.Frame43.Name = "Frame43";
-            this.Frame43.Size = new System.Drawing.Size(190, 51);
+            this.Frame43.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame43.Size = new System.Drawing.Size(187, 59);
             this.Frame43.TabIndex = 42;
             // 
             // Frame44
             // 
+            this.Frame44.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame44.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame44.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame44.Index = 0;
-            this.Frame44.Location = new System.Drawing.Point(199, 341);
+            this.Frame44.Location = new System.Drawing.Point(195, 386);
+            this.Frame44.Margin = new System.Windows.Forms.Padding(1);
             this.Frame44.Name = "Frame44";
-            this.Frame44.Size = new System.Drawing.Size(188, 51);
+            this.Frame44.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame44.Size = new System.Drawing.Size(187, 59);
             this.Frame44.TabIndex = 43;
             // 
             // Frame45
             // 
+            this.Frame45.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame45.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame45.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame45.Index = 0;
-            this.Frame45.Location = new System.Drawing.Point(393, 341);
+            this.Frame45.Location = new System.Drawing.Point(388, 386);
+            this.Frame45.Margin = new System.Windows.Forms.Padding(1);
             this.Frame45.Name = "Frame45";
-            this.Frame45.Size = new System.Drawing.Size(188, 51);
+            this.Frame45.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame45.Size = new System.Drawing.Size(187, 59);
             this.Frame45.TabIndex = 44;
             // 
             // Frame46
             // 
+            this.Frame46.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame46.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame46.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame46.Index = 0;
-            this.Frame46.Location = new System.Drawing.Point(587, 341);
+            this.Frame46.Location = new System.Drawing.Point(581, 386);
+            this.Frame46.Margin = new System.Windows.Forms.Padding(1);
             this.Frame46.Name = "Frame46";
-            this.Frame46.Size = new System.Drawing.Size(188, 51);
+            this.Frame46.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame46.Size = new System.Drawing.Size(187, 59);
             this.Frame46.TabIndex = 45;
             // 
             // Frame47
             // 
+            this.Frame47.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame47.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame47.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame47.Index = 0;
-            this.Frame47.Location = new System.Drawing.Point(781, 341);
+            this.Frame47.Location = new System.Drawing.Point(774, 386);
+            this.Frame47.Margin = new System.Windows.Forms.Padding(1);
             this.Frame47.Name = "Frame47";
-            this.Frame47.Size = new System.Drawing.Size(188, 51);
+            this.Frame47.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame47.Size = new System.Drawing.Size(187, 59);
             this.Frame47.TabIndex = 46;
             // 
             // Frame48
             // 
+            this.Frame48.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame48.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame48.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame48.Index = 0;
-            this.Frame48.Location = new System.Drawing.Point(975, 341);
+            this.Frame48.Location = new System.Drawing.Point(967, 386);
+            this.Frame48.Margin = new System.Windows.Forms.Padding(1);
             this.Frame48.Name = "Frame48";
-            this.Frame48.Size = new System.Drawing.Size(188, 51);
+            this.Frame48.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame48.Size = new System.Drawing.Size(187, 59);
             this.Frame48.TabIndex = 47;
             // 
             // Frame49
             // 
+            this.Frame49.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Frame49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Frame49.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Frame49.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Frame49.Index = 0;
-            this.Frame49.Location = new System.Drawing.Point(1169, 341);
+            this.Frame49.Location = new System.Drawing.Point(1160, 386);
+            this.Frame49.Margin = new System.Windows.Forms.Padding(1);
             this.Frame49.Name = "Frame49";
-            this.Frame49.Size = new System.Drawing.Size(190, 51);
+            this.Frame49.Padding = new System.Windows.Forms.Padding(3);
+            this.Frame49.Size = new System.Drawing.Size(190, 59);
             this.Frame49.TabIndex = 48;
             // 
             // SqlTab
@@ -790,7 +939,7 @@
             this.SqlTab.Location = new System.Drawing.Point(0, 22);
             this.SqlTab.Name = "SqlTab";
             this.SqlTab.ShowCloseButton = true;
-            this.SqlTab.Size = new System.Drawing.Size(1368, 466);
+            this.SqlTab.Size = new System.Drawing.Size(1362, 500);
             this.SqlTab.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.SqlTab.TabForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.SqlTab.TabIndex = 5;
@@ -1266,7 +1415,7 @@
             this.SelectButton.HoverText = "Not Yet Implemented!";
             this.SelectButton.Image = null;
             this.SelectButton.Images = null;
-            this.SelectButton.Location = new System.Drawing.Point(72, 531);
+            this.SelectButton.Location = new System.Drawing.Point(75, 528);
             this.SelectButton.Margin = new System.Windows.Forms.Padding(0);
             this.SelectButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.SelectButton.Name = "SelectButton";
@@ -1307,7 +1456,7 @@
             this.RefreshButton.HoverText = "Not Yet Implemented!";
             this.RefreshButton.Image = null;
             this.RefreshButton.Images = null;
-            this.RefreshButton.Location = new System.Drawing.Point(611, 531);
+            this.RefreshButton.Location = new System.Drawing.Point(611, 528);
             this.RefreshButton.Margin = new System.Windows.Forms.Padding(0);
             this.RefreshButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.RefreshButton.Name = "RefreshButton";
@@ -1348,7 +1497,7 @@
             this.CloseButton.HoverText = "Close Window";
             this.CloseButton.Image = null;
             this.CloseButton.Images = null;
-            this.CloseButton.Location = new System.Drawing.Point(1182, 531);
+            this.CloseButton.Location = new System.Drawing.Point(1179, 528);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(0);
             this.CloseButton.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CloseButton.Name = "CloseButton";
@@ -1567,6 +1716,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Name = "EditDialog";
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
@@ -1580,6 +1730,7 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1609,53 +1760,53 @@
         public Syncfusion.Windows.Forms.Tools.TabPageAdv DataTab;
         public System.Windows.Forms.TableLayoutPanel FrameTable;
         public Frame Frame1;
-        private Frame Frame2;
-        private Frame Frame3;
-        private Frame Frame4;
-        private Frame Frame5;
-        private Frame Frame6;
-        private Frame Frame7;
-        private Frame Frame8;
-        private Frame Frame9;
-        private Frame Frame10;
-        private Frame Frame11;
-        private Frame Frame12;
-        private Frame Frame13;
-        private Frame Frame14;
-        private Frame Frame15;
-        private Frame Frame16;
-        private Frame Frame17;
-        private Frame Frame18;
-        private Frame Frame19;
-        private Frame Frame20;
-        private Frame Frame21;
-        private Frame frame22;
-        private Frame frame23;
-        private Frame frame24;
-        private Frame frame25;
-        private Frame frame26;
-        private Frame frame27;
-        private Frame frame28;
-        private Frame Frame29;
-        private Frame Frame30;
-        private Frame Frame31;
-        private Frame Frame32;
-        private Frame Frame33;
-        private Frame Frame34;
-        private Frame Frame35;
-        private Frame Frame36;
-        private Frame Frame37;
-        private Frame Frame38;
-        private Frame Frame39;
-        private Frame Frame40;
-        private Frame Frame41;
-        private Frame Frame42;
-        private Frame Frame43;
-        private Frame Frame44;
-        private Frame Frame45;
-        private Frame Frame46;
-        private Frame Frame47;
-        private Frame Frame48;
-        private Frame Frame49;
+        public Frame Frame2;
+        public Frame Frame3;
+        public Frame Frame4;
+        public Frame Frame5;
+        public Frame Frame6;
+        public Frame Frame7;
+        public Frame Frame8;
+        public Frame Frame9;
+        public Frame Frame10;
+        public Frame Frame11;
+        public Frame Frame12;
+        public Frame Frame13;
+        public Frame Frame14;
+        public Frame Frame15;
+        public Frame Frame16;
+        public Frame Frame17;
+        public Frame Frame18;
+        public Frame Frame19;
+        public Frame Frame20;
+        public Frame Frame21;
+        public Frame frame22;
+        public Frame frame23;
+        public Frame frame24;
+        public Frame frame25;
+        public Frame frame26;
+        public Frame frame27;
+        public Frame frame28;
+        public Frame Frame29;
+        public Frame Frame30;
+        public Frame Frame31;
+        public Frame Frame32;
+        public Frame Frame33;
+        public Frame Frame34;
+        public Frame Frame35;
+        public Frame Frame36;
+        public Frame Frame37;
+        public Frame Frame38;
+        public Frame Frame39;
+        public Frame Frame40;
+        public Frame Frame41;
+        public Frame Frame42;
+        public Frame Frame43;
+        public Frame Frame44;
+        public Frame Frame45;
+        public Frame Frame46;
+        public Frame Frame47;
+        public Frame Frame48;
+        public Frame Frame49;
     }
 }

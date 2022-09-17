@@ -1124,7 +1124,8 @@ namespace BudgetExcess
                 var tblschema = new List<string>( );
 
                 // This command will read the names of all tables in the database
-                var _sql = @"select * from INFORMATIONSCHEMA.TABLES  where TABLETYPE = 'BASE TABLE'";
+                const string _sql = 
+                    @"select * from INFORMATIONSCHEMA.TABLES  where TABLETYPE = 'BASE TABLE'";
 
                 using( var cmd = new SqlCommand( _sql, conn ) )
                 {
@@ -1185,7 +1186,7 @@ namespace BudgetExcess
             using( var conn = new SqlConnection( connstring ) )
             {
                 conn.Open( );
-                var _sql = @"SELECT TABLENAME, VIEWDEFINITION  from INFORMATIONSCHEMA.VIEWS";
+                const string _sql = @"SELECT TABLENAME, VIEWDEFINITION  from INFORMATIONSCHEMA.VIEWS";
                 var cmd = new SqlCommand( _sql, conn );
                 var reader = cmd.ExecuteReader( );
                 var count = 0;
