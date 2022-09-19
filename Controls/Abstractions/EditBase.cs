@@ -2,7 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Linq;
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
@@ -48,7 +51,47 @@
         /// The current tab.
         /// </value>
         public virtual TabPageAdv ActiveTab { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the data model.
+        /// </summary>
+        /// <value>
+        /// The data model.
+        /// </value>
+        public virtual DataBuilder DataModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data table.
+        /// </summary>
+        /// <value>
+        /// The data table.
+        /// </value>
+        public virtual DataTable DataTable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the columns.
+        /// </summary>
+        /// <value>
+        /// The columns.
+        /// </value>
+        public virtual IEnumerable<string> Columns { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected column.
+        /// </summary>
+        /// <value>
+        /// The selected column.
+        /// </value>
+        public virtual string SelectedColumn { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected table.
+        /// </summary>
+        /// <value>
+        /// The selected table.
+        /// </value>
+        public virtual string SelectedTable { get; set; }
+
         /// <summary>
         /// Gets or sets the form filter.
         /// </summary>
@@ -106,6 +149,14 @@
         public virtual IEnumerable<TextBox> TextBoxes { get; set; }
 
         /// <summary>
+        /// Gets or sets the sqlite data types.
+        /// </summary>
+        /// <value>
+        /// The sqlite data types.
+        /// </value>
+        public virtual IEnumerable<string> DataTypes { get; set; }
+
+        /// <summary>
         /// Initializes a new instance 
         /// of the <see cref="EditBase"/> class.
         /// </summary>
@@ -113,6 +164,38 @@
         {
             InitializeComponent( );
             Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the data types.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
+        public virtual IEnumerable<string> GetDataTypes( Provider provider )
+        {
+            if( Enum.IsDefined( typeof( Provider ), provider ) )
+            {
+                try
+                {
+                    var _query =
+                        "SELECT DISTINCT SchemaTypes.TypeName" +
+                        " FROM SchemaTypes" +
+                        $" WHERE SchemaTypes.Provider = '{ provider }'";
+                    var _model = new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
+                    var _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
+
+                    return _data?.Length > 0
+                        ? _data
+                        : default( IEnumerable<string> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<string> );
+                }
+            }
+
+            return default( IEnumerable<string> );
         }
 
         /// <summary>
@@ -132,7 +215,79 @@
             }
         }
 
+        /// <summary>
+        /// Populates the table ListBox items.
+        /// </summary>
+        /// <param name="listBox">The list box.</param>
+        public virtual void PopulateTableListBoxItems( ListBox listBox )
+        {
+            try
+            {
+                var _names = Enum.GetNames( typeof( Source ) );
 
+                if( listBox?.Items.Count > 0 )
+                {
+                    listBox.Items.Clear( );
+                    foreach( var name in _names )
+                    {
+                        if( name != "NS" )
+                        {
+                            listBox?.Items.Add( name );
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the group box properties.
+        /// </summary>
+        public virtual void SetGroupBoxProperties( )
+        {
+            if( GroupBoxes?.Values?.Any( ) == true )
+            {
+                try
+                {
+                    foreach( var _groupBox in GroupBoxes.Values )
+                    {
+                        _groupBox.SeparatorColor = Color.FromArgb( 64, 64, 64 );
+                        _groupBox.Separate = true;
+                        _groupBox.Separator = true;
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the RadioButton properties.
+        /// </summary>
+        public virtual void SetRadioButtonProperties( )
+        {
+            if( RadioButtons?.Values?.Any( ) == true )
+            {
+                try
+                {
+                    foreach( var _radioButton in RadioButtons.Values )
+                    {
+                        _radioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
+                        _radioButton.CheckSignColor = Color.LimeGreen;
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+        
         /// <summary>
         /// Get Error Dialog.
         /// </summary>

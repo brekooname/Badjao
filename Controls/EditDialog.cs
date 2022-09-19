@@ -52,7 +52,7 @@
         /// The frames.
         /// </value>
         public IEnumerable<Frame> Frames { get;set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EditDialog"/> class.
         /// </summary>
@@ -141,10 +141,11 @@
             try
             {
                 SetActivetTab( );
-                SetFrameColors( );
-                SetFrameVisibility( );
                 SetTableLocation( );
+                SetFrameColors( );
+                SetFrameDockStyle( );
                 BindRecordData( );
+                SetFrameVisibility( );
             }
             catch( Exception ex )
             {
@@ -218,12 +219,30 @@
             try
             {
                 var _cols = Columns.ToArray( );
+                foreach( var frame in Frames )
+                {
+                    if( frame.Index >= _cols.Length )
+                    {
+                        frame.Visible = false;
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the frame dock style.
+        /// </summary>
+        public void SetFrameDockStyle( )
+        {
+            try
+            {
                 foreach( var _frame in Frames )
                 {
-                    if( _frame.Index > _cols.Length - 1 )
-                    {
-                        _frame.Visible = false;
-                    }
+                    _frame.Dock = DockStyle.Fill;
                 }
             }
             catch( Exception ex )
@@ -260,45 +279,31 @@
                     var _cols = Columns.ToArray( );
                     if( _cols.Length >= 43 )
                     {
-                        FrameTable.RowCount = 7;
-                        FrameTable.Size = new Size( 1362, 399 );
                         FrameTable.Location = new Point( 12, 25 );
                     }
                     else if( _cols.Length < 43 && _cols.Length >= 35 )
                     {
-                        FrameTable.RowCount = 6;
-                        FrameTable.Size = new Size( 1362, 364 );
-                        FrameTable.Location = new Point( 12, 45 );
+                        FrameTable.Location = new Point( 12, 25 );
                     }
                     else if( _cols.Length < 35 && _cols.Length >= 28 )
                     {
-                        FrameTable.RowCount = 5;
-                        FrameTable.Size = new Size( 1362, 300 );
-                        FrameTable.Location = new Point( 12, 85 );
+                        FrameTable.Location = new Point( 12, 81 );
                     }
                     else if( _cols.Length < 28 && _cols.Length >= 21 )
                     {
-                        FrameTable.RowCount = 4;
-                        FrameTable.Size = new Size( 1362, 300 );
-                        FrameTable.Location = new Point( 12, 105 );
+                        FrameTable.Location = new Point( 12, 81 );
                     }
                     else if( _cols.Length < 21 && _cols.Length >= 14 )
                     {
-                        FrameTable.RowCount = 3;
-                        FrameTable.Size = new Size( 1362, 225 );
-                        FrameTable.Location = new Point( 12, 125 );
+                        FrameTable.Location = new Point( 12, 81 );
                     }
                     else if( _cols.Length < 14 && _cols.Length > 7 )
                     {
-                        FrameTable.RowCount = 2;
-                        FrameTable.Location = new Point( 12, 125 );
-                        FrameTable.Size = new Size( 1362, 225 );
+                        FrameTable.Location = new Point( 12, 81 );
                     }
                     else if( _cols.Length <= 7 )
                     {
-                        FrameTable.RowCount = 1;
-                        FrameTable.Location = new Point( 12, 125 );
-                        FrameTable.Size = new Size( 1362, 255 );
+                        FrameTable.Location = new Point( 12, 81 );
                     }
                 }
                 catch( Exception ex )
@@ -316,15 +321,12 @@
             try
             {
                 var _items = Current.ItemArray;
-                var _frames = Frames.ToArray( );
+                var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
                 var _cols = Columns.ToArray( );
                 for( var i = 0; i < _cols.Length; i++ )
                 {
-                    if( _frames[ i ].Index == i )
-                    {
-                        _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
-                        _frames[ i ].TextBox.Text = _items[ i ].ToString( );
-                    }
+                    _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
+                    _frames[ i ].TextBox.Text = _items[ i ].ToString( );
                 }
             }
             catch( Exception ex )
@@ -332,32 +334,7 @@
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Sets the data source.
-        /// </summary>
-        /// <param name="dataRows">The data rows.</param>
-        public virtual void SetDataSource( IEnumerable<DataRow> dataRows )
-        {
-            try
-            {
-                if( dataRows?.Any( ) == true )
-                {
-                    try
-                    {
-                        BindingSource.DataSource = dataRows;
-                    }
-                    catch( Exception ex )
-                    {
-                        Fail( ex );
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
+        
         
         /// <summary>
         /// Gets the tab pages.
@@ -401,24 +378,21 @@
             try
             {
                 var _frames = new List<Frame>( );
-                var _counter = 0;
                 foreach( var _control in FrameTable.Controls )
                 {
                     if( _control.GetType( ) == typeof( Frame ) )
                     {
                         if( _control is Frame _frame )
                         {
-                            _frame.Index = _counter;
                             _frame.BindingSource = BindingSource;
                             _frames.Add( _frame );
-                            _counter++;
                         }
 
                     }
                 }
 
                 return _frames?.Any( ) == true
-                    ? _frames
+                    ? _frames.OrderBy( f => f.Index ).ToArray( )
                     : default( IEnumerable<Frame> );
             }
             catch( Exception ex )

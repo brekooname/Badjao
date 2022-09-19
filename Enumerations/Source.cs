@@ -59,12 +59,20 @@ namespace BudgetExecution
         /// </summary>
         AppropriationDocuments,
 
+        /// <summary>
+        /// The apportionment data
+        /// </summary>
         ApportionmentData,
 
         /// <summary>
         /// The budget documents
         /// </summary>
         BudgetDocuments,
+
+        /// <summary>
+        /// The carryover apportionments
+        /// </summary>
+        CarryoverApportionments,
 
         /// <summary>
         /// The carryover requests
@@ -242,6 +250,11 @@ namespace BudgetExecution
         StatusOfFunds,
 
         /// <summary>
+        /// The status of earmarks
+        /// </summary>
+        StatusOfEarmarks,
+
+        /// <summary>
         /// The status of jobs act funding
         /// </summary>
         StatusOfJobsActFunding,
@@ -305,12 +318,7 @@ namespace BudgetExecution
         /// The appropriations
         /// </summary>
         Appropriations,
-
-        /// <summary>
-        /// The arra
-        /// </summary>
-        ARRA,
-
+        
         /// <summary>
         /// The budgetary resource execution
         /// </summary>
@@ -337,6 +345,11 @@ namespace BudgetExecution
         CarryoverOutlays,
 
         /// <summary>
+        /// The compass outlays
+        /// </summary>
+        CompassOutlays,
+
+        /// <summary>
         /// The congressional controls
         /// </summary>
         CongressionalControls,
@@ -349,7 +362,7 @@ namespace BudgetExecution
         /// <summary>
         /// The cpic
         /// </summary>
-        CPIC,
+        CapitalPlanningInvestmentCodes,
 
         /// <summary>
         /// The data rule descriptions
@@ -380,6 +393,11 @@ namespace BudgetExecution
         /// The fiscal years back up
         /// </summary>
         FiscalYearsBackUp,
+
+        /// <summary>
+        /// The fund categories
+        /// </summary>
+        FundCategories,
 
         /// <summary>
         /// The funds
@@ -450,11 +468,7 @@ namespace BudgetExecution
         /// The objectives
         /// </summary>
         Objectives,
-
-        /// <summary>
-        /// The omb
-        /// </summary>
-        OMB,
+        
 
         /// <summary>
         /// The operating plans
@@ -507,6 +521,11 @@ namespace BudgetExecution
         PublicLaws,
 
         /// <summary>
+        /// The recovery act
+        /// </summary>
+        RecoveryAct,
+
+        /// <summary>
         /// The reference tables
         /// </summary>
         ReferenceTables,
@@ -545,6 +564,11 @@ namespace BudgetExecution
         /// The state organizations
         /// </summary>
         StateOrganizations,
+
+        /// <summary>
+        /// The sub appropriations
+        /// </summary>
+        SubAppropriations,
 
         /// <summary>
         /// The trans types

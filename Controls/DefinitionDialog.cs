@@ -1,9 +1,15 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "DefinitionDialog.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Drawing;
     using System.Linq;
+    using System.Windows.Forms;
     using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms.Tools;
 
@@ -14,17 +20,17 @@
     public partial class DefinitionDialog : EditBase
     {
         /// <summary>
-        /// Gets or sets the data model.
+        /// Gets or sets the sqlite data types.
         /// </summary>
         /// <value>
-        /// The data model.
+        /// The sqlite data types.
         /// </value>
-        public DataBuilder DataModel { get; set; }
+        public override IEnumerable<string> DataTypes { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DefinitionDialog"/> class.
         /// </summary>
-        public DefinitionDialog()
+        public DefinitionDialog( )
         {
             InitializeComponent( );
             TabPages = GetTabPages( );
@@ -41,10 +47,28 @@
         /// the <see cref="DefinitionDialog"/> class.
         /// </summary>
         /// <param name="toolType">Type of the tool.</param>
-        public DefinitionDialog( ToolType toolType ) 
+        public DefinitionDialog( ToolType toolType )
             : this( )
         {
             ToolType = toolType;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefinitionDialog"/> class.
+        /// </summary>
+        /// <param name="toolType">Type of the tool.</param>
+        /// <param name="bindingSource">The binding source.</param>
+        public DefinitionDialog( ToolType toolType, BindingSource bindingSource )
+            : this( )
+        {
+            ToolType = toolType;
+            BindingSource = bindingSource;
+            DataTable = (DataTable)bindingSource.DataSource;
+            Provider = Provider.Access;
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            DataModel = new DataBuilder( Source, Provider );
+            Columns = DataTable.GetColumnNames( );
+            DataTypes = GetDataTypes( Provider );
         }
 
         /// <summary>
@@ -58,8 +82,35 @@
             {
                 SetGroupBoxProperties( );
                 SetRadioButtonProperties( );
-                SetActivetTab(  );
+                SetActivetTab( );
+                PopulateTableListBoxItems( );
+                PopulateComboBoxes( );
                 CloseButton.Text = "Exit";
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+        
+        /// <summary>
+        /// Populates the table ListBox items.
+        /// </summary>
+        public void PopulateTableListBoxItems()
+        {
+            try
+            {
+                var _names = Enum.GetNames( typeof( Source ) );
+
+                foreach( var name in _names )
+                {
+                    if( name != "NS" )
+                    {
+                        EditColumnTableNameListBox.Items.Add( name );
+                        DeleteColumnTableListBox.Items.Add( name );
+                        DeleteTableTablesListBox.Items.Add( name );
+                    }
+                }
             }
             catch( Exception ex )
             {
@@ -68,19 +119,20 @@
         }
 
         /// <summary>
-        /// Sets the group box properties.
+        /// Populates the data type combo boxes.
         /// </summary>
-        public void SetGroupBoxProperties( )
+        public void PopulateComboBoxes( )
         {
-            if( GroupBoxes?.Values?.Any( ) == true )
+            if( DataTypes?.Any( ) == true )
             {
                 try
                 {
-                    foreach( var _groupBox in GroupBoxes.Values )
+                    EditColumnDataTypeComboBox.Items.Clear(  );
+                    CreateTableDataTypeComboBox.Items.Clear(  );
+                    foreach( var name in DataTypes )
                     {
-                        _groupBox.SeparatorColor = Color.FromArgb( 64, 64, 64 );
-                        _groupBox.Separate = true;
-                        _groupBox.Separator = true;
+                        EditColumnDataTypeComboBox.Items.Add( name );
+                        CreateTableDataTypeComboBox.Items.Add( name );
                     }
                 }
                 catch( Exception ex )
@@ -91,11 +143,31 @@
         }
 
         /// <summary>
+        /// Called when [provider button checked].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        public virtual void OnProviderButtonChecked( object sender )
+        {
+            if( sender is RadioButton button )
+            {
+                try
+                {
+                    Provider = (Provider)Enum.Parse( typeof( Provider ), button.Tag.ToString( ) );
+                    DataTypes = GetDataTypes( Provider );
+                    PopulateComboBoxes( );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+        /// <summary>
         /// Sets the activet tab.
         /// </summary>
         public void SetActivetTab( )
         {
-            if ( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
                 try
                 {
@@ -105,6 +177,7 @@
                         {
                             EditColumnTabPage.Text = "Add Column";
                             ActiveTab = EditColumnTabPage;
+                            EditColumnAccessRadioButton.Checked = true;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
                             CreateTableTabPage.TabVisible = false;
@@ -115,6 +188,8 @@
                         {
                             CreateTableTabPage.Text = "Add Database";
                             ActiveTab = CreateTableTabPage;
+                            CreateTableAccessRadioButton.Checked = true;
+                            Provider = Provider.Access;
                             EditColumnTabPage.TabVisible = false;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
@@ -125,6 +200,8 @@
                         {
                             CreateTableTabPage.Text = "Add Table";
                             ActiveTab = CreateTableTabPage;
+                            CreateTableAccessRadioButton.Checked = true;
+                            Provider = Provider.Access;
                             EditColumnTabPage.TabVisible = false;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
@@ -135,6 +212,8 @@
                         {
                             EditColumnTabPage.Text = "Rename Column";
                             ActiveTab = EditColumnTabPage;
+                            EditColumnAccessRadioButton.Checked = true;
+                            Provider = Provider.Access;
                             CreateTableTabPage.TabVisible = false;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
@@ -178,45 +257,23 @@
                     Fail( ex );
                 }
             }
-
         }
-
-        /// <summary>
-        /// Sets the RadioButton properties.
-        /// </summary>
-        public void SetRadioButtonProperties( )
-        {
-            if ( RadioButtons?.Values?.Any( ) == true )
-            {
-                try
-                {
-                    foreach( var _button in RadioButtons.Values )
-                    {
-                        _button.ForeColor = Color.FromArgb( 0, 120, 212 );
-                        _button.CheckSignColor = Color.FromArgb( 0, 120, 212 );
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Gets the list boxes.
         /// </summary>
         /// <returns></returns>
         public IDictionary<string, ListBox> GetListBoxes( )
         {
-            if ( TabControl?.TabPages?.Count > 0 )
+            if( TabControl?.TabPages?.Count > 0 )
             {
                 try
                 {
                     var _listBoxes = new Dictionary<string, ListBox>( );
+
                     foreach( TabPageAdv _tabPage in TabControl.TabPages )
                     {
-                        if ( _tabPage?.Controls?.Any( ) == true )
+                        if( _tabPage?.Controls?.Any( ) == true )
                         {
                             foreach( var _control in _tabPage.Controls )
                             {
@@ -248,14 +305,15 @@
         /// <returns></returns>
         public IDictionary<string, TabPageAdv> GetTabPages( )
         {
-            if ( TabControl?.TabPages?.Any( ) == true )
+            if( TabControl?.TabPages?.Any( ) == true )
             {
                 try
                 {
                     var _tabPages = new Dictionary<string, TabPageAdv>( );
+
                     foreach( TabPageAdv tabpage in TabControl.TabPages )
                     {
-                        if ( tabpage != null )
+                        if( tabpage != null )
                         {
                             _tabPages.Add( tabpage.Name, tabpage );
                         }
@@ -281,11 +339,12 @@
         /// <returns></returns>
         public IDictionary<string, GroupBox> GetGroupBoxes( )
         {
-            if ( TabControl?.TabPages?.Any( ) == true )
+            if( TabControl?.TabPages?.Any( ) == true )
             {
                 try
                 {
                     var _groupBoxes = new Dictionary<string, GroupBox>( );
+
                     foreach( TabPageAdv _tabPage in TabControl.TabPages )
                     {
                         foreach( var _control in _tabPage.Controls )
@@ -315,13 +374,14 @@
         /// Gets the radio buttons.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, RadioButton> GetRadioButtons()
+        public IDictionary<string, RadioButton> GetRadioButtons( )
         {
-            if ( TabControl?.TabPages?.Any(  ) == true )
+            if( TabControl?.TabPages?.Any( ) == true )
             {
                 try
                 {
                     var _buttons = new Dictionary<string, RadioButton>( );
+
                     foreach( var _tabPage in TabControl.TabPages )
                     {
                         if( _tabPage is TabPageAdv _tab )
@@ -334,6 +394,9 @@
                                     {
                                         if( _item is RadioButton _radioButton )
                                         {
+                                            _radioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
+                                            _radioButton.CheckSignColor = Color.LimeGreen;
+                                            _radioButton.CheckedChanged += OnProviderButtonChecked;
                                             _buttons.Add( _radioButton.Name, _radioButton );
                                         }
                                     }

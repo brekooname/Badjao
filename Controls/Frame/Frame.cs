@@ -1,6 +1,7 @@
 ﻿namespace BudgetExecution
 {
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
     /// <summary>
@@ -23,6 +24,7 @@
         public Frame()
         {
             InitializeComponent( );
+            Size = new Size( 175, 55 );
         }
     }
 }

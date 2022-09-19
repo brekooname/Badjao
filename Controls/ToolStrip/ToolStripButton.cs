@@ -195,7 +195,7 @@ namespace BudgetExecution
                         case ToolType.AddDatabaseButton:
                         case ToolType.AddColumnButton:
                         {
-                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -205,7 +205,7 @@ namespace BudgetExecution
                         }
                         case ToolType.EditColumnButton:
                         {
-                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -215,7 +215,7 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteColumnButton:
                         {
-                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -225,7 +225,7 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteTableButton:
                         {
-                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -235,7 +235,7 @@ namespace BudgetExecution
                         }
                         case ToolType.DeleteDatabaseButton:
                         {
-                            using( var _dataConfig = new DefinitionDialog( _button.ToolType ) )
+                            using( var _dataConfig = new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
