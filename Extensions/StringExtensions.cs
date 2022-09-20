@@ -12,9 +12,10 @@ namespace BudgetExecution
     using System.Text;
     using System.Text.RegularExpressions;
     using System.Threading;
+    using System.Xml;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public static class StringExtensions
     {
         /// <summary>
@@ -34,46 +35,13 @@ namespace BudgetExecution
             {
                 return string.IsNullOrEmpty( text ) || text.Length < 5
                     ? text
-                    : Regex.Replace( text, "([A-Z])", " $1", RegexOptions.Compiled ).Trim(  );
+                    : Regex.Replace( text, "([A-Z])", " $1", RegexOptions.Compiled ).Trim( );
             }
             catch( Exception ex )
             {
                 Fail( ex );
                 return default( string );
             }
-        }
-
-        /// <summary>
-        /// The ToProperCase
-        /// </summary>
-        /// <param name = "text" >
-        /// The text <see cref = "string"/>
-        /// </param>
-        /// <returns>
-        /// The <see cref = "string"/>
-        /// </returns>
-        [SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" )]
-        public static string ToProperCase( this string text )
-        {
-            if( !string.IsNullOrEmpty( text ) )
-            {
-                try
-                {
-                    var _culture = Thread.CurrentThread.CurrentCulture;
-                    var _info = _culture.TextInfo;
-
-                    return !string.IsNullOrEmpty( _info.ToTitleCase( text ) )
-                        ? _info.ToTitleCase( text )
-                        : default( string );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( string );
-                }
-            }
-
-            return default( string );
         }
 
         /// <summary>
@@ -112,7 +80,8 @@ namespace BudgetExecution
         /// <returns>
         /// The <see cref = "T"/>
         /// </returns>
-        public static T ToEnum<T>( this string text ) where T : struct
+        public static T ToEnum<T>( this string text )
+            where T : struct
         {
             try
             {
@@ -122,6 +91,25 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return default( T );
+            }
+        }
+
+        /// <summary>
+        ///     A T extension method to determines whether the object is equal to any of the provided values.
+        /// </summary>
+        /// <param name="this">The object to be compared.</param>
+        /// <param name="values">The value list to compare with the object.</param>
+        /// <returns>true if the values list contains the object, else false.</returns>
+        public static bool In( this String @this, params String[ ] values )
+        {
+            try
+            {
+                return Array.IndexOf( values, @this ) != -1;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
             }
         }
 
@@ -256,6 +244,81 @@ namespace BudgetExecution
         }
 
         /// <summary>
+        ///     A string extension method that converts the @this to a file information.
+        /// </summary>
+        /// <param name="this">The @this to act on.</param>
+        /// <returns>@this as a FileInfo.</returns>
+        public static FileInfo ToFileInfo( this string @this )
+        {
+            try
+            {
+                return new FileInfo( @this );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( FileInfo );
+            }
+        }
+
+        /// <summary>
+        ///     A string extension method that converts the @this to a directory information.
+        /// </summary>
+        /// <param name="this">The @this to act on.</param>
+        /// <returns>@this as a DirectoryInfo.</returns>
+        public static DirectoryInfo ToDirectoryInfo( this string @this )
+        {
+            try
+            {
+                return new DirectoryInfo( @this );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( DirectoryInfo );
+            }
+        }
+
+        /// <summary>
+        ///     A string extension method that converts the @this to an XmlDocument.
+        /// </summary>
+        /// <param name="this">The @this to act on.</param>
+        /// <returns>@this as an XmlDocument.</returns>
+        public static XmlDocument ToXmlDocument( this string @this )
+        {
+            try
+            {
+                var doc = new XmlDocument( );
+                doc.LoadXml( @this );
+                return doc;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( XmlDocument );
+            }
+        }
+
+        /// <summary>
+        ///     A string extension method that converts the @this to a byte array.
+        /// </summary>
+        /// <param name="this">The @this to act on.</param>
+        /// <returns>@this as a byte[].</returns>
+        public static byte[ ] ToByteArray( this string @this )
+        {
+            try
+            {
+                Encoding encoding = Activator.CreateInstance<ASCIIEncoding>( );
+                return encoding.GetBytes( @this );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( byte[ ] );
+            }
+        }
+
+        /// <summary>
         /// The WordCount
         /// </summary>
         /// <param name = "text" >
@@ -270,7 +333,6 @@ namespace BudgetExecution
 
             try
             {
-                // Exclude whitespaces, Tabs and line breaks
                 var re = new Regex( @"[^\text]+" );
                 var matches = re.Matches( text );
                 count = matches.Count;
@@ -357,8 +419,8 @@ namespace BudgetExecution
         /// <returns>
         /// A boolean value indicating the success of the email send.
         /// </returns>
-        public static bool Email( this string body, string subject, string sender,
-            string recipient, string server )
+        public static bool Email( this string body, string subject, string sender, string recipient,
+            string server )
         {
             try
             {
@@ -382,7 +444,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// remove white space, not line end Useful when parsing user input such phone,
+        /// remove space, not line end Useful when parsing user input such phone,
         /// price int.Parse("1 000 000".RemoveSpaces(),.....
         /// </summary>
         /// <param name = "text" >
@@ -405,7 +467,7 @@ namespace BudgetExecution
 
             return text;
         }
-        
+
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
