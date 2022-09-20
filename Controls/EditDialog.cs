@@ -14,37 +14,13 @@
     public partial class EditDialog : EditBase
     {
         /// <summary>
-        /// Gets or sets the data model.
-        /// </summary>
-        /// <value>
-        /// The data model.
-        /// </value>
-        public DataBuilder DataModel { get; set; }
-
-        /// <summary>
         /// Gets or sets the current.
         /// </summary>
         /// <value>
         /// The current.
         /// </value>
         public DataRow Current { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data table.
-        /// </summary>
-        /// <value>
-        /// The data table.
-        /// </value>
-        public DataTable DataTable { get; set; }
-
-        /// <summary>
-        /// Gets or sets the columns.
-        /// </summary>
-        /// <value>
-        /// The columns.
-        /// </value>
-        public IEnumerable<string> Columns { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the frames.
         /// </summary>
@@ -216,20 +192,23 @@
         /// </summary>
         public void SetFrameVisibility( )
         {
-            try
+            if( Frames?.Any( ) == true )
             {
-                var _cols = Columns.ToArray( );
-                foreach( var frame in Frames )
+                try
                 {
-                    if( frame.Index >= _cols.Length )
+                    var _cols = Columns.ToArray( );
+                    foreach( var frame in Frames )
                     {
-                        frame.Visible = false;
+                        if( frame.Index >= _cols.Length )
+                        {
+                            frame.Visible = false;
+                        }
                     }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
             }
         }
 
@@ -238,16 +217,19 @@
         /// </summary>
         public void SetFrameDockStyle( )
         {
-            try
+            if( Frames?.Any( ) == true )
             {
-                foreach( var _frame in Frames )
+                try
                 {
-                    _frame.Dock = DockStyle.Fill;
+                    foreach( var _frame in Frames )
+                    {
+                        _frame.Dock = DockStyle.Fill;
+                    }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
             }
         }
 
@@ -318,20 +300,25 @@
         /// </summary>
         public void BindRecordData( )
         {
-            try
+            if( Current != null 
+                && Frames?.Any( ) == true 
+                && Columns?.Any( ) == true )
             {
-                var _items = Current.ItemArray;
-                var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
-                var _cols = Columns.ToArray( );
-                for( var i = 0; i < _cols.Length; i++ )
+                try
                 {
-                    _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
-                    _frames[ i ].TextBox.Text = _items[ i ].ToString( );
+                    var _items = Current.ItemArray;
+                    var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
+                    var _cols = Columns.ToArray( );
+                    for( var i = 0; i < _cols.Length; i++ )
+                    {
+                        _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
+                        _frames[ i ].TextBox.Text = _items[ i ].ToString( );
+                    }
                 }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
             }
         }
         

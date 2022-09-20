@@ -37,6 +37,7 @@ namespace BudgetExecution
             GroupBoxes = GetGroupBoxes( );
             ListBoxes = GetListBoxes( );
             RadioButtons = GetRadioButtons( );
+            ComboBoxes = GetComboBoxes( );
             TabControl.TabPanelBackColor = Color.FromArgb( 15, 15, 15 );
             Load += OnLoad;
             CloseButton.Click += OnCloseButtonClicked;
@@ -82,9 +83,9 @@ namespace BudgetExecution
             {
                 SetGroupBoxProperties( );
                 SetRadioButtonProperties( );
-                SetActivetTab( );
                 PopulateTableListBoxItems( );
                 PopulateComboBoxes( );
+                SetActivetTab( );
                 CloseButton.Text = "Exit";
             }
             catch( Exception ex )
@@ -96,7 +97,7 @@ namespace BudgetExecution
         /// <summary>
         /// Populates the table ListBox items.
         /// </summary>
-        public void PopulateTableListBoxItems()
+        public void PopulateTableListBoxItems( )
         {
             try
             {
@@ -127,6 +128,8 @@ namespace BudgetExecution
             {
                 try
                 {
+                    EditColumnDataTypeComboBox.SelectedText = string.Empty;
+                    CreateTableDataTypeComboBox.SelectedText = string.Empty;
                     EditColumnDataTypeComboBox.Items.Clear(  );
                     CreateTableDataTypeComboBox.Items.Clear(  );
                     foreach( var name in DataTypes )
@@ -162,6 +165,7 @@ namespace BudgetExecution
                 }
             }
         }
+
         /// <summary>
         /// Sets the activet tab.
         /// </summary>
@@ -177,7 +181,14 @@ namespace BudgetExecution
                         {
                             EditColumnTabPage.Text = "Add Column";
                             ActiveTab = EditColumnTabPage;
+                            Provider = Provider.Access;
                             EditColumnAccessRadioButton.Checked = true;
+                            EditColumnAccessRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
+                            EditColumnSqlServerRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
+                            EditColumnSqliteRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
                             CreateTableTabPage.TabVisible = false;
@@ -188,8 +199,8 @@ namespace BudgetExecution
                         {
                             CreateTableTabPage.Text = "Add Database";
                             ActiveTab = CreateTableTabPage;
-                            CreateTableAccessRadioButton.Checked = true;
                             Provider = Provider.Access;
+                            CreateTableAccessRadioButton.Checked = true;
                             EditColumnTabPage.TabVisible = false;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
@@ -200,8 +211,15 @@ namespace BudgetExecution
                         {
                             CreateTableTabPage.Text = "Add Table";
                             ActiveTab = CreateTableTabPage;
-                            CreateTableAccessRadioButton.Checked = true;
                             Provider = Provider.Access;
+                            CreateTableAccessRadioButton.Checked = true;
+                            CreateTableAccessRadioButton.Checked = true;
+                            CreateTableAccessRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
+                            CreateTableSqlServerRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
+                            CreateTableSqliteRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
                             EditColumnTabPage.TabVisible = false;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
@@ -212,8 +230,14 @@ namespace BudgetExecution
                         {
                             EditColumnTabPage.Text = "Rename Column";
                             ActiveTab = EditColumnTabPage;
-                            EditColumnAccessRadioButton.Checked = true;
                             Provider = Provider.Access;
+                            EditColumnAccessRadioButton.Checked = true;
+                            EditColumnAccessRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
+                            EditColumnSqlServerRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
+                            EditColumnSqliteRadioButton.CheckedChanged +=
+                                OnProviderButtonChecked;
                             CreateTableTabPage.TabVisible = false;
                             DeleteTableTabPage.TabVisible = false;
                             DeleteColumnTabPage.TabVisible = false;
@@ -260,46 +284,6 @@ namespace BudgetExecution
         }
         
         /// <summary>
-        /// Gets the list boxes.
-        /// </summary>
-        /// <returns></returns>
-        public IDictionary<string, ListBox> GetListBoxes( )
-        {
-            if( TabControl?.TabPages?.Count > 0 )
-            {
-                try
-                {
-                    var _listBoxes = new Dictionary<string, ListBox>( );
-
-                    foreach( TabPageAdv _tabPage in TabControl.TabPages )
-                    {
-                        if( _tabPage?.Controls?.Any( ) == true )
-                        {
-                            foreach( var _control in _tabPage.Controls )
-                            {
-                                if( _control is ListBox _listBox )
-                                {
-                                    _listBoxes.Add( _listBox.Name, _listBox );
-                                }
-                            }
-                        }
-                    }
-
-                    return _listBoxes?.Any( ) == true
-                        ? _listBoxes
-                        : default( IDictionary<string, ListBox> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, ListBox> );
-                }
-            }
-
-            return default( IDictionary<string, ListBox> );
-        }
-
-        /// <summary>
         /// Gets the tab pages.
         /// </summary>
         /// <returns></returns>
@@ -331,92 +315,6 @@ namespace BudgetExecution
             }
 
             return default( IDictionary<string, TabPageAdv> );
-        }
-
-        /// <summary>
-        /// Gets the group boxes.
-        /// </summary>
-        /// <returns></returns>
-        public IDictionary<string, GroupBox> GetGroupBoxes( )
-        {
-            if( TabControl?.TabPages?.Any( ) == true )
-            {
-                try
-                {
-                    var _groupBoxes = new Dictionary<string, GroupBox>( );
-
-                    foreach( TabPageAdv _tabPage in TabControl.TabPages )
-                    {
-                        foreach( var _control in _tabPage.Controls )
-                        {
-                            if( _control is GroupBox _groupBox )
-                            {
-                                _groupBoxes.Add( _groupBox.Name, _groupBox );
-                            }
-                        }
-                    }
-
-                    return _groupBoxes?.Any( ) == true
-                        ? _groupBoxes
-                        : default( IDictionary<string, GroupBox> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, GroupBox> );
-                }
-            }
-
-            return default( IDictionary<string, GroupBox> );
-        }
-
-        /// <summary>
-        /// Gets the radio buttons.
-        /// </summary>
-        /// <returns></returns>
-        public IDictionary<string, RadioButton> GetRadioButtons( )
-        {
-            if( TabControl?.TabPages?.Any( ) == true )
-            {
-                try
-                {
-                    var _buttons = new Dictionary<string, RadioButton>( );
-
-                    foreach( var _tabPage in TabControl.TabPages )
-                    {
-                        if( _tabPage is TabPageAdv _tab )
-                        {
-                            foreach( var _control in _tab.Controls )
-                            {
-                                if( _control is GroupBox _group )
-                                {
-                                    foreach( var _item in _group.Controls )
-                                    {
-                                        if( _item is RadioButton _radioButton )
-                                        {
-                                            _radioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
-                                            _radioButton.CheckSignColor = Color.LimeGreen;
-                                            _radioButton.CheckedChanged += OnProviderButtonChecked;
-                                            _buttons.Add( _radioButton.Name, _radioButton );
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    return _buttons?.Any( ) == true
-                        ? _buttons
-                        : default( IDictionary<string, RadioButton> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, RadioButton> );
-                }
-            }
-
-            return default( IDictionary<string, RadioButton> );
         }
     }
 }

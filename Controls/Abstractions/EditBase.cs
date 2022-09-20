@@ -6,6 +6,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Linq;
+    using System.Windows.Forms;
+    using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
@@ -141,6 +143,14 @@
         public virtual IDictionary<string, RadioButton> RadioButtons { get; set; }
 
         /// <summary>
+        /// Gets or sets the combo boxes.
+        /// </summary>
+        /// <value>
+        /// The combo boxes.
+        /// </value>
+        public virtual IDictionary<string, ComboBox> ComboBoxes { get; set; }
+        
+        /// <summary>
         /// Gets or sets the text boxes.
         /// </summary>
         /// <value>
@@ -215,6 +225,7 @@
             }
         }
 
+
         /// <summary>
         /// Populates the table ListBox items.
         /// </summary>
@@ -287,7 +298,176 @@
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Gets the radio buttons.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, RadioButton> GetRadioButtons( )
+        {
+            if( TabPages?.Count > 0 )
+            {
+                try
+                {
+                    var _buttons = new Dictionary<string, RadioButton>( );
+
+                    foreach( var _tabPage in TabPages.Values )
+                    {
+                        if( _tabPage is TabPageAdv _tab )
+                        {
+                            foreach( var _control in _tab.Controls )
+                            {
+                                if( _control is GroupBox _group )
+                                {
+                                    foreach( var _item in _group.Controls )
+                                    {
+                                        if( _item is RadioButton _radioButton )
+                                        {
+                                            _buttons.Add( _radioButton.Name, _radioButton );
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    return _buttons?.Any( ) == true
+                        ? _buttons
+                        : default( IDictionary<string, RadioButton> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, RadioButton> );
+                }
+            }
+
+            return default( IDictionary<string, RadioButton> );
+        }
+
+        /// <summary>
+        /// Gets the combo boxes.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, ComboBox> GetComboBoxes( )
+        {
+            if( TabPages?.Count > 0 )
+            {
+                try
+                {
+                    var _buttons = new Dictionary<string, ComboBox>( );
+
+                    foreach( var _tabPage in TabPages.Values )
+                    {
+                        if( _tabPage is TabPageAdv _tab )
+                        {
+                            foreach( Control _control in _tab.Controls )
+                            {
+                                if( _control.Controls?.Any( ) == true )
+                                {
+                                    foreach( Control _subControl in _control.Controls )
+                                    {
+                                        if( _subControl is ComboBox _comboBox )
+                                        {
+                                            _buttons.Add( _comboBox.Name, _comboBox );
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    return _buttons?.Any( ) == true
+                        ? _buttons
+                        : default( IDictionary<string, ComboBox> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, ComboBox> );
+                }
+            }
+
+            return default( IDictionary<string, ComboBox> );
+        }
+
+        /// <summary>
+        /// Gets the group boxes.
+        /// </summary>
+        /// <returns></returns>
+        public IDictionary<string, GroupBox> GetGroupBoxes( )
+        {
+            if( TabPages?.Count > 0 )
+            {
+                try
+                {
+                    var _groupBoxes = new Dictionary<string, GroupBox>( );
+
+                    foreach( var _tabPage in TabPages.Values )
+                    {
+                        foreach( var _control in _tabPage.Controls )
+                        {
+                            if( _control is GroupBox _groupBox )
+                            {
+                                _groupBoxes.Add( _groupBox.Name, _groupBox );
+                            }
+                        }
+                    }
+
+                    return _groupBoxes?.Any( ) == true
+                        ? _groupBoxes
+                        : default( IDictionary<string, GroupBox> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, GroupBox> );
+                }
+            }
+
+            return default( IDictionary<string, GroupBox> );
+        }
+
+        /// <summary>
+        /// Gets the list boxes.
+        /// </summary>
+        /// <returns></returns>
+        public virtual IDictionary<string, ListBox> GetListBoxes( )
+        {
+            if( TabPages?.Count > 0 )
+            {
+                try
+                {
+                    var _listBoxes = new Dictionary<string, ListBox>( );
+
+                    foreach( var _tabPage in TabPages.Values )
+                    {
+                        if( _tabPage?.Controls?.Count > 0 )
+                        {
+                            foreach( var _control in _tabPage.Controls )
+                            {
+                                if( _control is ListBox _listBox )
+                                {
+                                    _listBoxes.Add( _listBox.Name, _listBox );
+                                }
+                            }
+                        }
+                    }
+
+                    return _listBoxes?.Any( ) == true
+                        ? _listBoxes
+                        : default( IDictionary<string, ListBox> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, ListBox> );
+                }
+            }
+
+            return default( IDictionary<string, ListBox> );
+        }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
