@@ -14,9 +14,9 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ITitleInfo" />
-    [SuppressMessage( "ReSharper", "GCSuppressFinalizeForTypeWithoutDestructor" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "GCSuppressFinalizeForTypeWithoutDestructor" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class TitleInfo : ITitleInfo
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// The axis.
         /// </value>
         public string Axis { get; }
-    
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TitleInfo"/> class.
         /// </summary>
@@ -49,7 +49,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="main">The main.</param>
         /// <param name="axis">The axis.</param>
-        public TitleInfo( string main, string axis ) 
+        public TitleInfo( string main, string axis )
             : this( main )
         {
             Axis = axis;
@@ -137,11 +137,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var data = new Dictionary<string, string>
-                    {
-                        [ "Main" ] = main,
-                        [ "Axis" ] = axis
-                    };
+                    Dictionary<string, string> data = new Dictionary<string, string>
+                        { [ "Main" ] = main, [ "Axis" ] = axis };
 
                     return data;
                 }
@@ -165,7 +162,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle(  ) )
+                    using( ChartTitle _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.ForeColor = Color.FromArgb( 141, 139, 138 );
@@ -195,7 +192,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle(  ) )
+                    using( ChartTitle _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.ForeColor = Color.FromArgb( 141, 139, 138 );
@@ -228,7 +225,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle(  ) )
+                    using( ChartTitle _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.Visible = true;
@@ -261,7 +258,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle(  ) )
+                    using( ChartTitle _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.Visible = true;
@@ -280,7 +277,7 @@ namespace BudgetExecution
 
             return default( ChartTitle );
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
@@ -288,7 +285,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

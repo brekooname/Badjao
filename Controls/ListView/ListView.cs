@@ -1,7 +1,6 @@
 ﻿// <copyright file = "ListView.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -13,7 +12,7 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using VisualPlus.Enumerators;
     using VisualPlus.Toolkit.Controls.Interactivity;
-    
+
     public class ListView : ListViewBase, IListView
     {
         /// <summary>
@@ -63,12 +62,12 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="ListView"/> class.
         /// </summary>
-        public ListView()
+        public ListView( )
         {
             // Basic Properties
             Size = new Size( 250, 150 );
@@ -133,7 +132,7 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="label">The label.</param>
-        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
+        [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public ListView( VisualLabel label )
             : this( label.Size, label.Location )
         {
@@ -163,8 +162,7 @@ namespace BudgetExecution
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
         /// <param name="text">The text.</param>
-        public ListView( Size size, Point location, Control parent,
-            string text )
+        public ListView( Size size, Point location, Control parent, string text )
             : this( size, location, parent )
         {
             Text = text;
@@ -234,6 +232,7 @@ namespace BudgetExecution
                 switch( hoverColor )
                 {
                     case true:
+
                     {
                         Border.Color = Color.FromArgb( 64, 64, 64 );
                         Border.Thickness = 1;
@@ -244,6 +243,7 @@ namespace BudgetExecution
                     }
 
                     case false:
+
                     {
                         Border.Color = Color.FromArgb( 15, 15, 15 );
                         Border.Thickness = 1;
@@ -270,7 +270,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _ = new ToolTip( this, text );
+                    ToolTip _ = new ToolTip( this, text );
                 }
                 catch( Exception ex )
                 {
@@ -346,7 +346,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _item in items )
+                    foreach( string _item in items )
                     {
                         if( _item != null )
                         {
@@ -371,7 +371,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _listItem in Items )
+                    foreach( object _listItem in Items )
                     {
                         if( _listItem?.Equals( item ) == true )
                         {

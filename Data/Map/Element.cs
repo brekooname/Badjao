@@ -1,6 +1,6 @@
-﻿//  <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-//  Copyright (c) Terry Eppler. All rights reserved.
-//  </copyright>
+﻿// <copyright file = "Element.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -14,8 +14,8 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="IElement" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public class Element : DataUnit, IElement
     {
         /// <summary>
@@ -45,10 +45,10 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        public Element()
+        public Element( )
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
@@ -171,7 +171,7 @@ namespace BudgetExecution
                 Fail( ex );
                 return false;
             }
-        
+
             return false;
         }
 
@@ -188,8 +188,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames( );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     Name = _names?.Contains( columnName ) == true
                         ? columnName
@@ -235,8 +234,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow.Table
-                        ?.GetColumnNames( );
+                    string[ ] _columnNames = dataRow.Table?.GetColumnNames( );
 
                     Name = _columnNames?.Contains( field.ToString( ) ) == true
                         ? field.ToString( )
@@ -260,7 +258,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
+                    Field _input = (Field)Enum.Parse( typeof( Field ), fieldName );
 
                     Field = !Enum.IsDefined( typeof( Field ), _input )
                         ? (Field)Enum.Parse( typeof( Field ), fieldName )
@@ -282,15 +280,15 @@ namespace BudgetExecution
         {
             if( dataRow != null
                 && !string.IsNullOrEmpty( fieldName )
-                && Enum.GetNames( typeof( Field ) )?.Contains( fieldName ) == true ) 
+                && Enum.GetNames( typeof( Field ) )?.Contains( fieldName ) == true )
             {
                 try
                 {
-                    var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
-                    var _names = dataRow.Table?.GetColumnNames( );
+                    Field _input = (Field)Enum.Parse( typeof( Field ), fieldName );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     if( _names?.Any( ) == true
-                        && _names?.Contains( $" {_input }" ) == true )
+                        && _names?.Contains( $" {_input}" ) == true )
                     {
                         Field = (Field)Enum.Parse( typeof( Field ), fieldName );
                     }
@@ -332,8 +330,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames( );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     Field = _names?.Contains( field.ToString( ) ) == true
                         ? field
@@ -378,8 +375,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames( );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     Value = _names?.Contains( columnName ) == true
                         ? dataRow[ columnName ]?.ToString( )
@@ -400,15 +396,14 @@ namespace BudgetExecution
         protected virtual void SetValue( DataRow dataRow, Field field )
         {
             if( dataRow != null
-               && Enum.IsDefined( typeof( Field ), field ) )
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames( );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     Value = _names?.Contains( field.ToString( ) ) == true
-                        ? dataRow[ $"{ field }" ]?.ToString( )
+                        ? dataRow[ $"{field}" ]?.ToString( )
                         : string.Empty;
                 }
                 catch( Exception ex )

@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <summary>
         /// The path
         /// </summary>
-        public virtual string Input { get; set; }
+        public virtual string Buffer { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the file.
@@ -29,14 +29,14 @@ namespace BudgetExecution
         /// The name of the file.
         /// </value>
         public virtual string Name { get; set; }
-
+        
         /// <summary>
-        /// Gets or sets the full name.
+        /// Gets or sets the full path.
         /// </summary>
         /// <value>
-        /// The full name.
+        /// The full path.
         /// </value>
-        public virtual string FullName { get; set; }
+        public virtual string FullPath { get; set; }
 
         /// <summary>
         /// Gets or sets the changed date.
@@ -115,7 +115,17 @@ namespace BudgetExecution
         /// <param name="input">The input.</param>
         protected FileBase( string input )
         {
-            Input = input;
+            Buffer = input;
+            FullPath = Path.GetFullPath( input );
+            FileInfo = new FileInfo( FullPath );
+            Name = FileInfo.Name;
+            FullPath = FileInfo.FullName;
+            Extension = FileInfo.Extension;
+            Length = FileInfo.Length;
+            Attributes = FileInfo.Attributes;
+            FileSecurity = FileInfo.GetAccessControl( );
+            Created = FileInfo.CreationTime;
+            Modified = FileInfo.LastWriteTime;
         }
 
         /// <summary>
@@ -146,7 +156,7 @@ namespace BudgetExecution
             try
             {
                 if( !string.IsNullOrEmpty( filePath )
-                    && !File.Exists( filePath ) )
+                    && !System.IO.File.Exists( filePath ) )
                 {
                     FileInfo.CopyTo( filePath );
                 }
@@ -160,16 +170,19 @@ namespace BudgetExecution
         /// <summary>
         /// Deletes this instance.
         /// </summary>
-        public virtual void Delete()
+        public virtual void Delete( )
         {
             try
             {
-                var _file = Path.GetFullPath( Input ) ;
-
-                if( !string.IsNullOrEmpty( _file )
-                    && File.Exists( _file ) )
+                if( !string.IsNullOrEmpty( Buffer ) )
                 {
-                    File.Delete( _file );
+                    string _file = Path.GetFullPath( Buffer );
+
+                    if( !string.IsNullOrEmpty( _file )
+                        && System.IO.File.Exists( _file ) )
+                    {
+                        System.IO.File.Delete( _file );
+                    }
                 }
             }
             catch( IOException ex )
@@ -188,7 +201,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( FileInfo?.DirectoryName ) 
+                return !string.IsNullOrEmpty( FileInfo?.DirectoryName )
                     && Directory.Exists( FileInfo?.DirectoryName );
             }
             catch( Exception ex )
@@ -202,7 +215,7 @@ namespace BudgetExecution
         /// Gets the file security.
         /// </summary>
         /// <returns></returns>
-        public FileSecurity GetFileSecurity()
+        public FileSecurity GetFileSecurity( )
         {
             try
             {
@@ -214,7 +227,7 @@ namespace BudgetExecution
                 return default( FileSecurity );
             }
         }
-        
+
         /// <summary>
         /// Gets the base stream.
         /// </summary>
@@ -223,11 +236,16 @@ namespace BudgetExecution
         {
             try
             {
-                var _path = Path.GetFullPath( Input ); 
-                return !string.IsNullOrEmpty( _path ) 
-                    && File.Exists( _path )
-                        ? new FileInfo( _path )?.Create()
+                if( !string.IsNullOrEmpty( Buffer ) )
+                {
+                    string _path = Path.GetFullPath( Buffer );
+
+                    return !string.IsNullOrEmpty( _path ) && System.IO.File.Exists( _path )
+                        ? new FileInfo( _path )?.Create( )
                         : default( FileStream );
+                }
+
+                return default( FileStream );
             }
             catch( Exception ex )
             {
@@ -242,12 +260,11 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
-                _error?.SetText();
-                _error?.ShowDialog();
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }
 }
-

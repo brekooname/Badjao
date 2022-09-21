@@ -1,6 +1,6 @@
-﻿// // <copyright file = "PivotChartBase.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "PivotChartBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -11,7 +11,7 @@ namespace BudgetExecution
     using System.Linq;
     using System.Windows.Forms;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class PivotChartBase : Syncfusion.Windows.Forms.PivotChart.PivotChart
     {
@@ -87,7 +87,7 @@ namespace BudgetExecution
             try
             {
                 if( bindingList is BindingSource _binder
-                   && _binder?.DataSource != null )
+                    && _binder?.DataSource != null )
                 {
                     try
                     {
@@ -126,24 +126,24 @@ namespace BudgetExecution
             try
             {
                 if( Verify.IsBindable( bindingList )
-                   && Verify.IsMap( dict ) )
+                    && Verify.IsMap( dict ) )
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
-                               && Verify.IsRef( _kvp.Value ) )
+                                && Verify.IsRef( _kvp.Value ) )
                             {
                                 _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                             }
                         }
 
                         if( _filter?.Length > 0
-                           && _list?.DataSource != null )
+                            && _list?.DataSource != null )
                         {
                             BindingSource.DataSource = _list?.DataSource;
                             BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
@@ -196,12 +196,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
-                           && _kvp.Value != null )
+                            && _kvp.Value != null )
                         {
                             _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                         }
@@ -231,7 +231,7 @@ namespace BudgetExecution
             where T2 : struct
         {
             if( Verify.IsSequence( data )
-               && Validate.IsField( field ) )
+                && Validate.IsField( field ) )
             {
                 try
                 {
@@ -296,16 +296,16 @@ namespace BudgetExecution
             where T2 : IDictionary<string, object>
         {
             if( Verify.IsSequence( data )
-               && Verify.IsMap( dict ) )
+                && Verify.IsMap( dict ) )
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
-                           && kvp.Value != null )
+                            && kvp.Value != null )
                         {
                             _filter += $"{kvp.Key} = {kvp.Value} AND";
                         }
@@ -335,7 +335,7 @@ namespace BudgetExecution
             where T2 : struct
         {
             if( Verify.IsSequence( data )
-               && Validate.IsField( field ) )
+                && Validate.IsField( field ) )
             {
                 try
                 {
@@ -364,7 +364,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

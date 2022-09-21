@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "AdapterBuilder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -17,8 +17,8 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="DbDataAdapter" />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AdapterBuilder : DbDataAdapter
     {
         /// <summary>
@@ -122,23 +122,28 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbDataAdapter GetAdapter( )
         {
-            if( Enum.IsDefined( typeof( Provider ), Provider ) 
-                && Connection != null 
-                && !string.IsNullOrEmpty( CommandText ))
+            if( Enum.IsDefined( typeof( Provider ), Provider )
+                && Connection != null
+                && !string.IsNullOrEmpty( CommandText ) )
             {
                 try
                 {
                     switch( Provider )
                     {
                         case Provider.SQLite:
+
                         {
-                            return new SQLiteDataAdapter( CommandText, Connection as SQLiteConnection );
+                            return new SQLiteDataAdapter( CommandText,
+                                Connection as SQLiteConnection );
                         }
                         case Provider.SqlCe:
+
                         {
-                            return new SqlCeDataAdapter( CommandText, Connection as SqlCeConnection );
+                            return new SqlCeDataAdapter( CommandText,
+                                Connection as SqlCeConnection );
                         }
                         case Provider.SqlServer:
+
                         {
                             return new SqlDataAdapter( CommandText, Connection as SqlConnection );
                         }
@@ -146,8 +151,10 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
+
                         {
-                            return new OleDbDataAdapter( CommandText, Connection as OleDbConnection );
+                            return new OleDbDataAdapter( CommandText,
+                                Connection as OleDbConnection );
                         }
                     }
                 }
@@ -158,7 +165,7 @@ namespace BudgetExecution
                 }
             }
 
-            return default( DbDataAdapter);
+            return default( DbDataAdapter );
         }
 
         /// <summary>
@@ -167,7 +174,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

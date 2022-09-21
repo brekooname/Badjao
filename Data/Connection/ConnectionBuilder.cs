@@ -31,7 +31,7 @@ namespace BudgetExecution
         /// <see cref="ConnectionBuilder" />
         /// class.
         /// </summary>
-        public ConnectionBuilder()
+        public ConnectionBuilder( )
         {
         }
 
@@ -45,7 +45,7 @@ namespace BudgetExecution
         public ConnectionBuilder( Source source, Provider provider = Provider.Access )
             : base( source, provider )
         {
-            Connection = GetConnection(  );
+            Connection = GetConnection( );
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace BudgetExecution
         public ConnectionBuilder( string fullPath )
             : base( fullPath )
         {
-            Connection = GetConnection(  );
+            Connection = GetConnection( );
         }
 
         /// <summary>
@@ -70,20 +70,20 @@ namespace BudgetExecution
         public ConnectionBuilder( string fullPath, Provider provider = Provider.Access )
             : base( fullPath, provider )
         {
-            Connection = GetConnection(  );
+            Connection = GetConnection( );
         }
 
         /// <summary>
         /// Gets the connection.
         /// </summary>
         /// <returns></returns>
-        public DbConnection GetConnection(  )
+        public DbConnection GetConnection( )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider ) )
             {
                 try
                 {
-                    var _connectionString = ConnectionPath[ $"{ Provider }" ]?.ConnectionString;
+                    string _connectionString = ConnectionPath[ $"{Provider}" ]?.ConnectionString;
 
                     switch( Provider )
                     {
@@ -100,7 +100,7 @@ namespace BudgetExecution
                         case Provider.SqlServer:
 
                         {
-                            return  new SqlConnection( _connectionString );
+                            return new SqlConnection( _connectionString );
                         }
                         case Provider.Excel:
                         case Provider.CSV:

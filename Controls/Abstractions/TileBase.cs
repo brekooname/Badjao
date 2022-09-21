@@ -1,7 +1,6 @@
 ﻿// <copyright file = "TileBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -16,7 +15,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="HubTile" />
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class TileBase : HubTile
     {
         /// <summary>
@@ -66,7 +65,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Gets/Sets HubTile Font
         /// </summary>
@@ -88,7 +87,7 @@ namespace BudgetExecution
         public virtual void SetLocation( int x = 1, int y = 1 )
         {
             if( x > 0
-               && y > 0 )
+                && y > 0 )
             {
                 try
                 {
@@ -109,7 +108,7 @@ namespace BudgetExecution
         public virtual void SetSize( int width = 140, int height = 140 )
         {
             if( width > -1
-               && height > -1 )
+                && height > -1 )
             {
                 try
                 {
@@ -130,7 +129,7 @@ namespace BudgetExecution
         public virtual void SetImageConfiguration( Image image, int speed = 1 )
         {
             if( speed > 0
-               && image != null )
+                && image != null )
             {
                 try
                 {
@@ -170,7 +169,7 @@ namespace BudgetExecution
         public virtual void SetTitleText( string message )
         {
             if( !string.IsNullOrEmpty( message )
-               && Title != null )
+                && Title != null )
             {
                 try
                 {
@@ -191,7 +190,7 @@ namespace BudgetExecution
         public virtual void SetTitleConfiguration( Font font, Color color )
         {
             if( font != null
-               && color != Color.Empty )
+                && color != Color.Empty )
             {
                 try
                 {
@@ -212,7 +211,7 @@ namespace BudgetExecution
         public virtual void SetBodyText( string message )
         {
             if( !string.IsNullOrEmpty( message )
-               && Body != null )
+                && Body != null )
             {
                 try
                 {
@@ -233,7 +232,7 @@ namespace BudgetExecution
         public virtual void SetBodyConfiguration( Font font, Color color )
         {
             if( font != null
-               && color != Color.Empty )
+                && color != Color.Empty )
             {
                 try
                 {
@@ -254,8 +253,8 @@ namespace BudgetExecution
         public virtual void SetBannerText( string message )
         {
             if( !string.IsNullOrEmpty( message )
-               && Banner != null
-               && ShowBanner )
+                && Banner != null
+                && ShowBanner )
             {
                 try
                 {
@@ -277,7 +276,7 @@ namespace BudgetExecution
         public virtual void SetBannerConfiguration( Font font, Color color, int height )
         {
             if( font != null
-               && color != Color.Empty )
+                && color != Color.Empty )
             {
                 try
                 {
@@ -300,7 +299,7 @@ namespace BudgetExecution
         public virtual void SetBannerIcon( Image image )
         {
             if( image != null
-               && Banner != null )
+                && Banner != null )
             {
                 try
                 {
@@ -318,7 +317,8 @@ namespace BudgetExecution
         /// Sets the slide transition.
         /// </summary>
         /// <param name="direction">The direction.</param>
-        public virtual void SetSlideTransition( TransitionDirection direction = TransitionDirection.RightToLeft )
+        public virtual void SetSlideTransition(
+            TransitionDirection direction = TransitionDirection.RightToLeft )
         {
             if( Enum.IsDefined( typeof( TransitionDirection ), direction ) )
             {
@@ -339,7 +339,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

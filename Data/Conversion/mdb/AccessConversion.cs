@@ -10,7 +10,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
     public class AccessConversion
     {
         /// <summary>
@@ -21,7 +21,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AccessConversion"/> class.
         /// </summary>
-        public AccessConversion()
+        public AccessConversion( )
         {
             SQLiteConnection.CreateFile( "MyDatabase.sqlite" );
             _connection = new SQLiteConnection( "Data Source=MyDatabase.sqlite;Version=3;" );
@@ -35,12 +35,12 @@ namespace BudgetExecution
         /// <returns></returns>
         public int CreateTable( string name )
         {
-            var _sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
-            using( var _cmd = new SQLiteCommand( _sql, _connection ) )
+            string _sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
+
+            using( SQLiteCommand _cmd = new SQLiteCommand( _sql, _connection ) )
             {
                 return _cmd.ExecuteNonQuery( );
             }
-
         }
 
         /// <summary>
@@ -52,8 +52,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public int InsertRow( string word, string image, string table )
         {
-            var _sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
-            using( var _cmd = new SQLiteCommand( _sql, _connection ) )
+            string _sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
+
+            using( SQLiteCommand _cmd = new SQLiteCommand( _sql, _connection ) )
             {
                 _cmd.Parameters.AddWithValue( "@word", word );
                 _cmd.Parameters.AddWithValue( "@image", image );

@@ -182,7 +182,7 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( text ) )
                 {
-                    var letters = text.ToCharArray( );
+                    char[ ] letters = text.ToCharArray( );
                     letters[ 0 ] = char.ToUpper( letters[ 0 ] );
                     return new string( letters );
                 }
@@ -233,7 +233,7 @@ namespace BudgetExecution
         {
             try
             {
-                var bytes = Encoding.UTF8.GetBytes( text );
+                byte[ ] bytes = Encoding.UTF8.GetBytes( text );
                 return new MemoryStream( bytes );
             }
             catch( Exception ex )
@@ -288,7 +288,7 @@ namespace BudgetExecution
         {
             try
             {
-                var doc = new XmlDocument( );
+                XmlDocument doc = new XmlDocument( );
                 doc.LoadXml( @this );
                 return doc;
             }
@@ -329,12 +329,12 @@ namespace BudgetExecution
         /// </returns>
         public static int WordCount( this string text )
         {
-            var count = 0;
+            int count = 0;
 
             try
             {
-                var re = new Regex( @"[^\text]+" );
-                var matches = re.Matches( text );
+                Regex re = new Regex( @"[^\text]+" );
+                MatchCollection matches = re.Matches( text );
                 count = matches.Count;
             }
             catch( Exception ex )
@@ -386,7 +386,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _writer = new StreamWriter( text, false ) )
+                    using( StreamWriter _writer = new StreamWriter( text, false ) )
                     {
                         _writer.Write( file );
                     }
@@ -424,14 +424,14 @@ namespace BudgetExecution
         {
             try
             {
-                var _message = new MailMessage( );
+                MailMessage _message = new MailMessage( );
                 _message.To.Add( recipient );
-                var _address = new MailAddress( sender );
+                MailAddress _address = new MailAddress( sender );
                 _message.From = _address;
                 _message.Subject = subject;
                 _message.Body = body;
-                var _client = new SmtpClient( server );
-                var _credentials = new NetworkCredential( );
+                SmtpClient _client = new SmtpClient( server );
+                NetworkCredential _credentials = new NetworkCredential( );
                 _client.Credentials = _credentials;
                 _client.Send( _message );
                 return true;
@@ -472,7 +472,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

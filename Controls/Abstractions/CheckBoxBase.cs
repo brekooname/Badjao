@@ -9,8 +9,8 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using VisualPlus.Toolkit.Controls.Interactivity;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public abstract class CheckBoxBase : VisualCheckBox
     {
         /// <summary>
@@ -53,22 +53,22 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _checkBox = sender as CheckBox;
+            CheckBox _checkBox = sender as CheckBox;
 
             try
             {
                 if( _checkBox != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    var _hoverText = _checkBox?.HoverText;
-                    var _ = new ToolTip( _checkBox, _hoverText );
+                    string _hoverText = _checkBox?.HoverText;
+                    ToolTip _ = new ToolTip( _checkBox, _hoverText );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _text = Tag?.ToString( )?.SplitPascal( );
-                        var _ = new ToolTip( _checkBox, _text );
+                        string _text = Tag?.ToString( )?.SplitPascal( );
+                        ToolTip _ = new ToolTip( _checkBox, _text );
                     }
                 }
             }
@@ -88,7 +88,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _checkBox = sender as CheckBox;
+            CheckBox _checkBox = sender as CheckBox;
 
             try
             {
@@ -108,7 +108,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -19,8 +19,8 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public static class DataRowExtensions
     {
         /// <summary>
@@ -31,27 +31,29 @@ namespace BudgetExecution
         /// <returns></returns>
         /// <exception cref="InvalidEnumArgumentException">
         /// provider</exception>
-        public static IEnumerable<DbParameter> ToSqlDbParameters( this DataRow dataRow, Provider provider )
+        public static IEnumerable<DbParameter> ToSqlDbParameters( this DataRow dataRow,
+            Provider provider )
         {
             if( Verify.IsRow( dataRow )
-               && Enum.IsDefined( typeof( Provider ), provider ) )
+                && Enum.IsDefined( typeof( Provider ), provider ) )
             {
                 try
                 {
                     {
-                        var _table = dataRow.Table;
-                        var _columns = _table?.Columns;
-                        var _values = dataRow.ItemArray;
+                        DataTable _table = dataRow.Table;
+                        DataColumnCollection _columns = _table?.Columns;
+                        object[ ] _values = dataRow.ItemArray;
 
                         switch( provider )
                         {
                             case Provider.SQLite:
-                            {
-                                var _sqlite = new List<SQLiteParameter>( );
 
-                                for( var i = 0; i < _columns?.Count; i++ )
+                            {
+                                List<SQLiteParameter> _sqlite = new List<SQLiteParameter>( );
+
+                                for( int i = 0; i < _columns?.Count; i++ )
                                 {
-                                    var _parameter = new SQLiteParameter
+                                    SQLiteParameter _parameter = new SQLiteParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -66,12 +68,13 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlCe:
-                            {
-                                var _sqlce = new List<SqlCeParameter>( );
 
-                                for( var i = 0; i < _columns?.Count; i++ )
+                            {
+                                List<SqlCeParameter> _sqlce = new List<SqlCeParameter>( );
+
+                                for( int i = 0; i < _columns?.Count; i++ )
                                 {
-                                    var _parameter = new SqlCeParameter
+                                    SqlCeParameter _parameter = new SqlCeParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -88,12 +91,13 @@ namespace BudgetExecution
                             case Provider.OleDb:
                             case Provider.Excel:
                             case Provider.Access:
-                            {
-                                var _oledb = new List<OleDbParameter>( );
 
-                                for( var i = 0; i < _columns?.Count; i++ )
+                            {
+                                List<OleDbParameter> _oledb = new List<OleDbParameter>( );
+
+                                for( int i = 0; i < _columns?.Count; i++ )
                                 {
-                                    var parameter = new OleDbParameter
+                                    OleDbParameter parameter = new OleDbParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -108,12 +112,13 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlServer:
-                            {
-                                var _sqlserver = new List<SqlParameter>( );
 
-                                for( var i = 0; i < _columns?.Count; i++ )
+                            {
+                                List<SqlParameter> _sqlserver = new List<SqlParameter>( );
+
+                                for( int i = 0; i < _columns?.Count; i++ )
                                 {
-                                    var _parameter = new SqlParameter
+                                    SqlParameter _parameter = new SqlParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -152,16 +157,17 @@ namespace BudgetExecution
             {
                 if( dataRow?.ItemArray.Length > 0 )
                 {
-                    var _dictionary = new Dictionary<string, object>( );
-                    var _table = dataRow?.Table;
-                    var _column = _table?.Columns;
-                    var _items = dataRow?.ItemArray;
+                    Dictionary<string, object> _dictionary = new Dictionary<string, object>( );
+                    DataTable _table = dataRow?.Table;
+                    DataColumnCollection _column = _table?.Columns;
+                    object[ ] _items = dataRow?.ItemArray;
 
-                    for( var i = 0; i < _column?.Count; i++ )
+                    for( int i = 0; i < _column?.Count; i++ )
                     {
                         if( !string.IsNullOrEmpty( _column[ i ]?.ColumnName ) )
                         {
-                            _dictionary?.Add( _column[ i ].ColumnName, _items[ i ] ?? default( object ) );
+                            _dictionary?.Add( _column[ i ].ColumnName,
+                                _items[ i ] ?? default( object ) );
                         }
                     }
 
@@ -178,7 +184,7 @@ namespace BudgetExecution
                 return default( IDictionary<string, object> );
             }
         }
-        
+
         /// <summary>
         /// Gets the bytes.
         /// </summary>
@@ -209,7 +215,7 @@ namespace BudgetExecution
             if( Verify.IsRow( dataRow )
                 && Enum.IsDefined( typeof( Field ), field ) )
             {
-                var _columns = dataRow.Table?.GetColumnNames( );
+                string[ ] _columns = dataRow.Table?.GetColumnNames( );
 
                 if( _columns?.Any( ) == true
                     && _columns.Contains( $"{field}" ) )
@@ -239,7 +245,7 @@ namespace BudgetExecution
         {
             if( Verify.IsRow( dataRow ) & Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
-                var _columns = dataRow.Table?.GetColumnNames( );
+                string[ ] _columns = dataRow.Table?.GetColumnNames( );
 
                 if( _columns?.Any( ) == true
                     && _columns.Contains( $"{numeric}" ) )
@@ -269,7 +275,7 @@ namespace BudgetExecution
         {
             if( Verify.IsRow( dataRow ) & Enum.IsDefined( typeof( Field ), field ) )
             {
-                var _columns = dataRow.Table?.GetColumnNames( );
+                string[ ] _columns = dataRow.Table?.GetColumnNames( );
 
                 if( _columns != null
                     && _columns?.Any( ) == true & _columns.Contains( $"{field}" ) )
@@ -302,10 +308,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _colums = dataRow.Table?.GetColumnNames( );
-                    var _names = Enum.GetNames( typeof( Numeric ) );
+                    string[ ] _colums = dataRow.Table?.GetColumnNames( );
+                    string[ ] _names = Enum.GetNames( typeof( Numeric ) );
 
-                    for( var i = 1; i < _colums?.Length; i++ )
+                    for( int i = 1; i < _colums?.Length; i++ )
                     {
                         if( _names.Contains( _colums[ i ] ) )
                         {
@@ -341,14 +347,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dictionary = row.ToDictionary( );
-                    var _key = _dictionary.Keys?.ToArray( );
-                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
-                    var _count = 0;
+                    IDictionary<string, object> _dictionary = row.ToDictionary( );
+                    string[ ] _key = _dictionary.Keys?.ToArray( );
+                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    int _count = 0;
 
-                    for( var i = 1; i < _key.Length; i++ )
+                    for( int i = 1; i < _key.Length; i++ )
                     {
-                        var name = _key[ i ];
+                        string name = _key[ i ];
 
                         if( _names.Contains( name ) )
                         {
@@ -379,20 +385,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dictionary = row.ToDictionary( );
-                    var _key = _dictionary.Keys?.ToArray( );
-                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    IDictionary<string, object> _dictionary = row.ToDictionary( );
+                    string[ ] _key = _dictionary.Keys?.ToArray( );
+                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
 
-                    for( var i = 1; i < _key?.Length; i++ )
+                    for( int i = 1; i < _key?.Length; i++ )
                     {
-                        var _name = _key[ i ];
+                        string _name = _key[ i ];
 
                         if( _names.Contains( _name ) )
                         {
                             return new Dictionary<string, object>
-                            {
-                                [ _name ] = int.Parse( _dictionary[ _name ].ToString( ) )
-                            };
+                                { [ _name ] = int.Parse( _dictionary[ _name ].ToString( ) ) };
                         }
 
                         if( !_names.Contains( _name ) )
@@ -410,12 +414,12 @@ namespace BudgetExecution
 
             return default( IDictionary<string, object> );
         }
-        
+
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

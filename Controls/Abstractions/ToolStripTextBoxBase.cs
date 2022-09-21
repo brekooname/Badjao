@@ -1,14 +1,14 @@
-﻿// <copyright file = "BarTextBoxBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripTextBoxBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Forms;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class ToolStripTextBase : System.Windows.Forms.ToolStripTextBox
     {
         /// <summary>
@@ -17,7 +17,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the hover text.
@@ -42,7 +42,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual ToolTip ToolTip { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="ToolStripTextBase"/> class.
@@ -57,7 +57,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

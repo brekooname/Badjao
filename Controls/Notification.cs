@@ -47,7 +47,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Notification"/> class.
         /// </summary>
-        public Notification()
+        public Notification( )
         {
         }
 
@@ -71,7 +71,10 @@ namespace BudgetExecution
             Title.Text = title;
             Message.Text = body;
             Animator = new FormAnimator( this, animation, direction, 500 );
-            Region = Region.FromHrgn( NativeMethods.CreateRoundRectRgn( 0, 0, Width - 5, Height - 5, 20, 20 ) );
+
+            Region = Region.FromHrgn(
+                NativeMethods.CreateRoundRectRgn( 0, 0, Width - 5, Height - 5, 20, 20 ) );
+
             Activated += OnActivated;
             Shown += OnShown;
             FormClosed += OnClosed;
@@ -84,7 +87,7 @@ namespace BudgetExecution
         /// <summary>
         /// Displays the control to the user.
         /// </summary>
-        public new void Show()
+        public new void Show( )
         {
             _currentForegroundWindow = NativeMethods.GetForegroundWindow( );
 
@@ -101,7 +104,7 @@ namespace BudgetExecution
             Location = new Point( Screen.PrimaryScreen.WorkingArea.Width - Width,
                 Screen.PrimaryScreen.WorkingArea.Height - Height );
 
-            foreach( var _form in OpenNotifications )
+            foreach( Notification _form in OpenNotifications )
             {
                 _form.Top -= Height;
             }
@@ -142,7 +145,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
         private void OnClosed( object sender, FormClosedEventArgs e )
         {
-            foreach( var _openForm in OpenNotifications )
+            foreach( Notification _openForm in OpenNotifications )
             {
                 if( _openForm == this )
                 {
@@ -168,7 +171,7 @@ namespace BudgetExecution
         /// <summary>
         /// Notifications the close.
         /// </summary>
-        public void NotificationClose()
+        public void NotificationClose( )
         {
             Close( );
         }

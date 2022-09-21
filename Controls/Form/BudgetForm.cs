@@ -22,7 +22,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "AccessToStaticMemberViaDerivedType" ) ]
     [ SuppressMessage( "ReSharper", "ConvertToConstant.Global" ) ]
-    public class BudgetForm 
+    public class BudgetForm
     {
         /// <summary>
         /// Gets or sets the state of the minimized.
@@ -62,7 +62,8 @@ namespace BudgetExecution
         /// <value>
         /// The default location.
         /// </value>
-        public static FormStartPosition DefaultLocation { get; set; } = FormStartPosition.WindowsDefaultLocation;
+        public static FormStartPosition DefaultLocation { get; set; } =
+            FormStartPosition.WindowsDefaultLocation;
 
         /// <summary>
         /// Gets or sets the form.
@@ -173,7 +174,7 @@ namespace BudgetExecution
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        public void Dispose()
+        public void Dispose( )
         {
             try
             {

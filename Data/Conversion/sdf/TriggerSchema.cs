@@ -4,9 +4,21 @@
 
 namespace BudgetExecution
 {
-    public enum TriggerEvent { Delete, Update, Insert }
+    public enum TriggerEvent
+    {
+        Delete,
 
-    public enum TriggerType { After, Before }
+        Update,
+
+        Insert
+    }
+
+    public enum TriggerType
+    {
+        After,
+
+        Before
+    }
 
     public class TriggerSchema
     {

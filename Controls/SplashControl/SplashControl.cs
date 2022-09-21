@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// The splash panel has animation turned and by default will appear in the
         /// middle of the screen.
         /// </remarks>
-        public SplashControl()
+        public SplashControl( )
         {
             BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.White;
@@ -31,8 +31,8 @@ namespace BudgetExecution
             BorderStyle = Border3DStyle.Etched;
             BorderType = SplashBorderType.Border3D;
 
-            BackgroundColor = new BrushInfo( GradientStyle.PathEllipse, Color.FromArgb( 15, 15, 15 ),
-                Color.FromArgb( 45, 45, 45 ) );
+            BackgroundColor = new BrushInfo( GradientStyle.PathEllipse,
+                Color.FromArgb( 15, 15, 15 ), Color.FromArgb( 45, 45, 45 ) );
 
             ShowAnimation = true;
             ShowAsTopMost = true;

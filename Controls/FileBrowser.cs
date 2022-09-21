@@ -1,7 +1,6 @@
 ﻿// <copyright file = "FileBrowser.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -72,13 +71,13 @@ namespace BudgetExecution
         /// The selected file.
         /// </value>
         public string SelectedFile { get; set; }
-        
+
         /// <summary>Initializes a new instance of the 
         /// <see cref="FileBrowser" /> class.</summary>
         public FileBrowser( )
         {
             InitializeComponent( );
-            Size = new Size( 700, 480);
+            Size = new Size( 700, 480 );
             FormBorderStyle = FormBorderStyle.FixedSingle;
             BackColor = Color.FromArgb( 15, 15, 15 );
             InitialDirPaths = GetInitialDirPaths( );
@@ -88,7 +87,10 @@ namespace BudgetExecution
             FilePaths = GetListViewPaths( );
 
             FileDialog.DefaultExt = FileExtension;
-            FileDialog.InitialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
+
+            FileDialog.InitialDirectory =
+                Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
+
             FileDialog.CheckFileExists = true;
 
             CloseButton.Click += OnCloseButtonClicked;
@@ -105,7 +107,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
         public void OnLoaded( object sender, EventArgs e )
         {
-            if( FilePaths?.Any( ) == true  ) 
+            if( FilePaths?.Any( ) == true )
             {
                 try
                 {
@@ -120,31 +122,29 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Gets the image.
         /// </summary>
         /// <returns></returns>
         public Image GetImage( )
         {
-            if( !string.IsNullOrEmpty( FileExtension) )
+            if( !string.IsNullOrEmpty( FileExtension ) )
             {
                 try
                 {
-                    var _path = ConfigurationManager.AppSettings[ "Extensions" ];
-                    var _files = Directory.GetFiles( _path );
+                    string _path = ConfigurationManager.AppSettings[ "Extensions" ];
+                    string[ ] _files = Directory.GetFiles( _path );
 
-                    if ( _files?.Any( ) == true )
+                    if( _files?.Any( ) == true )
                     {
-                        var _extension = FileExtension.TrimStart( '.' ).ToUpper(  );
-                        var _file = _files
-                            .Where( f => f.Contains( _extension ) )
-                            ?.First(  );
+                        string _extension = FileExtension.TrimStart( '.' ).ToUpper( );
+                        string _file = _files.Where( f => f.Contains( _extension ) )?.First( );
 
-                        using( var stream = File.Open( _file, FileMode.Open ) )
+                        using( FileStream stream = System.IO.File.Open( _file, FileMode.Open ) )
                         {
-                            var _img = Image.FromStream( stream );
-                            return new Bitmap(  _img, 22, 22 );
+                            Image _img = Image.FromStream( stream );
+                            return new Bitmap( _img, 22, 22 );
                         }
                     }
                 }
@@ -165,7 +165,7 @@ namespace BudgetExecution
         {
             try
             {
-                foreach( var radioButton in RadioButtons )
+                foreach( RadioButton radioButton in RadioButtons )
                 {
                     radioButton.CheckedChanged += null;
                     radioButton.CheckState = CheckState.Unchecked;
@@ -180,11 +180,11 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the RadioButton events.
         /// </summary>
-        public void SetRadioButtonEvents()
+        public void SetRadioButtonEvents( )
         {
             try
             {
-                foreach( var radioButton in RadioButtons )
+                foreach( RadioButton radioButton in RadioButtons )
                 {
                     radioButton.CheckedChanged += OnRadioButtonSelected;
                 }
@@ -205,43 +205,40 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _list = new List<string>( );
-                    foreach( var path in InitialDirPaths )
+                    List<string> _list = new List<string>( );
+
+                    foreach( string path in InitialDirPaths )
                     {
-                        var _first = Directory.EnumerateFiles( path )
+                        List<string> _first = Directory.EnumerateFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
-                            ?.Select( f => Path.GetFullPath( f ) )
-                            ?.ToList( );
+                            ?.Select( f => Path.GetFullPath( f ) )?.ToList( );
 
                         _list.AddRange( _first );
 
-                        var _dirs = Directory.GetDirectories( path );
-                        foreach( var dir in _dirs )
+                        string[ ] _dirs = Directory.GetDirectories( path );
+
+                        foreach( string dir in _dirs )
                         {
                             if( !dir.Contains( "My " ) )
                             {
-                                var _second = Directory.EnumerateFiles( dir )
-                                   ?.Where( s => s.EndsWith( FileExtension ) )
-                                   ?.Select( s => Path.GetFullPath( s ) )
-                                   ?.ToList( );
+                                List<string> _second = Directory.EnumerateFiles( dir )
+                                    ?.Where( s => s.EndsWith( FileExtension ) )
+                                    ?.Select( s => Path.GetFullPath( s ) )?.ToList( );
 
                                 _list.AddRange( _second );
 
-                                var _subdir = Directory.GetDirectories( dir );
-                                foreach( var sub in _subdir )
+                                string[ ] _subdir = Directory.GetDirectories( dir );
+
+                                foreach( string sub in _subdir )
                                 {
-                                    var _last = Directory.EnumerateFiles( sub )
+                                    List<string> _last = Directory.EnumerateFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
-                                        ?.Select( l => Path.GetFullPath( l ) )
-                                        ?.ToList( );
+                                        ?.Select( l => Path.GetFullPath( l ) )?.ToList( );
 
                                     _list.AddRange( _last );
                                 }
-
                             }
-                            
                         }
-
                     }
 
                     return _list?.Any( ) == true
@@ -272,12 +269,10 @@ namespace BudgetExecution
                     FileExtension = _radioButton?.Result;
                     MessageLabel.Text = string.Empty;
                     FoundLabel.Text = string.Empty;
-                    var _paths = GetListViewPaths( );
+                    IEnumerable<string> _paths = GetListViewPaths( );
                     PopulateListView( _paths );
                     PictureBox.Image = GetImage( );
-                    FoundLabel.Text = "Found: " + 
-                        _paths?.ToList(  )?.Count ?? "0";
-
+                    FoundLabel.Text = "Found: " + _paths?.ToList( )?.Count ?? "0";
                 }
                 catch( Exception ex )
                 {
@@ -294,19 +289,21 @@ namespace BudgetExecution
         {
             try
             {
-                var _list = new List<RadioButton>( );
-                _list.Add( PdfRadioButton );
-                _list.Add( AccessRadioButton );
-                _list.Add( SQLiteRadioButton );
-                _list.Add( SqlCeRadioButton );
-                _list.Add( SqlServerRadioButton );
-                _list.Add( ExcelRadioButton );
-                _list.Add( CsvRadioButton );
-                _list.Add( TextRadioButton );
-                _list.Add( PowerPointRadioButton );
-                _list.Add( WordRadioButton );
-                _list.Add( ExecutableRadioButton );
-                _list.Add( LibraryRadioButton );
+                List<RadioButton> _list = new List<RadioButton>
+                {
+                    PdfRadioButton,
+                    AccessRadioButton,
+                    SQLiteRadioButton,
+                    SqlCeRadioButton,
+                    SqlServerRadioButton,
+                    ExcelRadioButton,
+                    CsvRadioButton,
+                    TextRadioButton,
+                    PowerPointRadioButton,
+                    WordRadioButton,
+                    ExecutableRadioButton,
+                    LibraryRadioButton
+                };
 
                 return _list?.Any( ) == true
                     ? _list
@@ -327,13 +324,16 @@ namespace BudgetExecution
         {
             try
             {
-                var _current = Environment.CurrentDirectory;
-                var _list = new List<string>( );
-                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ) );
-                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.Personal ) );
-                _list.Add( Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments ) );
-                _list.Add( @"C:\Users\terry\source\repos\Badjao\Resources\Docs"  );
-                _list.Add( _current );
+                string _current = Environment.CurrentDirectory;
+                List<string> _list = new List<string>
+                {
+                    Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
+
+                    Environment.GetFolderPath( Environment.SpecialFolder.Personal ),
+                    Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments ),
+                    @"C:\Users\terry\source\repos\Badjao\Resources\Docs",
+                    _current
+                };
 
                 return _list?.Any( ) == true
                     ? _list
@@ -345,7 +345,7 @@ namespace BudgetExecution
                 return default( IEnumerable<string> );
             }
         }
-        
+
         /// <summary>
         /// Populates the ListView.
         /// </summary>
@@ -355,7 +355,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var path in FilePaths )
+                    foreach( string path in FilePaths )
                     {
                         FileList.Items.Add( path );
                     }
@@ -375,10 +375,11 @@ namespace BudgetExecution
         {
             try
             {
-                if( filePaths?.Any(  ) == true )
+                if( filePaths?.Any( ) == true )
                 {
                     FileList.Items.Clear( );
-                    foreach( var path in filePaths )
+
+                    foreach( string path in filePaths )
                     {
                         if( !string.IsNullOrEmpty( path ) )
                         {
@@ -392,7 +393,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Called when [path selected].
         /// </summary>
@@ -400,13 +401,13 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void OnPathSelected( object sender, EventArgs e )
         {
-            if( sender is ListBox listBox 
+            if( sender is ListBox listBox
                 && !string.IsNullOrEmpty( listBox.SelectedItem?.ToString( ) )
                 && e != null )
             {
                 try
                 {
-                    SelectedPath = listBox.SelectedItem?.ToString(  );
+                    SelectedPath = listBox.SelectedItem?.ToString( );
                     MessageLabel.Text = SelectedPath;
                 }
                 catch( Exception ex )
@@ -423,7 +424,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         public virtual void OnCloseButtonClicked( object sender, EventArgs e )
         {
-            if( sender is Button  )
+            if( sender is Button )
             {
                 try
                 {
@@ -442,7 +443,7 @@ namespace BudgetExecution
         /// <param name="ex">The exception.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

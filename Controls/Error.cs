@@ -12,8 +12,8 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
     using VisualPlus.Enumerators;
-    
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class Error : MetroForm
     {
         /// <summary>
@@ -41,7 +41,7 @@ namespace BudgetExecution
         /// Initializes a new instance of
         /// the <see cref="Error"/> class.
         /// </summary>
-        public Error()
+        public Error( )
         {
             InitializeComponent( );
 
@@ -119,10 +119,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _logString = Exception.ToLogString( "" );
+                string _logString = Exception.ToLogString( "" );
                 TextBox.Text = _logString;
             }
-            catch ( Exception ex )
+            catch( Exception ex )
             {
                 Console.WriteLine( ex.StackTrace );
             }
@@ -135,7 +135,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _logString = exc?.ToLogString( "" );
+                string _logString = exc?.ToLogString( "" );
                 TextBox.Text = _logString;
             }
             catch( Exception ex )
@@ -154,7 +154,7 @@ namespace BudgetExecution
 
         public void OnClick( object sender, EventArgs e )
         {
-            if( sender is  Button )
+            if( sender is Button )
             {
                 Close( );
             }

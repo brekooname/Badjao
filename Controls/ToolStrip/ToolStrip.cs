@@ -1,4 +1,4 @@
-﻿// <copyright file = "ToolBarControl.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStrip.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -15,11 +15,11 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ToolStripBase" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
-    [SuppressMessage( "ReSharper", "ObjectCreationAsStatement" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "ObjectCreationAsStatement" ) ]
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
     public class ToolStrip : ToolStripBase, IToolStrip
     {
@@ -114,11 +114,12 @@ namespace BudgetExecution
         /// <returns></returns>
         public IDictionary<string, ToolStripButton> GetButtons( )
         {
-            var _buttons = new SortedList<string, ToolStripButton>( );
+            SortedList<string, ToolStripButton> _buttons =
+                new SortedList<string, ToolStripButton>( );
 
             if( Items?.Count > 0 )
             {
-                foreach( var control in Items )
+                foreach( object control in Items )
                 {
                     if( control is ToolStripButton _item )
                     {
@@ -137,7 +138,6 @@ namespace BudgetExecution
             return default( IDictionary<string, ToolStripButton> );
         }
 
-
         /// <summary>
         /// Called when [load].
         /// </summary>
@@ -147,13 +147,13 @@ namespace BudgetExecution
         {
             if( sender is ToolStrip toolStrip )
             {
-                foreach( var button in toolStrip.Buttons.Values )
+                foreach( ToolStripButton button in toolStrip.Buttons.Values )
                 {
                     button.BindingSource = BindingSource;
                 }
             }
         }
-        
+
         /// <summary>
         /// Populates the buttons on the toolstrip
         /// </summary>

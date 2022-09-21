@@ -13,8 +13,8 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.Layout;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public abstract class GroupBoxBase : VisualGroupBox
     {
         /// <summary>
@@ -64,7 +64,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -111,10 +111,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindinglist as BindingSource;
-                        var _filter = string.Empty;
+                        BindingSource _list = bindinglist as BindingSource;
+                        string _filter = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && Verify.IsRef( _kvp.Value ) )
@@ -168,16 +168,17 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data,
+            IDictionary<string, object> dict )
             where T1 : IEnumerable<DataRow>
         {
             if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -278,9 +279,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -305,7 +306,8 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
+            object filter = null )
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
@@ -342,7 +344,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _groupBox = sender as GroupBox;
+            GroupBox _groupBox = sender as GroupBox;
 
             try
             {
@@ -351,15 +353,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _groupBox?.HoverText;
-                        var _ = new ToolTip( _groupBox, _hoverText );
+                        string _hoverText = _groupBox?.HoverText;
+                        ToolTip _ = new ToolTip( _groupBox, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new ToolTip( _groupBox, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            ToolTip _ = new ToolTip( _groupBox, _text );
                         }
                     }
                 }
@@ -380,7 +382,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _groupBox = sender as GroupBox;
+            GroupBox _groupBox = sender as GroupBox;
 
             try
             {
@@ -400,7 +402,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

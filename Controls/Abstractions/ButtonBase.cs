@@ -15,7 +15,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="VisualButton" />
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class ButtonBase : VisualButton
     {
         /// <summary>
@@ -65,7 +65,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Sets the size.
         /// </summary>
@@ -273,8 +273,8 @@ namespace BudgetExecution
         {
             try
             {
-                if( sender is VisualButton _button 
-                    && _button != null 
+                if( sender is VisualButton _button
+                    && _button != null
                     && ToolTip?.Active == true )
                 {
                     ToolTip.RemoveAll( );
@@ -285,7 +285,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
@@ -293,7 +293,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

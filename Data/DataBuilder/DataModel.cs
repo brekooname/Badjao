@@ -1,4 +1,4 @@
-﻿// <copyright file = "Verify.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "DataModel.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -28,12 +28,12 @@ namespace BudgetExecution
         /// <summary>
         /// The program elements
         /// </summary>
-        public IDictionary<string, IEnumerable<string>> DataElements { get;  }
+        public IDictionary<string, IEnumerable<string>> DataElements { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataModel"/> class.
         /// </summary>
-        public DataModel()
+        public DataModel( )
         {
         }
 
@@ -138,7 +138,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary(   );
+            Args = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace BudgetExecution
         /// <param name="commandType">Type of the command.</param>
         public DataModel( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
-            ConnectionBuilder  = new ConnectionBuilder( fullPath );
+            ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
             SqlStatement = new SqlStatement( Source, Provider, sqlText, commandType );
@@ -196,7 +196,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary(   );
+            Args = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -212,9 +212,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRows
-                        ?.Select( p => p.Field<string>( column ) )
-                        ?.Distinct(   );
+                    IEnumerable<string> _query = dataRows?.Select( p => p.Field<string>( column ) )
+                        ?.Distinct( );
 
                     return _query?.Any( ) == true
                         ? _query
@@ -246,10 +245,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRows
-                        ?.Where( p => p.Field<string>( $"{ name }" ).Equals( value ) )
-                        ?.Select( p => p.Field<string>( $"{ name }" ) )
-                        ?.Distinct(  );
+                    IEnumerable<string> _query = dataRows
+                        ?.Where( p => p.Field<string>( $"{name}" ).Equals( value ) )
+                        ?.Select( p => p.Field<string>( $"{name}" ) )?.Distinct( );
 
                     return _query?.Any( ) == true
                         ? _query
@@ -272,13 +270,13 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable CreateSchemaTable( DataTable dataTable )
         {
-            if( dataTable?.Rows?.Count > 0  )
+            if( dataTable?.Rows?.Count > 0 )
             {
                 try
                 {
-                    using( var _reader = new DataTableReader( dataTable ) )
+                    using( DataTableReader _reader = new DataTableReader( dataTable ) )
                     {
-                        var _schema = _reader?.GetSchemaTable(  );
+                        DataTable _schema = _reader?.GetSchemaTable( );
 
                         return _schema?.Rows?.Count > 0
                             ? _schema
@@ -303,40 +301,45 @@ namespace BudgetExecution
         public static DataTable CreateTableFromExcel( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && File.Exists( filePath ) )
+                && System.IO.File.Exists( filePath ) )
             {
                 try
                 {
-                    var _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
-                        + filePath
-                        + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
+                    string _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                        + filePath + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
-                    using( var _connection = new OleDbConnection( _connectionString ) )
+                    using( OleDbConnection _connection = new OleDbConnection( _connectionString ) )
                     {
                         _connection?.Open( );
-                        using( var _dataSet = new DataSet( ) )
+
+                        using( DataSet _dataSet = new DataSet( ) )
                         {
-                            using( var _schema = _connection?.GetSchema( ) )
+                            using( DataTable _schema = _connection?.GetSchema( ) )
                             {
-                                var _sheetName = string.Empty;
+                                string _sheetName = string.Empty;
+
                                 if( _schema != null )
                                 {
-                                    var _dataTable = _schema?.AsEnumerable( )
-                                        ?.Where( r => r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
-                                        ?.Select( r => r )
-                                        ?.CopyToDataTable(   );
+                                    DataTable _dataTable = _schema?.AsEnumerable( )
+                                        ?.Where( r =>
+                                            r.Field<string>( "TABLE_NAME" )
+                                                .Contains( "FilterDatabase" ) )?.Select( r => r )
+                                        ?.CopyToDataTable( );
 
-                                    _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString(   );
+                                    _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString( );
                                 }
 
-                                using( var _command = new OleDbCommand( ) )
+                                using( OleDbCommand _command = new OleDbCommand( ) )
                                 {
                                     _command.Connection = _connection;
                                     _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
-                                    using( var _dataAdapter = new OleDbDataAdapter( _command ) )
+
+                                    using( OleDbDataAdapter _dataAdapter =
+                                        new OleDbDataAdapter( _command ) )
                                     {
                                         _dataAdapter.Fill( _dataSet, "excelData" );
-                                        using( var _table = _dataSet.Tables[ "ExcelData" ] )
+
+                                        using( DataTable _table = _dataSet.Tables[ "ExcelData" ] )
                                         {
                                             _connection.Close( );
                                             return _table;
@@ -366,39 +369,41 @@ namespace BudgetExecution
         public static DataTable CreateTableFromExcel( string filePath, bool header = true )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && File.Exists( filePath ) )
+                && System.IO.File.Exists( filePath ) )
             {
                 try
                 {
-                    using( var _package = new ExcelPackage( ) )
+                    using( ExcelPackage _package = new ExcelPackage( ) )
                     {
-                        using( var _stream = File.OpenRead( filePath ) )
+                        using( FileStream _stream = System.IO.File.OpenRead( filePath ) )
                         {
                             _package.Load( _stream );
-                            var _worksheet = _package?.Workbook?.Worksheets?.First( );
-                            var _table = new DataTable( _worksheet?.Name );
+                            ExcelWorksheet _worksheet = _package?.Workbook?.Worksheets?.First( );
+                            DataTable _table = new DataTable( _worksheet?.Name );
+
                             if( _worksheet?.Cells != null )
                             {
-                                foreach( var _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
+                                foreach( ExcelRangeBase _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
                                     _worksheet.Dimension.End.Column ] )
                                 {
                                     _table?.Columns?.Add( header
                                         ? _firstRowCell.Text
-                                        : $"Column { _firstRowCell.Start.Column }" );
+                                        : $"Column {_firstRowCell.Start.Column}" );
                                 }
 
-                                var _start = header
+                                int _start = header
                                     ? 2
                                     : 1;
 
-                                for( var _row = _start; _row <= _worksheet.Dimension.End.Row;
+                                for( int _row = _start; _row <= _worksheet.Dimension.End.Row;
                                     _row++ )
                                 {
-                                    var _excelRange = _worksheet.Cells[ _row, 1, 
-                                        _row, _worksheet.Dimension.End.Column ];
+                                    ExcelRange _excelRange = _worksheet.Cells[ _row, 1, _row,
+                                        _worksheet.Dimension.End.Column ];
 
-                                    var _dataRow = _table.Rows?.Add( );
-                                    foreach( var cell in _excelRange )
+                                    DataRow _dataRow = _table.Rows?.Add( );
+
+                                    foreach( ExcelRangeBase cell in _excelRange )
                                     {
                                         _dataRow[ cell.Start.Column - 1 ] = cell?.Text;
                                     }
@@ -420,7 +425,7 @@ namespace BudgetExecution
 
             return default( DataTable );
         }
-        
+
         /// <summary>
         /// Gets the series.
         /// </summary>
@@ -428,15 +433,17 @@ namespace BudgetExecution
         /// <returns></returns>
         private static IDictionary<string, IEnumerable<string>> CreateSeries( DataTable dataTable )
         {
-            if ( dataTable?.Rows?.Count > 0 )
+            if( dataTable?.Rows?.Count > 0 )
             {
                 try
                 {
-                    var _dict = new Dictionary<string, IEnumerable<string>>(   );
-                    var _columns = dataTable?.Columns;
-                    var _rows = dataTable?.AsEnumerable(  );
+                    Dictionary<string, IEnumerable<string>> _dict =
+                        new Dictionary<string, IEnumerable<string>>( );
 
-                    for( var i = 0; i < _columns?.Count; i++ )
+                    DataColumnCollection _columns = dataTable?.Columns;
+                    EnumerableRowCollection<DataRow> _rows = dataTable?.AsEnumerable( );
+
+                    for( int i = 0; i < _columns?.Count; i++ )
                     {
                         if( !string.IsNullOrEmpty( _columns[ i ]?.ColumnName )
                             && _columns[ i ]?.DataType == typeof( string ) )

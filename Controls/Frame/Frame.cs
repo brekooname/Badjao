@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "Frame.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Drawing;
@@ -21,7 +25,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Frame"/> class.
         /// </summary>
-        public Frame()
+        public Frame( )
         {
             InitializeComponent( );
             Size = new Size( 175, 55 );

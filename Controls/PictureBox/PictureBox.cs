@@ -1,7 +1,6 @@
 ﻿// <copyright file = "PictureBox.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -65,7 +64,7 @@ namespace BudgetExecution
         /// <see cref="PictureBox" />
         /// class.
         /// </summary>
-        public PictureBox()
+        public PictureBox( )
         {
             Size = new Size( 60, 40 );
             Anchor = AnchorStyles.Left | AnchorStyles.Top;
@@ -89,7 +88,7 @@ namespace BudgetExecution
             Size = size;
             Location = location;
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="PictureBox" />
@@ -107,4 +106,3 @@ namespace BudgetExecution
         }
     }
 }
-

@@ -19,7 +19,7 @@ namespace BudgetExecution
     /// <seealso cref = "Query"/>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-     [SuppressMessage( "ReSharper", "ConvertToConstant.Local" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertToConstant.Local" ) ]
     [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
     public class SQLiteQuery : Query
     {
@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "SQLiteQuery"/> class.
         /// </summary>
-        public SQLiteQuery()
+        public SQLiteQuery( )
         {
         }
 
@@ -247,18 +247,16 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        private string GetExcelFilePath()
+        private string GetExcelFilePath( )
         {
             try
             {
-                var _fname = "";
+                string _fname = "";
 
-                var fdlg = new OpenFileDialog
+                OpenFileDialog fdlg = new OpenFileDialog
                 {
-                    Title = "Excel File Dialog",
-                    InitialDirectory = @"c:\",
-                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*",
-                    FilterIndex = 2,
+                    Title = "Excel File Dialog", InitialDirectory = @"c:\",
+                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*", FilterIndex = 2,
                     RestoreDirectory = true
                 };
 
@@ -294,19 +292,21 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataset = new DataSet( );
-                    var _cstring = GetExcelFilePath( );
-                    var _sql = "SELECT * FROM [" + sheetName + "]";
-                    var _msg = "Sheet Does Not Exist!";
-                    var _excelQuery = new ExcelQuery( _cstring, _sql );
-                    var _connection = _excelQuery.GetConnection( ) as OleDbConnection;
+                    DataSet _dataset = new DataSet( );
+                    string _cstring = GetExcelFilePath( );
+                    string _sql = "SELECT * FROM [" + sheetName + "]";
+                    string _msg = "Sheet Does Not Exist!";
+                    ExcelQuery _excelQuery = new ExcelQuery( _cstring, _sql );
+                    OleDbConnection _connection = _excelQuery.GetConnection( ) as OleDbConnection;
                     _connection?.Open( );
-                    var _table = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+
+                    DataTable _table =
+                        _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
                     if( _table?.Rows.Count > 0
                         && CheckIfSheetNameExists( sheetName, _table ) )
                     {
-                        var _message = new Message( _msg );
+                        Message _message = new Message( _msg );
                         _message?.ShowDialog( );
                     }
                     else
@@ -314,7 +314,7 @@ namespace BudgetExecution
                         sheetName = _table?.Rows[ 0 ][ "TABLENAME" ].ToString( );
                     }
 
-                    var _adapter = new OleDbDataAdapter( _sql, _connection );
+                    OleDbDataAdapter _adapter = new OleDbDataAdapter( _sql, _connection );
                     _adapter.Fill( _dataset, sheetName );
                     return _dataset.Tables[ 0 ];
                 }
@@ -346,20 +346,23 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataSet = new DataSet( );
-                    var _dataTable = new DataTable( );
+                    DataSet _dataSet = new DataSet( );
+                    DataTable _dataTable = new DataTable( );
                     _dataSet.DataSetName = fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
-                    var _sql = $"SELECT * FROM [{ sheetName }]";
-                    var _cstring = GetExcelFilePath( );
+                    string _sql = $"SELECT * FROM [{sheetName}]";
+                    string _cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
-                        var _csvquery = new CsvQuery( _cstring, _sql );
-                        var _select = _csvquery.DataCommand;
-                        var _connection = _csvquery.DataConnection as OleDbConnection;
-                        var _adapter = new OleDbDataAdapter( _select.CommandText, _connection );
+                        CsvQuery _csvquery = new CsvQuery( _cstring, _sql );
+                        DbCommand _select = _csvquery.DataCommand;
+                        OleDbConnection _connection = _csvquery.DataConnection as OleDbConnection;
+
+                        OleDbDataAdapter _adapter =
+                            new OleDbDataAdapter( _select.CommandText, _connection );
+
                         _adapter?.Fill( _dataSet, sheetName );
 
                         return _dataTable.Columns.Count > 0
@@ -421,9 +424,9 @@ namespace BudgetExecution
             if( !string.IsNullOrEmpty( sheetName )
                 && Verify.IsTable( dataSchema ) )
             {
-                for( var i = 0; i < dataSchema.Rows.Count; i++ )
+                for( int i = 0; i < dataSchema.Rows.Count; i++ )
                 {
-                    var _dataRow = dataSchema.Rows[ i ];
+                    DataRow _dataRow = dataSchema.Rows[ i ];
 
                     if( sheetName == _dataRow[ "TABLENAME" ].ToString( ) )
                     {
@@ -438,9 +441,9 @@ namespace BudgetExecution
         /// <summary>
         /// Creates the database.
         /// </summary>
-        private void CreateDatabase()
+        private void CreateDatabase( )
         {
-            var _commandText = @"CREATE TABLE IF NOT EXISTS [MyTable] (
+            string _commandText = @"CREATE TABLE IF NOT EXISTS [MyTable] (
                                     [ID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                                     [Key] NVARCHAR(2048)  NULL,
                                     [Value] VARCHAR(2048)  NULL
@@ -448,18 +451,25 @@ namespace BudgetExecution
 
             SQLiteConnection.CreateFile( "databaseFile.db3" );
 
-            using( var _connection = new SQLiteConnection( "Data source=databaseFile.db3" ) )
+            using( SQLiteConnection _connection =
+                new SQLiteConnection( "Data source=databaseFile.db3" ) )
             {
-                var _command = new SQLiteCommand( _connection );
+                SQLiteCommand _command = new SQLiteCommand( _connection );
                 _connection.Open( );
                 _command.CommandText = _commandText;
                 _command.ExecuteNonQuery( );
-                _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
+
+                _command.CommandText =
+                    "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
+
                 _command.ExecuteNonQuery( );
-                _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
+
+                _command.CommandText =
+                    "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
+
                 _command.ExecuteNonQuery( );
                 _command.CommandText = "Select * FROM MyTable";
-                var _reader = _command.ExecuteReader( );
+                SQLiteDataReader _reader = _command.ExecuteReader( );
 
                 while( _reader.Read( ) )
                 {

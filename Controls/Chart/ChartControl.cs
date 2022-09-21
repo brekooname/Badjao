@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetChart.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ChartControl.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -14,8 +14,8 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Chart;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class ChartControl : ChartBase
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// The data values.
         /// </value>
         public IDictionary<string, double> DataValues { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the data source.
         /// </summary>
@@ -55,7 +55,7 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// of the <see cref="ChartControl"/> class.
         /// </summary>
-        public ChartControl()
+        public ChartControl( )
         {
             SmoothingMode = SmoothingMode.AntiAlias;
         }
@@ -149,7 +149,7 @@ namespace BudgetExecution
         /// </summary>
         public void SetPoints( )
         {
-            if( Enum.IsDefined( typeof( ChartSeriesType ), DataSeries.Type ) 
+            if( Enum.IsDefined( typeof( ChartSeriesType ), DataSeries.Type )
                 && DataValues?.Any( ) == true )
             {
                 try
@@ -164,33 +164,36 @@ namespace BudgetExecution
                         case ChartSeriesType.Pyramid:
                         case ChartSeriesType.Funnel:
                         case ChartSeriesType.Pie:
+
                         {
-                            foreach( var kvp in DataValues )
+                            foreach( KeyValuePair<string, double> kvp in DataValues )
                             {
                                 DataSeries.Points.Add( kvp.Key, kvp.Value );
 
                                 if( DataSeries.STAT != STAT.Percentage )
                                 {
-                                    DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:N01}";
+                                    DataSeries.Styles[ 0 ].TextFormat =
+                                        $"{kvp.Key} \n {kvp.Value:N01}";
                                 }
                                 else if( DataSeries.STAT == STAT.Percentage )
                                 {
-                                    DataSeries.Styles[ 0 ].TextFormat = $"{ kvp.Key } \n { kvp.Value:P}";
+                                    DataSeries.Styles[ 0 ].TextFormat =
+                                        $"{kvp.Key} \n {kvp.Value:P}";
                                 }
                             }
 
                             break;
                         }
                         default:
+
                         {
-                            foreach( var kvp in DataValues )
+                            foreach( KeyValuePair<string, double> kvp in DataValues )
                             {
                                 DataSeries.Points.Add( kvp.Key, kvp.Value );
                             }
 
                             break;
                         }
-
                     }
                 }
                 catch( Exception ex )

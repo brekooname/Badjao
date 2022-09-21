@@ -1,7 +1,6 @@
 ﻿// <copyright file = "SplashBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -13,8 +12,8 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" ) ]
     public abstract class SplashBase : SplashPanel
     {
         /// <summary>
@@ -64,7 +63,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SplashBase"/> class.
         /// </summary>
@@ -74,7 +73,7 @@ namespace BudgetExecution
         /// The splash panel has animation turned and by default will appear in the
         /// middle of the screen.
         /// </remarks>
-        public SplashBase()
+        public SplashBase( )
         {
         }
 
@@ -247,11 +246,11 @@ namespace BudgetExecution
         public virtual void ResetIcon( string path )
         {
             if( !string.IsNullOrEmpty( path )
-                && File.Exists( path ) )
+                && System.IO.File.Exists( path ) )
             {
                 try
                 {
-                    using( var _stream = File.Open( path, FileMode.Open ) )
+                    using( FileStream _stream = System.IO.File.Open( path, FileMode.Open ) )
                     {
                         FormIcon = new Icon( _stream );
                     }
@@ -269,7 +268,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

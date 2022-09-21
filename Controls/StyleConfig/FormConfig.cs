@@ -49,7 +49,8 @@ namespace BudgetExecution
         /// <summary>
         /// The default location
         /// </summary>
-        public static readonly FormStartPosition DefaultLocation = FormStartPosition.WindowsDefaultLocation;
+        public static readonly FormStartPosition DefaultLocation =
+            FormStartPosition.WindowsDefaultLocation;
 
         /// <summary>
         /// The form
@@ -126,11 +127,10 @@ namespace BudgetExecution
         /// </value>
         public virtual bool IsEnabled { get; set; } = true;
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref = "FormConfig"/> class.
         /// </summary>
-        public FormConfig()
+        public FormConfig( )
         {
         }
 
@@ -164,9 +164,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FontConfig.FontSizeSmall?.Dispose();
-                    FontConfig.FontSizeMedium?.Dispose();
-                    FontConfig.FontSizeLarge?.Dispose();
+                    FontConfig.FontSizeSmall?.Dispose( );
+                    FontConfig.FontSizeMedium?.Dispose( );
+                    FontConfig.FontSizeLarge?.Dispose( );
                 }
                 catch( Exception ex )
                 {
@@ -179,7 +179,7 @@ namespace BudgetExecution
         /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
+        public void Dispose( )
         {
             try
             {
@@ -198,7 +198,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

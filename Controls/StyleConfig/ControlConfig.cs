@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "ControlConfig"/> class.
         /// </summary>
-        public ControlConfig()
+        public ControlConfig( )
         {
         }
 
@@ -52,7 +52,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return !string.IsNullOrEmpty( tag.ToString() )
+                    return !string.IsNullOrEmpty( tag.ToString( ) )
                         ? tag
                         : default( object );
                 }
@@ -186,7 +186,7 @@ namespace BudgetExecution
         /// </returns>
         public static Point GetLocation( int x = 1, int y = 1 )
         {
-            if( x    > -1
+            if( x > -1
                 && y > -1 )
             {
                 try
@@ -212,7 +212,7 @@ namespace BudgetExecution
         /// </returns>
         public static Point GetLocation( Point point )
         {
-            if( point.X    > -1
+            if( point.X > -1
                 && point.Y > -1 )
             {
                 try
@@ -239,8 +239,8 @@ namespace BudgetExecution
         /// </returns>
         public static Size GetSize( Size size )
         {
-            if( size.Width     > 0
-                && size.Width  < SizeConfig.FormMaximum.Width
+            if( size.Width > 0
+                && size.Width < SizeConfig.FormMaximum.Width
                 && size.Height > 0
                 && size.Height < SizeConfig.FormMaximum.Height )
             {
@@ -271,8 +271,8 @@ namespace BudgetExecution
         /// </returns>
         public static Size GetSize( int width, int height )
         {
-            if( width     > 0
-                && width  < SizeConfig.FormMaximum.Width
+            if( width > 0
+                && width < SizeConfig.FormMaximum.Width
                 && height > 0
                 && height < SizeConfig.FormMaximum.Height )
             {
@@ -323,7 +323,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

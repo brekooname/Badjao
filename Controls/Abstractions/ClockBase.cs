@@ -16,9 +16,9 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="Syncfusion.Windows.Forms.Tools.Clock" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public abstract class ClockBase : Syncfusion.Windows.Forms.Tools.Clock, IClock
     {
         /// <summary>
@@ -220,7 +220,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the time.
         /// </summary>
-        public virtual void SetTime()
+        public virtual void SetTime( )
         {
             Now = DateTime.Now;
         }
@@ -234,7 +234,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _budgetClock = sender as Clock;
+            Clock _budgetClock = sender as Clock;
 
             try
             {
@@ -243,15 +243,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _budgetClock?.HoverText;
-                        var _ = new ToolTip( _budgetClock, _hoverText );
+                        string _hoverText = _budgetClock?.HoverText;
+                        ToolTip _ = new ToolTip( _budgetClock, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new ToolTip( _budgetClock, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            ToolTip _ = new ToolTip( _budgetClock, _text );
                         }
                     }
                 }
@@ -272,7 +272,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _budgetClock = sender as Clock;
+            Clock _budgetClock = sender as Clock;
 
             try
             {
@@ -292,7 +292,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

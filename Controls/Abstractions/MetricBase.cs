@@ -99,30 +99,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
         /// <param name="numeric">The numeric.</param>
-        protected MetricBase( BindingSource bindingSource, Numeric numeric = Numeric.Amount  )
+        protected MetricBase( BindingSource bindingSource, Numeric numeric = Numeric.Amount )
         {
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable(   )?.ToList(   );
-            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
-
-            Source = (Source)Enum.Parse( typeof( Source ),
-                ( (DataTable)bindingSource.DataSource ).TableName );
-
-            Numeric = numeric;
-
-            Total = CalculateTotal(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable(  )?.ToList(  ), numeric );
-
-            Count = GetCount(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable(   )?.ToList(   ), numeric );
-
-            Average = CalculateAverage(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable(   )?.ToList(   ), numeric );
-        }
-
-        protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict,
-            Numeric numeric = Numeric.Amount )
-        {
-            Data = ( (DataTable)bindingSource.DataSource ).Select( dict.ToCriteria(   ) );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
 
             Source = (Source)Enum.Parse( typeof( Source ),
@@ -133,11 +112,32 @@ namespace BudgetExecution
             Total = CalculateTotal(
                 ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
 
-            Count = GetCount(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable(   )?.ToList(   ), numeric );
+            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ),
+                numeric );
 
             Average = CalculateAverage(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable(   )?.ToList(   ), numeric );
+                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+        }
+
+        protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict,
+            Numeric numeric = Numeric.Amount )
+        {
+            Data = ( (DataTable)bindingSource.DataSource ).Select( dict.ToCriteria( ) );
+            TableName = ( (DataTable)bindingSource.DataSource ).TableName;
+
+            Source = (Source)Enum.Parse( typeof( Source ),
+                ( (DataTable)bindingSource.DataSource ).TableName );
+
+            Numeric = numeric;
+
+            Total = CalculateTotal(
+                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+
+            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ),
+                numeric );
+
+            Average = CalculateAverage(
+                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
         }
 
         /// <summary>
@@ -147,11 +147,11 @@ namespace BudgetExecution
         /// <param name="numeric">The numeric.</param>
         protected MetricBase( DataTable dataTable, Numeric numeric = Numeric.Amount )
         {
-            Data = dataTable.AsEnumerable(   );
+            Data = dataTable.AsEnumerable( );
             TableName = dataTable.TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             Numeric = numeric;
-            Count = Data.Count(   );
+            Count = Data.Count( );
             Total = CalculateTotal( Data, numeric );
             Average = CalculateAverage( Data, numeric );
         }
@@ -165,11 +165,11 @@ namespace BudgetExecution
         protected MetricBase( DataTable dataTable, IDictionary<string, object> dict,
             Numeric numeric = Numeric.Amount )
         {
-            Data = dataTable.Select( dict.ToCriteria(   ) );
+            Data = dataTable.Select( dict.ToCriteria( ) );
             TableName = dataTable.TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             Numeric = numeric;
-            Count = Data.Count(   );
+            Count = Data.Count( );
             Total = CalculateTotal( Data, numeric );
             Average = CalculateAverage( Data, numeric );
         }
@@ -182,10 +182,10 @@ namespace BudgetExecution
         protected MetricBase( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
         {
             Data = dataRow;
-            TableName = dataRow.CopyToDataTable(   ).TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable(   ).TableName );
+            TableName = dataRow.CopyToDataTable( ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
             Numeric = numeric;
-            Count = dataRow.Count(   );
+            Count = dataRow.Count( );
             Total = CalculateTotal( dataRow, numeric );
             Average = CalculateAverage( dataRow, numeric );
         }
@@ -195,9 +195,9 @@ namespace BudgetExecution
         {
             Numeric = numeric;
             Data = dataRow.Filter( dict );
-            TableName = dataRow.CopyToDataTable(   ).TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable(   ).TableName );
-            Count = Data.Count(   );
+            TableName = dataRow.CopyToDataTable( ).TableName;
+            Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
+            Count = Data.Count( );
             Total = CalculateTotal( Data, Numeric );
             Average = CalculateAverage( Data, Numeric );
         }
@@ -211,20 +211,19 @@ namespace BudgetExecution
         public static IEnumerable<string> GetUniqueValues( IEnumerable<DataRow> dataRow,
             string dataMember )
         {
-            if( dataRow?.Any(   ) == true
+            if( dataRow?.Any( ) == true
                 && !string.IsNullOrEmpty( dataMember ) )
             {
                 try
                 {
-                    var _columns = dataRow.CopyToDataTable(   ).GetColumnNames(   );
+                    string[ ] _columns = dataRow.CopyToDataTable( ).GetColumnNames( );
 
-                    if ( _columns?.Contains( dataMember ) == true )
+                    if( _columns?.Contains( dataMember ) == true )
                     {
-                        var _query = dataRow?.Select( p => p.Field<string>( dataMember ) )
-                            ?.Distinct(   )
-                            ?.ToArray(   );
+                        string[ ] _query = dataRow?.Select( p => p.Field<string>( dataMember ) )
+                            ?.Distinct( )?.ToArray( );
 
-                        return _query?.Any(    ) == true
+                        return _query?.Any( ) == true
                             ? _query
                             : default( IEnumerable<string> );
                     }
@@ -247,15 +246,15 @@ namespace BudgetExecution
         /// <returns></returns>
         public int GetCount( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
         {
-            if( dataRow?.Any(   ) == true )
+            if( dataRow?.Any( ) == true )
             {
                 try
                 {
-                    var _select = dataRow?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.Select( p => p );
+                    IEnumerable<DataRow> _select = dataRow
+                        ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )?.Select( p => p );
 
-                    return _select?.Any(   ) == true
-                        ? _select.Count(   )
+                    return _select?.Any( ) == true
+                        ? _select.Count( )
                         : default( int );
                 }
                 catch( Exception ex )
@@ -277,11 +276,11 @@ namespace BudgetExecution
         public double CalculateTotal( IEnumerable<DataRow> dataRow,
             Numeric numeric = Numeric.Amount )
         {
-            if( dataRow?.Any(   ) == true )
+            if( dataRow?.Any( ) == true )
             {
                 try
                 {
-                    var _select = dataRow.Sum( p => p.Field<decimal>( $"{ numeric }" ) );
+                    decimal _select = dataRow.Sum( p => p.Field<decimal>( $"{numeric}" ) );
 
                     return _select > 0
                         ? double.Parse( _select.ToString( "N1" ) )
@@ -305,14 +304,13 @@ namespace BudgetExecution
         protected double CalculateAverage( IEnumerable<DataRow> dataRow,
             Numeric numeric = Numeric.Amount )
         {
-            if( dataRow?.Any(   ) == true
+            if( dataRow?.Any( ) == true
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-                    var _query = dataRow.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.Select( p => p.Field<decimal>( $"{ numeric }" ) )
-                        ?.Average(   );
+                    decimal? _query = dataRow.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.Select( p => p.Field<decimal>( $"{numeric}" ) )?.Average( );
 
                     return _query > 0
                         ? double.Parse( _query?.ToString( "N1" ) )
@@ -334,10 +332,10 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
-                _error?.SetText(   );
-                _error?.ShowDialog(   );
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }

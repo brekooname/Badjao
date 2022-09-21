@@ -12,7 +12,7 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using VisualPlus.Enumerators;
 
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public class ListBox : ListBoxBase
     {
         /// <summary>
@@ -291,7 +291,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _item in items )
+                    foreach( object _item in items )
                     {
                         Items.Add( _item );
                     }
@@ -332,7 +332,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _ = new ToolTip( this, text );
+                    ToolTip _ = new ToolTip( this, text );
                 }
                 catch( Exception ex )
                 {

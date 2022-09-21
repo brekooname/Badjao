@@ -144,8 +144,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _criteria = dict.ToCriteria( );
-                    var _data = DataTable?.Select( _criteria );
+                    string _criteria = dict.ToCriteria( );
+                    DataRow[ ] _data = DataTable?.Select( _criteria );
+
                     return _data?.Length > 0
                         ? _data
                         : default( IEnumerable<DataRow> );
@@ -159,7 +160,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<DataRow> );
         }
-        
+
         /// <summary>
         /// Filters the dataRows.
         /// </summary>
@@ -176,8 +177,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRows
-                        ?.Where( p => p.Field<string>( $"{ name }" ).Equals( value ) )
+                    IEnumerable<DataRow> _query = dataRows
+                        ?.Where( p => p.Field<string>( $"{name}" ).Equals( value ) )
                         ?.Select( p => p );
 
                     return _query?.Any( ) == true
@@ -210,15 +211,20 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataTable = dataRows.CopyToDataTable( );
-                    var _columns = _dataTable?.Columns;
-                    var _dict = new Dictionary<string, IEnumerable<string>>( );
-                    var _values = GetValues( dataRows, name, value );
+                    DataTable _dataTable = dataRows.CopyToDataTable( );
+                    DataColumnCollection _columns = _dataTable?.Columns;
+
+                    Dictionary<string, IEnumerable<string>> _dict =
+                        new Dictionary<string, IEnumerable<string>>( );
+
+                    IEnumerable<string> _values = GetValues( dataRows, name, value );
+
                     if( _values?.Any( ) == true )
                     {
-                        for( var i = 0; i < _columns?.Count; i++ )
+                        for( int i = 0; i < _columns?.Count; i++ )
                         {
-                            var _columnName = _columns[ i ].ColumnName;
+                            string _columnName = _columns[ i ].ColumnName;
+
                             if( !string.IsNullOrEmpty( _columnName )
                                 && _columns[ i ]?.DataType == typeof( string ) )
                             {

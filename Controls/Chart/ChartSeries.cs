@@ -1,4 +1,4 @@
-﻿// <copyright file = "ChartData.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ChartSeries.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -50,13 +50,12 @@ namespace BudgetExecution
         /// The series values.
         /// </value>
         public IEnumerable<double> Values { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
-        public ChartSeries()
+        public ChartSeries( )
         {
-
         }
 
         /// <summary>
@@ -68,7 +67,6 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
-
         }
 
         /// <summary>
@@ -81,14 +79,14 @@ namespace BudgetExecution
             ChartBinding = new ChartBinding( dataTable );
             BindingSource = ChartBinding.BindingSource;
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
         /// <param name="data">The data.</param>
         public ChartSeries( IEnumerable<DataRow> data )
         {
-            ChartBinding = new ChartBinding(  );
+            ChartBinding = new ChartBinding( );
             BindingSource = ChartBinding.BindingSource;
         }
 
@@ -103,13 +101,12 @@ namespace BudgetExecution
             DataFilter = dict;
             BindingSource = bindingSource;
             ChartBinding = new ChartBinding( bindingSource );
-
         }
 
         /// <summary>
         /// Sets the point configuration.
         /// </summary>
-        public void SetPointConfig(  )
+        public void SetPointConfig( )
         {
             if( Enum.IsDefined( typeof( STAT ), STAT ) )
             {
@@ -119,6 +116,7 @@ namespace BudgetExecution
                     {
                         case STAT.Total:
                         case STAT.Average:
+
                         {
                             Style.TextFormat = "{0:C}";
                             break;
@@ -126,24 +124,28 @@ namespace BudgetExecution
 
                         case STAT.Variance:
                         case STAT.StandardDeviation:
+
                         {
                             Style.TextFormat = "{0:N1}";
                             break;
                         }
 
                         case STAT.Percentage:
+
                         {
                             Style.TextFormat = "{0:P}";
                             break;
                         }
 
                         case STAT.Count:
+
                         {
                             Style.TextFormat = "{0}";
                             break;
                         }
 
                         default:
+
                         {
                             Style.TextFormat = "{0:N2}";
                             break;
@@ -196,8 +198,8 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="type">The type.</param>
         /// <param name="stat">The stat.</param>
-        public void SetPoints( IDictionary<string, double> data, ChartSeriesType type = ChartSeriesType.Column,
-            STAT stat = STAT.Total )
+        public void SetPoints( IDictionary<string, double> data,
+            ChartSeriesType type = ChartSeriesType.Column, STAT stat = STAT.Total )
         {
             if( Enum.IsDefined( typeof( ChartSeriesType ), type ) )
             {
@@ -213,25 +215,26 @@ namespace BudgetExecution
                         case ChartSeriesType.Pyramid:
                         case ChartSeriesType.Funnel:
                         case ChartSeriesType.Pie:
+
                         {
-                            foreach( var _kvp in data )
+                            foreach( KeyValuePair<string, double> _kvp in data )
                             {
                                 Points.Add( _kvp.Key, _kvp.Value );
-                                var _keys = data.Keys.Select( k => k.ToString( ) ).ToArray( );
-                                var _vals = data.Values.Select( v => v ).ToArray( );
+                                string[ ] _keys = data.Keys.Select( k => k.ToString( ) ).ToArray( );
+                                double[ ] _vals = data.Values.Select( v => v ).ToArray( );
 
                                 if( stat != STAT.Percentage )
                                 {
-                                    for( var i = 0; i < data.Keys.Count; i++ )
+                                    for( int i = 0; i < data.Keys.Count; i++ )
                                     {
-                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:N1}";
+                                        Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:N1}";
                                     }
                                 }
                                 else if( stat == STAT.Percentage )
                                 {
-                                    for( var i = 0; i < data.Keys.Count; i++ )
+                                    for( int i = 0; i < data.Keys.Count; i++ )
                                     {
-                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n { _vals[ i ]:P}";
+                                        Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:P}";
                                     }
                                 }
                             }
@@ -239,8 +242,9 @@ namespace BudgetExecution
                             break;
                         }
                         default:
+
                         {
-                            foreach( var _kvp in data )
+                            foreach( KeyValuePair<string, double> _kvp in data )
                             {
                                 Points.Add( _kvp.Key, _kvp.Value );
                             }

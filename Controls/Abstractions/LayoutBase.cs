@@ -18,11 +18,11 @@ namespace BudgetExecution
     /// <seealso cref="VisualPanel" />
     /// <seealso cref="ILayout" />
     /// 
-    [SuppressMessage( "ReSharper", "HeuristicUnreachableCode" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedType.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "HeuristicUnreachableCode" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class LayoutBase : VisualPanel, ILayout
     {
         /// <summary>
@@ -72,7 +72,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the children.
         /// </summary>
@@ -86,7 +86,7 @@ namespace BudgetExecution
         /// <see cref="LayoutBase" />
         /// class.
         /// </summary>
-        protected LayoutBase()
+        protected LayoutBase( )
         {
         }
 
@@ -145,8 +145,7 @@ namespace BudgetExecution
         /// <param name="hover">if set to
         /// <c> true </c>
         /// [hover].</param>
-        protected LayoutBase( Size size, Point location, Control parent,
-            bool hover )
+        protected LayoutBase( Size size, Point location, Control parent, bool hover )
             : this( )
         {
             Size = size;
@@ -229,10 +228,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _list = new List<Control>
-                    {
-                        item
-                    };
+                    List<Control> _list = new List<Control> { item };
 
                     return _list?.Any( ) == true
                         ? _list
@@ -289,7 +285,7 @@ namespace BudgetExecution
         /// Adds the control item.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Control> GetChildren()
+        public IEnumerable<Control> GetChildren( )
         {
             try
             {
@@ -310,7 +306,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

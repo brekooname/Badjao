@@ -151,7 +151,7 @@ namespace BudgetExecution
         /// </returns>
         public static Size GetSize( Size size )
         {
-            if( size.Width     > -1
+            if( size.Width > -1
                 && size.Height > -1 )
             {
                 try
@@ -166,8 +166,7 @@ namespace BudgetExecution
 
             return default( Size );
         }
-        
-        
+
         /// <summary>
         /// Called when [size changed].
         /// </summary>
@@ -180,12 +179,12 @@ namespace BudgetExecution
         public static void OnSizeChanged( object sender, EventArgs e )
         {
             if( sender != null
-                && e   != null )
+                && e != null )
             {
                 try
                 {
-                    var message = new Message( "NOT YET IMPLEMENTED" );
-                    message?.ShowDialog();
+                    Message message = new Message( "NOT YET IMPLEMENTED" );
+                    message?.ShowDialog( );
                 }
                 catch( Exception ex )
                 {
@@ -200,7 +199,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

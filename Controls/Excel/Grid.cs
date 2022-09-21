@@ -52,7 +52,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Grid"/> class.
         /// </summary>
-        public Grid()
+        public Grid( )
         {
         }
 
@@ -194,7 +194,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public ExcelAddress GetAddress()
+        public ExcelAddress GetAddress( )
         {
             try
             {
@@ -214,7 +214,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public ExcelRange GetRange()
+        public ExcelRange GetRange( )
         {
             try
             {
@@ -234,7 +234,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public (int Row, int Column) GetFrom()
+        public (int Row, int Column) GetFrom( )
         {
             try
             {
@@ -254,7 +254,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public (int Row, int Column) GetTo()
+        public (int Row, int Column) GetTo( )
         {
             try
             {
@@ -274,7 +274,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public ExcelWorksheet GetWorksheet()
+        public ExcelWorksheet GetWorksheet( )
         {
             try
             {
@@ -315,7 +315,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public int GetRowCount()
+        public int GetRowCount( )
         {
             try
             {
@@ -335,7 +335,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public int GetColumnCount()
+        public int GetColumnCount( )
         {
             try
             {
@@ -356,10 +356,10 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
-                _error?.SetText(  );
-                _error?.ShowDialog(  );
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }

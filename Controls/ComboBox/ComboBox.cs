@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "ComboBox.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Drawing;
@@ -22,7 +26,7 @@
             DropDownStyle = ComboBoxStyle.DropDownList;
             ItemHeight = 24;
             Font = new Font( "Roboto", 9 );
-            MenuItemHover = Color.FromArgb( 22, 39, 70  );
+            MenuItemHover = Color.FromArgb( 22, 39, 70 );
             MenuItemNormal = Color.FromArgb( 30, 30, 30 );
             MenuTextColor = Color.LightSteelBlue;
             BackColorState.Disabled = Color.FromArgb( 30, 30, 30 );

@@ -2,7 +2,6 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
-
 namespace BudgetExecution
 {
     using System.Diagnostics.CodeAnalysis;
@@ -18,7 +17,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref = "MetricBase"/>
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class DataMetric : MetricBase 
+    public class DataMetric : MetricBase
     {
         /// <summary>
         /// Gets the variance.
@@ -47,7 +46,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "DataMetric"/> class.
         /// </summary>
-        public DataMetric( ) 
+        public DataMetric( )
         {
         }
 
@@ -57,21 +56,22 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         /// <param name="numeric">The numeric.</param>
         public DataMetric( BindingSource bindingSource, Numeric numeric = Numeric.Amount )
-            : base( bindingSource, numeric)
+            : base( bindingSource, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
             Statistics = CalculateStatistics( );
         }
 
-        public DataMetric( BindingSource bindingSource, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        public DataMetric( BindingSource bindingSource, IDictionary<string, object> dict,
+            Numeric numeric = Numeric.Amount )
             : base( bindingSource, dict, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
             Statistics = CalculateStatistics( );
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DataMetric"/> class.
         /// </summary>
@@ -85,7 +85,8 @@ namespace BudgetExecution
             Statistics = CalculateStatistics( );
         }
 
-        public DataMetric( DataTable dataTable, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        public DataMetric( DataTable dataTable, IDictionary<string, object> dict,
+            Numeric numeric = Numeric.Amount )
             : base( dataTable, dict, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
@@ -102,7 +103,7 @@ namespace BudgetExecution
         /// <param name = "numeric" >
         /// The numeric.
         /// </param>
-        public DataMetric( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount ) 
+        public DataMetric( IEnumerable<DataRow> dataRow, Numeric numeric = Numeric.Amount )
             : base( dataRow, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
@@ -110,14 +111,14 @@ namespace BudgetExecution
             Statistics = CalculateStatistics( );
         }
 
-        public DataMetric( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict, Numeric numeric = Numeric.Amount )
+        public DataMetric( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict,
+            Numeric numeric = Numeric.Amount )
             : base( dataRow, dict, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
             Statistics = CalculateStatistics( );
         }
-        
 
         /// <summary>
         /// Calculates the deviation.
@@ -138,11 +139,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRow
-                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.StandardDeviation( p => p.Field<decimal>( $"{ numeric }" ) );
+                    decimal? _query = dataRow?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.StandardDeviation( p => p.Field<decimal>( $"{numeric}" ) );
 
-                    return _query > 0 
+                    return _query > 0
                         ? double.Parse( _query.ToString( ) )
                         : 0.0d;
                 }
@@ -155,7 +155,7 @@ namespace BudgetExecution
 
             return default( double );
         }
-        
+
         /// <summary>
         /// Calculates the variance.
         /// </summary>
@@ -173,13 +173,13 @@ namespace BudgetExecution
                 && dataRow.HasNumeric( )
                 && GetCount( dataRow, numeric ) > 30 )
             {
-                var _table = dataRow.CopyToDataTable( );
+                DataTable _table = dataRow.CopyToDataTable( );
 
                 try
                 {
-                    var _query = _table?.AsEnumerable( )
-                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.Variance( p => p.Field<decimal>( $"{ numeric }" ) );
+                    decimal? _query = _table?.AsEnumerable( )
+                        ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.Variance( p => p.Field<decimal>( $"{numeric}" ) );
 
                     return _query > 0
                         ? double.Parse( _query.ToString( ) )
@@ -194,7 +194,7 @@ namespace BudgetExecution
 
             return default( double );
         }
-        
+
         /// <summary>
         /// Calculates the statistics.
         /// </summary>
@@ -206,17 +206,18 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow, Numeric numeric )
+        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
+            Numeric numeric )
         {
             if( dataRow?.Any( ) == true
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 try
                 {
-
                     if( CalculateTotal( dataRow, numeric ) > 0 )
                     {
-                        var _statistics = CalculateStatistics( dataRow, numeric );
+                        IDictionary<string, double> _statistics =
+                            CalculateStatistics( dataRow, numeric );
 
                         return _statistics?.Count > 0.0
                             ? _statistics
@@ -234,21 +235,21 @@ namespace BudgetExecution
 
             return default( IDictionary<string, double> );
         }
-        
+
         /// <summary>
         /// Calculates the statistics.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, double> CalculateStatistics()
+        public IDictionary<string, double> CalculateStatistics( )
         {
             try
             {
-                var _stats = new Dictionary<string, double>(  );
+                Dictionary<string, double> _stats = new Dictionary<string, double>( );
                 _stats.Add( "COUNT", Count );
                 _stats.Add( "TOTAL", Total );
                 _stats.Add( "AVERAGE", Average );
 
-                return _stats?.Any(  ) == true
+                return _stats?.Any( ) == true
                     ? _stats
                     : default( IDictionary<string, double> );
             }

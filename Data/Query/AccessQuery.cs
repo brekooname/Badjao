@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "AccessQuery"/> class.
         /// </summary>
-        public AccessQuery()
+        public AccessQuery( )
         {
         }
 
@@ -118,7 +118,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
-        public AccessQuery( Source source, Provider provider, IDictionary<string, object> dict ) 
+        public AccessQuery( Source source, Provider provider, IDictionary<string, object> dict )
             : base( source, provider, dict )
         {
         }

@@ -10,8 +10,8 @@ namespace BudgetExecution
     using System.IO;
     using System.Text;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UseNullPropagation" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UseNullPropagation" ) ]
     public static class FileStreamExtensions
     {
         /// <summary>
@@ -51,7 +51,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _line in reader.IterateLines( ) )
+                    foreach( string _line in reader.IterateLines( ) )
                     {
                         action( _line );
                     }
@@ -219,7 +219,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _reader = stream.GetReader( encoding ) )
+                    using( StreamReader _reader = stream.GetReader( encoding ) )
                     {
                         return _reader.ReadToEnd( );
                     }
@@ -314,7 +314,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _buffer = new byte[ buffer ];
+                    byte[ ] _buffer = new byte[ buffer ];
                     int _count;
 
                     while( ( _count = stream.Read( _buffer, 0, buffer ) ) > 0 )
@@ -349,7 +349,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _memory = new MemoryStream( (int)stream.Length ) )
+                    using( MemoryStream _memory = new MemoryStream( (int)stream.Length ) )
                     {
                         stream.CopyTo( _memory );
                         return _memory;
@@ -380,7 +380,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _memory = stream.CopyToMemory(  ) )
+                    using( MemoryStream _memory = stream.CopyToMemory( ) )
                     {
                         return _memory.ToArray( );
                     }
@@ -413,12 +413,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _buffer = new byte[ bufsize ];
-                    var _offset = 0;
+                    byte[ ] _buffer = new byte[ bufsize ];
+                    int _offset = 0;
 
                     do
                     {
-                        var _read = stream.Read( _buffer, _offset, bufsize - _offset );
+                        int _read = stream.Read( _buffer, _offset, bufsize - _offset );
 
                         if( _read == 0 )
                         {
@@ -464,12 +464,12 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

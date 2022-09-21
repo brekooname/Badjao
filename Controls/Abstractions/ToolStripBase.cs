@@ -1,4 +1,4 @@
-﻿// <copyright file = "ToolBarBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -19,7 +20,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the separator.
@@ -52,7 +53,7 @@ namespace BudgetExecution
         /// The tool strip text box.
         /// </value>
         public virtual ToolStripTextBox TextBox { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the progress bar.
         /// </summary>
@@ -242,10 +243,8 @@ namespace BudgetExecution
         /// </summary>
         protected ToolStripBase( )
         {
-            
         }
 
-        
         /// <summary>
         /// Creates the text box.
         /// </summary>
@@ -255,7 +254,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _textBox = new ToolStripTextBox( );
+                ToolStripTextBox _textBox = new ToolStripTextBox( );
                 Items?.Add( _textBox );
             }
             catch( Exception ex )
@@ -264,11 +263,11 @@ namespace BudgetExecution
             }
         }
 
-        public virtual void AddComboBox()
+        public virtual void AddComboBox( )
         {
             try
             {
-                var _comboBox = new ToolStripComboBoxEx( );
+                ToolStripComboBoxEx _comboBox = new ToolStripComboBoxEx( );
                 Items?.Add( _comboBox );
             }
             catch( Exception ex )
@@ -294,9 +293,10 @@ namespace BudgetExecution
             try
             {
                 DropDown?.ComboBox.Items?.Clear( );
+
                 if( items?.Count( ) > 0 )
                 {
-                    foreach( var item in items )
+                    foreach( object item in items )
                     {
                         DropDown?.ComboBox?.Items?.Add( item );
                     }
@@ -307,17 +307,17 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Creates the text box.
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual void AddSeparator()
+        public virtual void AddSeparator( )
         {
             try
             {
-                var _separator = new ToolSeparator( );
+                ToolSeparator _separator = new ToolSeparator( );
                 Items?.Add( _separator );
             }
             catch( Exception ex )
@@ -332,7 +332,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

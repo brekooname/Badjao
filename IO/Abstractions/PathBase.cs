@@ -1,4 +1,4 @@
-﻿// <copyright file = "FileBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "PathBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <summary>
         /// The path
         /// </summary>
-        public virtual string Input { get; set; }
+        public virtual string Buffer { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the file.
@@ -37,6 +37,14 @@ namespace BudgetExecution
         /// The full name.
         /// </value>
         public virtual string FullName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the full path.
+        /// </summary>
+        /// <value>
+        /// The full path.
+        /// </value>
+        public virtual string FullPath { get; set; }
 
         /// <summary>
         /// Gets or sets the changed date.
@@ -102,11 +110,47 @@ namespace BudgetExecution
         public virtual FileSecurity FileSecurity { get; set; }
 
         /// <summary>
+        /// Gets the invalid path character.
+        /// </summary>
+        /// <value>
+        /// The invalid path character.
+        /// </value>
+        public char[ ] InvalidPathChars { get; } = Path.GetInvalidPathChars( );
+
+        /// <summary>
+        /// Gets the invalid namehar.
+        /// </summary>
+        /// <value>
+        /// The invalid namehar.
+        /// </value>
+        public char[ ] InvalidNameChars { get; } = Path.GetInvalidFileNameChars( );
+
+        /// <summary>
         /// Initializes a new instance 
         /// of the <see cref="PathBase"/> class.
         /// </summary>
         protected PathBase( )
         {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the
+        ///  <see cref="PathBase"/> class.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        protected PathBase( string input )
+        {
+            Buffer = input;
+            FullPath = Path.GetFullPath( input );
+            FileInfo = new FileInfo( FullPath );
+            FileName = FileInfo.Name;
+            FullName = FileInfo.FullName;
+            Extension = FileInfo.Extension;
+            Length = FileInfo.Length;
+            Attributes = FileInfo.Attributes;
+            FileSecurity = FileInfo.GetAccessControl( );
+            Created = FileInfo.CreationTime;
+            Modified = FileInfo.LastWriteTime;
         }
 
         /// <summary>
@@ -137,7 +181,7 @@ namespace BudgetExecution
             try
             {
                 if( !string.IsNullOrEmpty( filePath )
-                    && !File.Exists( filePath ) )
+                    && !System.IO.File.Exists( filePath ) )
                 {
                     FileInfo.CopyTo( filePath );
                 }
@@ -151,16 +195,16 @@ namespace BudgetExecution
         /// <summary>
         /// Deletes this instance.
         /// </summary>
-        public virtual void Delete()
+        public virtual void Delete( )
         {
             try
             {
-                var _file = Path.GetFullPath( Input ) ;
+                string _file = Path.GetFullPath( Buffer );
 
                 if( !string.IsNullOrEmpty( _file )
-                    && File.Exists( _file ) )
+                    && System.IO.File.Exists( _file ) )
                 {
-                    File.Delete( _file );
+                    System.IO.File.Delete( _file );
                 }
             }
             catch( IOException ex )
@@ -179,7 +223,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( FileInfo?.DirectoryName ) 
+                return !string.IsNullOrEmpty( FileInfo?.DirectoryName )
                     && Directory.Exists( FileInfo?.DirectoryName );
             }
             catch( Exception ex )
@@ -193,7 +237,7 @@ namespace BudgetExecution
         /// Gets the file security.
         /// </summary>
         /// <returns></returns>
-        public FileSecurity GetFileSecurity()
+        public FileSecurity GetFileSecurity( )
         {
             try
             {
@@ -205,7 +249,7 @@ namespace BudgetExecution
                 return default( FileSecurity );
             }
         }
-        
+
         /// <summary>
         /// Gets the base stream.
         /// </summary>
@@ -214,11 +258,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _path = Path.GetFullPath( Input ); 
-                return !string.IsNullOrEmpty( _path ) 
-                    && File.Exists( _path )
-                        ? new FileInfo( _path )?.Create()
-                        : default( FileStream );
+                string _path = Path.GetFullPath( Buffer );
+
+                return !string.IsNullOrEmpty( _path ) && System.IO.File.Exists( _path )
+                    ? new FileInfo( _path )?.Create( )
+                    : default( FileStream );
             }
             catch( Exception ex )
             {
@@ -237,11 +281,11 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( Input )
-                    ? Path.GetFullPath( Input )
+                return !string.IsNullOrEmpty( Buffer )
+                    ? Path.GetFullPath( Buffer )
                     : string.Empty;
             }
-            catch ( Exception ex )
+            catch( Exception ex )
             {
                 Fail( ex );
                 return string.Empty;
@@ -254,10 +298,10 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
-                _error?.SetText();
-                _error?.ShowDialog();
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }

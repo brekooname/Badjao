@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarProgress.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripProgressBar.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -9,9 +9,9 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Windows.Forms;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class ToolStripProgressBar : ToolStripProgressBase
     {
         /// <summary>
@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// <see cref = "ToolStripLabel"/>
         /// class.
         /// </summary>
-        public ToolStripProgressBar()
+        public ToolStripProgressBar( )
         {
             Margin = new Padding( 5, 5, 5, 5 );
             Size = new Size( 200, 22 );
@@ -96,7 +96,7 @@ namespace BudgetExecution
         /// Sets the tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
-        [SuppressMessage( "ReSharper", "MergeConditionalExpression" )]
+        [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
         public void ReTag( object tag )
         {
             try
@@ -142,18 +142,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _text = progress?.HoverText;
+                    string _text = progress?.HoverText;
 
                     if( !string.IsNullOrEmpty( _text ) )
                     {
-                        var _ = new ToolTip( this, _text );
+                        ToolTip _ = new ToolTip( this, _text );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) )
-                           && !string.IsNullOrEmpty( Tag.ToString( ) ) )
+                            && !string.IsNullOrEmpty( Tag.ToString( ) ) )
                         {
-                            var _ = new ToolTip( progress, Tag?.ToString( )?.SplitPascal( ) );
+                            ToolTip _ = new ToolTip( progress, Tag?.ToString( )?.SplitPascal( ) );
                         }
                     }
                 }

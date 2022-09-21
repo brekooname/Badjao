@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
         /// </summary>
-        public CommandBuilder()
+        public CommandBuilder( )
         {
         }
 
@@ -30,7 +30,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
-        public CommandBuilder( Source source, Provider provider, IDictionary<string, object> dict ) 
+        public CommandBuilder( Source source, Provider provider, IDictionary<string, object> dict )
             : base( source, provider, dict )
         {
         }
@@ -42,14 +42,14 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name="updates">The updates.</param>
         /// <param name="criteria">The criteria.</param>
-        public CommandBuilder( Source source, Provider provider, IDictionary<string, object> updates,
-            IDictionary<string, object> criteria ) 
+        public CommandBuilder( Source source, Provider provider,
+            IDictionary<string, object> updates, IDictionary<string, object> criteria )
             : base( source, provider, updates, criteria )
         {
         }
 
         public CommandBuilder( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria ) 
+            IDictionary<string, object> criteria )
             : base( source, provider, columns, criteria )
         {
         }
@@ -59,10 +59,9 @@ namespace BudgetExecution
         /// <see cref="CommandBuilder"/> class.
         /// </summary>
         /// <param name="sqlStatement">The SQL statement.</param>
-        public CommandBuilder( ISqlStatement sqlStatement ) 
+        public CommandBuilder( ISqlStatement sqlStatement )
             : base( sqlStatement )
         {
         }
-        
     }
 }

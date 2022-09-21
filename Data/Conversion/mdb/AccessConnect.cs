@@ -1,5 +1,5 @@
-﻿// <copyright file="AccessConnect.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "AccessConnect.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -26,8 +26,7 @@ namespace BudgetExecution
         /// <param name="path">The path.</param>
         public AccessConnect( string path )
         {
-            var connectionstring = "provider=microsoft.jet.oledb.4.0;Data source="
-                + path
+            string connectionstring = "provider=microsoft.jet.oledb.4.0;Data source=" + path
                 + ";Jet OLEDB:Database Password=h@#%^ein;";
 
             _connection = new OleDbConnection( connectionstring );
@@ -38,14 +37,14 @@ namespace BudgetExecution
         /// Gets the table names.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetTableNames()
+        public IEnumerable<string> GetTableNames( )
         {
-            var _names = new List<string>( );
-            var _restrictions = new string[ 4 ];
+            List<string> _names = new List<string>( );
+            string[ ] _restrictions = new string[ 4 ];
             _restrictions[ 3 ] = "Table";
-            var _schema = _connection.GetSchema( "Tables", _restrictions );
+            DataTable _schema = _connection.GetSchema( "Tables", _restrictions );
 
-            for( var i = 0; i < _schema.Rows.Count; i++ )
+            for( int i = 0; i < _schema.Rows.Count; i++ )
             {
                 _names.Add( _schema.Rows[ i ][ 2 ].ToString( ) );
             }
@@ -62,8 +61,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _table = new DataTable( );
-                var _adapter = new OleDbDataAdapter( "SELECT * FROM " + name, _connection );
+                DataTable _table = new DataTable( );
+
+                OleDbDataAdapter _adapter =
+                    new OleDbDataAdapter( "SELECT * FROM " + name, _connection );
+
                 _adapter.Fill( _table );
 
                 return _table.Rows.Count > 0
@@ -84,14 +86,16 @@ namespace BudgetExecution
         /// <returns></returns>
         public List<string> GetColumnNames( string tableName )
         {
-            var _names = new List<string>( );
+            List<string> _names = new List<string>( );
 
-            using( var _command = new OleDbCommand( "select * from " + tableName, _connection ) )
+            using( OleDbCommand _command =
+                new OleDbCommand( "select * from " + tableName, _connection ) )
             {
-                using( var _dataReader = _command.ExecuteReader( CommandBehavior.SchemaOnly ) )
+                using( OleDbDataReader _dataReader =
+                    _command.ExecuteReader( CommandBehavior.SchemaOnly ) )
                 {
-                    var _dataTable = _dataReader.GetSchemaTable( );
-                    var _dataColumn = _dataTable?.Columns[ "ColumnName" ];
+                    DataTable _dataTable = _dataReader.GetSchemaTable( );
+                    DataColumn _dataColumn = _dataTable?.Columns[ "ColumnName" ];
 
                     if( _dataTable?.Rows != null )
                     {
@@ -109,7 +113,6 @@ namespace BudgetExecution
                         : default( List<string> );
                 }
             }
-
         }
     }
 }

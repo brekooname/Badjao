@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "Arg.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -49,10 +49,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dict = new Dictionary<string, object>( );
-                    var _fields = Enum.GetNames( typeof( Field ) );
+                    Dictionary<string, object> _dict = new Dictionary<string, object>( );
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
@@ -61,7 +61,7 @@ namespace BudgetExecution
                         }
                     }
 
-                    Input = _dict?.Any( ) == true && _dict != Output 
+                    Input = _dict?.Any( ) == true && _dict != Output
                         ? _dict
                         : default( Dictionary<string, object> );
                 }
@@ -82,15 +82,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dictionary = new Dictionary<string, object>( );
+                    Dictionary<string, object> _dictionary = new Dictionary<string, object>( );
 
                     if( Values?.Any( ) == true )
                     {
-                        var data = Values.ToArray( );
+                        object[ ] data = Values.ToArray( );
 
-                        foreach( var kvp in dict )
+                        foreach( KeyValuePair<string, object> kvp in dict )
                         {
-                            for( var i = 0; i < data.Length; i++ )
+                            for( int i = 0; i < data.Length; i++ )
                             {
                                 if( kvp.Key.Contains( data[ i ].ToString( ) ) )
                                 {
@@ -115,21 +115,21 @@ namespace BudgetExecution
         /// Gets the values.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetValues()
+        public IEnumerable<string> GetValues( )
         {
             if( Output?.Any( ) == true )
             {
                 try
                 {
-                    var _array = Output?.Values?.ToArray( );
-                    var _enumerable = _array?.Select( o => o.ToString( ) );
-                    var _fields = Enum.GetNames( typeof( Field ) );
-                    var _list = new List<string>( );
+                    object[ ] _array = Output?.Values?.ToArray( );
+                    IEnumerable<string> _enumerable = _array?.Select( o => o.ToString( ) );
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
+                    List<string> _list = new List<string>( );
 
                     if( _enumerable?.Any( ) == true
                         && _fields?.Any( ) == true )
                     {
-                        foreach( var value in _enumerable )
+                        foreach( string value in _enumerable )
                         {
                             if( !string.IsNullOrEmpty( value )
                                 && _fields.Contains( value ) )
@@ -157,19 +157,19 @@ namespace BudgetExecution
         /// Gets the names.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetNames()
+        public IEnumerable<string> GetNames( )
         {
             if( Output?.Any( ) == true )
             {
                 try
                 {
-                    var _keys = Output?.Keys;
-                    var _fields = Enum.GetNames( typeof( Field ) );
-                    var _list = new List<string>( );
+                    ICollection<string> _keys = Output?.Keys;
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
+                    List<string> _list = new List<string>( );
 
                     if( _keys?.Any( ) == true )
                     {
-                        foreach( var key in _keys )
+                        foreach( string key in _keys )
                         {
                             if( !string.IsNullOrEmpty( key )
                                 && _fields.Contains( key ) )

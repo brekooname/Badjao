@@ -1,7 +1,6 @@
 ﻿// <copyright file = "RichTextBox.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -11,7 +10,7 @@ namespace BudgetExecution
 
     public class RichTextBox : RichTextBase
     {
-        public RichTextBox()
+        public RichTextBox( )
         {
             // Basic Properties
             Size = new Size( 140, 30 );
@@ -151,7 +150,7 @@ namespace BudgetExecution
         public void SetFontStyle( string fontFamily, Color fontColor, int fontSize = 10 )
         {
             if( !string.IsNullOrEmpty( fontFamily )
-               && fontColor != Color.Empty )
+                && fontColor != Color.Empty )
             {
                 try
                 {

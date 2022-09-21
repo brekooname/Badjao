@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarComboBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripDropDownBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -15,7 +15,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="System.Windows.Forms.ToolStripComboBox" />
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public abstract class ToolStripDropDownBase : ToolStripComboBoxEx
     {
@@ -77,7 +77,7 @@ namespace BudgetExecution
             {
                 Font = font != null
                     ? font
-                    : new Font( "Roboto", 8  );
+                    : new Font( "Roboto", 8 );
             }
             catch( Exception ex )
             {
@@ -161,7 +161,7 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         public virtual void SetHoverText( ToolStripItem item )
         {
-            var _text = item?.Tag?.ToString( );
+            string _text = item?.Tag?.ToString( );
 
             try
             {
@@ -195,7 +195,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -1,4 +1,7 @@
-﻿
+﻿// <copyright file = "ChartForm.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
 namespace BudgetExecution
 {
     using System;
@@ -20,7 +23,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartForm"/> class.
         /// </summary>
-        public ChartForm()
+        public ChartForm( )
         {
             InitializeComponent( );
             ToolStrip.Office12Mode = true;
@@ -30,18 +33,14 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ChartForm"/> class.
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
-        public ChartForm( BindingSource bindingSource ) 
+        public ChartForm( BindingSource bindingSource )
             : this( )
         {
             BindingSource = bindingSource;
             ToolStrip.Office12Mode = true;
             ToolStrip.BindingSource = bindingSource;
             ToolStrip.BindingSource.DataSource = bindingSource.DataSource;
-            Chart = new ChartControl( bindingSource )
-            {
-                Dock = DockStyle.Fill
-              
-            };
+            Chart = new ChartControl( bindingSource ) { Dock = DockStyle.Fill };
 
             Chart.SetPoints( );
             Controls.Add( Chart );
@@ -54,18 +53,12 @@ namespace BudgetExecution
         public ChartForm( DataTable dataTable )
             : this( )
         {
-            BindingSource = new BindingSource
-            {
-                DataSource = dataTable
-            };
+            BindingSource = new BindingSource { DataSource = dataTable };
 
             ToolStrip.Office12Mode = true;
             ToolStrip.BindingSource = BindingSource;
             ToolStrip.BindingSource.DataSource = BindingSource.DataSource;
-            Chart = new ChartControl( dataTable )
-            {
-                Dock = DockStyle.Fill
-            };
+            Chart = new ChartControl( dataTable ) { Dock = DockStyle.Fill };
 
             Chart.SetPoints( );
             Controls.Add( Chart );
@@ -75,17 +68,11 @@ namespace BudgetExecution
             : this( )
         {
             ToolStrip.Office12Mode = true;
-            BindingSource = new BindingSource
-            {
-                DataSource = dataRows.CopyToDataTable( )
-            };
+            BindingSource = new BindingSource { DataSource = dataRows.CopyToDataTable( ) };
 
             ToolStrip.BindingSource = BindingSource;
             ToolStrip.BindingSource.DataSource = BindingSource.DataSource;
-            Chart = new ChartControl( dataRows )
-            {
-                Dock = DockStyle.Fill
-            };
+            Chart = new ChartControl( dataRows ) { Dock = DockStyle.Fill };
 
             Chart.SetPoints( );
             Controls.Add( Chart );

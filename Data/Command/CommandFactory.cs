@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "CommandFactory.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -23,14 +23,14 @@ namespace BudgetExecution
     public class CommandFactory : CommandBuilder
     {
         public DbConnection Connection { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
-        public CommandFactory( Source source, Provider provider, IDictionary<string, object> dict ) 
+        public CommandFactory( Source source, Provider provider, IDictionary<string, object> dict )
             : base( source, provider, dict )
         {
             Source = source;
@@ -61,14 +61,15 @@ namespace BudgetExecution
         /// <param name="tableName">Name of the table.</param>
         /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
-        public DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns )
+        public DbCommand GetCreateTableCommand( string tableName,
+            IEnumerable<DataColumn> dataColumns )
         {
             if( !string.IsNullOrEmpty( tableName )
                 && Verify.IsSequence( dataColumns ) )
             {
                 try
                 {
-                    var _sql = $"CREATE TABLE {tableName}";
+                    string _sql = $"CREATE TABLE {tableName}";
 
                     if( Validate.IsProvider( Provider )
                         && !string.IsNullOrEmpty( _sql ) )
@@ -76,6 +77,7 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
@@ -83,6 +85,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlCe:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
@@ -90,6 +93,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlServer:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
@@ -100,6 +104,7 @@ namespace BudgetExecution
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -124,7 +129,8 @@ namespace BudgetExecution
         /// <param name="viewName">Name of the view.</param>
         /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
-        public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
+        public DbCommand GetCreateViewCommand( string viewName,
+            IEnumerable<DataColumn> dataColumns )
         {
             if( !string.IsNullOrEmpty( viewName )
                 && dataColumns?.Any( ) == true
@@ -133,11 +139,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _sql = $"CREATE VIEW {viewName};";
+                    string _sql = $"CREATE VIEW {viewName};";
 
                     switch( Provider )
                     {
                         case Provider.SQLite:
+
                         {
                             return !string.IsNullOrEmpty( _sql )
                                 ? new SQLiteCommand( _sql )
@@ -145,6 +152,7 @@ namespace BudgetExecution
                         }
 
                         case Provider.SqlServer:
+
                         {
                             return !string.IsNullOrEmpty( _sql )
                                 ? new SqlCommand( _sql )
@@ -155,6 +163,7 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
+
                         {
                             return !string.IsNullOrEmpty( _sql )
                                 ? new OleDbCommand( _sql )
@@ -184,7 +193,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _sql = $"DROP {dataTable.TableName};";
+                    string _sql = $"DROP {dataTable.TableName};";
 
                     if( !string.IsNullOrEmpty( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
@@ -192,6 +201,7 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
@@ -199,6 +209,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlCe:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
@@ -206,6 +217,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlServer:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
@@ -216,6 +228,7 @@ namespace BudgetExecution
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -248,7 +261,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _sql =
+                    string _sql =
                         $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
 
                     if( !string.IsNullOrEmpty( _sql )
@@ -257,6 +270,7 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
@@ -264,6 +278,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlCe:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
@@ -271,6 +286,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlServer:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
@@ -281,6 +297,7 @@ namespace BudgetExecution
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -313,7 +330,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
+                    string _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
                         && !string.IsNullOrEmpty( _sql ) )
@@ -321,6 +338,7 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
@@ -328,6 +346,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlCe:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
@@ -335,6 +354,7 @@ namespace BudgetExecution
                             }
 
                             case Provider.SqlServer:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
@@ -345,6 +365,7 @@ namespace BudgetExecution
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
+
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -367,25 +388,29 @@ namespace BudgetExecution
         /// Gets the select command.
         /// </summary>
         /// <returns></returns>
-        public DbCommand GetSelectCommand()
+        public DbCommand GetSelectCommand( )
         {
-            if ( Enum.IsDefined( typeof( Provider ), Provider )
-                && SqlStatement != null)
+            if( Enum.IsDefined( typeof( Provider ), Provider )
+                && SqlStatement != null )
             {
                 try
                 {
-                    var _sql = SqlStatement.GetSelectStatement( );
+                    string _sql = SqlStatement.GetSelectStatement( );
+
                     switch( Provider )
                     {
                         case Provider.SQLite:
+
                         {
                             return new SQLiteCommand( _sql );
                         }
                         case Provider.SqlCe:
+
                         {
                             return new SqlCeCommand( _sql );
                         }
                         case Provider.SqlServer:
+
                         {
                             return new SqlCommand( _sql );
                         }
@@ -393,10 +418,12 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
+
                         {
                             return new OleDbCommand( _sql );
                         }
                         default:
+
                         {
                             return new OleDbCommand( _sql );
                         }
@@ -416,11 +443,11 @@ namespace BudgetExecution
         /// Gets the insert command.
         /// </summary>
         /// <returns></returns>
-        public string GetInsertCommand()
+        public string GetInsertCommand( )
         {
             try
             {
-                return SqlStatement.GetInsertStatement(  );
+                return SqlStatement.GetInsertStatement( );
             }
             catch( Exception ex )
             {
@@ -433,11 +460,11 @@ namespace BudgetExecution
         /// Gets the update commande.
         /// </summary>
         /// <returns></returns>
-        public string GetUpdateCommand()
+        public string GetUpdateCommand( )
         {
             try
             {
-                return SqlStatement.GetUpdateStatement(  );
+                return SqlStatement.GetUpdateStatement( );
             }
             catch( Exception ex )
             {
@@ -450,11 +477,11 @@ namespace BudgetExecution
         /// Gets the delete command.
         /// </summary>
         /// <returns></returns>
-        public string GetDeleteCommand()
+        public string GetDeleteCommand( )
         {
             try
             {
-                return SqlStatement.GetDeleteStatement(  );
+                return SqlStatement.GetDeleteStatement( );
             }
             catch( Exception ex )
             {

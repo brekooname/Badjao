@@ -51,7 +51,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "ImageList"/> class.
         /// </summary>
-        public ImageList()
+        public ImageList( )
         {
         }
 
@@ -112,12 +112,12 @@ namespace BudgetExecution
         public void Add( string path )
         {
             if( !string.IsNullOrEmpty( path )
-               && File.Exists( path ) )
+                && System.IO.File.Exists( path ) )
             {
                 try
                 {
-                    var _name = Path.GetFileName( path );
-                    var _image = new Bitmap( path );
+                    string _name = Path.GetFileName( path );
+                    Bitmap _image = new Bitmap( path );
 
                     if( _image != null )
                     {
@@ -141,12 +141,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _file in paths )
+                    foreach( string _file in paths )
                     {
-                        if( File.Exists( _file ) )
+                        if( System.IO.File.Exists( _file ) )
                         {
-                            var _name = Path.GetFileName( _file );
-                            var _image = new Bitmap( _file );
+                            string _name = Path.GetFileName( _file );
+                            Bitmap _image = new Bitmap( _file );
 
                             if( _image != null )
                             {
@@ -169,7 +169,7 @@ namespace BudgetExecution
         public void Remove( Image image )
         {
             if( image != null
-               && Images?.Contains( image ) == true )
+                && Images?.Contains( image ) == true )
             {
                 try
                 {
@@ -191,16 +191,16 @@ namespace BudgetExecution
         {
             if( Directory.Exists( srcDir ) )
             {
-                var _files = Directory.EnumerateFiles( srcDir );
-                var _list = new List<Image>( );
+                IEnumerable<string> _files = Directory.EnumerateFiles( srcDir );
+                List<Image> _list = new List<Image>( );
 
                 if( _files?.Count( ) > 0 )
                 {
-                    foreach( var _file in _files )
+                    foreach( string _file in _files )
                     {
-                        using( var _stream = File.Open( _file, FileMode.Open ) )
+                        using( FileStream _stream = System.IO.File.Open( _file, FileMode.Open ) )
                         {
-                            using( var _img = new Bitmap( _stream ) )
+                            using( Bitmap _img = new Bitmap( _stream ) )
                             {
                                 _list.Add( _img );
                             }
@@ -225,14 +225,14 @@ namespace BudgetExecution
         {
             if( paths?.Count( ) > 0 )
             {
-                var _files = paths.ToList( );
-                var _list = new List<Image>( );
+                List<string> _files = paths.ToList( );
+                List<Image> _list = new List<Image>( );
 
-                for( var i = 0; i < _files.Count; i++ )
+                for( int i = 0; i < _files.Count; i++ )
                 {
-                    using( var _stream = File.Open( _files[ i ], FileMode.Open ) )
+                    using( FileStream _stream = System.IO.File.Open( _files[ i ], FileMode.Open ) )
                     {
-                        using( var _img = new Bitmap( _stream ) )
+                        using( Bitmap _img = new Bitmap( _stream ) )
                         {
                             _list.Add( _img );
                         }

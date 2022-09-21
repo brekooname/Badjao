@@ -1,6 +1,6 @@
-﻿// // <copyright file = "Query.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "Query.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
-        public Query()
+        public Query( )
         {
         }
 
@@ -38,7 +38,8 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( Source source, Provider provider = Provider.Access, SQL commandType = SQL.SELECTALL ) 
+        public Query( Source source, Provider provider = Provider.Access,
+            SQL commandType = SQL.SELECTALL )
             : base( source, provider, commandType )
         {
             Source = source;
@@ -48,7 +49,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -67,7 +68,8 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The type of sql command.
         /// </param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict, SQL commandType ) 
+        public Query( Source source, Provider provider, IDictionary<string, object> dict,
+            SQL commandType )
             : base( source, provider, dict, commandType )
         {
             Source = source;
@@ -78,7 +80,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, dict, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -102,7 +104,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -126,7 +128,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -136,7 +138,7 @@ namespace BudgetExecution
         /// <param name = "sqlStatement" >
         /// The sqlStatement.
         /// </param>
-        public Query( ISqlStatement sqlStatement ) 
+        public Query( ISqlStatement sqlStatement )
             : base( sqlStatement.Source, sqlStatement.Provider, sqlStatement )
         {
             Source = sqlStatement.Source;
@@ -147,7 +149,7 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( sqlStatement );
             DataCommand = CommandBuilder.GetCommand( sqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -166,7 +168,7 @@ namespace BudgetExecution
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, sqlText );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
             Args = null;
         }
@@ -183,8 +185,8 @@ namespace BudgetExecution
         /// <param name = "dict" >
         /// The dictionary.
         /// </param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict ) : 
-            base( source, provider, dict )
+        public Query( Source source, Provider provider, IDictionary<string, object> dict )
+            : base( source, provider, dict )
         {
             Source = source;
             Provider = provider;
@@ -193,7 +195,7 @@ namespace BudgetExecution
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, dict );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -207,7 +209,7 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        public Query( string fullPath, string sqlText, SQL commandType = SQL.SELECT ) 
+        public Query( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
             : base( fullPath, sqlText, commandType )
         {
             Args = null;
@@ -215,10 +217,13 @@ namespace BudgetExecution
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider, sqlText );
+
+            SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider,
+                sqlText );
+
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -234,8 +239,8 @@ namespace BudgetExecution
         /// <param name = "dict" >
         /// The dictionary.
         /// </param>
-        public Query( string fullPath, SQL commandType, IDictionary<string, object> dict ) 
-            : base( fullPath, commandType, dict)
+        public Query( string fullPath, SQL commandType, IDictionary<string, object> dict )
+            : base( fullPath, commandType, dict )
         {
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
@@ -245,7 +250,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
-            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter(  );
+            DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
         }
 
@@ -258,11 +263,12 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public DbDataReader GetDataReader( CommandBehavior behavior = CommandBehavior.CloseConnection )
+        public DbDataReader GetDataReader(
+            CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
             if( DataCommand?.Connection != null
-               && !string.IsNullOrEmpty( DataCommand?.CommandText )
-               && Enum.IsDefined( typeof( CommandBehavior ), behavior ) )
+                && !string.IsNullOrEmpty( DataCommand?.CommandText )
+                && Enum.IsDefined( typeof( CommandBehavior ), behavior ) )
             {
                 try
                 {
@@ -305,7 +311,7 @@ namespace BudgetExecution
         /// </c>
         /// to release only unmanaged resources.
         /// </param>
-        [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
         protected virtual void Dispose( bool disposing )
         {
             if( ConnectionFactory?.Connection != null )
@@ -329,7 +335,7 @@ namespace BudgetExecution
         /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources.
         /// </summary>
-        public virtual void Dispose()
+        public virtual void Dispose( )
         {
             try
             {

@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "Key.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Key"/> class.
         /// </summary>
-        public Key()
+        public Key( )
         {
         }
 
@@ -109,12 +109,11 @@ namespace BudgetExecution
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString()
+        public override string ToString( )
         {
             try
             {
-                return !Validate.PrimaryKey( PrimaryKey )
-                    && Index > -1
+                return !Validate.PrimaryKey( PrimaryKey ) && Index > -1
                     && !string.IsNullOrEmpty( Name )
                         ? Name + " = " + Index
                         : string.Empty;
@@ -139,8 +138,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return key?.Index == Index
-                        && key?.Name?.Equals( Name ) == true;
+                    return key?.Index == Index && key?.Name?.Equals( Name ) == true;
                 }
                 catch( Exception ex )
                 {
@@ -190,7 +188,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
+                    PrimaryKey _key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
 
                     PrimaryKey = Enum.IsDefined( typeof( PrimaryKey ), _key )
                         ? PrimaryKey
@@ -214,15 +212,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columns = Enum.GetNames( typeof( PrimaryKey ) );
+                    string[ ] _columns = Enum.GetNames( typeof( PrimaryKey ) );
 
-                    if( !string.IsNullOrEmpty( dataRow[ 0 ]?.ToString( ) ) 
-                        && _columns?.Contains( dataRow[ 0 ]?.ToString( ) ) == true ) 
+                    if( !string.IsNullOrEmpty( dataRow[ 0 ]?.ToString( ) )
+                        && _columns?.Contains( dataRow[ 0 ]?.ToString( ) ) == true )
                     {
-                        var _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), dataRow[ 0 ].ToString( ) );
+                        PrimaryKey _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ),
+                            dataRow[ 0 ].ToString( ) );
 
-                        var _names = dataRow.Table
-                            ?.GetColumnNames( );
+                        string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                         PrimaryKey = _names?.Contains( _field.ToString( ) ) == true
                             ? _field
@@ -266,8 +264,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames( );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     PrimaryKey = _names?.Contains( keyName.ToString( ) ) == true
                         ? keyName
@@ -310,8 +307,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow?.Table
-                        ?.GetColumnNames( );
+                    string[ ] _names = dataRow?.Table?.GetColumnNames( );
 
                     Index = _names?.Contains( key.ToString( ) ) == true
                         ? int.Parse( dataRow[ $"{key}" ].ToString( ) )
@@ -323,14 +319,14 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

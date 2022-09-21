@@ -9,9 +9,9 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Windows.Forms;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class ToolSeparator : ToolStripSeparator
     {
         /// <summary>
@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// <see cref = "ToolStripLabel"/>
         /// class.
         /// </summary>
-        public ToolSeparator()
+        public ToolSeparator( )
         {
             Margin = new Padding( 1, 0, 1, 0 );
             Padding = new Padding( 1, 5, 1, 5 );
@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

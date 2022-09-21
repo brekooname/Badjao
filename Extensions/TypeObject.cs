@@ -1,5 +1,5 @@
-﻿// <copyright file="{ClassName}.cs" company="Terry D. Eppler">
-// Copyright (c) Eppler. All rights reserved.
+﻿// <copyright file = "TypeObject.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -17,7 +17,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "CompareNonConstrainedGenericWithNull" )]
+    [ SuppressMessage( "ReSharper", "CompareNonConstrainedGenericWithNull" ) ]
     public static class TypeObject
     {
         /// <summary>
@@ -26,15 +26,16 @@ namespace BudgetExecution
         /// <typeparam name="T"></typeparam>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public static T Copy<T>( this T type ) where T : ISerializable
+        public static T Copy<T>( this T type )
+            where T : ISerializable
         {
             if( type != null )
             {
                 try
                 {
-                    using( var _stream = new MemoryStream(  ) )
+                    using( MemoryStream _stream = new MemoryStream( ) )
                     {
-                        var _formatter = new BinaryFormatter( );
+                        BinaryFormatter _formatter = new BinaryFormatter( );
                         _formatter.Serialize( _stream, type );
                         _stream.Position = 0;
                         return (T)_formatter.Deserialize( _stream );
@@ -62,13 +63,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _encoding = Encoding.Default;
-                    var _serializer = new DataContractJsonSerializer( typeof( T ) );
+                    Encoding _encoding = Encoding.Default;
 
-                    using( var stream = new MemoryStream(  ) )
+                    DataContractJsonSerializer _serializer =
+                        new DataContractJsonSerializer( typeof( T ) );
+
+                    using( MemoryStream stream = new MemoryStream( ) )
                     {
                         _serializer.WriteObject( stream, type );
-                        var json = _encoding.GetString( stream.ToArray( ) );
+                        string json = _encoding.GetString( stream.ToArray( ) );
                         return json;
                     }
                 }
@@ -96,9 +99,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _formatter = new BinaryFormatter( );
+                    BinaryFormatter _formatter = new BinaryFormatter( );
 
-                    using(  var _stream = new MemoryStream(  ) )
+                    using( MemoryStream _stream = new MemoryStream( ) )
                     {
                         _formatter.Serialize( _stream, type );
                         return Encoding.Default.GetString( _stream.ToArray( ) );
@@ -129,9 +132,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _formatter = new BinaryFormatter( );
+                    BinaryFormatter _formatter = new BinaryFormatter( );
 
-                    using( var _stream = new MemoryStream(  ) )
+                    using( MemoryStream _stream = new MemoryStream( ) )
                     {
                         _formatter.Serialize( _stream, type );
                         return encoding.GetString( _stream.ToArray( ) );
@@ -160,13 +163,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _serializer = new XmlSerializer( type.GetType( ) );
+                    XmlSerializer _serializer = new XmlSerializer( type.GetType( ) );
 
-                    using( var _writer = new StringWriter( ) )
+                    using( StringWriter _writer = new StringWriter( ) )
                     {
                         _serializer?.Serialize( _writer, type );
-                        var _string = _writer?.GetStringBuilder( )?.ToString( );
-                        using( var _reader = new StringReader( _string ) )
+                        string _string = _writer?.GetStringBuilder( )?.ToString( );
+
+                        using( StringReader _reader = new StringReader( _string ) )
                         {
                             return _reader.ReadToEnd( );
                         }
@@ -194,7 +198,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _serializer = new JavaScriptSerializer( );
+                    JavaScriptSerializer _serializer = new JavaScriptSerializer( );
                     return _serializer.Serialize( type );
                 }
                 catch( Exception ex )
@@ -206,12 +210,12 @@ namespace BudgetExecution
 
             return default( string );
         }
-        
+
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

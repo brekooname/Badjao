@@ -9,8 +9,9 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
 
-    public abstract class BindingBase : System.Windows.Forms.BindingSource
+    public abstract class BindingBase : BindingSource
     {
         /// <summary>
         /// Gets the data set.
@@ -67,13 +68,13 @@ namespace BudgetExecution
         /// The data filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Gets the data filter.
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual IDictionary<string, object> GetDataFilter()
+        public virtual IDictionary<string, object> GetDataFilter( )
         {
             try
             {
@@ -93,14 +94,13 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual DataTable GetDataTable()
+        public virtual DataTable GetDataTable( )
         {
             try
             {
-                return DataTable?.Rows?.Count > 0
-                    && DataTable?.Columns?.Count > 0
-                        ? DataTable
-                        : default( DataTable );
+                return DataTable?.Rows?.Count > 0 && DataTable?.Columns?.Count > 0
+                    ? DataTable
+                    : default( DataTable );
             }
             catch( Exception ex )
             {
@@ -114,11 +114,11 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual IEnumerable<DataRow> GetData()
+        public virtual IEnumerable<DataRow> GetData( )
         {
             try
             {
-                var _dataRows = DataTable?.AsEnumerable( );
+                EnumerableRowCollection<DataRow> _dataRows = DataTable?.AsEnumerable( );
 
                 return Verify.IsRows( _dataRows )
                     ? _dataRows
@@ -136,7 +136,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual DataRow GetCurrent()
+        public virtual DataRow GetCurrent( )
         {
             try
             {
@@ -156,7 +156,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual int GetIndex()
+        public virtual int GetIndex( )
         {
             try
             {
@@ -170,7 +170,7 @@ namespace BudgetExecution
                 return default( int );
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
@@ -178,7 +178,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

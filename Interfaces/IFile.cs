@@ -1,4 +1,4 @@
-﻿// <copyright file = "IFile.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "IFilePath.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -9,12 +9,12 @@ namespace BudgetExecution
     using System.IO;
     using System.Security.AccessControl;
 
-    public interface IFilePath
+    public interface IFile
     {
         /// <summary>
         /// The path
         /// </summary>
-        string Input { get; set; }
+        string Buffer { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the file.
@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The name of the file.
         /// </value>
-        string FileName { get; set; }
+        string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the full name.
@@ -30,7 +30,7 @@ namespace BudgetExecution
         /// <value>
         /// The full name.
         /// </value>
-        string FullName { get; set; }
+        string FullPath { get; set; }
 
         /// <summary>
         /// Gets or sets the changed date.
@@ -123,8 +123,8 @@ namespace BudgetExecution
         /// <returns>A string that represents
         /// the current object.
         /// </returns>
-        string ToString();
-        
+        string ToString( );
+
         /// <summary>
         /// Moves the specified destination.
         /// </summary>
@@ -140,18 +140,18 @@ namespace BudgetExecution
         /// <summary>
         /// Deletes this instance.
         /// </summary>
-        void Delete();
-        
+        void Delete( );
+
         /// <summary>
         /// Gets the parent.
         /// </summary>
         /// <returns></returns>
-        string GetParentFolder();
-        
+        string GetParentFolder( );
+
         /// <summary>
         /// Gets the base stream.
         /// </summary>
         /// <returns></returns>
-        FileStream GetBaseStream();
+        FileStream GetBaseStream( );
     }
 }

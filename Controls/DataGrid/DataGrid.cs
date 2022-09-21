@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetDataGrid.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "DataGrid.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -17,9 +17,9 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="DataGridView" />
     /// <seealso/>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class DataGrid : DataGridView, IDataGrid
     {
         /// <summary>
@@ -59,7 +59,7 @@ namespace BudgetExecution
         /// <see cref="DataGrid" />
         /// class.
         /// </summary>
-        public DataGrid()
+        public DataGrid( )
         {
             EnableHeadersVisualStyles = false;
             ForeColor = Color.LightSteelBlue;
@@ -95,8 +95,7 @@ namespace BudgetExecution
             ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb( 22, 39, 70 );
             ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular);
-
+            ColumnHeadersDefaultCellStyle.Font = new Font( "Roboto", 9, FontStyle.Regular );
 
             // Row SeriesConfiguration
             RowHeadersWidth = 20;
@@ -145,7 +144,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="DataGrid"/> class.
         /// </summary>
         /// <param name="dataGrid">The dataGrid.</param>
-        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
+        [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public DataGrid( DataGridView dataGrid )
             : this( dataGrid.Size, dataGrid.Location )
         {
@@ -175,8 +174,7 @@ namespace BudgetExecution
                 ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
                 {
                     Font = new Font( "Roboto", 9, FontStyle.Bold ),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter,
-                    ForeColor = Color.White,
+                    Alignment = DataGridViewContentAlignment.MiddleCenter, ForeColor = Color.White,
                     BackColor = Color.SteelBlue
                 };
             }
@@ -195,8 +193,7 @@ namespace BudgetExecution
             {
                 RowHeadersDefaultCellStyle = new DataGridViewCellStyle
                 {
-                    Alignment = DataGridViewContentAlignment.BottomCenter,
-                    ForeColor = Color.Black,
+                    Alignment = DataGridViewContentAlignment.BottomCenter, ForeColor = Color.Black,
                     Font = new Font( "Roboto", 9, FontStyle.Bold ),
                     BackColor = Color.FromArgb( 141, 139, 138 )
                 };
@@ -205,10 +202,8 @@ namespace BudgetExecution
                 {
                     Alignment = DataGridViewContentAlignment.BottomCenter,
                     SelectionForeColor = Color.Black,
-                    SelectionBackColor = SystemColors.ControlLight,
-                    ForeColor = Color.Black,
-                    Font = new Font( "Roboto", 9 ),
-                    BackColor = Color.LightSteelBlue
+                    SelectionBackColor = SystemColors.ControlLight, ForeColor = Color.Black,
+                    Font = new Font( "Roboto", 9 ), BackColor = Color.LightSteelBlue
                 };
             }
             catch( Exception ex )
@@ -222,7 +217,8 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRows">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public void SetBindingSource( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict )
+        public void SetBindingSource( IEnumerable<DataRow> dataRows,
+            IDictionary<string, object> dict )
         {
             if( dataRows?.Any( ) == true
                 && dict?.Any( ) == true )
@@ -245,7 +241,7 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Pascalizes the headers.
         /// </summary>
@@ -256,14 +252,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( dataRows?.CopyToDataTable(  )?.Columns?.Count > 0 )
+                    if( dataRows?.CopyToDataTable( )?.Columns?.Count > 0 )
                     {
-                        var _count = dataRows.CopyToDataTable(  ).Columns.Count;
-                        var _columns = dataRows.CopyToDataTable(  ).Columns;
+                        int _count = dataRows.CopyToDataTable( ).Columns.Count;
+                        DataColumnCollection _columns = dataRows.CopyToDataTable( ).Columns;
 
-                        for( var i = 0; i < _count; i++ )
+                        for( int i = 0; i < _count; i++ )
                         {
-                            Columns[ i ].HeaderText = _columns[ i ]?.ColumnName?.SplitPascal(  );
+                            Columns[ i ].HeaderText = _columns[ i ]?.ColumnName?.SplitPascal( );
                         }
                     }
                 }
@@ -286,11 +282,11 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _vals = string.Empty;
+                        string _vals = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
-                            _vals += $"{ _kvp.Key } = '{ _kvp.Value }' AND ";
+                            _vals += $"{_kvp.Key} = '{_kvp.Value}' AND ";
                         }
 
                         return _vals.Trim( ).Substring( 0, _vals.Length - 4 );
@@ -314,7 +310,7 @@ namespace BudgetExecution
         {
             try
             {
-                using( var _message = new Message( "Not Yet Implemented." ) )
+                using( Message _message = new Message( "Not Yet Implemented." ) )
                 {
                     _message?.ShowDialog( );
                 }
@@ -339,10 +335,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnConfiguration = new ColumnConfiguration( this )
-                    {
-                        Location = PointToScreen( new Point( e.X, e.Y ) )
-                    };
+                    ColumnConfiguration _columnConfiguration = new ColumnConfiguration( this )
+                        { Location = PointToScreen( new Point( e.X, e.Y ) ) };
 
                     _columnConfiguration.ColumnListBox?.Items?.Clear( );
 
@@ -350,7 +344,7 @@ namespace BudgetExecution
                     {
                         _columnConfiguration.ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
                     }
-                    
+
                     _columnConfiguration.TopMost = true;
                 }
                 catch( Exception ex )
@@ -366,7 +360,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

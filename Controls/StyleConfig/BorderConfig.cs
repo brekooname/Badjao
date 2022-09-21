@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="BorderConfig"/> class.
         /// </summary>
-        public BorderConfig()
+        public BorderConfig( )
         {
         }
 
@@ -206,12 +206,12 @@ namespace BudgetExecution
         public static void OnMouseHover( object sender, EventArgs e )
         {
             if( sender != null
-                && e   != null )
+                && e != null )
             {
                 try
                 {
-                    var message = new Message( "NOT YET IMPLEMENTED" );
-                    message?.ShowDialog();
+                    Message message = new Message( "NOT YET IMPLEMENTED" );
+                    message?.ShowDialog( );
                 }
                 catch( Exception ex )
                 {
@@ -228,12 +228,12 @@ namespace BudgetExecution
         public static void OnBorderChanged( object sender, EventArgs e )
         {
             if( sender != null
-                && e   != null )
+                && e != null )
             {
                 try
                 {
-                    var message = new Message( "NOT YET IMPLEMENTED" );
-                    message?.ShowDialog();
+                    Message message = new Message( "NOT YET IMPLEMENTED" );
+                    message?.ShowDialog( );
                 }
                 catch( Exception ex )
                 {
@@ -248,7 +248,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

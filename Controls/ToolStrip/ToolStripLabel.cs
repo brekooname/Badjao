@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarLabel.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripLabel.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" )  ]
+    [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripLabel : ToolStripLabelBase, IToolStripLabel
     {
         /// <summary>
@@ -81,13 +81,13 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         /// <param name="font">The font.</param>
         /// <param name="color">The color.</param>
-        public void SetText( string text, Color color,  Font font )
+        public void SetText( string text, Color color, Font font )
         {
             try
             {
                 Font = font != null
                     ? font
-                    : new Font( "Roboto", 9  );
+                    : new Font( "Roboto", 9 );
 
                 ForeColor = color != Color.Empty
                     ? color
@@ -135,15 +135,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _text = _label?.HoverText;
-                        var _ = new ToolTip( this, _text );
+                        string _text = _label?.HoverText;
+                        ToolTip _ = new ToolTip( this, _text );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString(  )?.SplitPascal(  );
-                            var _ = new ToolTip( _label, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            ToolTip _ = new ToolTip( _label, _text );
                         }
                     }
                 }

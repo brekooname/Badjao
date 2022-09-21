@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetControl.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "Settings.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -12,9 +12,9 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     public static class Settings
     {
         /// <summary>
@@ -56,7 +56,6 @@ namespace BudgetExecution
         /// The image size large.
         /// </value>
         public static Size ImageSizeHuge { get; set; } = new Size( 250, 250 );
-
 
         /// <summary>
         /// Gets the tag.
@@ -138,22 +137,27 @@ namespace BudgetExecution
                     switch( size )
                     {
                         case PicSize.Small:
+
                         {
                             return new Size( 16, 16 );
                         }
                         case PicSize.Medium:
+
                         {
                             return new Size( 30, 30 );
                         }
                         case PicSize.Large:
+
                         {
                             return new Size( 50, 50 );
                         }
                         case PicSize.Huge:
+
                         {
                             return new Size( 250, 250 );
                         }
                         default:
+
                         {
                             return Size.Empty;
                         }
@@ -213,8 +217,8 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="anchor">The anchor.</param>
         /// <returns></returns>
-        public static AnchorStyles ReAnchor( AnchorStyles anchor = AnchorStyles.Left
-            | AnchorStyles.Top )
+        public static AnchorStyles ReAnchor(
+            AnchorStyles anchor = AnchorStyles.Left | AnchorStyles.Top )
         {
             try
             {
@@ -308,8 +312,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( family )
-                    && size > 0
+                return !string.IsNullOrEmpty( family ) && size > 0
                     && Enum.IsDefined( typeof( FontStyle ), style )
                         ? new Font( family, size, style )
                         : new Font( "Roboto", 9, FontStyle.Regular );
@@ -396,7 +399,8 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public static StringAlignment GetStringAlignment( StringAlignment alignment = StringAlignment.Center )
+        public static StringAlignment GetStringAlignment(
+            StringAlignment alignment = StringAlignment.Center )
         {
             try
             {
@@ -419,7 +423,8 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public static HorizontalAlignment GetHorizontalAlignment( HorizontalAlignment alignment = HorizontalAlignment.Center )
+        public static HorizontalAlignment GetHorizontalAlignment(
+            HorizontalAlignment alignment = HorizontalAlignment.Center )
         {
             try
             {
@@ -433,14 +438,14 @@ namespace BudgetExecution
                 return default( HorizontalAlignment );
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         public static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -1,4 +1,7 @@
-﻿
+﻿// <copyright file = "PdfForm.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
 namespace BudgetExecution
 {
     using System;
@@ -6,7 +9,7 @@ namespace BudgetExecution
 
     public partial class PdfForm : MetroForm
     {
-        public PdfForm()
+        public PdfForm( )
         {
             InitializeComponent( );
         }

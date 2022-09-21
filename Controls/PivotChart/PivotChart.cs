@@ -1,7 +1,6 @@
-﻿// <copyright file = "ChartControl.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "PivotChart.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -17,7 +16,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="PivotChart"/> class.
         /// </summary>
-        public PivotChart()
+        public PivotChart( )
         {
             // Basic Control Properties
             Font = new Font( "Roboto", 9 );

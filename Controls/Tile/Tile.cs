@@ -1,7 +1,6 @@
 ﻿// <copyright file = "Tile.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -16,7 +15,7 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// of the <see cref="Tile"/> class.
         /// </summary>
-        public Tile()
+        public Tile( )
         {
             BackColor = Color.FromArgb( 15, 15, 15 );
             ForeColor = Color.White;

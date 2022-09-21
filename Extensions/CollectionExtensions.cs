@@ -13,8 +13,8 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "CompareNonConstrainedGenericWithNull" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "CompareNonConstrainedGenericWithNull" ) ]
     public static class CollectionExtensions
     {
         /// <summary>Adds if.</summary>
@@ -23,7 +23,8 @@ namespace BudgetExecution
         /// <param name="predicate">The predicate.</param>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static bool AddIf<T>( this ICollection<T> collection, Func<T, bool> predicate, T value )
+        public static bool AddIf<T>( this ICollection<T> collection, Func<T, bool> predicate,
+            T value )
         {
             if( collection?.Count > 0
                 && predicate( value ) )
@@ -54,9 +55,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    for( var i = 0; i < values.Length; i++ )
+                    for( int i = 0; i < values.Length; i++ )
                     {
-                        var _value = values[ i ];
+                        T _value = values[ i ];
 
                         if( _value != null )
                         {
@@ -120,7 +121,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var value in values )
+                    foreach( T value in values )
                     {
                         collection.Remove( value );
                     }
@@ -142,9 +143,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var list = collection
-                        ?.Where( child => predicate( child ) )
-                        ?.ToList( );
+                    List<T> list = collection?.Where( child => predicate( child ) )?.ToList( );
 
                     if( list?.Any( ) == true )
                     {
@@ -180,7 +179,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "EditBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
@@ -149,7 +153,7 @@
         /// The combo boxes.
         /// </value>
         public virtual IDictionary<string, ComboBox> ComboBoxes { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the text boxes.
         /// </summary>
@@ -187,12 +191,13 @@
             {
                 try
                 {
-                    var _query =
-                        "SELECT DISTINCT SchemaTypes.TypeName" +
-                        " FROM SchemaTypes" +
-                        $" WHERE SchemaTypes.Provider = '{ provider }'";
-                    var _model = new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
-                    var _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
+                    string _query = "SELECT DISTINCT SchemaTypes.TypeName" + " FROM SchemaTypes"
+                        + $" WHERE SchemaTypes.Provider = '{provider}'";
+
+                    DataBuilder _model =
+                        new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
+
+                    string[ ] _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
 
                     return _data?.Length > 0
                         ? _data
@@ -225,7 +230,6 @@
             }
         }
 
-
         /// <summary>
         /// Populates the table ListBox items.
         /// </summary>
@@ -234,12 +238,13 @@
         {
             try
             {
-                var _names = Enum.GetNames( typeof( Source ) );
+                string[ ] _names = Enum.GetNames( typeof( Source ) );
 
                 if( listBox?.Items.Count > 0 )
                 {
                     listBox.Items.Clear( );
-                    foreach( var name in _names )
+
+                    foreach( string name in _names )
                     {
                         if( name != "NS" )
                         {
@@ -263,7 +268,7 @@
             {
                 try
                 {
-                    foreach( var _groupBox in GroupBoxes.Values )
+                    foreach( GroupBox _groupBox in GroupBoxes.Values )
                     {
                         _groupBox.SeparatorColor = Color.FromArgb( 64, 64, 64 );
                         _groupBox.Separate = true;
@@ -286,7 +291,7 @@
             {
                 try
                 {
-                    foreach( var _radioButton in RadioButtons.Values )
+                    foreach( RadioButton _radioButton in RadioButtons.Values )
                     {
                         _radioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
                         _radioButton.CheckSignColor = Color.LimeGreen;
@@ -309,17 +314,18 @@
             {
                 try
                 {
-                    var _buttons = new Dictionary<string, RadioButton>( );
+                    Dictionary<string, RadioButton> _buttons =
+                        new Dictionary<string, RadioButton>( );
 
-                    foreach( var _tabPage in TabPages.Values )
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
                         {
-                            foreach( var _control in _tab.Controls )
+                            foreach( object _control in _tab.Controls )
                             {
                                 if( _control is GroupBox _group )
                                 {
-                                    foreach( var _item in _group.Controls )
+                                    foreach( object _item in _group.Controls )
                                     {
                                         if( _item is RadioButton _radioButton )
                                         {
@@ -355,9 +361,9 @@
             {
                 try
                 {
-                    var _buttons = new Dictionary<string, ComboBox>( );
+                    Dictionary<string, ComboBox> _buttons = new Dictionary<string, ComboBox>( );
 
-                    foreach( var _tabPage in TabPages.Values )
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
                         {
@@ -401,11 +407,11 @@
             {
                 try
                 {
-                    var _groupBoxes = new Dictionary<string, GroupBox>( );
+                    Dictionary<string, GroupBox> _groupBoxes = new Dictionary<string, GroupBox>( );
 
-                    foreach( var _tabPage in TabPages.Values )
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
-                        foreach( var _control in _tabPage.Controls )
+                        foreach( object _control in _tabPage.Controls )
                         {
                             if( _control is GroupBox _groupBox )
                             {
@@ -438,13 +444,13 @@
             {
                 try
                 {
-                    var _listBoxes = new Dictionary<string, ListBox>( );
+                    Dictionary<string, ListBox> _listBoxes = new Dictionary<string, ListBox>( );
 
-                    foreach( var _tabPage in TabPages.Values )
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
                         if( _tabPage?.Controls?.Count > 0 )
                         {
-                            foreach( var _control in _tabPage.Controls )
+                            foreach( object _control in _tabPage.Controls )
                             {
                                 if( _control is ListBox _listBox )
                                 {
@@ -474,7 +480,7 @@
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

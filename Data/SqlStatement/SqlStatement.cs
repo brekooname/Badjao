@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "SqlStatement.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -16,8 +16,8 @@ namespace BudgetExecution
     public class SqlStatement : SqlBase, ISqlStatement
     {
         /// <summary>
-                                                           /// Initializes a new instance of the <see cref="SqlStatement"/> class.
-                                                           /// </summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
         public SqlStatement( )
         {
         }
@@ -54,12 +54,12 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
-        public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL ) 
+        public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
             : base( source, provider, commandType )
         {
-            CommandText = GetSelectStatement(   );
+            CommandText = GetSelectStatement( );
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
@@ -83,7 +83,7 @@ namespace BudgetExecution
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
         public SqlStatement( Source source, Provider provider, IDictionary<string, object> updates,
-            IDictionary<string, object> where, SQL commandType = SQL.UPDATE ) 
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
             : base( source, provider, updates, where, commandType )
         {
             CommandText = GetCommandText( updates, where, commandType );
@@ -96,7 +96,8 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <param name="dict">The arguments.</param>
-        public SqlStatement( Source source, Provider provider, SQL commandType, IDictionary<string, object> dict ) 
+        public SqlStatement( Source source, Provider provider, SQL commandType,
+            IDictionary<string, object> dict )
             : base( source, provider, dict, commandType )
         {
             CommandText = GetCommandText( dict, commandType );
@@ -121,14 +122,14 @@ namespace BudgetExecution
         /// Gets the update statement.
         /// </summary>
         /// <returns></returns>
-        public string GetUpdateStatement( ) 
+        public string GetUpdateStatement( )
         {
-            if( Criteria != null 
-                && Updates!= null )
+            if( Criteria != null
+                && Updates != null )
             {
                 try
                 {
-                    var _update = CreateUpdateStatement( Updates, Criteria );
+                    string _update = CreateUpdateStatement( Updates, Criteria );
 
                     return !string.IsNullOrEmpty( _update )
                         ? _update
@@ -173,7 +174,7 @@ namespace BudgetExecution
             {
                 return Criteria?.Any( ) == true
                     ? CreateDeleteStatement( Criteria )
-                    : $"DELETE * FROM { Source };";
+                    : $"DELETE * FROM {Source};";
             }
             catch( Exception ex )
             {
@@ -181,14 +182,15 @@ namespace BudgetExecution
                 return default( string );
             }
         }
-        
+
         /// <summary>
         /// Gets the command text.
         /// </summary>
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        public string GetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
+        public string GetCommandText( IDictionary<string, object> dict,
+            SQL commandType = SQL.SELECT )
         {
             if( dict?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
@@ -198,18 +200,22 @@ namespace BudgetExecution
                     switch( commandType )
                     {
                         case SQL.SELECT:
+
                         {
                             return CreateSelectStatement( dict );
                         }
                         case SQL.SELECTALL:
+
                         {
                             return CreateSelectStatement( dict );
                         }
                         case SQL.INSERT:
+
                         {
                             return CreateInsertStatement( dict );
                         }
                         case SQL.DELETE:
+
                         {
                             return CreateDeleteStatement( dict );
                         }
@@ -231,7 +237,8 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        public string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
+        public string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> dict,
+            SQL commandType = SQL.SELECT )
         {
             if( dict?.Any( ) == true
                 && columns?.Any( ) == true
@@ -242,18 +249,22 @@ namespace BudgetExecution
                     switch( commandType )
                     {
                         case SQL.SELECT:
+
                         {
                             return GetCommandText( columns, dict );
                         }
                         case SQL.SELECTALL:
+
                         {
                             return CreateSelectStatement( dict );
                         }
                         case SQL.INSERT:
+
                         {
                             return CreateInsertStatement( dict );
                         }
                         case SQL.DELETE:
+
                         {
                             return CreateDeleteStatement( dict );
                         }
@@ -275,8 +286,8 @@ namespace BudgetExecution
         /// <param name = "where" > </param>
         /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        public string GetCommandText( IDictionary<string, object> updates, IDictionary<string, object> where,
-            SQL commandType = SQL.UPDATE )
+        public string GetCommandText( IDictionary<string, object> updates,
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
             if( where?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source )
@@ -287,23 +298,28 @@ namespace BudgetExecution
                     switch( commandType )
                     {
                         case SQL.SELECT:
+
                         {
-                            var _cols = updates.Keys.ToList( );
+                            List<string> _cols = updates.Keys.ToList( );
                             return CreateSelectStatement( _cols, where );
                         }
                         case SQL.SELECTALL:
+
                         {
                             return CreateSelectStatement( where );
                         }
                         case SQL.INSERT:
+
                         {
                             return CreateInsertStatement( where );
                         }
                         case SQL.UPDATE:
+
                         {
                             return CreateUpdateStatement( updates, where );
                         }
                         case SQL.DELETE:
+
                         {
                             return CreateDeleteStatement( where );
                         }
@@ -317,7 +333,7 @@ namespace BudgetExecution
 
             return string.Empty;
         }
-        
+
         /// <summary>
         /// Converts to string.
         /// </summary>
@@ -329,7 +345,7 @@ namespace BudgetExecution
             try
             {
                 return !string.IsNullOrEmpty( CommandText )
-                    ? CommandText 
+                    ? CommandText
                     : string.Empty;
             }
             catch( Exception ex )
@@ -338,7 +354,5 @@ namespace BudgetExecution
                 return string.Empty;
             }
         }
-
-
     }
 }

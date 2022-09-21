@@ -1,7 +1,6 @@
 ﻿// <copyright file = "CurrencyBox.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -25,7 +24,7 @@ namespace BudgetExecution
         /// <see cref="T:Syncfusion.Windows.Forms.Tools.PopupCalculator" />
         /// control.
         /// </remarks>
-        public CurrencyBox()
+        public CurrencyBox( )
         {
             // Basic Properties
             Size = new Size( 140, 30 );

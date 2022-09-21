@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "RadioButton.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -40,7 +44,7 @@
         /// </summary>
         public RadioButton( )
         {
-            BackgroundColor = Color.FromArgb( 30, 30, 30  );
+            BackgroundColor = Color.FromArgb( 30, 30, 30 );
             ForeColor = Color.FromArgb( 0, 120, 212 );
             CheckSignColor = Color.LimeGreen;
             BorderColor = Color.FromArgb( 0, 120, 212 );
@@ -49,7 +53,7 @@
             ThemeAuthor = "Terry D. Eppler";
             ThemeName = "Budget Execution";
             Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            Font = new Font( "Roboto", 9, FontStyle.Regular  );
+            Font = new Font( "Roboto", 9, FontStyle.Regular );
             Dock = DockStyle.None;
             CheckState = CheckState.Unchecked;
             CheckedChanged += OnCheckStateChanged;
@@ -57,12 +61,12 @@
             MouseLeave += OnMouseLeave;
         }
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RadioButton"/> class.
         /// </summary>
         /// <param name="text">The text displayed by the control.</param>
-        public RadioButton( string text ) : this( )
+        public RadioButton( string text )
+            : this( )
         {
             Text = text;
         }
@@ -73,7 +77,7 @@
         /// <param name="sender">The sender.</param>
         public void OnCheckStateChanged( object sender )
         {
-            if( sender is RadioButton radioButton 
+            if( sender is RadioButton radioButton
                 && radioButton.Tag != null )
             {
                 try
@@ -97,19 +101,19 @@
         {
             try
             {
-                var _control = sender as RadioButton;
+                RadioButton _control = sender as RadioButton;
 
                 if( _control is RadioButton _radioButton
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    var tip = new ToolTip( _radioButton, HoverText );
+                    ToolTip tip = new ToolTip( _radioButton, HoverText );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _tool = new ToolTip( _control );
+                        ToolTip _tool = new ToolTip( _control );
                         ToolTip = _tool;
                     }
                 }
@@ -142,13 +146,14 @@
                 Fail( ex );
             }
         }
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The exception.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

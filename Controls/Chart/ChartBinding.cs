@@ -36,7 +36,7 @@ namespace BudgetExecution
         /// Occurs when [changed].
         /// </summary>
         public event ListChangedEventHandler Changed;
-       
+
         /// <summary>
         /// Gets or sets the source.
         /// </summary>
@@ -99,7 +99,7 @@ namespace BudgetExecution
         /// The record.
         /// </value>
         public DataRow Record { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the binding source.
         /// </summary>
@@ -107,7 +107,7 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public BindingSource BindingSource { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the numeric.
         /// </summary>
@@ -129,7 +129,7 @@ namespace BudgetExecution
         /// <see cref="BindingSource" />
         /// class.
         /// </summary>
-        public ChartBinding()
+        public ChartBinding( )
         {
         }
 
@@ -142,7 +142,10 @@ namespace BudgetExecution
             BindingSource = bindingSource;
             DataTable = (DataTable)bindingSource.DataSource;
             DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+
+            Source = (Source)Enum.Parse( typeof( Source ),
+                ( (DataTable)bindingSource.DataSource ).TableName );
+
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             BindingList = Data.ToBindingList( );
             BindingSource.DataSource = BindingList;
@@ -163,17 +166,14 @@ namespace BudgetExecution
         {
             DataSet = dataSet;
             Source = (Source)Enum.Parse( typeof( Source ), dataSet.Tables[ 0 ].TableName );
-            BindingSource = new BindingSource
-            {
-                DataSource = dataSet.Tables[$"{ Source }"]
-            };
+            BindingSource = new BindingSource { DataSource = dataSet.Tables[ $"{Source}" ] };
 
-            DataTable = dataSet.Tables[ $"{ Source }" ];
+            DataTable = dataSet.Tables[ $"{Source}" ];
             TableName = Source.ToString( );
             DataMember = TableName;
-            DataSource = dataSet.Tables[ $"{ Source }" ];
+            DataSource = dataSet.Tables[ $"{Source}" ];
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
-            Data = dataSet.Tables[ $"{ Source }" ]?.AsEnumerable( );
+            Data = dataSet.Tables[ $"{Source}" ]?.AsEnumerable( );
             BindingList = Data.ToBindingList( );
             Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
@@ -187,10 +187,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The data table.</param>
         public ChartBinding( DataTable dataTable )
         {
-            BindingSource = new BindingSource
-            {
-                DataSource = dataTable
-            };
+            BindingSource = new BindingSource { DataSource = dataTable };
 
             Data = dataTable.AsEnumerable( );
             BindingList = Data.ToBindingList( );
@@ -212,17 +209,14 @@ namespace BudgetExecution
         /// <param name="dataRows">The data rows.</param>
         public ChartBinding( IEnumerable<DataRow> dataRows )
         {
-            BindingSource = new BindingSource
-            {
-                DataSource = dataRows.CopyToDataTable( )
-            };
+            BindingSource = new BindingSource { DataSource = dataRows.CopyToDataTable( ) };
 
             Data = dataRows;
             BindingList = dataRows.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
             DataTable = dataRows.CopyToDataTable( );
             TableName = Source.ToString( );
-            DataSource = DataTable.ToBindingList(  );
+            DataSource = DataTable.ToBindingList( );
             DataSet = DataTable.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
             AllowNew = true;
@@ -239,7 +233,10 @@ namespace BudgetExecution
         {
             BindingSource = bindingSource;
             DataFilter = dict;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+
+            Source = (Source)Enum.Parse( typeof( Source ),
+                ( (DataTable)bindingSource.DataSource ).TableName );
+
             DataSet = ( (DataTable)bindingSource.DataSource ).DataSet;
             DataTable = (DataTable)bindingSource.DataSource;
             Data = DataTable.Select( dict.ToCriteria( ) );
@@ -248,7 +245,10 @@ namespace BudgetExecution
             DataSource = (DataTable)bindingSource.DataSource;
             TableName = Source.ToString( );
             DataMember = TableName;
-            Source = (Source)Enum.Parse( typeof( Source ), ( (DataTable)bindingSource.DataSource ).TableName );
+
+            Source = (Source)Enum.Parse( typeof( Source ),
+                ( (DataTable)bindingSource.DataSource ).TableName );
+
             Record = bindingSource.GetCurrentDataRow( );
             AllowNew = true;
             Count = BindingSource.Count;
@@ -263,9 +263,7 @@ namespace BudgetExecution
         public ChartBinding( DataTable dataTable, IDictionary<string, object> dict )
         {
             BindingSource = new BindingSource
-            {
-                DataSource = dataTable.Select( dict.ToCriteria( ) )
-            };
+                { DataSource = dataTable.Select( dict.ToCriteria( ) ) };
 
             DataFilter = dict;
             Data = dataTable.Select( dict.ToCriteria( ) );
@@ -287,12 +285,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRows">The data rows.</param>
         /// <param name="dict">The dictionary.</param>
-        public ChartBinding( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict)
+        public ChartBinding( IEnumerable<DataRow> dataRows, IDictionary<string, object> dict )
         {
-            BindingSource = new BindingSource
-            {
-                DataSource = dataRows.CopyToDataTable( )
-            };
+            BindingSource = new BindingSource { DataSource = dataRows.CopyToDataTable( ) };
 
             DataFilter = dict;
             Data = dataRows.Filter( dict );
@@ -317,7 +312,7 @@ namespace BudgetExecution
         {
             try
             {
-                return double.Parse( Record[ $"{ Numeric }" ].ToString( ) ) > 0;
+                return double.Parse( Record[ $"{Numeric}" ].ToString( ) ) > 0;
             }
             catch( Exception ex )
             {
@@ -336,7 +331,7 @@ namespace BudgetExecution
             try
             {
                 return !GetEmpty( xIndex )
-                    ? double.Parse( Record[ $"{ Numeric }" ].ToString( ) )
+                    ? double.Parse( Record[ $"{Numeric}" ].ToString( ) )
                     : 0d;
             }
             catch( Exception ex )
@@ -356,7 +351,7 @@ namespace BudgetExecution
             try
             {
                 return !GetEmpty( xIndex )
-                    ? double.Parse( Record[ $@"{ Numeric }" ].ToString( ) )
+                    ? double.Parse( Record[ $@"{Numeric}" ].ToString( ) )
                     : 0;
             }
             catch( Exception ex )
@@ -380,7 +375,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _message = new Message( "NOT YET IMPLEMENTED" );
+                    Message _message = new Message( "NOT YET IMPLEMENTED" );
                     _message?.ShowDialog( );
                 }
                 catch( Exception ex )
@@ -389,7 +384,6 @@ namespace BudgetExecution
                 }
             }
         }
-        
 
         /// <summary>
         /// Sets the binding source.
@@ -409,15 +403,15 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && Verify.IsRef( _kvp.Value ) )
                             {
-                                _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
+                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                             }
                         }
 
@@ -439,7 +433,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -453,34 +447,34 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
                         {
-                            _filter += $"{ _kvp.Key } = { _kvp.Value } AND";
+                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                         }
                     }
 
                     BindingSource.DataSource = data?.ToList( );
                     BindingSource.Filter = _filter.TrimEnd( " AND".ToCharArray( ) );
-                }  
+                }
                 catch( Exception ex )
                 {
                     Fail( ex );
                 }
             }
         }
-        
+
         /// <summary>
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
         private void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

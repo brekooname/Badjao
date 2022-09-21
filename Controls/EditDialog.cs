@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "EditDialog.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +14,7 @@
     using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms.Tools;
 
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public partial class EditDialog : EditBase
     {
         /// <summary>
@@ -20,14 +24,14 @@
         /// The current.
         /// </value>
         public DataRow Current { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the frames.
         /// </summary>
         /// <value>
         /// The frames.
         /// </value>
-        public IEnumerable<Frame> Frames { get;set; }
+        public IEnumerable<Frame> Frames { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EditDialog"/> class.
@@ -46,7 +50,7 @@
         /// Initializes a new instance of the <see cref="EditDialog"/> class.
         /// </summary>
         /// <param name="toolType">Type of the tool.</param>
-        public EditDialog( ToolType toolType ) 
+        public EditDialog( ToolType toolType )
             : this( )
         {
             ToolType = toolType;
@@ -142,6 +146,7 @@
                     {
                         case ToolType.CopyButton:
                         case ToolType.EditRecordButton:
+
                         {
                             DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
@@ -151,6 +156,7 @@
                             break;
                         }
                         case ToolType.DeleteRecordButton:
+
                         {
                             DataTab.Text = "Delete Data";
                             ActiveTab = DataTab;
@@ -160,6 +166,7 @@
                             break;
                         }
                         case ToolType.EditSqlButton:
+
                         {
                             SqlTab.Text = "SQL Editor";
                             ActiveTab = SqlTab;
@@ -169,6 +176,7 @@
                             break;
                         }
                         default:
+
                         {
                             DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
@@ -184,7 +192,6 @@
                     Fail( ex );
                 }
             }
-
         }
 
         /// <summary>
@@ -196,8 +203,9 @@
             {
                 try
                 {
-                    var _cols = Columns.ToArray( );
-                    foreach( var frame in Frames )
+                    string[ ] _cols = Columns.ToArray( );
+
+                    foreach( Frame frame in Frames )
                     {
                         if( frame.Index >= _cols.Length )
                         {
@@ -221,7 +229,7 @@
             {
                 try
                 {
-                    foreach( var _frame in Frames )
+                    foreach( Frame _frame in Frames )
                     {
                         _frame.Dock = DockStyle.Fill;
                     }
@@ -238,9 +246,9 @@
         /// </summary>
         public void SetFrameColors( )
         {
-            if( Frames?.Any(  ) == true )
+            if( Frames?.Any( ) == true )
             {
-                foreach( var frame in Frames )
+                foreach( Frame frame in Frames )
                 {
                     frame.Label.ForeColor = Color.LightSteelBlue;
                     frame.TextBox.ForeColor = Color.White;
@@ -251,35 +259,41 @@
         /// <summary>
         /// Sets the row location.
         /// </summary>
-        public void SetTableLocation(  )
+        public void SetTableLocation( )
         {
-            if( FrameTable != null )
+            if( FrameTable != null
+                && Columns?.Any( ) == true )
             {
                 try
                 {
+                    string[ ] _cols = Columns.ToArray( );
 
-                    var _cols = Columns.ToArray( );
                     if( _cols.Length >= 43 )
                     {
                         FrameTable.Location = new Point( 12, 25 );
                     }
-                    else if( _cols.Length < 43 && _cols.Length >= 35 )
+                    else if( _cols.Length < 43
+                        && _cols.Length >= 35 )
                     {
                         FrameTable.Location = new Point( 12, 25 );
                     }
-                    else if( _cols.Length < 35 && _cols.Length >= 28 )
+                    else if( _cols.Length < 35
+                        && _cols.Length >= 28 )
                     {
                         FrameTable.Location = new Point( 12, 81 );
                     }
-                    else if( _cols.Length < 28 && _cols.Length >= 21 )
+                    else if( _cols.Length < 28
+                        && _cols.Length >= 21 )
                     {
                         FrameTable.Location = new Point( 12, 81 );
                     }
-                    else if( _cols.Length < 21 && _cols.Length >= 14 )
+                    else if( _cols.Length < 21
+                        && _cols.Length >= 14 )
                     {
                         FrameTable.Location = new Point( 12, 81 );
                     }
-                    else if( _cols.Length < 14 && _cols.Length > 7 )
+                    else if( _cols.Length < 14
+                        && _cols.Length > 7 )
                     {
                         FrameTable.Location = new Point( 12, 81 );
                     }
@@ -300,18 +314,19 @@
         /// </summary>
         public void BindRecordData( )
         {
-            if( Current != null 
-                && Frames?.Any( ) == true 
+            if( Current != null
+                && Frames?.Any( ) == true
                 && Columns?.Any( ) == true )
             {
                 try
                 {
-                    var _items = Current.ItemArray;
-                    var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
-                    var _cols = Columns.ToArray( );
-                    for( var i = 0; i < _cols.Length; i++ )
+                    object[ ] _items = Current.ItemArray;
+                    Frame[ ] _frames = Frames.OrderBy( f => f.Index ).ToArray( );
+                    string[ ] _cols = Columns.ToArray( );
+
+                    for( int i = 0; i < _cols.Length; i++ )
                     {
-                        _frames[ i ].Label.Text = _cols[ i ].SplitPascal(  );
+                        _frames[ i ].Label.Text = _cols[ i ].SplitPascal( );
                         _frames[ i ].TextBox.Text = _items[ i ].ToString( );
                     }
                 }
@@ -321,8 +336,7 @@
                 }
             }
         }
-        
-        
+
         /// <summary>
         /// Gets the tab pages.
         /// </summary>
@@ -333,7 +347,9 @@
             {
                 try
                 {
-                    var _tabPages = new Dictionary<string, TabPageAdv>( );
+                    Dictionary<string, TabPageAdv>
+                        _tabPages = new Dictionary<string, TabPageAdv>( );
+
                     foreach( TabPageAdv tabpage in TabControl.TabPages )
                     {
                         if( tabpage != null )
@@ -364,8 +380,9 @@
         {
             try
             {
-                var _frames = new List<Frame>( );
-                foreach( var _control in FrameTable.Controls )
+                List<Frame> _frames = new List<Frame>( );
+
+                foreach( object _control in FrameTable.Controls )
                 {
                     if( _control.GetType( ) == typeof( Frame ) )
                     {
@@ -374,7 +391,6 @@
                             _frame.BindingSource = BindingSource;
                             _frames.Add( _frame );
                         }
-
                     }
                 }
 

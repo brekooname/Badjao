@@ -1,4 +1,4 @@
-﻿// <copyright file = "SeriesModel.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "SeriesBindingModel.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -15,10 +15,10 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="ISeriesModel" />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     public class SeriesBindingModel : BindingModelBase, ISeriesModel
     {
         /// <summary>
@@ -35,7 +35,7 @@ namespace BudgetExecution
         /// <see cref="SeriesBindingModel" />
         /// class.
         /// </summary>
-        public SeriesBindingModel( BindingSource bindingSource ) 
+        public SeriesBindingModel( BindingSource bindingSource )
             : base( bindingSource )
         {
             Categories = SeriesData.Keys;
@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="chartBinding"></param>
-        public SeriesBindingModel( IChartBinding chartBinding ) 
+        public SeriesBindingModel( IChartBinding chartBinding )
             : base( chartBinding )
         {
             Values = GetSeriesValues( );
@@ -69,7 +69,7 @@ namespace BudgetExecution
         {
             Values = GetSeriesValues( );
         }
-        
+
         /// <summary>
         /// Gets the data.
         /// </summary>
@@ -78,9 +78,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _values = SeriesData
-                    ?.Values
-                    ?.Select( v => v );
+                IEnumerable<double> _values = SeriesData?.Values?.Select( v => v );
 
                 return _values?.Any( ) == true
                     ? _values.ToArray( )
@@ -92,7 +90,7 @@ namespace BudgetExecution
                 return default( IEnumerable<double> );
             }
         }
-        
+
         /// <summary>
         /// Gets the source model.
         /// </summary>

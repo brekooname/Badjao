@@ -13,8 +13,8 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedVariable" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
     public static class LinqExtensions
     {
         /// <summary>
@@ -39,7 +39,8 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </returns>
-        public static bool None<TSource>( this IEnumerable<TSource> source, Func<TSource, bool> predicate )
+        public static bool None<TSource>( this IEnumerable<TSource> source,
+            Func<TSource, bool> predicate )
         {
             return !source.Any( predicate );
         }
@@ -115,9 +116,9 @@ namespace BudgetExecution
                 return false;
             }
 
-            var _matches = 0;
+            int _matches = 0;
 
-            foreach( var _unused in source.Where( predicate ) )
+            foreach( TSource _unused in source.Where( predicate ) )
             {
                 _matches++;
 
@@ -197,9 +198,9 @@ namespace BudgetExecution
                 return false;
             }
 
-            var _matches = 0;
+            int _matches = 0;
 
-            foreach( var _unused in source.Where( predicate ) )
+            foreach( TSource _unused in source.Where( predicate ) )
             {
                 ++_matches;
 
@@ -278,9 +279,9 @@ namespace BudgetExecution
                 return true;
             }
 
-            var _matches = 0;
+            int _matches = 0;
 
-            foreach( var _unused in source.Where( predicate ) )
+            foreach( TSource _unused in source.Where( predicate ) )
             {
                 _matches++;
 
@@ -297,7 +298,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

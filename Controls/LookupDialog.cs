@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Drawing;
 
     public partial class LookupDialog : EditBase
@@ -37,7 +38,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="LookupDialog"/> class.
         /// </summary>
-        public LookupDialog()
+        public LookupDialog( )
         {
             InitializeComponent( );
             GroupBoxes = GetGroupBoxes( );
@@ -74,7 +75,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Populates the table ListBox items.
         /// </summary>
@@ -83,9 +84,9 @@ namespace BudgetExecution
             try
             {
                 TableListBox.Items.Clear( );
-                var _names = Enum.GetNames( typeof( Source ) );
+                string[ ] _names = Enum.GetNames( typeof( Source ) );
 
-                foreach( var name in _names )
+                foreach( string name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -113,18 +114,18 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 ColumnGroupBox.Text = string.Empty;
                 ValueGroupBox.Text = string.Empty;
-                var _listBox = sender as ListBox;
-                var _value = _listBox?.SelectedItem.ToString( );
+                ListBox _listBox = sender as ListBox;
+                string _value = _listBox?.SelectedItem.ToString( );
 
                 if( !string.IsNullOrEmpty( _value ) )
                 {
-                    var _source = (Source)Enum.Parse( typeof( Source ), _value );
+                    Source _source = (Source)Enum.Parse( typeof( Source ), _value );
                     DataModel = new DataBuilder( _source, Provider.Access );
                     BindingSource.DataSource = DataModel.DataTable;
 
-                    var _columns = DataModel.GetDataColumns( );
+                    IEnumerable<DataColumn> _columns = DataModel.GetDataColumns( );
 
-                    foreach( var col in _columns )
+                    foreach( DataColumn col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
                     }
@@ -149,13 +150,13 @@ namespace BudgetExecution
             try
             {
                 ValueListBox.Items.Clear( );
-                var _listBox = sender as ListBox;
-                var _column = _listBox?.SelectedItem?.ToString( );
-                var _series = DataModel.DataElements;
+                ListBox _listBox = sender as ListBox;
+                string _column = _listBox?.SelectedItem?.ToString( );
+                IDictionary<string, IEnumerable<string>> _series = DataModel.DataElements;
 
                 if( !string.IsNullOrEmpty( _column ) )
                 {
-                    foreach( var item in _series[ _column ] )
+                    foreach( string item in _series[ _column ] )
                     {
                         ValueListBox.Items.Add( item );
                     }

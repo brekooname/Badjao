@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "DataUnit.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -48,8 +48,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _name = dataUnit.Name;
-                    var _value = dataUnit.Value;
+                    string _name = dataUnit.Name;
+                    object _value = dataUnit.Value;
                     return _value.Equals( Value ) && _name.Equals( Name );
                 }
                 catch( Exception ex )
@@ -75,8 +75,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _name = element.Name;
-                    var _value = element.Value;
+                    string _name = element.Name;
+                    object _value = element.Value;
                     return _value.Equals( Value ) && _name.Equals( Name );
                 }
                 catch( Exception ex )
@@ -96,14 +96,14 @@ namespace BudgetExecution
         /// <returns>
         ///   <c>true</c> if the specified dictionary is match; otherwise, <c>false</c>.
         /// </returns>
-        public virtual bool IsMatch( IDictionary<string, object> dict  )
+        public virtual bool IsMatch( IDictionary<string, object> dict )
         {
             if( dict?.Any( ) == true )
             {
                 try
                 {
-                    var _name = dict.Keys.First( );
-                    var _value = dict[ _name ];
+                    string _name = dict.Keys.First( );
+                    object _value = dict[ _name ];
                     return _value.Equals( Value ) && _name.Equals( Name );
                 }
                 catch( Exception ex )
@@ -122,7 +122,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

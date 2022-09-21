@@ -1,7 +1,6 @@
-﻿// <copyright file = "BudgetPivotGridControl.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "PivotGrid.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -19,7 +18,7 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// of the <see cref="PivotGrid"/> class.
         /// </summary>
-        public PivotGrid()
+        public PivotGrid( )
         {
             GridVisualStyles = GridVisualStyles.Office2016Black;
             Font = new Font( "Roboto", 9 );

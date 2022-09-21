@@ -21,12 +21,11 @@ namespace BudgetExecution
         /// <returns></returns>
         DirectoryInfo CreateSubDirectory( string folderName );
         
-
         /// <summary>
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IFilePath> GetSubFiles();
+        IEnumerable<FileInfo> GetSubFiles( );
 
         /// <summary>
         /// Moves the specified fullName.
@@ -40,18 +39,6 @@ namespace BudgetExecution
         /// <param name="security">The security.</param>
         void SetAccessControl( DirectorySecurity security );
         
-        /// <summary>
-        /// Gets the creation date.
-        /// </summary>
-        /// <returns></returns>
-        DateTime GetCreationDate();
-
-        /// <summary>
-        /// Gets the changed date.
-        /// </summary>
-        /// <returns></returns>
-        DateTime GetChangedDate();
-
         /// <summary>
         /// Zips the specified destinationPath.
         /// </summary>
@@ -68,24 +55,24 @@ namespace BudgetExecution
         /// Gets the special folders.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<string> GetSpecialFolders();
+        IEnumerable<string> GetSpecialFolders( );
 
         /// <summary>
         /// Gets the files.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<string> GetFileNames();
+        IEnumerable<string> GetFileNames( );
 
         /// <summary>
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<FileInfo> GetStreamData();
+        IEnumerable<FileInfo> GetStreamData( );
 
         /// <summary>
         /// Gets the sub folders.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DirectoryInfo> GetSubFolders();
+        IEnumerable<DirectoryInfo> GetSubFolders( );
     }
 }

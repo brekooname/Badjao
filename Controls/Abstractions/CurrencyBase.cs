@@ -1,7 +1,6 @@
 ﻿// <copyright file = "CurrencyBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -14,8 +13,8 @@ namespace BudgetExecution
     using System.Linq;
     using Syncfusion.Windows.Forms.Tools;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public abstract class CurrencyBase : CurrencyEdit
     {
         /// <summary>
@@ -136,10 +135,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as SourceBinding;
-                        var _filter = string.Empty;
+                        SourceBinding _list = bindingList as SourceBinding;
+                        string _filter = string.Empty;
 
-                        foreach( var kvp in dict )
+                        foreach( KeyValuePair<string, object> kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( kvp.Key )
                                 && Verify.IsRef( kvp.Value ) )
@@ -193,16 +192,17 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data,
+            IDictionary<string, object> dict )
             where T1 : IEnumerable<T1>
         {
             if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -303,9 +303,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var filter = string.Empty;
+                    string filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -330,7 +330,8 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
+            object filter = null )
             where T1 : IEnumerable<T1>
             where T2 : struct
         {
@@ -367,7 +368,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _currencyTextBox = sender as CurrencyBox;
+            CurrencyBox _currencyTextBox = sender as CurrencyBox;
 
             try
             {
@@ -376,15 +377,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _currencyTextBox?.HoverText;
-                        var _ = new ToolTip( _currencyTextBox, _hoverText );
+                        string _hoverText = _currencyTextBox?.HoverText;
+                        ToolTip _ = new ToolTip( _currencyTextBox, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new ToolTip( _currencyTextBox, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            ToolTip _ = new ToolTip( _currencyTextBox, _text );
                         }
                     }
                 }
@@ -405,7 +406,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _currencyTextBox = sender as CurrencyBox;
+            CurrencyBox _currencyTextBox = sender as CurrencyBox;
 
             try
             {
@@ -425,7 +426,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "FontConfig"/> class.
         /// </summary>
-        public FontConfig()
+        public FontConfig( )
         {
         }
 
@@ -130,8 +130,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( family )
-                    && size > 0
+                return !string.IsNullOrEmpty( family ) && size > 0
                     && Enum.IsDefined( typeof( FontStyle ), style )
                         ? new Font( family, size, style )
                         : new Font( "Roboto", 8, FontStyle.Regular );
@@ -155,7 +154,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( font?.FontFamily?.Name) 
+                return !string.IsNullOrEmpty( font?.FontFamily?.Name )
                     ? font
                     : default( Font );
             }
@@ -185,9 +184,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FontSizeSmall?.Dispose();
-                    FontSizeMedium?.Dispose();
-                    FontSizeLarge?.Dispose();
+                    FontSizeSmall?.Dispose( );
+                    FontSizeMedium?.Dispose( );
+                    FontSizeLarge?.Dispose( );
                 }
                 catch( Exception ex )
                 {
@@ -200,7 +199,7 @@ namespace BudgetExecution
         /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
+        public void Dispose( )
         {
             try
             {
@@ -225,12 +224,12 @@ namespace BudgetExecution
         public static void OnFontChanged( object sender, EventArgs e )
         {
             if( sender != null
-                && e   != null )
+                && e != null )
             {
                 try
                 {
-                    var message = new Message( "NOT YET IMPLEMENTED" );
-                    message?.ShowDialog();
+                    Message message = new Message( "NOT YET IMPLEMENTED" );
+                    message?.ShowDialog( );
                 }
                 catch( Exception ex )
                 {
@@ -245,7 +244,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

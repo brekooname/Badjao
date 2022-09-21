@@ -62,7 +62,7 @@ namespace BudgetExecution
         /// Horizontal and vertical directions can be
         /// combined to create diagonal animations
         /// </remarks>
-        [Flags]
+        [ Flags ]
         public enum AnimationDirection
         {
             /// <summary>
@@ -235,7 +235,7 @@ namespace BudgetExecution
         {
             if( Form.MdiParent == null )
             {
-                var flags = (int)Method | (int)Direction;
+                int flags = (int)Method | (int)Direction;
 
                 if( Form.Visible )
                 {
@@ -258,9 +258,10 @@ namespace BudgetExecution
             if( !e.Cancel )
             {
                 if( Form.MdiParent == null
-                   || Method != AnimationMethod.Fade )
+                    || Method != AnimationMethod.Fade )
                 {
-                    NativeMethods.AnimateWindow( Form.Handle, Duration, AwHide | (int)Method | (int)Direction );
+                    NativeMethods.AnimateWindow( Form.Handle, Duration,
+                        AwHide | (int)Method | (int)Direction );
                 }
             }
         }

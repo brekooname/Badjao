@@ -15,9 +15,9 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref = "MetroForm"/>
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
     public partial class ColumnConfiguration : MetroForm
     {
@@ -77,7 +77,6 @@ namespace BudgetExecution
             PopUp = new System.Windows.Forms.ToolStripDropDown( );
             ColumnListBox.CheckOnClick = true;
             ColumnListBox.ItemCheck += OnListItemChecked;
-
         }
 
         /// <summary>
@@ -94,12 +93,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _controlHost = new ToolStripControlHost( this )
-                    {
-                        AutoSize = true,
-                        Margin = Padding.Empty,
-                        Padding = Padding.Empty
-                    };
+                    ToolStripControlHost _controlHost = new ToolStripControlHost( this )
+                        { AutoSize = true, Margin = Padding.Empty, Padding = Padding.Empty };
 
                     return _controlHost;
                 }
@@ -137,10 +132,8 @@ namespace BudgetExecution
                         ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
                     }
 
-                    var _columnConfiguration = new ColumnConfiguration( Grid )
-                    {
-                        Location = Grid.PointToScreen( new Point( e.X, e.Y ) )
-                    };
+                    ColumnConfiguration _columnConfiguration = new ColumnConfiguration( Grid )
+                        { Location = Grid.PointToScreen( new Point( e.X, e.Y ) ) };
 
                     _columnConfiguration?.ShowDialog( );
                     _columnConfiguration.TopMost = true;
@@ -182,7 +175,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

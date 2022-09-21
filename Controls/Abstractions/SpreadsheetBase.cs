@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SpreadsheetBase"/> class.
         /// </summary>
-        protected SpreadsheetBase()
+        protected SpreadsheetBase( )
         {
             CanApplyTheme = true;
             CanOverrideStyle = true;

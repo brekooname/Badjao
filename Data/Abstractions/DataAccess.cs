@@ -7,6 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
@@ -26,7 +27,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="DataAccess"/> class.
         /// </summary>
-        protected DataAccess()
+        protected DataAccess( )
         {
         }
 
@@ -34,12 +35,12 @@ namespace BudgetExecution
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public virtual IEnumerable<DataRow> GetData()
+        public virtual IEnumerable<DataRow> GetData( )
         {
             try
             {
-                var _dataTable = GetDataTable( );
-                var _data = _dataTable?.AsEnumerable( );
+                DataTable _dataTable = GetDataTable( );
+                IEnumerable<DataRow> _data = _dataTable?.AsEnumerable( );
 
                 return _data?.Any( ) == true
                     ? _data
@@ -56,17 +57,17 @@ namespace BudgetExecution
         /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
-        public virtual DataTable GetDataTable()
+        public virtual DataTable GetDataTable( )
         {
             if( Query != null )
             {
                 try
                 {
-                    DataSet = new DataSet( $"{Provider}" );
-                    DataTable = new DataTable( $"{Source}" );
+                    DataSet = new DataSet( $"{ Provider }" );
+                    DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query.GetAdapter( ) )
+                    using( DbDataAdapter _adapter = Query.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
@@ -90,17 +91,17 @@ namespace BudgetExecution
         /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
-        public virtual DataSet GetDataSet()
+        public virtual DataSet GetDataSet( )
         {
             if( Query != null )
             {
                 try
                 {
-                    DataSet = new DataSet( $"{Provider}" );
-                    DataTable = new DataTable( $"{Source}" );
+                    DataSet = new DataSet( $"{ Provider }" );
+                    DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query.GetAdapter( ) )
+                    using( DbDataAdapter _adapter = Query.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable?.TableName );
                         SetColumnCaptions( DataTable );
@@ -135,7 +136,7 @@ namespace BudgetExecution
                         if( column != null
                             && string.IsNullOrEmpty( column.Caption ) )
                         {
-                            var _caption = column.ColumnName.SplitPascal( );
+                            string _caption = column.ColumnName.SplitPascal( );
                             column.Caption = _caption;
                         }
                     }
@@ -151,7 +152,7 @@ namespace BudgetExecution
         /// Gets the column schema.
         /// </summary>
         /// <returns></returns>
-        public virtual DataColumnCollection GetTableSchema()
+        public virtual DataColumnCollection GetTableSchema( )
         {
             if( Query != null )
             {
@@ -161,7 +162,7 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{Source}" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query?.GetAdapter( ) )
+                    using( DbDataAdapter _adapter = Query?.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
@@ -193,8 +194,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _table = dataRows?.CopyToDataTable( );
-                    var _values = _table?.GetPrimaryKeyValues( );
+                    DataTable _table = dataRows?.CopyToDataTable( );
+                    IEnumerable<int> _values = _table?.GetPrimaryKeyValues( );
 
                     return _values?.Any( ) == true
                         ? _values.ToArray( )

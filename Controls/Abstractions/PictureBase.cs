@@ -14,10 +14,10 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="IPictureBox" />
     /// <seealso cref="System.Windows.Forms.PictureBox" />
-    [SuppressMessage( "ReSharper", "UnusedType.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public abstract class PictureBase : System.Windows.Forms.PictureBox
     {
         /// <summary>
@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Sets the tag.
         /// </summary>
@@ -93,22 +93,22 @@ namespace BudgetExecution
         /// <param name="e">The
         /// <see cref="EventArgs" />
         /// instance containing the event data.</param>
-        [SuppressMessage( "ReSharper", "UnusedVariable" )]
+        [ SuppressMessage( "ReSharper", "UnusedVariable" ) ]
         public virtual void OnMouseHover( object sender, EventArgs e )
         {
             try
             {
-                var _picturePanel = sender as PictureBase;
+                PictureBase _picturePanel = sender as PictureBase;
 
                 if( !string.IsNullOrEmpty( HoverText ) )
                 {
-                    var _ = new ToolTip( _picturePanel, HoverText );
+                    ToolTip _ = new ToolTip( _picturePanel, HoverText );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _ = new ToolTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
+                        ToolTip _ = new ToolTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
                     }
                 }
             }
@@ -124,7 +124,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

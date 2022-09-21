@@ -128,9 +128,9 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _filter = string.Empty;
+                        string _filter = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
@@ -143,7 +143,7 @@ namespace BudgetExecution
                             && _list?.DataSource != null )
                         {
                             DataSource = _list?.DataSource;
-                            base.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                            Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
                         }
                     }
                     catch( Exception ex )
@@ -191,9 +191,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -230,11 +230,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( !string.IsNullOrEmpty( filter?.ToString() ) )
+                    if( !string.IsNullOrEmpty( filter?.ToString( ) ) )
                     {
                         DataSource = data.ToList( );
                         DataMember = field.ToString( );
-                        Filter = $"{ field } = { filter }";
+                        Filter = $"{field} = {filter}";
                     }
                     else
                     {
@@ -295,9 +295,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && Verify.IsRef( _kvp.Value ) )
@@ -360,7 +360,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _rows = DataTable?.AsEnumerable( );
+                EnumerableRowCollection<DataRow> _rows = DataTable?.AsEnumerable( );
 
                 return _rows?.Any( ) == true
                     ? _rows
@@ -377,7 +377,7 @@ namespace BudgetExecution
         /// Gets the current row.
         /// </summary>
         /// <returns></returns>
-        public override DataRow GetCurrent()
+        public override DataRow GetCurrent( )
         {
             try
             {

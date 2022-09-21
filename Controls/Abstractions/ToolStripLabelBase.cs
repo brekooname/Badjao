@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarLabelBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripLabelBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -8,8 +8,9 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Windows.Forms;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public abstract class ToolStripLabelBase : System.Windows.Forms.ToolStripLabel
     {
@@ -27,7 +28,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -52,7 +53,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="ToolStripLabelBase"/> class.
@@ -132,7 +133,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Sets the tag.
         /// </summary>
@@ -141,9 +142,9 @@ namespace BudgetExecution
         {
             try
             {
-               Tag = tag != null
-                   ? tag
-                   : null;
+                Tag = tag != null
+                    ? tag
+                    : null;
             }
             catch( Exception ex )
             {
@@ -157,7 +158,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

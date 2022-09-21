@@ -69,7 +69,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Workbook"/> class.
         /// </summary>
-        public Workbook()
+        public Workbook( )
         {
             FileInfo = new FileInfo( FilePath );
             Excel = new ExcelPackage( FileInfo );
@@ -138,12 +138,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _worksheet = grid.GetWorksheet( ) )
+                    using( ExcelWorksheet _worksheet = grid.GetWorksheet( ) )
                     {
-                        using( var _range = grid.GetRange( ) )
+                        using( ExcelRange _range = grid.GetRange( ) )
                         {
-                            var _row = _range.Start.Row;
-                            var _column = _range.Start.Column;
+                            int _row = _range.Start.Row;
+                            int _column = _range.Start.Column;
                             SetFontColor( grid, FontColor );
                             SetBackgroundColor( grid, PrimaryBackColor );
                             SetHorizontalAlignment( grid, Left );
@@ -242,10 +242,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _prc = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column,
-                        excelRange.End.Row, excelRange.End.Column ];
+                    ExcelRange _prc = Worksheet.Cells[ excelRange.Start.Row,
+                        excelRange.Start.Column, excelRange.End.Row, excelRange.End.Column ];
 
-                    for( var i = excelRange.Start.Row; i < excelRange.End.Row; i++ )
+                    for( int i = excelRange.Start.Row; i < excelRange.End.Row; i++ )
                     {
                         if( i % 2 == 0 )
                         {
@@ -310,7 +310,7 @@ namespace BudgetExecution
                 {
                     SetHeaderText( grid );
 
-                    using( var _range = grid.GetRange( ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.SetFromFont( TitleFont );
                         _range.Style.Border.BorderAround( ExcelBorderStyle.Thin );
@@ -342,11 +342,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _total = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column,
-                        excelRange.Start.Row, excelRange.Start.Column + 6 ];
+                    ExcelRange _total = Worksheet.Cells[ excelRange.Start.Row,
+                        excelRange.Start.Column, excelRange.Start.Row,
+                        excelRange.Start.Column + 6 ];
 
-                    var _range = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column + 1,
-                        excelRange.Start.Row, excelRange.Start.Column + 6 ];
+                    ExcelRange _range = Worksheet.Cells[ excelRange.Start.Row,
+                        excelRange.Start.Column + 1, excelRange.Start.Row,
+                        excelRange.Start.Column + 6 ];
 
                     _total.Style.Fill.PatternType = ExcelFillStyle.Solid;
                     _total.Style.Fill.BackgroundColor.SetColor( PrimaryBackColor );
@@ -390,7 +392,7 @@ namespace BudgetExecution
         /// Performs application-defined tasks associated with freeing, releasing, or
         /// resetting unmanaged resources.
         /// </summary>
-        public virtual void Dispose()
+        public virtual void Dispose( )
         {
             try
             {

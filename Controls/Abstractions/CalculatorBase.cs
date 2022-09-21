@@ -1,7 +1,6 @@
 ﻿// <copyright file = "CalculatorBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -13,9 +12,10 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class CalculatorBase : CalculatorControl
     {
         /// <summary>
@@ -83,7 +83,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( bindingSource is System.Windows.Forms.BindingSource _binder
+                if( bindingSource is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -120,10 +120,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as System.Windows.Forms.BindingSource;
-                        var _filter = string.Empty;
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
 
-                        foreach( var _kvp in dict )
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && Verify.IsRef( _kvp.Value ) )
@@ -177,16 +177,17 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data,
+            IDictionary<string, object> dict )
             where T1 : IEnumerable<DataRow>
         {
             if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -251,7 +252,7 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
         {
             if( Verify.IsSequence( data )
-                && !string.IsNullOrEmpty( field?.ToString( ) )  )
+                && !string.IsNullOrEmpty( field?.ToString( ) ) )
             {
                 try
                 {
@@ -287,9 +288,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var _kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -314,7 +315,8 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
+            object filter = null )
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
@@ -341,15 +343,15 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

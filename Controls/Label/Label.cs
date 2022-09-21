@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetLabel.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "Label.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -16,9 +16,9 @@ namespace BudgetExecution
     /// <see cref="Label" />
     /// </summary>
     /// <seealso cref="VisualLabel" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class Label : LabelBase, ILabel
     {
         /// <summary>
@@ -68,13 +68,13 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="Label" />
         /// class.
         /// </summary>
-        public Label()
+        public Label( )
         {
             // Basic Properties
             Size = new Size( 165, 23 );
@@ -114,7 +114,7 @@ namespace BudgetExecution
         /// class.
         /// </summary>
         /// <param name="label">The label.</param>
-        [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
+        [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
         public Label( VisualLabel label )
             : this( label.Size, label.Location )
         {
@@ -144,8 +144,7 @@ namespace BudgetExecution
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
         /// <param name="text">The text.</param>
-        public Label( Size size, Point location, Control parent,
-            string text )
+        public Label( Size size, Point location, Control parent, string text )
             : this( size, location, parent )
         {
             Text = text;
@@ -160,8 +159,7 @@ namespace BudgetExecution
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
         /// <param name="bindingSource">The bindingSource.</param>
-        public Label( Size size, Point location, Control parent,
-            BindingSource bindingSource )
+        public Label( Size size, Point location, Control parent, BindingSource bindingSource )
             : this( size, location, parent )
         {
             BindingSource = bindingSource;

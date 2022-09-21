@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetButton.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "Button.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -19,8 +19,8 @@ namespace BudgetExecution
     /// <seealso cref="IButton" />
     /// <seealso cref="VisualPlus.Toolkit.Controls.Interactivity.VisualButton" />
     /// <seealso cref="IDisposable" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class Button : ButtonBase, IButton
     {
         /// <summary>
@@ -62,13 +62,13 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="Button" />
         /// class.
         /// </summary>
-        public Button()
+        public Button( )
         {
             // Basic SeriesConfiguration
             Font = new Font( "Roboto", 9 );
@@ -151,8 +151,7 @@ namespace BudgetExecution
         /// <param name="location">The location.</param>
         /// <param name="parent">The parent.</param>
         /// <param name="text">The text.</param>
-        public Button( Size size, Point location, Control parent,
-            string text )
+        public Button( Size size, Point location, Control parent, string text )
             : this( size, location, parent )
         {
             Text = text;
@@ -273,11 +272,8 @@ namespace BudgetExecution
                 TextStyle = new TextStyle
                 {
                     TextLineAlignment = StringAlignment.Center,
-                    TextAlignment = StringAlignment.Center,
-                    Hover = hover,
-                    Enabled = normal,
-                    Disabled = normal,
-                    Pressed = normal
+                    TextAlignment = StringAlignment.Center, Hover = hover, Enabled = normal,
+                    Disabled = normal, Pressed = normal
                 };
             }
             catch( Exception ex )
@@ -314,7 +310,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public void OnMouseOver( object sender, EventArgs e )
         {
-            var _button = sender as Button;
+            Button _button = sender as Button;
 
             try
             {
@@ -323,15 +319,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _button?.HoverText;
-                        var _ = new ToolTip( _button, _hoverText );
+                        string _hoverText = _button?.HoverText;
+                        ToolTip _ = new ToolTip( _button, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new ToolTip( _button, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            ToolTip _ = new ToolTip( _button, _text );
                         }
                     }
                 }
@@ -352,7 +348,7 @@ namespace BudgetExecution
         /// </param>
         public override void OnMouseLeave( object sender, EventArgs e )
         {
-            var _button = sender as Button;
+            Button _button = sender as Button;
 
             try
             {

@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarProgressBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripProgressBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -7,7 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class ToolStripProgressBase : System.Windows.Forms.ToolStripProgressBar
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual ToolTip ToolTip { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the hover text.
         /// </summary>
@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// of the <see cref="ToolStripProgressBase"/> class.
         /// </summary>
-        protected ToolStripProgressBase()
+        protected ToolStripProgressBase( )
         {
         }
 
@@ -56,7 +56,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

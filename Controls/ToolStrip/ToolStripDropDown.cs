@@ -1,4 +1,4 @@
-﻿// <copyright file = "ToolbarComboBox.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripDropDown.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -17,7 +17,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
-    public class ToolStripDropDown: ToolStripDropDownBase, IToolbarComboBox
+    public class ToolStripDropDown : ToolStripDropDownBase, IToolbarComboBox
     {
         /// <summary>
         /// Gets or sets the tool tip.
@@ -42,8 +42,8 @@ namespace BudgetExecution
             ForeColor = Color.White;
             Font = new Font( "Roboto", 9 );
             Tag = "Make Selection";
-            ToolTipText = Tag.ToString(  );
-            HoverText = Tag.ToString(  );
+            ToolTipText = Tag.ToString( );
+            HoverText = Tag.ToString( );
             Visible = true;
             Enabled = true;
             Style = ToolStripExStyle.Office2016Black;
@@ -57,9 +57,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="data">The data.</param>
         public ToolStripDropDown( IEnumerable<object> data )
-            : this(  )
+            : this( )
         {
-            BindingSource.DataSource = data?.ToList(  );
+            BindingSource.DataSource = data?.ToList( );
         }
 
         /// <summary>
@@ -79,9 +79,9 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="filter">The filter.</param>
         public ToolStripDropDown( IEnumerable<DataRow> data, string filter )
-            : this(  )
+            : this( )
         {
-            BindingSource.DataSource = data?.ToList(  );
+            BindingSource.DataSource = data?.ToList( );
             BindingSource.DataMember = filter;
         }
 
@@ -154,19 +154,19 @@ namespace BudgetExecution
         {
             try
             {
-                var _comboBox = sender as ToolStripDropDown;
-                if(  !string.IsNullOrEmpty( _comboBox?.HoverText ) )
+                ToolStripDropDown _comboBox = sender as ToolStripDropDown;
+
+                if( !string.IsNullOrEmpty( _comboBox?.HoverText ) )
                 {
-                    var _text = _comboBox?.HoverText;
-                    var _ = new ToolTip( _comboBox, _text );
+                    string _text = _comboBox?.HoverText;
+                    ToolTip _ = new ToolTip( _comboBox, _text );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( _comboBox?.Tag?.ToString( ) ) )
                     {
-                        var _text = _comboBox?.Tag
-                            ?.ToString(  )?.SplitPascal(  );
-                        var _ = new ToolTip( _comboBox, _text );
+                        string _text = _comboBox?.Tag?.ToString( )?.SplitPascal( );
+                        ToolTip _ = new ToolTip( _comboBox, _text );
                     }
                 }
             }
@@ -187,7 +187,7 @@ namespace BudgetExecution
             {
                 if( ToolTip?.Active == true )
                 {
-                    ToolTip.RemoveAll(  );
+                    ToolTip.RemoveAll( );
                     ToolTip = null;
                 }
             }
@@ -211,8 +211,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _message = new Message( "NOT YET IMPLEMENTED" );
-                    _message?.ShowDialog(  );
+                    Message _message = new Message( "NOT YET IMPLEMENTED" );
+                    _message?.ShowDialog( );
                 }
                 catch( Exception ex )
                 {

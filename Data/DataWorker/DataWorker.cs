@@ -10,7 +10,7 @@ namespace BudgetExecution
     {
         public readonly DataModel unitBuilder = null;
 
-        public DataWorker()
+        public DataWorker( )
         {
         }
 

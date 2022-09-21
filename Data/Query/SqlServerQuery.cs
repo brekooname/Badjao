@@ -15,7 +15,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlServerQuery"/> class.
         /// </summary>
-        public SqlServerQuery()
+        public SqlServerQuery( )
         {
         }
 
@@ -59,8 +59,9 @@ namespace BudgetExecution
         /// <param name="updates"></param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-        public SqlServerQuery( Source source, Provider provider, IDictionary<string, object> updates,
-            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
+        public SqlServerQuery( Source source, Provider provider,
+            IDictionary<string, object> updates, IDictionary<string, object> where,
+            SQL commandType = SQL.UPDATE )
             : base( source, provider, updates, where, commandType )
         {
         }

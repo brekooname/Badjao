@@ -1,6 +1,6 @@
-﻿// // <copyright file = "AccessConversionForm.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "ConversionForm.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -11,6 +11,7 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Threading;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
@@ -44,7 +45,7 @@ namespace BudgetExecution
         /// <summary>
         /// 
         /// </summary>
-        private delegate void UpdateStatusDelegate();
+        private delegate void UpdateStatusDelegate( );
 
         /// <summary>
         /// The updater
@@ -63,9 +64,9 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ConversionForm"/> class.
         /// </summary>
-        public ConversionForm()
+        public ConversionForm( )
         {
-            InitializeComponent();
+            InitializeComponent( );
         }
 
         // ***************************************************************************************************************************
@@ -75,12 +76,12 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the tables.
         /// </summary>
-        private void GetTables()
+        private void GetTables( )
         {
             AccessConnect = new AccessConnect( AccessPath.Text );
-            var tables = AccessConnect.GetTableNames();
+            IEnumerable<string> tables = AccessConnect.GetTableNames( );
 
-            foreach( var s in tables )
+            foreach( string s in tables )
             {
                 CheckTableNames.Items.Add( s );
             }
@@ -90,15 +91,15 @@ namespace BudgetExecution
         /// Gets the selected tables.
         /// </summary>
         /// <returns></returns>
-        private List<string> GetSelectedTables()
+        private List<string> GetSelectedTables( )
         {
-            var result = new List<string>();
+            List<string> result = new List<string>( );
 
-            for( var i = 0; i < CheckTableNames.Items.Count; i++ )
+            for( int i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 if( CheckTableNames.GetItemChecked( i ) )
                 {
-                    result.Add( CheckTableNames.Items[ i ].ToString() );
+                    result.Add( CheckTableNames.Items[ i ].ToString( ) );
                 }
             }
 
@@ -109,7 +110,7 @@ namespace BudgetExecution
         /// <summary>
         /// Updates the status.
         /// </summary>
-        private void UpdateStatus()
+        private void UpdateStatus( )
         {
             Count++;
             lblstatus.Text = Count + "/" + Selected;
@@ -123,28 +124,28 @@ namespace BudgetExecution
         /// <summary>
         /// Converts this instance.
         /// </summary>
-        private void Convert()
+        private void Convert( )
         {
-            var tables = GetSelectedTables();
+            List<string> tables = GetSelectedTables( );
 
             if( tables.Count == 0 )
             {
                 return;
             }
 
-            var db = new AccessConversion();
+            AccessConversion db = new AccessConversion( );
 
-            for( var i = 0; i < tables.Count; i++ )
+            for( int i = 0; i < tables.Count; i++ )
             {
-                var table = tables[ i ];
+                string table = tables[ i ];
                 db.CreateTable( table );
 
-                var dt = AccessConnect.GetTable( table );
+                DataTable dt = AccessConnect.GetTable( table );
 
-                for( var j = 0; j < dt.Rows.Count; j++ )
+                for( int j = 0; j < dt.Rows.Count; j++ )
                 {
-                    var word = dt.Rows[ j ][ "word" ].ToString();
-                    var image = dt.Rows[ j ][ "image" ].ToString();
+                    string word = dt.Rows[ j ][ "word" ].ToString( );
+                    string image = dt.Rows[ j ][ "image" ].ToString( );
                     db.InsertRow( word, image, table );
                 }
 
@@ -174,7 +175,7 @@ namespace BudgetExecution
 
             //running conversation in a thread to prevent windows from freezing! because of heavy operation
             Worker = new Thread( Convert );
-            Worker.Start();
+            Worker.Start( );
         }
 
         /// <summary>
@@ -193,7 +194,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CheckAllOnClick( object sender, EventArgs e )
         {
-            for( var i = 0; i < CheckTableNames.Items.Count; i++ )
+            for( int i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 CheckTableNames.SetItemChecked( i, true );
             }
@@ -206,7 +207,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtoOnClick( object sender, EventArgs e )
         {
-            for( var i = 0; i < CheckTableNames.Items.Count; i++ )
+            for( int i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 CheckTableNames.SetItemChecked( i, false );
             }
@@ -219,15 +220,15 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SelectButtonOnClick( object sender, EventArgs e )
         {
-            var openfiledialog = new OpenFileDialog();
+            OpenFileDialog openfiledialog = new OpenFileDialog( );
             openfiledialog.Multiselect = false;
             openfiledialog.Filter = "Access database|*.mdb";
             openfiledialog.Title = "Select Access database...";
 
-            if( openfiledialog.ShowDialog() == DialogResult.OK )
+            if( openfiledialog.ShowDialog( ) == DialogResult.OK )
             {
                 AccessPath.Text = openfiledialog.FileName;
-                GetTables();
+                GetTables( );
             }
         }
     }

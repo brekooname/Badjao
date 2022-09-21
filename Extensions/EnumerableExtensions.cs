@@ -14,8 +14,8 @@ namespace BudgetExecution
     using OfficeOpenXml;
     using TableStyles = OfficeOpenXml.Table.TableStyles;
 
-    [SuppressMessage( "ReSharper", "MergeCastWithTypeCheck" )]
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [ SuppressMessage( "ReSharper", "MergeCastWithTypeCheck" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public static class EnumerableExtensions
     {
         /// <summary>
@@ -31,14 +31,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _row = dataRow?.First( );
-                    var _dictionary = _row?.ToDictionary( );
-                    var _array = _dictionary?.Keys.ToArray( );
-                    var _names = Enum.GetNames( typeof( Numeric ) );
+                    DataRow _row = dataRow?.First( );
+                    IDictionary<string, object> _dictionary = _row?.ToDictionary( );
+                    string[ ] _array = _dictionary?.Keys.ToArray( );
+                    string[ ] _names = Enum.GetNames( typeof( Numeric ) );
 
                     if( _array != null )
                     {
-                        foreach( var k in _array )
+                        foreach( string k in _array )
                         {
                             if( _names?.Contains( k ) == true )
                             {
@@ -72,14 +72,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _row = dataRow?.First( );
-                    var _dict = _row?.ToDictionary( );
-                    var _key = _dict?.Keys.ToArray( );
-                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    DataRow _row = dataRow?.First( );
+                    IDictionary<string, object> _dict = _row?.ToDictionary( );
+                    string[ ] _key = _dict?.Keys.ToArray( );
+                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
 
                     if( _key != null )
                     {
-                        foreach( var k in _key )
+                        foreach( string k in _key )
                         {
                             if( !string.IsNullOrEmpty( k )
                                 && _names?.Contains( k ) == true )
@@ -113,9 +113,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _list = new List<int>( );
+                    List<int> _list = new List<int>( );
 
-                    foreach( var _row in dataRow )
+                    foreach( DataRow _row in dataRow )
                     {
                         if( _row?.ItemArray[ 0 ] != null )
                         {
@@ -144,13 +144,13 @@ namespace BudgetExecution
         /// <returns></returns>
         public static BindingList<DataRow> ToBindingList( this IEnumerable<DataRow> dataRows )
         {
-            if( dataRows?.Any() == true )
+            if( dataRows?.Any( ) == true )
             {
                 try
                 {
-                    var _list = new BindingList<DataRow>( );
+                    BindingList<DataRow> _list = new BindingList<DataRow>( );
 
-                    foreach( var item in dataRows )
+                    foreach( DataRow item in dataRows )
                     {
                         _list.Add( item );
                     }
@@ -176,8 +176,8 @@ namespace BudgetExecution
         /// <param name="columnName">The columnName.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, string columnName,
-            string filter )
+        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow,
+            string columnName, string filter )
         {
             if( dataRow?.Any( ) == true
                 && !string.IsNullOrEmpty( columnName )
@@ -185,13 +185,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _row = dataRow?.First( );
-                    var _dictionary = _row.ToDictionary( );
-                    var _array = _dictionary.Keys.ToArray( );
+                    DataRow _row = dataRow?.First( );
+                    IDictionary<string, object> _dictionary = _row.ToDictionary( );
+                    string[ ] _array = _dictionary.Keys.ToArray( );
 
                     if( _array?.Contains( columnName ) == true )
                     {
-                        var _select = dataRow
+                        IEnumerable<DataRow> _select = dataRow
                             ?.Where( p => p.Field<string>( columnName ) == filter )
                             ?.Select( p => p );
 
@@ -216,20 +216,20 @@ namespace BudgetExecution
         /// <param name="dataRow">The data row.</param>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, IDictionary<string, object> dict )
+        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow,
+            IDictionary<string, object> dict )
         {
             if( dataRow?.Any( ) == true
                 && dict?.Any( ) == true )
             {
                 try
                 {
-                    var _table = dataRow.CopyToDataTable(  );
-                    var _rows = _table?.Select( dict.ToCriteria(  ) );
+                    DataTable _table = dataRow.CopyToDataTable( );
+                    DataRow[ ] _rows = _table?.Select( dict.ToCriteria( ) );
 
-                    return _rows?.Any(  ) == true
+                    return _rows?.Any( ) == true
                         ? _rows
                         : default( IEnumerable<DataRow> );
-
                 }
                 catch( Exception ex )
                 {
@@ -248,8 +248,8 @@ namespace BudgetExecution
         /// <param name="dataColumn">The column.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow, DataColumn dataColumn,
-            string filter )
+        public static IEnumerable<DataRow> Filter( this IEnumerable<DataRow> dataRow,
+            DataColumn dataColumn, string filter )
         {
             if( dataRow?.Any( ) == true
                 && dataColumn != null
@@ -257,16 +257,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _row = dataRow?.First( );
+                    DataRow _row = dataRow?.First( );
 
-                    var _columns = _row
-                        ?.Table
-                        ?.Columns;
+                    DataColumnCollection _columns = _row?.Table?.Columns;
 
                     if( _columns?.Contains( dataColumn?.ColumnName ) == true )
                     {
-                        var _enumerable = dataRow
-                            ?.Where( p => p.Field<string>( dataColumn.ColumnName ).Equals( filter ) )
+                        IEnumerable<DataRow> _enumerable = dataRow
+                            ?.Where( p =>
+                                p.Field<string>( dataColumn.ColumnName ).Equals( filter ) )
                             ?.Select( p => p );
 
                         return _enumerable?.Any( ) == true
@@ -300,15 +299,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _row = dataRow?.First( );
+                    DataRow _row = dataRow?.First( );
 
-                    var _columns = _row
-                        ?.Table
-                        ?.Columns;
+                    DataColumnCollection _columns = _row?.Table?.Columns;
 
                     if( _columns?.Contains( field.ToString( ) ) == true )
                     {
-                        var _enumerable = dataRow
+                        IEnumerable<DataRow> _enumerable = dataRow
                             ?.Where( p => p.Field<string>( field.ToString( ) ).Equals( filter ) )
                             ?.Select( p => p );
 
@@ -353,11 +350,11 @@ namespace BudgetExecution
 
             try
             {
-                using( var _excel = new ExcelPackage( new FileInfo( path ) ) )
+                using( ExcelPackage _excel = new ExcelPackage( new FileInfo( path ) ) )
                 {
-                    var _workbook = _excel.Workbook;
-                    var _worksheet = _workbook.Worksheets[ 0 ];
-                    var _range = _worksheet.Cells;
+                    ExcelWorkbook _workbook = _excel.Workbook;
+                    ExcelWorksheet _worksheet = _workbook.Worksheets[ 0 ];
+                    ExcelRange _range = _worksheet.Cells;
                     _range?.LoadFromCollection( type, true, style );
                     return _excel;
                 }
@@ -383,9 +380,9 @@ namespace BudgetExecution
                 && start > 0
                 && end > 0 )
             {
-                var _index = 0;
+                int _index = 0;
 
-                foreach( var item in type )
+                foreach( T item in type )
                 {
                     if( _index >= end )
                     {
@@ -401,12 +398,12 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "Map.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +15,7 @@
     /// </summary>
     /// <seealso cref="Arg" />
     /// <seealso cref="IMap" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Map : Arg, IMap
     {
         /// <summary>
@@ -25,7 +29,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
-        public Map()
+        public Map( )
         {
         }
 
@@ -59,7 +63,7 @@
         /// Gets the input.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, object> GetInput()
+        public IDictionary<string, object> GetInput( )
         {
             try
             {
@@ -78,7 +82,7 @@
         /// Gets the output.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, object> GetOutput()
+        public IDictionary<string, object> GetOutput( )
         {
             try
             {
@@ -99,7 +103,7 @@
         /// <returns>
         ///   <c>true</c> if [has primary key]; otherwise, <c>false</c>.
         /// </returns>
-        public bool HasPrimaryKey()
+        public bool HasPrimaryKey( )
         {
             try
             {
@@ -118,15 +122,15 @@
         /// <returns>
         ///   <c>true</c> if this instance has elements; otherwise, <c>false</c>.
         /// </returns>
-        public bool HasElements()
+        public bool HasElements( )
         {
             if( Input?.Any( ) == true )
             {
                 try
                 {
-                    var _fields = Enum.GetNames( typeof( Field ) );
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( var kvp in Input )
+                    foreach( KeyValuePair<string, object> kvp in Input )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
@@ -149,13 +153,13 @@
         /// Gets the key.
         /// </summary>
         /// <returns></returns>
-        public IKey GetKey()
+        public IKey GetKey( )
         {
             if( Input?.HasPrimaryKey( ) == true )
             {
                 try
                 {
-                    var _data = Input.GetPrimaryKey( );
+                    KeyValuePair<string, object> _data = Input.GetPrimaryKey( );
 
                     return !string.IsNullOrEmpty( _data.Key )
                         ? new Key( _data )
@@ -175,16 +179,16 @@
         /// Gets the elements.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IElement> GetElements()
+        public IEnumerable<IElement> GetElements( )
         {
             if( Output?.Any( ) == true )
             {
                 try
                 {
-                    var _output = new List<IElement>( );
-                    var _fields = Enum.GetNames( typeof( Field ) );
+                    List<IElement> _output = new List<IElement>( );
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( var kvp in Output )
+                    foreach( KeyValuePair<string, object> kvp in Output )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )

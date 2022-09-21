@@ -1,7 +1,6 @@
-﻿// <copyright file = "BudgetLayout.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "Layout.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -18,7 +17,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Layout"/> class.
         /// </summary>
-        public Layout()
+        public Layout( )
         {
             // Basic Properties
             Size = new Size( 700, 428 );

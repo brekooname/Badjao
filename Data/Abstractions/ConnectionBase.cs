@@ -1,6 +1,6 @@
-﻿// // <copyright file = "ConnectionBase.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "ConnectionBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -18,7 +18,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class ConnectionBase 
+    public abstract class ConnectionBase
     {
         /// <summary>
         /// The connector
@@ -112,7 +112,7 @@ namespace BudgetExecution
             PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
 
-            if ( !string.IsNullOrEmpty( PathExtension ) )
+            if( !string.IsNullOrEmpty( PathExtension ) )
             {
                 Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper( ) );
                 DbPath = DbClientPath[ Extension.ToString( ) ];
@@ -133,7 +133,7 @@ namespace BudgetExecution
 
             if( PathExtension != null )
             {
-                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper(  ) );
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper( ) );
                 Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension.ToUpper( ) );
                 DbPath = DbClientPath[ Extension.ToString( ) ];
                 ConnectionString = GetConnectionString( Provider );
@@ -155,7 +155,7 @@ namespace BudgetExecution
 
             if( PathExtension != null )
             {
-                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper(  ) );
+                Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper( ) );
                 Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension.ToUpper( ) );
                 DbPath = DbClientPath[ Extension.ToString( ) ];
                 ConnectionString = GetConnectionString( Provider );
@@ -176,30 +176,37 @@ namespace BudgetExecution
                     switch( provider )
                     {
                         case Provider.Access:
+
                         {
                             return DbClientPath[ "ACCDB" ];
                         }
                         case Provider.SQLite:
+
                         {
                             return DbClientPath[ "DB" ];
                         }
                         case Provider.SqlCe:
+
                         {
                             return DbClientPath[ "SDF" ];
                         }
                         case Provider.Excel:
+
                         {
                             return DbClientPath[ "XLSX" ];
                         }
                         case Provider.SqlServer:
+
                         {
                             return DbClientPath[ "MDF" ];
                         }
                         case Provider.CSV:
+
                         {
                             return DbClientPath[ "CSV" ];
                         }
                         default:
+
                         {
                             return DbClientPath[ "ACCDB" ];
                         }
@@ -223,7 +230,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( filePath ) && File.Exists( filePath )
+                return !string.IsNullOrEmpty( filePath ) && System.IO.File.Exists( filePath )
                     ? Path.GetFullPath( filePath )
                     : default( string );
             }
@@ -241,19 +248,20 @@ namespace BudgetExecution
         public virtual string GetDbClientPath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-               && Path.HasExtension( filePath ) )
+                && Path.HasExtension( filePath ) )
             {
                 try
                 {
-                    var _file = Path.GetExtension( filePath )?.Replace( ".", "" );
+                    string _file = Path.GetExtension( filePath )?.Replace( ".", "" );
 
                     if( !string.IsNullOrEmpty( _file ) )
                     {
-                        var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
-                        var _names = Enum.GetNames( typeof( EXT ) );
-                        if( _names.Contains( _ext.ToString(    ) ) )
+                        EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
+                        string[ ] _names = Enum.GetNames( typeof( EXT ) );
+
+                        if( _names.Contains( _ext.ToString( ) ) )
                         {
-                            var _clientPath = DbClientPath[ $"{ _ext }" ];
+                            string _clientPath = DbClientPath[ $"{_ext}" ];
 
                             return !string.IsNullOrEmpty( _clientPath )
                                 ? _clientPath
@@ -276,12 +284,12 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public virtual string GetConnectionString( Provider provider )
         {
-            if( Enum.IsDefined( typeof( Provider ), provider ) 
+            if( Enum.IsDefined( typeof( Provider ), provider )
                 && !string.IsNullOrEmpty( FilePath ) )
             {
                 try
                 {
-                    var _connection = ConnectionPath[ provider.ToString( ) ]?.ConnectionString;
+                    string _connection = ConnectionPath[ provider.ToString( ) ]?.ConnectionString;
 
                     return !string.IsNullOrEmpty( _connection )
                         ? _connection?.Replace( "{FilePath}", FilePath )
@@ -304,21 +312,21 @@ namespace BudgetExecution
         public virtual string GetConnectionString( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-               && File.Exists( filePath )
-               && Path.HasExtension( filePath ) )
+                && System.IO.File.Exists( filePath )
+                && Path.HasExtension( filePath ) )
             {
                 try
                 {
-                    var _file = Path.GetExtension( filePath );
+                    string _file = Path.GetExtension( filePath );
 
                     if( _file != null )
                     {
-                        var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper(  ) );
-                        var _names = Enum.GetNames( typeof( EXT ) );
+                        EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
+                        string[ ] _names = Enum.GetNames( typeof( EXT ) );
 
-                        if ( _names?.Contains( _ext.ToString(  ) ) == true )
+                        if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
-                            var _connectionString = ConnectionPath[ $"{ _ext }" ].ConnectionString;
+                            string _connectionString = ConnectionPath[ $"{_ext}" ].ConnectionString;
 
                             return !string.IsNullOrEmpty( _connectionString )
                                 ? _connectionString
@@ -341,7 +349,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

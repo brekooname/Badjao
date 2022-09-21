@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "IChartBinding.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System.Collections.Generic;
     using System.ComponentModel;

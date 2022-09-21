@@ -1,4 +1,4 @@
-﻿// <copyright file = "ToolBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "TipBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -15,12 +15,12 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="SfToolTip" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "PossibleNullReferenceException" )]
-    [SuppressMessage( "ReSharper", "IsExpressionAlwaysTrue" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
+    [ SuppressMessage( "ReSharper", "IsExpressionAlwaysTrue" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" ) ]
     public abstract class TipBase : MetroSetToolTip
     {
         /// <summary>
@@ -201,7 +201,7 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Sets the tool tip text.
         /// </summary>
@@ -213,7 +213,7 @@ namespace BudgetExecution
                 try
                 {
                     RemoveAll( );
-                    var _caption = control.Tag.ToString( );
+                    string _caption = control.Tag.ToString( );
                     SetToolTip( control, _caption );
                 }
                 catch( Exception ex )
@@ -257,7 +257,7 @@ namespace BudgetExecution
                 try
                 {
                     Control parent = item.GetCurrentParent( );
-                    var caption = item?.Tag?.ToString( );
+                    string caption = item?.Tag?.ToString( );
 
                     if( !string.IsNullOrEmpty( caption ) )
                     {
@@ -285,7 +285,7 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( control?.Tag?.ToString( ) ) )
                     {
-                        var caption = control.Tag.ToString( );
+                        string caption = control.Tag.ToString( );
                         RemoveAll( );
                         SetToolTip( control, caption );
                     }
@@ -345,7 +345,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

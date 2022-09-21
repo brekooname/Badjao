@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetBinding.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "SourceBinding.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -10,19 +10,19 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedType.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedType.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     public class SourceBinding : BindingData, IBindingSource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref = "SourceBinding"/> class.
         /// </summary>
-        public SourceBinding()
+        public SourceBinding( )
         {
         }
 
-        [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+        [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
         public SourceBinding( IEnumerable<DataRow> dataRows )
         {
             DataTable = dataRows?.CopyToDataTable( );
@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="SourceBinding"/> class.
         /// </summary>
         /// <param name="dataTable">The dataTable.</param>
-        [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+        [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
         public SourceBinding( DataTable dataTable )
         {
             DataTable = dataTable;
@@ -62,12 +62,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataFilter = new Dictionary<string, object>
-                    {
-                        {
-                            $"{field}", filter
-                        }
-                    };
+                    Dictionary<string, object> _dataFilter = new Dictionary<string, object>
+                        { { $"{field}", filter } };
 
                     DataFilter = _dataFilter?.Any( ) == true
                         ? _dataFilter
@@ -95,7 +91,7 @@ namespace BudgetExecution
                         DataFilter.Clear( );
                     }
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -115,7 +111,7 @@ namespace BudgetExecution
         /// Gets the data set.
         /// </summary>
         /// <returns></returns>
-        public DataSet GetDataSet()
+        public DataSet GetDataSet( )
         {
             try
             {

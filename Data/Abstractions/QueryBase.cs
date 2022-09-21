@@ -13,7 +13,7 @@ namespace BudgetExecution
     using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class QueryBase
     {
@@ -82,7 +82,7 @@ namespace BudgetExecution
         /// The command.
         /// </value>
         public virtual DbCommand DataCommand { get; set; }
-        
+
         /// <summary>
         /// Gets the adapter.
         /// </summary>
@@ -117,7 +117,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
-        protected QueryBase()
+        protected QueryBase( )
         {
         }
 
@@ -127,7 +127,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
-         protected QueryBase( Source source, Provider provider = Provider.SQLite,
+        protected QueryBase( Source source, Provider provider = Provider.SQLite,
             SQL commandType = SQL.SELECT )
         {
         }
@@ -157,7 +157,7 @@ namespace BudgetExecution
         /// <param name = "provider" > </param>
         /// <param name="sqlStatement">The SQL statement.</param>
         /// <param name = "source" > </param>
-         protected QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
+        protected QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
         {
             Source = source;
             Provider = provider;
@@ -174,7 +174,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="dict">The dictionary.</param>
-         protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict )
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict )
         {
             Source = source;
             Provider = provider;
@@ -193,7 +193,7 @@ namespace BudgetExecution
         /// <param name = "updates" > </param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-         protected  QueryBase( Source source, Provider provider, IDictionary<string, object> updates, 
+        protected QueryBase( Source source, Provider provider, IDictionary<string, object> updates,
             IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
             Source = source;
@@ -205,7 +205,7 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-         protected QueryBase( Source source, Provider provider, IEnumerable<string> columns,
+        protected QueryBase( Source source, Provider provider, IEnumerable<string> columns,
             IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
         {
             Source = source;
@@ -217,7 +217,7 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-         protected QueryBase( Source source, Provider provider, string sqlText )
+        protected QueryBase( Source source, Provider provider, string sqlText )
         {
             Source = source;
             Provider = provider;
@@ -234,14 +234,17 @@ namespace BudgetExecution
         /// <param name="fullPath">The full path.</param>
         /// <param name = "sqlText" > </param>
         /// <param name="commandType">Type of the command.</param>
-         protected QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
+        protected QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
             Args = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider, sqlText );
+
+            SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider,
+                sqlText );
+
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -251,7 +254,7 @@ namespace BudgetExecution
         /// <param name="fullPath">The full path.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <param name="dict">The dictionary.</param>
-         protected QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
+        protected QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
         {
             Args = dict;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
@@ -262,7 +265,7 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-         protected QueryBase( ISqlStatement sqlStatement )
+        protected QueryBase( ISqlStatement sqlStatement )
         {
             Args = null;
             Source = sqlStatement.Source;
@@ -300,39 +303,54 @@ namespace BudgetExecution
         /// </returns>
         public DbDataAdapter GetAdapter( )
         {
-            if( Enum.IsDefined( typeof( Provider ), Provider ) 
-                && !string.IsNullOrEmpty( SqlStatement?.CommandText ) 
+            if( Enum.IsDefined( typeof( Provider ), Provider )
+                && !string.IsNullOrEmpty( SqlStatement?.CommandText )
                 && DataConnection != null )
             {
                 try
                 {
-                    var _commandText = SqlStatement.CommandText;
+                    string _commandText = SqlStatement.CommandText;
 
                     switch( Provider )
                     {
                         case Provider.Access:
+
                         {
-                            var _connection = ConnectionBuilder.Connection as OleDbConnection;
+                            OleDbConnection _connection =
+                                ConnectionBuilder.Connection as OleDbConnection;
+
                             return new OleDbDataAdapter( _commandText, _connection );
                         }
                         case Provider.SQLite:
+
                         {
-                            var _connection = ConnectionBuilder.Connection as SQLiteConnection;
+                            SQLiteConnection _connection =
+                                ConnectionBuilder.Connection as SQLiteConnection;
+
                             return new SQLiteDataAdapter( _commandText, _connection );
                         }
                         case Provider.SqlCe:
+
                         {
-                            var _connection = ConnectionBuilder.Connection as SqlCeConnection;
+                            SqlCeConnection _connection =
+                                ConnectionBuilder.Connection as SqlCeConnection;
+
                             return new SqlCeDataAdapter( _commandText, _connection );
                         }
                         case Provider.SqlServer:
+
                         {
-                            var _connection = ConnectionBuilder.Connection as SqlConnection;
+                            SqlConnection _connection =
+                                ConnectionBuilder.Connection as SqlConnection;
+
                             return new SqlDataAdapter( _commandText, _connection );
                         }
                         default:
+
                         {
-                            var _connection = ConnectionBuilder.Connection as OleDbConnection;
+                            OleDbConnection _connection =
+                                ConnectionBuilder.Connection as OleDbConnection;
+
                             return new OleDbDataAdapter( _commandText, _connection );
                         }
                     }
@@ -346,14 +364,14 @@ namespace BudgetExecution
 
             return default( DbDataAdapter );
         }
-    
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

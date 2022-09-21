@@ -12,7 +12,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Computation : DataModel, IDataFilter
     {
         /// <summary>
@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Computation"/> class.
         /// </summary>
-        public Computation()
+        public Computation( )
         {
         }
 

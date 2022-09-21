@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
     using DocumentFormat.OpenXml;
     using DocumentFormat.OpenXml.Packaging;
     using DocumentFormat.OpenXml.Spreadsheet;
@@ -24,7 +25,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "ExcelReport"/> class.
         /// </summary>
-        public ExcelReport()
+        public ExcelReport( )
         {
         }
 
@@ -48,7 +49,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _dataSet = new DataSet(  ) )
+                    using( DataSet _dataSet = new DataSet( ) )
                     {
                         _dataSet?.Tables?.Add( ListToDataTable( data ) );
                         return CreateExcelDocument( _dataSet, path );
@@ -83,10 +84,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _dataSet = new DataSet(  ) )
+                    using( DataSet _dataSet = new DataSet( ) )
                     {
                         _dataSet.Tables.Add( dataTable );
-                        var _document = CreateExcelDocument( _dataSet, path );
+                        bool _document = CreateExcelDocument( _dataSet, path );
                         _dataSet.Tables.Remove( dataTable );
                         return _document;
                     }
@@ -119,7 +120,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _document = SpreadsheetDocument.Create( fileName, SpreadsheetDocumentType.Workbook ) )
+                    using( SpreadsheetDocument _document =
+                        SpreadsheetDocument.Create( fileName, SpreadsheetDocumentType.Workbook ) )
                     {
                         WriteExcelFile( dataSet, _document );
                     }
@@ -149,23 +151,23 @@ namespace BudgetExecution
         /// </returns>
         public DataTable ListToDataTable<T>( IEnumerable<T> data )
         {
-            if( Verify.IsSequence( data )  )
+            if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var _table = new DataTable( );
+                    DataTable _table = new DataTable( );
 
-                    foreach( var info in typeof( T ).GetProperties( ) )
+                    foreach( PropertyInfo info in typeof( T ).GetProperties( ) )
                     {
                         _table?.Columns?.Add( new DataColumn( info.Name,
                             GetNullableType( info.PropertyType ) ) );
                     }
 
-                    foreach( var t in data )
+                    foreach( T t in data )
                     {
-                        var _row = _table.NewRow( );
+                        DataRow _row = _table.NewRow( );
 
-                        foreach( var info in typeof( T ).GetProperties( ) )
+                        foreach( PropertyInfo info in typeof( T ).GetProperties( ) )
                         {
                             _row[ info.Name ] = !IsNullableType( info.PropertyType )
                                 ? info.GetValue( t, null )
@@ -199,7 +201,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _returnType = type;
+                Type _returnType = type;
 
                 if( type.IsGenericType
                     && type.GetGenericTypeDefinition( ) == typeof( Nullable<> ) )
@@ -236,9 +238,7 @@ namespace BudgetExecution
         {
             try
             {
-                return type == typeof( string )
-                    || type.IsArray
-                    || type.IsGenericType
+                return type == typeof( string ) || type.IsArray || type.IsGenericType
                     && type.GetGenericTypeDefinition( ) == typeof( Nullable<> );
             }
             catch( Exception ex )
@@ -260,20 +260,15 @@ namespace BudgetExecution
         /// <param name = "excelRow" >
         /// The excelRow.
         /// </param>
-        public void AppendTextCell( string cellReference, string cellStringValue, OpenXmlElement excelRow )
+        public void AppendTextCell( string cellReference, string cellStringValue,
+            OpenXmlElement excelRow )
         {
             try
             {
-                var _cell = new Cell
-                {
-                    CellReference = cellReference,
-                    DataType = CellValues.String
-                };
+                Cell _cell = new Cell
+                    { CellReference = cellReference, DataType = CellValues.String };
 
-                var _cellValue = new CellValue
-                {
-                    Text = cellStringValue
-                };
+                CellValue _cellValue = new CellValue { Text = cellStringValue };
 
                 _cell.Append( _cellValue );
                 excelRow.Append( _cell );
@@ -296,7 +291,8 @@ namespace BudgetExecution
         /// <param name = "excelRow" >
         /// The excelRow.
         /// </param>
-        public void AppendNumericCell( string cellReference, string cellStringValue, OpenXmlElement excelRow )
+        public void AppendNumericCell( string cellReference, string cellStringValue,
+            OpenXmlElement excelRow )
         {
             if( !string.IsNullOrEmpty( cellReference )
                 && !string.IsNullOrEmpty( cellStringValue )
@@ -304,15 +300,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _cell = new Cell
-                    {
-                        CellReference = cellReference
-                    };
+                    Cell _cell = new Cell { CellReference = cellReference };
 
-                    var _cellValue = new CellValue
-                    {
-                        Text = cellStringValue
-                    };
+                    CellValue _cellValue = new CellValue { Text = cellStringValue };
 
                     _cell.Append( _cellValue );
                     excelRow.Append( _cell );
@@ -341,8 +331,8 @@ namespace BudgetExecution
                     return ( (char)( 'A' + columnIndex ) ).ToString( );
                 }
 
-                var _first = (char)( 'A' + columnIndex / 26 - 1 );
-                var _second = (char)( 'A' + columnIndex % 26 );
+                char _first = (char)( 'A' + columnIndex / 26 - 1 );
+                char _second = (char)( 'A' + columnIndex % 26 );
                 return $"{_first}{_second}";
             }
             catch( Exception ex )
@@ -372,17 +362,24 @@ namespace BudgetExecution
 
                     if( spreadSheet.WorkbookPart != null )
                     {
-                        spreadSheet.WorkbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook( );
-                        spreadSheet.WorkbookPart.Workbook.Append( new BookViews( new WorkbookView( ) ) );
-                        var _styles = spreadSheet.WorkbookPart.AddNewPart<WorkbookStylesPart>( "rIdStyles" );
+                        spreadSheet.WorkbookPart.Workbook =
+                            new DocumentFormat.OpenXml.Spreadsheet.Workbook( );
 
-                        var _stylesheet = new Stylesheet( );
+                        spreadSheet.WorkbookPart.Workbook.Append(
+                            new BookViews( new WorkbookView( ) ) );
+
+                        WorkbookStylesPart _styles =
+                            spreadSheet.WorkbookPart.AddNewPart<WorkbookStylesPart>( "rIdStyles" );
+
+                        Stylesheet _stylesheet = new Stylesheet( );
                         _styles.Stylesheet = _stylesheet;
                         uint _id = 1;
 
                         foreach( DataTable _dataTable in dataSet.Tables )
                         {
-                            var _part = spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>( );
+                            WorksheetPart _part =
+                                spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>( );
+
                             _part.Worksheet = new Worksheet( );
                             _part.Worksheet.AppendChild( new SheetData( ) );
                             WriteDataTableToExcelWorksheet( _dataTable, _part );
@@ -393,13 +390,12 @@ namespace BudgetExecution
                                 spreadSheet.WorkbookPart.Workbook.AppendChild( new Sheets( ) );
                             }
 
-                            spreadSheet.WorkbookPart.Workbook.GetFirstChild<Sheets>( )
-                                       ?.AppendChild( new Sheet
-                                       {
-                                           Id = spreadSheet.WorkbookPart.GetIdOfPart( _part ),
-                                           SheetId = _id,
-                                           Name = _dataTable.TableName
-                                       } );
+                            spreadSheet.WorkbookPart.Workbook.GetFirstChild<Sheets>( )?.AppendChild(
+                                new Sheet
+                                {
+                                    Id = spreadSheet.WorkbookPart.GetIdOfPart( _part ),
+                                    SheetId = _id, Name = _dataTable.TableName
+                                } );
 
                             _id++;
                         }
@@ -423,7 +419,8 @@ namespace BudgetExecution
         /// <param name = "workSheetPart" >
         /// The workSheetPart.
         /// </param>
-        public void WriteDataTableToExcelWorksheet( DataTable dataTable, WorksheetPart workSheetPart )
+        public void WriteDataTableToExcelWorksheet( DataTable dataTable,
+            WorksheetPart workSheetPart )
         {
             if( dataTable?.Rows.Count > 0
                 && dataTable.Columns.Count > 0
@@ -431,29 +428,26 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _worksheet = workSheetPart.Worksheet;
-                    var _data = _worksheet?.GetFirstChild<SheetData>( );
-                    var _columns = dataTable.Columns.Count;
-                    var _isNumeric = new bool[ _columns ];
-                    var _names = new string[ _columns ];
+                    Worksheet _worksheet = workSheetPart.Worksheet;
+                    SheetData _data = _worksheet?.GetFirstChild<SheetData>( );
+                    int _columns = dataTable.Columns.Count;
+                    bool[ ] _isNumeric = new bool[ _columns ];
+                    string[ ] _names = new string[ _columns ];
 
-                    for( var n = 0; n < _columns; n++ )
+                    for( int n = 0; n < _columns; n++ )
                     {
                         _names[ n ] = GetExcelColumnName( n );
                     }
 
                     uint _rowIndex = 1;
 
-                    var _row = new Row
-                    {
-                        RowIndex = _rowIndex
-                    };
+                    Row _row = new Row { RowIndex = _rowIndex };
 
                     _data?.Append( _row );
 
-                    for( var colinx = 0; colinx < _columns; colinx++ )
+                    for( int colinx = 0; colinx < _columns; colinx++ )
                     {
-                        var _column = dataTable.Columns[ colinx ];
+                        DataColumn _column = dataTable.Columns[ colinx ];
                         AppendTextCell( _names[ colinx ] + "1", _column.ColumnName, _row );
 
                         _isNumeric[ colinx ] = _column.DataType.FullName == "System.Decimal"
@@ -464,20 +458,17 @@ namespace BudgetExecution
                     {
                         ++_rowIndex;
 
-                        var _excelRow = new Row
-                        {
-                            RowIndex = _rowIndex
-                        };
+                        Row _excelRow = new Row { RowIndex = _rowIndex };
 
                         _data?.Append( _excelRow );
 
-                        for( var i = 0; i < _columns; i++ )
+                        for( int i = 0; i < _columns; i++ )
                         {
-                            var _value = _dataRow?.ItemArray[ i ].ToString( );
+                            string _value = _dataRow?.ItemArray[ i ].ToString( );
 
                             if( _isNumeric[ i ] )
                             {
-                                if( double.TryParse( _value, out var cellnumericvalue ) )
+                                if( double.TryParse( _value, out double cellnumericvalue ) )
                                 {
                                     _value = cellnumericvalue.ToString( );
                                     AppendNumericCell( _names[ i ] + _rowIndex, _value, _excelRow );
@@ -503,7 +494,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

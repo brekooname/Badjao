@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarTextBox.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolStripTextBox.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -14,8 +14,8 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="System.Windows.Forms.ToolStripTextBox" />
     /// <seealso cref="IToolStripTextBox" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "UsePatternMatching" ) ]
     [ SuppressMessage( "ReSharper", "MergeConditionalExpression" ) ]
     public class ToolStripTextBox : ToolStripTextBase, IToolStripTextBox
@@ -45,7 +45,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ToolStripTextBox"/> class.
         /// </summary>
         /// <param name="text">The text.</param>
-        public ToolStripTextBox( string text ) 
+        public ToolStripTextBox( string text )
             : this( )
         {
             Text = text;
@@ -71,8 +71,8 @@ namespace BudgetExecution
             try
             {
                 Text = !string.IsNullOrEmpty( text )
-                ? text
-                : string.Empty;
+                    ? text
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -86,13 +86,13 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         public void SetHoverText( ToolStripItem item )
         {
-            var _text = item?.Tag?.ToString( );
+            string _text = item?.Tag?.ToString( );
 
             if( !string.IsNullOrEmpty( _text ) )
             {
                 try
                 {
-                    var _ = new ToolTip( item, _text );
+                    ToolTip _ = new ToolTip( item, _text );
                 }
                 catch( Exception ex )
                 {
@@ -110,20 +110,20 @@ namespace BudgetExecution
         {
             try
             {
-                var _button = sender as ToolStripTextBox;
+                ToolStripTextBox _button = sender as ToolStripTextBox;
 
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _button.Tag = HoverText;
-                    var _tip = new ToolTip( _button );
+                    ToolTip _tip = new ToolTip( _button );
                     ToolTip = _tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _tool = new ToolTip( _button );
+                        ToolTip _tool = new ToolTip( _button );
                         ToolTip = _tool;
                     }
                 }

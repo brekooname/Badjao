@@ -1,4 +1,4 @@
-﻿// <copyright file = "DataSeries.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ChartData.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -48,7 +48,7 @@ namespace BudgetExecution
         /// The metric.
         /// </value>
         public STAT STAT { get; set; }
-        
+
         /// <summary>
         /// Gets the numeric.
         /// </summary>
@@ -160,22 +160,17 @@ namespace BudgetExecution
             : this( )
         {
             BindingSource = bindingSource;
-            Data = ((DataTable)bindingSource.DataSource).AsEnumerable( );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             Name = ( (DataTable)bindingSource.DataSource ).TableName;
-            Text = Name.SplitPascal(  );
+            Text = Name.SplitPascal( );
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource );
-           
-            BindingModel = new ChartDataBindModel
-            {
-                DataSource = bindingSource.DataSource
-            };
+
+            BindingModel = new ChartDataBindModel { DataSource = bindingSource.DataSource };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
-            {
-                DataSource = bindingSource.DataSource
-            };
+                { DataSource = bindingSource.DataSource };
         }
 
         /// <summary>
@@ -189,20 +184,12 @@ namespace BudgetExecution
             STAT = STAT.Total;
             DataMetric = new DataMetric( dataRows );
 
-            BindingSource = new BindingSource
-            {
-                DataSource = dataRows.CopyToDataTable( )
-            };
+            BindingSource = new BindingSource { DataSource = dataRows.CopyToDataTable( ) };
 
-            BindingModel = new ChartDataBindModel
-            {
-                DataSource = dataRows.CopyToDataTable( )
-            };
+            BindingModel = new ChartDataBindModel { DataSource = dataRows.CopyToDataTable( ) };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
-            {
-                DataSource = dataRows.CopyToDataTable( )
-            };
+                { DataSource = dataRows.CopyToDataTable( ) };
         }
 
         /// <summary>
@@ -216,20 +203,11 @@ namespace BudgetExecution
             STAT = STAT.Total;
             DataMetric = new DataMetric( dataTable );
 
-            BindingSource = new BindingSource
-            {
-                DataSource = dataTable
-            };
+            BindingSource = new BindingSource { DataSource = dataTable };
 
-            BindingModel = new ChartDataBindModel
-            {
-                DataSource = dataTable
-            };
+            BindingModel = new ChartDataBindModel { DataSource = dataTable };
 
-            AxisLabelModel = new ChartDataBindAxisLabelModel
-            {
-                DataSource = dataTable
-            };
+            AxisLabelModel = new ChartDataBindAxisLabelModel { DataSource = dataTable };
         }
 
         /// <summary>
@@ -249,15 +227,10 @@ namespace BudgetExecution
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource, dict );
 
-            BindingModel = new ChartDataBindModel
-            {
-                DataSource = bindingSource.DataSource
-            };
+            BindingModel = new ChartDataBindModel { DataSource = bindingSource.DataSource };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
-            {
-                DataSource = bindingSource.DataSource
-            };
+                { DataSource = bindingSource.DataSource };
         }
 
         /// <summary>
@@ -287,7 +260,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
@@ -295,7 +268,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

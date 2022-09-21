@@ -8,7 +8,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.IO.Compression;
     using System.Linq;
     using System.Security.AccessControl;
 
@@ -19,65 +18,41 @@ namespace BudgetExecution
     public abstract class FolderBase
     {
         /// <summary>
-        /// Gets or sets the Data file.
+        /// Gets or sets the buffer.
         /// </summary>
         /// <value>
-        /// The Data file.
+        /// The buffer.
         /// </value>
-        public IFilePath FilePath { get; set; }
+        public virtual string Buffer { get; set; }
 
         /// <summary>
         /// The base stream
         /// </summary>
-        public DirectoryInfo DirectoryInfo { get; set; }
+        public virtual DirectoryInfo DirectoryInfo { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the name of the file.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The name of the file.
         /// </value>
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the full name.
         /// </summary>
         /// <value>
-        /// The name.
+        /// The full name.
         /// </value>
-        public string FolderName { get; set; }
+        public virtual string FullName { get; set; }
 
         /// <summary>
-        /// Gets the folder path.
+        /// Gets or sets the full path.
         /// </summary>
         /// <value>
-        /// The folder path.
+        /// The full path.
         /// </value>
-        public string Path { get; set; }
-
-        /// <summary>
-        /// Gets or sets the files.
-        /// </summary>
-        /// <value>
-        /// The files.
-        /// </value>
-        public IEnumerable<string> Files { get; set; }
-
-        /// <summary>
-        /// Gets the file security.
-        /// </summary>
-        /// <value>
-        /// The attributes.
-        /// </value>
-        public DirectorySecurity DirectorySecurity { get; set; }
-
-        /// <summary>
-        /// Gets or sets the creation date.
-        /// </summary>
-        /// <value>
-        /// The creation date.
-        /// </value>
-        public DateTime Created { get; set; }
+        public virtual string FullPath { get; set; }
 
         /// <summary>
         /// Gets or sets the changed date.
@@ -85,23 +60,88 @@ namespace BudgetExecution
         /// <value>
         /// The changed date.
         /// </value>
-        public DateTime Modified { get; set; }
+        public virtual DateTime Modified { get; set; }
         
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has parent.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has parent { get; set; } otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool HasParent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the creation date.
+        /// </summary>
+        /// <value>
+        /// The creation date.p/// </value>
+        public virtual DateTime Created { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has sub files.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has sub files; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool HasSubFiles { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has sub folders.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has sub folders; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool HasSubFolders { get; set; }
+
+        /// <summary>
+        /// Gets or sets the security.
+        /// </summary>
+        /// <value>
+        /// The security.
+        /// </value>
+        public virtual FileSecurity FileSecurity { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FolderBase"/> class.
+        /// </summary>
+        protected FolderBase( )
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FolderBase"/> class.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        protected FolderBase( string input )
+        {
+            Buffer = input;
+            FullPath = Path.GetFullPath( input );
+            DirectoryInfo = new DirectoryInfo( FullPath );
+            Name = Path.GetDirectoryName( input );
+            FullName = DirectoryInfo.FullName;
+            Created = DirectoryInfo.CreationTime;
+            Modified = DirectoryInfo.LastWriteTime;
+            HasParent = DirectoryInfo.Parent != null;
+            HasSubFiles = Directory.GetFiles( input ).Length > 0;
+            HasSubFolders = Directory.GetDirectories( input ).Length > 0;
+        }
+
         /// <summary>
         /// Gets the parent.
         /// </summary>
         /// <returns></returns>
-        protected DirectoryInfo GetBaseDirectory( )
+        protected virtual DirectoryInfo GetBaseDirectory( )
         {
             try
             {
-                var _file = FilePath
-                    ?.FileInfo
-                    ?.Directory;
+                if( !string.IsNullOrEmpty( Buffer ) 
+                    && Directory.Exists( Buffer ))
+                {
+                    DirectoryInfo _file = new DirectoryInfo( Buffer );
+                    return _file?.Parent;
+                }
 
-                return !string.IsNullOrEmpty( _file?.FullName )
-                    ? Directory.CreateDirectory( _file?.FullName )
-                    : default( DirectoryInfo );
+                return default( DirectoryInfo );
             }
             catch( IOException ex )
             {
@@ -109,96 +149,69 @@ namespace BudgetExecution
                 return default( DirectoryInfo );
             }
         }
-
-        /// <summary>
-        /// Gets the creation date.
-        /// </summary>
-        /// <returns></returns>
-        public DateTime GetCreationDate()
-        {
-            try
-            {
-                return Verify.IsDateTime( Created ) 
-                    ? Created 
-                    : default( DateTime );
-            }
-            catch( IOException ex )
-            {
-                Fail( ex );
-                return default( DateTime );
-            }
-        }
-
-        /// <summary>
-        /// Gets the changed date.
-        /// </summary>
-        /// <returns></returns>
-        public DateTime GetChangedDate()
-        {
-            try
-            {
-                return Verify.IsDateTime( Modified )
-                    ? Modified
-                    : default( DateTime );
-            }
-            catch( IOException ex )
-            {
-                Fail( ex );
-                return default( DateTime );
-            }
-        }
-
+        
         /// <summary>
         /// Gets the files.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetFileNames()
+        public virtual IEnumerable<string> GetFileNames( )
         {
-            try
+            if( HasSubFiles )
             {
-                return Files?.Any() == true
-                    ? Files
-                    : default( IEnumerable<string> );
+                try
+                {
+                    string[ ] _files = Directory.GetFiles( FullPath );
+                    return _files?.Any( ) == true
+                        ? _files
+                        : default( IEnumerable<string> );
+                }
+                catch( IOException ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<string> );
+                }
             }
-            catch( IOException ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<string> );
-            }
+
+            return default( IEnumerable<string> );
         }
 
         /// <summary>
         /// Gets the Data.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<FileInfo> GetStreamData()
+        public virtual IEnumerable<FileInfo> GetStreamData( )
         {
-            try
+            if( !string.IsNullOrEmpty( FullPath ) )
             {
-                var _enumerable = DirectoryInfo?.EnumerateFiles( Path );
+                try
+                {
+                    IEnumerable<FileInfo> _enumerable = DirectoryInfo?.EnumerateFiles( FullPath );
 
-                return Verify.IsSequence(  _enumerable )
-                    ? _enumerable
-                    : default( IEnumerable<FileInfo> );
+                    return  _enumerable?.Any( ) == true
+                        ? _enumerable
+                        : default( IEnumerable<FileInfo> );
+                }
+                catch( IOException ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<FileInfo> );
+                }
             }
-            catch( IOException ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<FileInfo> );
-            }
+
+            return default( IEnumerable<FileInfo> );
         }
 
         /// <summary>
         /// Gets the special folders.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetSpecialFolders()
+        public virtual IEnumerable<string> GetSpecialFolders( )
         {
             try
             {
-                var _folders = Enum.GetNames( typeof( Environment.SpecialFolder ) );
+                string[ ] _folders = Enum.GetNames( typeof( Environment.SpecialFolder ) );
 
-                return _folders?.Any() == true
+                return _folders?.Any( ) == true
                     ? _folders
                     : default( string[ ] );
             }
@@ -213,54 +226,38 @@ namespace BudgetExecution
         /// Gets the sub folders.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DirectoryInfo> GetSubFolders()
+        public virtual IEnumerable<DirectoryInfo> GetSubFolders( )
         {
-            try
+            if( DirectoryInfo != null )
             {
-                var _folders = DirectoryInfo?.GetDirectories();
-
-                return _folders?.Any() != true
-                    ? _folders
-                    : default( DirectoryInfo[ ] );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<DirectoryInfo> );
-            }
-        }
-
-        /// <summary>
-        /// Creats the zip file.
-        /// </summary>
-        /// <param name="sourcePath">The sourcePath.</param>
-        /// <param name="destinationPath">The destinationPath.</param>
-        public static void CreateZipFile( string sourcePath, string destinationPath )
-        {
-            try
-            {
-                if( !string.IsNullOrEmpty( destinationPath )
-                    && !string.IsNullOrEmpty( sourcePath ) )
+                try
                 {
-                    ZipFile.CreateFromDirectory( sourcePath, destinationPath );
+                    DirectoryInfo[ ] _folders = DirectoryInfo?.GetDirectories( );
+
+                    return _folders?.Any( ) != true
+                        ? _folders
+                        : default( DirectoryInfo[ ] );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DirectoryInfo> );
                 }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
+
+            return default( IEnumerable<DirectoryInfo> );
         }
-        
+
         /// <summary>
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
-                _error?.SetText();
-                _error?.ShowDialog();
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }

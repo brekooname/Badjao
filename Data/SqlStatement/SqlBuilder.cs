@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "SqlBuilder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
@@ -72,7 +76,7 @@
             Extension = ext;
             DirectoryPath = GetSqlDirectoryPath( );
             Files = Directory.GetFiles( DirectoryPath );
-            CommandRepository = GetCommandRepository(   );
+            CommandRepository = GetCommandRepository( );
         }
 
         /// <summary>
@@ -85,13 +89,13 @@
             {
                 try
                 {
-                    var _path = ConfigurationManager.AppSettings[ $"{ Extension }" ];
-                    var _index = _path.LastIndexOf( @"\" );
-                    var _size = _path.Length;
-                    var _end = _size - _index;
-                    var _folder = $@"\{ CommandType }";
-                    var _remove = _path?.Remove( _index, _end );
-                    var _dirpath = _remove + _folder;
+                    string _path = ConfigurationManager.AppSettings[ $"{Extension}" ];
+                    int _index = _path.LastIndexOf( @"\" );
+                    int _size = _path.Length;
+                    int _end = _size - _index;
+                    string _folder = $@"\{CommandType}";
+                    string _remove = _path?.Remove( _index, _end );
+                    string _dirpath = _remove + _folder;
 
                     return Directory.Exists( _dirpath )
                         ? _dirpath
@@ -113,29 +117,32 @@
         /// <returns></returns>
         private IDictionary<string, string> GetCommandRepository( )
         {
-            if( Enum.IsDefined( typeof( SQL ), CommandType  ) 
+            if( Enum.IsDefined( typeof( SQL ), CommandType )
                 && Files?.Any( ) == true )
             {
-                var _repository = new Dictionary<string, string>(  );
-                foreach( var file in Files )
+                Dictionary<string, string> _repository = new Dictionary<string, string>( );
+
+                foreach( string file in Files )
                 {
                     string _output;
-                    using( var _stream = File.OpenText( file ) )
+
+                    using( StreamReader _stream = System.IO.File.OpenText( file ) )
                     {
-                        _output = _stream.ReadToEnd(   );
+                        _output = _stream.ReadToEnd( );
                     }
 
                     if( !string.IsNullOrEmpty( _output ) )
                     {
-                        var _name = Path.GetFileNameWithoutExtension( file );
+                        string _name = Path.GetFileNameWithoutExtension( file );
                         _repository.Add( _name, _output );
                     }
                 }
 
-                return _repository?.Any(  ) == true
+                return _repository?.Any( ) == true
                     ? _repository
                     : default( IDictionary<string, string> );
             }
+
             return default( IDictionary<string, string> );
         }
 
@@ -148,13 +155,13 @@
         {
             if( !string.IsNullOrEmpty( commandName )
                 && CommandRepository?.Any( ) == true
-                 && CommandRepository.Keys.Contains( commandName ) )
+                && CommandRepository.Keys.Contains( commandName ) )
             {
                 try
                 {
                     return CommandRepository[ commandName ];
                 }
-                catch ( Exception ex )
+                catch( Exception ex )
                 {
                     Fail( ex );
                     return string.Empty;
@@ -170,7 +177,7 @@
         /// <param name="ex">The ex.</param>
         private void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

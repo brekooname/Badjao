@@ -124,12 +124,12 @@ namespace BudgetExecution
         /// </param>
         public virtual void SetColumnWidth( Grid grid, double width )
         {
-            if( grid?.GetWorksheet(  ) != null
+            if( grid?.GetWorksheet( ) != null
                 && width > 0d )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.AutoFitColumns( width );
                     }
@@ -158,7 +158,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         _range.Style.Fill.BackgroundColor.SetColor( color );
@@ -183,13 +183,13 @@ namespace BudgetExecution
         /// </param>
         public virtual void SetRangeFont( Grid grid, Font font )
         {
-            if( grid?.GetWorksheet(  ) != null
-                && grid?.GetRange(  ) != null
+            if( grid?.GetWorksheet( ) != null
+                && grid?.GetRange( ) != null
                 && font != null )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.SetFromFont( font );
                     }
@@ -212,13 +212,13 @@ namespace BudgetExecution
         /// </param>
         public virtual void SetFontColor( Grid grid, Color color )
         {
-            if( grid?.GetWorksheet(  ) != null
-                && grid?.GetRange(  ) != null
+            if( grid?.GetWorksheet( ) != null
+                && grid?.GetRange( ) != null
                 && color != Color.Empty )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.Color.SetColor( color );
                         _range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
@@ -245,14 +245,14 @@ namespace BudgetExecution
         /// </param>
         public virtual void SetBorderStyle( Grid grid, BorderSide side, ExcelBorderStyle style )
         {
-            if( grid?.GetWorksheet(  ) != null
-                && grid?.GetRange(  ) != null
+            if( grid?.GetWorksheet( ) != null
+                && grid?.GetRange( ) != null
                 && Enum.IsDefined( typeof( ExcelBorderStyle ), style )
                 && Enum.IsDefined( typeof( BorderSide ), side ) )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         switch( side )
                         {
@@ -311,13 +311,13 @@ namespace BudgetExecution
         /// </param>
         public virtual void SetHorizontalAlignment( Grid grid, ExcelHorizontalAlignment align )
         {
-            if( grid?.GetWorksheet(  ) != null
-                && grid?.GetRange(  ) != null
+            if( grid?.GetWorksheet( ) != null
+                && grid?.GetRange( ) != null
                 && Enum.IsDefined( typeof( ExcelHorizontalAlignment ), align ) )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Style.HorizontalAlignment = align;
                     }
@@ -340,12 +340,12 @@ namespace BudgetExecution
         /// </param>
         public virtual void SetVerticalAligment( Grid grid, ExcelVerticalAlignment align )
         {
-            if( grid?.GetWorksheet(  ) != null
+            if( grid?.GetWorksheet( ) != null
                 && Enum.IsDefined( typeof( ExcelVerticalAlignment ), align ) )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Style.VerticalAlignment = align;
                     }
@@ -365,12 +365,12 @@ namespace BudgetExecution
         /// </param>
         public virtual void MergeCells( Grid grid )
         {
-            if( grid?.GetWorksheet(  ) != null
-                && grid?.GetRange(  ) != null )
+            if( grid?.GetWorksheet( ) != null
+                && grid?.GetRange( ) != null )
             {
                 try
                 {
-                    using( var _range = grid.GetRange(   ) )
+                    using( ExcelRange _range = grid.GetRange( ) )
                     {
                         _range.Merge = true;
                     }

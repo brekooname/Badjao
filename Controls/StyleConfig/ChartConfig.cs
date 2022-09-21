@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see/> class.
         /// </summary>
-        public ChartConfig()
+        public ChartConfig( )
         {
             DisplayText = true;
             TextColor = ColorConfig.ForeGray;
@@ -44,10 +44,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var chart = new ChartFontInfo
+                    ChartFontInfo chart = new ChartFontInfo
                     {
-                        FontStyle = font.Style,
-                        FontFamilyTemplate = font.FontFamily,
+                        FontStyle = font.Style, FontFamilyTemplate = font.FontFamily,
                         Size = font.Size
                     };
 
@@ -83,12 +82,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var chart = new ChartFontInfo
-                    {
-                        FontStyle = style,
-                        Facename = family,
-                        Size = size
-                    };
+                    ChartFontInfo chart = new ChartFontInfo
+                        { FontStyle = style, Facename = family, Size = size };
 
                     return chart;
                 }
@@ -137,12 +132,8 @@ namespace BudgetExecution
         {
             try
             {
-                var style = new ChartLineInfo
-                {
-                    Alignment = PenAlignment.Center,
-                    Width = width,
-                    Color = color
-                };
+                ChartLineInfo style = new ChartLineInfo
+                    { Alignment = PenAlignment.Center, Width = width, Color = color };
 
                 return style;
             }
@@ -159,7 +150,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

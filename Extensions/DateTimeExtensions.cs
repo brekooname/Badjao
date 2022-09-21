@@ -7,7 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Diagnostics.CodeAnalysis;
 
-    [SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" )]
+    [ SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" ) ]
     public static class DateTimeExtensions
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime DaysAgo( this int days )
         {
-            var _timeSpan = new TimeSpan( days, 0, 0, 0 );
+            TimeSpan _timeSpan = new TimeSpan( days, 0, 0, 0 );
             return DateTime.Now.Subtract( _timeSpan );
         }
 
@@ -48,7 +48,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime DaysFromNow( this int days )
         {
-            var t = new TimeSpan( days, 0, 0, 0 );
+            TimeSpan t = new TimeSpan( days, 0, 0, 0 );
             return DateTime.Now.Add( t );
         }
 
@@ -62,7 +62,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime HoursAgo( this int hours )
         {
-            var t = new TimeSpan( hours, 0, 0 );
+            TimeSpan t = new TimeSpan( hours, 0, 0 );
             return DateTime.Now.Subtract( t );
         }
 
@@ -76,7 +76,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime HoursFromNow( this int hours )
         {
-            var t = new TimeSpan( hours, 0, 0 );
+            TimeSpan t = new TimeSpan( hours, 0, 0 );
             return DateTime.Now.Add( t );
         }
 
@@ -90,7 +90,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime MinutesAgo( this int minutes )
         {
-            var t = new TimeSpan( 0, minutes, 0 );
+            TimeSpan t = new TimeSpan( 0, minutes, 0 );
             return DateTime.Now.Subtract( t );
         }
 
@@ -104,7 +104,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime MinutesFromNow( this int minutes )
         {
-            var t = new TimeSpan( 0, minutes, 0 );
+            TimeSpan t = new TimeSpan( 0, minutes, 0 );
             return DateTime.Now.Add( t );
         }
 
@@ -118,7 +118,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime SecondsAgo( this int seconds )
         {
-            var t = new TimeSpan( 0, 0, seconds );
+            TimeSpan t = new TimeSpan( 0, 0, seconds );
             return DateTime.Now.Subtract( t );
         }
 
@@ -132,7 +132,7 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime SecondsFromNow( this int seconds )
         {
-            var t = new TimeSpan( 0, 0, seconds );
+            TimeSpan t = new TimeSpan( 0, 0, seconds );
             return DateTime.Now.Add( t );
         }
 
@@ -176,13 +176,13 @@ namespace BudgetExecution
         /// </returns>
         public static int CountWeekDays( this DateTime startDate, DateTime endDate )
         {
-            var ts = endDate - startDate;
+            TimeSpan ts = endDate - startDate;
             Console.WriteLine( ts.Days );
-            var cnt = 0;
+            int cnt = 0;
 
-            for( var i = 0; i < ts.Days; i++ )
+            for( int i = 0; i < ts.Days; i++ )
             {
-                var dt = startDate.AddDays( i );
+                DateTime dt = startDate.AddDays( i );
 
                 if( dt.IsWeekDay( ) )
                 {
@@ -206,12 +206,12 @@ namespace BudgetExecution
         /// </returns>
         public static int CountWeekEnds( this DateTime startDate, DateTime endDate )
         {
-            var ts = endDate - startDate;
-            var cnt = 0;
+            TimeSpan ts = endDate - startDate;
+            int cnt = 0;
 
-            for( var i = 0; i < ts.Days; i++ )
+            for( int i = 0; i < ts.Days; i++ )
             {
-                var dt = startDate.AddDays( i );
+                DateTime dt = startDate.AddDays( i );
 
                 if( dt.IsWeekEnd( ) )
                 {
@@ -235,7 +235,7 @@ namespace BudgetExecution
         /// </returns>
         public static TimeSpan Diff( this DateTime startDate, DateTime endDate )
         {
-            var t = startDate.Subtract( endDate );
+            TimeSpan t = startDate.Subtract( endDate );
             return t;
         }
 
@@ -253,9 +253,10 @@ namespace BudgetExecution
         /// </returns>
         public static double DiffDays( this string dateone, string datetwo )
         {
-            return DateTime.TryParse( dateone, out var dtone ) && DateTime.TryParse( datetwo, out var dttwo )
-                ? dtone.Diff( dttwo ).TotalDays
-                : 0;
+            return DateTime.TryParse( dateone, out DateTime dtone )
+                && DateTime.TryParse( datetwo, out DateTime dttwo )
+                    ? dtone.Diff( dttwo ).TotalDays
+                    : 0;
         }
 
         /// <summary>
@@ -289,9 +290,10 @@ namespace BudgetExecution
         /// </returns>
         public static double DiffHours( this string dateone, string datetwo )
         {
-            return DateTime.TryParse( dateone, out var dtone ) && DateTime.TryParse( datetwo, out var dttwo )
-                ? dtone.Diff( dttwo ).TotalHours
-                : 0;
+            return DateTime.TryParse( dateone, out DateTime dtone )
+                && DateTime.TryParse( datetwo, out DateTime dttwo )
+                    ? dtone.Diff( dttwo ).TotalHours
+                    : 0;
         }
 
         /// <summary>
@@ -325,9 +327,10 @@ namespace BudgetExecution
         /// </returns>
         public static double DiffMinutes( this string dateone, string datetwo )
         {
-            return DateTime.TryParse( dateone, out var dtone ) && DateTime.TryParse( datetwo, out var dttwo )
-                ? dtone.Diff( dttwo ).TotalMinutes
-                : 0;
+            return DateTime.TryParse( dateone, out DateTime dtone )
+                && DateTime.TryParse( datetwo, out DateTime dttwo )
+                    ? dtone.Diff( dttwo ).TotalMinutes
+                    : 0;
         }
 
         /// <summary>
@@ -359,12 +362,12 @@ namespace BudgetExecution
         public static bool IsFederalHoliday( this DateTime dateTime )
         {
             // to ease typing
-            var _nthDay = (int)Math.Ceiling( dateTime.Day / 7.0d );
-            var _date = dateTime.DayOfWeek;
-            var _thursday = _date == DayOfWeek.Thursday;
-            var _friday = _date == DayOfWeek.Friday;
-            var _monday = _date == DayOfWeek.Monday;
-            var _weekend = _date == DayOfWeek.Saturday || _date == DayOfWeek.Sunday;
+            int _nthDay = (int)Math.Ceiling( dateTime.Day / 7.0d );
+            DayOfWeek _date = dateTime.DayOfWeek;
+            bool _thursday = _date == DayOfWeek.Thursday;
+            bool _friday = _date == DayOfWeek.Friday;
+            bool _monday = _date == DayOfWeek.Monday;
+            bool _weekend = _date == DayOfWeek.Saturday || _date == DayOfWeek.Sunday;
 
             switch( dateTime.Month )
             {
@@ -416,7 +419,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

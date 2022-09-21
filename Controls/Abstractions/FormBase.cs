@@ -1,4 +1,8 @@
-﻿namespace BudgetExeuction
+﻿// <copyright file = "FormBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExeuction
 {
     using System;
     using System.Drawing;
@@ -14,7 +18,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FormBase"/> class.
         /// </summary>
-        public FormBase()
+        public FormBase( )
         {
             InitializeComponent( );
             Font = new Font( "Roboto", 9 );
@@ -22,7 +26,7 @@
             BorderColor = Color.FromArgb( 0, 120, 212 );
             CaptionAlign = HorizontalAlignment.Center;
             CaptionBarColor = Color.FromArgb( 15, 15, 15 );
-            CaptionFont = new Font( "Roboto", 11  );
+            CaptionFont = new Font( "Roboto", 11 );
             ShowIcon = false;
             ShowInTaskbar = true;
             CaptionButtonColor = Color.FromArgb( 0, 120, 212 );

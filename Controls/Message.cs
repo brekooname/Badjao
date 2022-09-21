@@ -1,7 +1,6 @@
 ﻿// <copyright file = "Message.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -14,16 +13,16 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public partial class Message : MetroForm
     {
-        public Message()
+        public Message( )
         {
             InitializeComponent( );
             Size = new Size( 621, 412 );
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            BorderColor = Color.SteelBlue; 
+            BorderColor = Color.SteelBlue;
             CloseButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             OpenButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             OpenButton.Text = "Open";
-            OpenButton.ForeColor = Color.SteelBlue;  
+            OpenButton.ForeColor = Color.SteelBlue;
             OpenButton.BackColor = Color.FromArgb( 15, 15, 15 );
             CloseButton.Text = "Close";
             CloseButton.ForeColor = Color.SteelBlue;
@@ -40,7 +39,7 @@ namespace BudgetExecution
         public Message( string text )
             : this( )
         {
-            TextBox.Text  = Environment.NewLine + text;
+            TextBox.Text = Environment.NewLine + text;
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace BudgetExecution
 
         public virtual void OnOpenButtonClick( object sender, EventArgs e )
         {
-            if( sender is Button _button 
+            if( sender is Button _button
                 && !string.IsNullOrEmpty( _button?.Name ) )
             {
                 try
@@ -96,7 +95,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

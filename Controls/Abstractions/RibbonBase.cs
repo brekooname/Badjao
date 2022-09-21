@@ -15,9 +15,9 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="SpreadsheetRibbon" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public class RibbonBase : SpreadsheetRibbon
     {
         /// <summary>
@@ -56,7 +56,7 @@ namespace BudgetExecution
         /// Initializes a new instance
         /// of the <see cref="RibbonBase"/> class.
         /// </summary>
-        public RibbonBase()
+        public RibbonBase( )
         {
             EnableRibbonCustomization = true;
             Margin = new Padding( 3 );
@@ -77,14 +77,14 @@ namespace BudgetExecution
             ShowQuickItemsDropDownButton = false;
             Ribbon.ScaleMenuButtonImage = true;
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

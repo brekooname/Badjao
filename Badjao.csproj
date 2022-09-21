@@ -489,7 +489,6 @@
     <Compile Include="Controls\Frame\Frame.Designer.cs">
       <DependentUpon>Frame.cs</DependentUpon>
     </Compile>
-    <Compile Include="IO\DataFile.cs" />
     <Compile Include="IO\Abstractions\FileBase.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />
@@ -831,12 +830,12 @@
     <Compile Include="Controls\Notification\NativeMethods.cs" />
     <Compile Include="Controls\Excel\Grid.cs" />
     <Compile Include="Controls\Excel\Heading.cs" />
-    <Compile Include="IO\FilePath.cs" />
+    <Compile Include="IO\File.cs" />
     <Compile Include="IO\Folder.cs" />
     <Compile Include="IO\Abstractions\FolderBase.cs" />
     <Compile Include="Interfaces\IFolder.cs" />
     <Compile Include="IO\Abstractions\PathBase.cs" />
-    <Compile Include="Interfaces\IFilePath.cs" />
+    <Compile Include="Interfaces\IFile.cs" />
     <Compile Include="Controls\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,7 +1,6 @@
-﻿// <copyright file = "BudgetClock.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "Clock.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -60,12 +59,12 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="Clock"/> class.
         /// </summary>
-        public Clock()
+        public Clock( )
         {
             // Basic Properties
             BackColor = Color.FromArgb( 15, 15, 15 );

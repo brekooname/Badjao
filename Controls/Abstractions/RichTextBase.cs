@@ -1,7 +1,6 @@
 ﻿// <copyright file = "RichTextBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
-//
 
 namespace BudgetExecution
 {
@@ -13,7 +12,7 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.Editors;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class RichTextBase : VisualRichTextBox
     {
         /// <summary>
@@ -63,7 +62,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -110,10 +109,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
 
-                        foreach( var kvp in dict )
+                        foreach( KeyValuePair<string, object> kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( kvp.Key )
                                 && Verify.IsRef( kvp.Value ) )
@@ -167,16 +166,17 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data,
+            IDictionary<string, object> dict )
             where T1 : IEnumerable<T1>
         {
             if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -277,9 +277,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var filter = string.Empty;
+                    string filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -304,7 +304,8 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
+            object filter = null )
             where T1 : IEnumerable<T1>
             where T2 : struct
         {
@@ -338,7 +339,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

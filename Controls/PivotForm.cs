@@ -1,4 +1,7 @@
-﻿
+﻿// <copyright file = "PivotForm.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
 namespace BudgetExecution
 {
     using System;
@@ -6,7 +9,7 @@ namespace BudgetExecution
 
     public partial class PivotForm : MetroForm
     {
-        public PivotForm()
+        public PivotForm( )
         {
             InitializeComponent( );
         }

@@ -7,6 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.Common;
     using System.Data.OleDb;
     using System.Windows.Forms;
 
@@ -21,7 +22,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref = "T:BudgetExecution.SqlCeQuery"/>
         /// class.
         /// </summary>
-        public SqlCeQuery()
+        public SqlCeQuery( )
         {
         }
 
@@ -151,18 +152,16 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        private string GetExcelFilePath()
+        private string GetExcelFilePath( )
         {
             try
             {
-                var _fileName = "";
+                string _fileName = "";
 
-                var _fileDialog = new OpenFileDialog
+                OpenFileDialog _fileDialog = new OpenFileDialog
                 {
-                    Title = "Excel File Dialog",
-                    InitialDirectory = @"c:\",
-                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*",
-                    FilterIndex = 2,
+                    Title = "Excel File Dialog", InitialDirectory = @"c:\",
+                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*", FilterIndex = 2,
                     RestoreDirectory = true
                 };
 
@@ -198,21 +197,24 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataSet = new DataSet( );
-                    var _dataTable = new DataTable( );
+                    DataSet _dataSet = new DataSet( );
+                    DataTable _dataTable = new DataTable( );
                     _dataSet.DataSetName = fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
-                    var _sql = $"SELECT * FROM { sheetName}$";
-                    var cstring = GetExcelFilePath( );
+                    string _sql = $"SELECT * FROM {sheetName}$";
+                    string cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( cstring ) )
                     {
-                        var _excelQuery = new ExcelQuery( cstring, _sql );
-                        var _connection = _excelQuery.GetConnection( ) as OleDbConnection;
+                        ExcelQuery _excelQuery = new ExcelQuery( cstring, _sql );
+
+                        OleDbConnection _connection =
+                            _excelQuery.GetConnection( ) as OleDbConnection;
+
                         _connection?.Open( );
 
-                        var _dataAdapter = _excelQuery.GetAdapter( );
+                        DbDataAdapter _dataAdapter = _excelQuery.GetAdapter( );
                         _dataAdapter.Fill( _dataSet );
 
                         return _dataTable.Columns.Count > 0
@@ -248,24 +250,24 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataSet = new DataSet( );
-                    var _dataTable = new DataTable( );
-                    var _fileName = ConnectionBuilder?.FileName;
+                    DataSet _dataSet = new DataSet( );
+                    DataTable _dataTable = new DataTable( );
+                    string _fileName = ConnectionBuilder?.FileName;
 
-                    if ( _fileName != null )
+                    if( _fileName != null )
                     {
                         _dataSet.DataSetName = _fileName;
                     }
 
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
-                    var _cstring = GetExcelFilePath( );
+                    string _cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
-                        var _sql = $"SELECT * FROM {sheetName}$";
-                        var _csvQuery = new CsvQuery( _cstring, _sql );
-                        var _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
+                        string _sql = $"SELECT * FROM {sheetName}$";
+                        CsvQuery _csvQuery = new CsvQuery( _cstring, _sql );
+                        OleDbDataAdapter _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
                         _dataAdapter?.Fill( _dataSet, sheetName );
 
                         return _dataTable.Columns.Count > 0
@@ -299,9 +301,9 @@ namespace BudgetExecution
             if( !string.IsNullOrEmpty( sheetName )
                 && Verify.IsTable( schemaTable ) )
             {
-                for( var i = 0; i < schemaTable.Rows.Count; i++ )
+                for( int i = 0; i < schemaTable.Rows.Count; i++ )
                 {
-                    var _dataRow = schemaTable.Rows[ i ];
+                    DataRow _dataRow = schemaTable.Rows[ i ];
 
                     if( sheetName == _dataRow[ "TABLENAME" ].ToString( ) )
                     {

@@ -1,4 +1,4 @@
-﻿// <copyright file = "BudgetGridData.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "DataGridBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -10,12 +10,11 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Grid;
 
-    [SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" )]
+    [ SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" ) ]
     public abstract class DataGridBase : GridDataBoundGrid
     {
         public DataGridBase( )
         {
-
             // Basic Properties
             ForeColor = Color.White;
             BackColor = Color.FromArgb( 15, 15, 15 );

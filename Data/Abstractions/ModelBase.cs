@@ -1,5 +1,5 @@
-﻿// <copyright file="BuilderBase.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "ModelBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -30,8 +30,8 @@ namespace BudgetExecution
         {
             try
             {
-                var _columns = GetDataTable( )?.Columns;
-                var _values = new List<int>( );
+                DataColumnCollection _columns = GetDataTable( )?.Columns;
+                List<int> _values = new List<int>( );
 
                 if( _columns?.Count > 0 )
                 {
@@ -62,18 +62,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columns = Record.Table?.Columns;
+                    DataColumnCollection _columns = Record.Table?.Columns;
 
                     if( _columns?.Count > 0 )
                     {
-                        var _schema = new Dictionary<string, Type>( );
+                        Dictionary<string, Type> _schema = new Dictionary<string, Type>( );
 
                         foreach( DataColumn col in _columns )
                         {
                             _schema.Add( col.ColumnName, col.DataType );
                         }
 
-                        return _schema?.Any(   ) == true
+                        return _schema?.Any( ) == true
                             ? _schema
                             : default( IDictionary<string, Type> );
                     }
@@ -98,13 +98,13 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<IElement> GetElements( )
         {
-            if ( Record != null )
+            if( Record != null )
             {
                 try
                 {
-                    var _elements = new List<IElement>( );
-                    var _columns = Record?.Table?.Columns;
-                    var _fields = Enum.GetNames( typeof( Field ) );
+                    List<IElement> _elements = new List<IElement>( );
+                    DataColumnCollection _columns = Record?.Table?.Columns;
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
 
                     if( _columns?.Count > 0 )
                     {
@@ -142,17 +142,17 @@ namespace BudgetExecution
         /// <param name = "dataRows" > </param>
         /// <param name="dict">The dictionary.</param>
         /// <returns></returns>
-        public IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, 
+        public IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows,
             IDictionary<string, object> dict )
         {
-            if( dict?.Any( ) == true 
+            if( dict?.Any( ) == true
                 && dataRows?.Any( ) == true )
             {
                 try
                 {
-                    var _criteria = dict.ToCriteria( );
-                    var _dataTable = dataRows.CopyToDataTable( );
-                    var _data = _dataTable.Select( _criteria );
+                    string _criteria = dict.ToCriteria( );
+                    DataTable _dataTable = dataRows.CopyToDataTable( );
+                    DataRow[ ] _data = _dataTable.Select( _criteria );
 
                     return _data?.Length > 0
                         ? _data
@@ -178,8 +178,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataColumns = new List<DataColumn>( );
-                    var _data = dataTable?.Columns;
+                    List<DataColumn> _dataColumns = new List<DataColumn>( );
+                    DataColumnCollection _data = dataTable?.Columns;
 
                     if( _data?.Count > 0 )
                     {
@@ -207,25 +207,25 @@ namespace BudgetExecution
             return default( IEnumerable<DataColumn> );
         }
 
-
         /// <summary>
         /// Gets the columns.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DataColumn> GetDataColumns(  )
+        public IEnumerable<DataColumn> GetDataColumns( )
         {
-            if( DataTable != null 
+            if( DataTable != null
                 && DataTable?.Columns?.Count > 0 )
             {
                 try
                 {
-                    var _dataColumns = new List<DataColumn>( );
-                    var _data = DataTable?.Columns;
+                    List<DataColumn> _dataColumns = new List<DataColumn>( );
+                    DataColumnCollection _data = DataTable?.Columns;
+
                     if( _data?.Count > 0 )
                     {
                         foreach( DataColumn column in _data )
                         {
-                            if ( column != null )
+                            if( column != null )
                             {
                                 _dataColumns.Add( column );
                             }

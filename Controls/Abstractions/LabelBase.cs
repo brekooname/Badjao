@@ -12,8 +12,8 @@ namespace BudgetExecution
     using System.Windows.Forms;
     using VisualPlus.Toolkit.Controls.Interactivity;
 
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public abstract class LabelBase : VisualLabel
     {
         /// <summary>
@@ -63,7 +63,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -110,10 +110,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
 
-                        foreach( var kvp in dict )
+                        foreach( KeyValuePair<string, object> kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( kvp.Key )
                                 && Verify.IsRef( kvp.Value ) )
@@ -167,16 +167,17 @@ namespace BudgetExecution
         /// <typeparam name="T1">The type of the 1.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
+        public virtual void SetDataSource<T1>( IEnumerable<T1> data,
+            IDictionary<string, object> dict )
             where T1 : IEnumerable<T1>
         {
             if( Verify.IsSequence( data ) )
             {
                 try
                 {
-                    var _filter = string.Empty;
+                    string _filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -277,9 +278,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var filter = string.Empty;
+                    string filter = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -304,7 +305,8 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
-        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field, object filter = null )
+        public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
+            object filter = null )
             where T1 : IEnumerable<T1>
             where T2 : struct
         {
@@ -341,7 +343,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _budgetLabel = sender as Label;
+            Label _budgetLabel = sender as Label;
 
             try
             {
@@ -350,15 +352,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _budgetLabel?.HoverText;
-                        var _ = new ToolTip( _budgetLabel, _hoverText );
+                        string _hoverText = _budgetLabel?.HoverText;
+                        ToolTip _ = new ToolTip( _budgetLabel, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new ToolTip( _budgetLabel, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            ToolTip _ = new ToolTip( _budgetLabel, _text );
                         }
                     }
                 }
@@ -379,7 +381,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _budgetLabel = sender as Label;
+            Label _budgetLabel = sender as Label;
 
             try
             {
@@ -399,7 +401,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -1,5 +1,5 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "Amount.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -12,11 +12,11 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="IAmount" />
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "ArrangeModifiersOrder" )]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeModifiersOrder" ) ]
     public class Amount : DataUnit, IAmount
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount"/> class.
         /// </summary>
-        public Amount()
+        public Amount( )
         {
         }
 
@@ -94,7 +94,7 @@ namespace BudgetExecution
         /// Gets the numeric.
         /// </summary>
         /// <returns></returns>
-        public Numeric GetNumeric()
+        public Numeric GetNumeric( )
         {
             try
             {
@@ -113,7 +113,7 @@ namespace BudgetExecution
         /// Gets the original.
         /// </summary>
         /// <returns></returns>
-        public double GetOriginal()
+        public double GetOriginal( )
         {
             try
             {
@@ -132,7 +132,7 @@ namespace BudgetExecution
         /// Gets the delta.
         /// </summary>
         /// <returns></returns>
-        public double GetDelta()
+        public double GetDelta( )
         {
             try
             {
@@ -240,7 +240,8 @@ namespace BudgetExecution
                 try
                 {
                     if( first?.Funding.Equals( second?.Funding ) == true
-                        && first?.Numeric.ToString( ).Equals( second?.Numeric.ToString( ) ) == true )
+                        && first?.Numeric.ToString( ).Equals( second?.Numeric.ToString( ) )
+                        == true )
                     {
                         return true;
                     }
@@ -264,9 +265,9 @@ namespace BudgetExecution
         {
             try
             {
-                using( var _message = new Message( "Not Yet Implemented" ) )
+                using( Message _message = new Message( "Not Yet Implemented" ) )
                 {
-                    _message.Show();
+                    _message.Show( );
                 }
             }
             catch( Exception ex )

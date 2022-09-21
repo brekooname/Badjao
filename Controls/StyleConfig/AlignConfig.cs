@@ -90,7 +90,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "ColorConfig"/> class.
         /// </summary>
-        public AlignConfig()
+        public AlignConfig( )
         {
         }
 
@@ -145,7 +145,8 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="alignment">The alignment.</param>
         /// <returns></returns>
-        public static ExcelVerticalAlignment GetExcelVerticalAlignment( ExcelVerticalAlignment alignment )
+        public static ExcelVerticalAlignment GetExcelVerticalAlignment(
+            ExcelVerticalAlignment alignment )
         {
             try
             {
@@ -165,7 +166,8 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="alignment">The alignment.</param>
         /// <returns></returns>
-        public static ExcelHorizontalAlignment GetExcelHorizontalAlignment( ExcelHorizontalAlignment alignment )
+        public static ExcelHorizontalAlignment GetExcelHorizontalAlignment(
+            ExcelHorizontalAlignment alignment )
         {
             try
             {
@@ -192,12 +194,12 @@ namespace BudgetExecution
         public static void OnAlignmentChanged( object sender, EventArgs e )
         {
             if( sender != null
-                && e   != null )
+                && e != null )
             {
                 try
                 {
-                    var _message = new Message( "NOT YET IMPLEMENTED" );
-                    _message?.ShowDialog();
+                    Message _message = new Message( "NOT YET IMPLEMENTED" );
+                    _message?.ShowDialog( );
                 }
                 catch( Exception ex )
                 {
@@ -212,9 +214,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            var _error = new Error( ex );
-            _error?.SetText();
-            _error?.ShowDialog();
+            Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

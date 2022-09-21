@@ -10,8 +10,8 @@ namespace BudgetExecution
     /// <summary>
     /// Defines the <see cref = "TimeSpanExtensions"/> .
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "IntroduceOptionalParameters.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "IntroduceOptionalParameters.Global" ) ]
     public static class TimeSpanExtensions
     {
         /// <summary>
@@ -168,16 +168,16 @@ namespace BudgetExecution
         public static TimeSpan Round( this TimeSpan timeSpan, TimeSpan roundinginterval,
             MidpointRounding roundingtype = MidpointRounding.ToEven )
         {
-            return new TimeSpan( Convert.ToInt64( Math.Round( timeSpan.Ticks / (double)roundinginterval.Ticks,
-                    roundingtype ) )
-                * roundinginterval.Ticks );
+            return new TimeSpan(
+                Convert.ToInt64( Math.Round( timeSpan.Ticks / (double)roundinginterval.Ticks,
+                    roundingtype ) ) * roundinginterval.Ticks );
         }
 
         /// <summary>Fails the specified ex.</summary>
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

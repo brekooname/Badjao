@@ -10,9 +10,9 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
     public class Section : Grid
     {
         /// <summary>
@@ -56,7 +56,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the
         /// <see cref = "Heading"/> class.
         /// </summary>
-        public Section()
+        public Section( )
         {
         }
 
@@ -71,18 +71,18 @@ namespace BudgetExecution
             Worksheet = Grid.GetWorksheet( );
             Range = Grid.GetRange( );
             Address = Grid.GetAddress( );
-            From = (Range.Start.Row, Range.Start.Column);
-            To = (Range.End.Row, Range.End.Column);
+            From = ( Range.Start.Row, Range.Start.Column );
+            To = ( Range.End.Row, Range.End.Column );
             Span = Range.Columns;
             Depth = Range.Rows;
-            Area = (Depth, Span);
+            Area = ( Depth, Span );
         }
 
         /// <summary>
         /// Gets the anchor.
         /// </summary>
         /// <returns></returns>
-        public (int Row, int Column) GetAnchor()
+        public (int Row, int Column) GetAnchor( )
         {
             try
             {
@@ -91,7 +91,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return (0, 0);
+                return ( 0, 0 );
             }
         }
 
@@ -99,7 +99,7 @@ namespace BudgetExecution
         /// Gets the span.
         /// </summary>
         /// <returns></returns>
-        public int GetSpan()
+        public int GetSpan( )
         {
             try
             {
@@ -116,7 +116,7 @@ namespace BudgetExecution
         /// Gets the depth.
         /// </summary>
         /// <returns></returns>
-        public int GetDepth()
+        public int GetDepth( )
         {
             try
             {
@@ -133,7 +133,7 @@ namespace BudgetExecution
         /// Gets the area.
         /// </summary>
         /// <returns></returns>
-        public (int Depth, int Span) GetArea()
+        public (int Depth, int Span) GetArea( )
         {
             try
             {
@@ -142,7 +142,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return (0, 0);
+                return ( 0, 0 );
             }
         }
     }

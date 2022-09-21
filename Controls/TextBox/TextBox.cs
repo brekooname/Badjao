@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "TextBox.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System;
     using System.Drawing;
@@ -9,13 +13,11 @@
     /// <seealso cref="BudgetExecution.TextBoxBase" />
     public class TextBox : TextBoxBase
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="TextBox"/> class.
         /// </summary>
         public TextBox( )
         {
-
             BackColor = Color.FromArgb( 30, 30, 30 );
             ForeColor = Color.LightSteelBlue;
             Font = new Font( "Roboto", 9 );

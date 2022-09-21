@@ -18,7 +18,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="VisualPlus.Toolkit.Controls.Layout.VisualGroupBox" />
     /// <seealso cref="IGroupBox" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class GroupBox : GroupBoxBase, IGroupBox
     {
         /// <summary>
@@ -68,7 +68,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public override IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the header text.
         /// </summary>
@@ -83,7 +83,7 @@ namespace BudgetExecution
         /// <value>
         ///   <c>true</c> if separator; otherwise, <c>false</c>.
         /// </value>
-        [DefaultValue( true )]
+        [ DefaultValue( true ) ]
         public bool Separate { get; set; }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace BudgetExecution
         /// <see cref="GroupBox" />
         /// class.
         /// </summary>
-        public GroupBox()
+        public GroupBox( )
         {
             // Basic Property SeriesConfiguration.
             Size = new Size( 250, 150 );
@@ -259,6 +259,7 @@ namespace BudgetExecution
                 switch( hovercolor )
                 {
                     case true:
+
                     {
                         Border.Color = Color.FromArgb( 64, 64, 64 );
                         Border.Thickness = 1;
@@ -271,6 +272,7 @@ namespace BudgetExecution
                     }
 
                     case false:
+
                     {
                         Border.Color = Color.FromArgb( 15, 15, 15 );
                         Border.Thickness = 1;
@@ -390,13 +392,13 @@ namespace BudgetExecution
         /// Adds the control item.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Control> GetChildren()
+        public IEnumerable<Control> GetChildren( )
         {
             if( Controls?.Count > 0 )
             {
                 try
                 {
-                    var _children = new List<Control>( );
+                    List<Control> _children = new List<Control>( );
 
                     foreach( Control _item in Controls )
                     {
@@ -430,7 +432,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _ = new ToolTip( this, text );
+                    ToolTip _ = new ToolTip( this, text );
                 }
                 catch( Exception ex )
                 {

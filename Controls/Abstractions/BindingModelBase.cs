@@ -1,4 +1,4 @@
-﻿// <copyright file = "SourceModel.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "BindingModelBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -61,7 +61,7 @@ namespace BudgetExecution
         /// The metric.
         /// </value>
         public virtual DataMetric DataMetric { get; set; }
-        
+
         /// <summary>
         /// Gets the value.
         /// </summary>
@@ -69,7 +69,7 @@ namespace BudgetExecution
         /// The value.
         /// </value>
         public virtual STAT Stat { get; set; }
-        
+
         /// <summary>
         /// Gets the series data.
         /// </summary>
@@ -93,7 +93,7 @@ namespace BudgetExecution
         /// The series categories.
         /// </value>
         public virtual IEnumerable<string> Categories { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="BindingModelBase" /> class.
@@ -186,7 +186,6 @@ namespace BudgetExecution
             Categories = SeriesData.Keys;
             BindingModel.Changed += OnChanged;
         }
-        
 
         /// <summary>
         /// Called when [changed].
@@ -201,7 +200,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var message = new Message( "NOT YET IMPLEMENTED" );
+                    Message message = new Message( "NOT YET IMPLEMENTED" );
                     message?.ShowDialog( );
                 }
                 catch( Exception ex )
@@ -210,7 +209,7 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
@@ -218,7 +217,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -1,4 +1,4 @@
-﻿// <copyright file = "BarButtonBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolButtonBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -7,6 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Forms;
 
     /// <summary>
     /// 
@@ -31,7 +32,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual System.Windows.Forms.BindingSource BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -64,7 +65,6 @@ namespace BudgetExecution
         /// The bar.
         /// </value>
         public ToolType ToolType { get; set; }
-        
 
         /// <summary>
         /// Sets the tag.
@@ -75,8 +75,8 @@ namespace BudgetExecution
             try
             {
                 Tag = tag != null
-                   ? tag
-                   : null;
+                    ? tag
+                    : null;
             }
             catch( Exception ex )
             {
@@ -96,64 +96,78 @@ namespace BudgetExecution
                     switch( tool )
                     {
                         case ToolType.FirstButton:
+
                         {
                             return "First Record";
                         }
                         case ToolType.PreviousButton:
+
                         {
                             return "Previous Record";
                         }
                         case ToolType.NextButton:
+
                         {
                             return "Next Record";
                         }
                         case ToolType.LastButton:
+
                         {
                             return "Last Record";
                         }
                         case ToolType.EditButton:
+
                         {
                             return "Edit Record";
                         }
                         case ToolType.AddButton:
+
                         {
                             return "Add Record";
                         }
                         case ToolType.DeleteButton:
+
                         {
                             return "Delete Record";
                         }
                         case ToolType.SaveButton:
+
                         {
                             return "Save Record";
                         }
 
                         case ToolType.RefreshButton:
+
                         {
                             return "Reset Filters";
                         }
 
                         case ToolType.ExcelButton:
+
                         {
                             return "Excel Export";
                         }
 
                         case ToolType.CalculatorButton:
+
                         {
                             return "Calculator";
                         }
 
                         case ToolType.ChartButton:
+
                         {
                             return "Visualizations";
                         }
 
                         case ToolType.HomeButton:
+
                         {
                             return "Main Menu";
                         }
 
                         default:
+
                         {
                             return string.Empty;
                         }
@@ -173,9 +187,9 @@ namespace BudgetExecution
         /// </summary>
         public void SetHoverText( )
         {
-            if ( Enum.IsDefined( typeof( ToolType ), ToolType ) )
+            if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
-                var _text = GetHoverText( ToolType );
+                string _text = GetHoverText( ToolType );
 
                 if( !string.IsNullOrEmpty( _text ) )
                 {
@@ -215,7 +229,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

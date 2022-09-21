@@ -24,11 +24,11 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public BindingSource BindingSource { get; set; }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckBox"/> class.
         /// </summary>
-        public CheckBox()
+        public CheckBox( )
         {
             Size = new Size( 125, 25 );
             Box = new Size( 14, 14 );
@@ -53,9 +53,8 @@ namespace BudgetExecution
             BoxSpacing = 4;
             MouseHover += OnMouseOver;
             MouseLeave += OnMouseLeave;
-
         }
-        
+
         /// <summary>
         /// Called when [mouse over].
         /// </summary>
@@ -66,20 +65,20 @@ namespace BudgetExecution
         {
             try
             {
-                var _control = sender as CheckBox;
+                CheckBox _control = sender as CheckBox;
 
                 if( _control is Control _checkBox
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _control.Tag = HoverText;
-                    var tip = new ToolTip( _checkBox );
+                    ToolTip tip = new ToolTip( _checkBox );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _tool = new ToolTip( _control );
+                        ToolTip _tool = new ToolTip( _control );
                         ToolTip = _tool;
                     }
                 }

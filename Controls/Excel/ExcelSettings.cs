@@ -12,6 +12,7 @@ namespace BudgetExecution
     using System.IO;
     using System.Linq;
     using System.Windows.Forms;
+    using OfficeOpenXml;
     using Syncfusion.Windows.Forms.Spreadsheet;
     using Syncfusion.XlsIO;
     using ExcelHorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment;
@@ -19,12 +20,12 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
-    [SuppressMessage( "ReSharper", "ConvertToConstant.Global" )]
+    [ SuppressMessage( "ReSharper", "SuggestBaseTypeForParameter" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertToConstant.Global" ) ]
     public abstract class ExcelSettings
     {
         /// <summary>
@@ -73,7 +74,8 @@ namespace BudgetExecution
         /// <value>
         /// The color of the secondary back.
         /// </value>
-        public virtual Color SecondaryBackColor { get; set; } = Color.FromArgb( 255, 221, 235, 247 );
+        public virtual Color SecondaryBackColor { get; set; } =
+            Color.FromArgb( 255, 221, 235, 247 );
 
         /// <summary>
         /// Gets or sets the left.
@@ -89,7 +91,8 @@ namespace BudgetExecution
         /// <value>
         /// The center.
         /// </value>
-        public virtual ExcelHorizontalAlignment Center { get; set; } = ExcelHorizontalAlignment.CenterContinuous;
+        public virtual ExcelHorizontalAlignment Center { get; set; } =
+            ExcelHorizontalAlignment.CenterContinuous;
 
         /// <summary>
         /// Gets or sets the right.
@@ -97,7 +100,8 @@ namespace BudgetExecution
         /// <value>
         /// The right.
         /// </value>
-        public virtual ExcelHorizontalAlignment Right { get; set; } = ExcelHorizontalAlignment.Right;
+        public virtual ExcelHorizontalAlignment Right { get; set; } =
+            ExcelHorizontalAlignment.Right;
 
         /// <summary>
         /// Gets or sets the height of the row.
@@ -220,7 +224,7 @@ namespace BudgetExecution
         public virtual void SetFilePath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && File.Exists( filePath ) )
+                && System.IO.File.Exists( filePath ) )
             {
                 try
                 {
@@ -241,7 +245,7 @@ namespace BudgetExecution
         public virtual void SetFileName( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && File.Exists( filePath ) )
+                && System.IO.File.Exists( filePath ) )
             {
                 try
                 {
@@ -264,11 +268,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _path = Path.GetExtension( filePath );
+                string _path = Path.GetExtension( filePath );
 
                 if( _path != null )
                 {
-                    var _extension = (EXT)Enum.Parse( typeof( EXT ), _path );
+                    EXT _extension = (EXT)Enum.Parse( typeof( EXT ), _path );
 
                     return Enum.IsDefined( typeof( EXT ), _extension )
                         ? _extension
@@ -300,21 +304,21 @@ namespace BudgetExecution
                     switch( extension?.ToUpper( ) )
                     {
                         case ".XLS":
+
                         {
-                            return @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source="
-                                + filePath
+                            return @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 8.0;HDR=YES;\"";
                         }
                         case ".XLSX":
+
                         {
-                            return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
-                                + filePath
+                            return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 12.0;HDR=YES;\"";
                         }
                         default:
+
                         {
-                            return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
-                                + filePath
+                            return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 12.0;HDR=YES;\"";
                         }
                     }
@@ -344,11 +348,11 @@ namespace BudgetExecution
                     spreadSheet.Workbook.ActiveSheet.ListObjects.Clear( );
                     spreadSheet.Workbook.ActiveSheet.UsedRange.Clear( true );
                     spreadSheet.Workbook.ActiveSheet.StandardWidth = 12.5f;
-                    var name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
-                    var sheet = spreadSheet.Workbook.ActiveSheet;
+                    string name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
+                    IWorksheet sheet = spreadSheet.Workbook.ActiveSheet;
                     spreadSheet.ActiveSheet.ImportDataTable( dataTable, true, 1, 1 );
-                    var range = sheet.UsedRange;
-                    var table = sheet.ListObjects.Create( name, range );
+                    IRange range = sheet.UsedRange;
+                    IListObject table = sheet.ListObjects.Create( name, range );
                     table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium2;
                     spreadSheet.ActiveGrid.InvalidateCells( );
                     spreadSheet.SetZoomFactor( "Sheet1", 110 );
@@ -374,14 +378,13 @@ namespace BudgetExecution
                 {
                     spreadSheet.Workbook.ActiveSheet.ListObjects.Clear( );
                     spreadSheet.Workbook.ActiveSheet.StandardWidth = 12.5f;
-                    var name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
-                    var sheet = spreadSheet.Workbook.ActiveSheet;
+                    string name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
+                    IWorksheet sheet = spreadSheet.Workbook.ActiveSheet;
 
-                    spreadSheet.ActiveSheet.ImportDataGridView( dataGrid, 1, 1, true,
-                        false );
+                    spreadSheet.ActiveSheet.ImportDataGridView( dataGrid, 1, 1, true, false );
 
-                    var range = sheet.UsedRange;
-                    var table = sheet.ListObjects.Create( name, range );
+                    IRange range = sheet.UsedRange;
+                    IListObject table = sheet.ListObjects.Create( name, range );
                     table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium2;
                     spreadSheet.ActiveGrid.InvalidateCells( );
                     spreadSheet.SetZoomFactor( "Sheet1", 110 );
@@ -405,9 +408,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid?.GetRange(  ) )
+                    using( ExcelRange _range = grid?.GetRange( ) )
                     {
-                        var _excelComment = _range?.AddComment( text, "Budget" );
+                        ExcelComment _excelComment = _range?.AddComment( text, "Budget" );
 
                         if( _excelComment != null )
                         {
@@ -440,10 +443,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _sheet = grid.GetWorksheet(  ) )
+                    using( ExcelWorksheet _sheet = grid.GetWorksheet( ) )
                     {
-                        var _row = grid.GetRange( ).Start.Row;
-                        var _column = grid.GetRange( ).Start.Column;
+                        int _row = grid.GetRange( ).Start.Row;
+                        int _column = grid.GetRange( ).Start.Column;
                         _sheet.Cells[ _row, _column ].Value = "Account";
                         _sheet.Cells[ _row, _column + 1 ].Value = "SuperfundSite";
                         _sheet.Cells[ _row, _column + 2 ].Value = "Travel";
@@ -468,17 +471,17 @@ namespace BudgetExecution
         public void SetText( Grid grid, IEnumerable<string> text )
         {
             if( Validate.IsGrid( grid )
-               && text?.Any( ) == true
-               && grid.GetRange( ).Any( ) )
+                && text?.Any( ) == true
+                && grid.GetRange( ).Any( ) )
             {
                 try
                 {
-                    foreach( var cell in grid.GetRange( ) )
+                    foreach( ExcelRangeBase cell in grid.GetRange( ) )
                     {
-                        foreach( var caption in text )
+                        foreach( string caption in text )
                         {
                             if( cell != null
-                               && !string.IsNullOrEmpty( caption ) )
+                                && !string.IsNullOrEmpty( caption ) )
                             {
                                 cell.Value = caption;
                             }
@@ -491,19 +494,18 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );
             }
         }
-
     }
 }
