@@ -220,10 +220,12 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SelectButtonOnClick( object sender, EventArgs e )
         {
-            OpenFileDialog openfiledialog = new OpenFileDialog( );
-            openfiledialog.Multiselect = false;
-            openfiledialog.Filter = "Access database|*.mdb";
-            openfiledialog.Title = "Select Access database...";
+            OpenFileDialog openfiledialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                Filter = "Access database|*.mdb",
+                Title = "Select Access database..."
+            };
 
             if( openfiledialog.ShowDialog( ) == DialogResult.OK )
             {

@@ -130,7 +130,6 @@ namespace BudgetExecution
                 try
                 {
                     string _update = CreateUpdateStatement( Updates, Criteria );
-
                     return !string.IsNullOrEmpty( _update )
                         ? _update
                         : string.Empty;
@@ -200,22 +199,18 @@ namespace BudgetExecution
                     switch( commandType )
                     {
                         case SQL.SELECT:
-
                         {
                             return CreateSelectStatement( dict );
                         }
                         case SQL.SELECTALL:
-
                         {
                             return CreateSelectStatement( dict );
                         }
                         case SQL.INSERT:
-
                         {
                             return CreateInsertStatement( dict );
                         }
                         case SQL.DELETE:
-
                         {
                             return CreateDeleteStatement( dict );
                         }

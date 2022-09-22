@@ -302,7 +302,7 @@ namespace BudgetExecution
         public static bool IsAuthority<T>( T source )
             where T : struct
         {
-            var _source = (Source)Enum.Parse( typeof( Source ), source.ToString( ) );
+            Source _source = (Source)Enum.Parse( typeof( Source ), source.ToString( ) );
 
             if( !Enum.IsDefined( typeof( Source ), source )
                 || !Resource.AuthoritySources.Contains( _source ) )

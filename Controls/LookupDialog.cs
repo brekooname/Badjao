@@ -59,9 +59,12 @@ namespace BudgetExecution
         {
             try
             {
-                FormFilter = new Dictionary<string, object>( );
-                FormFilter.Add( "BFY", "2022" );
-                FormFilter.Add( "FundCode", "B" );
+                FormFilter = new Dictionary<string, object>
+                {
+                    { "BFY", "2022" },
+                    { "FundCode", "B" }
+                };
+
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
                 SetGroupBoxProperties( );
