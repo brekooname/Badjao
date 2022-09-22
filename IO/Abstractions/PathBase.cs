@@ -115,7 +115,7 @@ namespace BudgetExecution
         /// <value>
         /// The invalid path character.
         /// </value>
-        public char[ ] InvalidPathChars { get; } = Path.GetInvalidPathChars( );
+        public char[ ] InvalidPathChars { get; } = System.IO.Path.GetInvalidPathChars( );
 
         /// <summary>
         /// Gets the invalid namehar.
@@ -123,7 +123,7 @@ namespace BudgetExecution
         /// <value>
         /// The invalid namehar.
         /// </value>
-        public char[ ] InvalidNameChars { get; } = Path.GetInvalidFileNameChars( );
+        public char[ ] InvalidNameChars { get; } = System.IO.Path.GetInvalidFileNameChars( );
 
         /// <summary>
         /// Initializes a new instance 
@@ -141,7 +141,7 @@ namespace BudgetExecution
         protected PathBase( string input )
         {
             Buffer = input;
-            FullPath = Path.GetFullPath( input );
+            FullPath = System.IO.Path.GetFullPath( input );
             FileInfo = new FileInfo( FullPath );
             FileName = FileInfo.Name;
             FullName = FileInfo.FullName;
@@ -199,7 +199,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _file = Path.GetFullPath( Buffer );
+                string _file = System.IO.Path.GetFullPath( Buffer );
 
                 if( !string.IsNullOrEmpty( _file )
                     && System.IO.File.Exists( _file ) )
@@ -258,11 +258,12 @@ namespace BudgetExecution
         {
             try
             {
-                string _path = Path.GetFullPath( Buffer );
+                string _path = System.IO.Path.GetFullPath( Buffer );
 
-                return !string.IsNullOrEmpty( _path ) && System.IO.File.Exists( _path )
-                    ? new FileInfo( _path )?.Create( )
-                    : default( FileStream );
+                return !string.IsNullOrEmpty( _path ) 
+                    && System.IO.File.Exists( _path ) 
+                        ? new FileInfo( _path )?.Create( ) 
+                        : default( FileStream );
             }
             catch( Exception ex )
             {
@@ -282,7 +283,7 @@ namespace BudgetExecution
             try
             {
                 return !string.IsNullOrEmpty( Buffer )
-                    ? Path.GetFullPath( Buffer )
+                    ? System.IO.Path.GetFullPath( Buffer )
                     : string.Empty;
             }
             catch( Exception ex )

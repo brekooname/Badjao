@@ -9,7 +9,6 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
     using OfficeOpenXml;
@@ -228,7 +227,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FilePath = Path.GetFileName( filePath );
+                    FilePath = System.IO.Path.GetFileName( filePath );
                 }
                 catch( Exception e )
                 {
@@ -249,7 +248,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FilePath = Path.GetFileNameWithoutExtension( filePath );
+                    FilePath = System.IO.Path.GetFileNameWithoutExtension( filePath );
                 }
                 catch( Exception e )
                 {
@@ -268,7 +267,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _path = Path.GetExtension( filePath );
+                string _path = System.IO.Path.GetExtension( filePath );
 
                 if( _path != null )
                 {

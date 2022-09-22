@@ -116,7 +116,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _name = Path.GetFileName( path );
+                    string _name = System.IO.Path.GetFileName( path );
                     Bitmap _image = new Bitmap( path );
 
                     if( _image != null )
@@ -145,7 +145,7 @@ namespace BudgetExecution
                     {
                         if( System.IO.File.Exists( _file ) )
                         {
-                            string _name = Path.GetFileName( _file );
+                            string _name = System.IO.Path.GetFileName( _file );
                             Bitmap _image = new Bitmap( _file );
 
                             if( _image != null )

@@ -146,7 +146,7 @@ namespace BudgetExecution
         /// Gets the parent.
         /// </summary>
         /// <returns></returns>
-        string GetParentFolder( );
+        string GetParentDirectory( );
 
         /// <summary>
         /// Gets the base stream.

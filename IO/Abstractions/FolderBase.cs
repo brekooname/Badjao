@@ -115,9 +115,9 @@ namespace BudgetExecution
         protected FolderBase( string input )
         {
             Buffer = input;
-            FullPath = Path.GetFullPath( input );
+            FullPath = System.IO.Path.GetFullPath( input );
             DirectoryInfo = new DirectoryInfo( FullPath );
-            Name = Path.GetDirectoryName( input );
+            Name = System.IO.Path.GetDirectoryName( input );
             FullName = DirectoryInfo.FullName;
             Created = DirectoryInfo.CreationTime;
             Modified = DirectoryInfo.LastWriteTime;

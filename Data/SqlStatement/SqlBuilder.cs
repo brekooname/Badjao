@@ -133,7 +133,7 @@ namespace BudgetExecution
 
                     if( !string.IsNullOrEmpty( _output ) )
                     {
-                        string _name = Path.GetFileNameWithoutExtension( file );
+                        string _name = System.IO.Path.GetFileNameWithoutExtension( file );
                         _repository.Add( _name, _output );
                     }
                 }

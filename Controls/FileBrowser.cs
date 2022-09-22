@@ -211,7 +211,7 @@ namespace BudgetExecution
                     {
                         List<string> _first = Directory.EnumerateFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
-                            ?.Select( f => Path.GetFullPath( f ) )?.ToList( );
+                            ?.Select( f =>System.IO. Path.GetFullPath( f ) )?.ToList( );
 
                         _list.AddRange( _first );
 
@@ -223,7 +223,7 @@ namespace BudgetExecution
                             {
                                 List<string> _second = Directory.EnumerateFiles( dir )
                                     ?.Where( s => s.EndsWith( FileExtension ) )
-                                    ?.Select( s => Path.GetFullPath( s ) )?.ToList( );
+                                    ?.Select( s => System.IO.Path.GetFullPath( s ) )?.ToList( );
 
                                 _list.AddRange( _second );
 
@@ -233,7 +233,7 @@ namespace BudgetExecution
                                 {
                                     List<string> _last = Directory.EnumerateFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
-                                        ?.Select( l => Path.GetFullPath( l ) )?.ToList( );
+                                        ?.Select( l => System.IO.Path.GetFullPath( l ) )?.ToList( );
 
                                     _list.AddRange( _last );
                                 }

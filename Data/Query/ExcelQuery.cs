@@ -194,7 +194,7 @@ namespace BudgetExecution
                 {
                     using( ExcelPackage _excelPackage = ReadExcelFile( filePath ) )
                     {
-                        string _name = Path.GetFileNameWithoutExtension( filePath );
+                        string _name = System.IO.Path.GetFileNameWithoutExtension( filePath );
 
                         ExcelWorksheet _excelWorksheet =
                             _excelPackage?.Workbook?.Worksheets?.Add( _name );
@@ -352,7 +352,7 @@ namespace BudgetExecution
 
                     string _connectionString =
                         $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
-                                Path.GetDirectoryName( fileName )
+                                System.IO.Path.GetDirectoryName( fileName )
                             };" + @"Extended Properties='Text;HDR=YES;FMT=Delimited'";
 
                     OleDbConnection _connection = new OleDbConnection( _connectionString );
@@ -364,7 +364,7 @@ namespace BudgetExecution
                     {
                         if( !SheetExists( sheetName, _schema ) )
                         {
-                            string _msg = $"{sheetName} in {fileName} Does Not Exist!";
+                            string _msg = $"{ sheetName } in { fileName } Does Not Exist!";
                             Message _message = new Message( _msg );
                             _message?.ShowDialog( );
                         }

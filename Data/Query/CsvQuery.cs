@@ -210,7 +210,7 @@ namespace BudgetExecution
 
                         string _connectionString =
                             $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
-                                    Path.GetDirectoryName( sheetName )
+                                    System.IO.Path.GetDirectoryName( sheetName )
                                 };" + "Extended Properties='Text;HDR=YES;FMT=Delimited'";
 
                         using( OleDbConnection _connection =
@@ -279,7 +279,7 @@ namespace BudgetExecution
 
                         string _connectionString =
                             $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
-                                    Path.GetDirectoryName( fileName )
+                                    System.IO.Path.GetDirectoryName( fileName )
                                 };Extended Properties='Text;HDR=YES;FMT=Delimited'";
 
                         using( OleDbConnection _connection =
@@ -343,7 +343,7 @@ namespace BudgetExecution
                 {
                     using( ExcelPackage _excelPackage = CreateCsvFile( filePath ) )
                     {
-                        string _withoutExtension = Path.GetFileNameWithoutExtension( filePath );
+                        string _withoutExtension = System.IO.Path.GetFileNameWithoutExtension( filePath );
 
                         ExcelWorksheet _excelWorksheet =
                             _excelPackage.Workbook.Worksheets.Add( _withoutExtension );

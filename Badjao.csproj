@@ -871,6 +871,7 @@
     <Compile Include="Controls\LookupDialog.Designer.cs">
       <DependentUpon>LookupDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Path.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>

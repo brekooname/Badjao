@@ -116,7 +116,7 @@ namespace BudgetExecution
         protected FileBase( string input )
         {
             Buffer = input;
-            FullPath = Path.GetFullPath( input );
+            FullPath = System.IO.Path.GetFullPath( input );
             FileInfo = new FileInfo( FullPath );
             Name = FileInfo.Name;
             FullPath = FileInfo.FullName;
@@ -176,7 +176,7 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( Buffer ) )
                 {
-                    string _file = Path.GetFullPath( Buffer );
+                    string _file = System.IO.Path.GetFullPath( Buffer );
 
                     if( !string.IsNullOrEmpty( _file )
                         && System.IO.File.Exists( _file ) )
@@ -238,7 +238,7 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( Buffer ) )
                 {
-                    string _path = Path.GetFullPath( Buffer );
+                    string _path = System.IO.Path.GetFullPath( Buffer );
 
                     return !string.IsNullOrEmpty( _path ) && System.IO.File.Exists( _path )
                         ? new FileInfo( _path )?.Create( )

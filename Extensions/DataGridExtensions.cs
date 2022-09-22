@@ -8,7 +8,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -288,7 +287,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, fileName );
+                    string _path = 
+                        System.IO.Path.Combine( AppDomain.CurrentDomain.BaseDirectory, fileName );
 
                     if( !string.IsNullOrEmpty( _path ) )
                     {

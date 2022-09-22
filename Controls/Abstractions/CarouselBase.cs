@@ -331,7 +331,7 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && System.IO.File.Exists( _paths[ i ] ) )
                     {
-                        string _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
+                        string _name = System.IO.Path.GetFileNameWithoutExtension( _paths[ i ] );
 
                         using( FileStream _stream = System.IO.File.Open( _paths[ i ], FileMode.Open ) )
                         {

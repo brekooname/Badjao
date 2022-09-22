@@ -27,7 +27,7 @@ namespace BudgetExecution
         /// <value>
         /// The dir sep.
         /// </value>
-        public char DirSep { get; } = Path.DirectorySeparatorChar;
+        public char DirSep { get; } = System.IO.Path.DirectorySeparatorChar;
 
         /// <summary>
         /// Gets the path sep.
@@ -35,7 +35,7 @@ namespace BudgetExecution
         /// <value>
         /// The path sep.
         /// </value>
-        public char PathSep { get; } = Path.PathSeparator;
+        public char PathSep { get; } = System.IO.Path.PathSeparator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="File"/> class.
@@ -174,7 +174,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _input = Path.GetFullPath( Buffer );
+                    string _input = System.IO.Path.GetFullPath( Buffer );
 
                     if( !string.IsNullOrEmpty( _input )
                         && System.IO.File.Exists( _input ) )
@@ -205,43 +205,27 @@ namespace BudgetExecution
         }
         
         /// <summary>
-        /// Gets the full path.
-        /// </summary>
-        /// <returns></returns>
-        public string GetFilePath( )
-        {
-            try
-            {
-                string _input = Path.GetFullPath( Buffer );
-
-                return !string.IsNullOrEmpty( _input )
-                    ? _input
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
-        }
-
-        /// <summary>
         /// Gets the parent.
         /// </summary>
         /// <returns></returns>
-        public string GetParentFolder( )
+        public string GetParentDirectory( )
         {
-            try
+            if( !string.IsNullOrEmpty( Buffer ) )
             {
-                return CheckParent( )
-                    ? Directory.GetParent( Buffer )?.FullName
-                    : string.Empty;
+                try
+                {
+                    return CheckParent( )
+                        ? Directory.GetParent( Buffer )?.FullName
+                        : string.Empty;
+                }
+                catch( IOException ex )
+                {
+                    Fail( ex );
+                    return string.Empty;
+                }
             }
-            catch( IOException ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
+
+            return string.Empty;
         }
 
         /// <summary>
@@ -253,7 +237,10 @@ namespace BudgetExecution
             try
             {
                 OpenFileDialog _dialog = new OpenFileDialog
-                    { CheckFileExists = true, CheckPathExists = true };
+                {
+                    CheckFileExists = true, 
+                    CheckPathExists = true
+                };
 
                 return _dialog.FileName;
             }

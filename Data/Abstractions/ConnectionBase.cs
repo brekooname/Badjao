@@ -9,7 +9,6 @@ namespace BudgetExecution
     using System.Configuration;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
-    using System.IO;
     using System.Linq;
 
     /// <summary>
@@ -109,8 +108,8 @@ namespace BudgetExecution
             TableName = source.ToString( );
             ConnectionString = GetConnectionString( provider );
             FilePath = GetDbClientPath( provider );
-            PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
-            FileName = Path.GetFileNameWithoutExtension( FilePath );
+            PathExtension = System.IO.Path.GetExtension( FilePath )?.Replace( ".", "" );
+            FileName = System.IO.Path.GetFileNameWithoutExtension( FilePath );
 
             if( !string.IsNullOrEmpty( PathExtension ) )
             {
@@ -127,9 +126,9 @@ namespace BudgetExecution
         {
             Source = Source.External;
             FilePath = fullPath;
-            FileName = Path.GetFileNameWithoutExtension( fullPath );
+            FileName = System.IO.Path.GetFileNameWithoutExtension( fullPath );
             TableName = FileName;
-            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+            PathExtension = System.IO.Path.GetExtension( fullPath )?.Replace( ".", "" );
 
             if( PathExtension != null )
             {
@@ -149,9 +148,9 @@ namespace BudgetExecution
         {
             Source = Source.External;
             FilePath = fullPath;
-            FileName = Path.GetFileNameWithoutExtension( fullPath );
+            FileName = System.IO.Path.GetFileNameWithoutExtension( fullPath );
             TableName = FileName;
-            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
+            PathExtension = System.IO.Path.GetExtension( fullPath )?.Replace( ".", "" );
 
             if( PathExtension != null )
             {
@@ -231,7 +230,7 @@ namespace BudgetExecution
             try
             {
                 return !string.IsNullOrEmpty( filePath ) && System.IO.File.Exists( filePath )
-                    ? Path.GetFullPath( filePath )
+                    ? System.IO.Path.GetFullPath( filePath )
                     : default( string );
             }
             catch( Exception ex )
@@ -248,11 +247,11 @@ namespace BudgetExecution
         public virtual string GetDbClientPath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && Path.HasExtension( filePath ) )
+                && System.IO.Path.HasExtension( filePath ) )
             {
                 try
                 {
-                    string _file = Path.GetExtension( filePath )?.Replace( ".", "" );
+                    string _file = System.IO.Path.GetExtension( filePath )?.Replace( ".", "" );
 
                     if( !string.IsNullOrEmpty( _file ) )
                     {
@@ -313,11 +312,11 @@ namespace BudgetExecution
         {
             if( !string.IsNullOrEmpty( filePath )
                 && System.IO.File.Exists( filePath )
-                && Path.HasExtension( filePath ) )
+                && System.IO.Path.HasExtension( filePath ) )
             {
                 try
                 {
-                    string _file = Path.GetExtension( filePath );
+                    string _file = System.IO.Path.GetExtension( filePath );
 
                     if( _file != null )
                     {
@@ -326,7 +325,7 @@ namespace BudgetExecution
 
                         if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
-                            string _connectionString = ConnectionPath[ $"{_ext}" ].ConnectionString;
+                            string _connectionString = ConnectionPath[ $"{ _ext }" ].ConnectionString;
 
                             return !string.IsNullOrEmpty( _connectionString )
                                 ? _connectionString
