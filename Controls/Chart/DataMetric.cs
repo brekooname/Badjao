@@ -244,10 +244,12 @@ namespace BudgetExecution
         {
             try
             {
-                Dictionary<string, double> _stats = new Dictionary<string, double>( );
-                _stats.Add( "COUNT", Count );
-                _stats.Add( "TOTAL", Total );
-                _stats.Add( "AVERAGE", Average );
+                Dictionary<string, double> _stats = new Dictionary<string, double>
+                {
+                    { "COUNT", Count },
+                    { "TOTAL", Total },
+                    { "AVERAGE", Average }
+                };
 
                 return _stats?.Any( ) == true
                     ? _stats
