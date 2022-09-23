@@ -668,7 +668,6 @@
     <Compile Include="Data\Adapter\AdapterBuilder.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Data\Adapter\AdapterFactory.cs" />
     <Compile Include="Interfaces\IAdapter.cs" />
     <Compile Include="Data\Command\CommandBuilder.cs" />
     <Compile Include="Data\Command\CommandFactory.cs" />

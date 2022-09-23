@@ -101,43 +101,31 @@ namespace BudgetExecution
         /// <param name="numeric">The numeric.</param>
         protected MetricBase( BindingSource bindingSource, Numeric numeric = Numeric.Amount )
         {
-            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
-
-            Source = (Source)Enum.Parse( typeof( Source ),
-                ( (DataTable)bindingSource.DataSource ).TableName );
-
+            Source = (Source)Enum.Parse( typeof( Source ), TableName );
             Numeric = numeric;
-
-            Total = CalculateTotal(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-
-            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ),
-                numeric );
-
-            Average = CalculateAverage(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Total = CalculateTotal( Data, numeric );
+            Count = GetCount( Data, numeric );
+            Average = CalculateAverage( Data, numeric );
         }
 
-        protected MetricBase( BindingSource bindingSource, IDictionary<string, object> dict,
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MetricBase"/> class.
+        /// </summary>
+        /// <param name="bindingSource">The binding source.</param>
+        /// <param name="where">The dictionary.</param>
+        /// <param name="numeric">The numeric.</param>
+        protected MetricBase( BindingSource bindingSource, IDictionary<string, object> where,
             Numeric numeric = Numeric.Amount )
         {
-            Data = ( (DataTable)bindingSource.DataSource ).Select( dict.ToCriteria( ) );
+            Data = ( (DataTable)bindingSource.DataSource ).Select( where.ToCriteria( ) );
             TableName = ( (DataTable)bindingSource.DataSource ).TableName;
-
-            Source = (Source)Enum.Parse( typeof( Source ),
-                ( (DataTable)bindingSource.DataSource ).TableName );
-
+            Source = (Source)Enum.Parse( typeof( Source ), TableName );
             Numeric = numeric;
-
-            Total = CalculateTotal(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
-
-            Count = GetCount( ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ),
-                numeric );
-
-            Average = CalculateAverage(
-                ( (DataTable)bindingSource.DataSource ).AsEnumerable( )?.ToList( ), numeric );
+            Total = CalculateTotal( Data, numeric );
+            Count = GetCount( Data, numeric );
+            Average = CalculateAverage( Data, numeric );
         }
 
         /// <summary>
@@ -160,12 +148,12 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="MetricBase"/> class.
         /// </summary>
         /// <param name="dataTable">The data table.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <param name="numeric">The numeric.</param>
-        protected MetricBase( DataTable dataTable, IDictionary<string, object> dict,
+        protected MetricBase( DataTable dataTable, IDictionary<string, object> where,
             Numeric numeric = Numeric.Amount )
         {
-            Data = dataTable.Select( dict.ToCriteria( ) );
+            Data = dataTable.Select( where.ToCriteria( ) );
             TableName = dataTable.TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataTable.TableName );
             Numeric = numeric;
@@ -190,11 +178,11 @@ namespace BudgetExecution
             Average = CalculateAverage( dataRow, numeric );
         }
 
-        protected MetricBase( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict,
+        protected MetricBase( IEnumerable<DataRow> dataRow, IDictionary<string, object> where,
             Numeric numeric = Numeric.Amount )
         {
             Numeric = numeric;
-            Data = dataRow.Filter( dict );
+            Data = dataRow.Filter( where );
             TableName = dataRow.CopyToDataTable( ).TableName;
             Source = (Source)Enum.Parse( typeof( Source ), dataRow.CopyToDataTable( ).TableName );
             Count = Data.Count( );
@@ -220,8 +208,10 @@ namespace BudgetExecution
 
                     if( _columns?.Contains( dataMember ) == true )
                     {
-                        string[ ] _query = dataRow?.Select( p => p.Field<string>( dataMember ) )
-                            ?.Distinct( )?.ToArray( );
+                        string[ ] _query = dataRow
+                            ?.Select( p => p.Field<string>( dataMember ) )
+                            ?.Distinct( )
+                            ?.ToArray( );
 
                         return _query?.Any( ) == true
                             ? _query
@@ -251,7 +241,8 @@ namespace BudgetExecution
                 try
                 {
                     IEnumerable<DataRow> _select = dataRow
-                        ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )?.Select( p => p );
+                        ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.Select( p => p );
 
                     return _select?.Any( ) == true
                         ? _select.Count( )
@@ -309,8 +300,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    decimal? _query = dataRow.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
-                        ?.Select( p => p.Field<decimal>( $"{numeric}" ) )?.Average( );
+                    decimal? _query = dataRow
+                        .Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.Select( p => p.Field<decimal>( $"{numeric}" ) )
+                        ?.Average( );
 
                     return _query > 0
                         ? double.Parse( _query?.ToString( "N1" ) )

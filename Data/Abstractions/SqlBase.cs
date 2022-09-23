@@ -72,7 +72,7 @@ namespace BudgetExecution
         /// <summary>
         /// The provider path
         /// </summary>
-        public string DbClientPath { get; set; }
+        public string DbPath { get; set; }
 
         /// <summary>
         /// The file name
@@ -102,7 +102,7 @@ namespace BudgetExecution
         /// <param name="commandType">Type of the command.</param>
         public SqlBase( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
         {
-            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
             CommandType = commandType;
             Source = source;
             TableName = source.ToString( );
@@ -119,7 +119,7 @@ namespace BudgetExecution
         /// <param name="sqlText">The SQL text.</param>
         public SqlBase( Source source, Provider provider, string sqlText )
         {
-            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
             Source = source;
             TableName = source.ToString( );
             Provider = provider;
@@ -137,7 +137,7 @@ namespace BudgetExecution
         public SqlBase( Source source, Provider provider, string sqlText,
             SQL commandType = SQL.SELECT )
         {
-            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
             Source = source;
             TableName = source.ToString( );
             Provider = provider;
@@ -152,31 +152,31 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name = "dict" > </param>
+        /// <param name = "where" > </param>
         /// <param name = "commandType" > </param>
-        public SqlBase( Source source, Provider provider, IDictionary<string, object> dict,
+        public SqlBase( Source source, Provider provider, IDictionary<string, object> where,
             SQL commandType = SQL.SELECTALL )
         {
-            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
             CommandType = commandType;
             Source = source;
             Provider = provider;
             TableName = Source.ToString( );
             Updates = null;
-            Criteria = dict;
+            Criteria = where;
             Columns = null;
         }
 
         public SqlBase( Source source, Provider provider, IDictionary<string, object> updates,
-            IDictionary<string, object> criteria, SQL commandType = SQL.UPDATE )
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
-            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
             CommandType = commandType;
             Source = source;
             Provider = provider;
             TableName = Source.ToString( );
             Updates = updates;
-            Criteria = criteria;
+            Criteria = where;
             Columns = updates.Keys;
         }
 
@@ -186,18 +186,18 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="columns">The columns.</param>
-        /// <param name="criteria">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         public SqlBase( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
         {
-            DbClientPath = new ConnectionBuilder( source, provider ).DbPath;
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
             CommandType = commandType;
             Source = source;
             Provider = provider;
             TableName = Source.ToString( );
             Updates = null;
-            Criteria = criteria;
+            Criteria = where;
             Columns = columns;
         }
 
@@ -215,11 +215,11 @@ namespace BudgetExecution
 
                     foreach( string col in Columns )
                     {
-                        _columns += $"{col}, ";
+                        _columns += $"{ col }, ";
                     }
 
                     string _cols = _columns.TrimEnd( ", ".ToCharArray( ) );
-                    return $"SELECT {_cols} FROM {Source} WHERE {Criteria.ToCriteria( )};";
+                    return $"SELECT { _cols } FROM { Source } WHERE { Criteria.ToCriteria( ) };";
                 }
                 catch( Exception ex )
                 {
@@ -230,12 +230,12 @@ namespace BudgetExecution
             else if( Columns == null
                 && Criteria?.Any( ) == true )
             {
-                return $"SELECT * FROM {Source} WHERE {Criteria.ToCriteria( )};";
+                return $"SELECT * FROM { Source } WHERE { Criteria.ToCriteria( ) };";
             }
             else if( Columns == null
                 && Criteria == null )
             {
-                return $"SELECT * FROM {Source};";
+                return $"SELECT * FROM { Source };";
             }
 
             return default( string );
@@ -253,7 +253,7 @@ namespace BudgetExecution
                 try
                 {
                     string _criteria = dict.ToCriteria( );
-                    return $"SELECT * FROM {Source} WHERE {_criteria};";
+                    return $"SELECT * FROM { Source } WHERE { _criteria };";
                 }
                 catch( Exception ex )
                 {
@@ -289,7 +289,7 @@ namespace BudgetExecution
 
                     string _criteria = dict.ToCriteria( );
                     string _columns = _cols.TrimEnd( ", ".ToCharArray( ) );
-                    return $"SELECT {_columns} FROM {Source} WHERE {_criteria};";
+                    return $"SELECT { _columns } FROM { Source } WHERE { _criteria} ;";
                 }
                 catch( Exception ex )
                 {
@@ -321,20 +321,20 @@ namespace BudgetExecution
                     {
                         foreach( KeyValuePair<string, object> kvp in updates )
                         {
-                            _update += $"{kvp.Key} = '{kvp.Value}'";
+                            _update += $"{ kvp.Key } = '{ kvp.Value }'";
                         }
                     }
                     else if( updates.Count == 1 )
                     {
                         foreach( KeyValuePair<string, object> kvp in updates )
                         {
-                            _update += $"{kvp.Key} = '{kvp.Value}', ";
+                            _update += $"{ kvp.Key } = '{ kvp.Value }', ";
                         }
                     }
 
                     string _criteria = where.ToCriteria( );
                     string _values = _update.TrimEnd( ", ".ToCharArray( ) );
-                    return $"{SQL.UPDATE} {Source} SET {_values} WHERE {_criteria};";
+                    return $"{ SQL.UPDATE } { Source } SET { _values } WHERE { _criteria };";
                 }
                 catch( Exception ex )
                 {
@@ -362,14 +362,15 @@ namespace BudgetExecution
 
                     foreach( KeyValuePair<string, object> kvp in dict )
                     {
-                        _column += $"{kvp.Key}, ";
-                        _values += $"{kvp.Value}, ";
+                        _column += $"{ kvp.Key }, ";
+                        _values += $"{ kvp.Value }, ";
                     }
 
                     string values =
-                        $"({_column.TrimEnd( ", ".ToCharArray( ) )}) VALUES ({_values.TrimEnd( ", ".ToCharArray( ) )})";
+                        $"({ _column.TrimEnd( ", ".ToCharArray( ) ) })" +
+                        $" VALUES ({ _values.TrimEnd( ", ".ToCharArray( ) ) })";
 
-                    return $"{SQL.INSERT} INTO {Source} {values};";
+                    return $"{ SQL.INSERT } INTO { Source } { values} ;";
                 }
                 catch( Exception ex )
                 {
@@ -396,11 +397,11 @@ namespace BudgetExecution
 
                     foreach( KeyValuePair<string, object> kvp in dict )
                     {
-                        _columns += $" {kvp.Key} = '{kvp.Value}' AND";
+                        _columns += $" { kvp.Key } = '{ kvp.Value }' AND";
                     }
 
                     string _values = _columns.TrimEnd( " AND".ToCharArray( ) );
-                    return $"{SQL.DELETE} FROM {Source} WHERE {_values};";
+                    return $"{ SQL.DELETE } FROM { Source } WHERE { _values };";
                 }
                 catch( Exception ex )
                 {

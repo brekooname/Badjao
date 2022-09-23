@@ -37,6 +37,14 @@ namespace BudgetExecution
         public Source Source { get; set; }
 
         /// <summary>
+        /// Gets or sets the type of the command.
+        /// </summary>
+        /// <value>
+        /// The type of the command.
+        /// </value>
+        public SQL CommandType { get; set; }
+
+        /// <summary>
         /// The SQL statement
         /// </summary>
         public ISqlStatement SqlStatement { get; set; }
@@ -53,15 +61,32 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="sqlText">The SQL text.</param>
         /// <param name="commandType">Type of the command.</param>
-        public CommandBase( Source source, Provider provider, IDictionary<string, object> dict,
+        public CommandBase( Source source, Provider provider, string sqlText, SQL commandType )
+        {
+            Source = source;
+            Provider = provider;
+            CommandType = commandType;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( source, provider, sqlText, commandType );
+            Command = GetCommand( SqlStatement );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="where">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public CommandBase( Source source, Provider provider, IDictionary<string, object> where,
             SQL commandType = SQL.SELECTALL )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, dict, commandType );
+            SqlStatement = new SqlStatement( source, provider, where, commandType );
             Command = GetCommand( SqlStatement );
         }
 
@@ -71,15 +96,15 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="updates">The updates.</param>
-        /// <param name="criteria">The criteria.</param>
+        /// <param name="where">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
         public CommandBase( Source source, Provider provider, IDictionary<string, object> updates,
-            IDictionary<string, object> criteria, SQL commandType = SQL.UPDATE )
+            IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, updates, criteria, commandType );
+            SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
             Command = GetCommand( SqlStatement );
         }
 
@@ -89,15 +114,15 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="columns">The columns.</param>
-        /// <param name="criteria">The criteria.</param>
+        /// <param name="where">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
         public CommandBase( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECTALL )
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
+            SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
             Command = GetCommand( SqlStatement );
         }
 
@@ -128,21 +153,16 @@ namespace BudgetExecution
                     switch( sqlStatement.Provider )
                     {
                         case Provider.SQLite:
-
                         {
                             Command = GetSQLiteCommand( sqlStatement );
                             return Command;
                         }
-
                         case Provider.SqlCe:
-
                         {
                             Command = GetSQLiteCommand( sqlStatement );
                             return Command;
                         }
-
                         case Provider.SqlServer:
-
                         {
                             Command = GetSQLiteCommand( sqlStatement );
                             return Command;
@@ -152,14 +172,11 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
-
                         {
                             Command = GetOleDbCommand( sqlStatement );
                             return Command;
                         }
-
                         default:
-
                         {
                             return default( DbCommand );
                         }
@@ -195,31 +212,26 @@ namespace BudgetExecution
                     {
                         case SQL.SELECTALL:
                         case SQL.SELECT:
-
                         {
                             string _sql = sqlStatement?.GetSelectStatement( );
                             return new SQLiteCommand( _sql, _connection );
                         }
                         case SQL.INSERT:
-
                         {
                             string _sql = sqlStatement?.GetInsertStatement( );
                             return new SQLiteCommand( _sql, _connection );
                         }
                         case SQL.UPDATE:
-
                         {
                             string _sql = sqlStatement?.GetUpdateStatement( );
                             return new SQLiteCommand( _sql, _connection );
                         }
                         case SQL.DELETE:
-
                         {
                             string _sql = sqlStatement?.GetDeleteStatement( );
                             return new SQLiteCommand( _sql, _connection );
                         }
                         default:
-
                         {
                             string _sql = sqlStatement?.GetSelectStatement( );
                             return new SQLiteCommand( _sql, _connection );
@@ -257,31 +269,26 @@ namespace BudgetExecution
                         {
                             case SQL.SELECTALL:
                             case SQL.SELECT:
-
                             {
                                 string _sql = sqlStatement?.GetSelectStatement( );
                                 return new SqlCeCommand( _sql, _connection );
                             }
                             case SQL.INSERT:
-
                             {
                                 string _sql = sqlStatement?.GetInsertStatement( );
                                 return new SqlCeCommand( _sql, _connection );
                             }
                             case SQL.UPDATE:
-
                             {
                                 string _sql = sqlStatement?.GetUpdateStatement( );
                                 return new SqlCeCommand( _sql, _connection );
                             }
                             case SQL.DELETE:
-
                             {
                                 string _sql = sqlStatement?.GetDeleteStatement( );
                                 return new SqlCeCommand( _sql, _connection );
                             }
                             default:
-
                             {
                                 string _sql = sqlStatement?.GetSelectStatement( );
                                 return new SqlCeCommand( _sql, _connection );
@@ -320,32 +327,26 @@ namespace BudgetExecution
                         {
                             case SQL.SELECTALL:
                             case SQL.SELECT:
-
                             {
                                 string _sql = sqlStatement?.GetSelectStatement( );
                                 return new SqlCommand( _sql, _connection );
                             }
                             case SQL.INSERT:
-
                             {
                                 string _sql = sqlStatement?.GetInsertStatement( );
                                 return new SqlCommand( _sql, _connection );
                             }
-
                             case SQL.UPDATE:
-
                             {
                                 string _sql = sqlStatement?.GetUpdateStatement( );
                                 return new SqlCommand( _sql, _connection );
                             }
                             case SQL.DELETE:
-
                             {
                                 string _sql = sqlStatement?.GetDeleteStatement( );
                                 return new SqlCommand( _sql, _connection );
                             }
                             default:
-
                             {
                                 string _sql = sqlStatement?.GetSelectStatement( );
                                 return new SqlCommand( _sql, _connection );

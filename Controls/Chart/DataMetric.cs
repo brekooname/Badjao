@@ -63,9 +63,9 @@ namespace BudgetExecution
             Statistics = CalculateStatistics( );
         }
 
-        public DataMetric( BindingSource bindingSource, IDictionary<string, object> dict,
+        public DataMetric( BindingSource bindingSource, IDictionary<string, object> where,
             Numeric numeric = Numeric.Amount )
-            : base( bindingSource, dict, numeric )
+            : base( bindingSource, where, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
@@ -85,9 +85,9 @@ namespace BudgetExecution
             Statistics = CalculateStatistics( );
         }
 
-        public DataMetric( DataTable dataTable, IDictionary<string, object> dict,
+        public DataMetric( DataTable dataTable, IDictionary<string, object> where,
             Numeric numeric = Numeric.Amount )
-            : base( dataTable, dict, numeric )
+            : base( dataTable, where, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
@@ -111,9 +111,9 @@ namespace BudgetExecution
             Statistics = CalculateStatistics( );
         }
 
-        public DataMetric( IEnumerable<DataRow> dataRow, IDictionary<string, object> dict,
+        public DataMetric( IEnumerable<DataRow> dataRow, IDictionary<string, object> where,
             Numeric numeric = Numeric.Amount )
-            : base( dataRow, dict, numeric )
+            : base( dataRow, where, numeric )
         {
             Variance = CalculateVariance( Data, Numeric );
             Deviation = CalculateDeviation( Data, Numeric );
@@ -139,8 +139,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    decimal? _query = dataRow?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
-                        ?.StandardDeviation( p => p.Field<decimal>( $"{numeric}" ) );
+                    decimal? _query = dataRow
+                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                        ?.StandardDeviation( p => p.Field<decimal>( $"{ numeric }" ) );
 
                     return _query > 0
                         ? double.Parse( _query.ToString( ) )
@@ -178,8 +179,8 @@ namespace BudgetExecution
                 try
                 {
                     decimal? _query = _table?.AsEnumerable( )
-                        ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
-                        ?.Variance( p => p.Field<decimal>( $"{numeric}" ) );
+                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
+                        ?.Variance( p => p.Field<decimal>( $"{ numeric }" ) );
 
                     return _query > 0
                         ? double.Parse( _query.ToString( ) )
@@ -194,48 +195,7 @@ namespace BudgetExecution
 
             return default( double );
         }
-
-        /// <summary>
-        /// Calculates the statistics.
-        /// </summary>
-        /// <param name = "dataRow" >
-        /// The dataRow.
-        /// </param>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
-        public IDictionary<string, double> CalculateStatistics( IEnumerable<DataRow> dataRow,
-            Numeric numeric )
-        {
-            if( dataRow?.Any( ) == true
-                && Enum.IsDefined( typeof( Numeric ), numeric ) )
-            {
-                try
-                {
-                    if( CalculateTotal( dataRow, numeric ) > 0 )
-                    {
-                        IDictionary<string, double> _statistics =
-                            CalculateStatistics( dataRow, numeric );
-
-                        return _statistics?.Count > 0.0
-                            ? _statistics
-                            : default( IDictionary<string, double> );
-                    }
-
-                    return default( IDictionary<string, double> );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default( IDictionary<string, double> );
-                }
-            }
-
-            return default( IDictionary<string, double> );
-        }
-
+        
         /// <summary>
         /// Calculates the statistics.
         /// </summary>

@@ -19,7 +19,7 @@ namespace BudgetExecution
     /// <seealso cref="DbDataAdapter" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class AdapterBuilder : DbDataAdapter
+    public class AdapterBuilder : DbDataAdapter 
     {
         /// <summary>
         /// Gets or sets the source.
@@ -68,6 +68,12 @@ namespace BudgetExecution
         /// </value>
         public ICommandFactory CommandFactory { get; set; }
 
+        /// <summary>
+        /// Gets or sets the command text.
+        /// </summary>
+        /// <value>
+        /// The command text.
+        /// </value>
         public string CommandText { get; set; }
 
         /// <summary>
@@ -112,7 +118,6 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             CommandBuilder = new CommandBuilder( sqlStatement );
             Connection = ConnectionBuilder.Connection;
-            Connection = ConnectionBuilder.Connection;
             CommandText = sqlStatement.CommandText;
         }
 
@@ -131,29 +136,26 @@ namespace BudgetExecution
                     switch( Provider )
                     {
                         case Provider.SQLite:
-
                         {
-                            return new SQLiteDataAdapter( CommandText,
+                            return new SQLiteDataAdapter( CommandText, 
                                 Connection as SQLiteConnection );
                         }
                         case Provider.SqlCe:
-
                         {
-                            return new SqlCeDataAdapter( CommandText,
+                            return new SqlCeDataAdapter( CommandText, 
                                 Connection as SqlCeConnection );
                         }
                         case Provider.SqlServer:
-
                         {
-                            return new SqlDataAdapter( CommandText, Connection as SqlConnection );
+                            return new SqlDataAdapter( CommandText, 
+                                Connection as SqlConnection );
                         }
                         case Provider.Excel:
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
-
                         {
-                            return new OleDbDataAdapter( CommandText,
+                            return new OleDbDataAdapter( CommandText, 
                                 Connection as OleDbConnection );
                         }
                     }

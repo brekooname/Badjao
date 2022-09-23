@@ -29,15 +29,15 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
-        public CommandFactory( Source source, Provider provider, IDictionary<string, object> dict )
-            : base( source, provider, dict )
+        /// <param name="where">The dictionary.</param>
+        public CommandFactory( Source source, Provider provider, IDictionary<string, object> @where )
+            : base( source, provider, @where )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             Connection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, dict );
+            SqlStatement = new SqlStatement( source, provider, @where );
             Command = GetCommand( SqlStatement );
         }
 

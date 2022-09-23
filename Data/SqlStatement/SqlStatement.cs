@@ -65,13 +65,13 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict"></param>
+        /// <param name="where"></param>
         /// <param name="commandType"></param>
-        public SqlStatement( Source source, Provider provider, IDictionary<string, object> dict,
+        public SqlStatement( Source source, Provider provider, IDictionary<string, object> where,
             SQL commandType = SQL.SELECTALL )
-            : base( source, provider, dict, commandType )
+            : base( source, provider, where, commandType )
         {
-            CommandText = GetCommandText( dict, commandType );
+            CommandText = GetCommandText( where, commandType );
         }
 
         /// <summary>
@@ -95,12 +95,12 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
-        /// <param name="dict">The arguments.</param>
+        /// <param name="where">The arguments.</param>
         public SqlStatement( Source source, Provider provider, SQL commandType,
-            IDictionary<string, object> dict )
-            : base( source, provider, dict, commandType )
+            IDictionary<string, object> where )
+            : base( source, provider, where, commandType )
         {
-            CommandText = GetCommandText( dict, commandType );
+            CommandText = GetCommandText( where, commandType );
         }
 
         /// <summary>
@@ -109,13 +109,13 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="columns">The columns.</param>
-        /// <param name="criteria">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         public SqlStatement( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
-            : base( source, provider, columns, criteria, commandType )
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+            : base( source, provider, columns, where, commandType )
         {
-            CommandText = GetCommandText( columns, criteria, commandType );
+            CommandText = GetCommandText( columns, where, commandType );
         }
 
         /// <summary>
@@ -229,13 +229,13 @@ namespace BudgetExecution
         /// Gets the command text.
         /// </summary>
         /// <param name="columns">The columns.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        public string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> dict,
+        public string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> where,
             SQL commandType = SQL.SELECT )
         {
-            if( dict?.Any( ) == true
+            if( where?.Any( ) == true
                 && columns?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
             {
@@ -246,22 +246,22 @@ namespace BudgetExecution
                         case SQL.SELECT:
 
                         {
-                            return GetCommandText( columns, dict );
+                            return GetCommandText( columns, where );
                         }
                         case SQL.SELECTALL:
 
                         {
-                            return CreateSelectStatement( dict );
+                            return CreateSelectStatement( where );
                         }
                         case SQL.INSERT:
 
                         {
-                            return CreateInsertStatement( dict );
+                            return CreateInsertStatement( where );
                         }
                         case SQL.DELETE:
 
                         {
-                            return CreateDeleteStatement( dict );
+                            return CreateDeleteStatement( where );
                         }
                     }
                 }

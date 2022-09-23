@@ -89,11 +89,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = ConfigurationManager.AppSettings[ $"{Extension}" ];
+                    string _path = ConfigurationManager.AppSettings[ $"{ Extension }" ];
                     int _index = _path.LastIndexOf( @"\" );
                     int _size = _path.Length;
                     int _end = _size - _index;
-                    string _folder = $@"\{CommandType}";
+                    string _folder = $@"\{ CommandType }";
                     string _remove = _path?.Remove( _index, _end );
                     string _dirpath = _remove + _folder;
 

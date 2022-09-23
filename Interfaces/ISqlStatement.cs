@@ -2,6 +2,9 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ISqlStatement
     {
         /// <summary>
@@ -64,7 +67,7 @@
         /// <summary>
         /// The provider path
         /// </summary>
-        string DbClientPath { get; set; }
+        string DbPath { get; set; }
 
         /// <summary>
         /// The file name
@@ -101,10 +104,10 @@
         /// Gets the command text.
         /// </summary>
         /// <param name="columns">The columns.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
         /// <returns></returns>
-        string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> dict, SQL commandType = SQL.SELECT );
+        string GetCommandText( IEnumerable<string> columns, IDictionary<string, object> where, SQL commandType = SQL.SELECT );
 
         /// <summary>
         /// Gets the command text.
@@ -132,16 +135,16 @@
         /// <summary>
         /// Sets the select statement.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        string CreateSelectStatement( IDictionary<string, object> dict );
+        /// <param name="where">The dictionary.</param>
+        string CreateSelectStatement( IDictionary<string, object> where );
 
         /// <summary>
         /// Gets the select statement.
         /// </summary>
         /// <param name="columnNames">The column names.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <returns></returns>
-        string CreateSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> dict );
+        string CreateSelectStatement( IEnumerable<string> columnNames, IDictionary<string, object> where );
 
         /// <summary>
         /// Sets the update statement.
@@ -159,7 +162,7 @@
         /// <summary>
         /// Sets the delete statement.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        string CreateDeleteStatement( IDictionary<string, object> dict );
+        /// <param name="where">The dictionary.</param>
+        string CreateDeleteStatement( IDictionary<string, object> where );
     }
 }
