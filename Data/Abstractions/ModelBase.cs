@@ -56,7 +56,7 @@ namespace BudgetExecution
         /// Gets the fields.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, Type> GetSchemaDictionary( )
+        public IDictionary<string, Type> GetSchemaMap( )
         {
             if( Record != null )
             {

@@ -43,9 +43,9 @@ namespace BudgetExecution
         /// </summary>
         /// <param name = "source" > The source. </param>
         /// <param name = "provider" > The provider. </param>
-        /// <param name = "args" > The arguments. </param>
-        public DataBuilder( Source source, Provider provider, IDictionary<string, object> args )
-            : base( source, provider, args )
+        /// <param name = "where" > The arguments. </param>
+        public DataBuilder( Source source, Provider provider, IDictionary<string, object> where )
+            : base( source, provider, where )
         {
         }
 
@@ -81,11 +81,11 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="columns">The columns.</param>
-        /// <param name="criteria">The criteria.</param>
+        /// <param name="where">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
         public DataBuilder( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
-            : base( source, provider, columns, criteria, commandType )
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+            : base( source, provider, columns, where, commandType )
         {
         }
 
@@ -136,15 +136,15 @@ namespace BudgetExecution
         /// <summary>
         /// Filters the data.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <returns></returns>
-        public IEnumerable<DataRow> FilterData( IDictionary<string, object> dict )
+        public IEnumerable<DataRow> FilterData( IDictionary<string, object> where )
         {
-            if( dict?.Any( ) == true )
+            if( where?.Any( ) == true )
             {
                 try
                 {
-                    string _criteria = dict.ToCriteria( );
+                    string _criteria = where.ToCriteria( );
                     DataRow[ ] _data = DataTable?.Select( _criteria );
 
                     return _data?.Length > 0
@@ -178,7 +178,7 @@ namespace BudgetExecution
                 try
                 {
                     IEnumerable<DataRow> _query = dataRows
-                        ?.Where( p => p.Field<string>( $"{name}" ).Equals( value ) )
+                        ?.Where( p => p.Field<string>( name  ).Equals( value ) )
                         ?.Select( p => p );
 
                     return _query?.Any( ) == true
@@ -214,7 +214,7 @@ namespace BudgetExecution
                     DataTable _dataTable = dataRows.CopyToDataTable( );
                     DataColumnCollection _columns = _dataTable?.Columns;
 
-                    Dictionary<string, IEnumerable<string>> _dict =
+                    Dictionary<string, IEnumerable<string>> _dictionary =
                         new Dictionary<string, IEnumerable<string>>( );
 
                     IEnumerable<string> _values = GetValues( dataRows, name, value );
@@ -228,12 +228,12 @@ namespace BudgetExecution
                             if( !string.IsNullOrEmpty( _columnName )
                                 && _columns[ i ]?.DataType == typeof( string ) )
                             {
-                                _dict.Add( _columns[ i ].ColumnName, _values );
+                                _dictionary.Add( _columns[ i ].ColumnName, _values );
                             }
                         }
 
-                        return _dict?.Any( ) == true
-                            ? _dict
+                        return _dictionary?.Any( ) == true
+                            ? _dictionary
                             : default( Dictionary<string, IEnumerable<string>> );
                     }
 

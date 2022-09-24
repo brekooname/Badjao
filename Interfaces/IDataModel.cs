@@ -1,4 +1,8 @@
-﻿namespace BudgetExecution
+﻿// <copyright file = "IDataModel.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
+
+namespace BudgetExecution
 {
     using System.Collections.Generic;
     using System.Data;
@@ -11,10 +15,10 @@
         /// <summary>
         /// Filters the data.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <returns></returns>
-        IEnumerable<DataRow> FilterData( IDictionary<string, object> dict );
-        
+        IEnumerable<DataRow> FilterData( IDictionary<string, object> where );
+
         /// <summary>
         /// The program elements
         /// </summary>
@@ -97,18 +101,12 @@
         /// </summary>
         /// <returns></returns>
         IEnumerable<int> GetColumnOrdinals( );
-        
-        /// <summary>
-        /// Gets the elements.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<IElement> GetElements( );
 
         /// <summary>
         /// Gets the columns.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DataColumn> GetDataColumns(  );
+        IEnumerable<DataColumn> GetDataColumns( );
 
         /// <summary>
         /// Gets the Data.
@@ -127,7 +125,7 @@
         /// </summary>
         /// <returns></returns>
         DataSet GetDataSet( );
-        
+
         /// <summary>
         /// Sets the column captions.
         /// </summary>
