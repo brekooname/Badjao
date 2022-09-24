@@ -71,46 +71,39 @@ namespace BudgetExecution
             IEnumerable<DataColumn> dataColumns )
         {
             if( !string.IsNullOrEmpty( tableName )
-                && Verify.IsSequence( dataColumns ) )
+                && dataColumns?.Any( ) == true )
             {
                 try
                 {
                     string _sql = $"CREATE TABLE { tableName }";
 
-                    if( Validate.IsProvider( Provider )
+                    if( Enum.IsDefined( typeof( Provider ), Provider )
                         && !string.IsNullOrEmpty( _sql ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
-
                             case Provider.SqlCe:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
-
                             case Provider.SqlServer:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
-
                             case Provider.Excel:
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -207,34 +200,27 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
-
                             case Provider.SqlCe:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
-
                             case Provider.SqlServer:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
-
                             case Provider.Excel:
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -276,34 +262,27 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
-
                             case Provider.SqlCe:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
-
                             case Provider.SqlServer:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
-
                             case Provider.Excel:
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
