@@ -706,17 +706,17 @@
     <Compile Include="Data\Abstractions\DataConfig.cs" />
     <Compile Include="Interfaces\IDataAccess.cs" />
     <Compile Include="Interfaces\IDataSchema.cs" />
-    <Compile Include="Data\Map\Amount.cs" />
-    <Compile Include="Data\Map\Arg.cs" />
-    <Compile Include="Data\Map\DataUnit.cs" />
-    <Compile Include="Data\Map\Element.cs" />
+    <Compile Include="Data\DataMap\Amount.cs" />
+    <Compile Include="Data\DataMap\Arg.cs" />
+    <Compile Include="Data\DataMap\DataUnit.cs" />
+    <Compile Include="Data\DataMap\Element.cs" />
     <Compile Include="Interfaces\IAmount.cs" />
     <Compile Include="Interfaces\IDataUnit.cs" />
     <Compile Include="Interfaces\IElement.cs" />
     <Compile Include="Interfaces\IKey.cs" />
     <Compile Include="Interfaces\IMap.cs" />
-    <Compile Include="Data\Map\Key.cs" />
-    <Compile Include="Data\Map\Map.cs" />
+    <Compile Include="Data\DataMap\Key.cs" />
+    <Compile Include="Data\DataMap\DataMap.cs" />
     <Compile Include="Data\Abstractions\UnitBase.cs" />
     <Compile Include="Data\Query\AccessQuery.cs" />
     <Compile Include="Data\Query\CsvQuery.cs" />
@@ -929,8 +929,6 @@
     </Compile>
     <Compile Include="Static\Resource.cs" />
     <Compile Include="Static\Static.cs" />
-    <Compile Include="Static\Validate.cs" />
-    <Compile Include="Static\Verify.cs" />
     <Compile Include="Interfaces\IChartConfig.cs" />
     <Compile Include="Controls\ToolStrip\ToolFactory.cs" />
     <Compile Include="Controls\ToolStrip\ToolSeparator.cs">

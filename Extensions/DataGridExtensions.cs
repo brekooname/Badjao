@@ -62,14 +62,14 @@ namespace BudgetExecution
 
                 foreach( DataGridViewRow row in dataGridView.Rows )
                 {
-                    object[ ] cellvalues = new object[ row.Cells.Count ];
+                    object[ ] _values = new object[ row.Cells.Count ];
 
-                    for( int i = 0; i < cellvalues.Length; i++ )
+                    for( int i = 0; i < _values.Length; i++ )
                     {
-                        cellvalues[ i ] = row.Cells[ i ].Value;
+                        _values[ i ] = row.Cells[ i ].Value;
                     }
 
-                    _table.Rows.Add( cellvalues );
+                    _table.Rows.Add( _values );
                 }
 
                 return _table;
@@ -336,11 +336,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( DataGridViewColumn _column in dataGridView.Columns )
+                    foreach( DataGridViewColumn column in dataGridView.Columns )
                     {
-                        if( !string.IsNullOrEmpty( dataTable.Columns[ _column.Name ].Caption ) )
+                        if( !string.IsNullOrEmpty( dataTable.Columns[ column.Name ].Caption ) )
                         {
-                            _column.HeaderText = dataTable.Columns[ _column.Name ].Caption;
+                            column.HeaderText = dataTable.Columns[ column.Name ].Caption;
                         }
                     }
                 }

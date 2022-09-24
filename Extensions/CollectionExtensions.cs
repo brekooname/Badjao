@@ -121,9 +121,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( T value in values )
+                    foreach( T _item in values )
                     {
-                        collection.Remove( value );
+                        collection.Remove( _item );
                     }
                 }
                 catch( Exception ex )
@@ -143,11 +143,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<T> list = collection?.Where( child => predicate( child ) )?.ToList( );
+                    List<T> _list = collection?.Where( child => predicate( child ) )?.ToList( );
 
-                    if( list?.Any( ) == true )
+                    if( _list?.Any( ) == true )
                     {
-                        list.ForEach( t => collection.Remove( t ) );
+                        _list.ForEach( t => collection.Remove( t ) );
                     }
                 }
                 catch( Exception ex )

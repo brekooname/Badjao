@@ -106,7 +106,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsBindable( bindinglist )
+                if( bindinglist != null
                     && dict?.Any( ) == true )
                 {
                     try

@@ -243,7 +243,7 @@ namespace BudgetExecution
         {
             try
             {
-                PrimaryKey = Validate.IsField( keyName )
+                PrimaryKey = Enum.IsDefined( typeof( PrimaryKey ), keyName )
                     ? keyName
                     : PrimaryKey.NS;
             }
@@ -262,7 +262,7 @@ namespace BudgetExecution
         {
             if( dataRow != null
                 && dataRow.ItemArray.Length > 0
-                && Validate.IsField( keyName ) )
+                && Enum.IsDefined( typeof( PrimaryKey ), keyName ) )
             {
                 try
                 {

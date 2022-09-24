@@ -70,41 +70,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// The ToEnum
-        /// </summary>
-        /// <typeparam name = "T" >
-        /// </typeparam>
-        /// <param name = "text" >
-        /// The text <see cref = "string"/>
-        /// </param>
-        /// <returns>
-        /// The <see cref = "T"/>
-        /// </returns>
-        public static T ToEnum<T>( this string text )
-            where T : struct
-        {
-            try
-            {
-                return (T)Enum.Parse( typeof( T ), text, true );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( T );
-            }
-        }
-
-        /// <summary>
         ///     A T extension method to determines whether the object is equal to any of the provided values.
         /// </summary>
-        /// <param name="this">The object to be compared.</param>
+        /// <param name = "text" > </param>
         /// <param name="values">The value list to compare with the object.</param>
         /// <returns>true if the values list contains the object, else false.</returns>
-        public static bool In( this String @this, params String[ ] values )
+        public static bool In( this string text, params string[ ] values )
         {
             try
             {
-                return Array.IndexOf( values, @this ) != -1;
+                return Array.IndexOf( values, text ) != -1;
             }
             catch( Exception ex )
             {
@@ -182,9 +157,9 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( text ) )
                 {
-                    char[ ] letters = text.ToCharArray( );
-                    letters[ 0 ] = char.ToUpper( letters[ 0 ] );
-                    return new string( letters );
+                    char[ ] _letters = text.ToCharArray( );
+                    _letters[ 0 ] = char.ToUpper( _letters[ 0 ] );
+                    return new string( _letters );
                 }
                 else
                 {
@@ -209,15 +184,21 @@ namespace BudgetExecution
         /// </returns>
         public static DateTime ToDateTime( this string text )
         {
-            try
+            if( !string.IsNullOrEmpty( text ) )
             {
-                return DateTime.Parse( text );
+                try
+                {
+                    bool _date = DateTime.TryParse( text, out DateTime _dateTime );
+                    return _date  ? _dateTime : default( DateTime );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( DateTime );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DateTime );
-            }
+
+            return default( DateTime );
         }
 
         /// <summary>
@@ -233,8 +214,8 @@ namespace BudgetExecution
         {
             try
             {
-                byte[ ] bytes = Encoding.UTF8.GetBytes( text );
-                return new MemoryStream( bytes );
+                byte[ ] _buffer = Encoding.UTF8.GetBytes( text );
+                return new MemoryStream( _buffer );
             }
             catch( Exception ex )
             {
@@ -244,15 +225,15 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        ///     A string extension method that converts the @this to a file information.
+        ///     A string extension method that converts the str to a file information.
         /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as a FileInfo.</returns>
-        public static FileInfo ToFileInfo( this string @this )
+        /// <param name = "text" > </param>
+        /// <returns>str as a FileInfo.</returns>
+        public static FileInfo ToFileInfo( this string text )
         {
             try
             {
-                return new FileInfo( @this );
+                return new FileInfo( text );
             }
             catch( Exception ex )
             {
@@ -262,15 +243,15 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        ///     A string extension method that converts the @this to a directory information.
+        ///     A string extension method that converts the str to a directory information.
         /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as a DirectoryInfo.</returns>
-        public static DirectoryInfo ToDirectoryInfo( this string @this )
+        /// <param name = "text" > </param>
+        /// <returns>str as a DirectoryInfo.</returns>
+        public static DirectoryInfo ToDirectoryInfo( this string text )
         {
             try
             {
-                return new DirectoryInfo( @this );
+                return new DirectoryInfo( text );
             }
             catch( Exception ex )
             {
@@ -280,17 +261,17 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        ///     A string extension method that converts the @this to an XmlDocument.
+        ///     A string extension method that converts the str to an XmlDocument.
         /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as an XmlDocument.</returns>
-        public static XmlDocument ToXmlDocument( this string @this )
+        /// <param name = "text" > </param>
+        /// <returns>str as an XmlDocument.</returns>
+        public static XmlDocument ToXmlDocument( this string text )
         {
             try
             {
-                XmlDocument doc = new XmlDocument( );
-                doc.LoadXml( @this );
-                return doc;
+                XmlDocument _document = new XmlDocument( );
+                _document.LoadXml( text );
+                return _document;
             }
             catch( Exception ex )
             {
@@ -300,16 +281,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        ///     A string extension method that converts the @this to a byte array.
+        ///     A string extension method that converts the str to a byte array.
         /// </summary>
-        /// <param name="this">The @this to act on.</param>
-        /// <returns>@this as a byte[].</returns>
-        public static byte[ ] ToByteArray( this string @this )
+        /// <param name="text">The str to act on.</param>
+        /// <returns>str as a byte[].</returns>
+        public static byte[ ] ToByteArray( this string text )
         {
             try
             {
-                Encoding encoding = Activator.CreateInstance<ASCIIEncoding>( );
-                return encoding.GetBytes( @this );
+                Encoding _encoding = Activator.CreateInstance<ASCIIEncoding>( );
+                return _encoding.GetBytes( text );
             }
             catch( Exception ex )
             {
@@ -329,21 +310,21 @@ namespace BudgetExecution
         /// </returns>
         public static int WordCount( this string text )
         {
-            int count = 0;
+            int _count = 0;
 
             try
             {
                 Regex re = new Regex( @"[^\text]+" );
-                MatchCollection matches = re.Matches( text );
-                count = matches.Count;
+                MatchCollection _matches = re.Matches( text );
+                _count = _matches.Count;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return count;
+                return _count;
             }
 
-            return count;
+            return _count;
         }
 
         /// <summary>
@@ -466,6 +447,27 @@ namespace BudgetExecution
             }
 
             return text;
+        }
+
+        /// <summary>
+        /// Determines whether [is valid email address].
+        /// </summary>
+        /// <param name="s">The s.</param>
+        /// <returns>
+        ///   <c>true</c> if [is valid email address] [the specified s]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsValidEmailAddress( this string s )
+        {
+            try
+            {
+                Regex _regex = new Regex( @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" );
+                return _regex.IsMatch( s );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return false;
+            }
         }
 
         /// <summary>Fails the specified ex.</summary>

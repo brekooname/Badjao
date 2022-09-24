@@ -93,7 +93,7 @@ namespace BudgetExecution
         /// <returns>
         /// A string.
         /// </returns>
-        public static string SerializeBinary<T>( this T type )
+        public static string BinarySerialize<T>( this T type )
         {
             if( type != null )
             {
@@ -126,7 +126,7 @@ namespace BudgetExecution
         /// <returns>
         /// A string.
         /// </returns>
-        public static string SerializeBinary<T>( this T type, Encoding encoding )
+        public static string BinarySerialize<T>( this T type, Encoding encoding )
         {
             if( type != null )
             {
@@ -157,7 +157,7 @@ namespace BudgetExecution
         /// <returns>
         /// The string representation of the Xml Serialization.
         /// </returns>
-        public static string SerializeXml( this object type )
+        public static string XmlSerialize<T>( this T type )
         {
             if( type != null )
             {
@@ -172,7 +172,7 @@ namespace BudgetExecution
 
                         using( StringReader _reader = new StringReader( _string ) )
                         {
-                            return _reader.ReadToEnd( );
+                            return _reader?.ReadToEnd( ) ?? String.Empty;
                         }
                     }
                 }
@@ -192,7 +192,7 @@ namespace BudgetExecution
         /// <typeparam name="T">Generic type parameter.</typeparam>
         /// <param name="type">The @type to act on.</param>
         /// <returns>A string.</returns>
-        public static string SerializeJavaScript<T>( this T type )
+        public static string JavaScriptSerialize<T>( this T type )
         {
             if( type != null )
             {

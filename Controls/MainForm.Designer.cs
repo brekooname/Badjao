@@ -42,7 +42,7 @@
             this.Selector.HighlightColor = System.Drawing.Color.SteelBlue;
             this.Selector.ImageshadeColor = System.Drawing.Color.Black;
             this.Selector.ImageSlides = true;
-            this.Selector.Location = new System.Drawing.Point(124, 97);
+            this.Selector.Location = new System.Drawing.Point(206, 163);
             this.Selector.Name = "Selector";
             this.Selector.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.Selector.PadX = 0;
@@ -70,14 +70,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BorderColor = System.Drawing.Color.SteelBlue;
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionButtonColor = System.Drawing.Color.DimGray;
-            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
-            this.CaptionFont = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaptionForeColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1188, 714);
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CaptionButtonHoverColor = System.Drawing.Color.Red;
+            this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.ClientSize = new System.Drawing.Size(1388, 763);
             this.Controls.Add(this.Selector);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.LightGray;
@@ -85,6 +85,7 @@
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Name = "MainForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.ResumeLayout(false);
 
