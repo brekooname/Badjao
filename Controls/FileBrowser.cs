@@ -141,7 +141,7 @@ namespace BudgetExecution
                         string _extension = FileExtension.TrimStart( '.' ).ToUpper( );
                         string _file = _files.Where( f => f.Contains( _extension ) )?.First( );
 
-                        using( FileStream stream = System.IO.File.Open( _file, FileMode.Open ) )
+                        using( FileStream stream = File.Open( _file, FileMode.Open ) )
                         {
                             Image _img = Image.FromStream( stream );
                             return new Bitmap( _img, 22, 22 );
@@ -211,7 +211,7 @@ namespace BudgetExecution
                     {
                         List<string> _first = Directory.EnumerateFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
-                            ?.Select( f =>System.IO. Path.GetFullPath( f ) )?.ToList( );
+                            ?.Select( f => Path.GetFullPath( f ) )?.ToList( );
 
                         _list.AddRange( _first );
 
@@ -223,7 +223,7 @@ namespace BudgetExecution
                             {
                                 List<string> _second = Directory.EnumerateFiles( dir )
                                     ?.Where( s => s.EndsWith( FileExtension ) )
-                                    ?.Select( s => System.IO.Path.GetFullPath( s ) )?.ToList( );
+                                    ?.Select( s => Path.GetFullPath( s ) )?.ToList( );
 
                                 _list.AddRange( _second );
 
@@ -233,7 +233,7 @@ namespace BudgetExecution
                                 {
                                     List<string> _last = Directory.EnumerateFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
-                                        ?.Select( l => System.IO.Path.GetFullPath( l ) )?.ToList( );
+                                        ?.Select( l => Path.GetFullPath( l ) )?.ToList( );
 
                                     _list.AddRange( _last );
                                 }

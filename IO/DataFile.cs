@@ -19,7 +19,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
-    public class File : FileBase, IFile
+    public class DataFile : FileBase, IFile
     {
         /// <summary>
         /// Gets the dir sep.
@@ -27,7 +27,7 @@ namespace BudgetExecution
         /// <value>
         /// The dir sep.
         /// </value>
-        public char DirSep { get; } = System.IO.Path.DirectorySeparatorChar;
+        public char DirSep { get; } = Path.DirectorySeparatorChar;
 
         /// <summary>
         /// Gets the path sep.
@@ -35,20 +35,20 @@ namespace BudgetExecution
         /// <value>
         /// The path sep.
         /// </value>
-        public char PathSep { get; } = System.IO.Path.PathSeparator;
+        public char PathSep { get; } = Path.PathSeparator;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="File"/> class.
+        /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
-        public File( )
+        public DataFile( )
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="File"/> class.
+        /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        public File( string input )
+        public DataFile( string input )
         {
             Buffer = input;
             FileInfo = new FileInfo( input );
@@ -126,9 +126,9 @@ namespace BudgetExecution
             try
             {
                 if( !string.IsNullOrEmpty( search )
-                    && System.IO.File.Exists( search ) )
+                    && File.Exists( search ) )
                 {
-                    using( FileStream _stream = System.IO.File.Open( search, FileMode.Open ) )
+                    using( FileStream _stream = File.Open( search, FileMode.Open ) )
                     {
                         using( StreamReader _reader = new StreamReader( _stream ) )
                         {
@@ -174,10 +174,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _input = System.IO.Path.GetFullPath( Buffer );
+                    string _input = Path.GetFullPath( Buffer );
 
                     if( !string.IsNullOrEmpty( _input )
-                        && System.IO.File.Exists( _input ) )
+                        && File.Exists( _input ) )
                     {
                         IEnumerable<string> _enumerable =
                             Directory.EnumerateFiles( _input, pattern );

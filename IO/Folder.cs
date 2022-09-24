@@ -205,7 +205,7 @@ namespace BudgetExecution
             try
             {
                 if( !string.IsNullOrEmpty( zipPath )
-                    && System.IO.File.Exists( zipPath ) )
+                    && File.Exists( zipPath ) )
                 {
                     ZipFile.ExtractToDirectory( zipPath, FullPath );
                 }

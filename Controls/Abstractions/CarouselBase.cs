@@ -294,9 +294,9 @@ namespace BudgetExecution
                 for( int i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
-                        && System.IO.File.Exists( _paths[ i ] ) )
+                        && File.Exists( _paths[ i ] ) )
                     {
-                        using( FileStream _stream = System.IO.File.Open( _paths[ i ], FileMode.Open ) )
+                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
                             Bitmap _img = new Bitmap( _stream );
                             _list?.Images?.Add( _img );
@@ -329,11 +329,11 @@ namespace BudgetExecution
                 for( int i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
-                        && System.IO.File.Exists( _paths[ i ] ) )
+                        && File.Exists( _paths[ i ] ) )
                     {
-                        string _name = System.IO.Path.GetFileNameWithoutExtension( _paths[ i ] );
+                        string _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
 
-                        using( FileStream _stream = System.IO.File.Open( _paths[ i ], FileMode.Open ) )
+                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
                             Bitmap _img = new Bitmap( _stream ) { Tag = _name };
 
@@ -366,9 +366,9 @@ namespace BudgetExecution
                 for( int i = 0; i < _list?.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _list[ i ] )
-                        && System.IO.File.Exists( _list[ i ] ) )
+                        && File.Exists( _list[ i ] ) )
                     {
-                        using( FileStream _stream = System.IO.File.Open( _list[ i ], FileMode.Open ) )
+                        using( FileStream _stream = File.Open( _list[ i ], FileMode.Open ) )
                         {
                             using( Bitmap _img = new Bitmap( _stream ) )
                             {

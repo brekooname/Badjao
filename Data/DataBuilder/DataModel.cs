@@ -301,7 +301,7 @@ namespace BudgetExecution
         public static DataTable CreateTableFromExcel( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath ) )
+                && File.Exists( filePath ) )
             {
                 try
                 {
@@ -369,13 +369,13 @@ namespace BudgetExecution
         public static DataTable CreateTableFromExcel( string filePath, bool header = true )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath ) )
+                && File.Exists( filePath ) )
             {
                 try
                 {
                     using( ExcelPackage _package = new ExcelPackage( ) )
                     {
-                        using( FileStream _stream = System.IO.File.OpenRead( filePath ) )
+                        using( FileStream _stream = File.OpenRead( filePath ) )
                         {
                             _package.Load( _stream );
                             ExcelWorksheet _worksheet = _package?.Workbook?.Worksheets?.First( );

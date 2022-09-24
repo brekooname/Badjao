@@ -126,14 +126,14 @@ namespace BudgetExecution
                 {
                     string _output;
 
-                    using( StreamReader _stream = System.IO.File.OpenText( file ) )
+                    using( StreamReader _stream = File.OpenText( file ) )
                     {
                         _output = _stream.ReadToEnd( );
                     }
 
                     if( !string.IsNullOrEmpty( _output ) )
                     {
-                        string _name = System.IO.Path.GetFileNameWithoutExtension( file );
+                        string _name = Path.GetFileNameWithoutExtension( file );
                         _repository.Add( _name, _output );
                     }
                 }

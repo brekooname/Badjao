@@ -736,7 +736,6 @@
     <Compile Include="Enumerations\BFY.cs" />
     <Compile Include="Enumerations\BOC.cs" />
     <Compile Include="Enumerations\ChartType.cs" />
-    <Compile Include="Enumerations\DataPath.cs" />
     <Compile Include="Enumerations\DataType.cs" />
     <Compile Include="Enumerations\Document.cs" />
     <Compile Include="Enumerations\EventDate.cs" />
@@ -829,7 +828,7 @@
     <Compile Include="Controls\Notification\NativeMethods.cs" />
     <Compile Include="Controls\Excel\Grid.cs" />
     <Compile Include="Controls\Excel\Heading.cs" />
-    <Compile Include="IO\File.cs" />
+    <Compile Include="IO\DataFile.cs" />
     <Compile Include="IO\Folder.cs" />
     <Compile Include="IO\Abstractions\FolderBase.cs" />
     <Compile Include="Interfaces\IFolder.cs" />
@@ -870,7 +869,8 @@
     <Compile Include="Controls\LookupDialog.Designer.cs">
       <DependentUpon>LookupDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Path.cs" />
+    <Compile Include="IO\DataPath.cs" />
+    <Compile Include="IO\IPath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>

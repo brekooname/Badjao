@@ -116,7 +116,7 @@ namespace BudgetExecution
         protected FileBase( string input )
         {
             Buffer = input;
-            FullPath = System.IO.Path.GetFullPath( input );
+            FullPath = Path.GetFullPath( input );
             FileInfo = new FileInfo( FullPath );
             Name = FileInfo.Name;
             FullPath = FileInfo.FullName;
@@ -156,7 +156,7 @@ namespace BudgetExecution
             try
             {
                 if( !string.IsNullOrEmpty( filePath )
-                    && !System.IO.File.Exists( filePath ) )
+                    && !File.Exists( filePath ) )
                 {
                     FileInfo.CopyTo( filePath );
                 }
@@ -176,12 +176,12 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( Buffer ) )
                 {
-                    string _file = System.IO.Path.GetFullPath( Buffer );
+                    string _file = Path.GetFullPath( Buffer );
 
                     if( !string.IsNullOrEmpty( _file )
-                        && System.IO.File.Exists( _file ) )
+                        && File.Exists( _file ) )
                     {
-                        System.IO.File.Delete( _file );
+                        File.Delete( _file );
                     }
                 }
             }
@@ -238,9 +238,9 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( Buffer ) )
                 {
-                    string _path = System.IO.Path.GetFullPath( Buffer );
+                    string _path = Path.GetFullPath( Buffer );
 
-                    return !string.IsNullOrEmpty( _path ) && System.IO.File.Exists( _path )
+                    return !string.IsNullOrEmpty( _path ) && File.Exists( _path )
                         ? new FileInfo( _path )?.Create( )
                         : default( FileStream );
                 }

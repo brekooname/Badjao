@@ -194,7 +194,7 @@ namespace BudgetExecution
                 {
                     using( ExcelPackage _excelPackage = ReadExcelFile( filePath ) )
                     {
-                        string _name = System.IO.Path.GetFileNameWithoutExtension( filePath );
+                        string _name = Path.GetFileNameWithoutExtension( filePath );
 
                         ExcelWorksheet _excelWorksheet =
                             _excelPackage?.Workbook?.Worksheets?.Add( _name );
@@ -352,7 +352,7 @@ namespace BudgetExecution
 
                     string _connectionString =
                         $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
-                                System.IO.Path.GetDirectoryName( fileName )
+                                Path.GetDirectoryName( fileName )
                             };" + @"Extended Properties='Text;HDR=YES;FMT=Delimited'";
 
                     OleDbConnection _connection = new OleDbConnection( _connectionString );

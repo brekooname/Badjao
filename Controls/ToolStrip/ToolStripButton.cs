@@ -487,7 +487,7 @@ namespace BudgetExecution
                     string _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
                         + $"{ToolType}.png";
 
-                    using( FileStream _stream = System.IO.File.Open( _path, FileMode.Open ) )
+                    using( FileStream _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
                         {
@@ -516,7 +516,7 @@ namespace BudgetExecution
                     string _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
                         + $"{toolType}.png";
 
-                    using( FileStream _stream = System.IO.File.Open( _path, FileMode.Open ) )
+                    using( FileStream _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
                         {

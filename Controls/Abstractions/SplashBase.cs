@@ -246,11 +246,11 @@ namespace BudgetExecution
         public virtual void ResetIcon( string path )
         {
             if( !string.IsNullOrEmpty( path )
-                && System.IO.File.Exists( path ) )
+                && File.Exists( path ) )
             {
                 try
                 {
-                    using( FileStream _stream = System.IO.File.Open( path, FileMode.Open ) )
+                    using( FileStream _stream = File.Open( path, FileMode.Open ) )
                     {
                         FormIcon = new Icon( _stream );
                     }

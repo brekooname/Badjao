@@ -112,11 +112,11 @@ namespace BudgetExecution
         public void Add( string path )
         {
             if( !string.IsNullOrEmpty( path )
-                && System.IO.File.Exists( path ) )
+                && File.Exists( path ) )
             {
                 try
                 {
-                    string _name = System.IO.Path.GetFileName( path );
+                    string _name = Path.GetFileName( path );
                     Bitmap _image = new Bitmap( path );
 
                     if( _image != null )
@@ -143,9 +143,9 @@ namespace BudgetExecution
                 {
                     foreach( string _file in paths )
                     {
-                        if( System.IO.File.Exists( _file ) )
+                        if( File.Exists( _file ) )
                         {
-                            string _name = System.IO.Path.GetFileName( _file );
+                            string _name = Path.GetFileName( _file );
                             Bitmap _image = new Bitmap( _file );
 
                             if( _image != null )
@@ -198,7 +198,7 @@ namespace BudgetExecution
                 {
                     foreach( string _file in _files )
                     {
-                        using( FileStream _stream = System.IO.File.Open( _file, FileMode.Open ) )
+                        using( FileStream _stream = File.Open( _file, FileMode.Open ) )
                         {
                             using( Bitmap _img = new Bitmap( _stream ) )
                             {
@@ -230,7 +230,7 @@ namespace BudgetExecution
 
                 for( int i = 0; i < _files.Count; i++ )
                 {
-                    using( FileStream _stream = System.IO.File.Open( _files[ i ], FileMode.Open ) )
+                    using( FileStream _stream = File.Open( _files[ i ], FileMode.Open ) )
                     {
                         using( Bitmap _img = new Bitmap( _stream ) )
                         {
