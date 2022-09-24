@@ -34,7 +34,8 @@ namespace BudgetExecution
         public static IEnumerable<DbParameter> ToSqlDbParameters( this DataRow dataRow,
             Provider provider )
         {
-            if( Verify.IsRow( dataRow )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0
                 && Enum.IsDefined( typeof( Provider ), provider ) )
             {
                 try
@@ -212,7 +213,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public static string GetField( this DataRow dataRow, Field field )
         {
-            if( Verify.IsRow( dataRow )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0
                 && Enum.IsDefined( typeof( Field ), field ) )
             {
                 string[ ] _columns = dataRow.Table?.GetColumnNames( );
@@ -243,7 +245,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public static double GetNumeric( this DataRow dataRow, Numeric numeric )
         {
-            if( Verify.IsRow( dataRow ) & Enum.IsDefined( typeof( Numeric ), numeric ) )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0 
+                && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
                 string[ ] _columns = dataRow.Table?.GetColumnNames( );
 
@@ -273,7 +277,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DateTime GetDate( this DataRow dataRow, Field field )
         {
-            if( Verify.IsRow( dataRow ) & Enum.IsDefined( typeof( Field ), field ) )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0 
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 string[ ] _columns = dataRow.Table?.GetColumnNames( );
 
@@ -304,7 +310,8 @@ namespace BudgetExecution
         /// </returns>
         public static bool HasNumeric( this DataRow dataRow )
         {
-            if( Verify.IsRow( dataRow ) )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0 )
             {
                 try
                 {

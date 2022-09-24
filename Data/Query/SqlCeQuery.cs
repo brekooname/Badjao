@@ -299,7 +299,8 @@ namespace BudgetExecution
         private bool CheckIfSheetNameExists( string sheetName, DataTable schemaTable )
         {
             if( !string.IsNullOrEmpty( sheetName )
-                && Verify.IsTable( schemaTable ) )
+                && schemaTable != null
+                && schemaTable.Columns.Count > 0 )
             {
                 for( int i = 0; i < schemaTable.Rows.Count; i++ )
                 {

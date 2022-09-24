@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
     using System.Reflection;
     using DocumentFormat.OpenXml;
     using DocumentFormat.OpenXml.Packaging;
@@ -151,7 +152,7 @@ namespace BudgetExecution
         /// </returns>
         public DataTable ListToDataTable<T>( IEnumerable<T> data )
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {

@@ -22,22 +22,6 @@ namespace BudgetExecution
     public class DataFile : FileBase, IFile
     {
         /// <summary>
-        /// Gets the dir sep.
-        /// </summary>
-        /// <value>
-        /// The dir sep.
-        /// </value>
-        public char DirSep { get; } = Path.DirectorySeparatorChar;
-
-        /// <summary>
-        /// Gets the path sep.
-        /// </summary>
-        /// <value>
-        /// The path sep.
-        /// </value>
-        public char PathSep { get; } = Path.PathSeparator;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
         public DataFile( )
@@ -48,7 +32,8 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        public DataFile( string input )
+        public DataFile( string input ) 
+            : base( input )
         {
             Buffer = input;
             FileInfo = new FileInfo( input );

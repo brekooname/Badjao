@@ -187,7 +187,8 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         public void WriteExcelFile( DataTable table, string filePath )
         {
-            if( Verify.IsTable( table )
+            if( table != null
+                && table.Columns.Count > 0
                 && !string.IsNullOrEmpty( filePath ) )
             {
                 try

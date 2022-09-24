@@ -78,7 +78,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         protected void SetOutput( IDictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {

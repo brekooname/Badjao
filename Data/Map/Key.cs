@@ -113,7 +113,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !Validate.PrimaryKey( PrimaryKey ) && Index > -1
+                return Index > -1
                     && !string.IsNullOrEmpty( Name )
                         ? Name + " = " + Index
                         : string.Empty;
@@ -208,7 +208,8 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "PossibleNullReferenceException" ) ]
         protected void SetPrimaryKey( DataRow dataRow )
         {
-            if( Verify.IsRow( dataRow ) )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0 )
             {
                 try
                 {
@@ -259,7 +260,8 @@ namespace BudgetExecution
         /// <param name="keyName">Name of the key.</param>
         protected void SetPrimaryKey( DataRow dataRow, PrimaryKey keyName )
         {
-            if( Verify.IsRow( dataRow )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0
                 && Validate.IsField( keyName ) )
             {
                 try
@@ -302,8 +304,8 @@ namespace BudgetExecution
         /// <param name="key">The key.</param>
         protected void SetIndex( DataRow dataRow, PrimaryKey key )
         {
-            if( Verify.IsSequence( dataRow?.ItemArray )
-                && Validate.PrimaryKey( key ) )
+            if( dataRow?.ItemArray.Length > 0
+                && Enum.IsDefined( typeof( PrimaryKey ), key ) )
             {
                 try
                 {

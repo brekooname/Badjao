@@ -164,7 +164,7 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         public void SetDataSource( IEnumerable<object> data )
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -186,8 +186,8 @@ namespace BudgetExecution
         public void SetDataSource<T1>( IEnumerable<T1> data, IDictionary<string, object> dict )
             where T1 : IEnumerable<DataRow>
         {
-            if( Verify.IsSequence( data )
-                && Verify.IsMap( dict ) )
+            if( data?.Any( ) == true
+                && dict?.Any( ) == true )
             {
                 try
                 {
@@ -300,7 +300,7 @@ namespace BudgetExecution
                     foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
-                            && Verify.IsRef( _kvp.Value ) )
+                            && _kvp.Value != null )
                         {
                             _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                         }

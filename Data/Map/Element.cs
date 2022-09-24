@@ -207,7 +207,7 @@ namespace BudgetExecution
         /// <param name = "field" > </param>
         protected virtual void SetName( Field field )
         {
-            if( Validate.IsField( field ) )
+            if( Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -230,7 +230,7 @@ namespace BudgetExecution
         protected virtual void SetName( DataRow dataRow, Field field )
         {
             if( dataRow != null
-                && Validate.IsField( field ) )
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -325,8 +325,9 @@ namespace BudgetExecution
         /// <param name = "field" > </param>
         protected virtual void SetField( DataRow dataRow, Field field )
         {
-            if( Verify.IsRow( dataRow )
-                && Validate.IsField( field ) )
+            if( dataRow != null
+                && dataRow.ItemArray.Length > 0
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {

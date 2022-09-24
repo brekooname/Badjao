@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <value>
         /// The name of the file.
         /// </value>
-        public virtual string FileName { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the full name.
@@ -110,6 +110,22 @@ namespace BudgetExecution
         public virtual FileSecurity FileSecurity { get; set; }
 
         /// <summary>
+        /// Gets the dir sep.
+        /// </summary>
+        /// <value>
+        /// The dir sep.
+        /// </value>
+        public char DirSep { get; } = Path.DirectorySeparatorChar;
+
+        /// <summary>
+        /// Gets the path sep.
+        /// </summary>
+        /// <value>
+        /// The path sep.
+        /// </value>
+        public char PathSep { get; } = Path.PathSeparator;
+
+        /// <summary>
         /// Gets the invalid path character.
         /// </summary>
         /// <value>
@@ -143,7 +159,7 @@ namespace BudgetExecution
             Buffer = input;
             AbsolutePath = Path.GetFullPath( input );
             FileInfo = new FileInfo( AbsolutePath );
-            FileName = FileInfo.Name;
+            Name = FileInfo.Name;
             FullPath = FileInfo.FullName;
             Extension = FileInfo.Extension;
             Length = FileInfo.Length;

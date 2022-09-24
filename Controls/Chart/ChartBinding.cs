@@ -409,7 +409,7 @@ namespace BudgetExecution
                         foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
-                                && Verify.IsRef( _kvp.Value ) )
+                                && _kvp.Value != null )
                             {
                                 _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                             }

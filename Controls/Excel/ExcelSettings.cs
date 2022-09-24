@@ -402,7 +402,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void AddComment( Grid grid, string text )
         {
-            if( Validate.IsGrid( grid )
+            if( grid != null
                 && !string.IsNullOrEmpty( text ) )
             {
                 try
@@ -438,7 +438,7 @@ namespace BudgetExecution
         /// <param name="grid">The grid.</param>
         public void SetCaptionText( Grid grid )
         {
-            if( Validate.IsGrid( grid ) )
+            if( grid != null )
             {
                 try
                 {
@@ -469,7 +469,7 @@ namespace BudgetExecution
         /// <param name="text">The text.</param>
         public void SetText( Grid grid, IEnumerable<string> text )
         {
-            if( Validate.IsGrid( grid )
+            if( grid != null
                 && text?.Any( ) == true
                 && grid.GetRange( ).Any( ) )
             {

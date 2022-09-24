@@ -137,7 +137,7 @@ namespace BudgetExecution
         /// <param name="paths">The paths.</param>
         public void Add( string[ ] paths )
         {
-            if( Verify.IsSequence( paths ) )
+            if( paths?.Any( ) == true )
             {
                 try
                 {

@@ -120,7 +120,7 @@ namespace BudgetExecution
             {
                 EnumerableRowCollection<DataRow> _dataRows = DataTable?.AsEnumerable( );
 
-                return Verify.IsRows( _dataRows )
+                return _dataRows?.Any( ) == true
                     ? _dataRows
                     : default( EnumerableRowCollection<DataRow> );
             }

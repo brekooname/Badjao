@@ -121,8 +121,8 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.IsBindable( bindingList )
-                    && Verify.IsMap( dict ) )
+                if( bindingList != null
+                    && dict?.Any( ) == true )
                 {
                     try
                     {
@@ -132,7 +132,7 @@ namespace BudgetExecution
                         foreach( KeyValuePair<string, object> kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( kvp.Key )
-                                && Verify.IsRef( kvp.Value ) )
+                                && kvp.Value != null )
                             {
                                 _filter += $"{kvp.Key} = {kvp.Value} AND";
                             }
@@ -164,7 +164,7 @@ namespace BudgetExecution
         public virtual void SetDataSource<T1>( IEnumerable<T1> data )
             where T1 : IEnumerable<T1>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -187,7 +187,7 @@ namespace BudgetExecution
             IDictionary<string, object> dict )
             where T1 : IEnumerable<T1>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -225,8 +225,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<T1>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -258,7 +258,7 @@ namespace BudgetExecution
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<T1>
         {
-            if( Verify.IsSequence( data ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -289,8 +289,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<T1>
             where T2 : IDictionary<string, object>
         {
-            if( Verify.IsSequence( data )
-                && Verify.IsMap( dict ) )
+            if( data?.Any( ) == true
+                && dict?.Any( ) == true )
             {
                 try
                 {
@@ -326,8 +326,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<T1>
             where T2 : struct
         {
-            if( Verify.IsSequence( data )
-                && Validate.IsField( field ) )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {

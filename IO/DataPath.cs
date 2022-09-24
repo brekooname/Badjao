@@ -18,7 +18,8 @@
         /// <see cref="DataPath"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        public DataPath( string input ) : base( input )
+        public DataPath( string input ) 
+            : base( input )
         {
         }
     }

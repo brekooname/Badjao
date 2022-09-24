@@ -390,7 +390,7 @@ namespace BudgetExecution
         /// </returns>
         public IEnumerable<DbParameter> GetParameters( Dictionary<string, object> dict )
         {
-            if( Verify.IsMap( dict ) )
+            if( dict?.Any( ) == true )
             {
                 try
                 {
@@ -422,7 +422,8 @@ namespace BudgetExecution
         private bool CheckIfSheetNameExists( string sheetName, DataTable dataSchema )
         {
             if( !string.IsNullOrEmpty( sheetName )
-                && Verify.IsTable( dataSchema ) )
+                && dataSchema != null
+                && dataSchema.Columns.Count > 0 )
             {
                 for( int i = 0; i < dataSchema.Rows.Count; i++ )
                 {

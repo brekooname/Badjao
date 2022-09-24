@@ -155,7 +155,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static Field GetField( Field field )
         {
-            if( Validate.IsField( field ) )
+            if( Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {

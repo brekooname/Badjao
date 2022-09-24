@@ -170,7 +170,7 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         public virtual void SetField( Field field )
         {
-            if( Validate.IsField( field ) )
+            if( Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {

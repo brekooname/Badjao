@@ -14,12 +14,6 @@ namespace BudgetExecution
     public interface IPictureBox
     {        
         /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        void SetTag( object tag );        
-
-        /// <summary>
         /// Called when [mouse hover].
         /// </summary>
         /// <param name="sender">The sender.</param>

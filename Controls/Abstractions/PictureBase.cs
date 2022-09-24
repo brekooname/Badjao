@@ -67,25 +67,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
-        /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        public virtual void SetTag( object tag )
-        {
-            try
-            {
-                Tag = Verify.IsRef( tag )
-                    ? tag
-                    : null;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
         /// <summary>
         /// Called when [mouse hover].
         /// </summary>

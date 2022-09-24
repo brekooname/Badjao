@@ -130,7 +130,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static Size ReSize( PicSize size )
         {
-            if( Verify.IsImageSize( size ) )
+            if( Enum.IsDefined( typeof( PicSize ), size ) )
             {
                 try
                 {
