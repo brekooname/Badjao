@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// <value>
         /// The command repository.
         /// </value>
-        public IDictionary<string, string> CommandRepository { get; set; }
+        public IDictionary<string, string> Commands { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBuilder"/> class.
@@ -76,7 +76,7 @@ namespace BudgetExecution
             Extension = ext;
             DirectoryPath = GetSqlDirectoryPath( );
             Files = Directory.GetFiles( DirectoryPath );
-            CommandRepository = GetCommandRepository( );
+            Commands = GetCommands( );
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace BudgetExecution
         /// Gets the command repository.
         /// </summary>
         /// <returns></returns>
-        private IDictionary<string, string> GetCommandRepository( )
+        private IDictionary<string, string> GetCommands( )
         {
             if( Enum.IsDefined( typeof( SQL ), CommandType )
                 && Files?.Any( ) == true )
@@ -154,12 +154,12 @@ namespace BudgetExecution
         public string GetCommandText( string commandName )
         {
             if( !string.IsNullOrEmpty( commandName )
-                && CommandRepository?.Any( ) == true
-                && CommandRepository.Keys.Contains( commandName ) )
+                && Commands?.Any( ) == true
+                && Commands.Keys.Contains( commandName ) )
             {
                 try
                 {
-                    return CommandRepository[ commandName ];
+                    return Commands[ commandName ];
                 }
                 catch( Exception ex )
                 {

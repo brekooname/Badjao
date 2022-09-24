@@ -22,6 +22,12 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class CommandFactory : CommandBuilder
     {
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
         public DbConnection Connection { get; set; }
 
         /// <summary>
@@ -30,14 +36,14 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="where">The dictionary.</param>
-        public CommandFactory( Source source, Provider provider, IDictionary<string, object> @where )
-            : base( source, provider, @where )
+        public CommandFactory( Source source, Provider provider, IDictionary<string, object> where )
+            : base( source, provider, where )
         {
             Source = source;
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             Connection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, @where );
+            SqlStatement = new SqlStatement( source, provider, where );
             Command = GetCommand( SqlStatement );
         }
 
@@ -69,7 +75,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"CREATE TABLE {tableName}";
+                    string _sql = $"CREATE TABLE { tableName }";
 
                     if( Validate.IsProvider( Provider )
                         && !string.IsNullOrEmpty( _sql ) )
@@ -330,7 +336,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
+                    string _sql = $"ALTER TABLE { dataTable.TableName } RENAME { name };";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
                         && !string.IsNullOrEmpty( _sql ) )
@@ -338,34 +344,27 @@ namespace BudgetExecution
                         switch( Provider )
                         {
                             case Provider.SQLite:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
-
                             case Provider.SqlCe:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
-
                             case Provider.SqlServer:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
-
                             case Provider.Excel:
                             case Provider.CSV:
                             case Provider.Access:
                             case Provider.OleDb:
-
                             {
                                 return !string.IsNullOrEmpty( _sql )
                                     ? new OleDbCommand( _sql )
@@ -400,17 +399,14 @@ namespace BudgetExecution
                     switch( Provider )
                     {
                         case Provider.SQLite:
-
                         {
                             return new SQLiteCommand( _sql );
                         }
                         case Provider.SqlCe:
-
                         {
                             return new SqlCeCommand( _sql );
                         }
                         case Provider.SqlServer:
-
                         {
                             return new SqlCommand( _sql );
                         }
@@ -418,12 +414,10 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
-
                         {
                             return new OleDbCommand( _sql );
                         }
                         default:
-
                         {
                             return new OleDbCommand( _sql );
                         }
