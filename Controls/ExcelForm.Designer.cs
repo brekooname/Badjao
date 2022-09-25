@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetCopyPaste spreadsheetCopyPaste1 = new Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetCopyPaste();
             Syncfusion.Windows.Forms.Spreadsheet.FormulaRangeSelectionController formulaRangeSelectionController1 = new Syncfusion.Windows.Forms.Spreadsheet.FormulaRangeSelectionController();
+            Syncfusion.Windows.Forms.CaptionImage captionImage1 = new Syncfusion.Windows.Forms.CaptionImage();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExcelForm));
             this.Ribbon = new Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetRibbon();
             this.spreadsheet1 = new Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet();
@@ -71,6 +72,8 @@
             this.Separator17 = new BudgetExecution.ToolSeparator();
             this.HomeButton = new BudgetExecution.ToolStripButton();
             this.Separator16 = new BudgetExecution.ToolSeparator();
+            this.DatabaseButton = new BudgetExecution.ToolStripButton();
+            this.Separator18 = new BudgetExecution.ToolSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.Ribbon)).BeginInit();
             this.Ribbon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet)).BeginInit();
@@ -132,7 +135,7 @@
             this.spreadsheet1.DefaultRowCount = 101;
             this.spreadsheet1.DisplayAlerts = true;
             this.spreadsheet1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spreadsheet1.FileName = "Book2";
+            this.spreadsheet1.FileName = "Book1";
             this.spreadsheet1.FormulaBarVisibility = true;
             formulaRangeSelectionController1.AllowMouseSelection = true;
             formulaRangeSelectionController1.AllowSelectionOnEditing = true;
@@ -156,6 +159,8 @@
             // ToolStrip
             // 
             this.ToolStrip.AddButton = null;
+            this.ToolStrip.AddColumnButton = null;
+            this.ToolStrip.AddTableButton = null;
             this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ToolStrip.BindingSource = this.BindingSource;
             this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
@@ -168,11 +173,18 @@
             this.ToolStrip.ChartButton = null;
             this.ToolStrip.DataFilter = null;
             this.ToolStrip.DeleteButton = null;
+            this.ToolStrip.DeleteColumnButton = null;
+            this.ToolStrip.DeleteRecordButton = null;
+            this.ToolStrip.DeleteTableButton = null;
             this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ToolStrip.DropDown = null;
             this.ToolStrip.EditButton = null;
+            this.ToolStrip.EditColumnButton = null;
+            this.ToolStrip.EditRecordButton = null;
+            this.ToolStrip.EditSqlButton = null;
             this.ToolStrip.ExcelButton = null;
             this.ToolStrip.Field = BudgetExecution.Field.RpioActivityCode;
+            this.ToolStrip.FilterDataButton = null;
             this.ToolStrip.FirstButton = null;
             this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
             this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -212,8 +224,10 @@
             this.Separator15,
             this.CalculatorButton,
             this.Separator14,
-            this.ChartButton,
+            this.DatabaseButton,
             this.Separator17,
+            this.ChartButton,
+            this.Separator18,
             this.HomeButton});
             this.ToolStrip.Label = null;
             this.ToolStrip.LastButton = null;
@@ -707,18 +721,51 @@
             this.Separator16.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator16.Size = new System.Drawing.Size(6, 26);
             // 
+            // DatabaseButton
+            // 
+            this.DatabaseButton.AutoToolTip = false;
+            this.DatabaseButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.DatabaseButton.BindingSource = this.BindingSource;
+            this.DatabaseButton.DataFilter = null;
+            this.DatabaseButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DatabaseButton.Field = BudgetExecution.Field.AccountCode;
+            this.DatabaseButton.Font = new System.Drawing.Font("Roboto", 9F);
+            this.DatabaseButton.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.DatabaseButton.HoverText = null;
+            this.DatabaseButton.Image = global::BudgetExecution.Properties.Resources.EditDatabase;
+            this.DatabaseButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DatabaseButton.Margin = new System.Windows.Forms.Padding(5);
+            this.DatabaseButton.Name = "DatabaseButton";
+            this.DatabaseButton.Size = new System.Drawing.Size(24, 26);
+            this.DatabaseButton.ToolTip = null;
+            this.DatabaseButton.ToolType = BudgetExecution.ToolType.DatabaseButton;
+            // 
+            // Separator18
+            // 
+            this.Separator18.ForeColor = System.Drawing.Color.Black;
+            this.Separator18.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.Separator18.Name = "Separator18";
+            this.Separator18.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
+            this.Separator18.Size = new System.Drawing.Size(6, 36);
+            // 
             // ExcelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BorderColor = System.Drawing.Color.SteelBlue;
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CaptionButtonHoverColor = System.Drawing.Color.Red;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaptionForeColor = System.Drawing.Color.SteelBlue;
+            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            captionImage1.BackColor = System.Drawing.Color.Transparent;
+            captionImage1.Image = global::BudgetExecution.Properties.Resources.Excel;
+            captionImage1.Location = new System.Drawing.Point(4, 4);
+            captionImage1.Name = "CaptionImage";
+            captionImage1.Size = new System.Drawing.Size(22, 22);
+            this.CaptionImages.Add(captionImage1);
             this.ClientSize = new System.Drawing.Size(1388, 763);
             this.Controls.Add(this.spreadsheet1);
             this.Controls.Add(this.ToolStrip);
@@ -735,7 +782,7 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
+            this.Text = "     Excel Data";
             ((System.ComponentModel.ISupportInitialize)(this.Ribbon)).EndInit();
             this.Ribbon.ResumeLayout(false);
             this.Ribbon.PerformLayout();
@@ -752,7 +799,6 @@
 
         private Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetRibbon Ribbon;
         private Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet spreadsheet1;
-        private System.Data.DataSet DataSet;
         private ToolTip ToolTip;
         public ToolStrip ToolStrip;
         public System.Windows.Forms.BindingSource BindingSource;
@@ -789,5 +835,8 @@
         public ToolStripButton PreviousButton;
         public ToolStripButton NextButton;
         private ToolSeparator Separator17;
+        public ToolStripButton DatabaseButton;
+        private ToolSeparator Separator18;
+        public System.Data.DataSet DataSet;
     }
 }

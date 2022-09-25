@@ -967,6 +967,7 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = " Visualization";
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
@@ -1030,7 +1031,7 @@
         private ToolSeparator Separator26;
         public ToolStripButton CalendarButton;
         private ToolSeparator Separator28;
-        public ToolTip ToolTip;
         public System.Windows.Forms.BindingSource BindingSource;
+        private ToolTip ToolTip;
     }
 }

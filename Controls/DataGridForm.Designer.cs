@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataGridForm));
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HeaderLabel = new BudgetExecution.Label();
             this.DataGridGroupBox = new BudgetExecution.GroupBox();
             this.GridPanel = new BudgetExecution.Layout();
+            this.DataGrid = new BudgetExecution.DataGrid();
             this.ToolTip = new BudgetExecution.ToolTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
@@ -93,23 +94,22 @@
             this.Separator26 = new BudgetExecution.ToolSeparator();
             this.CalendarButton = new BudgetExecution.ToolStripButton();
             this.Separator28 = new BudgetExecution.ToolSeparator();
-            this.TableGroupBox = new BudgetExecution.GroupBox();
-            this.TableListBox = new BudgetExecution.ListBox();
             this.ColumnGroupBox = new BudgetExecution.GroupBox();
             this.ColumnListBox = new BudgetExecution.ListBox();
             this.ValueGroupBox = new BudgetExecution.GroupBox();
             this.ValueListBox = new BudgetExecution.ListBox();
+            this.TableGroupBox = new BudgetExecution.GroupBox();
+            this.TableListBox = new BudgetExecution.ListBox();
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.Separator17 = new BudgetExecution.ToolSeparator();
-            this.DataGrid = new BudgetExecution.DataGrid();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.DataGridGroupBox.SuspendLayout();
             this.GridPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
             this.ToolStrip.SuspendLayout();
-            this.TableGroupBox.SuspendLayout();
             this.ColumnGroupBox.SuspendLayout();
             this.ValueGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).BeginInit();
+            this.TableGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // HeaderLabel
@@ -121,7 +121,7 @@
             this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 9F);
             this.HeaderLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.HeaderLabel.HoverText = null;
-            this.HeaderLabel.Location = new System.Drawing.Point(50, 13);
+            this.HeaderLabel.Location = new System.Drawing.Point(30, 13);
             this.HeaderLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.HeaderLabel.Name = "HeaderLabel";
             this.HeaderLabel.Numeric = BudgetExecution.Numeric.Accepted;
@@ -135,7 +135,7 @@
             this.HeaderLabel.ShadowDirection = 315;
             this.HeaderLabel.ShadowLocation = new System.Drawing.Point(0, 0);
             this.HeaderLabel.ShadowOpacity = 100;
-            this.HeaderLabel.Size = new System.Drawing.Size(968, 65);
+            this.HeaderLabel.Size = new System.Drawing.Size(988, 65);
             this.HeaderLabel.TabIndex = 22;
             this.HeaderLabel.TextAlignment = System.Drawing.StringAlignment.Center;
             this.HeaderLabel.TextLineAlignment = System.Drawing.StringAlignment.Far;
@@ -170,7 +170,7 @@
             this.DataGridGroupBox.HeaderText = null;
             this.DataGridGroupBox.HoverText = null;
             this.DataGridGroupBox.Image = global::BudgetExecution.Properties.Resources.DataSetIcon;
-            this.DataGridGroupBox.Location = new System.Drawing.Point(50, 97);
+            this.DataGridGroupBox.Location = new System.Drawing.Point(30, 97);
             this.DataGridGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DataGridGroupBox.Name = "DataGridGroupBox";
             this.DataGridGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
@@ -227,6 +227,67 @@
             this.GridPanel.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.GridPanel.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.GridPanel.ToolTip = null;
+            // 
+            // DataGrid
+            // 
+            this.DataGrid.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.DataGrid.BindingSource = null;
+            this.DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGrid.DataFilter = null;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGrid.EnableHeadersVisualStyles = false;
+            this.DataGrid.Font = new System.Drawing.Font("Roboto", 8F);
+            this.DataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
+            this.DataGrid.HoverText = null;
+            this.DataGrid.Location = new System.Drawing.Point(0, 0);
+            this.DataGrid.Name = "DataGrid";
+            this.DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.DataGrid.RowHeadersWidth = 20;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Roboto", 8F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGrid.Size = new System.Drawing.Size(942, 497);
+            this.DataGrid.TabIndex = 0;
+            this.DataGrid.ToolTip = null;
             // 
             // ToolTip
             // 
@@ -1071,91 +1132,6 @@
             this.Separator28.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator28.Size = new System.Drawing.Size(6, 36);
             // 
-            // TableGroupBox
-            // 
-            this.TableGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TableGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableGroupBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableGroupBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableGroupBox.BindingSource = null;
-            this.TableGroupBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TableGroupBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
-            this.TableGroupBox.Border.HoverVisible = true;
-            this.TableGroupBox.Border.Rounding = 6;
-            this.TableGroupBox.Border.Thickness = 1;
-            this.TableGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.TableGroupBox.Border.Visible = true;
-            this.TableGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
-            this.TableGroupBox.Controls.Add(this.TableListBox);
-            this.TableGroupBox.DataFilter = null;
-            this.TableGroupBox.Field = BudgetExecution.Field.AccountCode;
-            this.TableGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
-            this.TableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
-            this.TableGroupBox.HeaderText = null;
-            this.TableGroupBox.HoverText = null;
-            this.TableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
-            this.TableGroupBox.Location = new System.Drawing.Point(1039, 97);
-            this.TableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.TableGroupBox.Name = "TableGroupBox";
-            this.TableGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
-            this.TableGroupBox.Padding = new System.Windows.Forms.Padding(1);
-            this.TableGroupBox.Separator = true;
-            this.TableGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TableGroupBox.Size = new System.Drawing.Size(337, 191);
-            this.TableGroupBox.TabIndex = 15;
-            this.TableGroupBox.TextAlignment = System.Drawing.StringAlignment.Near;
-            this.TableGroupBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.TableGroupBox.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.TableGroupBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            this.TableGroupBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableGroupBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableGroupBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableGroupBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.TableGroupBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.TableGroupBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.TableGroupBox.TitleBoxHeight = 30;
-            this.TableGroupBox.ToolTip = null;
-            // 
-            // TableListBox
-            // 
-            this.TableListBox.AlternateColors = true;
-            this.TableListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.BindingSource = null;
-            this.TableListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.TableListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
-            this.TableListBox.Border.HoverVisible = false;
-            this.TableListBox.Border.Rounding = 6;
-            this.TableListBox.Border.Thickness = 1;
-            this.TableListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
-            this.TableListBox.Border.Visible = false;
-            this.TableListBox.DataFilter = null;
-            this.TableListBox.Field = BudgetExecution.Field.RpioActivityCode;
-            this.TableListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TableListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.TableListBox.HoverText = null;
-            this.TableListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.TableListBox.ItemHeight = 30;
-            this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
-            this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.TableListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.TableListBox.Location = new System.Drawing.Point(6, 35);
-            this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
-            this.TableListBox.Name = "TableListBox";
-            this.TableListBox.Numeric = BudgetExecution.Numeric.NS;
-            this.TableListBox.Size = new System.Drawing.Size(325, 153);
-            this.TableListBox.TabIndex = 2;
-            this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
-            this.TableListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableListBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableListBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.TableListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.TableListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
-            this.TableListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.TableListBox.ToolTip = null;
-            // 
             // ColumnGroupBox
             // 
             this.ColumnGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1180,7 +1156,7 @@
             this.ColumnGroupBox.HeaderText = null;
             this.ColumnGroupBox.HoverText = null;
             this.ColumnGroupBox.Image = global::BudgetExecution.Properties.Resources.ColumnIcon;
-            this.ColumnGroupBox.Location = new System.Drawing.Point(1039, 294);
+            this.ColumnGroupBox.Location = new System.Drawing.Point(1022, 294);
             this.ColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnGroupBox.Name = "ColumnGroupBox";
             this.ColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
@@ -1265,7 +1241,7 @@
             this.ValueGroupBox.HeaderText = null;
             this.ValueGroupBox.HoverText = null;
             this.ValueGroupBox.Image = global::BudgetExecution.Properties.Resources.RowIcon;
-            this.ValueGroupBox.Location = new System.Drawing.Point(1039, 474);
+            this.ValueGroupBox.Location = new System.Drawing.Point(1022, 474);
             this.ValueGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueGroupBox.Name = "ValueGroupBox";
             this.ValueGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
@@ -1326,6 +1302,91 @@
             this.ValueListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             this.ValueListBox.ToolTip = null;
             // 
+            // TableGroupBox
+            // 
+            this.TableGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TableGroupBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableGroupBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableGroupBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableGroupBox.BindingSource = null;
+            this.TableGroupBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TableGroupBox.Border.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.TableGroupBox.Border.HoverVisible = true;
+            this.TableGroupBox.Border.Rounding = 6;
+            this.TableGroupBox.Border.Thickness = 1;
+            this.TableGroupBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.TableGroupBox.Border.Visible = true;
+            this.TableGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
+            this.TableGroupBox.Controls.Add(this.TableListBox);
+            this.TableGroupBox.DataFilter = null;
+            this.TableGroupBox.Field = BudgetExecution.Field.AccountCode;
+            this.TableGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
+            this.TableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.TableGroupBox.HeaderText = null;
+            this.TableGroupBox.HoverText = null;
+            this.TableGroupBox.Image = global::BudgetExecution.Properties.Resources.TableIcon;
+            this.TableGroupBox.Location = new System.Drawing.Point(1022, 97);
+            this.TableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.TableGroupBox.Name = "TableGroupBox";
+            this.TableGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
+            this.TableGroupBox.Padding = new System.Windows.Forms.Padding(1);
+            this.TableGroupBox.Separator = true;
+            this.TableGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TableGroupBox.Size = new System.Drawing.Size(337, 191);
+            this.TableGroupBox.TabIndex = 15;
+            this.TableGroupBox.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.TableGroupBox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.TableGroupBox.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.TableGroupBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.TableGroupBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableGroupBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableGroupBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableGroupBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.TableGroupBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.TableGroupBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.TableGroupBox.TitleBoxHeight = 30;
+            this.TableGroupBox.ToolTip = null;
+            // 
+            // TableListBox
+            // 
+            this.TableListBox.AlternateColors = true;
+            this.TableListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.BindingSource = null;
+            this.TableListBox.Border.Color = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.TableListBox.Border.HoverColor = System.Drawing.Color.SteelBlue;
+            this.TableListBox.Border.HoverVisible = false;
+            this.TableListBox.Border.Rounding = 6;
+            this.TableListBox.Border.Thickness = 1;
+            this.TableListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.TableListBox.Border.Visible = false;
+            this.TableListBox.DataFilter = null;
+            this.TableListBox.Field = BudgetExecution.Field.RpioActivityCode;
+            this.TableListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TableListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.TableListBox.HoverText = null;
+            this.TableListBox.ItemAlternate = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.TableListBox.ItemHeight = 30;
+            this.TableListBox.ItemLineAlignment = System.Drawing.StringAlignment.Center;
+            this.TableListBox.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.TableListBox.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            this.TableListBox.Location = new System.Drawing.Point(6, 35);
+            this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.TableListBox.Name = "TableListBox";
+            this.TableListBox.Numeric = BudgetExecution.Numeric.NS;
+            this.TableListBox.Size = new System.Drawing.Size(325, 153);
+            this.TableListBox.TabIndex = 2;
+            this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.TableListBox.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableListBox.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableListBox.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TableListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.TableListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.TableListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.TableListBox.ToolTip = null;
+            // 
             // Separator16
             // 
             this.Separator16.ForeColor = System.Drawing.Color.Black;
@@ -1341,67 +1402,6 @@
             this.Separator17.Name = "Separator17";
             this.Separator17.Padding = new System.Windows.Forms.Padding(1, 5, 1, 5);
             this.Separator17.Size = new System.Drawing.Size(6, 36);
-            // 
-            // DataGrid
-            // 
-            this.DataGrid.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.DataGrid.BindingSource = null;
-            this.DataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.DataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Roboto", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGrid.DataFilter = null;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGrid.EnableHeadersVisualStyles = false;
-            this.DataGrid.Font = new System.Drawing.Font("Roboto", 8F);
-            this.DataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
-            this.DataGrid.HoverText = null;
-            this.DataGrid.Location = new System.Drawing.Point(0, 0);
-            this.DataGrid.Name = "DataGrid";
-            this.DataGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.DataGrid.RowHeadersWidth = 20;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Roboto", 8F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.DataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGrid.Size = new System.Drawing.Size(942, 497);
-            this.DataGrid.TabIndex = 0;
-            this.DataGrid.ToolTip = null;
             // 
             // DataGridForm
             // 
@@ -1436,18 +1436,19 @@
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Database";
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.DataGridGroupBox.ResumeLayout(false);
             this.GridPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
-            this.TableGroupBox.ResumeLayout(false);
-            this.TableGroupBox.PerformLayout();
             this.ColumnGroupBox.ResumeLayout(false);
             this.ColumnGroupBox.PerformLayout();
             this.ValueGroupBox.ResumeLayout(false);
             this.ValueGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGrid)).EndInit();
+            this.TableGroupBox.ResumeLayout(false);
+            this.TableGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -450,6 +450,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Carousel\Rotator.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\Abstractions\ExcelBase.cs" />
     <Compile Include="Controls\Abstractions\RibbonBase.cs">
       <SubType>Component</SubType>
@@ -870,7 +873,7 @@
       <DependentUpon>LookupDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="IO\DataPath.cs" />
-    <Compile Include="IO\IPath.cs" />
+    <Compile Include="Interfaces\IPath.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -957,6 +960,12 @@
     </Compile>
     <Compile Include="Controls\TextBox\TextBox.cs" />
     <Compile Include="Controls\Abstractions\TextBoxBase.cs" />
+    <Compile Include="Controls\SuperTip\SuperBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SuperTip\SuperTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Controls\Abstractions\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
@@ -1798,6 +1807,13 @@
     <Content Include="Resources\Images\Dialog\ico\ApplicationError.ico" />
     <None Include="Resources\Images\Interface\Save.png" />
     <None Include="Resources\Images\Filter\png\Filter.png" />
+    <None Include="Resources\Images\EPA\png\Earth.png" />
+    <None Include="Resources\Images\EPA\png\Chart.png" />
+    <None Include="Resources\Images\EPA\png\Databases.png" />
+    <None Include="Resources\Images\EPA\png\Access.png" />
+    <None Include="Resources\Images\EPA\png\Excel.png" />
+    <None Include="Resources\Images\EPA\png\PDF.png" />
+    <None Include="Resources\Images\EPA\png\Word.png" />
     <Content Include="Resources\Images\Ninja\BudExNinjaGrey.ico" />
     <Content Include="Data\Database\Access\DataModels\Data.accdb" />
     <Content Include="Data\Database\SqlCe\DataModels\CREATE\TABLE\Allocations.sql" />

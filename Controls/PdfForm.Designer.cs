@@ -32,6 +32,7 @@
             Syncfusion.Windows.PdfViewer.PdfViewerPrinterSettings pdfViewerPrinterSettings1 = new Syncfusion.Windows.PdfViewer.PdfViewerPrinterSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PdfForm));
             Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings textSearchSettings1 = new Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings();
+            Syncfusion.Windows.Forms.CaptionImage captionImage1 = new Syncfusion.Windows.Forms.CaptionImage();
             this.pdfViewerControl1 = new Syncfusion.Windows.Forms.PdfViewer.PdfViewerControl();
             this.BindingSource = new BudgetExecution.SourceBinding();
             this.ToolTip = new BudgetExecution.ToolTip();
@@ -97,7 +98,7 @@
             this.pdfViewerControl1.ShowHorizontalScrollBar = true;
             this.pdfViewerControl1.ShowToolBar = true;
             this.pdfViewerControl1.ShowVerticalScrollBar = true;
-            this.pdfViewerControl1.Size = new System.Drawing.Size(1077, 772);
+            this.pdfViewerControl1.Size = new System.Drawing.Size(1388, 722);
             this.pdfViewerControl1.SpaceBetweenPages = 8;
             this.pdfViewerControl1.TabIndex = 0;
             this.pdfViewerControl1.Text = "DocumentViewer";
@@ -145,6 +146,8 @@
             // ToolStrip
             // 
             this.ToolStrip.AddButton = null;
+            this.ToolStrip.AddColumnButton = null;
+            this.ToolStrip.AddTableButton = null;
             this.ToolStrip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.ToolStrip.BindingSource = null;
             this.ToolStrip.BorderStyle = Syncfusion.Windows.Forms.Tools.ToolStripBorderStyle.StaticEdge;
@@ -157,11 +160,18 @@
             this.ToolStrip.ChartButton = null;
             this.ToolStrip.DataFilter = null;
             this.ToolStrip.DeleteButton = null;
+            this.ToolStrip.DeleteColumnButton = null;
+            this.ToolStrip.DeleteRecordButton = null;
+            this.ToolStrip.DeleteTableButton = null;
             this.ToolStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ToolStrip.DropDown = null;
             this.ToolStrip.EditButton = null;
+            this.ToolStrip.EditColumnButton = null;
+            this.ToolStrip.EditRecordButton = null;
+            this.ToolStrip.EditSqlButton = null;
             this.ToolStrip.ExcelButton = null;
             this.ToolStrip.Field = BudgetExecution.Field.AccountCode;
+            this.ToolStrip.FilterDataButton = null;
             this.ToolStrip.FirstButton = null;
             this.ToolStrip.Font = new System.Drawing.Font("Roboto", 9F);
             this.ToolStrip.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -174,7 +184,7 @@
             this.ToolStrip.Label = null;
             this.ToolStrip.LastButton = null;
             this.ToolStrip.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ToolStrip.Location = new System.Drawing.Point(0, 772);
+            this.ToolStrip.Location = new System.Drawing.Point(0, 722);
             this.ToolStrip.Margin = new System.Windows.Forms.Padding(1);
             this.ToolStrip.Name = "ToolStrip";
             this.ToolStrip.NextButton = null;
@@ -189,7 +199,7 @@
             this.ToolStrip.Separators = null;
             this.ToolStrip.ShowCaption = true;
             this.ToolStrip.ShowLauncher = true;
-            this.ToolStrip.Size = new System.Drawing.Size(1077, 41);
+            this.ToolStrip.Size = new System.Drawing.Size(1388, 41);
             this.ToolStrip.TabIndex = 1;
             this.ToolStrip.TextBox = null;
             this.ToolStrip.ThemeName = "Office2016DarkGray";
@@ -631,18 +641,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.BorderColor = System.Drawing.Color.SteelBlue;
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CaptionButtonHoverColor = System.Drawing.Color.Maroon;
+            this.CaptionButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.CaptionButtonHoverColor = System.Drawing.Color.Red;
             this.CaptionFont = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CaptionForeColor = System.Drawing.Color.SteelBlue;
-            this.ClientSize = new System.Drawing.Size(1077, 813);
+            this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            captionImage1.BackColor = System.Drawing.Color.Transparent;
+            captionImage1.Image = global::BudgetExecution.Properties.Resources.PDF;
+            captionImage1.Location = new System.Drawing.Point(4, 4);
+            captionImage1.Name = "CaptionImage";
+            captionImage1.Size = new System.Drawing.Size(22, 22);
+            this.CaptionImages.Add(captionImage1);
+            this.ClientSize = new System.Drawing.Size(1388, 763);
             this.Controls.Add(this.pdfViewerControl1);
             this.Controls.Add(this.ToolStrip);
             this.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.LightGray;
+            this.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -652,6 +668,8 @@
             this.ShowMaximizeBox = false;
             this.ShowMinimizeBox = false;
             this.ShowMouseOver = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "    PDF ";
             this.UseWaitCursor = true;
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).EndInit();
             this.ResumeLayout(false);

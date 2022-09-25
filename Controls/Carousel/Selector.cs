@@ -5,32 +5,13 @@
 namespace BudgetExecution
 {
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Drawing;
-    using System.Windows.Forms;
     using System.IO;
     using System.Linq;
     using Syncfusion.Windows.Forms.Tools;
 
-    public class Selector : Carousel
+    public class Selector : Rotator
     {
-        /// <summary>
-        /// Gets or sets the provider path.
-        /// </summary>
-        /// <value>
-        /// The provider path.
-        /// </value>
-        public string ProviderPath { get; set; } = ConfigurationManager.AppSettings[ "DbPath" ];
-
-        /// <summary>
-        /// Gets or sets the provider path.
-        /// </summary>
-        /// <value>
-        /// The provider path.
-        /// </value>
-        public string FunctionalityPath { get; set; } =
-            ConfigurationManager.AppSettings[ "FunctionalityPath" ];
-
         /// <summary>
         /// Gets or sets the fund path.
         /// </summary>
@@ -43,46 +24,18 @@ namespace BudgetExecution
         /// </summary>
         public Selector( )
         {
-            // Basic Carousel Properties
-            BackColor = Color.FromArgb( 15, 15, 15 );
-            ForeColor = Color.White;
-            Font = new Font( "Roboto", 9 );
-            CarouselPath = CarouselPath.Default;
-            ImageSlides = true;
-            Padding = new Padding( 0, 10, 0, 10 );
-            PadX = 0;
-            PadY = 0;
-            Perspective = 4;
-            RotateAlways = false;
-            ShowImagePreview = true;
-            ShowImageShadow = true;
-            TransitionSpeed = 2;
-            UseOriginalImageinPreview = true;
-            UseCustomBounds = false;
-            CanOverrideStyle = true;
-            VisualStyle = CarouselVisualStyle.Metro;
-            FilePath = FunctionalityPath;
-            HighlightColor = Color.SteelBlue;
-
-            // ThemeStyle Properties
-            ThemeStyle.BackColor = Color.Transparent;
-            ThemeStyle.Font = new Font( "Roboto", 9 );
-            ThemeStyle.ForeColor = Color.White;
-            ThemeStyle.HoverImageBorderColor = Color.SteelBlue;
-            ThemeStyle.HoverImageBorderThickness = 2;
-            ThemeStyle.ImageShadeColor = Color.FromArgb( 15, 15, 15 );
         }
 
         /// <summary>
         /// Creates the image list.
         /// </summary>
-        /// <param name="srcDir">The source dir.</param>
+        /// <param name="sourceDirectory">The source dir.</param>
         /// <returns></returns>
-        public ImageList CreateImageList( string srcDir )
+        public ImageList CreateImageList( string sourceDirectory )
         {
-            if( Directory.Exists( srcDir ) )
+            if( Directory.Exists( sourceDirectory ) )
             {
-                IEnumerable<string> _files = Directory.EnumerateFiles( srcDir );
+                IEnumerable<string> _files = Directory.EnumerateFiles( sourceDirectory );
                 List<string> _paths = _files?.ToList( );
                 ImageList _list = new ImageList( );
 
@@ -95,13 +48,13 @@ namespace BudgetExecution
 
                         using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
-                            Bitmap _img = new Bitmap( _stream )
+                            Bitmap _bitmap = new Bitmap( _stream )
                             {
                                 Tag = _name
                             };
 
-                            _list.ImageSize = new Size( 250, 250 );
-                            _list?.Images?.Add( _img );
+                            _list.ImageSize = ImageSize;
+                            _list?.Images?.Add( _bitmap );
                         }
                     }
                 }
@@ -117,14 +70,14 @@ namespace BudgetExecution
         /// <summary>
         /// Creates the image list.
         /// </summary>
-        /// <param name="srcDir">The source dir.</param>
+        /// <param name="sourceDirectory">The source dir.</param>
         /// <param name = "size" > </param>
         /// <returns></returns>
-        public ImageList CreateImageList( string srcDir, Size size )
+        public ImageList CreateImageList( string sourceDirectory, Size size )
         {
-            if( Directory.Exists( srcDir ) )
+            if( Directory.Exists( sourceDirectory ) )
             {
-                IEnumerable<string> _files = Directory.EnumerateFiles( srcDir );
+                IEnumerable<string> _files = Directory.EnumerateFiles( sourceDirectory );
                 List<string> _paths = _files?.ToList( );
                 ImageList _list = new ImageList( );
 
