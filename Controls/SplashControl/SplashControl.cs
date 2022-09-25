@@ -13,7 +13,7 @@ namespace BudgetExecution
     public class SplashControl : SplashBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SplashControl"/> class.
+        /// Initializes a new instance of the <see cref="SplashControl" /> class.
         /// </summary>
         /// <remarks>
         /// The default value for the
@@ -50,18 +50,32 @@ namespace BudgetExecution
             SlideStyle = SlideStyle.FadeIn;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashControl"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public SplashControl( string message )
             : this( )
         {
             Text = message;
         }
 
-        public SplashControl( TipBase toolTip )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashControl"/> class.
+        /// </summary>
+        /// <param name="toolTip">The tool tip.</param>
+        // ReSharper disable once SuggestBaseTypeForParameter
+        public SplashControl( ToolTip toolTip )
             : this( )
         {
             Text = toolTip?.TipText;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashControl"/> class.
+        /// </summary>
+        /// <param name="control">The control.</param>
+        /// <param name="message">The message.</param>
         public SplashControl( Control control, string message )
             : this( )
         {

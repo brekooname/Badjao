@@ -17,8 +17,6 @@ namespace BudgetExecution
     /// <seealso cref = "IDisposable"/>
     public class ChartConfig : ChartStyleInfo, IChartConfig
     {
-        //
-
         /// <summary>
         /// Initializes a new instance of the <see/> class.
         /// </summary>
@@ -44,13 +42,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ChartFontInfo chart = new ChartFontInfo
+                    ChartFontInfo _chartFont = new ChartFontInfo
                     {
-                        FontStyle = font.Style, FontFamilyTemplate = font.FontFamily,
+                        FontStyle = font.Style, 
+                        FontFamilyTemplate = font.FontFamily,
                         Size = font.Size
                     };
 
-                    return chart;
+                    return _chartFont;
                 }
                 catch( Exception ex )
                 {
@@ -83,7 +82,11 @@ namespace BudgetExecution
                 try
                 {
                     ChartFontInfo chart = new ChartFontInfo
-                        { FontStyle = style, Facename = family, Size = size };
+                    {
+                        FontStyle = style, 
+                        Facename = family, 
+                        Size = size
+                    };
 
                     return chart;
                 }
@@ -133,7 +136,11 @@ namespace BudgetExecution
             try
             {
                 ChartLineInfo style = new ChartLineInfo
-                    { Alignment = PenAlignment.Center, Width = width, Color = color };
+                {
+                    Alignment = PenAlignment.Center, 
+                    Width = width, 
+                    Color = color
+                };
 
                 return style;
             }

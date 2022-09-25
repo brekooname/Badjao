@@ -12,7 +12,7 @@ namespace BudgetExecution
     using MetroSet_UI.Design;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ToolTip : TipBase
+    public class ToolTip : ToolTipBase
     {
         /// <summary>
         /// Initializes a new instance

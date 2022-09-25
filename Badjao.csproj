@@ -504,7 +504,6 @@
     <Compile Include="Controls\StyleConfig\BorderConfig.cs" />
     <Compile Include="Controls\StyleConfig\ChartConfig.cs" />
     <Compile Include="Controls\StyleConfig\ColorConfig.cs" />
-    <Compile Include="Controls\StyleConfig\ControlConfig.cs" />
     <Compile Include="Controls\CurrencyBox\CurrencyBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -536,8 +535,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\DataMetric.cs" />
-    <Compile Include="Controls\StyleConfig\FontConfig.cs" />
-    <Compile Include="Controls\StyleConfig\FormConfig.cs" />
     <Compile Include="Controls\StyleConfig\SizeConfig.cs" />
     <Compile Include="Controls\Abstractions\DataGridBase.cs">
       <SubType>Component</SubType>
@@ -881,7 +878,7 @@
     <Compile Include="Controls\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Abstractions\TipBase.cs">
+    <Compile Include="Controls\Abstractions\ToolTipBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ToolTip\ToolTip.cs">
@@ -960,12 +957,13 @@
     </Compile>
     <Compile Include="Controls\TextBox\TextBox.cs" />
     <Compile Include="Controls\Abstractions\TextBoxBase.cs" />
-    <Compile Include="Controls\SuperTip\SuperBase.cs">
+    <Compile Include="Controls\SuperTip\SyncTipBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SuperTip\SuperTip.cs">
+    <Compile Include="Controls\SuperTip\SyncTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\TextItem.cs" />
     <EmbeddedResource Include="Controls\Abstractions\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>

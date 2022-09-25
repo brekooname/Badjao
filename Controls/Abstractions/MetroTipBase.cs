@@ -21,7 +21,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "IsExpressionAlwaysTrue" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" ) ]
-    public abstract class TipBase : MetroSetToolTip
+    public abstract class ToolTipBase : MetroSetToolTip
     {
         /// <summary>
         /// Gets or sets the tip icon.
@@ -61,16 +61,8 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
+        public virtual BindingSource BindingSource { get; set; }
+        
         /// <summary>
         /// Sets the animation.
         /// </summary>
@@ -163,26 +155,7 @@ namespace BudgetExecution
                 }
             }
         }
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            if( Enum.IsDefined( typeof( Field ), field ) )
-            {
-                try
-                {
-                    Field = field;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>
