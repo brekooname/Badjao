@@ -202,18 +202,14 @@ namespace BudgetExecution
                     _dataSet.DataSetName = fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
-                    string _sql = $"SELECT * FROM {sheetName}$";
+                    string _sql = $"SELECT * FROM { sheetName }$";
                     string cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( cstring ) )
                     {
                         ExcelQuery _excelQuery = new ExcelQuery( cstring, _sql );
-
-                        OleDbConnection _connection =
-                            _excelQuery.GetConnection( ) as OleDbConnection;
-
+                        OleDbConnection _connection = DataConnection as OleDbConnection;
                         _connection?.Open( );
-
                         DbDataAdapter _dataAdapter = _excelQuery.GetAdapter( );
                         _dataAdapter.Fill( _dataSet );
 

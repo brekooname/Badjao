@@ -31,7 +31,6 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, string sqlText )
             : base( source, provider, sqlText )
         {
-            CommandText = sqlText;
         }
 
         /// <summary>
@@ -45,7 +44,6 @@ namespace BudgetExecution
             SQL commandType = SQL.SELECT )
             : base( source, provider, sqlText, commandType )
         {
-            CommandText = sqlText;
         }
 
         /// <summary>
@@ -57,7 +55,6 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, SQL commandType = SQL.SELECTALL )
             : base( source, provider, commandType )
         {
-            CommandText = GetSelectStatement( );
         }
 
         /// <summary>
@@ -71,7 +68,6 @@ namespace BudgetExecution
             SQL commandType = SQL.SELECTALL )
             : base( source, provider, where, commandType )
         {
-            CommandText = GetCommandText( where, commandType );
         }
 
         /// <summary>
@@ -114,6 +110,22 @@ namespace BudgetExecution
         public SqlStatement( Source source, Provider provider, IEnumerable<string> columns,
             IDictionary<string, object> where, SQL commandType = SQL.SELECT )
             : base( source, provider, columns, where, commandType )
+        {
+            CommandText = GetCommandText( columns, where, commandType );
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="aggregates">The aggregates.</param>
+        /// <param name="where">The where.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public SqlStatement( Source source, Provider provider, IEnumerable<string> columns,
+            IEnumerable<string> aggregates, IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+            : base( source, provider, columns, aggregates, where, commandType )
         {
             CommandText = GetCommandText( columns, where, commandType );
         }

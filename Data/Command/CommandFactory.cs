@@ -139,30 +139,24 @@ namespace BudgetExecution
                 try
                 {
                     string _sql = $"CREATE VIEW {viewName};";
-
                     switch( Provider )
                     {
                         case Provider.SQLite:
-
                         {
                             return !string.IsNullOrEmpty( _sql )
                                 ? new SQLiteCommand( _sql )
                                 : default( SQLiteCommand );
                         }
-
                         case Provider.SqlServer:
-
                         {
                             return !string.IsNullOrEmpty( _sql )
                                 ? new SqlCommand( _sql )
                                 : default( SqlCommand );
                         }
-
                         case Provider.Excel:
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
-
                         {
                             return !string.IsNullOrEmpty( _sql )
                                 ? new OleDbCommand( _sql )
@@ -192,7 +186,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"DROP {dataTable.TableName};";
+                    string _sql = $"DROP TABLE {dataTable.TableName};";
 
                     if( !string.IsNullOrEmpty( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
@@ -254,7 +248,7 @@ namespace BudgetExecution
                 try
                 {
                     string _sql =
-                        $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
+                        $"ALTER TABLE { dataTable.TableName } ADD COLUMN { dataColumn.ColumnName };";
 
                     if( !string.IsNullOrEmpty( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )

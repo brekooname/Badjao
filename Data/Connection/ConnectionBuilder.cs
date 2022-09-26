@@ -83,22 +83,19 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _connectionString = ConnectionPath[ $"{Provider}" ]?.ConnectionString;
+                    string _connectionString = ConnectionPath[ $"{ Provider }" ]?.ConnectionString;
 
                     switch( Provider )
                     {
                         case Provider.SQLite:
-
                         {
                             return new SQLiteConnection( _connectionString );
                         }
                         case Provider.SqlCe:
-
                         {
                             return new SqlCeConnection( _connectionString );
                         }
                         case Provider.SqlServer:
-
                         {
                             return new SqlConnection( _connectionString );
                         }
@@ -106,7 +103,6 @@ namespace BudgetExecution
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
-
                         {
                             return new OleDbConnection( _connectionString );
                         }

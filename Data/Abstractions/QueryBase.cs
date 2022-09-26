@@ -117,7 +117,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryBase"/> class.
         /// </summary>
-        protected QueryBase( )
+        public QueryBase( )
         {
         }
 
@@ -127,7 +127,7 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected QueryBase( Source source, Provider provider = Provider.SQLite,
+        public QueryBase( Source source, Provider provider = Provider.SQLite,
             SQL commandType = SQL.SELECT )
         {
         }
@@ -137,17 +137,17 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="where">The dictionary.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict,
-            SQL commandType )
+        public QueryBase( Source source, Provider provider, IDictionary<string, object> where,
+            SQL commandType = SQL.SELECTALL )
         {
             Source = source;
             Provider = provider;
-            Args = dict;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, dict, commandType );
+            SqlStatement = new SqlStatement( source, provider, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -157,7 +157,7 @@ namespace BudgetExecution
         /// <param name = "provider" > </param>
         /// <param name="sqlStatement">The SQL statement.</param>
         /// <param name = "source" > </param>
-        protected QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
+        public QueryBase( Source source, Provider provider, ISqlStatement sqlStatement )
         {
             Source = source;
             Provider = provider;
@@ -173,15 +173,15 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        /// <param name="dict">The dictionary.</param>
-        protected QueryBase( Source source, Provider provider, IDictionary<string, object> dict )
+        /// <param name="where">The dictionary.</param>
+        public QueryBase( Source source, Provider provider, IDictionary<string, object> where )
         {
             Source = source;
             Provider = provider;
-            Args = dict;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, dict, SQL.SELECT );
+            SqlStatement = new SqlStatement( source, provider, where, SQL.SELECT );
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -193,7 +193,7 @@ namespace BudgetExecution
         /// <param name = "updates" > </param>
         /// <param name="where">The where.</param>
         /// <param name="commandType">Type of the command.</param>
-        protected QueryBase( Source source, Provider provider, IDictionary<string, object> updates,
+        public QueryBase( Source source, Provider provider, IDictionary<string, object> updates,
             IDictionary<string, object> where, SQL commandType = SQL.UPDATE )
         {
             Source = source;
@@ -205,19 +205,33 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-        protected QueryBase( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="columns">The columns.</param>
+        /// <param name="where">The having.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public QueryBase( Source source, Provider provider, IEnumerable<string> columns,
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
         {
             Source = source;
             Provider = provider;
-            Args = criteria;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
+            SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-        protected QueryBase( Source source, Provider provider, string sqlText )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="sqlText">The SQL text.</param>
+        public QueryBase( Source source, Provider provider, string sqlText )
         {
             Source = source;
             Provider = provider;
@@ -234,7 +248,7 @@ namespace BudgetExecution
         /// <param name="fullPath">The full path.</param>
         /// <param name = "sqlText" > </param>
         /// <param name="commandType">Type of the command.</param>
-        protected QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
+        public QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
             Args = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
@@ -253,19 +267,23 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="fullPath">The full path.</param>
         /// <param name="commandType">Type of the command.</param>
-        /// <param name="dict">The dictionary.</param>
-        protected QueryBase( string fullPath, SQL commandType, IDictionary<string, object> dict )
+        /// <param name="where">The dictionary.</param>
+        public QueryBase( string fullPath, SQL commandType, IDictionary<string, object> where )
         {
-            Args = dict;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
+            SqlStatement = new SqlStatement( Source, Provider, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
-        protected QueryBase( ISqlStatement sqlStatement )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryBase"/> class.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        public QueryBase( ISqlStatement sqlStatement )
         {
             Args = null;
             Source = sqlStatement.Source;
@@ -275,26 +293,7 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( sqlStatement );
         }
-
-        /// <inheritdoc/>
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public DbConnection GetConnection( )
-        {
-            try
-            {
-                return DataConnection ?? default( DbConnection );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DbConnection );
-            }
-        }
-
+        
         /// <inheritdoc/>
         /// <summary>
         /// Gets the adapter.
@@ -314,43 +313,28 @@ namespace BudgetExecution
                     switch( Provider )
                     {
                         case Provider.Access:
-
                         {
-                            OleDbConnection _connection =
-                                ConnectionBuilder.Connection as OleDbConnection;
-
+                            OleDbConnection _connection = DataConnection as OleDbConnection;
                             return new OleDbDataAdapter( _commandText, _connection );
                         }
                         case Provider.SQLite:
-
                         {
-                            SQLiteConnection _connection =
-                                ConnectionBuilder.Connection as SQLiteConnection;
-
+                            SQLiteConnection _connection = DataConnection as SQLiteConnection;
                             return new SQLiteDataAdapter( _commandText, _connection );
                         }
                         case Provider.SqlCe:
-
                         {
-                            SqlCeConnection _connection =
-                                ConnectionBuilder.Connection as SqlCeConnection;
-
+                            SqlCeConnection _connection = DataConnection as SqlCeConnection;
                             return new SqlCeDataAdapter( _commandText, _connection );
                         }
                         case Provider.SqlServer:
-
                         {
-                            SqlConnection _connection =
-                                ConnectionBuilder.Connection as SqlConnection;
-
+                            SqlConnection _connection = DataConnection as SqlConnection;
                             return new SqlDataAdapter( _commandText, _connection );
                         }
                         default:
-
                         {
-                            OleDbConnection _connection =
-                                ConnectionBuilder.Connection as OleDbConnection;
-
+                            OleDbConnection _connection = DataConnection as OleDbConnection;
                             return new OleDbDataAdapter( _commandText, _connection );
                         }
                     }

@@ -42,13 +42,6 @@ namespace BudgetExecution
         /// The SQL statement.
         /// </value>
         ISqlStatement SqlStatement { get; set; }
-
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        DbConnection GetConnection( );
         
         /// <summary>
         /// Gets the adapter.

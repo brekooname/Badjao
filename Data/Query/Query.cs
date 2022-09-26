@@ -62,22 +62,22 @@ namespace BudgetExecution
         /// <param name = "provider" >
         /// The provider used.
         /// </param>
-        /// <param name = "dict" >
+        /// <param name = "where" >
         /// The dictionary of parameters.
         /// </param>
         /// <param name = "commandType" >
         /// The type of sql command.
         /// </param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict,
+        public Query( Source source, Provider provider, IDictionary<string, object> where,
             SQL commandType )
-            : base( source, provider, dict, commandType )
+            : base( source, provider, where, commandType )
         {
             Source = source;
             Provider = provider;
-            Args = dict;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, dict, commandType );
+            SqlStatement = new SqlStatement( source, provider, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
             DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
@@ -114,18 +114,18 @@ namespace BudgetExecution
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
         /// <param name="columns">The columns.</param>
-        /// <param name="criteria">The criteria.</param>
+        /// <param name="where">The criteria.</param>
         /// <param name="commandType">Type of the command.</param>
         public Query( Source source, Provider provider, IEnumerable<string> columns,
-            IDictionary<string, object> criteria, SQL commandType = SQL.SELECT )
-            : base( source, provider, columns, criteria, commandType )
+            IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+            : base( source, provider, columns, where, commandType )
         {
             Source = source;
             Provider = provider;
-            Args = criteria;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, columns, criteria, commandType );
+            SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
             DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
@@ -182,18 +182,18 @@ namespace BudgetExecution
         /// <param name = "provider" >
         /// The provider.
         /// </param>
-        /// <param name = "dict" >
+        /// <param name = "where" >
         /// The dictionary.
         /// </param>
-        public Query( Source source, Provider provider, IDictionary<string, object> dict )
-            : base( source, provider, dict )
+        public Query( Source source, Provider provider, IDictionary<string, object> where )
+            : base( source, provider, where )
         {
             Source = source;
             Provider = provider;
-            Args = dict;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( source, provider, dict );
+            SqlStatement = new SqlStatement( source, provider, where );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
             DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
@@ -236,18 +236,18 @@ namespace BudgetExecution
         /// <param name = "commandType" >
         /// The commandType.
         /// </param>
-        /// <param name = "dict" >
+        /// <param name = "where" >
         /// The dictionary.
         /// </param>
-        public Query( string fullPath, SQL commandType, IDictionary<string, object> dict )
-            : base( fullPath, commandType, dict )
+        public Query( string fullPath, SQL commandType, IDictionary<string, object> where )
+            : base( fullPath, commandType, where )
         {
-            Args = dict;
+            Args = where;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
             DataConnection = ConnectionBuilder.Connection;
-            SqlStatement = new SqlStatement( Source, Provider, dict, commandType );
+            SqlStatement = new SqlStatement( Source, Provider, where, commandType );
             CommandBuilder = new CommandBuilder( SqlStatement );
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
             DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
@@ -266,7 +266,7 @@ namespace BudgetExecution
         public DbDataReader GetDataReader(
             CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
-            if( DataCommand?.Connection != null
+            if( DataConnection != null
                 && !string.IsNullOrEmpty( DataCommand?.CommandText )
                 && Enum.IsDefined( typeof( CommandBehavior ), behavior ) )
             {

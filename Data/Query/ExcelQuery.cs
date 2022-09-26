@@ -299,13 +299,12 @@ namespace BudgetExecution
                 try
                 {
                     DataSet _dataSet = new DataSet( );
-                    DbConnection _connection = GetConnection( );
+                    OleDbConnection _connection = DataConnection as OleDbConnection;
                     _connection?.Open( );
                     string _sql = "SELECT * FROM [" + sheetName + "]";
 
-                    DataTable _schema =
-                        ( (OleDbConnection)_connection )?.GetOleDbSchemaTable(
-                            OleDbSchemaGuid.Tables, null );
+                    DataTable _schema = 
+                        _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
                     if( _schema?.Columns?.Count > 0
                         && !SheetExists( sheetName, _schema ) )
@@ -319,10 +318,9 @@ namespace BudgetExecution
                         sheetName = _schema?.Rows[ 0 ][ "TABLENAME" ].ToString( );
                     }
 
-                    OleDbDataAdapter _dataAdapter =
-                        new OleDbDataAdapter( _sql, _connection as OleDbConnection );
+                    OleDbDataAdapter _adapter = new OleDbDataAdapter( _sql, _connection );
 
-                    _dataAdapter?.Fill( _dataSet );
+                    _adapter?.Fill( _dataSet );
                     return _dataSet?.Tables[ 0 ];
                 }
                 catch( Exception ex )
@@ -333,6 +331,11 @@ namespace BudgetExecution
             }
 
             return default( DataTable );
+        }
+
+        private DbConnection GetConnection( )
+        {
+            throw new NotImplementedException( );
         }
 
         /// <summary>

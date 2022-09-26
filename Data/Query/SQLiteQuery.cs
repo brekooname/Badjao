@@ -255,8 +255,10 @@ namespace BudgetExecution
 
                 OpenFileDialog fdlg = new OpenFileDialog
                 {
-                    Title = "Excel File Dialog", InitialDirectory = @"c:\",
-                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*", FilterIndex = 2,
+                    Title = "Excel File Dialog", 
+                    InitialDirectory = @"c:\",
+                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*", 
+                    FilterIndex = 2,
                     RestoreDirectory = true
                 };
 
@@ -293,11 +295,11 @@ namespace BudgetExecution
                 try
                 {
                     DataSet _dataset = new DataSet( );
-                    string _cstring = GetExcelFilePath( );
-                    string _sql = "SELECT * FROM [" + sheetName + "]";
+                    string _filePath = GetExcelFilePath( );
+                    string _sql = $"SELECT * FROM [{ sheetName }]";
                     string _msg = "Sheet Does Not Exist!";
-                    ExcelQuery _excelQuery = new ExcelQuery( _cstring, _sql );
-                    OleDbConnection _connection = _excelQuery.GetConnection( ) as OleDbConnection;
+                    ExcelQuery _excelQuery = new ExcelQuery( _filePath, _sql );
+                    OleDbConnection _connection = _excelQuery.DataConnection as OleDbConnection;
                     _connection?.Open( );
 
                     DataTable _table =

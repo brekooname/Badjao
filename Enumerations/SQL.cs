@@ -10,11 +10,6 @@ namespace BudgetExecution
     public enum SQL
     {
         /// <summary>
-        /// Defines the None
-        /// </summary>
-        TEXT = -1,
-
-        /// <summary>
         /// Defines the SELECT
         /// </summary>
         SELECT,

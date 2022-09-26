@@ -7,7 +7,6 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
@@ -18,32 +17,32 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "ConvertIfStatementToSwitchStatement" ) ]
-    public class SqlBase
+    public abstract class SqlBase
     {
         /// <summary>
         /// The extension
         /// </summary>
-        public EXT Extension { get; set; }
-
+        public virtual EXT Extension { get; set; }
+        
         /// <summary>
         /// The source
         /// </summary>
-        public Source Source { get; set; }
+        public virtual Source Source { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         /// <summary>
         /// The command type
         /// </summary>
-        public SQL CommandType { get; set; }
+        public virtual SQL CommandType { get; set; }
 
         /// <summary>
         /// The arguments
         /// </summary>
-        public IDictionary<string, object> Criteria { get; set; }
+        public virtual IDictionary<string, object> Criteria { get; set; }
 
         /// <summary>
         /// Gets or sets the updates.
@@ -51,7 +50,7 @@ namespace BudgetExecution
         /// <value>
         /// The updates.
         /// </value>
-        public IDictionary<string, object> Updates { get; set; }
+        public virtual IDictionary<string, object> Updates { get; set; }
 
         /// <summary>
         /// Gets or sets the columns.
@@ -59,7 +58,23 @@ namespace BudgetExecution
         /// <value>
         /// The columns.
         /// </value>
-        public IEnumerable<string> Columns { get; set; }
+        public virtual IEnumerable<string> Columns { get; set; }
+
+        /// <summary>
+        /// Gets or sets the numerics.
+        /// </summary>
+        /// <value>
+        /// The numerics.
+        /// </value>
+        public virtual IEnumerable<string> Numerics { get; set; }
+
+        /// <summary>
+        /// Gets or sets the groups.
+        /// </summary>
+        /// <value>
+        /// The groups.
+        /// </value>
+        public virtual IEnumerable<string> Groups { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the table.
@@ -67,17 +82,17 @@ namespace BudgetExecution
         /// <value>
         /// The name of the table.
         /// </value>
-        public string TableName { get; set; }
+        public virtual string TableName { get; set; }
 
         /// <summary>
         /// The provider path
         /// </summary>
-        public string DbPath { get; set; }
+        public virtual string DbPath { get; set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        public string FileName { get; set; }
+        public virtual string FileName { get; set; }
 
         /// <summary>
         /// Gets or sets the select statement.
@@ -85,7 +100,7 @@ namespace BudgetExecution
         /// <value>
         /// The select statement.
         /// </value>
-        public string CommandText { get; set; }
+        public virtual string CommandText { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
@@ -107,26 +122,13 @@ namespace BudgetExecution
             Source = source;
             TableName = source.ToString( );
             Provider = provider;
-            Criteria = null;
-            Columns = null;
+            Criteria = new Dictionary<string, object>( );
+            Columns = new List<string>( );
+            Numerics = new List<string>( );
+            Groups = new List<string>( );
+            CommandText = $"SELECT * FROM { source }";
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBase"/> class.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
-        /// <param name="sqlText">The SQL text.</param>
-        public SqlBase( Source source, Provider provider, string sqlText )
-        {
-            DbPath = new ConnectionBuilder( source, provider ).DbPath;
-            Source = source;
-            TableName = source.ToString( );
-            Provider = provider;
-            Criteria = null;
-            Columns = null;
-        }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
@@ -142,9 +144,12 @@ namespace BudgetExecution
             TableName = source.ToString( );
             Provider = provider;
             CommandType = commandType;
-            Updates = null;
-            Criteria = null;
-            Columns = null;
+            Updates = new Dictionary<string, object>( );
+            Criteria = new Dictionary<string, object>( );
+            Numerics = new List<string>( );
+            Columns = new List<string>( );
+            Groups = new List<string>( );
+            CommandText = sqlText;
         }
 
         /// <summary>
@@ -161,10 +166,13 @@ namespace BudgetExecution
             CommandType = commandType;
             Source = source;
             Provider = provider;
-            TableName = Source.ToString( );
-            Updates = null;
+            TableName = source.ToString( );
+            Updates = new Dictionary<string, object>( );
             Criteria = where;
-            Columns = null;
+            Columns = new List<string>( );
+            Numerics = new List<string>( );
+            Groups = new List<string>( );
+            CommandText = $"SELECT * FROM { source } WHERE { where.ToCriteria( ) }";
         }
 
         public SqlBase( Source source, Provider provider, IDictionary<string, object> updates,
@@ -174,10 +182,12 @@ namespace BudgetExecution
             CommandType = commandType;
             Source = source;
             Provider = provider;
-            TableName = Source.ToString( );
+            TableName = source.ToString( );
             Updates = updates;
             Criteria = where;
-            Columns = updates.Keys;
+            Columns = updates.Keys.ToList( );
+            Numerics = new List<string>( );
+            Groups = new List<string>( );
         }
 
         /// <summary>
@@ -195,16 +205,32 @@ namespace BudgetExecution
             CommandType = commandType;
             Source = source;
             Provider = provider;
-            TableName = Source.ToString( );
-            Updates = null;
+            TableName = source.ToString( );
+            Updates = new Dictionary<string, object>( );
             Criteria = where;
-            Columns = columns;
+            Columns = columns.ToList( );
+            Numerics = new List<string>( );
+            Groups = new List<string>( );
+        }
+
+        public SqlBase( Source source, Provider provider, IEnumerable<string> columns,
+            IEnumerable<string> numerics, IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+        {
+            DbPath = new ConnectionBuilder( source, provider ).DbPath;
+            CommandType = commandType;
+            Source = source;
+            Provider = provider;
+            TableName = source.ToString( );
+            Updates = new Dictionary<string, object>( );
+            Criteria = where;
+            Columns = columns.ToList( );
+            Numerics = numerics.ToList( );
         }
 
         /// <summary>
         /// Sets the select statement.
         /// </summary>
-        public string GetSelectStatement( )
+        public virtual string GetSelectStatement( )
         {
             if( Columns?.Any( ) == true
                 && Criteria?.Any( ) == true )
@@ -244,15 +270,15 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the select statement.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        public string CreateSelectStatement( IDictionary<string, object> dict )
+        /// <param name="where">The dictionary.</param>
+        public virtual string CreateSelectStatement( IDictionary<string, object> where )
         {
             if( Enum.IsDefined( typeof( Source ), Source )
-                && dict?.Any( ) == true )
+                && where?.Any( ) == true )
             {
                 try
                 {
-                    string _criteria = dict.ToCriteria( );
+                    string _criteria = where.ToCriteria( );
                     return $"SELECT * FROM { Source } WHERE { _criteria };";
                 }
                 catch( Exception ex )
@@ -268,28 +294,76 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the select statement.
         /// </summary>
-        /// <param name="columnNames">The column names.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name="columns">The column names.</param>
+        /// <param name="where">The dictionary.</param>
         /// <returns></returns>
-        public string CreateSelectStatement( IEnumerable<string> columnNames,
-            IDictionary<string, object> dict )
+        public virtual string CreateSelectStatement( IEnumerable<string> columns,
+            IDictionary<string, object> where )
         {
             if( Enum.IsDefined( typeof( Source ), Source )
-                && dict?.Any( ) == true
-                && columnNames?.Any( ) == true )
+                && where?.Any( ) == true
+                && columns?.Any( ) == true )
             {
                 try
                 {
                     string _cols = string.Empty;
 
-                    foreach( string name in columnNames )
+                    foreach( string name in columns )
                     {
-                        _cols += $"{name}, ";
+                        _cols += $"{ name }, ";
                     }
 
-                    string _criteria = dict.ToCriteria( );
+                    string _criteria = where.ToCriteria( );
                     string _columns = _cols.TrimEnd( ", ".ToCharArray( ) );
                     return $"SELECT { _columns } FROM { Source } WHERE { _criteria} ;";
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Creates the select statement.
+        /// </summary>
+        /// <param name="columns">The columns.</param>
+        /// <param name="numerics">The numerics.</param>
+        /// <param name="having">The having.</param>
+        /// <returns></returns>
+        public virtual string CreateSelectStatement( IEnumerable<string> columns, 
+            IEnumerable<string> numerics, IDictionary<string, object> having )
+        {
+            if( Enum.IsDefined( typeof( Source ), Source )
+                && having?.Any( ) == true
+                && columns?.Any( ) == true
+                && numerics?.Any( ) == true ) 
+            {
+                try
+                {
+                    string _cols = string.Empty;
+                    string _aggr = string.Empty;
+                    string _grp = string.Empty;
+
+                    foreach( string name in columns )
+                    {
+                        _cols += $"{ name }, ";
+                    }
+
+                    foreach( string _numeric in numerics )
+                    {
+                        _grp += $"SUM({ _numeric }), ";
+                        _aggr += $"SUM({ _numeric }) AS { _numeric }, ";
+                    }
+
+                    string _criteria = having.ToCriteria( );
+                    string _columns =_cols + _aggr.TrimEnd( ", ".ToCharArray( ) );
+                    string _groups = _cols + _grp.TrimEnd( ", ".ToCharArray( ) );
+                    return $"SELECT { _columns } FROM { Source } " +
+                        $"GROUP BY { _groups } HAVING { _criteria };";
                 }
                 catch( Exception ex )
                 {
@@ -306,7 +380,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="updates">The dictionary.</param>
         /// <param name = "where" > </param>
-        public string CreateUpdateStatement( IDictionary<string, object> updates,
+        public virtual string CreateUpdateStatement( IDictionary<string, object> updates, 
             IDictionary<string, object> where )
         {
             if( updates?.Any( ) == true
@@ -317,14 +391,14 @@ namespace BudgetExecution
                 {
                     string _update = string.Empty;
 
-                    if( updates.Count >= 2 )
+                    if( updates.Count == 1 )
                     {
                         foreach( KeyValuePair<string, object> kvp in updates )
                         {
                             _update += $"{ kvp.Key } = '{ kvp.Value }'";
                         }
                     }
-                    else if( updates.Count == 1 )
+                    else if( updates.Count > 1 )
                     {
                         foreach( KeyValuePair<string, object> kvp in updates )
                         {
@@ -349,28 +423,36 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the insert statement.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        public string CreateInsertStatement( IDictionary<string, object> dict )
+        /// <param name="updates">The dictionary.</param>
+        public virtual string CreateInsertStatement( IDictionary<string, object> updates )
         {
-            if( dict?.Any( ) == true
+            if( updates?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
-                    string _column = string.Empty;
+                    string _columns = string.Empty;
                     string _values = string.Empty;
-
-                    foreach( KeyValuePair<string, object> kvp in dict )
+                    if( updates.Count == 1 ) 
                     {
-                        _column += $"{ kvp.Key }, ";
-                        _values += $"{ kvp.Value }, ";
+                        foreach( KeyValuePair<string, object> kvp in updates )
+                        {
+                            _columns += $"{ kvp.Key }";
+                            _values += $"{ kvp.Value }";
+                        }
                     }
-
-                    string values =
-                        $"({ _column.TrimEnd( ", ".ToCharArray( ) ) })" +
+                    else if( updates.Count > 1 ) 
+                    {
+                        foreach( KeyValuePair<string, object> kvp in updates )
+                        {
+                            _columns += $"{ kvp.Key }, ";
+                            _values += $"{ kvp.Value }, ";
+                        }
+                    }
+                    string _columnValues = $"({ _columns.TrimEnd( ", ".ToCharArray( ) ) })" +
                         $" VALUES ({ _values.TrimEnd( ", ".ToCharArray( ) ) })";
 
-                    return $"{ SQL.INSERT } INTO { Source } { values} ;";
+                    return $"INSERT INTO { Source } { _columnValues };";
                 }
                 catch( Exception ex )
                 {
@@ -385,23 +467,16 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the delete statement.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        public string CreateDeleteStatement( IDictionary<string, object> dict )
+        /// <param name="where">The dictionary.</param>
+        public virtual string CreateDeleteStatement( IDictionary<string, object> where )
         {
-            if( dict?.Any( ) == true
+            if( where?.Any( ) == true
                 && Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
-                    string _columns = string.Empty;
-
-                    foreach( KeyValuePair<string, object> kvp in dict )
-                    {
-                        _columns += $" { kvp.Key } = '{ kvp.Value }' AND";
-                    }
-
-                    string _values = _columns.TrimEnd( " AND".ToCharArray( ) );
-                    return $"{ SQL.DELETE } FROM { Source } WHERE { _values };";
+                    string _criteria = where.ToCriteria( );
+                    return $"{ SQL.DELETE } FROM { Source } WHERE { _criteria };";
                 }
                 catch( Exception ex )
                 {

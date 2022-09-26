@@ -115,7 +115,9 @@ namespace BudgetExecution
             Source = sqlStatement.Source;
             Provider = sqlStatement.Provider;
             SqlStatement = sqlStatement;
-            ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
+            ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source,
+                sqlStatement.Provider );
+
             CommandBuilder = new CommandBuilder( sqlStatement );
             Connection = ConnectionBuilder.Connection;
             CommandText = sqlStatement.CommandText;
@@ -137,26 +139,54 @@ namespace BudgetExecution
                     {
                         case Provider.SQLite:
                         {
-                            return new SQLiteDataAdapter( CommandText, 
+                            SQLiteDataAdapter _adapter = new SQLiteDataAdapter( CommandText,
                                 Connection as SQLiteConnection );
+
+                            SQLiteCommandBuilder _builder = new SQLiteCommandBuilder( _adapter );
+                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
+                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
+                            _adapter.InsertCommand = _builder.GetInsertCommand( );
+
+                            return _adapter;
                         }
                         case Provider.SqlCe:
                         {
-                            return new SqlCeDataAdapter( CommandText, 
+                            SqlCeDataAdapter _adapter = new SqlCeDataAdapter( CommandText,
                                 Connection as SqlCeConnection );
+
+                            SqlCeCommandBuilder _builder = new SqlCeCommandBuilder( _adapter );
+                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
+                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
+                            _adapter.InsertCommand = _builder.GetInsertCommand( );
+
+                            return _adapter;
                         }
                         case Provider.SqlServer:
                         {
-                            return new SqlDataAdapter( CommandText, 
+                            SqlDataAdapter _adapter = new SqlDataAdapter( CommandText,
                                 Connection as SqlConnection );
+
+                            SqlCommandBuilder _builder = new SqlCommandBuilder( _adapter );
+                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
+                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
+                            _adapter.InsertCommand = _builder.GetInsertCommand( );
+
+                            return _adapter;
                         }
                         case Provider.Excel:
                         case Provider.CSV:
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            return new OleDbDataAdapter( CommandText, 
+                            OleDbDataAdapter _adapter = new OleDbDataAdapter( CommandText,
                                 Connection as OleDbConnection );
+
+                            OleDbCommandBuilder _builder = new OleDbCommandBuilder( _adapter );
+                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
+                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
+                            _adapter.InsertCommand = _builder.GetInsertCommand( );
+
+                            return _adapter;
                         }
                     }
                 }

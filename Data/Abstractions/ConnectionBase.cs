@@ -10,6 +10,7 @@ namespace BudgetExecution
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.IO;
 
     /// <summary>
     /// 
@@ -92,7 +93,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionBase"/> class.
         /// </summary>
-        protected ConnectionBase( )
+        public ConnectionBase( )
         {
         }
 
@@ -101,15 +102,15 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="provider">The provider.</param>
-        protected ConnectionBase( Source source, Provider provider = Provider.SQLite )
+        public ConnectionBase( Source source, Provider provider = Provider.Access )
         {
             Source = source;
             Provider = provider;
             TableName = source.ToString( );
             ConnectionString = GetConnectionString( provider );
             FilePath = GetDbClientPath( provider );
-            PathExtension = System.IO.Path.GetExtension( FilePath )?.Replace( ".", "" );
-            FileName = System.IO.Path.GetFileNameWithoutExtension( FilePath );
+            PathExtension = Path.GetExtension( FilePath )?.Replace( ".", "" );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
 
             if( !string.IsNullOrEmpty( PathExtension ) )
             {
@@ -122,13 +123,13 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="ConnectionBase"/> class.
         /// </summary>
         /// <param name="fullPath">The full path.</param>
-        protected ConnectionBase( string fullPath )
+        public ConnectionBase( string fullPath )
         {
             Source = Source.External;
             FilePath = fullPath;
-            FileName = System.IO.Path.GetFileNameWithoutExtension( fullPath );
+            FileName = Path.GetFileNameWithoutExtension( fullPath );
             TableName = FileName;
-            PathExtension = System.IO.Path.GetExtension( fullPath )?.Replace( ".", "" );
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
 
             if( PathExtension != null )
             {
@@ -144,18 +145,18 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="fullPath">The full path.</param>
         /// <param name="provider">The provider.</param>
-        protected ConnectionBase( string fullPath, Provider provider )
+        public ConnectionBase( string fullPath, Provider provider )
         {
             Source = Source.External;
+            Provider = provider;
             FilePath = fullPath;
-            FileName = System.IO.Path.GetFileNameWithoutExtension( fullPath );
+            FileName = Path.GetFileNameWithoutExtension( fullPath );
             TableName = FileName;
-            PathExtension = System.IO.Path.GetExtension( fullPath )?.Replace( ".", "" );
+            PathExtension = Path.GetExtension( fullPath )?.Replace( ".", "" );
 
             if( PathExtension != null )
             {
                 Extension = (EXT)Enum.Parse( typeof( EXT ), PathExtension.ToUpper( ) );
-                Provider = (Provider)Enum.Parse( typeof( Provider ), PathExtension.ToUpper( ) );
                 DbPath = DbClientPath[ Extension.ToString( ) ];
                 ConnectionString = GetConnectionString( Provider );
             }
@@ -175,37 +176,30 @@ namespace BudgetExecution
                     switch( provider )
                     {
                         case Provider.Access:
-
                         {
                             return DbClientPath[ "ACCDB" ];
                         }
                         case Provider.SQLite:
-
                         {
                             return DbClientPath[ "DB" ];
                         }
                         case Provider.SqlCe:
-
                         {
                             return DbClientPath[ "SDF" ];
                         }
                         case Provider.Excel:
-
                         {
                             return DbClientPath[ "XLSX" ];
                         }
                         case Provider.SqlServer:
-
                         {
                             return DbClientPath[ "MDF" ];
                         }
                         case Provider.CSV:
-
                         {
                             return DbClientPath[ "CSV" ];
                         }
                         default:
-
                         {
                             return DbClientPath[ "ACCDB" ];
                         }
@@ -229,8 +223,8 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( filePath ) && System.IO.File.Exists( filePath )
-                    ? System.IO.Path.GetFullPath( filePath )
+                return !string.IsNullOrEmpty( filePath ) && File.Exists( filePath )
+                    ? Path.GetFullPath( filePath )
                     : default( string );
             }
             catch( Exception ex )
@@ -247,11 +241,11 @@ namespace BudgetExecution
         public virtual string GetDbClientPath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.Path.HasExtension( filePath ) )
+                && Path.HasExtension( filePath ) )
             {
                 try
                 {
-                    string _file = System.IO.Path.GetExtension( filePath )?.Replace( ".", "" );
+                    string _file = Path.GetExtension( filePath )?.Replace( ".", "" );
 
                     if( !string.IsNullOrEmpty( _file ) )
                     {
@@ -311,12 +305,12 @@ namespace BudgetExecution
         public virtual string GetConnectionString( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath )
-                && System.IO.Path.HasExtension( filePath ) )
+                && File.Exists( filePath )
+                && Path.HasExtension( filePath ) )
             {
                 try
                 {
-                    string _file = System.IO.Path.GetExtension( filePath );
+                    string _file = Path.GetExtension( filePath );
 
                     if( _file != null )
                     {
