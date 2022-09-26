@@ -206,7 +206,6 @@
             this.CreateTableSchemaGroupBox.Controls.Add(this.CreateTableColumnTextBox);
             this.CreateTableSchemaGroupBox.Controls.Add(this.CreateTableDataTypeLabel);
             this.CreateTableSchemaGroupBox.DataFilter = null;
-            this.CreateTableSchemaGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableSchemaGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableSchemaGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableSchemaGroupBox.HeaderText = null;
@@ -215,7 +214,6 @@
             this.CreateTableSchemaGroupBox.Location = new System.Drawing.Point(187, 277);
             this.CreateTableSchemaGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableSchemaGroupBox.Name = "CreateTableSchemaGroupBox";
-            this.CreateTableSchemaGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.CreateTableSchemaGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.CreateTableSchemaGroupBox.Separator = false;
             this.CreateTableSchemaGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -396,7 +394,6 @@
             this.CreateTableColumnTextBox.ButtonText = "visualButton";
             this.CreateTableColumnTextBox.ButtonVisible = false;
             this.CreateTableColumnTextBox.DataFilter = null;
-            this.CreateTableColumnTextBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableColumnTextBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableColumnTextBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableColumnTextBox.HoverText = "Enter Column Name";
@@ -407,7 +404,6 @@
             this.CreateTableColumnTextBox.Location = new System.Drawing.Point(39, 91);
             this.CreateTableColumnTextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableColumnTextBox.Name = "CreateTableColumnTextBox";
-            this.CreateTableColumnTextBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.CreateTableColumnTextBox.PasswordChar = '\0';
             this.CreateTableColumnTextBox.ReadOnly = false;
             this.CreateTableColumnTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -496,7 +492,6 @@
             this.CreateTableTablesGroupBox.Controls.Add(this.CreateTableNameLabel);
             this.CreateTableTablesGroupBox.Controls.Add(this.CreateTableNameTextBox);
             this.CreateTableTablesGroupBox.DataFilter = null;
-            this.CreateTableTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableTablesGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableTablesGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableTablesGroupBox.HeaderText = null;
@@ -505,7 +500,6 @@
             this.CreateTableTablesGroupBox.Location = new System.Drawing.Point(816, 36);
             this.CreateTableTablesGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableTablesGroupBox.Name = "CreateTableTablesGroupBox";
-            this.CreateTableTablesGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.CreateTableTablesGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.CreateTableTablesGroupBox.Separator = false;
             this.CreateTableTablesGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -585,7 +579,6 @@
             this.CreateTableNameTextBox.ButtonText = "visualButton";
             this.CreateTableNameTextBox.ButtonVisible = false;
             this.CreateTableNameTextBox.DataFilter = null;
-            this.CreateTableNameTextBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableNameTextBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableNameTextBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableNameTextBox.HoverText = "Enter Column Name";
@@ -596,7 +589,6 @@
             this.CreateTableNameTextBox.Location = new System.Drawing.Point(35, 93);
             this.CreateTableNameTextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableNameTextBox.Name = "CreateTableNameTextBox";
-            this.CreateTableNameTextBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.CreateTableNameTextBox.PasswordChar = '\0';
             this.CreateTableNameTextBox.ReadOnly = false;
             this.CreateTableNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -636,7 +628,6 @@
             this.CreateTableProviderGroupBox.Controls.Add(this.CreateTableSqlServerRadioButton);
             this.CreateTableProviderGroupBox.Controls.Add(this.CreateTableSqliteRadioButton);
             this.CreateTableProviderGroupBox.DataFilter = null;
-            this.CreateTableProviderGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableProviderGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.CreateTableProviderGroupBox.HeaderText = "";
@@ -645,7 +636,6 @@
             this.CreateTableProviderGroupBox.Location = new System.Drawing.Point(187, 38);
             this.CreateTableProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableProviderGroupBox.Name = "CreateTableProviderGroupBox";
-            this.CreateTableProviderGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.CreateTableProviderGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.CreateTableProviderGroupBox.Separator = false;
             this.CreateTableProviderGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -763,14 +753,12 @@
             this.EditColumnTextBoxLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.EditColumnTextBoxLabel.BindingSource = null;
             this.EditColumnTextBoxLabel.DataFilter = null;
-            this.EditColumnTextBoxLabel.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnTextBoxLabel.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnTextBoxLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnTextBoxLabel.HoverText = null;
             this.EditColumnTextBoxLabel.Location = new System.Drawing.Point(61, 114);
             this.EditColumnTextBoxLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnTextBoxLabel.Name = "EditColumnTextBoxLabel";
-            this.EditColumnTextBoxLabel.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnTextBoxLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.EditColumnTextBoxLabel.Outline = false;
             this.EditColumnTextBoxLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -825,7 +813,6 @@
             this.EditColumnNameTextBox.ButtonText = "visualButton";
             this.EditColumnNameTextBox.ButtonVisible = false;
             this.EditColumnNameTextBox.DataFilter = null;
-            this.EditColumnNameTextBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnNameTextBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnNameTextBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnNameTextBox.HoverText = null;
@@ -836,7 +823,6 @@
             this.EditColumnNameTextBox.Location = new System.Drawing.Point(61, 138);
             this.EditColumnNameTextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnNameTextBox.Name = "EditColumnNameTextBox";
-            this.EditColumnNameTextBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnNameTextBox.PasswordChar = '\0';
             this.EditColumnNameTextBox.ReadOnly = false;
             this.EditColumnNameTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -925,14 +911,12 @@
             this.EditColumnComboBoxLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.EditColumnComboBoxLabel.BindingSource = null;
             this.EditColumnComboBoxLabel.DataFilter = null;
-            this.EditColumnComboBoxLabel.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnComboBoxLabel.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnComboBoxLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnComboBoxLabel.HoverText = null;
             this.EditColumnComboBoxLabel.Location = new System.Drawing.Point(61, 42);
             this.EditColumnComboBoxLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnComboBoxLabel.Name = "EditColumnComboBoxLabel";
-            this.EditColumnComboBoxLabel.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnComboBoxLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.EditColumnComboBoxLabel.Outline = false;
             this.EditColumnComboBoxLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -975,7 +959,6 @@
             this.EditColumnSelectTableGroupBox.Controls.Add(this.EditColumnTablesLayout);
             this.EditColumnSelectTableGroupBox.Controls.Add(this.listBox4);
             this.EditColumnSelectTableGroupBox.DataFilter = null;
-            this.EditColumnSelectTableGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnSelectTableGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnSelectTableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnSelectTableGroupBox.HeaderText = null;
@@ -984,7 +967,6 @@
             this.EditColumnSelectTableGroupBox.Location = new System.Drawing.Point(816, 36);
             this.EditColumnSelectTableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnSelectTableGroupBox.Name = "EditColumnSelectTableGroupBox";
-            this.EditColumnSelectTableGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnSelectTableGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.EditColumnSelectTableGroupBox.Separator = false;
             this.EditColumnSelectTableGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1054,7 +1036,6 @@
             this.EditColumnTableNameListBox.Border.Visible = true;
             this.EditColumnTableNameListBox.DataFilter = null;
             this.EditColumnTableNameListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.EditColumnTableNameListBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnTableNameListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnTableNameListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnTableNameListBox.HoverText = null;
@@ -1066,7 +1047,6 @@
             this.EditColumnTableNameListBox.Location = new System.Drawing.Point(0, 0);
             this.EditColumnTableNameListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnTableNameListBox.Name = "EditColumnTableNameListBox";
-            this.EditColumnTableNameListBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnTableNameListBox.Size = new System.Drawing.Size(348, 146);
             this.EditColumnTableNameListBox.TabIndex = 2;
             this.EditColumnTableNameListBox.Text = "listBox3";
@@ -1095,7 +1075,6 @@
             this.listBox4.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.listBox4.Border.Visible = true;
             this.listBox4.DataFilter = null;
-            this.listBox4.Field = BudgetExecution.Field.AccountCode;
             this.listBox4.Font = new System.Drawing.Font("Roboto", 9F);
             this.listBox4.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.listBox4.HoverText = null;
@@ -1107,7 +1086,6 @@
             this.listBox4.Location = new System.Drawing.Point(15, 40);
             this.listBox4.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.listBox4.Name = "listBox4";
-            this.listBox4.Numeric = BudgetExecution.Numeric.Accepted;
             this.listBox4.Size = new System.Drawing.Size(348, 140);
             this.listBox4.TabIndex = 1;
             this.listBox4.Text = "listBox4";
@@ -1136,7 +1114,6 @@
             this.EditColumnSelectColumnGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.EditColumnSelectColumnGroupBox.Controls.Add(this.EditColumnColumnNameListBox);
             this.EditColumnSelectColumnGroupBox.DataFilter = null;
-            this.EditColumnSelectColumnGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnSelectColumnGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnSelectColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnSelectColumnGroupBox.HeaderText = null;
@@ -1145,7 +1122,6 @@
             this.EditColumnSelectColumnGroupBox.Location = new System.Drawing.Point(187, 277);
             this.EditColumnSelectColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnSelectColumnGroupBox.Name = "EditColumnSelectColumnGroupBox";
-            this.EditColumnSelectColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnSelectColumnGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.EditColumnSelectColumnGroupBox.Separator = false;
             this.EditColumnSelectColumnGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1180,7 +1156,6 @@
             this.EditColumnColumnNameListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.EditColumnColumnNameListBox.Border.Visible = true;
             this.EditColumnColumnNameListBox.DataFilter = null;
-            this.EditColumnColumnNameListBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnColumnNameListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnColumnNameListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnColumnNameListBox.HoverText = null;
@@ -1192,7 +1167,6 @@
             this.EditColumnColumnNameListBox.Location = new System.Drawing.Point(14, 34);
             this.EditColumnColumnNameListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnColumnNameListBox.Name = "EditColumnColumnNameListBox";
-            this.EditColumnColumnNameListBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnColumnNameListBox.Size = new System.Drawing.Size(347, 140);
             this.EditColumnColumnNameListBox.TabIndex = 1;
             this.EditColumnColumnNameListBox.Text = "listBox1";
@@ -1223,7 +1197,6 @@
             this.EditColumnProviderGroupBox.Controls.Add(this.EditColumnSqlServerRadioButton);
             this.EditColumnProviderGroupBox.Controls.Add(this.EditColumnSqliteRadioButton);
             this.EditColumnProviderGroupBox.DataFilter = null;
-            this.EditColumnProviderGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnProviderGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.EditColumnProviderGroupBox.HeaderText = "";
@@ -1232,7 +1205,6 @@
             this.EditColumnProviderGroupBox.Location = new System.Drawing.Point(187, 38);
             this.EditColumnProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnProviderGroupBox.Name = "EditColumnProviderGroupBox";
-            this.EditColumnProviderGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnProviderGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.EditColumnProviderGroupBox.Separator = false;
             this.EditColumnProviderGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1362,7 +1334,6 @@
             this.DeleteTableTablesGroupBox.Controls.Add(this.DeleteTableTablesLayout);
             this.DeleteTableTablesGroupBox.Controls.Add(this.listBox8);
             this.DeleteTableTablesGroupBox.DataFilter = null;
-            this.DeleteTableTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteTableTablesGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteTableTablesGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteTableTablesGroupBox.HeaderText = null;
@@ -1371,7 +1342,6 @@
             this.DeleteTableTablesGroupBox.Location = new System.Drawing.Point(804, 129);
             this.DeleteTableTablesGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteTableTablesGroupBox.Name = "DeleteTableTablesGroupBox";
-            this.DeleteTableTablesGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteTableTablesGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteTableTablesGroupBox.Separator = false;
             this.DeleteTableTablesGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1441,7 +1411,6 @@
             this.DeleteTableTablesListBox.Border.Visible = true;
             this.DeleteTableTablesListBox.DataFilter = null;
             this.DeleteTableTablesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteTableTablesListBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteTableTablesListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteTableTablesListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteTableTablesListBox.HoverText = null;
@@ -1453,7 +1422,6 @@
             this.DeleteTableTablesListBox.Location = new System.Drawing.Point(0, 0);
             this.DeleteTableTablesListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteTableTablesListBox.Name = "DeleteTableTablesListBox";
-            this.DeleteTableTablesListBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteTableTablesListBox.Size = new System.Drawing.Size(348, 140);
             this.DeleteTableTablesListBox.TabIndex = 2;
             this.DeleteTableTablesListBox.Text = "listBox7";
@@ -1482,7 +1450,6 @@
             this.listBox8.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.listBox8.Border.Visible = true;
             this.listBox8.DataFilter = null;
-            this.listBox8.Field = BudgetExecution.Field.AccountCode;
             this.listBox8.Font = new System.Drawing.Font("Roboto", 9F);
             this.listBox8.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.listBox8.HoverText = null;
@@ -1494,7 +1461,6 @@
             this.listBox8.Location = new System.Drawing.Point(15, 40);
             this.listBox8.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.listBox8.Name = "listBox8";
-            this.listBox8.Numeric = BudgetExecution.Numeric.Accepted;
             this.listBox8.Size = new System.Drawing.Size(348, 140);
             this.listBox8.TabIndex = 1;
             this.listBox8.Text = "listBox4";
@@ -1525,7 +1491,6 @@
             this.DeleteTableProviderGroupBox.Controls.Add(this.DeleteTableSqlServerRadioButton);
             this.DeleteTableProviderGroupBox.Controls.Add(this.DeleteTableSqliteRadioButton);
             this.DeleteTableProviderGroupBox.DataFilter = null;
-            this.DeleteTableProviderGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteTableProviderGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteTableProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.DeleteTableProviderGroupBox.HeaderText = "";
@@ -1534,7 +1499,6 @@
             this.DeleteTableProviderGroupBox.Location = new System.Drawing.Point(180, 129);
             this.DeleteTableProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteTableProviderGroupBox.Name = "DeleteTableProviderGroupBox";
-            this.DeleteTableProviderGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteTableProviderGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteTableProviderGroupBox.Separator = false;
             this.DeleteTableProviderGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1662,7 +1626,6 @@
             this.DeleteColumnGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.DeleteColumnGroupBox.Controls.Add(this.DeleteColumnColumnsListBox);
             this.DeleteColumnGroupBox.DataFilter = null;
-            this.DeleteColumnGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteColumnGroupBox.HeaderText = null;
@@ -1671,7 +1634,6 @@
             this.DeleteColumnGroupBox.Location = new System.Drawing.Point(945, 129);
             this.DeleteColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnGroupBox.Name = "DeleteColumnGroupBox";
-            this.DeleteColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteColumnGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteColumnGroupBox.Separator = false;
             this.DeleteColumnGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1706,7 +1668,6 @@
             this.DeleteColumnColumnsListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.DeleteColumnColumnsListBox.Border.Visible = true;
             this.DeleteColumnColumnsListBox.DataFilter = null;
-            this.DeleteColumnColumnsListBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnColumnsListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteColumnColumnsListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteColumnColumnsListBox.HoverText = null;
@@ -1718,7 +1679,6 @@
             this.DeleteColumnColumnsListBox.Location = new System.Drawing.Point(13, 40);
             this.DeleteColumnColumnsListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnColumnsListBox.Name = "DeleteColumnColumnsListBox";
-            this.DeleteColumnColumnsListBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteColumnColumnsListBox.Size = new System.Drawing.Size(351, 140);
             this.DeleteColumnColumnsListBox.TabIndex = 0;
             this.DeleteColumnColumnsListBox.Text = "listBox1";
@@ -1749,7 +1709,6 @@
             this.DeleteColumnTablesGroupBox.Controls.Add(this.DeleteColumnTablesLayout);
             this.DeleteColumnTablesGroupBox.Controls.Add(this.listBox3);
             this.DeleteColumnTablesGroupBox.DataFilter = null;
-            this.DeleteColumnTablesGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnTablesGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteColumnTablesGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteColumnTablesGroupBox.HeaderText = null;
@@ -1758,7 +1717,6 @@
             this.DeleteColumnTablesGroupBox.Location = new System.Drawing.Point(502, 129);
             this.DeleteColumnTablesGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnTablesGroupBox.Name = "DeleteColumnTablesGroupBox";
-            this.DeleteColumnTablesGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteColumnTablesGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteColumnTablesGroupBox.Separator = false;
             this.DeleteColumnTablesGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1827,7 +1785,6 @@
             this.DeleteColumnTableListBox.Border.Visible = true;
             this.DeleteColumnTableListBox.DataFilter = null;
             this.DeleteColumnTableListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteColumnTableListBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnTableListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteColumnTableListBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DeleteColumnTableListBox.HoverText = null;
@@ -1839,7 +1796,6 @@
             this.DeleteColumnTableListBox.Location = new System.Drawing.Point(0, 0);
             this.DeleteColumnTableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnTableListBox.Name = "DeleteColumnTableListBox";
-            this.DeleteColumnTableListBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteColumnTableListBox.Size = new System.Drawing.Size(348, 140);
             this.DeleteColumnTableListBox.TabIndex = 2;
             this.DeleteColumnTableListBox.Text = "listBox7";
@@ -1868,7 +1824,6 @@
             this.listBox3.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.listBox3.Border.Visible = true;
             this.listBox3.DataFilter = null;
-            this.listBox3.Field = BudgetExecution.Field.AccountCode;
             this.listBox3.Font = new System.Drawing.Font("Roboto", 9F);
             this.listBox3.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.listBox3.HoverText = null;
@@ -1880,7 +1835,6 @@
             this.listBox3.Location = new System.Drawing.Point(15, 40);
             this.listBox3.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.listBox3.Name = "listBox3";
-            this.listBox3.Numeric = BudgetExecution.Numeric.Accepted;
             this.listBox3.Size = new System.Drawing.Size(348, 140);
             this.listBox3.TabIndex = 1;
             this.listBox3.Text = "listBox4";
@@ -1911,7 +1865,6 @@
             this.DeleteColumnProviderGroupBox.Controls.Add(this.DeleteColumnSqlServerRadioButton);
             this.DeleteColumnProviderGroupBox.Controls.Add(this.DeleteColumnSqliteRadioButton);
             this.DeleteColumnProviderGroupBox.DataFilter = null;
-            this.DeleteColumnProviderGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnProviderGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DeleteColumnProviderGroupBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.DeleteColumnProviderGroupBox.HeaderText = "";
@@ -1920,7 +1873,6 @@
             this.DeleteColumnProviderGroupBox.Location = new System.Drawing.Point(55, 129);
             this.DeleteColumnProviderGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnProviderGroupBox.Name = "DeleteColumnProviderGroupBox";
-            this.DeleteColumnProviderGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteColumnProviderGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteColumnProviderGroupBox.Separator = false;
             this.DeleteColumnProviderGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2047,7 +1999,6 @@
             this.groupBox7.Controls.Add(this.listBox5);
             this.groupBox7.Controls.Add(this.listBox6);
             this.groupBox7.DataFilter = null;
-            this.groupBox7.Field = BudgetExecution.Field.AccountCode;
             this.groupBox7.Font = new System.Drawing.Font("Roboto", 9F);
             this.groupBox7.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.groupBox7.HeaderText = null;
@@ -2056,7 +2007,6 @@
             this.groupBox7.Location = new System.Drawing.Point(438, 58);
             this.groupBox7.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Numeric = BudgetExecution.Numeric.Accepted;
             this.groupBox7.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox7.Separator = true;
             this.groupBox7.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2092,7 +2042,6 @@
             this.listBox5.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.listBox5.Border.Visible = true;
             this.listBox5.DataFilter = null;
-            this.listBox5.Field = BudgetExecution.Field.AccountCode;
             this.listBox5.Font = new System.Drawing.Font("Roboto", 9F);
             this.listBox5.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.listBox5.HoverText = null;
@@ -2104,7 +2053,6 @@
             this.listBox5.Location = new System.Drawing.Point(15, 40);
             this.listBox5.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.listBox5.Name = "listBox5";
-            this.listBox5.Numeric = BudgetExecution.Numeric.Accepted;
             this.listBox5.Size = new System.Drawing.Size(348, 140);
             this.listBox5.TabIndex = 2;
             this.listBox5.Text = "listBox3";
@@ -2133,7 +2081,6 @@
             this.listBox6.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.listBox6.Border.Visible = true;
             this.listBox6.DataFilter = null;
-            this.listBox6.Field = BudgetExecution.Field.AccountCode;
             this.listBox6.Font = new System.Drawing.Font("Roboto", 9F);
             this.listBox6.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.listBox6.HoverText = null;
@@ -2145,7 +2092,6 @@
             this.listBox6.Location = new System.Drawing.Point(15, 40);
             this.listBox6.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.listBox6.Name = "listBox6";
-            this.listBox6.Numeric = BudgetExecution.Numeric.Accepted;
             this.listBox6.Size = new System.Drawing.Size(348, 140);
             this.listBox6.TabIndex = 1;
             this.listBox6.Text = "listBox4";
@@ -2177,7 +2123,6 @@
             this.groupBox8.Controls.Add(this.visualLabel5);
             this.groupBox8.Controls.Add(this.visualTextBox3);
             this.groupBox8.DataFilter = null;
-            this.groupBox8.Field = BudgetExecution.Field.AccountCode;
             this.groupBox8.Font = new System.Drawing.Font("Roboto", 9F);
             this.groupBox8.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.groupBox8.HeaderText = null;
@@ -2186,7 +2131,6 @@
             this.groupBox8.Location = new System.Drawing.Point(25, 293);
             this.groupBox8.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Numeric = BudgetExecution.Numeric.Accepted;
             this.groupBox8.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox8.Separator = true;
             this.groupBox8.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2516,7 +2460,6 @@
             this.groupBox2.Border.Visible = true;
             this.groupBox2.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.groupBox2.DataFilter = null;
-            this.groupBox2.Field = BudgetExecution.Field.AccountCode;
             this.groupBox2.Font = new System.Drawing.Font("Roboto", 9F);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.HeaderText = null;
@@ -2525,7 +2468,6 @@
             this.groupBox2.Location = new System.Drawing.Point(1, 1);
             this.groupBox2.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Numeric = BudgetExecution.Numeric.Accepted;
             this.groupBox2.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox2.Separator = true;
             this.groupBox2.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2561,7 +2503,6 @@
             this.groupBox3.Border.Visible = true;
             this.groupBox3.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.groupBox3.DataFilter = null;
-            this.groupBox3.Field = BudgetExecution.Field.AccountCode;
             this.groupBox3.Font = new System.Drawing.Font("Roboto", 9F);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.HeaderText = null;
@@ -2570,7 +2511,6 @@
             this.groupBox3.Location = new System.Drawing.Point(1, 1);
             this.groupBox3.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Numeric = BudgetExecution.Numeric.Accepted;
             this.groupBox3.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox3.Separator = true;
             this.groupBox3.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2606,7 +2546,6 @@
             this.groupBox4.Border.Visible = true;
             this.groupBox4.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.groupBox4.DataFilter = null;
-            this.groupBox4.Field = BudgetExecution.Field.AccountCode;
             this.groupBox4.Font = new System.Drawing.Font("Roboto", 9F);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.HeaderText = null;
@@ -2615,7 +2554,6 @@
             this.groupBox4.Location = new System.Drawing.Point(1, 1);
             this.groupBox4.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Numeric = BudgetExecution.Numeric.Accepted;
             this.groupBox4.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox4.Separator = true;
             this.groupBox4.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2649,7 +2587,6 @@
             this.groupBox9.Border.Visible = true;
             this.groupBox9.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.groupBox9.DataFilter = null;
-            this.groupBox9.Field = BudgetExecution.Field.AccountCode;
             this.groupBox9.Font = new System.Drawing.Font("Roboto", 9F);
             this.groupBox9.ForeColor = System.Drawing.Color.White;
             this.groupBox9.HeaderText = null;
@@ -2658,7 +2595,6 @@
             this.groupBox9.Location = new System.Drawing.Point(1, 1);
             this.groupBox9.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Numeric = BudgetExecution.Numeric.Accepted;
             this.groupBox9.Padding = new System.Windows.Forms.Padding(1);
             this.groupBox9.Separator = true;
             this.groupBox9.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -2696,7 +2632,6 @@
             this.SchemaGroupBox.Controls.Add(this.EditColumnDataTypeComboBox);
             this.SchemaGroupBox.Controls.Add(this.EditColumnComboBoxLabel);
             this.SchemaGroupBox.DataFilter = null;
-            this.SchemaGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.SchemaGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.SchemaGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.SchemaGroupBox.HeaderText = null;
@@ -2705,7 +2640,6 @@
             this.SchemaGroupBox.Location = new System.Drawing.Point(816, 277);
             this.SchemaGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.SchemaGroupBox.Name = "SchemaGroupBox";
-            this.SchemaGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.SchemaGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.SchemaGroupBox.Separator = false;
             this.SchemaGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));

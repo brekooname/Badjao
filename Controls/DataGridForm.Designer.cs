@@ -117,14 +117,12 @@
             this.HeaderLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.HeaderLabel.BindingSource = null;
             this.HeaderLabel.DataFilter = null;
-            this.HeaderLabel.Field = BudgetExecution.Field.AccountCode;
             this.HeaderLabel.Font = new System.Drawing.Font("Roboto", 9F);
             this.HeaderLabel.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.HeaderLabel.HoverText = null;
             this.HeaderLabel.Location = new System.Drawing.Point(30, 13);
             this.HeaderLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.HeaderLabel.Name = "HeaderLabel";
-            this.HeaderLabel.Numeric = BudgetExecution.Numeric.Accepted;
             this.HeaderLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.HeaderLabel.Outline = false;
             this.HeaderLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
@@ -164,7 +162,6 @@
             this.DataGridGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.DataGridGroupBox.Controls.Add(this.GridPanel);
             this.DataGridGroupBox.DataFilter = null;
-            this.DataGridGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.DataGridGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.DataGridGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.DataGridGroupBox.HeaderText = null;
@@ -173,7 +170,6 @@
             this.DataGridGroupBox.Location = new System.Drawing.Point(30, 97);
             this.DataGridGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DataGridGroupBox.Name = "DataGridGroupBox";
-            this.DataGridGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.DataGridGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.DataGridGroupBox.Separator = true;
             this.DataGridGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1147,7 +1143,6 @@
             this.ColumnGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.ColumnGroupBox.Controls.Add(this.ColumnListBox);
             this.ColumnGroupBox.DataFilter = null;
-            this.ColumnGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.ColumnGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.ColumnGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.ColumnGroupBox.HeaderText = null;
@@ -1156,7 +1151,6 @@
             this.ColumnGroupBox.Location = new System.Drawing.Point(1022, 294);
             this.ColumnGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnGroupBox.Name = "ColumnGroupBox";
-            this.ColumnGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.ColumnGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.ColumnGroupBox.Separator = true;
             this.ColumnGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1190,7 +1184,6 @@
             this.ColumnListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.ColumnListBox.Border.Visible = false;
             this.ColumnListBox.DataFilter = null;
-            this.ColumnListBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.ColumnListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ColumnListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.ColumnListBox.HoverText = null;
@@ -1202,7 +1195,6 @@
             this.ColumnListBox.Location = new System.Drawing.Point(6, 35);
             this.ColumnListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ColumnListBox.Name = "ColumnListBox";
-            this.ColumnListBox.Numeric = BudgetExecution.Numeric.NS;
             this.ColumnListBox.Size = new System.Drawing.Size(325, 124);
             this.ColumnListBox.TabIndex = 1;
             this.ColumnListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -1232,7 +1224,6 @@
             this.ValueGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.ValueGroupBox.Controls.Add(this.ValueListBox);
             this.ValueGroupBox.DataFilter = null;
-            this.ValueGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.ValueGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.ValueGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.ValueGroupBox.HeaderText = null;
@@ -1241,7 +1232,6 @@
             this.ValueGroupBox.Location = new System.Drawing.Point(1022, 474);
             this.ValueGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueGroupBox.Name = "ValueGroupBox";
-            this.ValueGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.ValueGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.ValueGroupBox.Separator = true;
             this.ValueGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1275,7 +1265,6 @@
             this.ValueListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.ValueListBox.Border.Visible = false;
             this.ValueListBox.DataFilter = null;
-            this.ValueListBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.ValueListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ValueListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.ValueListBox.HoverText = null;
@@ -1287,7 +1276,6 @@
             this.ValueListBox.Location = new System.Drawing.Point(6, 39);
             this.ValueListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueListBox.Name = "ValueListBox";
-            this.ValueListBox.Numeric = BudgetExecution.Numeric.NS;
             this.ValueListBox.Size = new System.Drawing.Size(325, 125);
             this.ValueListBox.TabIndex = 2;
             this.ValueListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -1317,7 +1305,6 @@
             this.TableGroupBox.BoxStyle = VisualPlus.Toolkit.Controls.Layout.VisualGroupBox.GroupBoxStyle.Default;
             this.TableGroupBox.Controls.Add(this.TableListBox);
             this.TableGroupBox.DataFilter = null;
-            this.TableGroupBox.Field = BudgetExecution.Field.AccountCode;
             this.TableGroupBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.TableGroupBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.TableGroupBox.HeaderText = null;
@@ -1326,7 +1313,6 @@
             this.TableGroupBox.Location = new System.Drawing.Point(1022, 97);
             this.TableGroupBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableGroupBox.Name = "TableGroupBox";
-            this.TableGroupBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.TableGroupBox.Padding = new System.Windows.Forms.Padding(1);
             this.TableGroupBox.Separator = true;
             this.TableGroupBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -1360,7 +1346,6 @@
             this.TableListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.TableListBox.Border.Visible = false;
             this.TableListBox.DataFilter = null;
-            this.TableListBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.TableListBox.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TableListBox.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.TableListBox.HoverText = null;
@@ -1372,7 +1357,6 @@
             this.TableListBox.Location = new System.Drawing.Point(6, 35);
             this.TableListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TableListBox.Name = "TableListBox";
-            this.TableListBox.Numeric = BudgetExecution.Numeric.NS;
             this.TableListBox.Size = new System.Drawing.Size(325, 153);
             this.TableListBox.TabIndex = 2;
             this.TableListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));

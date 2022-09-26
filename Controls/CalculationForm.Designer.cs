@@ -80,14 +80,12 @@
             this.ValueLabel.BindingSource = null;
             this.ValueLabel.DataFilter = null;
             this.ValueLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ValueLabel.Field = BudgetExecution.Field.AccountCode;
             this.ValueLabel.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ValueLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ValueLabel.HoverText = null;
             this.ValueLabel.Location = new System.Drawing.Point(0, 0);
             this.ValueLabel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ValueLabel.Name = "ValueLabel";
-            this.ValueLabel.Numeric = BudgetExecution.Numeric.Accepted;
             this.ValueLabel.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.ValueLabel.Outline = false;
             this.ValueLabel.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));

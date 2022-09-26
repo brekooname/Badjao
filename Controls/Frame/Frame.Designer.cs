@@ -86,7 +86,6 @@
             this.TextBox.ButtonVisible = false;
             this.TextBox.DataFilter = null;
             this.TextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TextBox.Field = BudgetExecution.Field.AccountCode;
             this.TextBox.Font = new System.Drawing.Font("Roboto Condensed", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.TextBox.HoverText = null;
@@ -97,7 +96,6 @@
             this.TextBox.Location = new System.Drawing.Point(1, 27);
             this.TextBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.TextBox.Name = "TextBox";
-            this.TextBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.TextBox.PasswordChar = '\0';
             this.TextBox.ReadOnly = false;
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -125,14 +123,12 @@
             this.Label.BindingSource = null;
             this.Label.DataFilter = null;
             this.Label.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Label.Field = BudgetExecution.Field.AccountCode;
             this.Label.Font = new System.Drawing.Font("Roboto", 9F);
             this.Label.ForeColor = System.Drawing.Color.LightSteelBlue;
             this.Label.HoverText = null;
             this.Label.Location = new System.Drawing.Point(1, 4);
             this.Label.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Label.Name = "Label";
-            this.Label.Numeric = BudgetExecution.Numeric.Accepted;
             this.Label.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.Label.Outline = false;
             this.Label.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
