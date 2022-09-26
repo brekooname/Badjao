@@ -1,4 +1,4 @@
-﻿// <copyright file = "TextBoxBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ComboBoxBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -7,9 +7,9 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Windows.Forms;
-    using VisualPlus.Toolkit.Controls.Editors;
+    using VisualPlus.Toolkit.Controls.Interactivity;
 
-    public abstract class TextBoxBase : VisualTextBox
+    public abstract class ComboBoxBase : VisualComboBox
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -34,23 +34,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -58,6 +42,13 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ComboBoxBase"/> class.
+        /// </summary>
+        protected ComboBoxBase( )
+        {
+        }
 
         /// <summary>
         /// Get Error Dialog.

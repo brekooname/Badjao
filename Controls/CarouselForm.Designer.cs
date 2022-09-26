@@ -71,13 +71,11 @@
             // 
             this.ImageList.BindingSource = null;
             this.ImageList.DataFilter = null;
-            this.ImageList.Field = BudgetExecution.Field.RpioActivityCode;
             this.ImageList.FileNames = null;
             this.ImageList.FilePaths = null;
             this.ImageList.HoverText = null;
             this.ImageList.Image = null;
             this.ImageList.ImageSource = BudgetExecution.ImageDirectory.NS;
-            this.ImageList.Numeric = BudgetExecution.Numeric.NS;
             this.ImageList.ToolTip = null;
             // 
             // CarouselForm

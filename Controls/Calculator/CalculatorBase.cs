@@ -1,4 +1,4 @@
-﻿// <copyright file = "PivotGridBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "CalculatorBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -7,14 +7,14 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
-    using Syncfusion.Windows.Forms.PivotAnalysis;
+    using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public abstract class PivotGridBase : PivotGridControl
+    public abstract class CalculatorBase : CalculatorControl
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -30,24 +30,16 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public virtual MetroTipBase ToolTip { get; set; }
+        public virtual MetroTip ToolTip { get; set; }
 
         /// <summary>
-        /// Gets or sets the field.
+        /// Gets or sets the hover text.
         /// </summary>
         /// <value>
-        /// The field.
+        /// The hover text.
         /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        public virtual string HoverText { get; set; }
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -55,21 +47,17 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
+        
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <typeparam name="T1">
-        /// </typeparam>
-        /// <param name="bindingList">
-        /// The binding source.
-        /// </param>
-        public virtual void SetDataSource<T1>( T1 bindingList )
+        /// <param name="bindingSource">The bindingSource.</param>
+        public virtual void SetDataSource<T1>( T1 bindingSource )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingList is BindingSource _binder
+                if( bindingSource is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -91,17 +79,10 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <typeparam name="T1">
-        /// </typeparam>
-        /// <typeparam name="T2">
-        /// The type of the 2.
-        /// </typeparam>
-        /// <param name="bindingList">
-        /// The binding source.
-        /// </param>
-        /// <param name="dict">
-        /// The dictionary.
-        /// </param>
+        /// <typeparam name="T1"></typeparam>
+        /// <typeparam name="T2">The type of the 2.</typeparam>
+        /// <param name="bindingList">The bindingSource.</param>
+        /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
             where T1 : IBindingList
             where T2 : IDictionary<string, object>
@@ -121,7 +102,7 @@ namespace BudgetExecution
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
                             {
-                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                                _filter += $"{_kvp.Key} = { _kvp.Value } AND";
                             }
                         }
 
@@ -147,10 +128,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
         /// <param name="data">The data.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data )
-            where T1 : IEnumerable<T1>
+            where T1 : IEnumerable<DataRow>
         {
             if( data?.Any( ) == true )
             {
@@ -173,7 +153,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data,
             IDictionary<string, object> dict )
-            where T1 : IEnumerable<T1>
+            where T1 : IEnumerable<DataRow>
         {
             if( data?.Any( ) == true )
             {
@@ -210,11 +190,10 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="filter">The dictionary.</param>
         public virtual void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
-            where T1 : IEnumerable<T1>
+            where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( data?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -244,9 +223,10 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
-            where T1 : IEnumerable<T1>
+            where T1 : IEnumerable<DataRow>
         {
-            if( data?.Any( ) == true )
+            if( data?.Any( ) == true
+                && !string.IsNullOrEmpty( field?.ToString( ) ) )
             {
                 try
                 {
@@ -270,12 +250,11 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the bindings.
         /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <typeparam name="T2">The type of the 2.</typeparam>
         /// <param name="data">The data.</param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param>The numeric.</param>
+        /// <param name = "dict" > </param>
         public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
-            where T1 : IEnumerable<T1>
+            where T1 : IEnumerable<DataRow>
             where T2 : IDictionary<string, object>
         {
             if( data?.Any( ) == true
@@ -285,12 +264,12 @@ namespace BudgetExecution
                 {
                     string _filter = string.Empty;
 
-                    foreach( KeyValuePair<string, object> kvp in dict )
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
-                        if( !string.IsNullOrEmpty( kvp.Key )
-                            && kvp.Value != null )
+                        if( !string.IsNullOrEmpty( _kvp.Key )
+                            && _kvp.Value != null )
                         {
-                            _filter += $"{kvp.Key} = {kvp.Value} AND";
+                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                         }
                     }
 
@@ -307,14 +286,12 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <typeparam name="T2">The type of the 2.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
             object filter = null )
-            where T1 : IEnumerable<T1>
+            where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
             if( data?.Any( ) == true
@@ -345,7 +322,8 @@ namespace BudgetExecution
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        protected static void Fail( Exception ex )
+        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+        protected void Fail( Exception ex )
         {
             using( Error _error = new Error( ex ) )
             {

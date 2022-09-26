@@ -1,21 +1,20 @@
-﻿// <copyright file = "CurrencyBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "LabelBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
 {
-    using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
+    using System;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using Syncfusion.Windows.Forms.Tools;
+    using System.Windows.Forms;
+    using VisualPlus.Toolkit.Controls.Interactivity;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public abstract class CurrencyBase : CurrencyEdit
+    public abstract class LabelBase : VisualLabel
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -23,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -40,23 +39,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -66,39 +49,15 @@ namespace BudgetExecution
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingList">The binding source.</param>
+        /// <param name="bindingList">The bindingsource.</param>
         public virtual void SetDataSource<T1>( T1 bindingList )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingList is SourceBinding _binder
+                if( bindingList is BindingSource _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -122,7 +81,7 @@ namespace BudgetExecution
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindingList">The binding source.</param>
+        /// <param name="bindingList">The bindingsource.</param>
         /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
             where T1 : IBindingList
@@ -135,7 +94,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        SourceBinding _list = bindingList as SourceBinding;
+                        BindingSource _list = bindingList as BindingSource;
                         string _filter = string.Empty;
 
                         foreach( KeyValuePair<string, object> kvp in dict )
@@ -368,24 +327,24 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            CurrencyBox _currencyTextBox = sender as CurrencyBox;
+            Label _budgetLabel = sender as Label;
 
             try
             {
-                if( _currencyTextBox != null
+                if( _budgetLabel != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        string _hoverText = _currencyTextBox?.HoverText;
-                        MetroTip _ = new MetroTip( _currencyTextBox, _hoverText );
+                        string _hoverText = _budgetLabel?.HoverText;
+                        MetroTip _ = new MetroTip( _budgetLabel, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
                             string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _currencyTextBox, _text );
+                            MetroTip _ = new MetroTip( _budgetLabel, _text );
                         }
                     }
                 }
@@ -406,11 +365,11 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            CurrencyBox _currencyTextBox = sender as CurrencyBox;
+            Label _budgetLabel = sender as Label;
 
             try
             {
-                if( _currencyTextBox != null )
+                if( _budgetLabel != null )
                 {
                 }
             }
@@ -421,7 +380,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Get Error Dialog.
+        /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )

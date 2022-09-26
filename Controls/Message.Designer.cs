@@ -99,7 +99,6 @@ namespace BudgetExecution
             this.OpenButton.Border.Visible = true;
             this.OpenButton.DataFilter = null;
             this.OpenButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.OpenButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.OpenButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.OpenButton.ForeColor = System.Drawing.Color.SteelBlue;
             this.OpenButton.HoverText = null;
@@ -160,7 +159,6 @@ namespace BudgetExecution
             this.CloseButton.Border.Visible = true;
             this.CloseButton.DataFilter = null;
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.CloseButton.ForeColor = System.Drawing.Color.SteelBlue;
             this.CloseButton.HoverText = null;
@@ -190,14 +188,12 @@ namespace BudgetExecution
             this.Label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.Label.BindingSource = null;
             this.Label.DataFilter = null;
-            this.Label.Field = BudgetExecution.Field.RpioActivityCode;
             this.Label.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label.ForeColor = System.Drawing.Color.SteelBlue;
             this.Label.HoverText = null;
             this.Label.Location = new System.Drawing.Point(86, 80);
             this.Label.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.Label.Name = "Label";
-            this.Label.Numeric = BudgetExecution.Numeric.NS;
             this.Label.Orientation = System.Windows.Forms.Orientation.Horizontal;
             this.Label.Outline = false;
             this.Label.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));

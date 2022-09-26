@@ -48,23 +48,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -242,26 +226,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<Control> );
         }
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public void SetField( Field field )
-        {
-            if( Enum.IsDefined( typeof( Field ), field ) )
-            {
-                try
-                {
-                    Field = field;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>

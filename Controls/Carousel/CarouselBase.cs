@@ -6,8 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.IO;
@@ -24,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the images.
@@ -41,15 +39,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual MetroTip ToolTip { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -65,15 +55,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the settings.
-        /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
+        
         /// <summary>Initializes a new instance of the class.
         /// 	<see cref="CarouselBase" />
         /// </summary>
@@ -210,23 +192,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>

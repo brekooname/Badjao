@@ -172,7 +172,6 @@
             this.CloseButton.Border.Visible = true;
             this.CloseButton.DataFilter = null;
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Field = BudgetExecution.Field.RpioActivityCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.CloseButton.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.CloseButton.HoverText = null;

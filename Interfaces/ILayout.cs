@@ -39,19 +39,7 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         /// <returns></returns>
         IEnumerable<Control> AddChild( Control item );
-
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        void SetField( Field field );
-
-        /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        void SetTag( object tag );
-
+        
         /// <summary>
         /// Adds the control item.
         /// </summary>

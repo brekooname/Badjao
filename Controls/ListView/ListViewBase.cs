@@ -1,4 +1,4 @@
-﻿// <copyright file = "GroupBoxBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ListViewBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -7,15 +7,14 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Threading;
     using System.Windows.Forms;
-    using VisualPlus.Toolkit.Controls.Layout;
+    using VisualPlus.Toolkit.Controls.DataManagement;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public abstract class GroupBoxBase : VisualGroupBox
+    public abstract class ListViewBase : VisualListView
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -40,23 +39,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -64,22 +47,22 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
+        
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingSource">The Binding Source.</param>
-        public virtual void SetDataSource<T1>( T1 bindingSource )
+        /// <param name="bindingList">The bindingsource.</param>
+        public virtual void SetDataSource<T1>( T1 bindingList )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingSource is BindingSource _bindingSource
-                    && _bindingSource?.DataSource != null )
+                if( bindingList is BindingSource _binder
+                    && _binder?.DataSource != null )
                 {
                     try
                     {
-                        BindingSource.DataSource = _bindingSource.DataSource;
+                        BindingSource.DataSource = _binder.DataSource;
                     }
                     catch( Exception ex )
                     {
@@ -98,28 +81,28 @@ namespace BudgetExecution
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindinglist">The bindingSource.</param>
+        /// <param name="bindingList">The binding source.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1, T2>( T1 bindinglist, T2 dict )
+        public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
             where T1 : IBindingList
             where T2 : IDictionary<string, object>
         {
             try
             {
-                if( bindinglist != null
+                if( bindingList != null
                     && dict?.Any( ) == true )
                 {
                     try
                     {
-                        BindingSource _list = bindinglist as BindingSource;
+                        BindingSource _list = bindingList as BindingSource;
                         string _filter = string.Empty;
 
-                        foreach( KeyValuePair<string, object> _kvp in dict )
+                        foreach( KeyValuePair<string, object> kvp in dict )
                         {
-                            if( !string.IsNullOrEmpty( _kvp.Key )
-                                && _kvp.Value != null )
+                            if( !string.IsNullOrEmpty( kvp.Key )
+                                && kvp.Value != null )
                             {
-                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                                _filter += $"{kvp.Key} = {kvp.Value} AND";
                             }
                         }
 
@@ -147,7 +130,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="data">The data.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
         {
             if( data?.Any( ) == true )
             {
@@ -170,7 +153,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data,
             IDictionary<string, object> dict )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
         {
             if( data?.Any( ) == true )
             {
@@ -178,12 +161,12 @@ namespace BudgetExecution
                 {
                     string _filter = string.Empty;
 
-                    foreach( KeyValuePair<string, object> _kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
-                        if( !string.IsNullOrEmpty( _kvp.Key )
-                            && _kvp.Value != null )
+                        if( !string.IsNullOrEmpty( kvp.Key )
+                            && kvp.Value != null )
                         {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            _filter += $"{kvp.Key} = {kvp.Value} AND";
                         }
                     }
 
@@ -200,14 +183,14 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <typeparam name="T1">The type of the 1.</typeparam>
-        /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <typeparam name="T3">The type of the 3.</typeparam>
+        /// <typeparam name="T1">The type of T1.</typeparam>
+        /// <typeparam name="T2">The type of T2.</typeparam>
+        /// <typeparam name="T3">The type of T3.</typeparam>
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The dictionary.</param>
         public virtual void SetDataSource<T1, T2, T3>( IEnumerable<T1> data, T2 field, T3 filter )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
             where T2 : struct
         {
             if( data?.Any( ) == true
@@ -241,7 +224,7 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         /// <param name="field">The field.</param>
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
         {
             if( data?.Any( ) == true )
             {
@@ -271,7 +254,7 @@ namespace BudgetExecution
         /// <param>The numeric.</param>
         /// <param name = "dict" > </param>
         public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 dict )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
             where T2 : IDictionary<string, object>
         {
             if( data?.Any( ) == true
@@ -279,19 +262,19 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    string filter = string.Empty;
 
-                    foreach( KeyValuePair<string, object> _kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
-                        if( !string.IsNullOrEmpty( _kvp.Key )
-                            && _kvp.Value != null )
+                        if( !string.IsNullOrEmpty( kvp.Key )
+                            && kvp.Value != null )
                         {
-                            _filter += $"{_kvp.Key} = {_kvp.Value} AND";
+                            filter += $"{kvp.Key} = {kvp.Value} AND";
                         }
                     }
 
                     BindingSource.DataSource = data?.ToList( );
-                    BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
+                    BindingSource.Filter = filter?.TrimEnd( " AND".ToCharArray( ) );
                 }
                 catch( Exception ex )
                 {
@@ -308,7 +291,7 @@ namespace BudgetExecution
         /// <param name="filter">The filter.</param>
         public virtual void SetDataSource<T1, T2>( IEnumerable<T1> data, T2 field,
             object filter = null )
-            where T1 : IEnumerable<DataRow>
+            where T1 : IEnumerable<T1>
             where T2 : struct
         {
             if( data?.Any( ) == true
@@ -336,68 +319,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Called when [mouse over].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The
-        /// <see cref="EventArgs" />
-        /// instance containing the event data.</param>
-        public virtual void OnMouseOver( object sender, EventArgs e )
-        {
-            GroupBox _groupBox = sender as GroupBox;
-
-            try
-            {
-                if( _groupBox != null
-                    && !string.IsNullOrEmpty( HoverText ) )
-                {
-                    if( !string.IsNullOrEmpty( HoverText ) )
-                    {
-                        string _hoverText = _groupBox?.HoverText;
-                        MetroTip _ = new MetroTip( _groupBox, _hoverText );
-                    }
-                    else
-                    {
-                        if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
-                        {
-                            string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _groupBox, _text );
-                        }
-                    }
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Called when [mouse leave].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The
-        /// <see cref="EventArgs" />
-        /// instance containing the event data.
-        /// </param>
-        public virtual void OnMouseLeave( object sender, EventArgs e )
-        {
-            GroupBox _groupBox = sender as GroupBox;
-
-            try
-            {
-                if( _groupBox != null )
-                {
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Fails the specified ex.
+        /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )

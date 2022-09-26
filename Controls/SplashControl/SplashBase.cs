@@ -1,4 +1,4 @@
-﻿// <copyright file = "ButtonBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "SplashBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -8,15 +8,13 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.IO;
     using System.Windows.Forms;
-    using VisualPlus.Toolkit.Controls.Interactivity;
+    using Syncfusion.Windows.Forms.Tools;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="VisualButton" />
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class ButtonBase : VisualButton
+    [ SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" ) ]
+    public abstract class SplashBase : SplashPanel
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -24,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the images.
@@ -41,15 +39,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual MetroTip ToolTip { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -65,6 +55,19 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SplashBase"/> class.
+        /// </summary>
+        /// <remarks>
+        /// The default value for the <see cref="P:Syncfusion.Windows.Forms.Tools.SplashPanel.TimerInterval" /> is set to
+        /// 5000 milli seconds.
+        /// The splash panel has animation turned and by default will appear in the
+        /// middle of the screen.
+        /// </remarks>
+        public SplashBase( )
+        {
+        }
 
         /// <summary>
         /// Sets the size.
@@ -87,7 +90,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        public virtual void ReSize( int width, int height )
+        public virtual void ReSize( int width = 300, int height = 150 )
         {
             try
             {
@@ -197,22 +200,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        public virtual void SetField( Field field )
-        {
-            try
-            {
-                Field = BudgetForm.GetField( field );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
         /// Sets the tag.
         /// </summary>
         /// <param name="tag">The tag.</param>
@@ -231,12 +218,12 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the tool tip.
         /// </summary>
-        /// <param name="tip">The tip.</param>
-        public virtual void SetToolTip( string tip )
+        /// <param name="message">The tip.</param>
+        public virtual void SetToolTip( string message )
         {
             try
             {
-                Tag = Settings.GetToolTip( this, tip );
+                Tag = Settings.GetToolTip( this, message );
             }
             catch( Exception ex )
             {
@@ -247,14 +234,18 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the image.
         /// </summary>
-        /// <param name="image">The image.</param>
-        public virtual void SetImage( Image image )
+        /// <param name = "path" > </param>
+        public virtual void ResetIcon( string path )
         {
-            if( image != null )
+            if( !string.IsNullOrEmpty( path )
+                && File.Exists( path ) )
             {
                 try
                 {
-                    Image = image;
+                    using( FileStream _stream = File.Open( path, FileMode.Open ) )
+                    {
+                        FormIcon = new Icon( _stream );
+                    }
                 }
                 catch( Exception ex )
                 {
@@ -264,34 +255,10 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Called when [mouse leave].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-        public virtual void OnMouseLeave( object sender, EventArgs e )
-        {
-            try
-            {
-                if( sender is VisualButton _button
-                    && _button != null
-                    && ToolTip?.Active == true )
-                {
-                    ToolTip.RemoveAll( );
-                }
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Get Error Dialog.
+        /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-        protected void Fail( Exception ex )
+        protected static void Fail( Exception ex )
         {
             using( Error _error = new Error( ex ) )
             {

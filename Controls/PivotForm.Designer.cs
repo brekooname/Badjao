@@ -99,14 +99,12 @@
             this.ListPanel.Children = null;
             this.ListPanel.Controls.Add(this.ListBox);
             this.ListPanel.DataFilter = null;
-            this.ListPanel.Field = BudgetExecution.Field.RpioActivityCode;
             this.ListPanel.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ListPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.ListPanel.HoverText = null;
             this.ListPanel.Location = new System.Drawing.Point(869, 112);
             this.ListPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ListPanel.Name = "ListPanel";
-            this.ListPanel.Numeric = BudgetExecution.Numeric.NS;
             this.ListPanel.Padding = new System.Windows.Forms.Padding(1);
             this.ListPanel.Size = new System.Drawing.Size(264, 476);
             this.ListPanel.TabIndex = 10;
@@ -137,7 +135,6 @@
             this.ListBox.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.ListBox.Border.Visible = true;
             this.ListBox.DataFilter = null;
-            this.ListBox.Field = BudgetExecution.Field.RpioActivityCode;
             this.ListBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.ListBox.ForeColor = System.Drawing.Color.White;
             this.ListBox.HoverText = null;
@@ -149,7 +146,6 @@
             this.ListBox.Location = new System.Drawing.Point(32, 21);
             this.ListBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.ListBox.Name = "ListBox";
-            this.ListBox.Numeric = BudgetExecution.Numeric.NS;
             this.ListBox.Size = new System.Drawing.Size(200, 430);
             this.ListBox.TabIndex = 9;
             this.ListBox.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -209,14 +205,12 @@
             this.PivotPanel.Children = null;
             this.PivotPanel.Controls.Add(this.PivotChart);
             this.PivotPanel.DataFilter = null;
-            this.PivotPanel.Field = BudgetExecution.Field.RpioActivityCode;
             this.PivotPanel.Font = new System.Drawing.Font("Roboto", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PivotPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.PivotPanel.HoverText = null;
             this.PivotPanel.Location = new System.Drawing.Point(55, 112);
             this.PivotPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.PivotPanel.Name = "PivotPanel";
-            this.PivotPanel.Numeric = BudgetExecution.Numeric.NS;
             this.PivotPanel.Padding = new System.Windows.Forms.Padding(1);
             this.PivotPanel.Size = new System.Drawing.Size(757, 476);
             this.PivotPanel.TabIndex = 8;

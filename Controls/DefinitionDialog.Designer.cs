@@ -256,7 +256,6 @@
             this.CreateTableDataTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.CreateTableDataTypeComboBox.DropDownHeight = 100;
             this.CreateTableDataTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CreateTableDataTypeComboBox.Field = BudgetExecution.Field.AccountCode;
             this.CreateTableDataTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateTableDataTypeComboBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.CreateTableDataTypeComboBox.ForeColor = System.Drawing.Color.LightSteelBlue;
@@ -274,7 +273,6 @@
             this.CreateTableDataTypeComboBox.MenuTextColor = System.Drawing.Color.LightSteelBlue;
             this.CreateTableDataTypeComboBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.CreateTableDataTypeComboBox.Name = "CreateTableDataTypeComboBox";
-            this.CreateTableDataTypeComboBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.CreateTableDataTypeComboBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.CreateTableDataTypeComboBox.SeparatorVisible = false;
             this.CreateTableDataTypeComboBox.Size = new System.Drawing.Size(260, 30);
@@ -316,7 +314,6 @@
             this.AddColumnButton.Border.Visible = true;
             this.AddColumnButton.DataFilter = null;
             this.AddColumnButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.AddColumnButton.Field = BudgetExecution.Field.AccountCode;
             this.AddColumnButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.AddColumnButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.AddColumnButton.HoverText = null;
@@ -882,7 +879,6 @@
             this.EditColumnDataTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.EditColumnDataTypeComboBox.DropDownHeight = 100;
             this.EditColumnDataTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.EditColumnDataTypeComboBox.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnDataTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditColumnDataTypeComboBox.Font = new System.Drawing.Font("Roboto", 9F);
             this.EditColumnDataTypeComboBox.ForeColor = System.Drawing.Color.LightSteelBlue;
@@ -900,7 +896,6 @@
             this.EditColumnDataTypeComboBox.MenuTextColor = System.Drawing.Color.LightSteelBlue;
             this.EditColumnDataTypeComboBox.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnDataTypeComboBox.Name = "EditColumnDataTypeComboBox";
-            this.EditColumnDataTypeComboBox.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnDataTypeComboBox.SeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.EditColumnDataTypeComboBox.SeparatorVisible = false;
             this.EditColumnDataTypeComboBox.Size = new System.Drawing.Size(281, 30);
@@ -1025,13 +1020,11 @@
             this.EditColumnTablesLayout.Children = null;
             this.EditColumnTablesLayout.Controls.Add(this.EditColumnTableNameListBox);
             this.EditColumnTablesLayout.DataFilter = null;
-            this.EditColumnTablesLayout.Field = BudgetExecution.Field.AccountCode;
             this.EditColumnTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
             this.EditColumnTablesLayout.HoverText = null;
             this.EditColumnTablesLayout.Location = new System.Drawing.Point(15, 34);
             this.EditColumnTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.EditColumnTablesLayout.Name = "EditColumnTablesLayout";
-            this.EditColumnTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
             this.EditColumnTablesLayout.Padding = new System.Windows.Forms.Padding(1);
             this.EditColumnTablesLayout.Size = new System.Drawing.Size(348, 146);
             this.EditColumnTablesLayout.TabIndex = 7;
@@ -1414,13 +1407,11 @@
             this.DeleteTableTablesLayout.Children = null;
             this.DeleteTableTablesLayout.Controls.Add(this.DeleteTableTablesListBox);
             this.DeleteTableTablesLayout.DataFilter = null;
-            this.DeleteTableTablesLayout.Field = BudgetExecution.Field.AccountCode;
             this.DeleteTableTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
             this.DeleteTableTablesLayout.HoverText = null;
             this.DeleteTableTablesLayout.Location = new System.Drawing.Point(15, 40);
             this.DeleteTableTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteTableTablesLayout.Name = "DeleteTableTablesLayout";
-            this.DeleteTableTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteTableTablesLayout.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteTableTablesLayout.Size = new System.Drawing.Size(348, 140);
             this.DeleteTableTablesLayout.TabIndex = 9;
@@ -1803,13 +1794,11 @@
             this.DeleteColumnTablesLayout.Children = null;
             this.DeleteColumnTablesLayout.Controls.Add(this.DeleteColumnTableListBox);
             this.DeleteColumnTablesLayout.DataFilter = null;
-            this.DeleteColumnTablesLayout.Field = BudgetExecution.Field.AccountCode;
             this.DeleteColumnTablesLayout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
             this.DeleteColumnTablesLayout.HoverText = null;
             this.DeleteColumnTablesLayout.Location = new System.Drawing.Point(15, 40);
             this.DeleteColumnTablesLayout.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.DeleteColumnTablesLayout.Name = "DeleteColumnTablesLayout";
-            this.DeleteColumnTablesLayout.Numeric = BudgetExecution.Numeric.Accepted;
             this.DeleteColumnTablesLayout.Padding = new System.Windows.Forms.Padding(1);
             this.DeleteColumnTablesLayout.Size = new System.Drawing.Size(348, 140);
             this.DeleteColumnTablesLayout.TabIndex = 12;
@@ -2408,7 +2397,6 @@
             this.SelectButton.Border.Visible = true;
             this.SelectButton.DataFilter = null;
             this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
             this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.SelectButton.HoverText = "Not Yet Implemented!";
@@ -2449,7 +2437,6 @@
             this.RefreshButton.Border.Visible = true;
             this.RefreshButton.DataFilter = null;
             this.RefreshButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.RefreshButton.Field = BudgetExecution.Field.AccountCode;
             this.RefreshButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.RefreshButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.RefreshButton.HoverText = "Not Yet Implemented!";
@@ -2490,7 +2477,6 @@
             this.CloseButton.Border.Visible = true;
             this.CloseButton.DataFilter = null;
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CloseButton.HoverText = "Close Window";

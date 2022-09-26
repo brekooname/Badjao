@@ -1,20 +1,20 @@
-﻿// <copyright file = "LabelBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "CurrencyBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
 {
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
-    using VisualPlus.Toolkit.Controls.Interactivity;
+    using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    public abstract class LabelBase : VisualLabel
+    public abstract class CurrencyBase : CurrencyEdit
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -39,23 +39,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -63,17 +47,17 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
+        
         /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingList">The bindingsource.</param>
+        /// <param name="bindingList">The binding source.</param>
         public virtual void SetDataSource<T1>( T1 bindingList )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingList is BindingSource _binder
+                if( bindingList is SourceBinding _binder
                     && _binder?.DataSource != null )
                 {
                     try
@@ -97,7 +81,7 @@ namespace BudgetExecution
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindingList">The bindingsource.</param>
+        /// <param name="bindingList">The binding source.</param>
         /// <param name="dict">The dictionary.</param>
         public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
             where T1 : IBindingList
@@ -110,7 +94,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        BindingSource _list = bindingList as BindingSource;
+                        SourceBinding _list = bindingList as SourceBinding;
                         string _filter = string.Empty;
 
                         foreach( KeyValuePair<string, object> kvp in dict )
@@ -343,24 +327,24 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            Label _budgetLabel = sender as Label;
+            CurrencyBox _currencyTextBox = sender as CurrencyBox;
 
             try
             {
-                if( _budgetLabel != null
+                if( _currencyTextBox != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        string _hoverText = _budgetLabel?.HoverText;
-                        MetroTip _ = new MetroTip( _budgetLabel, _hoverText );
+                        string _hoverText = _currencyTextBox?.HoverText;
+                        MetroTip _ = new MetroTip( _currencyTextBox, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
                             string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _budgetLabel, _text );
+                            MetroTip _ = new MetroTip( _currencyTextBox, _text );
                         }
                     }
                 }
@@ -381,11 +365,11 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            Label _budgetLabel = sender as Label;
+            CurrencyBox _currencyTextBox = sender as CurrencyBox;
 
             try
             {
-                if( _budgetLabel != null )
+                if( _currencyTextBox != null )
                 {
                 }
             }
@@ -396,7 +380,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Fails the specified ex.
+        /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )

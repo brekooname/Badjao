@@ -1,4 +1,4 @@
-﻿// <copyright file = "CalculatorBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "GroupBoxBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -6,17 +6,16 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.Configuration;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Windows.Forms;
-    using Syncfusion.Windows.Forms.Tools;
+    using VisualPlus.Toolkit.Controls.Layout;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class CalculatorBase : CalculatorControl
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    public abstract class GroupBoxBase : VisualGroupBox
     {
         /// <summary>
         /// Gets or sets the binding source.
@@ -24,7 +23,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public virtual SourceBinding BindingSource { get; set; }
+        public virtual BindingSource BindingSource { get; set; }
 
         /// <summary>
         /// Gets or sets the tool tip.
@@ -41,23 +40,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public virtual Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -67,28 +50,20 @@ namespace BudgetExecution
         public virtual IDictionary<string, object> DataFilter { get; set; }
 
         /// <summary>
-        /// Gets or sets the bud ex configuration.
-        /// </summary>
-        /// <value>
-        /// The bud ex configuration.
-        /// </value>
-        public virtual NameValueCollection Setting { get; set; } = ConfigurationManager.AppSettings;
-
-        /// <summary>
         /// Sets the binding source.
         /// </summary>
-        /// <param name="bindingSource">The bindingSource.</param>
+        /// <param name="bindingSource">The Binding Source.</param>
         public virtual void SetDataSource<T1>( T1 bindingSource )
             where T1 : IBindingList
         {
             try
             {
-                if( bindingSource is BindingSource _binder
-                    && _binder?.DataSource != null )
+                if( bindingSource is BindingSource _bindingSource
+                    && _bindingSource?.DataSource != null )
                 {
                     try
                     {
-                        BindingSource.DataSource = _binder.DataSource;
+                        BindingSource.DataSource = _bindingSource.DataSource;
                     }
                     catch( Exception ex )
                     {
@@ -107,20 +82,20 @@ namespace BudgetExecution
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2">The type of the 2.</typeparam>
-        /// <param name="bindingList">The bindingSource.</param>
+        /// <param name="bindinglist">The bindingSource.</param>
         /// <param name="dict">The dictionary.</param>
-        public virtual void SetDataSource<T1, T2>( T1 bindingList, T2 dict )
+        public virtual void SetDataSource<T1, T2>( T1 bindinglist, T2 dict )
             where T1 : IBindingList
             where T2 : IDictionary<string, object>
         {
             try
             {
-                if( bindingList != null
+                if( bindinglist != null
                     && dict?.Any( ) == true )
                 {
                     try
                     {
-                        BindingSource _list = bindingList as BindingSource;
+                        BindingSource _list = bindinglist as BindingSource;
                         string _filter = string.Empty;
 
                         foreach( KeyValuePair<string, object> _kvp in dict )
@@ -128,7 +103,7 @@ namespace BudgetExecution
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
                             {
-                                _filter += $"{_kvp.Key} = { _kvp.Value } AND";
+                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                             }
                         }
 
@@ -219,7 +194,8 @@ namespace BudgetExecution
             where T1 : IEnumerable<DataRow>
             where T2 : struct
         {
-            if( data?.Any( ) == true )
+            if( data?.Any( ) == true
+                && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -251,8 +227,7 @@ namespace BudgetExecution
         public virtual void SetDataSource<T1>( IEnumerable<T1> data, object field = null )
             where T1 : IEnumerable<DataRow>
         {
-            if( data?.Any( ) == true
-                && !string.IsNullOrEmpty( field?.ToString( ) ) )
+            if( data?.Any( ) == true )
             {
                 try
                 {
@@ -345,11 +320,71 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Get Error Dialog.
+        /// Called when [mouse over].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.</param>
+        public virtual void OnMouseOver( object sender, EventArgs e )
+        {
+            GroupBox _groupBox = sender as GroupBox;
+
+            try
+            {
+                if( _groupBox != null
+                    && !string.IsNullOrEmpty( HoverText ) )
+                {
+                    if( !string.IsNullOrEmpty( HoverText ) )
+                    {
+                        string _hoverText = _groupBox?.HoverText;
+                        MetroTip _ = new MetroTip( _groupBox, _hoverText );
+                    }
+                    else
+                    {
+                        if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
+                        {
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            MetroTip _ = new MetroTip( _groupBox, _text );
+                        }
+                    }
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse leave].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The
+        /// <see cref="EventArgs" />
+        /// instance containing the event data.
+        /// </param>
+        public virtual void OnMouseLeave( object sender, EventArgs e )
+        {
+            GroupBox _groupBox = sender as GroupBox;
+
+            try
+            {
+                if( _groupBox != null )
+                {
+                }
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-        protected void Fail( Exception ex )
+        protected static void Fail( Exception ex )
         {
             using( Error _error = new Error( ex ) )
             {

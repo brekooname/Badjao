@@ -208,13 +208,11 @@
             this.GridPanel.Children = null;
             this.GridPanel.Controls.Add(this.DataGrid);
             this.GridPanel.DataFilter = null;
-            this.GridPanel.Field = BudgetExecution.Field.AccountCode;
             this.GridPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(139)))), ((int)(((byte)(138)))));
             this.GridPanel.HoverText = null;
             this.GridPanel.Location = new System.Drawing.Point(14, 44);
             this.GridPanel.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.GridPanel.Name = "GridPanel";
-            this.GridPanel.Numeric = BudgetExecution.Numeric.Accepted;
             this.GridPanel.Padding = new System.Windows.Forms.Padding(1);
             this.GridPanel.Size = new System.Drawing.Size(942, 497);
             this.GridPanel.TabIndex = 23;

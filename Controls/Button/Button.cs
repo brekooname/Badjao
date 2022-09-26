@@ -45,16 +45,8 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public override SourceBinding BindingSource { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public override Field Field { get; set; }
-
+        public override BindingSource BindingSource { get; set; }
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -194,8 +186,7 @@ namespace BudgetExecution
             : this( )
         {
             Parent = parent;
-            Field = field;
-            Tag = Field;
+            Tag = field.ToString( );
         }
 
         /// <summary>

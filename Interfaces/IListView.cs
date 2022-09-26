@@ -30,23 +30,7 @@
         /// The hover text.
         /// </value>
         string HoverText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        Field Field { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        Numeric Numeric { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -84,13 +68,7 @@
         /// </summary>
         /// <param name="text">The text.</param>
         void SetText( string text );
-
-        /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        void ReTag( object tag );
-
+        
         /// <summary>
         /// Adds the item.
         /// </summary>

@@ -33,18 +33,6 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="text">The text.</param>
         void SetText( string text );
-
-        /// <summary>
-        /// Sets the tag.
-        /// </summary>
-        /// <param name="tag">The tag.</param>
-        void SetTag( object tag );
-
-        /// <summary>
-        /// Sets the numeric.
-        /// </summary>
-        /// <param name="numeric">The numeric.</param>
-        void SetNumeric( Numeric numeric );
         
         /// <summary>
         /// Sets the binding source.

@@ -657,7 +657,6 @@ namespace BudgetExecution
             this.SelectButton.Border.Visible = true;
             this.SelectButton.DataFilter = null;
             this.SelectButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.SelectButton.Field = BudgetExecution.Field.AccountCode;
             this.SelectButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.SelectButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.SelectButton.HoverText = "Select File";
@@ -697,7 +696,6 @@ namespace BudgetExecution
             this.CloseButton.Border.Visible = true;
             this.CloseButton.DataFilter = null;
             this.CloseButton.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.CloseButton.Field = BudgetExecution.Field.AccountCode;
             this.CloseButton.Font = new System.Drawing.Font("Roboto", 9F);
             this.CloseButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.CloseButton.HoverText = "Close Window";
