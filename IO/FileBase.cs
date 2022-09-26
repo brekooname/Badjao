@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// Initializes a new instance 
         /// of the <see cref="PathBase"/> class.
         /// </summary>
-        protected FileBase( )
+        public FileBase( )
         {
         }
 
@@ -27,7 +27,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="FileBase"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        protected FileBase( string input )
+        public FileBase( string input )
         {
             Buffer = input;
             FullPath = Path.GetFullPath( input );

@@ -29,7 +29,8 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="Folder"/> class.
         /// </summary>
         /// <param name="file">The file.</param>
-        public Folder( string file ) : base( file )
+        public Folder( string file ) 
+            : base( file )
         {
         }
 

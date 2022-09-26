@@ -85,6 +85,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
+            CommandType = commandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( source, provider, where, commandType );
             Command = GetCommand( SqlStatement );
@@ -103,6 +104,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
+            CommandType = commandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
             Command = GetCommand( SqlStatement );
@@ -121,6 +123,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
+            CommandType = commandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
             Command = GetCommand( SqlStatement );
@@ -135,6 +138,7 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             Source = sqlStatement.Source;
             Provider = sqlStatement.Provider;
+            CommandType = sqlStatement.CommandType;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             Command = GetCommand( SqlStatement );
         }

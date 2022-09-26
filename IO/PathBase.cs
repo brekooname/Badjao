@@ -145,7 +145,7 @@ namespace BudgetExecution
         /// Initializes a new instance 
         /// of the <see cref="PathBase"/> class.
         /// </summary>
-        protected PathBase( )
+        public PathBase( )
         {
         }
 
@@ -154,7 +154,7 @@ namespace BudgetExecution
         ///  <see cref="PathBase"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        protected PathBase( string input )
+        public PathBase( string input )
         {
             Buffer = input;
             AbsolutePath = Path.GetFullPath( input );

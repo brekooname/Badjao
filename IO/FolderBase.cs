@@ -2,6 +2,7 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
+// ReSharper disable All
 namespace BudgetExecution
 {
     using System;
@@ -104,7 +105,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="FolderBase"/> class.
         /// </summary>
-        protected FolderBase( )
+        public FolderBase( )
         {
         }
 
@@ -112,7 +113,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="FolderBase"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        protected FolderBase( string input )
+        public FolderBase( string input )
         {
             Buffer = input;
             FullPath = Path.GetFullPath( input );
