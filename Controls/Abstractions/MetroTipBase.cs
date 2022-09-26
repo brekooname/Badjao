@@ -21,7 +21,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "IsExpressionAlwaysTrue" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     [ SuppressMessage( "ReSharper", "PublicConstructorInAbstractClass" ) ]
-    public abstract class ToolTipBase : MetroSetToolTip
+    public abstract class MetroTipBase : MetroSetToolTip
     {
         /// <summary>
         /// Gets or sets the tip icon.

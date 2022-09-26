@@ -372,23 +372,23 @@ namespace BudgetExecution
         /// <param name="control">The control.</param>
         /// <param name="text">The text.</param>
         /// <returns></returns>
-        public static ToolTip GetToolTip( Control control, string text )
+        public static MetroTip GetToolTip( Control control, string text )
         {
             if( control != null
                 && !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
-                    return new ToolTip( control, text );
+                    return new MetroTip( control, text );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( ToolTip );
+                    return default( MetroTip );
                 }
             }
 
-            return default( ToolTip );
+            return default( MetroTip );
         }
 
         /// <summary>

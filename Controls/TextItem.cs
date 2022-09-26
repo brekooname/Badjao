@@ -154,7 +154,9 @@ namespace BudgetExecution
         public TextItem( string bodyText )
             : this( )
         {
+            HeaderText = string.Empty;
             BodyText = bodyText;
+            FooterText = string.Empty;
         }
 
         /// <summary>

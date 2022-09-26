@@ -86,7 +86,7 @@
             this.Frame44 = new BudgetExecution.Frame();
             this.SqlTab = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.SqlEditor = new Syncfusion.Windows.Forms.Edit.EditControl();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.tabPageAdv1 = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.groupBox7 = new BudgetExecution.GroupBox();
             this.listBox5 = new BudgetExecution.ListBox();
@@ -1687,7 +1687,7 @@
         }
 
         #endregion
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public System.Windows.Forms.BindingSource BindingSource;
         public Button RefreshButton;
         public Button CloseButton;

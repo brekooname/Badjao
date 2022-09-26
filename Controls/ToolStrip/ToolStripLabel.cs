@@ -136,14 +136,14 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
                         string _text = _label?.HoverText;
-                        ToolTip _ = new ToolTip( this, _text );
+                        MetroTip _ = new MetroTip( this, _text );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
                             string _text = Tag?.ToString( )?.SplitPascal( );
-                            ToolTip _ = new ToolTip( _label, _text );
+                            MetroTip _ = new MetroTip( _label, _text );
                         }
                     }
                 }

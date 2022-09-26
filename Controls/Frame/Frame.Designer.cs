@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.TextBox = new BudgetExecution.TextBox();
             this.Label = new BudgetExecution.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
@@ -178,7 +178,7 @@
 
         #endregion
         public System.Windows.Forms.BindingSource BindingSource;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public TextBox TextBox;
         public Label Label;
     }

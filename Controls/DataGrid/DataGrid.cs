@@ -36,7 +36,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public ToolTip ToolTip { get; set; }
+        public MetroTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the binding source.

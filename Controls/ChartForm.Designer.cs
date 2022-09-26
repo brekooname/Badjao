@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.Separator16 = new BudgetExecution.ToolSeparator();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -1031,6 +1031,6 @@
         public ToolStripButton CalendarButton;
         private ToolSeparator Separator28;
         public System.Windows.Forms.BindingSource BindingSource;
-        private ToolTip ToolTip;
+        private MetroTip ToolTip;
     }
 }

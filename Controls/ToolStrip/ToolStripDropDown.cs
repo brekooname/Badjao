@@ -25,7 +25,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public ToolTip ToolTip { get; set; }
+        public MetroTip ToolTip { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolStripComboBoxEx"/> class.
@@ -47,7 +47,7 @@ namespace BudgetExecution
             Visible = true;
             Enabled = true;
             Style = ToolStripExStyle.Office2016Black;
-            ToolTip = new ToolTip( this, ToolTipText );
+            ToolTip = new MetroTip( this, ToolTipText );
             MouseHover += OnMouseHover;
             MouseLeave += OnMouseLeave;
         }
@@ -159,14 +159,14 @@ namespace BudgetExecution
                 if( !string.IsNullOrEmpty( _comboBox?.HoverText ) )
                 {
                     string _text = _comboBox?.HoverText;
-                    ToolTip _ = new ToolTip( _comboBox, _text );
+                    MetroTip _ = new MetroTip( _comboBox, _text );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( _comboBox?.Tag?.ToString( ) ) )
                     {
                         string _text = _comboBox?.Tag?.ToString( )?.SplitPascal( );
-                        ToolTip _ = new ToolTip( _comboBox, _text );
+                        MetroTip _ = new MetroTip( _comboBox, _text );
                     }
                 }
             }

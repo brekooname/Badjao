@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalendarForm));
             this.Calendar = new Syncfusion.WinForms.Input.SfCalendar();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.BindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.BindingSource)).BeginInit();
             this.SuspendLayout();
@@ -139,7 +139,7 @@
         #endregion
 
         public Syncfusion.WinForms.Input.SfCalendar Calendar;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public System.Windows.Forms.BindingSource BindingSource;
     }
 }

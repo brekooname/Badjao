@@ -71,14 +71,14 @@ namespace BudgetExecution
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _control.Tag = HoverText;
-                    ToolTip tip = new ToolTip( _checkBox );
+                    MetroTip tip = new MetroTip( _checkBox );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        ToolTip _tool = new ToolTip( _control );
+                        MetroTip _tool = new MetroTip( _control );
                         ToolTip = _tool;
                     }
                 }

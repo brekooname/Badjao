@@ -40,7 +40,7 @@
             this.DataGridGroupBox = new BudgetExecution.GroupBox();
             this.GridPanel = new BudgetExecution.Layout();
             this.DataGrid = new BudgetExecution.DataGrid();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.CalculatorButton = new BudgetExecution.ToolStripButton();
             this.ChartButton = new BudgetExecution.ToolStripButton();
@@ -1454,7 +1454,7 @@
         }
 
         #endregion
-        private ToolTip ToolTip;
+        private MetroTip ToolTip;
         public ToolStrip ToolStrip;
         public ToolSeparator Separator1;
         public ToolStripLabel Label;

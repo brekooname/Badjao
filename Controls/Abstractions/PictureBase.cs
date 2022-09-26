@@ -34,7 +34,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public virtual ToolTip ToolTip { get; set; }
+        public virtual MetroTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the hover text.
@@ -84,13 +84,13 @@ namespace BudgetExecution
 
                 if( !string.IsNullOrEmpty( HoverText ) )
                 {
-                    ToolTip _ = new ToolTip( _picturePanel, HoverText );
+                    MetroTip _ = new MetroTip( _picturePanel, HoverText );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        ToolTip _ = new ToolTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
+                        MetroTip _ = new MetroTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
                     }
                 }
             }

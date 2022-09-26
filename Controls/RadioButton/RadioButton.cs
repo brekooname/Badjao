@@ -20,7 +20,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public ToolTip ToolTip { get; set; }
+        public MetroTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the result.
@@ -106,14 +106,14 @@ namespace BudgetExecution
                 if( _control is RadioButton _radioButton
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    ToolTip tip = new ToolTip( _radioButton, HoverText );
+                    MetroTip tip = new MetroTip( _radioButton, HoverText );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        ToolTip _tool = new ToolTip( _control );
+                        MetroTip _tool = new MetroTip( _control );
                         ToolTip = _tool;
                     }
                 }

@@ -42,7 +42,7 @@ namespace BudgetExecution
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Message));
             this.TextBox = new VisualPlus.Toolkit.Controls.Editors.VisualRichTextBox();
             this.OpenButton = new BudgetExecution.Button();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.CloseButton = new BudgetExecution.Button();
             this.Label = new BudgetExecution.Label();
             this.PictureBox = new BudgetExecution.PictureBox();
@@ -278,7 +278,7 @@ namespace BudgetExecution
             #endregion
         public VisualRichTextBox TextBox;
         public Button OpenButton;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public Button CloseButton;
         public Label Label;
         public PictureBox PictureBox;

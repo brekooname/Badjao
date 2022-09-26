@@ -92,7 +92,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ToolTip _ = new ToolTip( item, _text );
+                    MetroTip _ = new MetroTip( item, _text );
                 }
                 catch( Exception ex )
                 {
@@ -116,14 +116,14 @@ namespace BudgetExecution
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _button.Tag = HoverText;
-                    ToolTip _tip = new ToolTip( _button );
+                    MetroTip _tip = new MetroTip( _button );
                     ToolTip = _tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        ToolTip _tool = new ToolTip( _button );
+                        MetroTip _tool = new MetroTip( _button );
                         ToolTip = _tool;
                     }
                 }

@@ -35,7 +35,7 @@
             this.LookupTabPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.TableGroupBox = new BudgetExecution.GroupBox();
             this.TableListBox = new BudgetExecution.ListBox();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.ValueGroupBox = new BudgetExecution.GroupBox();
             this.ValueListBox = new BudgetExecution.ListBox();
             this.ColumnGroupBox = new BudgetExecution.GroupBox();
@@ -1238,7 +1238,7 @@
         public RadioButton AccessRadioButton;
         public RadioButton SqlServerRadioButton;
         public RadioButton SqliteRadioButton;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public System.Windows.Forms.BindingSource BindingSource;
         public GroupBox ProviderGroupBox;
         public Button RefreshButton;

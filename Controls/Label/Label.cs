@@ -35,7 +35,7 @@ namespace BudgetExecution
         /// <value>
         /// The tool tip.
         /// </value>
-        public override ToolTip ToolTip { get; set; }
+        public override MetroTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the hover text.

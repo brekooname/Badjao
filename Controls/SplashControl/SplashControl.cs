@@ -65,7 +65,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="toolTip">The tool tip.</param>
         // ReSharper disable once SuggestBaseTypeForParameter
-        public SplashControl( ToolTip toolTip )
+        public SplashControl( MetroTip toolTip )
             : this( )
         {
             Text = toolTip?.TipText;

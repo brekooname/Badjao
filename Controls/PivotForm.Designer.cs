@@ -34,7 +34,7 @@
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
             this.BindingSource = new BudgetExecution.SourceBinding();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.PivotPanel = new BudgetExecution.Layout();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
@@ -693,7 +693,7 @@
         public Layout PivotPanel;
         public SourceBinding BindingSource;
         public System.Data.DataSet DataSet;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public Layout ListPanel;
         public ListBox ListBox;
         public PivotChart PivotChart;

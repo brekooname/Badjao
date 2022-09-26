@@ -21,7 +21,7 @@
         /// <value>
         /// The tool tip.
         /// </value>
-        ToolTip ToolTip { get; set; }
+        MetroTip ToolTip { get; set; }
 
         /// <summary>
         /// Gets or sets the hover text.

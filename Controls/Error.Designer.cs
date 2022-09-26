@@ -35,7 +35,7 @@
             this.PictureBox = new BudgetExecution.PictureBox();
             this.Label = new BudgetExecution.Label();
             this.CloseButton = new BudgetExecution.Button();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,7 +250,7 @@
 
         public VisualPlus.Toolkit.Controls.Layout.VisualPanel BackPanel;
         public Button CloseButton;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public Label Label;
         public PictureBox PictureBox;
     }

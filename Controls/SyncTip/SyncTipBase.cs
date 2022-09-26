@@ -41,7 +41,7 @@ namespace BudgetExecution
         
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolTip"/> class.
+        /// of the <see cref="MetroTip"/> class.
         /// </summary>
         public SyncTipBase( )
         {
@@ -56,7 +56,7 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of
-        /// the <see cref="ToolTip"/> class.
+        /// the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="control">The control.</param>
         public SyncTipBase( Control control )
@@ -77,7 +77,7 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of
-        /// the <see cref="ToolTip"/> class.
+        /// the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="control">The control.</param>
         /// <param name="text">The text.</param>
@@ -89,7 +89,7 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolTip"/> class.
+        /// of the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="component">The component.</param>
         /// <param name="text">The text.</param>
@@ -101,7 +101,7 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolTip"/> class.
+        /// of the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="toolItem">The toolItem.</param>
         public SyncTipBase( ToolStripItem toolItem )

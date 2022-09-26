@@ -38,7 +38,7 @@
             this.AddColumnButton = new BudgetExecution.Button();
             this.visualLabel1 = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.CreateTableColumnTextBox = new BudgetExecution.TextBox();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.CreateTableDataTypeLabel = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
             this.CreateTableTablesGroupBox = new BudgetExecution.GroupBox();
             this.CreateTableNameLabel = new VisualPlus.Toolkit.Controls.Interactivity.VisualLabel();
@@ -2809,7 +2809,7 @@
         }
 
         #endregion
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public System.Windows.Forms.BindingSource BindingSource;
         public Button RefreshButton;
         public Button CloseButton;

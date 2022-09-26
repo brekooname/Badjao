@@ -12,13 +12,13 @@ namespace BudgetExecution
     using MetroSet_UI.Design;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ToolTip : ToolTipBase
+    public class MetroTip : MetroTipBase
     {
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolTip"/> class.
+        /// of the <see cref="MetroTip"/> class.
         /// </summary>
-        public ToolTip( )
+        public MetroTip( )
         {
             ThemeAuthor = "Terry D. Eppler";
             ThemeName = "Budget Execution";
@@ -37,12 +37,12 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of
-        /// the <see cref="ToolTip"/> class.
+        /// the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="control">The control.</param>
         /// <param name="text">The text.</param>
         /// <param name = "title" > </param>
-        public ToolTip( Control control, string text, string title = "" )
+        public MetroTip( Control control, string text, string title = "" )
             : this( )
         {
             TipTitle = title;
@@ -52,12 +52,12 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolTip"/> class.
+        /// of the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="component">The component.</param>
         /// <param name="text">The text.</param>
         /// <param name = "title" > </param>
-        public ToolTip( Component component, string text, string title = "" )
+        public MetroTip( Component component, string text, string title = "" )
             : this( )
         {
             TipTitle = title;
@@ -67,20 +67,20 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance
-        /// of the <see cref="ToolTip"/> class.
+        /// of the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="toolItem">The toolItem.</param>
-        public ToolTip( ToolStripItem toolItem )
+        public MetroTip( ToolStripItem toolItem )
             : this( )
         {
             SetToolTipText( toolItem );
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolTip"/> class.
+        /// Initializes a new instance of the <see cref="MetroTip"/> class.
         /// </summary>
         /// <param name="control">The control.</param>
-        public ToolTip( Control control )
+        public MetroTip( Control control )
             : this( )
         {
             SetToolTipText( control );

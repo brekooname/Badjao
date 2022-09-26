@@ -40,7 +40,7 @@
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.Separator1 = new BudgetExecution.ToolSeparator();
             this.TextBox = new BudgetExecution.ToolStripTextBox();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.Separator2 = new BudgetExecution.ToolSeparator();
             this.Label = new BudgetExecution.ToolStripLabel();
             this.Separator3 = new BudgetExecution.ToolSeparator();
@@ -798,7 +798,7 @@
 
         private Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetRibbon Ribbon;
         private Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet spreadsheet1;
-        private ToolTip ToolTip;
+        private MetroTip ToolTip;
         public ToolStrip ToolStrip;
         public System.Windows.Forms.BindingSource BindingSource;
         public ToolSeparator Separator1;

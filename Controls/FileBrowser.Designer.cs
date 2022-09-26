@@ -56,7 +56,7 @@ namespace BudgetExecution
             this.WordRadioButton = new BudgetExecution.RadioButton();
             this.PdfRadioButton = new BudgetExecution.RadioButton();
             this.FileList = new BudgetExecution.ListBox();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.FoundLabel = new BudgetExecution.Label();
             this.FileDialog = new System.Windows.Forms.OpenFileDialog();
             this.TopTablePanel = new System.Windows.Forms.TableLayoutPanel();
@@ -770,7 +770,7 @@ namespace BudgetExecution
             public TableLayoutPanel TextBoxLayout;
             public TableLayoutPanel CheckBoxLayout;
             public OpenFileDialog FileDialog;
-        public ToolTip ToolTip;
+        public MetroTip ToolTip;
         public TableLayoutPanel TopTablePanel;
         public Label Header;
         public Button CloseButton;

@@ -878,10 +878,10 @@
     <Compile Include="Controls\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Abstractions\ToolTipBase.cs">
+    <Compile Include="Controls\Abstractions\MetroTipBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ToolTip\ToolTip.cs">
+    <Compile Include="Controls\MetroTip\MetroTip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PdfForm.cs">
@@ -957,10 +957,10 @@
     </Compile>
     <Compile Include="Controls\TextBox\TextBox.cs" />
     <Compile Include="Controls\Abstractions\TextBoxBase.cs" />
-    <Compile Include="Controls\SuperTip\SyncTipBase.cs">
+    <Compile Include="Controls\SyncTip\SyncTipBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\SuperTip\SyncTip.cs">
+    <Compile Include="Controls\SyncTip\SyncTip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TextItem.cs" />

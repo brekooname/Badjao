@@ -35,7 +35,7 @@
             Syncfusion.Windows.Forms.CaptionImage captionImage1 = new Syncfusion.Windows.Forms.CaptionImage();
             this.pdfViewerControl1 = new Syncfusion.Windows.Forms.PdfViewer.PdfViewerControl();
             this.BindingSource = new BudgetExecution.SourceBinding();
-            this.ToolTip = new BudgetExecution.ToolTip();
+            this.ToolTip = new BudgetExecution.MetroTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
             this.BrowseButton = new BudgetExecution.ToolStripButton();
@@ -680,7 +680,7 @@
 
         private Syncfusion.Windows.Forms.PdfViewer.PdfViewerControl pdfViewerControl1;
         private SourceBinding BindingSource;
-        private ToolTip ToolTip;
+        private MetroTip ToolTip;
         public ToolStrip ToolStrip;
         public ToolStripButton AddButton;
         public ToolStripButton BrowseButton;
