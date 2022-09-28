@@ -25,7 +25,7 @@ namespace BudgetExecution
         /// <value>
         /// The arguments.
         /// </value>
-        IDictionary<string, object>  Args { get; set; }
+        IDictionary<string, object>  Criteria { get; set; }
 
         /// <summary>
         /// Gets or sets the connection builder.

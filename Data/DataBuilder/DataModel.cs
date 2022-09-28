@@ -53,7 +53,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace BudgetExecution
             DataColumns = GetDataColumns( );
             DataElements = CreateSeries( DataTable );
             Record = GetData( )?.FirstOrDefault( );
-            Args = Record?.ToDictionary( );
+            Map = Record?.ToDictionary( );
         }
 
         /// <summary>
@@ -212,7 +212,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IEnumerable<string> _query = dataRows?.Select( p => p.Field<string>( column ) )
+                    IEnumerable<string> _query = dataRows
+                        ?.Select( p => p.Field<string>( column ) )
                         ?.Distinct( );
 
                     return _query?.Any( ) == true
@@ -321,9 +322,9 @@ namespace BudgetExecution
                                 if( _schema != null )
                                 {
                                     DataTable _dataTable = _schema?.AsEnumerable( )
-                                        ?.Where( r =>
-                                            r.Field<string>( "TABLE_NAME" )
-                                                .Contains( "FilterDatabase" ) )?.Select( r => r )
+                                        ?.Where( r => r.Field<string>( "TABLE_NAME" )
+                                            .Contains( "FilterDatabase" ) )
+                                        ?.Select( r => r )
                                         ?.CopyToDataTable( );
 
                                     _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString( );

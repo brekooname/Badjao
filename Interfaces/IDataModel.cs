@@ -42,7 +42,7 @@ namespace BudgetExecution
         /// <summary>
         /// The arguments
         /// </summary>
-        IDictionary<string, object> Args { get; set; }
+        IDictionary<string, object> Map { get; set; }
 
         /// <summary>
         /// The SQL statement
@@ -100,7 +100,7 @@ namespace BudgetExecution
         /// Gets the column ordinals.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<int> GetColumnOrdinals( );
+        IEnumerable<int> GetOrdinals( );
 
         /// <summary>
         /// Gets the columns.

@@ -74,7 +74,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, where, commandType );
@@ -98,7 +98,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
@@ -122,7 +122,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
@@ -143,7 +143,7 @@ namespace BudgetExecution
         {
             Source = sqlStatement.Source;
             Provider = sqlStatement.Provider;
-            Args = sqlStatement.Criteria;
+            Criteria = sqlStatement.Criteria;
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = sqlStatement;
@@ -170,7 +170,7 @@ namespace BudgetExecution
             DataCommand = CommandBuilder.GetCommand( SqlStatement );
             DataAdapter = new AdapterBuilder( CommandBuilder ).GetAdapter( );
             IsDisposed = false;
-            Args = null;
+            Criteria = null;
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, where );
@@ -212,7 +212,7 @@ namespace BudgetExecution
         public Query( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
             : base( fullPath, sqlText, commandType )
         {
-            Args = null;
+            Criteria = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
@@ -242,7 +242,7 @@ namespace BudgetExecution
         public Query( string fullPath, SQL commandType, IDictionary<string, object> where )
             : base( fullPath, commandType, where )
         {
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;

@@ -26,48 +26,52 @@ namespace BudgetExecution
         /// Gets the column ordinals.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<int> GetColumnOrdinals( )
+        public IEnumerable<int> GetOrdinals( )
         {
-            try
+            if( DataTable?.Columns?.Count > 0 )
             {
-                DataColumnCollection _columns = GetDataTable( )?.Columns;
-                List<int> _values = new List<int>( );
-
-                if( _columns?.Count > 0 )
+                try
                 {
-                    foreach( DataColumn _dataColumn in _columns )
-                    {
-                        _values?.Add( _dataColumn.Ordinal );
-                    }
-                }
+                    DataColumnCollection _columns = DataTable.Columns;
+                    List<int> _values = new List<int>( );
 
-                return _values?.Any( ) == true
-                    ? _values
-                    : default( IEnumerable<int> );
+                    if( _columns?.Count > 0 )
+                    {
+                        foreach( DataColumn _dataColumn in _columns )
+                        {
+                            _values?.Add( _dataColumn.Ordinal );
+                        }
+                    }
+
+                    return _values?.Any( ) == true
+                        ? _values
+                        : default( IEnumerable<int> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<int> );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<int> );
-            }
+
+            return default( IEnumerable<int> );
         }
 
         /// <summary>
         /// Gets the fields.
         /// </summary>
         /// <returns></returns>
-        public IDictionary<string, Type> GetSchemaMap( )
+        public IDictionary<string, Type> GetSchema( )
         {
-            if( Record != null )
+            if( DataTable?.Columns?.Count > 0 )
             {
                 try
                 {
-                    DataColumnCollection _columns = Record.Table?.Columns;
+                    DataColumnCollection _columns = DataTable?.Columns;
 
                     if( _columns?.Count > 0 )
                     {
                         Dictionary<string, Type> _schema = new Dictionary<string, Type>( );
-
                         foreach( DataColumn col in _columns )
                         {
                             _schema.Add( col.ColumnName, col.DataType );

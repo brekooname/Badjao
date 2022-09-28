@@ -245,16 +245,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _file = Path.GetExtension( filePath )?.Replace( ".", "" );
+                    string _file = Path.GetExtension( filePath )
+                        ?.Replace( ".", "" );
 
                     if( !string.IsNullOrEmpty( _file ) )
                     {
                         EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
                         string[ ] _names = Enum.GetNames( typeof( EXT ) );
 
-                        if( _names.Contains( _ext.ToString( ) ) )
+                        if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
-                            string _clientPath = DbClientPath[ $"{_ext}" ];
+                            string _clientPath = DbClientPath[ $"{ _ext }" ];
 
                             return !string.IsNullOrEmpty( _clientPath )
                                 ? _clientPath
@@ -319,7 +320,8 @@ namespace BudgetExecution
 
                         if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
-                            string _connectionString = ConnectionPath[ $"{ _ext }" ].ConnectionString;
+                            string _connectionString =
+                                ConnectionPath[ $"{ _ext }" ].ConnectionString;
 
                             return !string.IsNullOrEmpty( _connectionString )
                                 ? _connectionString

@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// <summary>
         /// The arguments
         /// </summary>
-        public virtual IDictionary<string, object> Args { get; set; }
+        public virtual IDictionary<string, object> Map { get; set; }
 
         /// <summary>
         /// The SQL statement

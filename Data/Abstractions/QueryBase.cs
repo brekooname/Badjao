@@ -33,7 +33,7 @@ namespace BudgetExecution
         /// <value>
         /// The arguments.
         /// </value>
-        public virtual IDictionary<string, object> Args { get; set; }
+        public virtual IDictionary<string, object> Criteria { get; set; }
 
         /// <summary>
         /// Gets the connection manager.
@@ -144,7 +144,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, where, commandType );
@@ -163,7 +163,7 @@ namespace BudgetExecution
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
-            Args = sqlStatement.Criteria ?? null;
+            Criteria = sqlStatement.Criteria ?? null;
             SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( sqlStatement );
         }
@@ -178,7 +178,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, where, SQL.SELECT );
@@ -198,7 +198,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
@@ -218,7 +218,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
@@ -235,7 +235,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Args = null;
+            Criteria = null;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, sqlText );
@@ -250,7 +250,7 @@ namespace BudgetExecution
         /// <param name="commandType">Type of the command.</param>
         public QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
-            Args = null;
+            Criteria = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
@@ -270,7 +270,7 @@ namespace BudgetExecution
         /// <param name="where">The dictionary.</param>
         public QueryBase( string fullPath, SQL commandType, IDictionary<string, object> where )
         {
-            Args = where;
+            Criteria = where;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Source = ConnectionBuilder.Source;
             Provider = ConnectionBuilder.Provider;
@@ -285,7 +285,7 @@ namespace BudgetExecution
         /// <param name="sqlStatement">The SQL statement.</param>
         public QueryBase( ISqlStatement sqlStatement )
         {
-            Args = null;
+            Criteria = null;
             Source = sqlStatement.Source;
             Provider = sqlStatement.Provider;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );

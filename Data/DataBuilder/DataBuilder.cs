@@ -140,12 +140,13 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<DataRow> FilterData( IDictionary<string, object> where )
         {
-            if( where?.Any( ) == true )
+            if( where?.Any( ) == true 
+                && DataTable?.Rows?.Count > 0 )
             {
                 try
                 {
                     string _criteria = where.ToCriteria( );
-                    DataRow[ ] _data = DataTable?.Select( _criteria );
+                    DataRow[ ] _data = DataTable.Select( _criteria );
 
                     return _data?.Length > 0
                         ? _data

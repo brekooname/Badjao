@@ -158,8 +158,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataSet = new DataSet( $"{Provider}" );
-                    DataTable = new DataTable( $"{Source}" );
+                    DataSet = new DataSet( $"{ Provider }" );
+                    DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
                     using( DbDataAdapter _adapter = Query?.GetAdapter( ) )
