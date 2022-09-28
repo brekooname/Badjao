@@ -67,8 +67,9 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( DbDataAdapter _adapter = Query.GetAdapter( ) )
+                    using( DbDataAdapter _adapter = Query.GetAdapter(  ) )
                     {
+                        _adapter.TableMappings.Add( DataTable.TableName, $"{ Source }" );
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
 

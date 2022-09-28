@@ -12,6 +12,7 @@ namespace BudgetExecution
     using System.Data.SqlServerCe;
     using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
+    using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -303,39 +304,39 @@ namespace BudgetExecution
         public DbDataAdapter GetAdapter( )
         {
             if( Enum.IsDefined( typeof( Provider ), Provider )
-                && !string.IsNullOrEmpty( SqlStatement?.CommandText )
-                && DataConnection != null )
+                && CommandBuilder != null )
             {
                 try
                 {
-                    string _commandText = SqlStatement.CommandText;
-
                     switch( Provider )
                     {
+                        case Provider.Excel:
+                        case Provider.CSV:
+                        case Provider.OleDb:
                         case Provider.Access:
                         {
-                            OleDbConnection _connection = DataConnection as OleDbConnection;
-                            return new OleDbDataAdapter( _commandText, _connection );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
+                            return _builder?.GetAdapter(  ) as OleDbDataAdapter;
                         }
                         case Provider.SQLite:
                         {
-                            SQLiteConnection _connection = DataConnection as SQLiteConnection;
-                            return new SQLiteDataAdapter( _commandText, _connection );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
+                            return _builder?.GetAdapter( ) as SQLiteDataAdapter;
                         }
                         case Provider.SqlCe:
                         {
-                            SqlCeConnection _connection = DataConnection as SqlCeConnection;
-                            return new SqlCeDataAdapter( _commandText, _connection );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
+                            return _builder?.GetAdapter( ) as SqlCeDataAdapter;
                         }
                         case Provider.SqlServer:
                         {
-                            SqlConnection _connection = DataConnection as SqlConnection;
-                            return new SqlDataAdapter( _commandText, _connection );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
+                            return _builder?.GetAdapter( ) as SqlDataAdapter;
                         }
                         default:
                         {
-                            OleDbConnection _connection = DataConnection as OleDbConnection;
-                            return new OleDbDataAdapter( _commandText, _connection );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
+                            return _builder?.GetAdapter( ) as OleDbDataAdapter;
                         }
                     }
                 }

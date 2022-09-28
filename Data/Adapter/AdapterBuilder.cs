@@ -81,9 +81,8 @@ namespace BudgetExecution
         /// </summary>
         public AdapterBuilder( )
         {
-            MissingMappingAction = MissingMappingAction.Passthrough;
+            MissingMappingAction = MissingMappingAction.Ignore;
             MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            MissingMappingAction = MissingMappingAction.Passthrough;
             ContinueUpdateOnError = true;
             AcceptChangesDuringFill = true;
             AcceptChangesDuringUpdate = true;
@@ -141,36 +140,18 @@ namespace BudgetExecution
                         {
                             SQLiteDataAdapter _adapter = new SQLiteDataAdapter( CommandText,
                                 Connection as SQLiteConnection );
-
-                            SQLiteCommandBuilder _builder = new SQLiteCommandBuilder( _adapter );
-                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
-                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
-                            _adapter.InsertCommand = _builder.GetInsertCommand( );
-
                             return _adapter;
                         }
                         case Provider.SqlCe:
                         {
                             SqlCeDataAdapter _adapter = new SqlCeDataAdapter( CommandText,
                                 Connection as SqlCeConnection );
-
-                            SqlCeCommandBuilder _builder = new SqlCeCommandBuilder( _adapter );
-                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
-                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
-                            _adapter.InsertCommand = _builder.GetInsertCommand( );
-
                             return _adapter;
                         }
                         case Provider.SqlServer:
                         {
                             SqlDataAdapter _adapter = new SqlDataAdapter( CommandText,
                                 Connection as SqlConnection );
-
-                            SqlCommandBuilder _builder = new SqlCommandBuilder( _adapter );
-                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
-                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
-                            _adapter.InsertCommand = _builder.GetInsertCommand( );
-
                             return _adapter;
                         }
                         case Provider.Excel:
@@ -178,14 +159,9 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            OleDbDataAdapter _adapter = new OleDbDataAdapter( CommandText,
-                                Connection as OleDbConnection );
-
-                            OleDbCommandBuilder _builder = new OleDbCommandBuilder( _adapter );
-                            _adapter.UpdateCommand = _builder.GetUpdateCommand( );
-                            _adapter.DeleteCommand = _builder.GetDeleteCommand( );
-                            _adapter.InsertCommand = _builder.GetInsertCommand( );
-
+                            OleDbConnection _connection = Connection as OleDbConnection;
+                            OleDbDataAdapter _adapter =
+                                new OleDbDataAdapter( CommandText, _connection );
                             return _adapter;
                         }
                     }

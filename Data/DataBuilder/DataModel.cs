@@ -312,18 +312,17 @@ namespace BudgetExecution
                     using( OleDbConnection _connection = new OleDbConnection( _connectionString ) )
                     {
                         _connection?.Open( );
-
                         using( DataSet _dataSet = new DataSet( ) )
                         {
                             using( DataTable _schema = _connection?.GetSchema( ) )
                             {
                                 string _sheetName = string.Empty;
-
                                 if( _schema != null )
                                 {
                                     DataTable _dataTable = _schema?.AsEnumerable( )
-                                        ?.Where( r => r.Field<string>( "TABLE_NAME" )
-                                            .Contains( "FilterDatabase" ) )
+                                        ?.Where( r =>
+                                            r.Field<string>( "TABLE_NAME" )
+                                                .Contains( "FilterDatabase" ) )
                                         ?.Select( r => r )
                                         ?.CopyToDataTable( );
 
@@ -334,12 +333,10 @@ namespace BudgetExecution
                                 {
                                     _command.Connection = _connection;
                                     _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
-
                                     using( OleDbDataAdapter _dataAdapter =
                                         new OleDbDataAdapter( _command ) )
                                     {
                                         _dataAdapter.Fill( _dataSet, "excelData" );
-
                                         using( DataTable _table = _dataSet.Tables[ "ExcelData" ] )
                                         {
                                             _connection.Close( );
