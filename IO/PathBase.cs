@@ -77,6 +77,14 @@ namespace BudgetExecution
         ///   <c>true</c> if this instance has parent { get; set; } otherwise, <c>false</c>.
         /// </value>
         public virtual bool HasParent { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has parent.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance has parent { get; set; } otherwise, <c>false</c>.
+        /// </value>
+        public virtual string ParentFolder { get; set; }
 
         /// <summary>
         /// Gets or sets the creation date.

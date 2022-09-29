@@ -1,6 +1,6 @@
-﻿// <copyright file = "DataGridExtensions.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "DataGridExtensions.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -34,7 +35,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                DataGridExtensions.Fail( ex );
                 return default( DataRow );
             }
         }
@@ -57,7 +58,10 @@ namespace BudgetExecution
                 foreach( DataGridViewColumn _column in dataGridView.Columns )
                 {
                     _table.Columns.Add( new DataColumn
-                        { ColumnName = _column.Name, DataType = _column.ValueType } );
+                    {
+                        ColumnName = _column.Name,
+                        DataType = _column.ValueType
+                    } );
                 }
 
                 foreach( DataGridViewRow row in dataGridView.Rows )
@@ -76,7 +80,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                DataGridExtensions.Fail( ex );
                 return default( DataTable );
             }
         }
@@ -94,7 +98,7 @@ namespace BudgetExecution
         public static DataTable SetColumns( this DataGridView dataGridView, string[ ] columns )
         {
             if( dataGridView?.DataSource != null
-                && columns?.Length > 0 )
+               && columns?.Length > 0 )
             {
                 try
                 {
@@ -112,7 +116,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    DataGridExtensions.Fail( ex );
                     return default( DataTable );
                 }
             }
@@ -134,7 +138,7 @@ namespace BudgetExecution
         public static DataTable SetColumns( this DataGridView dataGridView, Field[ ] fields )
         {
             if( dataGridView?.DataSource != null
-                && fields?.Length > 0 )
+               && fields?.Length > 0 )
             {
                 try
                 {
@@ -158,7 +162,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    DataGridExtensions.Fail( ex );
                     return default( DataTable );
                 }
             }
@@ -184,13 +188,13 @@ namespace BudgetExecution
                 using( DataTable _dataTable = dataGridView?.GetDataTable( ) )
                 {
                     if( _dataTable?.Columns?.Count > 0
-                        && index?.Length > 0 )
+                       && index?.Length > 0 )
                     {
                         DataColumnCollection _columns = _dataTable.Columns;
                         string[ ] _names = new string[ index.Length ];
 
                         if( _columns?.Count > 0
-                            && _names?.Length > 0 )
+                           && _names?.Length > 0 )
                         {
                             for( int i = 0; i < index.Length; i++ )
                             {
@@ -211,7 +215,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                DataGridExtensions.Fail( ex );
                 return default( DataTable );
             }
 
@@ -240,10 +244,12 @@ namespace BudgetExecution
                         if( !( (DataGridViewRow)_row )?.IsNewRow == true )
                         {
                             DataGridViewCell[ ] _cells = ( (DataGridViewRow)_row )?.Cells
-                                ?.Cast<DataGridViewCell>( )?.ToArray( );
+                                ?.Cast<DataGridViewCell>( )
+                                ?.ToArray( );
 
                             DataGridViewCell[ ] _array = ( (DataGridViewRow)_row )?.Cells
-                                ?.Cast<DataGridViewCell>( )?.ToArray( );
+                                ?.Cast<DataGridViewCell>( )
+                                ?.ToArray( );
 
                             if( _cells?.Any( ) == true )
                             {
@@ -264,7 +270,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    DataGridExtensions.Fail( ex );
                     return default( string[ ] );
                 }
             }
@@ -283,21 +289,20 @@ namespace BudgetExecution
             string fileName )
         {
             if( !string.IsNullOrEmpty( fileName )
-                && dataGridView != null )
+               && dataGridView != null )
             {
                 try
                 {
-                    string _path = 
-                        System.IO.Path.Combine( AppDomain.CurrentDomain.BaseDirectory, fileName );
+                    string _path = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, fileName );
 
                     if( !string.IsNullOrEmpty( _path ) )
                     {
-                        System.IO.File.WriteAllLines( _path, dataGridView.CommaDelimitedRows( ) );
+                        File.WriteAllLines( _path, dataGridView.CommaDelimitedRows( ) );
                     }
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    DataGridExtensions.Fail( ex );
                 }
             }
         }
@@ -318,7 +323,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                DataGridExtensions.Fail( ex );
             }
         }
 
@@ -332,7 +337,7 @@ namespace BudgetExecution
         public static void PascalizeHeaders( this DataGridView dataGridView, DataTable dataTable )
         {
             if( dataGridView != null
-                && dataTable?.Columns?.Count > 0 )
+               && dataTable?.Columns?.Count > 0 )
             {
                 try
                 {
@@ -346,7 +351,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    DataGridExtensions.Fail( ex );
                 }
             }
         }
@@ -368,8 +373,8 @@ namespace BudgetExecution
                         {
                             foreach( DataGridViewColumn _column in dataGridView.Columns )
                             {
-                                if( !string.IsNullOrEmpty( _table.Columns[ _column.Name ].Caption )
-                                )
+                                if( !string.IsNullOrEmpty( _table.Columns[ _column.Name ]
+                                       .Caption ) )
                                 {
                                     _column.HeaderText = _table.Columns[ _column.Name ].Caption;
                                 }
@@ -379,7 +384,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    DataGridExtensions.Fail( ex );
                 }
             }
         }

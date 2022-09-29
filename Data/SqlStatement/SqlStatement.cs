@@ -185,7 +185,7 @@ namespace BudgetExecution
             {
                 return Criteria?.Any( ) == true
                     ? CreateDeleteStatement( Criteria )
-                    : $"DELETE * FROM {Source};";
+                    : $"DELETE FROM {Source}";
             }
             catch( Exception ex )
             {
