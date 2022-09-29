@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.Data.SqlServerCe;
     using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
-    using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -27,6 +26,8 @@ namespace BudgetExecution
         /// Gets the Provider
         /// </summary>
         public virtual Provider Provider { get; set; }
+
+        public virtual SQL CommandType { get; set; }
 
         /// <summary>
         /// Gets the arguments.
@@ -131,6 +132,13 @@ namespace BudgetExecution
         public QueryBase( Source source, Provider provider = Provider.SQLite,
             SQL commandType = SQL.SELECT )
         {
+            Source = source;
+            Provider = provider;
+            CommandType = commandType;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            DataConnection = ConnectionBuilder.Connection;
+            SqlStatement = new SqlStatement( source, provider, commandType );
+            CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
         /// <summary>
@@ -146,6 +154,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             Criteria = where;
+            CommandType = commandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, where, commandType );
@@ -162,6 +171,7 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
+            CommandType = sqlStatement.CommandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             Criteria = sqlStatement.Criteria ?? null;
@@ -183,6 +193,7 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, where, SQL.SELECT );
+            CommandType = SqlStatement.CommandType;
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -200,6 +211,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             Criteria = where;
+            CommandType = commandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, updates, where, commandType );
@@ -220,6 +232,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             Criteria = where;
+            CommandType = commandType;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, columns, where, commandType );
@@ -236,10 +249,10 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            Criteria = null;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( source, provider, sqlText );
+            CommandType = SqlStatement.CommandType;
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -251,7 +264,6 @@ namespace BudgetExecution
         /// <param name="commandType">Type of the command.</param>
         public QueryBase( string fullPath, string sqlText, SQL commandType = SQL.SELECT )
         {
-            Criteria = null;
             ConnectionBuilder = new ConnectionBuilder( fullPath );
             Provider = ConnectionBuilder.Provider;
             Source = ConnectionBuilder.Source;
@@ -260,6 +272,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder.Source, ConnectionBuilder.Provider,
                 sqlText );
 
+            CommandType = commandType;
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -277,6 +290,7 @@ namespace BudgetExecution
             Provider = ConnectionBuilder.Provider;
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = new SqlStatement( Source, Provider, where, commandType );
+            CommandType = commandType;
             CommandBuilder = new CommandBuilder( SqlStatement );
         }
 
@@ -292,6 +306,7 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source, sqlStatement.Provider );
             DataConnection = ConnectionBuilder.Connection;
             SqlStatement = sqlStatement;
+            CommandType = sqlStatement.CommandType;
             CommandBuilder = new CommandBuilder( sqlStatement );
         }
         
