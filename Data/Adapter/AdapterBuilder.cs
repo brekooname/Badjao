@@ -116,7 +116,6 @@ namespace BudgetExecution
             SqlStatement = sqlStatement;
             ConnectionBuilder = new ConnectionBuilder( sqlStatement.Source,
                 sqlStatement.Provider );
-
             CommandBuilder = new CommandBuilder( sqlStatement );
             Connection = ConnectionBuilder.Connection;
             CommandText = sqlStatement.CommandText;

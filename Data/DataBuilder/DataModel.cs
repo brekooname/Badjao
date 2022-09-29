@@ -215,7 +215,6 @@ namespace BudgetExecution
                     IEnumerable<string> _query = dataRows
                         ?.Select( p => p.Field<string>( column ) )
                         ?.Distinct( );
-
                     return _query?.Any( ) == true
                         ? _query
                         : default( IEnumerable<string> );
@@ -249,7 +248,6 @@ namespace BudgetExecution
                     IEnumerable<string> _query = dataRows
                         ?.Where( p => p.Field<string>( $"{name}" ).Equals( value ) )
                         ?.Select( p => p.Field<string>( $"{name}" ) )?.Distinct( );
-
                     return _query?.Any( ) == true
                         ? _query
                         : default( IEnumerable<string> );
@@ -278,7 +276,6 @@ namespace BudgetExecution
                     using( DataTableReader _reader = new DataTableReader( dataTable ) )
                     {
                         DataTable _schema = _reader?.GetSchemaTable( );
-
                         return _schema?.Rows?.Count > 0
                             ? _schema
                             : default( DataTable );
@@ -320,9 +317,8 @@ namespace BudgetExecution
                                 if( _schema != null )
                                 {
                                     DataTable _dataTable = _schema?.AsEnumerable( )
-                                        ?.Where( r =>
-                                            r.Field<string>( "TABLE_NAME" )
-                                                .Contains( "FilterDatabase" ) )
+                                        ?.Where( r => r.Field<string>( "TABLE_NAME" )
+                                            .Contains( "FilterDatabase" ) )
                                         ?.Select( r => r )
                                         ?.CopyToDataTable( );
 
@@ -393,14 +389,11 @@ namespace BudgetExecution
                                     ? 2
                                     : 1;
 
-                                for( int _row = _start; _row <= _worksheet.Dimension.End.Row;
-                                    _row++ )
+                                for( int _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
                                 {
                                     ExcelRange _excelRange = _worksheet.Cells[ _row, 1, _row,
                                         _worksheet.Dimension.End.Column ];
-
                                     DataRow _dataRow = _table.Rows?.Add( );
-
                                     foreach( ExcelRangeBase cell in _excelRange )
                                     {
                                         _dataRow[ cell.Start.Column - 1 ] = cell?.Text;
