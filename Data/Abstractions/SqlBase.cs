@@ -144,11 +144,6 @@ namespace BudgetExecution
             TableName = source.ToString( );
             Provider = provider;
             CommandType = commandType;
-            Updates = new Dictionary<string, object>( );
-            Criteria = new Dictionary<string, object>( );
-            Numerics = new List<string>( );
-            Columns = new List<string>( );
-            Groups = new List<string>( );
             CommandText = sqlText;
         }
 
@@ -167,11 +162,7 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             TableName = source.ToString( );
-            Updates = new Dictionary<string, object>( );
             Criteria = where;
-            Columns = new List<string>( );
-            Numerics = new List<string>( );
-            Groups = new List<string>( );
             CommandText = $"SELECT * FROM { source } WHERE { where.ToCriteria( ) }";
         }
 
@@ -186,8 +177,6 @@ namespace BudgetExecution
             Updates = updates;
             Criteria = where;
             Columns = updates.Keys.ToList( );
-            Numerics = new List<string>( );
-            Groups = new List<string>( );
         }
 
         /// <summary>
@@ -206,11 +195,8 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             TableName = source.ToString( );
-            Updates = new Dictionary<string, object>( );
             Criteria = where;
             Columns = columns.ToList( );
-            Numerics = new List<string>( );
-            Groups = new List<string>( );
         }
 
         public SqlBase( Source source, Provider provider, IEnumerable<string> columns,
@@ -221,7 +207,6 @@ namespace BudgetExecution
             Source = source;
             Provider = provider;
             TableName = source.ToString( );
-            Updates = new Dictionary<string, object>( );
             Criteria = where;
             Columns = columns.ToList( );
             Numerics = numerics.ToList( );

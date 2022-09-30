@@ -155,7 +155,7 @@ namespace BudgetExecution
         {
             if( !string.IsNullOrEmpty( commandName )
                 && Commands?.Any( ) == true
-                && Commands.Keys.Contains( commandName ) )
+                && Commands.Keys?.Contains( commandName ) == true )
             {
                 try
                 {

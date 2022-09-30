@@ -516,7 +516,7 @@ namespace BudgetExcess
         {
             SQLiteCommand res = new SQLiteCommand( );
             StringBuilder sb = new StringBuilder( );
-            sb.Append( $"INSERT INTO { ts.TableName }";
+            sb.Append( $"INSERT INTO { ts.TableName }");
 
             for( int i = 0; i < ts.Columns.Count; i++ )
             {

@@ -49,10 +49,10 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="DataMap"/> class.
         /// </summary>
-        /// <param name="data">The Data.</param>
-        public DataMap( DataRow data )
+        /// <param name="dataRow">The Data.</param>
+        public DataMap( DataRow dataRow )
         {
-            Input = data?.ToDictionary( );
+            Input = dataRow?.ToDictionary( );
             Output = Input;
             Names = GetNames( );
             Values = GetValues( );

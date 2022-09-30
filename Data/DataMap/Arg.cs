@@ -42,17 +42,17 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the input.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        protected void SetInput( IDictionary<string, object> dict )
+        /// <param name="input">The dictionary.</param>
+        protected void SetInput( IDictionary<string, object> input )
         {
-            if( dict?.Any( ) == true )
+            if( input?.Any( ) == true )
             {
                 try
                 {
                     Dictionary<string, object> _dict = new Dictionary<string, object>( );
                     string[ ] _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( KeyValuePair<string, object> kvp in dict )
+                    foreach( KeyValuePair<string, object> kvp in input )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
@@ -61,9 +61,10 @@ namespace BudgetExecution
                         }
                     }
 
-                    Input = _dict?.Any( ) == true && _dict != Output
-                        ? _dict
-                        : default( Dictionary<string, object> );
+                    Input = _dict?.Any( ) == true 
+                        && _dict != Output
+                            ? _dict
+                            : default( Dictionary<string, object> );
                 }
                 catch( Exception ex )
                 {
@@ -75,10 +76,10 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the output.
         /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        protected void SetOutput( IDictionary<string, object> dict )
+        /// <param name="output">The dictionary.</param>
+        protected void SetOutput( IDictionary<string, object> output )
         {
-            if( dict?.Any( ) == true )
+            if( output?.Any( ) == true )
             {
                 try
                 {
@@ -88,7 +89,7 @@ namespace BudgetExecution
                     {
                         object[ ] data = Values.ToArray( );
 
-                        foreach( KeyValuePair<string, object> kvp in dict )
+                        foreach( KeyValuePair<string, object> kvp in output )
                         {
                             for( int i = 0; i < data.Length; i++ )
                             {
@@ -121,7 +122,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    object[ ] _array = Output?.Values?.ToArray( );
+                    object[ ] _array = Output.Values?.ToArray( );
                     IEnumerable<string> _enumerable = _array?.Select( o => o.ToString( ) );
                     string[ ] _fields = Enum.GetNames( typeof( Field ) );
                     List<string> _list = new List<string>( );

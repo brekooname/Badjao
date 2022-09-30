@@ -165,7 +165,7 @@ namespace BudgetExecution
                         && File.Exists( _input ) )
                     {
                         IEnumerable<string> _enumerable =
-                            Directory.En( _input, pattern );
+                            Directory.EnumerateDirectories( _input, pattern );
 
                         List<FileInfo> _list = new List<FileInfo>( );
 
