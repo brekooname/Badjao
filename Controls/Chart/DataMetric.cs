@@ -139,7 +139,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    decimal? _query = dataRow
+                    var _query = dataRow
                         ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
                         ?.StandardDeviation( p => p.Field<decimal>( $"{ numeric }" ) );
 
@@ -178,7 +178,7 @@ namespace BudgetExecution
 
                 try
                 {
-                    decimal? _query = _table?.AsEnumerable( )
+                    var _query = _table?.AsEnumerable( )
                         ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
                         ?.Variance( p => p.Field<decimal>( $"{ numeric }" ) );
 
@@ -204,7 +204,7 @@ namespace BudgetExecution
         {
             try
             {
-                Dictionary<string, double> _stats = new Dictionary<string, double>
+                var _stats = new Dictionary<string, double>
                 {
                     { "COUNT", Count },
                     { "TOTAL", Total },

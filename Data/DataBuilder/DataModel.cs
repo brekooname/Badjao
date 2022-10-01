@@ -212,7 +212,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IEnumerable<string> _query = dataRows
+                    var _query = dataRows
                         ?.Select( p => p.Field<string>( column ) )
                         ?.Distinct( );
                     return _query?.Any( ) == true
@@ -245,7 +245,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IEnumerable<string> _query = dataRows
+                    var _query = dataRows
                         ?.Where( p => p.Field<string>( $"{name}" ).Equals( value ) )
                         ?.Select( p => p.Field<string>( $"{name}" ) )?.Distinct( );
                     return _query?.Any( ) == true
@@ -428,11 +428,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, IEnumerable<string>> _dict =
+                    var _dict =
                         new Dictionary<string, IEnumerable<string>>( );
 
                     DataColumnCollection _columns = dataTable?.Columns;
-                    EnumerableRowCollection<DataRow> _rows = dataTable?.AsEnumerable( );
+                    var _rows = dataTable?.AsEnumerable( );
 
                     for( int i = 0; i < _columns?.Count; i++ )
                     {

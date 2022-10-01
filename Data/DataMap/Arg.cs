@@ -49,10 +49,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, object> _dict = new Dictionary<string, object>( );
-                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
+                    var _dict = new Dictionary<string, object>( );
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( KeyValuePair<string, object> kvp in input )
+                    foreach( var kvp in input )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
@@ -61,10 +61,9 @@ namespace BudgetExecution
                         }
                     }
 
-                    Input = _dict?.Any( ) == true 
-                        && _dict != Output
-                            ? _dict
-                            : default( Dictionary<string, object> );
+                    Input = _dict?.Any( ) == true && _dict != Output
+                        ? _dict
+                        : default( Dictionary<string, object> );
                 }
                 catch( Exception ex )
                 {
@@ -83,13 +82,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, object> _dictionary = new Dictionary<string, object>( );
+                    var _dictionary = new Dictionary<string, object>( );
 
                     if( Values?.Any( ) == true )
                     {
-                        object[ ] data = Values.ToArray( );
+                        var data = Values.ToArray( );
 
-                        foreach( KeyValuePair<string, object> kvp in output )
+                        foreach( var kvp in output )
                         {
                             for( int i = 0; i < data.Length; i++ )
                             {
@@ -122,10 +121,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    object[ ] _array = Output.Values?.ToArray( );
-                    IEnumerable<string> _enumerable = _array?.Select( o => o.ToString( ) );
-                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
-                    List<string> _list = new List<string>( );
+                    var _array = Output.Values?.ToArray( );
+                    var _enumerable = _array?.Select( o => o.ToString( ) );
+                    var _fields = Enum.GetNames( typeof( Field ) );
+                    var _list = new List<string>( );
 
                     if( _enumerable?.Any( ) == true
                         && _fields?.Any( ) == true )
@@ -164,9 +163,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ICollection<string> _keys = Output?.Keys;
-                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
-                    List<string> _list = new List<string>( );
+                    var _keys = Output?.Keys;
+                    var _fields = Enum.GetNames( typeof( Field ) );
+                    var _list = new List<string>( );
 
                     if( _keys?.Any( ) == true )
                     {

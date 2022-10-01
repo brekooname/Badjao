@@ -162,7 +162,7 @@ namespace BudgetExecution
             try
             {
                 TableListBox.Items.Clear( );
-                string[ ] _names = Enum.GetNames( typeof( Source ) );
+                var _names = Enum.GetNames( typeof( Source ) );
 
                 foreach( string name in _names )
                 {
@@ -185,7 +185,7 @@ namespace BudgetExecution
         {
             try
             {
-                string[ ] _names = Enum.GetNames( typeof( SQL ) );
+                var _names = Enum.GetNames( typeof( SQL ) );
 
                 foreach( string name in _names )
                 {
@@ -232,7 +232,7 @@ namespace BudgetExecution
                     DataGridGroupBox.Text =
                         SourcePrefix + DataModel.DataTable.TableName?.SplitPascal( );
 
-                    IEnumerable<DataColumn> _columns = DataModel.GetDataColumns( );
+                    var _columns = DataModel.GetDataColumns( );
 
                     foreach( DataColumn col in _columns )
                     {
@@ -265,7 +265,7 @@ namespace BudgetExecution
                 HeaderLabel.Text = string.Empty;
                 VisualListBox _listBox = sender as VisualListBox;
                 string _column = _listBox?.SelectedItem?.ToString( );
-                IDictionary<string, IEnumerable<string>> _series = DataModel.DataElements;
+                var _series = DataModel.DataElements;
 
                 if( !string.IsNullOrEmpty( _column ) )
                 {

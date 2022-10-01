@@ -191,8 +191,8 @@ namespace BudgetExecution
         {
             if( Directory.Exists( srcDir ) )
             {
-                IEnumerable<string> _files = Directory.EnumerateFiles( srcDir );
-                List<Image> _list = new List<Image>( );
+                var _files = Directory.EnumerateFiles( srcDir );
+                var _list = new List<Image>( );
 
                 if( _files?.Count( ) > 0 )
                 {
@@ -225,8 +225,8 @@ namespace BudgetExecution
         {
             if( paths?.Count( ) > 0 )
             {
-                List<string> _files = paths.ToList( );
-                List<Image> _list = new List<Image>( );
+                var _files = paths.ToList( );
+                var _list = new List<Image>( );
 
                 for( int i = 0; i < _files.Count; i++ )
                 {

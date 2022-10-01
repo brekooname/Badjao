@@ -157,7 +157,7 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( text ) )
                 {
-                    char[ ] _letters = text.ToCharArray( );
+                    var _letters = text.ToCharArray( );
                     _letters[ 0 ] = char.ToUpper( _letters[ 0 ] );
                     return new string( _letters );
                 }
@@ -214,7 +214,7 @@ namespace BudgetExecution
         {
             try
             {
-                byte[ ] _buffer = Encoding.UTF8.GetBytes( text );
+                var _buffer = Encoding.UTF8.GetBytes( text );
                 return new MemoryStream( _buffer );
             }
             catch( Exception ex )

@@ -23,7 +23,7 @@ namespace BudgetExecution
         /// The extension
         /// </summary>
         public virtual EXT Extension { get; set; }
-        
+
         /// <summary>
         /// The source
         /// </summary>
@@ -126,9 +126,9 @@ namespace BudgetExecution
             Columns = new List<string>( );
             Numerics = new List<string>( );
             Groups = new List<string>( );
-            CommandText = $"SELECT * FROM { source }";
+            CommandText = $"SELECT * FROM {source}";
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlBase"/> class.
         /// </summary>
@@ -163,7 +163,7 @@ namespace BudgetExecution
             Provider = provider;
             TableName = source.ToString( );
             Criteria = where;
-            CommandText = $"SELECT * FROM { source } WHERE { where.ToCriteria( ) }";
+            CommandText = $"SELECT * FROM {source} WHERE {where.ToCriteria( )}";
         }
 
         public SqlBase( Source source, Provider provider, IDictionary<string, object> updates,
@@ -200,7 +200,8 @@ namespace BudgetExecution
         }
 
         public SqlBase( Source source, Provider provider, IEnumerable<string> columns,
-            IEnumerable<string> numerics, IDictionary<string, object> where, SQL commandType = SQL.SELECT )
+            IEnumerable<string> numerics, IDictionary<string, object> where,
+            SQL commandType = SQL.SELECT )
         {
             DbPath = new ConnectionBuilder( source, provider ).DbPath;
             CommandType = commandType;
@@ -226,11 +227,11 @@ namespace BudgetExecution
 
                     foreach( string col in Columns )
                     {
-                        _columns += $"{ col }, ";
+                        _columns += $"{col}, ";
                     }
 
                     string _cols = _columns.TrimEnd( ", ".ToCharArray( ) );
-                    return $"SELECT { _cols } FROM { Source } WHERE { Criteria.ToCriteria( ) };";
+                    return $"SELECT {_cols} FROM {Source} WHERE {Criteria.ToCriteria( )};";
                 }
                 catch( Exception ex )
                 {
@@ -241,12 +242,12 @@ namespace BudgetExecution
             else if( Columns == null
                 && Criteria?.Any( ) == true )
             {
-                return $"SELECT * FROM { Source } WHERE { Criteria.ToCriteria( ) };";
+                return $"SELECT * FROM {Source} WHERE {Criteria.ToCriteria( )};";
             }
             else if( Columns == null
                 && Criteria == null )
             {
-                return $"SELECT * FROM { Source };";
+                return $"SELECT * FROM {Source};";
             }
 
             return default( string );
@@ -264,7 +265,7 @@ namespace BudgetExecution
                 try
                 {
                     string _criteria = where.ToCriteria( );
-                    return $"SELECT * FROM { Source } WHERE { _criteria };";
+                    return $"SELECT * FROM {Source} WHERE {_criteria};";
                 }
                 catch( Exception ex )
                 {
@@ -295,12 +296,12 @@ namespace BudgetExecution
 
                     foreach( string name in columns )
                     {
-                        _cols += $"{ name }, ";
+                        _cols += $"{name}, ";
                     }
 
                     string _criteria = where.ToCriteria( );
                     string _columns = _cols.TrimEnd( ", ".ToCharArray( ) );
-                    return $"SELECT { _columns } FROM { Source } WHERE { _criteria} ;";
+                    return $"SELECT {_columns} FROM {Source} WHERE {_criteria} ;";
                 }
                 catch( Exception ex )
                 {
@@ -319,13 +320,13 @@ namespace BudgetExecution
         /// <param name="numerics">The numerics.</param>
         /// <param name="having">The having.</param>
         /// <returns></returns>
-        public virtual string CreateSelectStatement( IEnumerable<string> columns, 
+        public virtual string CreateSelectStatement( IEnumerable<string> columns,
             IEnumerable<string> numerics, IDictionary<string, object> having )
         {
             if( Enum.IsDefined( typeof( Source ), Source )
                 && having?.Any( ) == true
                 && columns?.Any( ) == true
-                && numerics?.Any( ) == true ) 
+                && numerics?.Any( ) == true )
             {
                 try
                 {
@@ -335,20 +336,20 @@ namespace BudgetExecution
 
                     foreach( string name in columns )
                     {
-                        _cols += $"{ name }, ";
+                        _cols += $"{name}, ";
                     }
 
                     foreach( string _numeric in numerics )
                     {
-                        _grp += $"SUM({ _numeric }), ";
-                        _aggr += $"SUM({ _numeric }) AS { _numeric }, ";
+                        _grp += $"SUM({_numeric}), ";
+                        _aggr += $"SUM({_numeric}) AS {_numeric}, ";
                     }
 
                     string _criteria = having.ToCriteria( );
-                    string _columns =_cols + _aggr.TrimEnd( ", ".ToCharArray( ) );
+                    string _columns = _cols + _aggr.TrimEnd( ", ".ToCharArray( ) );
                     string _groups = _cols + _grp.TrimEnd( ", ".ToCharArray( ) );
-                    return $"SELECT { _columns } FROM { Source } " +
-                        $"GROUP BY { _groups } HAVING { _criteria };";
+                    return $"SELECT {_columns} FROM {Source} "
+                        + $"GROUP BY {_groups} HAVING {_criteria};";
                 }
                 catch( Exception ex )
                 {
@@ -365,7 +366,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="updates">The dictionary.</param>
         /// <param name = "where" > </param>
-        public virtual string CreateUpdateStatement( IDictionary<string, object> updates, 
+        public virtual string CreateUpdateStatement( IDictionary<string, object> updates,
             IDictionary<string, object> where )
         {
             if( updates?.Any( ) == true
@@ -378,22 +379,22 @@ namespace BudgetExecution
 
                     if( updates.Count == 1 )
                     {
-                        foreach( KeyValuePair<string, object> kvp in updates )
+                        foreach( var kvp in updates )
                         {
-                            _update += $"{ kvp.Key } = '{ kvp.Value }'";
+                            _update += $"{kvp.Key} = '{kvp.Value}'";
                         }
                     }
                     else if( updates.Count > 1 )
                     {
-                        foreach( KeyValuePair<string, object> kvp in updates )
+                        foreach( var kvp in updates )
                         {
-                            _update += $"{ kvp.Key } = '{ kvp.Value }', ";
+                            _update += $"{kvp.Key} = '{kvp.Value}', ";
                         }
                     }
 
                     string _criteria = where.ToCriteria( );
                     string _values = _update.TrimEnd( ", ".ToCharArray( ) );
-                    return $"{ SQL.UPDATE } { Source } SET { _values } WHERE { _criteria };";
+                    return $"{SQL.UPDATE} {Source} SET {_values} WHERE {_criteria};";
                 }
                 catch( Exception ex )
                 {
@@ -418,26 +419,28 @@ namespace BudgetExecution
                 {
                     string _columns = string.Empty;
                     string _values = string.Empty;
-                    if( updates.Count == 1 ) 
-                    {
-                        foreach( KeyValuePair<string, object> kvp in updates )
-                        {
-                            _columns += $"{ kvp.Key }";
-                            _values += $"{ kvp.Value }";
-                        }
-                    }
-                    else if( updates.Count > 1 ) 
-                    {
-                        foreach( KeyValuePair<string, object> kvp in updates )
-                        {
-                            _columns += $"{ kvp.Key }, ";
-                            _values += $"{ kvp.Value }, ";
-                        }
-                    }
-                    string _columnValues = $"({ _columns.TrimEnd( ", ".ToCharArray( ) ) })" +
-                        $" VALUES ({ _values.TrimEnd( ", ".ToCharArray( ) ) })";
 
-                    return $"INSERT INTO { Source } { _columnValues };";
+                    if( updates.Count == 1 )
+                    {
+                        foreach( var kvp in updates )
+                        {
+                            _columns += $"{kvp.Key}";
+                            _values += $"{kvp.Value}";
+                        }
+                    }
+                    else if( updates.Count > 1 )
+                    {
+                        foreach( var kvp in updates )
+                        {
+                            _columns += $"{kvp.Key}, ";
+                            _values += $"{kvp.Value}, ";
+                        }
+                    }
+
+                    string _columnValues = $"({_columns.TrimEnd( ", ".ToCharArray( ) )})"
+                        + $" VALUES ({_values.TrimEnd( ", ".ToCharArray( ) )})";
+
+                    return $"INSERT INTO {Source} {_columnValues};";
                 }
                 catch( Exception ex )
                 {
@@ -461,7 +464,7 @@ namespace BudgetExecution
                 try
                 {
                     string _criteria = where.ToCriteria( );
-                    return $"{ SQL.DELETE } FROM { Source } WHERE { _criteria };";
+                    return $"{SQL.DELETE} FROM {Source} WHERE {_criteria};";
                 }
                 catch( Exception ex )
                 {

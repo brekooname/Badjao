@@ -195,7 +195,7 @@ namespace BudgetExecution
                 try
                 {
                     DataTable _table = dataRows?.CopyToDataTable( );
-                    IEnumerable<int> _values = _table?.GetPrimaryKeyValues( );
+                    var _values = _table?.GetPrimaryKeyValues( );
 
                     return _values?.Any( ) == true
                         ? _values.ToArray( )

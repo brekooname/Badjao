@@ -215,7 +215,7 @@ namespace BudgetExecution
         {
             try
             {
-                Dictionary<string, object> _dictionary = new Dictionary<string, object>( );
+                var _dictionary = new Dictionary<string, object>( );
 
                 if( nvm != null )
                 {

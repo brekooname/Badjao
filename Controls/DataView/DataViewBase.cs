@@ -105,7 +105,7 @@ namespace BudgetExecution
                         SourceBinding _list = bindingList as SourceBinding;
                         string _filter = string.Empty;
 
-                        foreach( KeyValuePair<string, object> _kvp in dict )
+                        foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
@@ -169,7 +169,7 @@ namespace BudgetExecution
                 {
                     string filter = string.Empty;
 
-                    foreach( KeyValuePair<string, object> kvp in dict )
+                    foreach( var kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -272,7 +272,7 @@ namespace BudgetExecution
                 {
                     string _filter = string.Empty;
 
-                    foreach( KeyValuePair<string, object> _kvp in dict )
+                    foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )

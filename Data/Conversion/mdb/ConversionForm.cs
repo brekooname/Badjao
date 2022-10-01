@@ -79,7 +79,7 @@ namespace BudgetExecution
         private void GetTables( )
         {
             AccessConnect = new AccessConnect( AccessPath.Text );
-            IEnumerable<string> tables = AccessConnect.GetTableNames( );
+            var tables = AccessConnect.GetTableNames( );
 
             foreach( string s in tables )
             {
@@ -93,7 +93,7 @@ namespace BudgetExecution
         /// <returns></returns>
         private List<string> GetSelectedTables( )
         {
-            List<string> result = new List<string>( );
+            var result = new List<string>( );
 
             for( int i = 0; i < CheckTableNames.Items.Count; i++ )
             {
@@ -126,7 +126,7 @@ namespace BudgetExecution
         /// </summary>
         private void Convert( )
         {
-            List<string> tables = GetSelectedTables( );
+            var tables = GetSelectedTables( );
 
             if( tables.Count == 0 )
             {

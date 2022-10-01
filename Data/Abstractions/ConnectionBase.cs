@@ -251,7 +251,7 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _file ) )
                     {
                         EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
-                        string[ ] _names = Enum.GetNames( typeof( EXT ) );
+                        var _names = Enum.GetNames( typeof( EXT ) );
 
                         if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
@@ -316,7 +316,7 @@ namespace BudgetExecution
                     if( _file != null )
                     {
                         EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
-                        string[ ] _names = Enum.GetNames( typeof( EXT ) );
+                        var _names = Enum.GetNames( typeof( EXT ) );
 
                         if( _names?.Contains( _ext.ToString( ) ) == true )
                         {

@@ -213,7 +213,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _columns = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _columns = Enum.GetNames( typeof( PrimaryKey ) );
 
                     if( !string.IsNullOrEmpty( dataRow[ 0 ]?.ToString( ) )
                         && _columns?.Contains( dataRow[ 0 ]?.ToString( ) ) == true )
@@ -221,7 +221,7 @@ namespace BudgetExecution
                         PrimaryKey _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ),
                             dataRow[ 0 ].ToString( ) );
 
-                        string[ ] _names = dataRow.Table?.GetColumnNames( );
+                        var _names = dataRow.Table?.GetColumnNames( );
 
                         PrimaryKey = _names?.Contains( _field.ToString( ) ) == true
                             ? _field
@@ -266,7 +266,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = dataRow.Table?.GetColumnNames( );
+                    var _names = dataRow.Table?.GetColumnNames( );
 
                     PrimaryKey = _names?.Contains( keyName.ToString( ) ) == true
                         ? keyName
@@ -309,7 +309,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = dataRow?.Table?.GetColumnNames( );
+                    var _names = dataRow?.Table?.GetColumnNames( );
 
                     Index = _names?.Contains( key.ToString( ) ) == true
                         ? int.Parse( dataRow[ $"{key}" ].ToString( ) )

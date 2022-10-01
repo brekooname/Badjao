@@ -217,11 +217,11 @@ namespace BudgetExecution
                         case ChartSeriesType.Pie:
 
                         {
-                            foreach( KeyValuePair<string, double> _kvp in data )
+                            foreach( var _kvp in data )
                             {
                                 Points.Add( _kvp.Key, _kvp.Value );
-                                string[ ] _keys = data.Keys.Select( k => k.ToString( ) ).ToArray( );
-                                double[ ] _vals = data.Values.Select( v => v ).ToArray( );
+                                var _keys = data.Keys.Select( k => k.ToString( ) ).ToArray( );
+                                var _vals = data.Values.Select( v => v ).ToArray( );
 
                                 if( stat != STAT.Percentage )
                                 {
@@ -244,7 +244,7 @@ namespace BudgetExecution
                         default:
 
                         {
-                            foreach( KeyValuePair<string, double> _kvp in data )
+                            foreach( var _kvp in data )
                             {
                                 Points.Add( _kvp.Key, _kvp.Value );
                             }

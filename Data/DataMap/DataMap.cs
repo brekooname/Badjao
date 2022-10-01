@@ -128,9 +128,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( KeyValuePair<string, object> kvp in Input )
+                    foreach( var kvp in Input )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
@@ -159,7 +159,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    KeyValuePair<string, object> _data = Input.GetPrimaryKey( );
+                    var _data = Input.GetPrimaryKey( );
 
                     return !string.IsNullOrEmpty( _data.Key )
                         ? new Key( _data )
@@ -185,10 +185,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<IElement> _output = new List<IElement>( );
-                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
+                    var _output = new List<IElement>( );
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( KeyValuePair<string, object> kvp in Output )
+                    foreach( var kvp in Output )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )

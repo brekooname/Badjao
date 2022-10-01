@@ -188,7 +188,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = dataRow.Table?.GetColumnNames( );
+                    var _names = dataRow.Table?.GetColumnNames( );
 
                     Name = _names?.Contains( columnName ) == true
                         ? columnName
@@ -234,7 +234,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _columnNames = dataRow.Table?.GetColumnNames( );
+                    var _columnNames = dataRow.Table?.GetColumnNames( );
 
                     Name = _columnNames?.Contains( field.ToString( ) ) == true
                         ? field.ToString( )
@@ -285,7 +285,7 @@ namespace BudgetExecution
                 try
                 {
                     Field _input = (Field)Enum.Parse( typeof( Field ), fieldName );
-                    string[ ] _names = dataRow.Table?.GetColumnNames( );
+                    var _names = dataRow.Table?.GetColumnNames( );
 
                     if( _names?.Any( ) == true
                         && _names?.Contains( $" {_input}" ) == true )
@@ -331,7 +331,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = dataRow.Table?.GetColumnNames( );
+                    var _names = dataRow.Table?.GetColumnNames( );
 
                     Field = _names?.Contains( field.ToString( ) ) == true
                         ? field
@@ -376,7 +376,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = dataRow.Table?.GetColumnNames( );
+                    var _names = dataRow.Table?.GetColumnNames( );
 
                     Value = _names?.Contains( columnName ) == true
                         ? dataRow[ columnName ]?.ToString( )
@@ -401,7 +401,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = dataRow.Table?.GetColumnNames( );
+                    var _names = dataRow.Table?.GetColumnNames( );
 
                     Value = _names?.Contains( field.ToString( ) ) == true
                         ? dataRow[ $"{field}" ]?.ToString( )

@@ -284,7 +284,7 @@ namespace BudgetExecution
                     {
                         string _vals = string.Empty;
 
-                        foreach( KeyValuePair<string, object> _kvp in dict )
+                        foreach( var _kvp in dict )
                         {
                             _vals += $"{_kvp.Key} = '{_kvp.Value}' AND ";
                         }

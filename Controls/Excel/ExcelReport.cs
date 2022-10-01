@@ -432,8 +432,8 @@ namespace BudgetExecution
                     Worksheet _worksheet = workSheetPart.Worksheet;
                     SheetData _data = _worksheet?.GetFirstChild<SheetData>( );
                     int _columns = dataTable.Columns.Count;
-                    bool[ ] _isNumeric = new bool[ _columns ];
-                    string[ ] _names = new string[ _columns ];
+                    var _isNumeric = new bool[ _columns ];
+                    var _names = new string[ _columns ];
 
                     for( int n = 0; n < _columns; n++ )
                     {

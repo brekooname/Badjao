@@ -134,7 +134,7 @@ namespace BudgetExecution
                 try
                 {
                     string _path = ConfigurationManager.AppSettings[ "Extensions" ];
-                    string[ ] _files = Directory.GetFiles( _path );
+                    var _files = Directory.GetFiles( _path );
 
                     if( _files?.Any( ) == true )
                     {
@@ -205,33 +205,33 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<string> _list = new List<string>( );
+                    var _list = new List<string>( );
 
                     foreach( string path in InitialDirPaths )
                     {
-                        List<string> _first = Directory.EnumerateFiles( path )
+                        var _first = Directory.EnumerateFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
                             ?.Select( f => Path.GetFullPath( f ) )?.ToList( );
 
                         _list.AddRange( _first );
 
-                        string[ ] _dirs = Directory.GetDirectories( path );
+                        var _dirs = Directory.GetDirectories( path );
 
                         foreach( string dir in _dirs )
                         {
                             if( !dir.Contains( "My " ) )
                             {
-                                List<string> _second = Directory.EnumerateFiles( dir )
+                                var _second = Directory.EnumerateFiles( dir )
                                     ?.Where( s => s.EndsWith( FileExtension ) )
                                     ?.Select( s => Path.GetFullPath( s ) )?.ToList( );
 
                                 _list.AddRange( _second );
 
-                                string[ ] _subdir = Directory.GetDirectories( dir );
+                                var _subdir = Directory.GetDirectories( dir );
 
                                 foreach( string sub in _subdir )
                                 {
-                                    List<string> _last = Directory.EnumerateFiles( sub )
+                                    var _last = Directory.EnumerateFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
                                         ?.Select( l => Path.GetFullPath( l ) )?.ToList( );
 
@@ -269,7 +269,7 @@ namespace BudgetExecution
                     FileExtension = _radioButton?.Result;
                     MessageLabel.Text = string.Empty;
                     FoundLabel.Text = string.Empty;
-                    IEnumerable<string> _paths = GetListViewPaths( );
+                    var _paths = GetListViewPaths( );
                     PopulateListView( _paths );
                     PictureBox.Image = GetImage( );
                     FoundLabel.Text = "Found: " + _paths?.ToList( )?.Count ?? "0";
@@ -289,7 +289,7 @@ namespace BudgetExecution
         {
             try
             {
-                List<RadioButton> _list = new List<RadioButton>
+                var _list = new List<RadioButton>
                 {
                     PdfRadioButton,
                     AccessRadioButton,
@@ -325,7 +325,7 @@ namespace BudgetExecution
             try
             {
                 string _current = Environment.CurrentDirectory;
-                List<string> _list = new List<string>
+                var _list = new List<string>
                 {
                     Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
 

@@ -87,7 +87,7 @@ namespace BudgetExecution
             try
             {
                 TableListBox.Items.Clear( );
-                string[ ] _names = Enum.GetNames( typeof( Source ) );
+                var _names = Enum.GetNames( typeof( Source ) );
 
                 foreach( string name in _names )
                 {
@@ -126,7 +126,7 @@ namespace BudgetExecution
                     DataModel = new DataBuilder( _source, Provider.Access );
                     BindingSource.DataSource = DataModel.DataTable;
 
-                    IEnumerable<DataColumn> _columns = DataModel.GetDataColumns( );
+                    var _columns = DataModel.GetDataColumns( );
 
                     foreach( DataColumn col in _columns )
                     {
@@ -155,7 +155,7 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 ListBox _listBox = sender as ListBox;
                 string _column = _listBox?.SelectedItem?.ToString( );
-                IDictionary<string, IEnumerable<string>> _series = DataModel.DataElements;
+                var _series = DataModel.DataElements;
 
                 if( !string.IsNullOrEmpty( _column ) )
                 {

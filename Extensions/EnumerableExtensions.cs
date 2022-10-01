@@ -32,9 +32,9 @@ namespace BudgetExecution
                 try
                 {
                     DataRow _row = dataRow?.First( );
-                    IDictionary<string, object> _dictionary = _row?.ToDictionary( );
-                    string[ ] _array = _dictionary?.Keys.ToArray( );
-                    string[ ] _names = Enum.GetNames( typeof( Numeric ) );
+                    var _dictionary = _row?.ToDictionary( );
+                    var _array = _dictionary?.Keys.ToArray( );
+                    var _names = Enum.GetNames( typeof( Numeric ) );
 
                     if( _array != null )
                     {
@@ -73,9 +73,9 @@ namespace BudgetExecution
                 try
                 {
                     DataRow _row = dataRow?.First( );
-                    IDictionary<string, object> _dict = _row?.ToDictionary( );
-                    string[ ] _key = _dict?.Keys.ToArray( );
-                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _dict = _row?.ToDictionary( );
+                    var _key = _dict?.Keys.ToArray( );
+                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
 
                     if( _key != null )
                     {
@@ -113,7 +113,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<int> _list = new List<int>( );
+                    var _list = new List<int>( );
 
                     foreach( DataRow _row in dataRow )
                     {
@@ -148,7 +148,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    BindingList<DataRow> _list = new BindingList<DataRow>( );
+                    var _list = new BindingList<DataRow>( );
 
                     foreach( DataRow item in dataRows )
                     {
@@ -186,12 +186,12 @@ namespace BudgetExecution
                 try
                 {
                     DataRow _row = dataRow?.First( );
-                    IDictionary<string, object> _dictionary = _row.ToDictionary( );
-                    string[ ] _array = _dictionary.Keys.ToArray( );
+                    var _dictionary = _row.ToDictionary( );
+                    var _array = _dictionary.Keys.ToArray( );
 
                     if( _array?.Contains( columnName ) == true )
                     {
-                        IEnumerable<DataRow> _select = dataRow
+                        var _select = dataRow
                             ?.Where( p => p.Field<string>( columnName ) == filter )
                             ?.Select( p => p );
 
@@ -225,7 +225,7 @@ namespace BudgetExecution
                 try
                 {
                     DataTable _table = dataRow.CopyToDataTable( );
-                    DataRow[ ] _rows = _table?.Select( dict.ToCriteria( ) );
+                    var _rows = _table?.Select( dict.ToCriteria( ) );
 
                     return _rows?.Any( ) == true
                         ? _rows
@@ -263,7 +263,7 @@ namespace BudgetExecution
 
                     if( _columns?.Contains( dataColumn?.ColumnName ) == true )
                     {
-                        IEnumerable<DataRow> _enumerable = dataRow
+                        var _enumerable = dataRow
                             ?.Where( p =>
                                 p.Field<string>( dataColumn.ColumnName ).Equals( filter ) )
                             ?.Select( p => p );
@@ -305,7 +305,7 @@ namespace BudgetExecution
 
                     if( _columns?.Contains( field.ToString( ) ) == true )
                     {
-                        IEnumerable<DataRow> _enumerable = dataRow
+                        var _enumerable = dataRow
                             ?.Where( p => p.Field<string>( field.ToString( ) ).Equals( filter ) )
                             ?.Select( p => p );
 

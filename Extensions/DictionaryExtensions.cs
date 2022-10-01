@@ -65,12 +65,12 @@ namespace BudgetExecution
 
                     if( dict.HasPrimaryKey( ) )
                     {
-                        KeyValuePair<string, object> _key = dict.GetPrimaryKey( );
+                        var _key = dict.GetPrimaryKey( );
 
                         if( !string.IsNullOrEmpty( _key.Key )
                             & int.Parse( _key.Value.ToString( ) ) > -1 )
                         {
-                            foreach( KeyValuePair<string, object> kvp in dict )
+                            foreach( var kvp in dict )
                             {
                                 _criteria += $"{kvp.Key} = '{kvp.Value}' AND ";
                             }
@@ -85,7 +85,7 @@ namespace BudgetExecution
                     }
                     else if( !dict.HasPrimaryKey( ) )
                     {
-                        foreach( KeyValuePair<string, object> kvp in dict )
+                        foreach( var kvp in dict )
                         {
                             _criteria += $"{kvp.Key} = '{kvp.Value}' AND ";
                         }
@@ -136,10 +136,10 @@ namespace BudgetExecution
         {
             try
             {
-                BindingList<KeyValuePair<string, object>> _bindingList =
+                var _bindingList =
                     new BindingList<KeyValuePair<string, object>>( );
 
-                foreach( KeyValuePair<string, object> kvp in nvc )
+                foreach( var kvp in nvc )
                 {
                     _bindingList.Add( kvp );
                 }
@@ -186,8 +186,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _columns = dict.Keys.ToArray( );
-                    object[ ] _values = dict.Values.ToArray( );
+                    var _columns = dict.Keys.ToArray( );
+                    var _values = dict.Values.ToArray( );
 
                     switch( provider )
                     {
@@ -195,7 +195,7 @@ namespace BudgetExecution
                         case Provider.SQLite:
 
                         {
-                            List<SQLiteParameter> _sqlite = new List<SQLiteParameter>( );
+                            var _sqlite = new List<SQLiteParameter>( );
 
                             for( int i = 0; i < _columns.Length; i++ )
                             {
@@ -213,7 +213,7 @@ namespace BudgetExecution
                         case Provider.SqlCe:
 
                         {
-                            List<SqlCeParameter> _sqlce = new List<SqlCeParameter>( );
+                            var _sqlce = new List<SqlCeParameter>( );
 
                             for( int i = 0; i < _columns.Length; i++ )
                             {
@@ -233,7 +233,7 @@ namespace BudgetExecution
                         case Provider.Access:
 
                         {
-                            List<OleDbParameter> _oledb = new List<OleDbParameter>( );
+                            var _oledb = new List<OleDbParameter>( );
 
                             for( int i = 0; i < _columns.Length; i++ )
                             {
@@ -251,7 +251,7 @@ namespace BudgetExecution
                         case Provider.SqlServer:
 
                         {
-                            List<SqlParameter> _sqlserver = new List<SqlParameter>( );
+                            var _sqlserver = new List<SqlParameter>( );
 
                             for( int i = 0; i < _columns.Length; i++ )
                             {
@@ -293,8 +293,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _array = dict.Keys?.ToArray( );
-                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _array = dict.Keys?.ToArray( );
+                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
                     int _count = 0;
 
                     for( int i = 1; i < _array.Length; i++ )
@@ -332,9 +332,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
 
-                    foreach( KeyValuePair<string, object> kvp in dict )
+                    foreach( var kvp in dict )
                     {
                         if( _names.Contains( kvp.Key ) )
                         {

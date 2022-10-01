@@ -200,8 +200,8 @@ namespace BudgetExecution
                         ExcelWorksheet _excelWorksheet =
                             _excelPackage?.Workbook?.Worksheets?.Add( _name );
 
-                        int? _columns = table?.Columns?.Count;
-                        int? _rows = table?.Rows?.Count;
+                        var _columns = table?.Columns?.Count;
+                        var _rows = table?.Rows?.Count;
 
                         for( int column = 1; column <= _columns; column++ )
                         {

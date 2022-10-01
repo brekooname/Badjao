@@ -204,11 +204,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _columns = dataRow.CopyToDataTable( ).GetColumnNames( );
+                    var _columns = dataRow.CopyToDataTable( ).GetColumnNames( );
 
                     if( _columns?.Contains( dataMember ) == true )
                     {
-                        string[ ] _query = dataRow
+                        var _query = dataRow
                             ?.Select( p => p.Field<string>( dataMember ) )
                             ?.Distinct( )
                             ?.ToArray( );
@@ -240,7 +240,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IEnumerable<DataRow> _select = dataRow
+                    var _select = dataRow
                         ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
                         ?.Select( p => p );
 
@@ -300,7 +300,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    decimal? _query = dataRow
+                    var _query = dataRow
                         .Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
                         ?.Select( p => p.Field<decimal>( $"{numeric}" ) )
                         ?.Average( );

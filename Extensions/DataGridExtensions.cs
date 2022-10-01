@@ -66,7 +66,7 @@ namespace BudgetExecution
 
                 foreach( DataGridViewRow row in dataGridView.Rows )
                 {
-                    object[ ] _values = new object[ row.Cells.Count ];
+                    var _values = new object[ row.Cells.Count ];
 
                     for( int i = 0; i < _values.Length; i++ )
                     {
@@ -148,7 +148,7 @@ namespace BudgetExecution
                         {
                             if( _dataTable?.Columns?.Count > 0 )
                             {
-                                string[ ] _columns =
+                                var _columns =
                                     fields?.Select( f => f.ToString( ) )?.ToArray( );
 
                                 DataTable _table = _view?.ToTable( true, _columns );
@@ -191,7 +191,7 @@ namespace BudgetExecution
                        && index?.Length > 0 )
                     {
                         DataColumnCollection _columns = _dataTable.Columns;
-                        string[ ] _names = new string[ index.Length ];
+                        var _names = new string[ index.Length ];
 
                         if( _columns?.Count > 0
                            && _names?.Length > 0 )
@@ -237,17 +237,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<string> _list = new List<string>( );
+                    var _list = new List<string>( );
 
                     foreach( object _row in datagridview.Rows )
                     {
                         if( !( (DataGridViewRow)_row )?.IsNewRow == true )
                         {
-                            DataGridViewCell[ ] _cells = ( (DataGridViewRow)_row )?.Cells
+                            var _cells = ( (DataGridViewRow)_row )?.Cells
                                 ?.Cast<DataGridViewCell>( )
                                 ?.ToArray( );
 
-                            DataGridViewCell[ ] _array = ( (DataGridViewRow)_row )?.Cells
+                            var _array = ( (DataGridViewRow)_row )?.Cells
                                 ?.Cast<DataGridViewCell>( )
                                 ?.ToArray( );
 

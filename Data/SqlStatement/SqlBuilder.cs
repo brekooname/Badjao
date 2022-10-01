@@ -120,7 +120,7 @@ namespace BudgetExecution
             if( Enum.IsDefined( typeof( SQL ), CommandType )
                 && Files?.Any( ) == true )
             {
-                Dictionary<string, string> _repository = new Dictionary<string, string>( );
+                var _repository = new Dictionary<string, string>( );
 
                 foreach( string file in Files )
                 {

@@ -60,7 +60,7 @@ namespace BudgetExecution
                     _start = header;
                 }
 
-                IEnumerable<DataColumn> _columns =
+                var _columns =
                     from _cell in _worksheet?.Cells[ _start, 1, _start,
                         _worksheet.Dimension.End.Column ] select new DataColumn( header > 0
                         ? _cell?.Value?.ToString( )
@@ -110,7 +110,7 @@ namespace BudgetExecution
         /// </returns>
         public static bool IsLastRowEmpty( this ExcelWorksheet worksheet )
         {
-            List<bool> _empties = new List<bool>( );
+            var _empties = new List<bool>( );
 
             for( int index = 1; index <= worksheet.Dimension.End.Column; index++ )
             {
@@ -172,7 +172,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static int[ ] ExpandColumn( this int[ ] index, int offset )
         {
-            int[ ] _column = index;
+            var _column = index;
             _column[ 3 ] += offset;
             return _column;
         }
@@ -183,7 +183,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static int[ ] ExpandRow( this int[ ] index, int offset )
         {
-            int[ ] row = index;
+            var row = index;
             row[ 2 ] += offset;
             return row;
         }
@@ -194,7 +194,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static int[ ] MoveColumn( this int[ ] index, int offset )
         {
-            int[ ] _column = index;
+            var _column = index;
             _column[ 1 ] += offset;
             _column[ 3 ] += offset;
             return _column;
@@ -206,7 +206,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static int[ ] MoveRow( this int[ ] index, int offset )
         {
-            int[ ] _row = index;
+            var _row = index;
             _row[ 0 ] += offset;
             _row[ 2 ] += offset;
             return _row;

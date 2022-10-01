@@ -217,7 +217,7 @@ namespace BudgetExcess
                         {
                             insert.Connection = sqconn;
                             insert.Transaction = tx;
-                            List<string> pnames = new List<string>( );
+                            var pnames = new List<string>( );
 
                             for( int j = 0; j < schema[ i ].Columns.Count; j++ )
                             {
@@ -456,7 +456,7 @@ namespace BudgetExcess
         /// <returns></returns>
         private Guid ParseBlobAsGuid( IEnumerable<byte> blob )
         {
-            byte[ ] data = blob.ToArray( );
+            var data = blob.ToArray( );
 
             switch( blob.Count( ) )
             {
@@ -529,7 +529,7 @@ namespace BudgetExcess
             }// for
 
             sb.Append( ") VALUES (" );
-            List<string> pnames = new List<string>( );
+            var pnames = new List<string>( );
 
             for( int i = 0; i < ts.Columns.Count; i++ )
             {
@@ -1115,13 +1115,13 @@ namespace BudgetExcess
             SqlTableSelectionHandler selectionhandler )
         {
             // First step is to read the names of all tables in the database
-            List<TableSchema> tables = new List<TableSchema>( );
+            var tables = new List<TableSchema>( );
 
             using( SqlConnection conn = new SqlConnection( connstring ) )
             {
                 conn.Open( );
-                List<string> tablenames = new List<string>( );
-                List<string> tblschema = new List<string>( );
+                var tablenames = new List<string>( );
+                var tblschema = new List<string>( );
 
                 // This command will read the names of all tables in the database
                 const string _sql =
@@ -1171,7 +1171,7 @@ namespace BudgetExcess
             _log.Debug( "finished parsing all tables in SQL Server schema" );
 
             // Allow the user a chance to select which tables to convert
-            List<TableSchema> updated = selectionhandler?.Invoke( tables );
+            var updated = selectionhandler?.Invoke( tables );
 
             if( updated != null )
             {
@@ -1182,7 +1182,7 @@ namespace BudgetExcess
                 new Regex( @"dbo\.", RegexOptions.Compiled | RegexOptions.IgnoreCase );
 
             // Continue and read all of the views in the database
-            List<ViewSchema> views = new List<ViewSchema>( );
+            var views = new List<ViewSchema>( );
 
             using( SqlConnection conn = new SqlConnection( connstring ) )
             {
@@ -1436,7 +1436,7 @@ namespace BudgetExcess
 
                     if( reader[ "tdscollation" ] != DBNull.Value )
                     {
-                        byte[ ] mask = (byte[ ])reader[ "tdscollation" ];
+                        var mask = (byte[ ])reader[ "tdscollation" ];
                         iscasesensitive = ( mask[ 2 ] & 0x10 ) == 0;
                     }// if
 
@@ -1631,7 +1631,7 @@ namespace BudgetExcess
             IndexSchema res = new IndexSchema { indexName = indexname };
 
             // Determine if this is a unique index or not.
-            string[ ] descparts = desc.Split( ',' );
+            var descparts = desc.Split( ',' );
 
             for( int i = 0; i < descparts.Length; i++ )
             {
@@ -1646,7 +1646,7 @@ namespace BudgetExcess
 
             // Get all key names and check if they are ASCENDING or DESCENDING
             res.columns = new List<IndexColumn>( );
-            string[ ] keysparts = keys.Split( ',' );
+            var keysparts = keys.Split( ',' );
 
             foreach( string p in keysparts )
             {
@@ -1747,7 +1747,7 @@ namespace BudgetExcess
         /// <param name="dt">The dt.</param>
         private void AddTableTriggers( SQLiteConnection conn, TableSchema dt )
         {
-            IList<TriggerSchema> triggers = TriggerBuilder.GetForeignKeyTriggers( dt );
+            var triggers = TriggerBuilder.GetForeignKeyTriggers( dt );
 
             for( int i = 0; i < triggers.Count; i++ )
             {

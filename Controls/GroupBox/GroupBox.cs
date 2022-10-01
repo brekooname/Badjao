@@ -382,7 +382,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<Control> _children = new List<Control>( );
+                    var _children = new List<Control>( );
 
                     foreach( Control _item in Controls )
                     {

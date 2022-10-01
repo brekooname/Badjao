@@ -307,7 +307,7 @@ namespace BudgetExecution
                         case SQL.SELECT:
 
                         {
-                            List<string> _cols = updates.Keys.ToList( );
+                            var _cols = updates.Keys.ToList( );
                             return CreateSelectStatement( _cols, where );
                         }
                         case SQL.SELECTALL:

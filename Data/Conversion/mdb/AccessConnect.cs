@@ -39,8 +39,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<string> GetTableNames( )
         {
-            List<string> _names = new List<string>( );
-            string[ ] _restrictions = new string[ 4 ];
+            var _names = new List<string>( );
+            var _restrictions = new string[ 4 ];
             _restrictions[ 3 ] = "Table";
             DataTable _schema = _connection.GetSchema( "Tables", _restrictions );
 
@@ -86,7 +86,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public List<string> GetColumnNames( string tableName )
         {
-            List<string> _names = new List<string>( );
+            var _names = new List<string>( );
 
             using( OleDbCommand _command =
                 new OleDbCommand( "select * from " + tableName, _connection ) )

@@ -43,14 +43,14 @@ namespace BudgetExecution
                     {
                         DataTable _table = dataRow.Table;
                         DataColumnCollection _columns = _table?.Columns;
-                        object[ ] _values = dataRow.ItemArray;
+                        var _values = dataRow.ItemArray;
 
                         switch( provider )
                         {
                             case Provider.SQLite:
 
                             {
-                                List<SQLiteParameter> _sqlite = new List<SQLiteParameter>( );
+                                var _sqlite = new List<SQLiteParameter>( );
 
                                 for( int i = 0; i < _columns?.Count; i++ )
                                 {
@@ -71,7 +71,7 @@ namespace BudgetExecution
                             case Provider.SqlCe:
 
                             {
-                                List<SqlCeParameter> _sqlce = new List<SqlCeParameter>( );
+                                var _sqlce = new List<SqlCeParameter>( );
 
                                 for( int i = 0; i < _columns?.Count; i++ )
                                 {
@@ -94,7 +94,7 @@ namespace BudgetExecution
                             case Provider.Access:
 
                             {
-                                List<OleDbParameter> _oledb = new List<OleDbParameter>( );
+                                var _oledb = new List<OleDbParameter>( );
 
                                 for( int i = 0; i < _columns?.Count; i++ )
                                 {
@@ -115,7 +115,7 @@ namespace BudgetExecution
                             case Provider.SqlServer:
 
                             {
-                                List<SqlParameter> _sqlserver = new List<SqlParameter>( );
+                                var _sqlserver = new List<SqlParameter>( );
 
                                 for( int i = 0; i < _columns?.Count; i++ )
                                 {
@@ -158,10 +158,10 @@ namespace BudgetExecution
             {
                 if( dataRow?.ItemArray.Length > 0 )
                 {
-                    Dictionary<string, object> _dictionary = new Dictionary<string, object>( );
+                    var _dictionary = new Dictionary<string, object>( );
                     DataTable _table = dataRow?.Table;
                     DataColumnCollection _column = _table?.Columns;
-                    object[ ] _items = dataRow?.ItemArray;
+                    var _items = dataRow?.ItemArray;
 
                     for( int i = 0; i < _column?.Count; i++ )
                     {
@@ -217,7 +217,7 @@ namespace BudgetExecution
                 && dataRow.ItemArray.Length > 0
                 && Enum.IsDefined( typeof( Field ), field ) )
             {
-                string[ ] _columns = dataRow.Table?.GetColumnNames( );
+                var _columns = dataRow.Table?.GetColumnNames( );
 
                 if( _columns?.Any( ) == true
                     && _columns.Contains( $"{field}" ) )
@@ -249,7 +249,7 @@ namespace BudgetExecution
                 && dataRow.ItemArray.Length > 0 
                 && Enum.IsDefined( typeof( Numeric ), numeric ) )
             {
-                string[ ] _columns = dataRow.Table?.GetColumnNames( );
+                var _columns = dataRow.Table?.GetColumnNames( );
 
                 if( _columns?.Any( ) == true
                     && _columns.Contains( $"{numeric}" ) )
@@ -281,7 +281,7 @@ namespace BudgetExecution
                 && dataRow.ItemArray.Length > 0 
                 && Enum.IsDefined( typeof( Field ), field ) )
             {
-                string[ ] _columns = dataRow.Table?.GetColumnNames( );
+                var _columns = dataRow.Table?.GetColumnNames( );
 
                 if( _columns != null
                     && _columns?.Any( ) == true & _columns.Contains( $"{field}" ) )
@@ -315,8 +315,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _colums = dataRow.Table?.GetColumnNames( );
-                    string[ ] _names = Enum.GetNames( typeof( Numeric ) );
+                    var _colums = dataRow.Table?.GetColumnNames( );
+                    var _names = Enum.GetNames( typeof( Numeric ) );
 
                     for( int i = 1; i < _colums?.Length; i++ )
                     {
@@ -354,9 +354,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IDictionary<string, object> _dictionary = row.ToDictionary( );
-                    string[ ] _key = _dictionary.Keys?.ToArray( );
-                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _dictionary = row.ToDictionary( );
+                    var _key = _dictionary.Keys?.ToArray( );
+                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
                     int _count = 0;
 
                     for( int i = 1; i < _key.Length; i++ )
@@ -392,9 +392,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IDictionary<string, object> _dictionary = row.ToDictionary( );
-                    string[ ] _key = _dictionary.Keys?.ToArray( );
-                    string[ ] _names = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _dictionary = row.ToDictionary( );
+                    var _key = _dictionary.Keys?.ToArray( );
+                    var _names = Enum.GetNames( typeof( PrimaryKey ) );
 
                     for( int i = 1; i < _key?.Length; i++ )
                     {
@@ -403,7 +403,9 @@ namespace BudgetExecution
                         if( _names.Contains( _name ) )
                         {
                             return new Dictionary<string, object>
-                                { [ _name ] = int.Parse( _dictionary[ _name ].ToString( ) ) };
+                            {
+                                [ _name ] = int.Parse( _dictionary[ _name ].ToString( ) )
+                            };
                         }
 
                         if( !_names.Contains( _name ) )

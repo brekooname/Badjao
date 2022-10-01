@@ -135,7 +135,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    FileInfo[ ] _files = DirectoryInfo.GetFiles( );
+                    var _files = DirectoryInfo.GetFiles( );
 
                     return _files?.Any( ) == true
                         ? _files

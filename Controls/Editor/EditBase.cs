@@ -197,7 +197,7 @@ namespace BudgetExecution
                     DataBuilder _model =
                         new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
 
-                    string[ ] _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
+                    var _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
 
                     return _data?.Length > 0
                         ? _data
@@ -238,7 +238,7 @@ namespace BudgetExecution
         {
             try
             {
-                string[ ] _names = Enum.GetNames( typeof( Source ) );
+                var _names = Enum.GetNames( typeof( Source ) );
 
                 if( listBox?.Items.Count > 0 )
                 {
@@ -314,7 +314,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, RadioButton> _buttons =
+                    var _buttons =
                         new Dictionary<string, RadioButton>( );
 
                     foreach( TabPageAdv _tabPage in TabPages.Values )
@@ -361,7 +361,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, ComboBox> _buttons = new Dictionary<string, ComboBox>( );
+                    var _buttons = new Dictionary<string, ComboBox>( );
 
                     foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
@@ -407,7 +407,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, GroupBox> _groupBoxes = new Dictionary<string, GroupBox>( );
+                    var _groupBoxes = new Dictionary<string, GroupBox>( );
 
                     foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
@@ -444,7 +444,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, ListBox> _listBoxes = new Dictionary<string, ListBox>( );
+                    var _listBoxes = new Dictionary<string, ListBox>( );
 
                     foreach( TabPageAdv _tabPage in TabPages.Values )
                     {

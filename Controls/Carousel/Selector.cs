@@ -35,8 +35,8 @@ namespace BudgetExecution
         {
             if( Directory.Exists( sourceDirectory ) )
             {
-                IEnumerable<string> _files = Directory.EnumerateFiles( sourceDirectory );
-                List<string> _paths = _files?.ToList( );
+                var _files = Directory.EnumerateFiles( sourceDirectory );
+                var _paths = _files?.ToList( );
                 ImageList _list = new ImageList( );
 
                 for( int i = 0; i < _paths.Count; i++ )
@@ -77,8 +77,8 @@ namespace BudgetExecution
         {
             if( Directory.Exists( sourceDirectory ) )
             {
-                IEnumerable<string> _files = Directory.EnumerateFiles( sourceDirectory );
-                List<string> _paths = _files?.ToList( );
+                var _files = Directory.EnumerateFiles( sourceDirectory );
+                var _paths = _files?.ToList( );
                 ImageList _list = new ImageList( );
 
                 for( int i = 0; i < _paths.Count; i++ )
@@ -115,8 +115,8 @@ namespace BudgetExecution
         {
             if( paths?.Any( ) == true )
             {
-                List<string> _list = paths.ToList( );
-                List<CarouselImage> _carouselImages = new List<CarouselImage>( );
+                var _list = paths.ToList( );
+                var _carouselImages = new List<CarouselImage>( );
 
                 for( int i = 0; i < _list?.Count; i++ )
                 {
@@ -148,8 +148,8 @@ namespace BudgetExecution
         {
             if( images?.Any( ) == true )
             {
-                List<Image> _list = images.ToList( );
-                List<CarouselImage> _carouselImages = new List<CarouselImage>( );
+                var _list = images.ToList( );
+                var _carouselImages = new List<CarouselImage>( );
 
                 for( int i = 0; i < images?.Count( ); i++ )
                 {
@@ -177,9 +177,9 @@ namespace BudgetExecution
             if( !string.IsNullOrEmpty( srcDir )
                 && Directory.Exists( srcDir ) )
             {
-                IEnumerable<string> _files = Directory.EnumerateFiles( srcDir );
-                List<string> _list = _files?.ToList( );
-                List<CarouselImage> _carouselImages = new List<CarouselImage>( );
+                var _files = Directory.EnumerateFiles( srcDir );
+                var _list = _files?.ToList( );
+                var _carouselImages = new List<CarouselImage>( );
 
                 for( int i = 0; i < _list?.Count; i++ )
                 {

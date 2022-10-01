@@ -118,7 +118,7 @@ namespace BudgetExecution
         {
             try
             {
-                EnumerableRowCollection<DataRow> _dataRows = DataTable?.AsEnumerable( );
+                var _dataRows = DataTable?.AsEnumerable( );
 
                 return _dataRows?.Any( ) == true
                     ? _dataRows

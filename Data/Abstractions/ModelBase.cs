@@ -33,7 +33,7 @@ namespace BudgetExecution
                 try
                 {
                     DataColumnCollection _columns = DataTable.Columns;
-                    List<int> _values = new List<int>( );
+                    var _values = new List<int>( );
 
                     if( _columns?.Count > 0 )
                     {
@@ -71,7 +71,7 @@ namespace BudgetExecution
 
                     if( _columns?.Count > 0 )
                     {
-                        Dictionary<string, Type> _schema = new Dictionary<string, Type>( );
+                        var _schema = new Dictionary<string, Type>( );
                         foreach( DataColumn col in _columns )
                         {
                             _schema.Add( col.ColumnName, col.DataType );
@@ -106,9 +106,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<IElement> _elements = new List<IElement>( );
+                    var _elements = new List<IElement>( );
                     DataColumnCollection _columns = Record?.Table?.Columns;
-                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
                     if( _columns?.Count > 0 )
                     {
@@ -156,7 +156,7 @@ namespace BudgetExecution
                 {
                     string _criteria = dict.ToCriteria( );
                     DataTable _dataTable = dataRows.CopyToDataTable( );
-                    DataRow[ ] _data = _dataTable.Select( _criteria );
+                    var _data = _dataTable.Select( _criteria );
 
                     return _data?.Length > 0
                         ? _data
@@ -182,7 +182,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<DataColumn> _dataColumns = new List<DataColumn>( );
+                    var _dataColumns = new List<DataColumn>( );
                     DataColumnCollection _data = dataTable?.Columns;
 
                     if( _data?.Count > 0 )
@@ -222,7 +222,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<DataColumn> _dataColumns = new List<DataColumn>( );
+                    var _dataColumns = new List<DataColumn>( );
                     DataColumnCollection _data = DataTable?.Columns;
 
                     if( _data?.Count > 0 )

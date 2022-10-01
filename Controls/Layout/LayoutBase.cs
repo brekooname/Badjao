@@ -212,7 +212,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    List<Control> _list = new List<Control> { item };
+                    var _list = new List<Control> { item };
 
                     return _list?.Any( ) == true
                         ? _list

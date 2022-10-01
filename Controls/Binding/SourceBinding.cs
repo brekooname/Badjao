@@ -62,7 +62,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, object> _dataFilter = new Dictionary<string, object>
+                    var _dataFilter = new Dictionary<string, object>
                         { { $"{field}", filter } };
 
                     DataFilter = _dataFilter?.Any( ) == true
@@ -91,7 +91,7 @@ namespace BudgetExecution
                         DataFilter.Clear( );
                     }
 
-                    foreach( KeyValuePair<string, object> kvp in dict )
+                    foreach( var kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )

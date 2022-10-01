@@ -1,4 +1,4 @@
-﻿// <copyright file = "FilePath.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "DataFile.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -32,7 +32,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        public DataFile( string input ) 
+        public DataFile( string input )
             : base( input )
         {
             Buffer = input;
@@ -58,7 +58,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( filePath ) 
+                return !string.IsNullOrEmpty( filePath )
                     ? new FileInfo( filePath )
                     : default( FileInfo );
             }
@@ -75,15 +75,15 @@ namespace BudgetExecution
         /// <param name="folder">The folder.</param>
         public void Transfer( DirectoryInfo folder )
         {
-            if( folder != null &&
-                !Directory.Exists( folder.FullName ) )
+            if( folder != null
+                && !Directory.Exists( folder.FullName ) )
             {
                 Directory.CreateDirectory( folder.FullName );
             }
 
             try
             {
-                FileInfo[ ] _files = folder?.GetFiles( );
+                var _files = folder?.GetFiles( );
 
                 if( _files?.Any( ) == true )
                 {
@@ -164,10 +164,9 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _input )
                         && File.Exists( _input ) )
                     {
-                        IEnumerable<string> _enumerable =
-                            Directory.EnumerateDirectories( _input, pattern );
+                        var _enumerable = Directory.EnumerateDirectories( _input, pattern );
 
-                        List<FileInfo> _list = new List<FileInfo>( );
+                        var _list = new List<FileInfo>( );
 
                         foreach( string file in _enumerable )
                         {
@@ -188,7 +187,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<FileInfo> );
         }
-        
+
         /// <summary>
         /// Gets the parent.
         /// </summary>
@@ -223,7 +222,7 @@ namespace BudgetExecution
             {
                 OpenFileDialog _dialog = new OpenFileDialog
                 {
-                    CheckFileExists = true, 
+                    CheckFileExists = true,
                     CheckPathExists = true
                 };
 

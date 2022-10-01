@@ -44,6 +44,8 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.1</LangVersion>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +56,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>7.1</LangVersion>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>BudgetExecution.Program</StartupObject>
@@ -461,6 +465,7 @@
     <Compile Include="Controls\ComboBox\ComboBoxBase.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Interfaces\IChartBinding.cs" />
     <Compile Include="Controls\EditDialog.cs">
       <SubType>Form</SubType>

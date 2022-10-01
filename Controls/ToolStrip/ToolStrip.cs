@@ -114,7 +114,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IDictionary<string, ToolStripButton> GetButtons( )
         {
-            SortedList<string, ToolStripButton> _buttons =
+            var _buttons =
                 new SortedList<string, ToolStripButton>( );
 
             if( Items?.Count > 0 )

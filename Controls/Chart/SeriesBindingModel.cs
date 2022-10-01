@@ -78,7 +78,7 @@ namespace BudgetExecution
         {
             try
             {
-                IEnumerable<double> _values = SeriesData?.Values?.Select( v => v );
+                var _values = SeriesData?.Values?.Select( v => v );
 
                 return _values?.Any( ) == true
                     ? _values.ToArray( )

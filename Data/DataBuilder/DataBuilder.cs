@@ -146,7 +146,7 @@ namespace BudgetExecution
                 try
                 {
                     string _criteria = where.ToCriteria( );
-                    DataRow[ ] _data = DataTable.Select( _criteria );
+                    var _data = DataTable.Select( _criteria );
 
                     return _data?.Length > 0
                         ? _data
@@ -178,7 +178,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IEnumerable<DataRow> _query = dataRows
+                    var _query = dataRows
                         ?.Where( p => p.Field<string>( name  ).Equals( value ) )
                         ?.Select( p => p );
 
@@ -215,10 +215,10 @@ namespace BudgetExecution
                     DataTable _dataTable = dataRows.CopyToDataTable( );
                     DataColumnCollection _columns = _dataTable?.Columns;
 
-                    Dictionary<string, IEnumerable<string>> _dictionary =
+                    var _dictionary =
                         new Dictionary<string, IEnumerable<string>>( );
 
-                    IEnumerable<string> _values = GetValues( dataRows, name, value );
+                    var _values = GetValues( dataRows, name, value );
 
                     if( _values?.Any( ) == true )
                     {

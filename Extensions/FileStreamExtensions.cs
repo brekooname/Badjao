@@ -314,7 +314,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    byte[ ] _buffer = new byte[ buffer ];
+                    var _buffer = new byte[ buffer ];
                     int _count;
 
                     while( ( _count = stream.Read( _buffer, 0, buffer ) ) > 0 )
@@ -413,7 +413,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    byte[ ] _buffer = new byte[ bufsize ];
+                    var _buffer = new byte[ bufsize ];
                     int _offset = 0;
 
                     do

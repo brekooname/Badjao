@@ -101,7 +101,7 @@ namespace BudgetExecution
         {
             try
             {
-                string[ ] _names = Enum.GetNames( typeof( Source ) );
+                var _names = Enum.GetNames( typeof( Source ) );
 
                 foreach( string name in _names )
                 {
@@ -301,7 +301,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, TabPageAdv>
+                    var
                         _tabPages = new Dictionary<string, TabPageAdv>( );
 
                     foreach( TabPageAdv tabpage in TabControl.TabPages )

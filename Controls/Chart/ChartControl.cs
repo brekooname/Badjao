@@ -166,7 +166,7 @@ namespace BudgetExecution
                         case ChartSeriesType.Pie:
 
                         {
-                            foreach( KeyValuePair<string, double> kvp in DataValues )
+                            foreach( var kvp in DataValues )
                             {
                                 DataSeries.Points.Add( kvp.Key, kvp.Value );
 
@@ -187,7 +187,7 @@ namespace BudgetExecution
                         default:
 
                         {
-                            foreach( KeyValuePair<string, double> kvp in DataValues )
+                            foreach( var kvp in DataValues )
                             {
                                 DataSeries.Points.Add( kvp.Key, kvp.Value );
                             }

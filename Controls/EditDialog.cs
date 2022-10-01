@@ -203,7 +203,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _cols = Columns.ToArray( );
+                    var _cols = Columns.ToArray( );
 
                     foreach( Frame frame in Frames )
                     {
@@ -266,7 +266,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string[ ] _cols = Columns.ToArray( );
+                    var _cols = Columns.ToArray( );
 
                     if( _cols.Length >= 43 )
                     {
@@ -320,9 +320,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    object[ ] _items = Current.ItemArray;
-                    Frame[ ] _frames = Frames.OrderBy( f => f.Index ).ToArray( );
-                    string[ ] _cols = Columns.ToArray( );
+                    var _items = Current.ItemArray;
+                    var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
+                    var _cols = Columns.ToArray( );
 
                     for( int i = 0; i < _cols.Length; i++ )
                     {
@@ -347,7 +347,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Dictionary<string, TabPageAdv>
+                    var
                         _tabPages = new Dictionary<string, TabPageAdv>( );
 
                     foreach( TabPageAdv tabpage in TabControl.TabPages )
@@ -380,7 +380,7 @@ namespace BudgetExecution
         {
             try
             {
-                List<Frame> _frames = new List<Frame>( );
+                var _frames = new List<Frame>( );
 
                 foreach( object _control in FrameTable.Controls )
                 {
