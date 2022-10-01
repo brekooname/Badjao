@@ -35,9 +35,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public int CreateTable( string name )
         {
-            string _sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
+            var _sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
 
-            using( SQLiteCommand _cmd = new SQLiteCommand( _sql, _connection ) )
+            using( var _cmd = new SQLiteCommand( _sql, _connection ) )
             {
                 return _cmd.ExecuteNonQuery( );
             }
@@ -52,9 +52,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public int InsertRow( string word, string image, string table )
         {
-            string _sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
+            var _sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
 
-            using( SQLiteCommand _cmd = new SQLiteCommand( _sql, _connection ) )
+            using( var _cmd = new SQLiteCommand( _sql, _connection ) )
             {
                 _cmd.Parameters.AddWithValue( "@word", word );
                 _cmd.Parameters.AddWithValue( "@image", image );

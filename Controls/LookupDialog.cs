@@ -6,7 +6,6 @@ namespace BudgetExecution
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Drawing;
 
     public partial class LookupDialog : EditBase
@@ -89,7 +88,7 @@ namespace BudgetExecution
                 TableListBox.Items.Clear( );
                 var _names = Enum.GetNames( typeof( Source ) );
 
-                foreach( string name in _names )
+                foreach( var name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -117,18 +116,18 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 ColumnGroupBox.Text = string.Empty;
                 ValueGroupBox.Text = string.Empty;
-                ListBox _listBox = sender as ListBox;
-                string _value = _listBox?.SelectedItem.ToString( );
+                var _listBox = sender as ListBox;
+                var _value = _listBox?.SelectedItem.ToString( );
 
                 if( !string.IsNullOrEmpty( _value ) )
                 {
-                    Source _source = (Source)Enum.Parse( typeof( Source ), _value );
+                    var _source = (Source)Enum.Parse( typeof( Source ), _value );
                     DataModel = new DataBuilder( _source, Provider.Access );
                     BindingSource.DataSource = DataModel.DataTable;
 
                     var _columns = DataModel.GetDataColumns( );
 
-                    foreach( DataColumn col in _columns )
+                    foreach( var col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
                     }
@@ -153,13 +152,13 @@ namespace BudgetExecution
             try
             {
                 ValueListBox.Items.Clear( );
-                ListBox _listBox = sender as ListBox;
-                string _column = _listBox?.SelectedItem?.ToString( );
+                var _listBox = sender as ListBox;
+                var _column = _listBox?.SelectedItem?.ToString( );
                 var _series = DataModel.DataElements;
 
                 if( !string.IsNullOrEmpty( _column ) )
                 {
-                    foreach( string item in _series[ _column ] )
+                    foreach( var item in _series[ _column ] )
                     {
                         ValueListBox.Items.Add( item );
                     }

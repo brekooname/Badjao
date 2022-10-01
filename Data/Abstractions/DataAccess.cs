@@ -7,7 +7,6 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
@@ -39,7 +38,7 @@ namespace BudgetExecution
         {
             try
             {
-                DataTable _dataTable = GetDataTable( );
+                var _dataTable = GetDataTable( );
                 IEnumerable<DataRow> _data = _dataTable?.AsEnumerable( );
 
                 return _data?.Any( ) == true
@@ -67,7 +66,7 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( DbDataAdapter _adapter = Query.GetAdapter(  ) )
+                    using( var _adapter = Query.GetAdapter(  ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
@@ -101,7 +100,7 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( DbDataAdapter _adapter = Query.GetAdapter( ) )
+                    using( var _adapter = Query.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable?.TableName );
                         SetColumnCaptions( DataTable );
@@ -136,7 +135,7 @@ namespace BudgetExecution
                         if( column != null
                             && string.IsNullOrEmpty( column.Caption ) )
                         {
-                            string _caption = column.ColumnName.SplitPascal( );
+                            var _caption = column.ColumnName.SplitPascal( );
                             column.Caption = _caption;
                         }
                     }
@@ -162,7 +161,7 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( DbDataAdapter _adapter = Query?.GetAdapter( ) )
+                    using( var _adapter = Query?.GetAdapter( ) )
                     {
                         _adapter?.Fill( DataSet, DataTable.TableName );
                         SetColumnCaptions( DataTable );
@@ -194,7 +193,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataTable _table = dataRows?.CopyToDataTable( );
+                    var _table = dataRows?.CopyToDataTable( );
                     var _values = _table?.GetPrimaryKeyValues( );
 
                     return _values?.Any( ) == true

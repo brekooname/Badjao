@@ -87,7 +87,7 @@ namespace BudgetExecution
 
                 if( _files?.Any( ) == true )
                 {
-                    foreach( FileInfo _fileInfo in _files )
+                    foreach( var _fileInfo in _files )
                     {
                         Directory.Move( _fileInfo.FullName, folder.Name );
                     }
@@ -113,14 +113,14 @@ namespace BudgetExecution
                 if( !string.IsNullOrEmpty( search )
                     && File.Exists( search ) )
                 {
-                    using( FileStream _stream = File.Open( search, FileMode.Open ) )
+                    using( var _stream = File.Open( search, FileMode.Open ) )
                     {
-                        using( StreamReader _reader = new StreamReader( _stream ) )
+                        using( var _reader = new StreamReader( _stream ) )
                         {
                             if( _reader != null )
                             {
-                                string _text = _reader?.ReadLine( );
-                                bool _result = false;
+                                var _text = _reader?.ReadLine( );
+                                var _result = false;
 
                                 while( _text == string.Empty )
                                 {
@@ -159,7 +159,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _input = Path.GetFullPath( Buffer );
+                    var _input = Path.GetFullPath( Buffer );
 
                     if( !string.IsNullOrEmpty( _input )
                         && File.Exists( _input ) )
@@ -168,7 +168,7 @@ namespace BudgetExecution
 
                         var _list = new List<FileInfo>( );
 
-                        foreach( string file in _enumerable )
+                        foreach( var file in _enumerable )
                         {
                             _list.Add( new FileInfo( file ) );
                         }
@@ -220,7 +220,7 @@ namespace BudgetExecution
         {
             try
             {
-                OpenFileDialog _dialog = new OpenFileDialog
+                var _dialog = new OpenFileDialog
                 {
                     CheckFileExists = true,
                     CheckPathExists = true

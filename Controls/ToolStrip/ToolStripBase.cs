@@ -254,7 +254,7 @@ namespace BudgetExecution
         {
             try
             {
-                ToolStripTextBox _textBox = new ToolStripTextBox( );
+                var _textBox = new ToolStripTextBox( );
                 Items?.Add( _textBox );
             }
             catch( Exception ex )
@@ -267,7 +267,7 @@ namespace BudgetExecution
         {
             try
             {
-                ToolStripComboBoxEx _comboBox = new ToolStripComboBoxEx( );
+                var _comboBox = new ToolStripComboBoxEx( );
                 Items?.Add( _comboBox );
             }
             catch( Exception ex )
@@ -296,7 +296,7 @@ namespace BudgetExecution
 
                 if( items?.Count( ) > 0 )
                 {
-                    foreach( object item in items )
+                    foreach( var item in items )
                     {
                         DropDown?.ComboBox?.Items?.Add( item );
                     }
@@ -317,7 +317,7 @@ namespace BudgetExecution
         {
             try
             {
-                ToolSeparator _separator = new ToolSeparator( );
+                var _separator = new ToolSeparator( );
                 Items?.Add( _separator );
             }
             catch( Exception ex )
@@ -332,7 +332,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

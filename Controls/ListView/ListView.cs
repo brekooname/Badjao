@@ -254,7 +254,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    MetroTip _ = new MetroTip( this, text );
+                    var _ = new MetroTip( this, text );
                 }
                 catch( Exception ex )
                 {
@@ -330,7 +330,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( string _item in items )
+                    foreach( var _item in items )
                     {
                         if( _item != null )
                         {
@@ -355,7 +355,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( object _listItem in Items )
+                    foreach( var _listItem in Items )
                     {
                         if( _listItem?.Equals( item ) == true )
                         {

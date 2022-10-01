@@ -86,13 +86,13 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         public void SetHoverText( ToolStripItem item )
         {
-            string _text = item?.Tag?.ToString( );
+            var _text = item?.Tag?.ToString( );
 
             if( !string.IsNullOrEmpty( _text ) )
             {
                 try
                 {
-                    MetroTip _ = new MetroTip( item, _text );
+                    var _ = new MetroTip( item, _text );
                 }
                 catch( Exception ex )
                 {
@@ -110,20 +110,20 @@ namespace BudgetExecution
         {
             try
             {
-                ToolStripTextBox _button = sender as ToolStripTextBox;
+                var _button = sender as ToolStripTextBox;
 
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _button.Tag = HoverText;
-                    MetroTip _tip = new MetroTip( _button );
+                    var _tip = new MetroTip( _button );
                     ToolTip = _tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        MetroTip _tool = new MetroTip( _button );
+                        var _tool = new MetroTip( _button );
                         ToolTip = _tool;
                     }
                 }

@@ -255,16 +255,16 @@ namespace BudgetExecution
             {
                 var _files = Directory.EnumerateFiles( srcDir );
                 var _paths = _files?.ToList( );
-                ImageList _list = new ImageList( );
+                var _list = new ImageList( );
 
-                for( int i = 0; i < _paths.Count; i++ )
+                for( var i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
-                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
+                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
-                            Bitmap _img = new Bitmap( _stream );
+                            var _img = new Bitmap( _stream );
                             _list?.Images?.Add( _img );
                         }
                     }
@@ -290,18 +290,18 @@ namespace BudgetExecution
             {
                 var _files = Directory.EnumerateFiles( srcDir );
                 var _paths = _files?.ToList( );
-                ImageList _list = new ImageList( );
+                var _list = new ImageList( );
 
-                for( int i = 0; i < _paths.Count; i++ )
+                for( var i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
-                        string _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
+                        var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
 
-                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
+                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
-                            Bitmap _img = new Bitmap( _stream ) { Tag = _name };
+                            var _img = new Bitmap( _stream ) { Tag = _name };
 
                             _list.ImageSize = size;
                             _list?.Images?.Add( _img );
@@ -329,16 +329,16 @@ namespace BudgetExecution
                 var _list = paths.ToList( );
                 var _carouselImages = new List<CarouselImage>( );
 
-                for( int i = 0; i < _list?.Count; i++ )
+                for( var i = 0; i < _list?.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _list[ i ] )
                         && File.Exists( _list[ i ] ) )
                     {
-                        using( FileStream _stream = File.Open( _list[ i ], FileMode.Open ) )
+                        using( var _stream = File.Open( _list[ i ], FileMode.Open ) )
                         {
-                            using( Bitmap _img = new Bitmap( _stream ) )
+                            using( var _img = new Bitmap( _stream ) )
                             {
-                                CarouselImage _carouselImage = new CarouselImage
+                                var _carouselImage = new CarouselImage
                                     { ItemImage = _img };
 
                                 _carouselImages.Add( _carouselImage );
@@ -362,7 +362,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

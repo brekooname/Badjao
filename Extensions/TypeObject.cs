@@ -33,9 +33,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( MemoryStream _stream = new MemoryStream( ) )
+                    using( var _stream = new MemoryStream( ) )
                     {
-                        BinaryFormatter _formatter = new BinaryFormatter( );
+                        var _formatter = new BinaryFormatter( );
                         _formatter.Serialize( _stream, type );
                         _stream.Position = 0;
                         return (T)_formatter.Deserialize( _stream );
@@ -63,15 +63,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Encoding _encoding = Encoding.Default;
+                    var _encoding = Encoding.Default;
 
-                    DataContractJsonSerializer _serializer =
+                    var _serializer =
                         new DataContractJsonSerializer( typeof( T ) );
 
-                    using( MemoryStream stream = new MemoryStream( ) )
+                    using( var stream = new MemoryStream( ) )
                     {
                         _serializer.WriteObject( stream, type );
-                        string json = _encoding.GetString( stream.ToArray( ) );
+                        var json = _encoding.GetString( stream.ToArray( ) );
                         return json;
                     }
                 }
@@ -99,9 +99,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    BinaryFormatter _formatter = new BinaryFormatter( );
+                    var _formatter = new BinaryFormatter( );
 
-                    using( MemoryStream _stream = new MemoryStream( ) )
+                    using( var _stream = new MemoryStream( ) )
                     {
                         _formatter.Serialize( _stream, type );
                         return Encoding.Default.GetString( _stream.ToArray( ) );
@@ -132,9 +132,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    BinaryFormatter _formatter = new BinaryFormatter( );
+                    var _formatter = new BinaryFormatter( );
 
-                    using( MemoryStream _stream = new MemoryStream( ) )
+                    using( var _stream = new MemoryStream( ) )
                     {
                         _formatter.Serialize( _stream, type );
                         return encoding.GetString( _stream.ToArray( ) );
@@ -163,14 +163,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    XmlSerializer _serializer = new XmlSerializer( type.GetType( ) );
+                    var _serializer = new XmlSerializer( type.GetType( ) );
 
-                    using( StringWriter _writer = new StringWriter( ) )
+                    using( var _writer = new StringWriter( ) )
                     {
                         _serializer?.Serialize( _writer, type );
-                        string _string = _writer?.GetStringBuilder( )?.ToString( );
+                        var _string = _writer?.GetStringBuilder( )?.ToString( );
 
-                        using( StringReader _reader = new StringReader( _string ) )
+                        using( var _reader = new StringReader( _string ) )
                         {
                             return _reader?.ReadToEnd( ) ?? String.Empty;
                         }
@@ -198,7 +198,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    JavaScriptSerializer _serializer = new JavaScriptSerializer( );
+                    var _serializer = new JavaScriptSerializer( );
                     return _serializer.Serialize( type );
                 }
                 catch( Exception ex )
@@ -215,7 +215,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

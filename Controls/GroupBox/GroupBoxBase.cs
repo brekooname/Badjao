@@ -95,8 +95,8 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        BindingSource _list = bindinglist as BindingSource;
-                        string _filter = string.Empty;
+                        var _list = bindinglist as BindingSource;
+                        var _filter = string.Empty;
 
                         foreach( var _kvp in dict )
                         {
@@ -160,7 +160,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var _kvp in dict )
                     {
@@ -263,7 +263,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var _kvp in dict )
                     {
@@ -328,7 +328,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            GroupBox _groupBox = sender as GroupBox;
+            var _groupBox = sender as GroupBox;
 
             try
             {
@@ -337,15 +337,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        string _hoverText = _groupBox?.HoverText;
-                        MetroTip _ = new MetroTip( _groupBox, _hoverText );
+                        var _hoverText = _groupBox?.HoverText;
+                        var _ = new MetroTip( _groupBox, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _groupBox, _text );
+                            var _text = Tag?.ToString( )?.SplitPascal( );
+                            var _ = new MetroTip( _groupBox, _text );
                         }
                     }
                 }
@@ -366,7 +366,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            GroupBox _groupBox = sender as GroupBox;
+            var _groupBox = sender as GroupBox;
 
             try
             {
@@ -386,7 +386,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

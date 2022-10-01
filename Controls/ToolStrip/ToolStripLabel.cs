@@ -135,15 +135,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        string _text = _label?.HoverText;
-                        MetroTip _ = new MetroTip( this, _text );
+                        var _text = _label?.HoverText;
+                        var _ = new MetroTip( this, _text );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _label, _text );
+                            var _text = Tag?.ToString( )?.SplitPascal( );
+                            var _ = new MetroTip( _label, _text );
                         }
                     }
                 }

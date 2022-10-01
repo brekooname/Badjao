@@ -4,7 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using Syncfusion.Windows.Forms.Chart;

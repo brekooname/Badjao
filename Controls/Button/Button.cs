@@ -301,7 +301,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public void OnMouseOver( object sender, EventArgs e )
         {
-            Button _button = sender as Button;
+            var _button = sender as Button;
 
             try
             {
@@ -310,15 +310,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        string _hoverText = _button?.HoverText;
-                        MetroTip _ = new MetroTip( _button, _hoverText );
+                        var _hoverText = _button?.HoverText;
+                        var _ = new MetroTip( _button, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _button, _text );
+                            var _text = Tag?.ToString( )?.SplitPascal( );
+                            var _ = new MetroTip( _button, _text );
                         }
                     }
                 }
@@ -339,7 +339,7 @@ namespace BudgetExecution
         /// </param>
         public override void OnMouseLeave( object sender, EventArgs e )
         {
-            Button _button = sender as Button;
+            var _button = sender as Button;
 
             try
             {

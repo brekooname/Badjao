@@ -145,7 +145,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _criteria = where.ToCriteria( );
+                    var _criteria = where.ToCriteria( );
                     var _data = DataTable.Select( _criteria );
 
                     return _data?.Length > 0
@@ -212,8 +212,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataTable _dataTable = dataRows.CopyToDataTable( );
-                    DataColumnCollection _columns = _dataTable?.Columns;
+                    var _dataTable = dataRows.CopyToDataTable( );
+                    var _columns = _dataTable?.Columns;
 
                     var _dictionary =
                         new Dictionary<string, IEnumerable<string>>( );
@@ -222,9 +222,9 @@ namespace BudgetExecution
 
                     if( _values?.Any( ) == true )
                     {
-                        for( int i = 0; i < _columns?.Count; i++ )
+                        for( var i = 0; i < _columns?.Count; i++ )
                         {
-                            string _columnName = _columns[ i ].ColumnName;
+                            var _columnName = _columns[ i ].ColumnName;
 
                             if( !string.IsNullOrEmpty( _columnName )
                                 && _columns[ i ]?.DataType == typeof( string ) )

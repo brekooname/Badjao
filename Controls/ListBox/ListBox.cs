@@ -275,7 +275,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( object _item in items )
+                    foreach( var _item in items )
                     {
                         Items.Add( _item );
                     }
@@ -316,7 +316,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    MetroTip _ = new MetroTip( this, text );
+                    var _ = new MetroTip( this, text );
                 }
                 catch( Exception ex )
                 {

@@ -65,20 +65,20 @@ namespace BudgetExecution
         {
             try
             {
-                CheckBox _control = sender as CheckBox;
+                var _control = sender as CheckBox;
 
                 if( _control is Control _checkBox
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _control.Tag = HoverText;
-                    MetroTip tip = new MetroTip( _checkBox );
+                    var tip = new MetroTip( _checkBox );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        MetroTip _tool = new MetroTip( _control );
+                        var _tool = new MetroTip( _control );
                         ToolTip = _tool;
                     }
                 }

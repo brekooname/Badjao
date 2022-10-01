@@ -133,17 +133,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = ConfigurationManager.AppSettings[ "Extensions" ];
+                    var _path = ConfigurationManager.AppSettings[ "Extensions" ];
                     var _files = Directory.GetFiles( _path );
 
                     if( _files?.Any( ) == true )
                     {
-                        string _extension = FileExtension.TrimStart( '.' ).ToUpper( );
-                        string _file = _files.Where( f => f.Contains( _extension ) )?.First( );
+                        var _extension = FileExtension.TrimStart( '.' ).ToUpper( );
+                        var _file = _files.Where( f => f.Contains( _extension ) )?.First( );
 
-                        using( FileStream stream = File.Open( _file, FileMode.Open ) )
+                        using( var stream = File.Open( _file, FileMode.Open ) )
                         {
-                            Image _img = Image.FromStream( stream );
+                            var _img = Image.FromStream( stream );
                             return new Bitmap( _img, 22, 22 );
                         }
                     }
@@ -165,7 +165,7 @@ namespace BudgetExecution
         {
             try
             {
-                foreach( RadioButton radioButton in RadioButtons )
+                foreach( var radioButton in RadioButtons )
                 {
                     radioButton.CheckedChanged += null;
                     radioButton.CheckState = CheckState.Unchecked;
@@ -184,7 +184,7 @@ namespace BudgetExecution
         {
             try
             {
-                foreach( RadioButton radioButton in RadioButtons )
+                foreach( var radioButton in RadioButtons )
                 {
                     radioButton.CheckedChanged += OnRadioButtonSelected;
                 }
@@ -207,7 +207,7 @@ namespace BudgetExecution
                 {
                     var _list = new List<string>( );
 
-                    foreach( string path in InitialDirPaths )
+                    foreach( var path in InitialDirPaths )
                     {
                         var _first = Directory.EnumerateFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
@@ -217,7 +217,7 @@ namespace BudgetExecution
 
                         var _dirs = Directory.GetDirectories( path );
 
-                        foreach( string dir in _dirs )
+                        foreach( var dir in _dirs )
                         {
                             if( !dir.Contains( "My " ) )
                             {
@@ -229,7 +229,7 @@ namespace BudgetExecution
 
                                 var _subdir = Directory.GetDirectories( dir );
 
-                                foreach( string sub in _subdir )
+                                foreach( var sub in _subdir )
                                 {
                                     var _last = Directory.EnumerateFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
@@ -324,7 +324,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _current = Environment.CurrentDirectory;
+                var _current = Environment.CurrentDirectory;
                 var _list = new List<string>
                 {
                     Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
@@ -355,7 +355,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( string path in FilePaths )
+                    foreach( var path in FilePaths )
                     {
                         FileList.Items.Add( path );
                     }
@@ -379,7 +379,7 @@ namespace BudgetExecution
                 {
                     FileList.Items.Clear( );
 
-                    foreach( string path in filePaths )
+                    foreach( var path in filePaths )
                     {
                         if( !string.IsNullOrEmpty( path ) )
                         {
@@ -443,7 +443,7 @@ namespace BudgetExecution
         /// <param name="ex">The exception.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -53,22 +53,22 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            CheckBox _checkBox = sender as CheckBox;
+            var _checkBox = sender as CheckBox;
 
             try
             {
                 if( _checkBox != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    string _hoverText = _checkBox?.HoverText;
-                    MetroTip _ = new MetroTip( _checkBox, _hoverText );
+                    var _hoverText = _checkBox?.HoverText;
+                    var _ = new MetroTip( _checkBox, _hoverText );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        string _text = Tag?.ToString( )?.SplitPascal( );
-                        MetroTip _ = new MetroTip( _checkBox, _text );
+                        var _text = Tag?.ToString( )?.SplitPascal( );
+                        var _ = new MetroTip( _checkBox, _text );
                     }
                 }
             }
@@ -88,7 +88,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            CheckBox _checkBox = sender as CheckBox;
+            var _checkBox = sender as CheckBox;
 
             try
             {
@@ -108,7 +108,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

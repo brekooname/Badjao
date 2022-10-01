@@ -154,19 +154,19 @@ namespace BudgetExecution
         {
             try
             {
-                ToolStripDropDown _comboBox = sender as ToolStripDropDown;
+                var _comboBox = sender as ToolStripDropDown;
 
                 if( !string.IsNullOrEmpty( _comboBox?.HoverText ) )
                 {
-                    string _text = _comboBox?.HoverText;
-                    MetroTip _ = new MetroTip( _comboBox, _text );
+                    var _text = _comboBox?.HoverText;
+                    var _ = new MetroTip( _comboBox, _text );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( _comboBox?.Tag?.ToString( ) ) )
                     {
-                        string _text = _comboBox?.Tag?.ToString( )?.SplitPascal( );
-                        MetroTip _ = new MetroTip( _comboBox, _text );
+                        var _text = _comboBox?.Tag?.ToString( )?.SplitPascal( );
+                        var _ = new MetroTip( _comboBox, _text );
                     }
                 }
             }
@@ -211,7 +211,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Message _message = new Message( "NOT YET IMPLEMENTED" );
+                    var _message = new Message( "NOT YET IMPLEMENTED" );
                     _message?.ShowDialog( );
                 }
                 catch( Exception ex )

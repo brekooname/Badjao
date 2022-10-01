@@ -235,7 +235,7 @@ namespace BudgetExecution
         {
             if( Form.MdiParent == null )
             {
-                int flags = (int)Method | (int)Direction;
+                var flags = (int)Method | (int)Direction;
 
                 if( Form.Visible )
                 {

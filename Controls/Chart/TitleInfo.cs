@@ -162,7 +162,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ChartTitle _title = new ChartTitle( ) )
+                    using( var _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.ForeColor = Color.FromArgb( 141, 139, 138 );
@@ -192,7 +192,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ChartTitle _title = new ChartTitle( ) )
+                    using( var _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.ForeColor = Color.FromArgb( 141, 139, 138 );
@@ -225,7 +225,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ChartTitle _title = new ChartTitle( ) )
+                    using( var _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.Visible = true;
@@ -258,7 +258,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ChartTitle _title = new ChartTitle( ) )
+                    using( var _title = new ChartTitle( ) )
                     {
                         _title.Text = Main;
                         _title.Visible = true;
@@ -285,7 +285,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

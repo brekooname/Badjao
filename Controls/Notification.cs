@@ -104,7 +104,7 @@ namespace BudgetExecution
             Location = new Point( Screen.PrimaryScreen.WorkingArea.Width - Width,
                 Screen.PrimaryScreen.WorkingArea.Height - Height );
 
-            foreach( Notification _form in OpenNotifications )
+            foreach( var _form in OpenNotifications )
             {
                 _form.Top -= Height;
             }
@@ -145,7 +145,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
         private void OnClosed( object sender, FormClosedEventArgs e )
         {
-            foreach( Notification _openForm in OpenNotifications )
+            foreach( var _openForm in OpenNotifications )
             {
                 if( _openForm == this )
                 {

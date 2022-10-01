@@ -258,7 +258,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Field _input = (Field)Enum.Parse( typeof( Field ), fieldName );
+                    var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
 
                     Field = !Enum.IsDefined( typeof( Field ), _input )
                         ? (Field)Enum.Parse( typeof( Field ), fieldName )
@@ -284,7 +284,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Field _input = (Field)Enum.Parse( typeof( Field ), fieldName );
+                    var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
                     var _names = dataRow.Table?.GetColumnNames( );
 
                     if( _names?.Any( ) == true

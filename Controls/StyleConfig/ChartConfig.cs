@@ -42,7 +42,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ChartFontInfo _chartFont = new ChartFontInfo
+                    var _chartFont = new ChartFontInfo
                     {
                         FontStyle = font.Style, 
                         FontFamilyTemplate = font.FontFamily,
@@ -81,7 +81,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ChartFontInfo chart = new ChartFontInfo
+                    var chart = new ChartFontInfo
                     {
                         FontStyle = style, 
                         Facename = family, 
@@ -135,7 +135,7 @@ namespace BudgetExecution
         {
             try
             {
-                ChartLineInfo style = new ChartLineInfo
+                var style = new ChartLineInfo
                 {
                     Alignment = PenAlignment.Center, 
                     Width = width, 
@@ -157,7 +157,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

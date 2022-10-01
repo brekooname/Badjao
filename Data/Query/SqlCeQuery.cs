@@ -7,7 +7,6 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.Common;
     using System.Data.OleDb;
     using System.Windows.Forms;
 
@@ -156,9 +155,9 @@ namespace BudgetExecution
         {
             try
             {
-                string _fileName = "";
+                var _fileName = "";
 
-                OpenFileDialog _fileDialog = new OpenFileDialog
+                var _fileDialog = new OpenFileDialog
                 {
                     Title = "Excel File Dialog", InitialDirectory = @"c:\",
                     Filter = "All files (*.*)|*.*|All files (*.*)|*.*", FilterIndex = 2,
@@ -197,20 +196,20 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataSet _dataSet = new DataSet( );
-                    DataTable _dataTable = new DataTable( );
+                    var _dataSet = new DataSet( );
+                    var _dataTable = new DataTable( );
                     _dataSet.DataSetName = fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
-                    string _sql = $"SELECT * FROM { sheetName }$";
-                    string cstring = GetExcelFilePath( );
+                    var _sql = $"SELECT * FROM { sheetName }$";
+                    var cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( cstring ) )
                     {
-                        ExcelQuery _excelQuery = new ExcelQuery( cstring, _sql );
-                        OleDbConnection _connection = DataConnection as OleDbConnection;
+                        var _excelQuery = new ExcelQuery( cstring, _sql );
+                        var _connection = DataConnection as OleDbConnection;
                         _connection?.Open( );
-                        DbDataAdapter _dataAdapter = _excelQuery.GetAdapter( );
+                        var _dataAdapter = _excelQuery.GetAdapter( );
                         _dataAdapter.Fill( _dataSet );
 
                         return _dataTable.Columns.Count > 0
@@ -246,9 +245,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataSet _dataSet = new DataSet( );
-                    DataTable _dataTable = new DataTable( );
-                    string _fileName = ConnectionBuilder?.FileName;
+                    var _dataSet = new DataSet( );
+                    var _dataTable = new DataTable( );
+                    var _fileName = ConnectionBuilder?.FileName;
 
                     if( _fileName != null )
                     {
@@ -257,13 +256,13 @@ namespace BudgetExecution
 
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );
-                    string _cstring = GetExcelFilePath( );
+                    var _cstring = GetExcelFilePath( );
 
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
-                        string _sql = $"SELECT * FROM {sheetName}$";
-                        CsvQuery _csvQuery = new CsvQuery( _cstring, _sql );
-                        OleDbDataAdapter _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
+                        var _sql = $"SELECT * FROM {sheetName}$";
+                        var _csvQuery = new CsvQuery( _cstring, _sql );
+                        var _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
                         _dataAdapter?.Fill( _dataSet, sheetName );
 
                         return _dataTable.Columns.Count > 0
@@ -298,9 +297,9 @@ namespace BudgetExecution
                 && schemaTable != null
                 && schemaTable.Columns.Count > 0 )
             {
-                for( int i = 0; i < schemaTable.Rows.Count; i++ )
+                for( var i = 0; i < schemaTable.Rows.Count; i++ )
                 {
-                    DataRow _dataRow = schemaTable.Rows[ i ];
+                    var _dataRow = schemaTable.Rows[ i ];
 
                     if( sheetName == _dataRow[ "TABLENAME" ].ToString( ) )
                     {

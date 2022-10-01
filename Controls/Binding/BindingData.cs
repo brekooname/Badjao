@@ -9,7 +9,6 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Data;
     using System.Linq;
-    using System.Threading;
 
     /// <summary>
     /// 
@@ -128,7 +127,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        string _filter = string.Empty;
+                        var _filter = string.Empty;
 
                         foreach( var _kvp in dict )
                         {
@@ -191,7 +190,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var _kvp in dict )
                     {
@@ -295,7 +294,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var _kvp in dict )
                     {

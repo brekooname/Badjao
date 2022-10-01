@@ -32,7 +32,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataColumnCollection _columns = DataTable.Columns;
+                    var _columns = DataTable.Columns;
                     var _values = new List<int>( );
 
                     if( _columns?.Count > 0 )
@@ -67,7 +67,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataColumnCollection _columns = DataTable?.Columns;
+                    var _columns = DataTable?.Columns;
 
                     if( _columns?.Count > 0 )
                     {
@@ -107,7 +107,7 @@ namespace BudgetExecution
                 try
                 {
                     var _elements = new List<IElement>( );
-                    DataColumnCollection _columns = Record?.Table?.Columns;
+                    var _columns = Record?.Table?.Columns;
                     var _fields = Enum.GetNames( typeof( Field ) );
 
                     if( _columns?.Count > 0 )
@@ -154,8 +154,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _criteria = dict.ToCriteria( );
-                    DataTable _dataTable = dataRows.CopyToDataTable( );
+                    var _criteria = dict.ToCriteria( );
+                    var _dataTable = dataRows.CopyToDataTable( );
                     var _data = _dataTable.Select( _criteria );
 
                     return _data?.Length > 0
@@ -183,7 +183,7 @@ namespace BudgetExecution
                 try
                 {
                     var _dataColumns = new List<DataColumn>( );
-                    DataColumnCollection _data = dataTable?.Columns;
+                    var _data = dataTable?.Columns;
 
                     if( _data?.Count > 0 )
                     {
@@ -223,7 +223,7 @@ namespace BudgetExecution
                 try
                 {
                     var _dataColumns = new List<DataColumn>( );
-                    DataColumnCollection _data = DataTable?.Columns;
+                    var _data = DataTable?.Columns;
 
                     if( _data?.Count > 0 )
                     {

@@ -64,20 +64,20 @@ namespace BudgetExecution
         {
             try
             {
-                ToolStripButton _button = sender as ToolStripButton;
+                var _button = sender as ToolStripButton;
 
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
                     _button.Tag = HoverText;
-                    MetroTip tip = new MetroTip( _button );
+                    var tip = new MetroTip( _button );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        MetroTip _tool = new MetroTip( _button );
+                        var _tool = new MetroTip( _button );
                         ToolTip = _tool;
                     }
                 }
@@ -151,7 +151,7 @@ namespace BudgetExecution
                         case ToolType.ExcelButton:
 
                         {
-                            using( ExcelForm _excelForm = new ExcelForm( ) )
+                            using( var _excelForm = new ExcelForm( ) )
                             {
                                 _excelForm?.ShowDialog( );
                             }
@@ -161,7 +161,7 @@ namespace BudgetExecution
                         case ToolType.PdfButton:
 
                         {
-                            using( PdfForm _message = new PdfForm( ) )
+                            using( var _message = new PdfForm( ) )
                             {
                                 _message?.ShowDialog( );
                             }
@@ -171,7 +171,7 @@ namespace BudgetExecution
                         case ToolType.PrintButton:
 
                         {
-                            using( Message _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
                             {
                                 _message?.ShowDialog( );
                             }
@@ -181,7 +181,7 @@ namespace BudgetExecution
                         case ToolType.AddRecordButton:
 
                         {
-                            using( EditDialog _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -192,7 +192,7 @@ namespace BudgetExecution
                         case ToolType.AddButton:
 
                         {
-                            using( EditDialog _dataConfig = new EditDialog( _button.ToolType ) )
+                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -205,7 +205,7 @@ namespace BudgetExecution
                         case ToolType.AddColumnButton:
 
                         {
-                            using( DefinitionDialog _dataConfig =
+                            using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
@@ -217,7 +217,7 @@ namespace BudgetExecution
                         case ToolType.EditColumnButton:
 
                         {
-                            using( DefinitionDialog _dataConfig =
+                            using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
@@ -229,7 +229,7 @@ namespace BudgetExecution
                         case ToolType.DeleteColumnButton:
 
                         {
-                            using( DefinitionDialog _dataConfig =
+                            using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
@@ -241,7 +241,7 @@ namespace BudgetExecution
                         case ToolType.DeleteTableButton:
 
                         {
-                            using( DefinitionDialog _dataConfig =
+                            using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
@@ -253,7 +253,7 @@ namespace BudgetExecution
                         case ToolType.DeleteDatabaseButton:
 
                         {
-                            using( DefinitionDialog _dataConfig =
+                            using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
@@ -265,7 +265,7 @@ namespace BudgetExecution
                         case ToolType.DeleteRecordButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig?.ShowDialog( );
@@ -276,7 +276,7 @@ namespace BudgetExecution
                         case ToolType.DeleteButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig?.ShowDialog( );
@@ -287,7 +287,7 @@ namespace BudgetExecution
                         case ToolType.RefreshButton:
 
                         {
-                            using( Message _message = new Message( "NOT YET IMPLEMENTED!" ) )
+                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
                             {
                                 _message?.ShowDialog( );
                             }
@@ -297,28 +297,28 @@ namespace BudgetExecution
                         case ToolType.ExitButton:
 
                         {
-                            Message _message = new Message( "NOT YET IMPLEMENTED!" );
+                            var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.ExportButton:
 
                         {
-                            Message _message = new Message( "NOT YET IMPLEMENTED!" );
+                            var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.ImportButton:
 
                         {
-                            Message _message = new Message( "NOT YET IMPLEMENTED!" );
+                            var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.FilterDataButton:
 
                         {
-                            using( LookupDialog _dataConfig = new LookupDialog( ) )
+                            using( var _dataConfig = new LookupDialog( ) )
                             {
                                 _dataConfig.BindingSource = BindingSource;
                                 _dataConfig?.ShowDialog( );
@@ -329,7 +329,7 @@ namespace BudgetExecution
                         case ToolType.EditSqlButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
@@ -341,7 +341,7 @@ namespace BudgetExecution
                         case ToolType.EditButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
@@ -353,7 +353,7 @@ namespace BudgetExecution
                         case ToolType.EditRecordButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
@@ -365,7 +365,7 @@ namespace BudgetExecution
                         case ToolType.CopyButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
@@ -377,7 +377,7 @@ namespace BudgetExecution
                         case ToolType.UpdateButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
@@ -389,7 +389,7 @@ namespace BudgetExecution
                         case ToolType.InsertButton:
 
                         {
-                            using( EditDialog _dataConfig =
+                            using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
                             {
                                 _dataConfig.Current = BindingSource.GetCurrentDataRow( );
@@ -401,7 +401,7 @@ namespace BudgetExecution
                         case ToolType.CalculatorButton:
 
                         {
-                            using( CalculationForm _calculator = new CalculationForm( ) )
+                            using( var _calculator = new CalculationForm( ) )
                             {
                                 _calculator?.ShowDialog( );
                             }
@@ -411,7 +411,7 @@ namespace BudgetExecution
                         case ToolType.CalendarButton:
 
                         {
-                            using( CalendarForm _form = new CalendarForm( ) )
+                            using( var _form = new CalendarForm( ) )
                             {
                                 _form?.ShowDialog( );
                             }
@@ -421,7 +421,7 @@ namespace BudgetExecution
                         case ToolType.BrowseButton:
 
                         {
-                            using( FileBrowser _browser = new FileBrowser( ) )
+                            using( var _browser = new FileBrowser( ) )
                             {
                                 _browser?.ShowDialog( );
                             }
@@ -431,7 +431,7 @@ namespace BudgetExecution
                         case ToolType.HomeButton:
 
                         {
-                            using( MainForm _form = new MainForm( ) )
+                            using( var _form = new MainForm( ) )
                             {
                                 _form?.ShowDialog( );
                             }
@@ -443,7 +443,7 @@ namespace BudgetExecution
                         {
                             if( BindingSource?.DataSource != null )
                             {
-                                using( ChartForm _chartForm = new ChartForm( ) )
+                                using( var _chartForm = new ChartForm( ) )
                                 {
                                     _chartForm.BindingSource = BindingSource;
                                     _chartForm?.ShowDialog( );
@@ -451,7 +451,7 @@ namespace BudgetExecution
                             }
                             else if( BindingSource == null )
                             {
-                                using( ChartForm _form = new ChartForm( ) )
+                                using( var _form = new ChartForm( ) )
                                 {
                                     _form?.ShowDialog( );
                                 }
@@ -462,7 +462,7 @@ namespace BudgetExecution
                         default:
 
                         {
-                            Message _message = new Message( "NOT YET IMPLEMENTED!" );
+                            var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
@@ -484,14 +484,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
+                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
                         + $"{ToolType}.png";
 
-                    using( FileStream _stream = File.Open( _path, FileMode.Open ) )
+                    using( var _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
                         {
-                            Image _image = Image.FromStream( _stream );
+                            var _image = Image.FromStream( _stream );
                             Image = _image;
                         }
                     }
@@ -513,14 +513,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
+                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
                         + $"{toolType}.png";
 
-                    using( FileStream _stream = File.Open( _path, FileMode.Open ) )
+                    using( var _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
                         {
-                            Image _image = Image.FromStream( _stream );
+                            var _image = Image.FromStream( _stream );
 
                             return _image != null
                                 ? _image

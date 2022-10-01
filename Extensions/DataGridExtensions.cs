@@ -53,7 +53,7 @@ namespace BudgetExecution
         {
             try
             {
-                DataTable _table = new DataTable( );
+                var _table = new DataTable( );
 
                 foreach( DataGridViewColumn _column in dataGridView.Columns )
                 {
@@ -68,7 +68,7 @@ namespace BudgetExecution
                 {
                     var _values = new object[ row.Cells.Count ];
 
-                    for( int i = 0; i < _values.Length; i++ )
+                    for( var i = 0; i < _values.Length; i++ )
                     {
                         _values[ i ] = row.Cells[ i ].Value;
                     }
@@ -102,12 +102,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataTable _grid = dataGridView.GetDataTable( );
-                    System.Data.DataView _view = new System.Data.DataView( _grid );
+                    var _grid = dataGridView.GetDataTable( );
+                    var _view = new System.Data.DataView( _grid );
 
                     if( _grid?.Columns.Count > 0 )
                     {
-                        DataTable _table = _view.ToTable( true, columns );
+                        var _table = _view.ToTable( true, columns );
 
                         return _table?.Columns?.Count > 0
                             ? _table
@@ -142,16 +142,16 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( DataTable _dataTable = dataGridView.GetDataTable( ) )
+                    using( var _dataTable = dataGridView.GetDataTable( ) )
                     {
-                        using( System.Data.DataView _view = new System.Data.DataView( _dataTable ) )
+                        using( var _view = new System.Data.DataView( _dataTable ) )
                         {
                             if( _dataTable?.Columns?.Count > 0 )
                             {
                                 var _columns =
                                     fields?.Select( f => f.ToString( ) )?.ToArray( );
 
-                                DataTable _table = _view?.ToTable( true, _columns );
+                                var _table = _view?.ToTable( true, _columns );
 
                                 return _table?.Columns?.Count > 0
                                     ? _table
@@ -185,26 +185,26 @@ namespace BudgetExecution
         {
             try
             {
-                using( DataTable _dataTable = dataGridView?.GetDataTable( ) )
+                using( var _dataTable = dataGridView?.GetDataTable( ) )
                 {
                     if( _dataTable?.Columns?.Count > 0
                        && index?.Length > 0 )
                     {
-                        DataColumnCollection _columns = _dataTable.Columns;
+                        var _columns = _dataTable.Columns;
                         var _names = new string[ index.Length ];
 
                         if( _columns?.Count > 0
                            && _names?.Length > 0 )
                         {
-                            for( int i = 0; i < index.Length; i++ )
+                            for( var i = 0; i < index.Length; i++ )
                             {
                                 _names[ i ] = _columns[ index[ i ] ].ColumnName;
                             }
                         }
 
-                        using( System.Data.DataView _view = new System.Data.DataView( _dataTable ) )
+                        using( var _view = new System.Data.DataView( _dataTable ) )
                         {
-                            DataTable _table = _view?.ToTable( true, _names );
+                            var _table = _view?.ToTable( true, _names );
 
                             return _table.Columns.Count > 0
                                 ? _table
@@ -239,7 +239,7 @@ namespace BudgetExecution
                 {
                     var _list = new List<string>( );
 
-                    foreach( object _row in datagridview.Rows )
+                    foreach( var _row in datagridview.Rows )
                     {
                         if( !( (DataGridViewRow)_row )?.IsNewRow == true )
                         {
@@ -253,7 +253,7 @@ namespace BudgetExecution
 
                             if( _cells?.Any( ) == true )
                             {
-                                string _item = string.Join( ",",
+                                var _item = string.Join( ",",
                                     Array.ConvertAll( _array, c => c.Value?.ToString( ) ) );
 
                                 if( !string.IsNullOrEmpty( _item ) )
@@ -293,7 +293,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, fileName );
+                    var _path = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, fileName );
 
                     if( !string.IsNullOrEmpty( _path ) )
                     {
@@ -367,7 +367,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( DataTable _table = dataGridView.GetDataTable( ) )
+                    using( var _table = dataGridView.GetDataTable( ) )
                     {
                         if( _table?.Columns?.Count > 0 )
                         {
@@ -393,7 +393,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

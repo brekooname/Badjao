@@ -225,14 +225,14 @@ namespace BudgetExecution
 
                                 if( stat != STAT.Percentage )
                                 {
-                                    for( int i = 0; i < data.Keys.Count; i++ )
+                                    for( var i = 0; i < data.Keys.Count; i++ )
                                     {
                                         Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:N1}";
                                     }
                                 }
                                 else if( stat == STAT.Percentage )
                                 {
-                                    for( int i = 0; i < data.Keys.Count; i++ )
+                                    for( var i = 0; i < data.Keys.Count; i++ )
                                     {
                                         Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:P}";
                                     }

@@ -14,7 +14,7 @@ namespace BudgetExecution
         {
             IList<TriggerSchema> result = new List<TriggerSchema>( );
 
-            foreach( ForeignKeySchema fks in dt.ForeignKeys )
+            foreach( var fks in dt.ForeignKeys )
             {
                 result.Add( GenerateInsertTrigger( fks ) );
                 result.Add( GenerateUpdateTrigger( fks ) );
@@ -32,13 +32,13 @@ namespace BudgetExecution
 
         public static TriggerSchema GenerateInsertTrigger( ForeignKeySchema fks )
         {
-            TriggerSchema trigger = new TriggerSchema
+            var trigger = new TriggerSchema
             {
                 name = MakeTriggerName( fks, "fki" ), type = TriggerType.Before,
                 @event = TriggerEvent.Insert, table = fks.tableName
             };
 
-            string nullstring = string.Empty;
+            var nullstring = string.Empty;
 
             if( fks.isNullable )
             {
@@ -55,14 +55,14 @@ namespace BudgetExecution
 
         public static TriggerSchema GenerateUpdateTrigger( ForeignKeySchema fks )
         {
-            TriggerSchema trigger = new TriggerSchema
+            var trigger = new TriggerSchema
             {
                 name = MakeTriggerName( fks, "fku" ), type = TriggerType.Before,
                 @event = TriggerEvent.Update, table = fks.tableName
             };
 
-            string triggername = trigger.name;
-            string nullstring = string.Empty;
+            var triggername = trigger.name;
+            var nullstring = string.Empty;
 
             if( fks.isNullable )
             {
@@ -79,13 +79,13 @@ namespace BudgetExecution
 
         public static TriggerSchema GenerateDeleteTrigger( ForeignKeySchema fks )
         {
-            TriggerSchema trigger = new TriggerSchema
+            var trigger = new TriggerSchema
             {
                 name = MakeTriggerName( fks, "fkd" ), type = TriggerType.Before,
                 @event = TriggerEvent.Delete, table = fks.foreignTableName
             };
 
-            string triggername = trigger.name;
+            var triggername = trigger.name;
 
             trigger.body = !fks.cascadeOnDelete
                 ? "SELECT RAISE(ROLLBACK, 'delete on table " + fks.foreignTableName

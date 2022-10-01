@@ -186,7 +186,7 @@ namespace BudgetExecution
                 try
                 {
                     RemoveAll( );
-                    string _caption = control.Tag.ToString( );
+                    var _caption = control.Tag.ToString( );
                     SetToolTip( control, _caption );
                 }
                 catch( Exception ex )
@@ -230,7 +230,7 @@ namespace BudgetExecution
                 try
                 {
                     Control parent = item.GetCurrentParent( );
-                    string caption = item?.Tag?.ToString( );
+                    var caption = item?.Tag?.ToString( );
 
                     if( !string.IsNullOrEmpty( caption ) )
                     {
@@ -258,7 +258,7 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( control?.Tag?.ToString( ) ) )
                     {
-                        string caption = control.Tag.ToString( );
+                        var caption = control.Tag.ToString( );
                         RemoveAll( );
                         SetToolTip( control, caption );
                     }
@@ -318,7 +318,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -245,17 +245,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _file = Path.GetExtension( filePath )
+                    var _file = Path.GetExtension( filePath )
                         ?.Replace( ".", "" );
 
                     if( !string.IsNullOrEmpty( _file ) )
                     {
-                        EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
+                        var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
                         var _names = Enum.GetNames( typeof( EXT ) );
 
                         if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
-                            string _clientPath = DbClientPath[ $"{ _ext }" ];
+                            var _clientPath = DbClientPath[ $"{ _ext }" ];
 
                             return !string.IsNullOrEmpty( _clientPath )
                                 ? _clientPath
@@ -283,7 +283,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _connection = ConnectionPath[ provider.ToString( ) ]?.ConnectionString;
+                    var _connection = ConnectionPath[ provider.ToString( ) ]?.ConnectionString;
 
                     return !string.IsNullOrEmpty( _connection )
                         ? _connection?.Replace( "{FilePath}", FilePath )
@@ -311,16 +311,16 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _file = Path.GetExtension( filePath );
+                    var _file = Path.GetExtension( filePath );
 
                     if( _file != null )
                     {
-                        EXT _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
+                        var _ext = (EXT)Enum.Parse( typeof( EXT ), _file.ToUpper( ) );
                         var _names = Enum.GetNames( typeof( EXT ) );
 
                         if( _names?.Contains( _ext.ToString( ) ) == true )
                         {
-                            string _connectionString =
+                            var _connectionString =
                                 ConnectionPath[ $"{ _ext }" ].ConnectionString;
 
                             return !string.IsNullOrEmpty( _connectionString )
@@ -344,7 +344,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

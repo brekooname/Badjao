@@ -26,7 +26,7 @@ namespace BudgetExecution
         /// <param name="path">The path.</param>
         public AccessConnect( string path )
         {
-            string connectionstring = "provider=microsoft.jet.oledb.4.0;Data source=" + path
+            var connectionstring = "provider=microsoft.jet.oledb.4.0;Data source=" + path
                 + ";Jet OLEDB:Database Password=h@#%^ein;";
 
             _connection = new OleDbConnection( connectionstring );
@@ -42,9 +42,9 @@ namespace BudgetExecution
             var _names = new List<string>( );
             var _restrictions = new string[ 4 ];
             _restrictions[ 3 ] = "Table";
-            DataTable _schema = _connection.GetSchema( "Tables", _restrictions );
+            var _schema = _connection.GetSchema( "Tables", _restrictions );
 
-            for( int i = 0; i < _schema.Rows.Count; i++ )
+            for( var i = 0; i < _schema.Rows.Count; i++ )
             {
                 _names.Add( _schema.Rows[ i ][ 2 ].ToString( ) );
             }
@@ -61,9 +61,9 @@ namespace BudgetExecution
         {
             try
             {
-                DataTable _table = new DataTable( );
+                var _table = new DataTable( );
 
-                OleDbDataAdapter _adapter =
+                var _adapter =
                     new OleDbDataAdapter( "SELECT * FROM " + name, _connection );
 
                 _adapter.Fill( _table );
@@ -88,14 +88,14 @@ namespace BudgetExecution
         {
             var _names = new List<string>( );
 
-            using( OleDbCommand _command =
+            using( var _command =
                 new OleDbCommand( "select * from " + tableName, _connection ) )
             {
-                using( OleDbDataReader _dataReader =
+                using( var _dataReader =
                     _command.ExecuteReader( CommandBehavior.SchemaOnly ) )
                 {
-                    DataTable _dataTable = _dataReader.GetSchemaTable( );
-                    DataColumn _dataColumn = _dataTable?.Columns[ "ColumnName" ];
+                    var _dataTable = _dataReader.GetSchemaTable( );
+                    var _dataColumn = _dataTable?.Columns[ "ColumnName" ];
 
                     if( _dataTable?.Rows != null )
                     {

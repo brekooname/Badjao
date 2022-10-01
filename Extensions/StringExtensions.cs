@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Net.Mail;
     using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading;
     using System.Xml;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -188,7 +187,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    bool _date = DateTime.TryParse( text, out DateTime _dateTime );
+                    var _date = DateTime.TryParse( text, out var _dateTime );
                     return _date  ? _dateTime : default( DateTime );
                 }
                 catch( Exception ex )
@@ -269,7 +268,7 @@ namespace BudgetExecution
         {
             try
             {
-                XmlDocument _document = new XmlDocument( );
+                var _document = new XmlDocument( );
                 _document.LoadXml( text );
                 return _document;
             }
@@ -310,12 +309,12 @@ namespace BudgetExecution
         /// </returns>
         public static int WordCount( this string text )
         {
-            int _count = 0;
+            var _count = 0;
 
             try
             {
-                Regex re = new Regex( @"[^\text]+" );
-                MatchCollection _matches = re.Matches( text );
+                var re = new Regex( @"[^\text]+" );
+                var _matches = re.Matches( text );
                 _count = _matches.Count;
             }
             catch( Exception ex )
@@ -367,7 +366,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( StreamWriter _writer = new StreamWriter( text, false ) )
+                    using( var _writer = new StreamWriter( text, false ) )
                     {
                         _writer.Write( file );
                     }
@@ -405,14 +404,14 @@ namespace BudgetExecution
         {
             try
             {
-                MailMessage _message = new MailMessage( );
+                var _message = new MailMessage( );
                 _message.To.Add( recipient );
-                MailAddress _address = new MailAddress( sender );
+                var _address = new MailAddress( sender );
                 _message.From = _address;
                 _message.Subject = subject;
                 _message.Body = body;
-                SmtpClient _client = new SmtpClient( server );
-                NetworkCredential _credentials = new NetworkCredential( );
+                var _client = new SmtpClient( server );
+                var _credentials = new NetworkCredential( );
                 _client.Credentials = _credentials;
                 _client.Send( _message );
                 return true;
@@ -460,7 +459,7 @@ namespace BudgetExecution
         {
             try
             {
-                Regex _regex = new Regex( @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" );
+                var _regex = new Regex( @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" );
                 return _regex.IsMatch( s );
             }
             catch( Exception ex )
@@ -474,7 +473,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -198,7 +198,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Message _message = new Message( "NOT YET IMPLEMENTED" );
+                    var _message = new Message( "NOT YET IMPLEMENTED" );
                     _message?.ShowDialog( );
                 }
                 catch( Exception ex )
@@ -214,7 +214,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            Error _error = new Error( ex );
+            var _error = new Error( ex );
             _error?.SetText( );
             _error?.ShowDialog( );
         }

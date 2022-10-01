@@ -103,7 +103,7 @@ namespace BudgetExecution
             {
                 var _names = Enum.GetNames( typeof( Source ) );
 
-                foreach( string name in _names )
+                foreach( var name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -133,7 +133,7 @@ namespace BudgetExecution
                     EditColumnDataTypeComboBox.Items.Clear( );
                     CreateTableDataTypeComboBox.Items.Clear( );
 
-                    foreach( string name in DataTypes )
+                    foreach( var name in DataTypes )
                     {
                         EditColumnDataTypeComboBox.Items.Add( name );
                         CreateTableDataTypeComboBox.Items.Add( name );

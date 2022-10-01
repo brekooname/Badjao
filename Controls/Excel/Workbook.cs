@@ -138,12 +138,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelWorksheet _worksheet = grid.GetWorksheet( ) )
+                    using( var _worksheet = grid.GetWorksheet( ) )
                     {
-                        using( ExcelRange _range = grid.GetRange( ) )
+                        using( var _range = grid.GetRange( ) )
                         {
-                            int _row = _range.Start.Row;
-                            int _column = _range.Start.Column;
+                            var _row = _range.Start.Row;
+                            var _column = _range.Start.Column;
                             SetFontColor( grid, FontColor );
                             SetBackgroundColor( grid, PrimaryBackColor );
                             SetHorizontalAlignment( grid, Left );
@@ -242,10 +242,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ExcelRange _prc = Worksheet.Cells[ excelRange.Start.Row,
+                    var _prc = Worksheet.Cells[ excelRange.Start.Row,
                         excelRange.Start.Column, excelRange.End.Row, excelRange.End.Column ];
 
-                    for( int i = excelRange.Start.Row; i < excelRange.End.Row; i++ )
+                    for( var i = excelRange.Start.Row; i < excelRange.End.Row; i++ )
                     {
                         if( i % 2 == 0 )
                         {
@@ -310,7 +310,7 @@ namespace BudgetExecution
                 {
                     SetHeaderText( grid );
 
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.SetFromFont( TitleFont );
                         _range.Style.Border.BorderAround( ExcelBorderStyle.Thin );
@@ -342,11 +342,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ExcelRange _total = Worksheet.Cells[ excelRange.Start.Row,
+                    var _total = Worksheet.Cells[ excelRange.Start.Row,
                         excelRange.Start.Column, excelRange.Start.Row,
                         excelRange.Start.Column + 6 ];
 
-                    ExcelRange _range = Worksheet.Cells[ excelRange.Start.Row,
+                    var _range = Worksheet.Cells[ excelRange.Start.Row,
                         excelRange.Start.Column + 1, excelRange.Start.Row,
                         excelRange.Start.Column + 6 ];
 

@@ -27,7 +27,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataSet ToDataSet( this ExcelPackage excelPackage, bool header = false )
         {
-            int _row = header
+            var _row = header
                 ? 1
                 : 0;
 
@@ -47,13 +47,13 @@ namespace BudgetExecution
                     "Must be 0 or greater." );
             }
 
-            DataSet _result = new DataSet( );
+            var _result = new DataSet( );
 
-            foreach( ExcelWorksheet _worksheet in excelPackage.Workbook.Worksheets )
+            foreach( var _worksheet in excelPackage.Workbook.Worksheets )
             {
-                DataTable _table = new DataTable { TableName = _worksheet?.Name };
+                var _table = new DataTable { TableName = _worksheet?.Name };
 
-                int _start = 1;
+                var _start = 1;
 
                 if( header > 0 )
                 {
@@ -68,18 +68,18 @@ namespace BudgetExecution
 
                 _table.Columns.AddRange( _columns?.ToArray( ) );
 
-                int i = header > 0
+                var i = header > 0
                     ? _start + 1
                     : _start;
 
-                for( int index = i; index <= _worksheet?.Dimension.End.Row; index++ )
+                for( var index = i; index <= _worksheet?.Dimension.End.Row; index++ )
                 {
-                    ExcelRange _range = _worksheet.Cells[ index, 1, index,
+                    var _range = _worksheet.Cells[ index, 1, index,
                         _worksheet.Dimension.End.Column ];
 
-                    DataRow _row = _table.Rows.Add( );
+                    var _row = _table.Rows.Add( );
 
-                    foreach( ExcelRangeBase cell in _range )
+                    foreach( var cell in _range )
                     {
                         _row[ cell.Start.Column - 1 ] = cell.Value;
                     }
@@ -112,9 +112,9 @@ namespace BudgetExecution
         {
             var _empties = new List<bool>( );
 
-            for( int index = 1; index <= worksheet.Dimension.End.Column; index++ )
+            for( var index = 1; index <= worksheet.Dimension.End.Column; index++ )
             {
-                object _value = worksheet.Cells[ worksheet.Dimension.End.Row, index ].Value;
+                var _value = worksheet.Cells[ worksheet.Dimension.End.Row, index ].Value;
                 _empties.Add( string.IsNullOrWhiteSpace( _value?.ToString( ) ) );
             }
 
@@ -141,15 +141,15 @@ namespace BudgetExecution
         /// <param name="width">The width.</param>
         public static void SetWidth( this ExcelColumn column, double width )
         {
-            double _first = width >= 1.0
+            var _first = width >= 1.0
                 ? Math.Round( ( Math.Round( 7.0 * ( width - 0.0 ), 0 ) - 5.0 ) / 7.0, 2 )
                 : Math.Round(
                     ( Math.Round( 12.0 * ( width - 0.0 ), 0 ) - Math.Round( 5.0 * width, 0 ) )
                     / 12.0, 2 );
 
-            double _second = width - _first;
+            var _second = width - _first;
 
-            double _third = width >= 1.0
+            var _third = width >= 1.0
                 ? Math.Round( 7.0 * _second - 0.0, 0 ) / 7.0
                 : Math.Round( 12.0 * _second - 0.0, 0 ) / 12.0 + 0.0;
 
@@ -235,7 +235,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

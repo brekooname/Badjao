@@ -48,8 +48,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _name = dataUnit.Name;
-                    object _value = dataUnit.Value;
+                    var _name = dataUnit.Name;
+                    var _value = dataUnit.Value;
                     return _value.Equals( Value ) && _name.Equals( Name );
                 }
                 catch( Exception ex )
@@ -75,8 +75,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _name = element.Name;
-                    object _value = element.Value;
+                    var _name = element.Name;
+                    var _value = element.Value;
                     return _value.Equals( Value ) && _name.Equals( Name );
                 }
                 catch( Exception ex )
@@ -102,8 +102,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _name = dict.Keys.First( );
-                    object _value = dict[ _name ];
+                    var _name = dict.Keys.First( );
+                    var _value = dict[ _name ];
                     return _value.Equals( Value ) && _name.Equals( Name );
                 }
                 catch( Exception ex )
@@ -122,7 +122,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

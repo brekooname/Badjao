@@ -161,7 +161,7 @@ namespace BudgetExecution
         /// <param name="item">The item.</param>
         public virtual void SetHoverText( ToolStripItem item )
         {
-            string _text = item?.Tag?.ToString( );
+            var _text = item?.Tag?.ToString( );
 
             try
             {
@@ -195,7 +195,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

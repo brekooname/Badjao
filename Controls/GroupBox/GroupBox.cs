@@ -416,7 +416,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    MetroTip _ = new MetroTip( this, text );
+                    var _ = new MetroTip( this, text );
                 }
                 catch( Exception ex )
                 {

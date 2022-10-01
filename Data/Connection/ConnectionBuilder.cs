@@ -83,7 +83,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _connectionString = ConnectionPath[ $"{ Provider }" ]?.ConnectionString;
+                    var _connectionString = ConnectionPath[ $"{ Provider }" ]?.ConnectionString;
 
                     switch( Provider )
                     {

@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using OfficeOpenXml;
     using Syncfusion.Windows.Forms.Spreadsheet;
     using Syncfusion.XlsIO;
     using ExcelHorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment;
@@ -267,11 +266,11 @@ namespace BudgetExecution
         {
             try
             {
-                string _path = System.IO.Path.GetExtension( filePath );
+                var _path = System.IO.Path.GetExtension( filePath );
 
                 if( _path != null )
                 {
-                    EXT _extension = (EXT)Enum.Parse( typeof( EXT ), _path );
+                    var _extension = (EXT)Enum.Parse( typeof( EXT ), _path );
 
                     return Enum.IsDefined( typeof( EXT ), _extension )
                         ? _extension
@@ -347,11 +346,11 @@ namespace BudgetExecution
                     spreadSheet.Workbook.ActiveSheet.ListObjects.Clear( );
                     spreadSheet.Workbook.ActiveSheet.UsedRange.Clear( true );
                     spreadSheet.Workbook.ActiveSheet.StandardWidth = 12.5f;
-                    string name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
-                    IWorksheet sheet = spreadSheet.Workbook.ActiveSheet;
+                    var name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
+                    var sheet = spreadSheet.Workbook.ActiveSheet;
                     spreadSheet.ActiveSheet.ImportDataTable( dataTable, true, 1, 1 );
-                    IRange range = sheet.UsedRange;
-                    IListObject table = sheet.ListObjects.Create( name, range );
+                    var range = sheet.UsedRange;
+                    var table = sheet.ListObjects.Create( name, range );
                     table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium2;
                     spreadSheet.ActiveGrid.InvalidateCells( );
                     spreadSheet.SetZoomFactor( "Sheet1", 110 );
@@ -377,13 +376,13 @@ namespace BudgetExecution
                 {
                     spreadSheet.Workbook.ActiveSheet.ListObjects.Clear( );
                     spreadSheet.Workbook.ActiveSheet.StandardWidth = 12.5f;
-                    string name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
-                    IWorksheet sheet = spreadSheet.Workbook.ActiveSheet;
+                    var name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
+                    var sheet = spreadSheet.Workbook.ActiveSheet;
 
                     spreadSheet.ActiveSheet.ImportDataGridView( dataGrid, 1, 1, true, false );
 
-                    IRange range = sheet.UsedRange;
-                    IListObject table = sheet.ListObjects.Create( name, range );
+                    var range = sheet.UsedRange;
+                    var table = sheet.ListObjects.Create( name, range );
                     table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium2;
                     spreadSheet.ActiveGrid.InvalidateCells( );
                     spreadSheet.SetZoomFactor( "Sheet1", 110 );
@@ -407,9 +406,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid?.GetRange( ) )
+                    using( var _range = grid?.GetRange( ) )
                     {
-                        ExcelComment _excelComment = _range?.AddComment( text, "Budget" );
+                        var _excelComment = _range?.AddComment( text, "Budget" );
 
                         if( _excelComment != null )
                         {
@@ -442,10 +441,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelWorksheet _sheet = grid.GetWorksheet( ) )
+                    using( var _sheet = grid.GetWorksheet( ) )
                     {
-                        int _row = grid.GetRange( ).Start.Row;
-                        int _column = grid.GetRange( ).Start.Column;
+                        var _row = grid.GetRange( ).Start.Row;
+                        var _column = grid.GetRange( ).Start.Column;
                         _sheet.Cells[ _row, _column ].Value = "Account";
                         _sheet.Cells[ _row, _column + 1 ].Value = "SuperfundSite";
                         _sheet.Cells[ _row, _column + 2 ].Value = "Travel";
@@ -475,9 +474,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( ExcelRangeBase cell in grid.GetRange( ) )
+                    foreach( var cell in grid.GetRange( ) )
                     {
-                        foreach( string caption in text )
+                        foreach( var caption in text )
                         {
                             if( cell != null
                                 && !string.IsNullOrEmpty( caption ) )
@@ -500,7 +499,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

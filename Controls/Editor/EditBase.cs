@@ -191,10 +191,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _query = "SELECT DISTINCT SchemaTypes.TypeName" + " FROM SchemaTypes"
+                    var _query = "SELECT DISTINCT SchemaTypes.TypeName" + " FROM SchemaTypes"
                         + $" WHERE SchemaTypes.Provider = '{provider}'";
 
-                    DataBuilder _model =
+                    var _model =
                         new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
 
                     var _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
@@ -244,7 +244,7 @@ namespace BudgetExecution
                 {
                     listBox.Items.Clear( );
 
-                    foreach( string name in _names )
+                    foreach( var name in _names )
                     {
                         if( name != "NS" )
                         {
@@ -268,7 +268,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( GroupBox _groupBox in GroupBoxes.Values )
+                    foreach( var _groupBox in GroupBoxes.Values )
                     {
                         _groupBox.SeparatorColor = Color.FromArgb( 64, 64, 64 );
                         _groupBox.Separate = true;
@@ -291,7 +291,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( RadioButton _radioButton in RadioButtons.Values )
+                    foreach( var _radioButton in RadioButtons.Values )
                     {
                         _radioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
                         _radioButton.CheckSignColor = Color.LimeGreen;
@@ -317,15 +317,15 @@ namespace BudgetExecution
                     var _buttons =
                         new Dictionary<string, RadioButton>( );
 
-                    foreach( TabPageAdv _tabPage in TabPages.Values )
+                    foreach( var _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
                         {
-                            foreach( object _control in _tab.Controls )
+                            foreach( var _control in _tab.Controls )
                             {
                                 if( _control is GroupBox _group )
                                 {
-                                    foreach( object _item in _group.Controls )
+                                    foreach( var _item in _group.Controls )
                                     {
                                         if( _item is RadioButton _radioButton )
                                         {
@@ -363,7 +363,7 @@ namespace BudgetExecution
                 {
                     var _buttons = new Dictionary<string, ComboBox>( );
 
-                    foreach( TabPageAdv _tabPage in TabPages.Values )
+                    foreach( var _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
                         {
@@ -409,9 +409,9 @@ namespace BudgetExecution
                 {
                     var _groupBoxes = new Dictionary<string, GroupBox>( );
 
-                    foreach( TabPageAdv _tabPage in TabPages.Values )
+                    foreach( var _tabPage in TabPages.Values )
                     {
-                        foreach( object _control in _tabPage.Controls )
+                        foreach( var _control in _tabPage.Controls )
                         {
                             if( _control is GroupBox _groupBox )
                             {
@@ -446,11 +446,11 @@ namespace BudgetExecution
                 {
                     var _listBoxes = new Dictionary<string, ListBox>( );
 
-                    foreach( TabPageAdv _tabPage in TabPages.Values )
+                    foreach( var _tabPage in TabPages.Values )
                     {
                         if( _tabPage?.Controls?.Count > 0 )
                         {
-                            foreach( object _control in _tabPage.Controls )
+                            foreach( var _control in _tabPage.Controls )
                             {
                                 if( _control is ListBox _listBox )
                                 {
@@ -480,7 +480,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

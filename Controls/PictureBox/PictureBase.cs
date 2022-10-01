@@ -80,17 +80,17 @@ namespace BudgetExecution
         {
             try
             {
-                PictureBase _picturePanel = sender as PictureBase;
+                var _picturePanel = sender as PictureBase;
 
                 if( !string.IsNullOrEmpty( HoverText ) )
                 {
-                    MetroTip _ = new MetroTip( _picturePanel, HoverText );
+                    var _ = new MetroTip( _picturePanel, HoverText );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        MetroTip _ = new MetroTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
+                        var _ = new MetroTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
                     }
                 }
             }
@@ -106,7 +106,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

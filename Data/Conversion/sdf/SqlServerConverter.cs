@@ -159,7 +159,7 @@ namespace BudgetExcess
             }
 
             // Read the schema of the SQL Server database into a memory structure
-            DatabaseSchema ds = ReadSqlServerSchema( sqlconnstring, handler, selectionhandler );
+            var ds = ReadSqlServerSchema( sqlconnstring, handler, selectionhandler );
 
             // Create the SQLite database and apply the schema
             CreateSQLiteDatabase( path, ds, password, handler, viewfailurehandler, createviews );
@@ -190,28 +190,28 @@ namespace BudgetExcess
             _log.Debug( "preparing to insert tables ..." );
 
             // Connect to the SQL Server database
-            SqlConnection ssconn = new SqlConnection( sqlconnstring );
+            var ssconn = new SqlConnection( sqlconnstring );
             ssconn.Open( );
 
             // Connect to the SQLite database next
-            string sqliteconnstring = CreateSQLiteConnectionString( path, password );
-            SQLiteConnection sqconn = new SQLiteConnection( sqliteconnstring );
+            var sqliteconnstring = CreateSQLiteConnectionString( path, password );
+            var sqconn = new SQLiteConnection( sqliteconnstring );
             sqconn.Open( );
 
             // Go over all tables in the schema and copy their rows
-            for( int i = 0; i < schema.Count; i++ )
+            for( var i = 0; i < schema.Count; i++ )
             {
-                SQLiteTransaction tx = sqconn.BeginTransaction( );
+                var tx = sqconn.BeginTransaction( );
 
                 try
                 {
-                    string tablequery = BuildSqlServerTableQuery( schema[ i ] );
+                    var tablequery = BuildSqlServerTableQuery( schema[ i ] );
 
-                    using( SqlCommand query = new SqlCommand( tablequery, ssconn ) )
+                    using( var query = new SqlCommand( tablequery, ssconn ) )
                     {
-                        SqlDataReader reader = query.ExecuteReader( );
-                        SQLiteCommand insert = BuildSQLiteInsert( schema[ i ] );
-                        int counter = 0;
+                        var reader = query.ExecuteReader( );
+                        var insert = BuildSQLiteInsert( schema[ i ] );
+                        var counter = 0;
 
                         while( reader.Read( ) )
                         {
@@ -219,9 +219,9 @@ namespace BudgetExcess
                             insert.Transaction = tx;
                             var pnames = new List<string>( );
 
-                            for( int j = 0; j < schema[ i ].Columns.Count; j++ )
+                            for( var j = 0; j < schema[ i ].Columns.Count; j++ )
                             {
-                                string pname = "@"
+                                var pname = "@"
                                     + GetNormalizedName( schema[ i ].Columns[ j ].columnName,
                                         pnames );
 
@@ -281,7 +281,7 @@ namespace BudgetExcess
                 return null;
             }
 
-            DbType dt = GetDbTypeOfColumn( columnschema );
+            var dt = GetDbTypeOfColumn( columnschema );
 
             switch( dt )
             {
@@ -465,7 +465,7 @@ namespace BudgetExcess
                 {
                     data = new byte[ 16 ];
 
-                    for( int i = 0; i < 16; i++ )
+                    for( var i = 0; i < 16; i++ )
                     {
                         data[ i ] = blob.ToArray( )[ i ];
                     }
@@ -478,7 +478,7 @@ namespace BudgetExcess
                 {
                     data = new byte[ 16 ];
 
-                    for( int i = 0; i < blob.Count( ); i++ )
+                    for( var i = 0; i < blob.Count( ); i++ )
                     {
                         data[ i ] = blob.ToArray( )[ i ];
                     }
@@ -514,11 +514,11 @@ namespace BudgetExcess
         /// <returns></returns>
         private SQLiteCommand BuildSQLiteInsert( TableSchema ts )
         {
-            SQLiteCommand res = new SQLiteCommand( );
-            StringBuilder sb = new StringBuilder( );
+            var res = new SQLiteCommand( );
+            var sb = new StringBuilder( );
             sb.Append( $"INSERT INTO { ts.TableName }");
 
-            for( int i = 0; i < ts.Columns.Count; i++ )
+            for( var i = 0; i < ts.Columns.Count; i++ )
             {
                 sb.Append( "[" + ts.Columns[ i ].columnName + "]" );
 
@@ -531,9 +531,9 @@ namespace BudgetExcess
             sb.Append( ") VALUES (" );
             var pnames = new List<string>( );
 
-            for( int i = 0; i < ts.Columns.Count; i++ )
+            for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                string pname = "@" + GetNormalizedName( ts.Columns[ i ].columnName, pnames );
+                var pname = "@" + GetNormalizedName( ts.Columns[ i ].columnName, pnames );
                 sb.Append( pname );
 
                 if( i < ts.Columns.Count - 1 )
@@ -541,9 +541,9 @@ namespace BudgetExcess
                     sb.Append( ", " );
                 }
 
-                DbType dbtype = GetDbTypeOfColumn( ts.Columns[ i ] );
+                var dbtype = GetDbTypeOfColumn( ts.Columns[ i ] );
 
-                SQLiteParameter prm =
+                var prm =
                     new SQLiteParameter( pname, dbtype, ts.Columns[ i ].columnName );
 
                 res.Parameters.Add( prm );
@@ -566,9 +566,9 @@ namespace BudgetExcess
         /// <returns></returns>
         private string GetNormalizedName( string str, ICollection<string> names )
         {
-            StringBuilder sb = new StringBuilder( );
+            var sb = new StringBuilder( );
 
-            for( int i = 0; i < str.Length; i++ )
+            for( var i = 0; i < str.Length; i++ )
             {
                 if( char.IsLetterOrDigit( str[ i ] ) )
                 {
@@ -669,10 +669,10 @@ namespace BudgetExcess
         /// <returns></returns>
         private string BuildSqlServerTableQuery( TableSchema ts )
         {
-            StringBuilder sb = new StringBuilder( );
+            var sb = new StringBuilder( );
             sb.Append( "SELECT " );
 
-            for( int i = 0; i < ts.Columns.Count; i++ )
+            for( var i = 0; i < ts.Columns.Count; i++ )
             {
                 sb.Append( "[" + ts.Columns[ i ].columnName + "]" );
 
@@ -708,16 +708,16 @@ namespace BudgetExcess
             _log.Debug( "SQLite file was created successfully at [" + path + "]" );
 
             // Connect to the newly created database
-            string sqliteconnstring = CreateSQLiteConnectionString( path, password );
+            var sqliteconnstring = CreateSQLiteConnectionString( path, password );
 
-            using( SQLiteConnection conn = new SQLiteConnection( sqliteconnstring ) )
+            using( var conn = new SQLiteConnection( sqliteconnstring ) )
             {
                 conn.Open( );
 
                 // Create all tables in the new database
-                int count = 0;
+                var count = 0;
 
-                foreach( TableSchema dt in schema.tables )
+                foreach( var dt in schema.tables )
                 {
                     try
                     {
@@ -743,7 +743,7 @@ namespace BudgetExcess
 
                 if( createviews )
                 {
-                    foreach( ViewSchema vs in schema.views )
+                    foreach( var vs in schema.views )
                     {
                         try
                         {
@@ -779,15 +779,15 @@ namespace BudgetExcess
             FailedViewDefinitionHandler handler )
         {
             // Prepare a CREATE VIEW DDL statement
-            string stmt = vs.viewSQL;
+            var stmt = vs.viewSQL;
             _log.Info( "\n\n" + stmt + "\n\n" );
 
             // Execute the query in order to actually create the view.
-            SQLiteTransaction tx = conn.BeginTransaction( );
+            var tx = conn.BeginTransaction( );
 
             try
             {
-                using( SQLiteCommand cmd = new SQLiteCommand( stmt, conn, tx ) )
+                using( var cmd = new SQLiteCommand( stmt, conn, tx ) )
                 {
                     cmd.ExecuteNonQuery( );
                 }
@@ -800,11 +800,11 @@ namespace BudgetExcess
 
                 if( handler != null )
                 {
-                    ViewSchema updated = new ViewSchema
+                    var updated = new ViewSchema
                         { viewName = vs.viewName, viewSQL = vs.viewSQL };
 
                     // Ask the user to supply the new view definition SQL statement
-                    string sql = handler( updated );
+                    var sql = handler( updated );
 
                     if( sql == null )
                     {
@@ -831,11 +831,11 @@ namespace BudgetExcess
         private void AddSQLiteTable( SQLiteConnection conn, TableSchema dt )
         {
             // Prepare a CREATE TABLE DDL statement
-            string stmt = BuildCreateTableQuery( dt );
+            var stmt = BuildCreateTableQuery( dt );
             _log.Info( "\n\n" + stmt + "\n\n" );
 
             // Execute the query in order to actually create the table.
-            SQLiteCommand cmd = new SQLiteCommand( stmt, conn );
+            var cmd = new SQLiteCommand( stmt, conn );
             cmd.ExecuteNonQuery( );
         }
 
@@ -846,14 +846,14 @@ namespace BudgetExcess
         /// <returns></returns>
         private string BuildCreateTableQuery( TableSchema schema )
         {
-            StringBuilder builder = new StringBuilder( );
+            var builder = new StringBuilder( );
             builder.Append( "CREATE TABLE [" + schema.TableName + "] (\n" );
-            bool key = false;
+            var key = false;
 
-            for( int i = 0; i < schema.Columns.Count; i++ )
+            for( var i = 0; i < schema.Columns.Count; i++ )
             {
-                ColumnSchema col = schema.Columns[ i ];
-                string cline = BuildColumnStatement( col, schema, ref key );
+                var col = schema.Columns[ i ];
+                var cline = BuildColumnStatement( col, schema, ref key );
                 builder.Append( cline );
 
                 if( i < schema.Columns.Count - 1 )
@@ -869,7 +869,7 @@ namespace BudgetExcess
                 builder.Append( ",\n" );
                 builder.Append( "    PRIMARY KEY (" );
 
-                for( int i = 0; i < schema.PrimaryKey.Count; i++ )
+                for( var i = 0; i < schema.PrimaryKey.Count; i++ )
                 {
                     builder.Append( "[" + schema.PrimaryKey[ i ] + "]" );
 
@@ -891,11 +891,11 @@ namespace BudgetExcess
             {
                 builder.Append( ",\n" );
 
-                for( int i = 0; i < schema.ForeignKeys.Count; i++ )
+                for( var i = 0; i < schema.ForeignKeys.Count; i++ )
                 {
-                    ForeignKeySchema foreignkey = schema.ForeignKeys[ i ];
+                    var foreignkey = schema.ForeignKeys[ i ];
 
-                    string stmt =
+                    var stmt =
                         $"    FOREIGN KEY ([{foreignkey.columnName}])\n        REFERENCES [{foreignkey.foreignTableName}]([{foreignkey.foreignColumnName}])";
 
                     builder.Append( stmt );
@@ -913,14 +913,14 @@ namespace BudgetExcess
             // Create any relevant indexes
             if( schema.Indexes != null )
             {
-                for( int i = 0; i < schema.Indexes.Count; i++ )
+                for( var i = 0; i < schema.Indexes.Count; i++ )
                 {
-                    string stmt = BuildCreateIndex( schema.TableName, schema.Indexes[ i ] );
+                    var stmt = BuildCreateIndex( schema.TableName, schema.Indexes[ i ] );
                     builder.Append( stmt + ";\n" );
                 }// for
             }    // if
 
-            string query = builder.ToString( );
+            var query = builder.ToString( );
             return query;
         }
 
@@ -932,7 +932,7 @@ namespace BudgetExcess
         /// <returns></returns>
         private string BuildCreateIndex( string tablename, IndexSchema schema )
         {
-            StringBuilder sb = new StringBuilder( );
+            var sb = new StringBuilder( );
             sb.Append( "CREATE " );
 
             if( schema.isUnique )
@@ -944,7 +944,7 @@ namespace BudgetExcess
             sb.Append( "ON [" + tablename + "]\n" );
             sb.Append( "(" );
 
-            for( int i = 0; i < schema.columns.Count; i++ )
+            for( var i = 0; i < schema.columns.Count; i++ )
             {
                 sb.Append( "[" + schema.columns[ i ] + "]" );
 
@@ -974,7 +974,7 @@ namespace BudgetExcess
         /// <returns></returns>
         private string BuildColumnStatement( ColumnSchema col, TableSchema ts, ref bool pkey )
         {
-            StringBuilder sb = new StringBuilder( );
+            var sb = new StringBuilder( );
             sb.Append( "\t[" + col.columnName + "]\t" );
 
             // Special treatment for IDENTITY columns
@@ -1022,7 +1022,7 @@ namespace BudgetExcess
                 sb.Append( " COLLATE NOCASE" );
             }
 
-            string defval = StripParens( col.defaultValue );
+            var defval = StripParens( col.defaultValue );
             defval = DiscardNational( defval );
             _log.Debug( "DEFAULT VALUE BEFORE [" + col.defaultValue + "] AFTER [" + defval + "]" );
 
@@ -1050,8 +1050,8 @@ namespace BudgetExcess
         /// <returns></returns>
         private string DiscardNational( string value )
         {
-            Regex rx = new Regex( @"N\'([^\']*)\'" );
-            Match m = rx.Match( value );
+            var rx = new Regex( @"N\'([^\']*)\'" );
+            var m = rx.Match( value );
 
             return m.Success
                 ? m.Groups[ 1 ].Value
@@ -1096,8 +1096,8 @@ namespace BudgetExcess
         /// <returns></returns>
         private string StripParens( string value )
         {
-            Regex rx = new Regex( @"\(([^\)]*)\)" );
-            Match m = rx.Match( value );
+            var rx = new Regex( @"\(([^\)]*)\)" );
+            var m = rx.Match( value );
 
             return !m.Success
                 ? value
@@ -1117,7 +1117,7 @@ namespace BudgetExcess
             // First step is to read the names of all tables in the database
             var tables = new List<TableSchema>( );
 
-            using( SqlConnection conn = new SqlConnection( connstring ) )
+            using( var conn = new SqlConnection( connstring ) )
             {
                 conn.Open( );
                 var tablenames = new List<string>( );
@@ -1127,9 +1127,9 @@ namespace BudgetExcess
                 const string _sql =
                     @"select * from INFORMATIONSCHEMA.TABLES  where TABLETYPE = 'BASE TABLE'";
 
-                using( SqlCommand cmd = new SqlCommand( _sql, conn ) )
+                using( var cmd = new SqlCommand( _sql, conn ) )
                 {
-                    SqlDataReader reader = cmd.ExecuteReader( );
+                    var reader = cmd.ExecuteReader( );
 
                     while( reader.Read( ) )
                     {
@@ -1149,13 +1149,13 @@ namespace BudgetExcess
                 }
 
                 // Next step is to use ADO APIs to query the schema of each table.
-                int count = 0;
+                var count = 0;
 
-                for( int i = 0; i < tablenames.Count; i++ )
+                for( var i = 0; i < tablenames.Count; i++ )
                 {
-                    string tname = tablenames[ i ];
-                    string tschma = tblschema[ i ];
-                    TableSchema ts = CreateTableSchema( conn, tname, tschma );
+                    var tname = tablenames[ i ];
+                    var tschma = tblschema[ i ];
+                    var ts = CreateTableSchema( conn, tname, tschma );
                     CreateForeignKeySchema( conn, ts );
                     tables.Add( ts );
                     count++;
@@ -1178,26 +1178,26 @@ namespace BudgetExcess
                 tables = updated;
             }
 
-            Regex removedbo =
+            var removedbo =
                 new Regex( @"dbo\.", RegexOptions.Compiled | RegexOptions.IgnoreCase );
 
             // Continue and read all of the views in the database
             var views = new List<ViewSchema>( );
 
-            using( SqlConnection conn = new SqlConnection( connstring ) )
+            using( var conn = new SqlConnection( connstring ) )
             {
                 conn.Open( );
 
                 const string _sql =
                     @"SELECT TABLENAME, VIEWDEFINITION  from INFORMATIONSCHEMA.VIEWS";
 
-                SqlCommand cmd = new SqlCommand( _sql, conn );
-                SqlDataReader reader = cmd.ExecuteReader( );
-                int count = 0;
+                var cmd = new SqlCommand( _sql, conn );
+                var reader = cmd.ExecuteReader( );
+                var count = 0;
 
                 while( reader.Read( ) )
                 {
-                    ViewSchema vs = new ViewSchema( );
+                    var vs = new ViewSchema( );
 
                     if( reader[ "TABLENAME" ] == DBNull.Value )
                     {
@@ -1225,7 +1225,7 @@ namespace BudgetExcess
                 }// while
             }    // using
 
-            DatabaseSchema ds = new DatabaseSchema { tables = tables, views = views };
+            var ds = new DatabaseSchema { tables = tables, views = views };
 
             return ds;
         }
@@ -1252,38 +1252,38 @@ namespace BudgetExcess
         [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
         private TableSchema CreateTableSchema( SqlConnection conn, string tablename, string tschma )
         {
-            TableSchema res = new TableSchema
+            var res = new TableSchema
             {
                 TableName = tablename, TableSchemaName = tschma, Columns = new List<ColumnSchema>( )
             };
 
-            using( SqlCommand cmd = new SqlCommand(
+            using( var cmd = new SqlCommand(
                 @"SELECT COLUMNNAME, COLUMNDEFAULT, ISNULLABLE,DATATYPE,  (columnproperty(objectid(TABLENAME), COLUMNNAME, 'IsIdentity')) A[IDENT], "
                 + @"CHARACTERMAXIMUMLENGTH AS CSIZE FROM INFORMATIONSCHEMA.COLUMNS WHERE TABLENAME = '{tablename}' ORDER BY ORDINALPOSITION ASC",
                 conn ) )
             {
-                SqlDataReader reader = cmd.ExecuteReader( );
+                var reader = cmd.ExecuteReader( );
 
                 while( reader.Read( ) )
                 {
-                    object tmp = reader[ "COLUMNNAME" ];
+                    var tmp = reader[ "COLUMNNAME" ];
 
                     if( tmp is DBNull )
                     {
                         continue;
                     }
 
-                    string colname = (string)reader[ "COLUMNNAME" ];
+                    var colname = (string)reader[ "COLUMNNAME" ];
                     tmp = reader[ "COLUMNDEFAULT" ];
 
-                    string coldefault = true & tmp is DBNull
+                    var coldefault = true & tmp is DBNull
                         ? string.Empty
                         : (string)tmp;
 
                     tmp = reader[ "ISNULLABLE" ];
-                    bool isnullable = (string)tmp == "YES";
-                    string datatype = (string)reader[ "DATATYPE" ];
-                    bool isidentity = false;
+                    var isnullable = (string)tmp == "YES";
+                    var datatype = (string)reader[ "DATATYPE" ];
+                    var isidentity = false;
 
                     if( reader[ "IDENT" ] != DBNull.Value )
                     {
@@ -1293,7 +1293,7 @@ namespace BudgetExcess
                         }
                     }
 
-                    int length = reader[ "CSIZE" ] != DBNull.Value
+                    var length = reader[ "CSIZE" ] != DBNull.Value
                         ? Convert.ToInt32( reader[ "CSIZE" ] )
                         : 0;
 
@@ -1398,7 +1398,7 @@ namespace BudgetExcess
 
                     coldefault = FixDefaultValueString( coldefault );
 
-                    ColumnSchema col = new ColumnSchema
+                    var col = new ColumnSchema
                     {
                         columnName = colname, columnType = datatype, length = length,
                         isNullable = isnullable, isIdentity = isidentity,
@@ -1410,29 +1410,29 @@ namespace BudgetExcess
             }
 
             // Find PRIMARY KEY information
-            using( SqlCommand cmd2 = new SqlCommand( $"EXEC sppkeys '{tablename}'", conn ) )
+            using( var cmd2 = new SqlCommand( $"EXEC sppkeys '{tablename}'", conn ) )
             {
-                SqlDataReader reader = cmd2.ExecuteReader( );
+                var reader = cmd2.ExecuteReader( );
                 res.PrimaryKey = new List<string>( );
 
                 while( reader.Read( ) )
                 {
-                    string colname = (string)reader[ "COLUMNNAME" ];
+                    var colname = (string)reader[ "COLUMNNAME" ];
                     res.PrimaryKey.Add( colname );
                 }// while
             }
 
             // Find COLLATE information for all columns in the table
-            using( SqlCommand cmd4 =
+            using( var cmd4 =
                 new SqlCommand( @"EXEC sptablecollations '" + tschma + "." + tablename + "'",
                     conn ) )
             {
-                SqlDataReader reader = cmd4.ExecuteReader( );
+                var reader = cmd4.ExecuteReader( );
 
                 while( reader.Read( ) )
                 {
                     bool? iscasesensitive = null;
-                    string colname = (string)reader[ "name" ];
+                    var colname = (string)reader[ "name" ];
 
                     if( reader[ "tdscollation" ] != DBNull.Value )
                     {
@@ -1443,7 +1443,7 @@ namespace BudgetExcess
                     if( iscasesensitive.HasValue )
                     {
                         // Update the corresponding column schema.
-                        foreach( ColumnSchema csc in res.Columns )
+                        foreach( var csc in res.Columns )
                         {
                             if( csc.columnName == colname )
                             {
@@ -1458,17 +1458,17 @@ namespace BudgetExcess
             try
             {
                 // Find index information
-                SqlCommand cmd3 =
+                var cmd3 =
                     new SqlCommand( @"exec sphelpindex '" + tschma + "." + tablename + "'", conn );
 
-                SqlDataReader reader = cmd3.ExecuteReader( );
+                var reader = cmd3.ExecuteReader( );
                 res.Indexes = new List<IndexSchema>( );
 
                 while( reader.Read( ) )
                 {
-                    string indexname = (string)reader[ "indexname" ];
-                    string desc = (string)reader[ "indexdescription" ];
-                    string keys = (string)reader[ "indexkeys" ];
+                    var indexname = (string)reader[ "indexname" ];
+                    var desc = (string)reader[ "indexdescription" ];
+                    var keys = (string)reader[ "indexkeys" ];
 
                     // Don't add the index if it is actually a primary key index
                     if( desc.Contains( "primary key" ) )
@@ -1476,7 +1476,7 @@ namespace BudgetExcess
                         continue;
                     }
 
-                    IndexSchema index = BuildIndexSchema( indexname, desc, keys );
+                    var index = BuildIndexSchema( indexname, desc, keys );
                     res.Indexes.Add( index );
                 }// while
             }
@@ -1539,14 +1539,14 @@ namespace BudgetExcess
         /// <returns></returns>
         private string FixDefaultValueString( string coldefault )
         {
-            bool replaced = false;
-            string res = coldefault.Trim( );
+            var replaced = false;
+            var res = coldefault.Trim( );
 
             // Find first/last indexes in which to search
-            int first = -1;
-            int last = -1;
+            var first = -1;
+            var last = -1;
 
-            for( int i = 0; i < res.Length; i++ )
+            for( var i = 0; i < res.Length; i++ )
             {
                 if( res[ i ] == '\''
                     && first == -1 )
@@ -1568,9 +1568,9 @@ namespace BudgetExcess
                 return res.Substring( first, last - first + 1 );
             }
 
-            StringBuilder sb = new StringBuilder( );
+            var sb = new StringBuilder( );
 
-            for( int i = 0; i < res.Length; i++ )
+            for( var i = 0; i < res.Length; i++ )
             {
                 if( res[ i ] != '('
                     && res[ i ] != ')' )
@@ -1595,16 +1595,16 @@ namespace BudgetExcess
         {
             ts.ForeignKeys = new List<ForeignKeySchema>( );
 
-            SqlCommand cmd = new SqlCommand(
+            var cmd = new SqlCommand(
                 $@"SELECT   ColumnName = CU.COLUMNNAME,   ForeignTableName  = PK.TABLENAME,   ForeignColumnName = PT.COLUMNNAME,   DeleteRule = C.DELETERULE,   IsNullable = COL.ISNULLABLE FROM INFORMATIONSCHEMA.REFERENTIALCONSTRAINTS C INNER JOIN INFORMATIONSCHEMA.TABLECONSTRAINTS FK ON C.CONSTRAINTNAME = FK.CONSTRAINTNAME INNER JOIN INFORMATIONSCHEMA.TABLECONSTRAINTS PK ON C.UNIQUECONSTRAINTNAME = PK.CONSTRAINTNAME INNER JOIN INFORMATIONSCHEMA.KEYCOLUMNUSAGE CU ON C.CONSTRAINTNAME = CU.CONSTRAINTNAME INNER JOIN   (     SELECT i1.TABLENAME, i2.COLUMNNAME     FROM  INFORMATIONSCHEMA.TABLECONSTRAINTS i1     INNER JOIN INFORMATIONSCHEMA.KEYCOLUMNUSAGE i2 ON i1.CONSTRAINTNAME = i2.CONSTRAINTNAME     WHERE i1.CONSTRAINTTYPE = 'PRIMARY KEY'   ) PT ON PT.TABLENAME = PK.TABLENAME INNER JOIN INFORMATIONSCHEMA.COLUMNS AS COL ON CU.COLUMNNAME = COL.COLUMNNAME AND FK.TABLENAME = COL.TABLENAME WHERE FK.TableNAME='{
                         ts.TableName
                     }'", conn );
 
-            SqlDataReader reader = cmd.ExecuteReader( );
+            var reader = cmd.ExecuteReader( );
 
             while( reader.Read( ) )
             {
-                ForeignKeySchema fkc = new ForeignKeySchema
+                var fkc = new ForeignKeySchema
                 {
                     columnName = (string)reader[ "ColumnName" ],
                     foreignTableName = (string)reader[ "ForeignTableName" ],
@@ -1628,14 +1628,14 @@ namespace BudgetExcess
         /// index [" + indexname + "]</exception>
         private IndexSchema BuildIndexSchema( string indexname, string desc, string keys )
         {
-            IndexSchema res = new IndexSchema { indexName = indexname };
+            var res = new IndexSchema { indexName = indexname };
 
             // Determine if this is a unique index or not.
             var descparts = desc.Split( ',' );
 
-            for( int i = 0; i < descparts.Length; i++ )
+            for( var i = 0; i < descparts.Length; i++ )
             {
-                string p = descparts[ i ];
+                var p = descparts[ i ];
 
                 if( p.Trim( ).Contains( "unique" ) )
                 {
@@ -1648,9 +1648,9 @@ namespace BudgetExcess
             res.columns = new List<IndexColumn>( );
             var keysparts = keys.Split( ',' );
 
-            foreach( string p in keysparts )
+            foreach( var p in keysparts )
             {
-                Match m = _keyrx.Match( p.Trim( ) );
+                var m = _keyrx.Match( p.Trim( ) );
 
                 if( !m.Success )
                 {
@@ -1658,7 +1658,7 @@ namespace BudgetExcess
                         + indexname + "]" );
                 }
 
-                IndexColumn ic = new IndexColumn( );
+                var ic = new IndexColumn( );
                 res.columns.Add( ic );
             }// foreach
 
@@ -1677,7 +1677,7 @@ namespace BudgetExcess
                 return val;
             }
 
-            Match m = _defaultvaluerx.Match( val );
+            var m = _defaultvaluerx.Match( val );
 
             return m.Success
                 ? m.Groups[ 1 ].Value
@@ -1692,7 +1692,7 @@ namespace BudgetExcess
         /// <returns></returns>
         private string CreateSQLiteConnectionString( string path, string password )
         {
-            SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder
+            var builder = new SQLiteConnectionStringBuilder
                 { DataSource = path };
 
             if( password != null )
@@ -1702,7 +1702,7 @@ namespace BudgetExcess
 
             builder.PageSize = 4096;
             builder.UseUTF16Encoding = true;
-            string connstring = builder.ConnectionString;
+            var connstring = builder.ConnectionString;
             return connstring;
         }
 
@@ -1716,14 +1716,14 @@ namespace BudgetExcess
             string password )
         {
             // Connect to the newly created database
-            string sqliteconnstring = CreateSQLiteConnectionString( path, password );
+            var sqliteconnstring = CreateSQLiteConnectionString( path, password );
 
-            using( SQLiteConnection conn = new SQLiteConnection( sqliteconnstring ) )
+            using( var conn = new SQLiteConnection( sqliteconnstring ) )
             {
                 conn.Open( );
 
                 // foreach
-                foreach( TableSchema dt in schema )
+                foreach( var dt in schema )
                 {
                     try
                     {
@@ -1749,10 +1749,10 @@ namespace BudgetExcess
         {
             var triggers = TriggerBuilder.GetForeignKeyTriggers( dt );
 
-            for( int i = 0; i < triggers.Count; i++ )
+            for( var i = 0; i < triggers.Count; i++ )
             {
-                TriggerSchema trigger = triggers[ i ];
-                SQLiteCommand cmd = new SQLiteCommand( WriteTriggerSchema( trigger ), conn );
+                var trigger = triggers[ i ];
+                var cmd = new SQLiteCommand( WriteTriggerSchema( trigger ), conn );
                 cmd.ExecuteNonQuery( );
             }
         }

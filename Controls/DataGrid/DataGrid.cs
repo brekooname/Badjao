@@ -254,10 +254,10 @@ namespace BudgetExecution
                 {
                     if( dataRows?.CopyToDataTable( )?.Columns?.Count > 0 )
                     {
-                        int _count = dataRows.CopyToDataTable( ).Columns.Count;
-                        DataColumnCollection _columns = dataRows.CopyToDataTable( ).Columns;
+                        var _count = dataRows.CopyToDataTable( ).Columns.Count;
+                        var _columns = dataRows.CopyToDataTable( ).Columns;
 
-                        for( int i = 0; i < _count; i++ )
+                        for( var i = 0; i < _count; i++ )
                         {
                             Columns[ i ].HeaderText = _columns[ i ]?.ColumnName?.SplitPascal( );
                         }
@@ -282,7 +282,7 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        string _vals = string.Empty;
+                        var _vals = string.Empty;
 
                         foreach( var _kvp in dict )
                         {
@@ -310,7 +310,7 @@ namespace BudgetExecution
         {
             try
             {
-                using( Message _message = new Message( "Not Yet Implemented." ) )
+                using( var _message = new Message( "Not Yet Implemented." ) )
                 {
                     _message?.ShowDialog( );
                 }
@@ -335,7 +335,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ColumnConfiguration _columnConfiguration = new ColumnConfiguration( this )
+                    var _columnConfiguration = new ColumnConfiguration( this )
                         { Location = PointToScreen( new Point( e.X, e.Y ) ) };
 
                     _columnConfiguration.ColumnListBox?.Items?.Clear( );
@@ -360,7 +360,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

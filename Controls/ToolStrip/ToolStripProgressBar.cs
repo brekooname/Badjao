@@ -142,18 +142,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _text = progress?.HoverText;
+                    var _text = progress?.HoverText;
 
                     if( !string.IsNullOrEmpty( _text ) )
                     {
-                        MetroTip _ = new MetroTip( this, _text );
+                        var _ = new MetroTip( this, _text );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) )
                             && !string.IsNullOrEmpty( Tag.ToString( ) ) )
                         {
-                            MetroTip _ = new MetroTip( progress, Tag?.ToString( )?.SplitPascal( ) );
+                            var _ = new MetroTip( progress, Tag?.ToString( )?.SplitPascal( ) );
                         }
                     }
                 }

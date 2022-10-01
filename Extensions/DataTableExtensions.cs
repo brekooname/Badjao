@@ -42,19 +42,19 @@ namespace BudgetExecution
         {
             try
             {
-                XDocument _xml = new XDocument
+                var _xml = new XDocument
                     { Declaration = new XDeclaration( "1.0", "utf-8", "" ) };
 
                 _xml.Add( new XElement( rootName ) );
 
                 foreach( DataRow _dataRow in dataTable.Rows )
                 {
-                    XElement _element = new XElement( dataTable.TableName );
+                    var _element = new XElement( dataTable.TableName );
 
                     foreach( DataColumn col in dataTable.Columns )
                     {
-                        string _row = _dataRow?[ col ]?.ToString( )?.Trim( ' ' );
-                        XElement _node = new XElement( col.ColumnName, _row );
+                        var _row = _dataRow?[ col ]?.ToString( )?.Trim( ' ' );
+                        var _node = new XElement( col.ColumnName, _row );
 
                         _element.Add( new XElement( _node ) );
                     }
@@ -91,10 +91,10 @@ namespace BudgetExecution
                     throw new Exception( "OSExportToExcelFile: Null or empty input datatable!\n" );
                 }
 
-                ExcelPackage _excel = new ExcelPackage( );
-                ExcelWorksheet _worksheet = _excel?.Workbook?.Worksheets[ 0 ];
+                var _excel = new ExcelPackage( );
+                var _worksheet = _excel?.Workbook?.Worksheets[ 0 ];
 
-                for( int i = 0; i < dataTable?.Columns?.Count; i++ )
+                for( var i = 0; i < dataTable?.Columns?.Count; i++ )
                 {
                     if( _worksheet != null
                         && !string.IsNullOrEmpty( dataTable.Columns[ i ]?.ColumnName ) )
@@ -103,9 +103,9 @@ namespace BudgetExecution
                     }
                 }
 
-                for( int i = 0; i < dataTable.Rows?.Count; i++ )
+                for( var i = 0; i < dataTable.Rows?.Count; i++ )
                 {
-                    for( int j = 0; j < dataTable.Columns?.Count; j++ )
+                    for( var j = 0; j < dataTable.Columns?.Count; j++ )
                     {
                         if( _worksheet != null )
                         {
@@ -151,13 +151,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _connectionString = ConnectionString[ "Excel" ].ConnectionString;
-                    string _sql = "SELECT * FROM [" + sheetName + "$]";
+                    var _connectionString = ConnectionString[ "Excel" ].ConnectionString;
+                    var _sql = "SELECT * FROM [" + sheetName + "$]";
 
-                    using( OleDbDataAdapter _adapter =
+                    using( var _adapter =
                         new OleDbDataAdapter( _sql, _connectionString ) )
                     {
-                        DataTable _table = new DataTable { TableName = sheetName };
+                        var _table = new DataTable { TableName = sheetName };
 
                         _adapter?.FillSchema( _table, SchemaType.Source );
                         _adapter.Fill( _table, _table.TableName );
@@ -256,7 +256,7 @@ namespace BudgetExecution
                 {
                     var _list = new List<int>( );
 
-                    foreach( DataRow _row in dataTable.AsEnumerable( ) )
+                    foreach( var _row in dataTable.AsEnumerable( ) )
                     {
                         if( _row?.HasPrimaryKey( ) == true )
                         {
@@ -293,7 +293,7 @@ namespace BudgetExecution
                     && dict?.Any( ) == true )
                 {
                     var _list = new List<int>( );
-                    string _criteria = dict.ToCriteria( );
+                    var _criteria = dict.ToCriteria( );
 
                     if( !string.IsNullOrEmpty( _criteria ) )
                     {
@@ -301,7 +301,7 @@ namespace BudgetExecution
 
                         if( _dataRows?.Any( ) == true )
                         {
-                            foreach( DataRow row in _dataRows )
+                            foreach( var row in _dataRows )
                             {
                                 if( row?.HasPrimaryKey( ) == true )
                                 {
@@ -399,7 +399,7 @@ namespace BudgetExecution
             {
                 var _fields = new string[ dataTable.Columns.Count ];
 
-                for( int i = 0; i < dataTable.Columns.Count; i++ )
+                for( var i = 0; i < dataTable.Columns.Count; i++ )
                 {
                     _fields[ i ] = dataTable.Columns[ i ].ColumnName;
                 }
@@ -429,7 +429,7 @@ namespace BudgetExecution
             {
                 var _index = new Dictionary<string, int>( );
 
-                for( int i = 0; i < dataTable.Columns.Count; i++ )
+                for( var i = 0; i < dataTable.Columns.Count; i++ )
                 {
                     _index.Add( dataTable.Columns[ i ].ColumnName, i );
                 }
@@ -481,7 +481,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

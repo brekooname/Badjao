@@ -174,7 +174,7 @@ namespace BudgetExecution
                 && dataRow.HasNumeric( )
                 && GetCount( dataRow, numeric ) > 30 )
             {
-                DataTable _table = dataRow.CopyToDataTable( );
+                var _table = dataRow.CopyToDataTable( );
 
                 try
                 {

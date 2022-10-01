@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.Threading;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
@@ -81,7 +80,7 @@ namespace BudgetExecution
             AccessConnect = new AccessConnect( AccessPath.Text );
             var tables = AccessConnect.GetTableNames( );
 
-            foreach( string s in tables )
+            foreach( var s in tables )
             {
                 CheckTableNames.Items.Add( s );
             }
@@ -95,7 +94,7 @@ namespace BudgetExecution
         {
             var result = new List<string>( );
 
-            for( int i = 0; i < CheckTableNames.Items.Count; i++ )
+            for( var i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 if( CheckTableNames.GetItemChecked( i ) )
                 {
@@ -133,19 +132,19 @@ namespace BudgetExecution
                 return;
             }
 
-            AccessConversion db = new AccessConversion( );
+            var db = new AccessConversion( );
 
-            for( int i = 0; i < tables.Count; i++ )
+            for( var i = 0; i < tables.Count; i++ )
             {
-                string table = tables[ i ];
+                var table = tables[ i ];
                 db.CreateTable( table );
 
-                DataTable dt = AccessConnect.GetTable( table );
+                var dt = AccessConnect.GetTable( table );
 
-                for( int j = 0; j < dt.Rows.Count; j++ )
+                for( var j = 0; j < dt.Rows.Count; j++ )
                 {
-                    string word = dt.Rows[ j ][ "word" ].ToString( );
-                    string image = dt.Rows[ j ][ "image" ].ToString( );
+                    var word = dt.Rows[ j ][ "word" ].ToString( );
+                    var image = dt.Rows[ j ][ "image" ].ToString( );
                     db.InsertRow( word, image, table );
                 }
 
@@ -194,7 +193,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CheckAllOnClick( object sender, EventArgs e )
         {
-            for( int i = 0; i < CheckTableNames.Items.Count; i++ )
+            for( var i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 CheckTableNames.SetItemChecked( i, true );
             }
@@ -207,7 +206,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtoOnClick( object sender, EventArgs e )
         {
-            for( int i = 0; i < CheckTableNames.Items.Count; i++ )
+            for( var i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 CheckTableNames.SetItemChecked( i, false );
             }
@@ -220,7 +219,7 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SelectButtonOnClick( object sender, EventArgs e )
         {
-            OpenFileDialog openfiledialog = new OpenFileDialog
+            var openfiledialog = new OpenFileDialog
             {
                 Multiselect = false,
                 Filter = "Access database|*.mdb",

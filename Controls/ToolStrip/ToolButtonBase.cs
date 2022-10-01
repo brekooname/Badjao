@@ -189,7 +189,7 @@ namespace BudgetExecution
         {
             if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
-                string _text = GetHoverText( ToolType );
+                var _text = GetHoverText( ToolType );
 
                 if( !string.IsNullOrEmpty( _text ) )
                 {
@@ -229,7 +229,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

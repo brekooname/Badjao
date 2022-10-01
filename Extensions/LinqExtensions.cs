@@ -116,9 +116,9 @@ namespace BudgetExecution
                 return false;
             }
 
-            int _matches = 0;
+            var _matches = 0;
 
-            foreach( TSource _unused in source.Where( predicate ) )
+            foreach( var _unused in source.Where( predicate ) )
             {
                 _matches++;
 
@@ -198,9 +198,9 @@ namespace BudgetExecution
                 return false;
             }
 
-            int _matches = 0;
+            var _matches = 0;
 
-            foreach( TSource _unused in source.Where( predicate ) )
+            foreach( var _unused in source.Where( predicate ) )
             {
                 ++_matches;
 
@@ -279,9 +279,9 @@ namespace BudgetExecution
                 return true;
             }
 
-            int _matches = 0;
+            var _matches = 0;
 
-            foreach( TSource _unused in source.Where( predicate ) )
+            foreach( var _unused in source.Where( predicate ) )
             {
                 _matches++;
 
@@ -298,7 +298,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

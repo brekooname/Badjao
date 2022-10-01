@@ -8,7 +8,6 @@ namespace BudgetExecution
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
-    using System.Data;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -164,7 +163,7 @@ namespace BudgetExecution
                 TableListBox.Items.Clear( );
                 var _names = Enum.GetNames( typeof( Source ) );
 
-                foreach( string name in _names )
+                foreach( var name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -187,7 +186,7 @@ namespace BudgetExecution
             {
                 var _names = Enum.GetNames( typeof( SQL ) );
 
-                foreach( string name in _names )
+                foreach( var name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -217,13 +216,13 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 ColumnGroupBox.Text = string.Empty;
                 ValueGroupBox.Text = string.Empty;
-                VisualListBox _listBox = sender as VisualListBox;
-                string _value = _listBox?.SelectedItem.ToString( );
+                var _listBox = sender as VisualListBox;
+                var _value = _listBox?.SelectedItem.ToString( );
                 SelectedTable = _value;
 
                 if( !string.IsNullOrEmpty( _value ) )
                 {
-                    Source _source = (Source)Enum.Parse( typeof( Source ), _value );
+                    var _source = (Source)Enum.Parse( typeof( Source ), _value );
                     DataModel = new DataBuilder( _source, Provider.Access );
                     BindingSource.DataSource = DataModel.DataTable;
                     DataGrid.DataSource = BindingSource;
@@ -234,7 +233,7 @@ namespace BudgetExecution
 
                     var _columns = DataModel.GetDataColumns( );
 
-                    foreach( DataColumn col in _columns )
+                    foreach( var col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
                     }
@@ -263,15 +262,15 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 SqlQuery = string.Empty;
                 HeaderLabel.Text = string.Empty;
-                VisualListBox _listBox = sender as VisualListBox;
-                string _column = _listBox?.SelectedItem?.ToString( );
+                var _listBox = sender as VisualListBox;
+                var _column = _listBox?.SelectedItem?.ToString( );
                 var _series = DataModel.DataElements;
 
                 if( !string.IsNullOrEmpty( _column ) )
                 {
                     SelectedColumn = _column?.Trim( );
 
-                    foreach( string item in _series[ _column ] )
+                    foreach( var item in _series[ _column ] )
                     {
                         ValueListBox.Items.Add( item );
                     }
@@ -291,18 +290,18 @@ namespace BudgetExecution
             {
                 SqlQuery = string.Empty;
                 HeaderLabel.Text = string.Empty;
-                VisualListBox _listBox = sender as VisualListBox;
-                string _value = _listBox?.SelectedItem?.ToString( );
+                var _listBox = sender as VisualListBox;
+                var _value = _listBox?.SelectedItem?.ToString( );
                 SelectedValue = _value?.Trim( );
-                string _query = string.Empty;
+                var _query = string.Empty;
 
                 if( !string.IsNullOrEmpty( SelectedTable )
                     & !string.IsNullOrEmpty( SelectedColumn ) )
                 {
                     FormFilter.Add( SelectedColumn, SelectedValue );
 
-                    _query = $"SELECT * FROM {SelectedTable} "
-                        + $"WHERE {SelectedColumn} = '{SelectedValue}';";
+                    _query = $"SELECT * FROM { SelectedTable } "
+                        + $"WHERE { SelectedColumn } = '{ SelectedValue }';";
                 }
 
                 SqlQuery = _query;
@@ -321,7 +320,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

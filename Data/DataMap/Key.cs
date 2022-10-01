@@ -188,7 +188,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    PrimaryKey _key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
+                    var _key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
 
                     PrimaryKey = Enum.IsDefined( typeof( PrimaryKey ), _key )
                         ? PrimaryKey
@@ -218,7 +218,7 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( dataRow[ 0 ]?.ToString( ) )
                         && _columns?.Contains( dataRow[ 0 ]?.ToString( ) ) == true )
                     {
-                        PrimaryKey _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ),
+                        var _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ),
                             dataRow[ 0 ].ToString( ) );
 
                         var _names = dataRow.Table?.GetColumnNames( );
@@ -328,7 +328,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

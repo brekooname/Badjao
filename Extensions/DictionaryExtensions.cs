@@ -61,7 +61,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _criteria = "";
+                    var _criteria = "";
 
                     if( dict.HasPrimaryKey( ) )
                     {
@@ -75,7 +75,7 @@ namespace BudgetExecution
                                 _criteria += $"{kvp.Key} = '{kvp.Value}' AND ";
                             }
 
-                            string _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
+                            var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
                             _sql += $" WHERE {_key.Key} = {int.Parse( _key.Value.ToString( ) )};";
 
                             return !string.IsNullOrEmpty( _sql )
@@ -90,7 +90,7 @@ namespace BudgetExecution
                             _criteria += $"{kvp.Key} = '{kvp.Value}' AND ";
                         }
 
-                        string _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
+                        var _sql = _criteria.TrimEnd( " AND ".ToCharArray( ) );
 
                         return !string.IsNullOrEmpty( _sql )
                             ? _sql
@@ -197,9 +197,9 @@ namespace BudgetExecution
                         {
                             var _sqlite = new List<SQLiteParameter>( );
 
-                            for( int i = 0; i < _columns.Length; i++ )
+                            for( var i = 0; i < _columns.Length; i++ )
                             {
-                                SQLiteParameter _parameter = new SQLiteParameter
+                                var _parameter = new SQLiteParameter
                                     { SourceColumn = _columns[ i ], Value = _values[ i ] };
 
                                 _sqlite.Add( _parameter );
@@ -215,9 +215,9 @@ namespace BudgetExecution
                         {
                             var _sqlce = new List<SqlCeParameter>( );
 
-                            for( int i = 0; i < _columns.Length; i++ )
+                            for( var i = 0; i < _columns.Length; i++ )
                             {
-                                SqlCeParameter _parameter = new SqlCeParameter
+                                var _parameter = new SqlCeParameter
                                     { SourceColumn = _columns[ i ], Value = _values[ i ] };
 
                                 _sqlce.Add( _parameter );
@@ -235,9 +235,9 @@ namespace BudgetExecution
                         {
                             var _oledb = new List<OleDbParameter>( );
 
-                            for( int i = 0; i < _columns.Length; i++ )
+                            for( var i = 0; i < _columns.Length; i++ )
                             {
-                                OleDbParameter _parameter = new OleDbParameter
+                                var _parameter = new OleDbParameter
                                     { SourceColumn = _columns[ i ], Value = _values[ i ] };
 
                                 _oledb.Add( _parameter );
@@ -253,9 +253,9 @@ namespace BudgetExecution
                         {
                             var _sqlserver = new List<SqlParameter>( );
 
-                            for( int i = 0; i < _columns.Length; i++ )
+                            for( var i = 0; i < _columns.Length; i++ )
                             {
-                                SqlParameter _parameter = new SqlParameter
+                                var _parameter = new SqlParameter
                                     { SourceColumn = _columns[ i ], Value = _values[ i ] };
 
                                 _sqlserver.Add( _parameter );
@@ -295,11 +295,11 @@ namespace BudgetExecution
                 {
                     var _array = dict.Keys?.ToArray( );
                     var _names = Enum.GetNames( typeof( PrimaryKey ) );
-                    int _count = 0;
+                    var _count = 0;
 
-                    for( int i = 1; i < _array.Length; i++ )
+                    for( var i = 1; i < _array.Length; i++ )
                     {
-                        string _name = _array[ i ];
+                        var _name = _array[ i ];
 
                         if( _names.Contains( _name ) )
                         {
@@ -356,7 +356,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

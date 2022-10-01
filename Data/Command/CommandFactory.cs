@@ -75,7 +75,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"CREATE TABLE { tableName }";
+                    var _sql = $"CREATE TABLE { tableName }";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
                         && !string.IsNullOrEmpty( _sql ) )
@@ -138,7 +138,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"CREATE VIEW {viewName};";
+                    var _sql = $"CREATE VIEW {viewName};";
                     switch( Provider )
                     {
                         case Provider.SQLite:
@@ -186,7 +186,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"DROP TABLE {dataTable.TableName};";
+                    var _sql = $"DROP TABLE {dataTable.TableName};";
 
                     if( !string.IsNullOrEmpty( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
@@ -247,7 +247,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql =
+                    var _sql =
                         $"ALTER TABLE { dataTable.TableName } ADD COLUMN { dataColumn.ColumnName };";
 
                     if( !string.IsNullOrEmpty( _sql )
@@ -309,7 +309,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = $"ALTER TABLE { dataTable.TableName } RENAME { name };";
+                    var _sql = $"ALTER TABLE { dataTable.TableName } RENAME { name };";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
                         && !string.IsNullOrEmpty( _sql ) )
@@ -367,7 +367,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _sql = SqlStatement.GetSelectStatement( );
+                    var _sql = SqlStatement.GetSelectStatement( );
 
                     switch( Provider )
                     {

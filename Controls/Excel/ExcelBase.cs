@@ -129,7 +129,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.AutoFitColumns( width );
                     }
@@ -158,7 +158,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         _range.Style.Fill.BackgroundColor.SetColor( color );
@@ -189,7 +189,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.SetFromFont( font );
                     }
@@ -218,7 +218,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.Color.SetColor( color );
                         _range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
@@ -252,7 +252,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         switch( side )
                         {
@@ -317,7 +317,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.HorizontalAlignment = align;
                     }
@@ -345,7 +345,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.VerticalAlignment = align;
                     }
@@ -370,7 +370,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelRange _range = grid.GetRange( ) )
+                    using( var _range = grid.GetRange( ) )
                     {
                         _range.Merge = true;
                     }

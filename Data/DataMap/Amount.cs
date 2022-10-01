@@ -265,7 +265,7 @@ namespace BudgetExecution
         {
             try
             {
-                using( Message _message = new Message( "Not Yet Implemented" ) )
+                using( var _message = new Message( "Not Yet Implemented" ) )
                 {
                     _message.Show( );
                 }

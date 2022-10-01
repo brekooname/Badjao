@@ -271,7 +271,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    decimal _select = dataRow.Sum( p => p.Field<decimal>( $"{numeric}" ) );
+                    var _select = dataRow.Sum( p => p.Field<decimal>( $"{numeric}" ) );
 
                     return _select > 0
                         ? double.Parse( _select.ToString( "N1" ) )
@@ -325,7 +325,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

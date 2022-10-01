@@ -141,7 +141,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _update = CreateUpdateStatement( Updates, Criteria );
+                    var _update = CreateUpdateStatement( Updates, Criteria );
                     return !string.IsNullOrEmpty( _update )
                         ? _update
                         : string.Empty;

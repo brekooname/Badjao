@@ -137,19 +137,19 @@ namespace BudgetExecution
                     {
                         case Provider.SQLite:
                         {
-                            SQLiteDataAdapter _adapter = new SQLiteDataAdapter( CommandText,
+                            var _adapter = new SQLiteDataAdapter( CommandText,
                                 Connection as SQLiteConnection );
                             return _adapter;
                         }
                         case Provider.SqlCe:
                         {
-                            SqlCeDataAdapter _adapter = new SqlCeDataAdapter( CommandText,
+                            var _adapter = new SqlCeDataAdapter( CommandText,
                                 Connection as SqlCeConnection );
                             return _adapter;
                         }
                         case Provider.SqlServer:
                         {
-                            SqlDataAdapter _adapter = new SqlDataAdapter( CommandText,
+                            var _adapter = new SqlDataAdapter( CommandText,
                                 Connection as SqlConnection );
                             return _adapter;
                         }
@@ -158,8 +158,8 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            OleDbConnection _connection = Connection as OleDbConnection;
-                            OleDbDataAdapter _adapter =
+                            var _connection = Connection as OleDbConnection;
+                            var _adapter =
                                 new OleDbDataAdapter( CommandText, _connection );
                             return _adapter;
                         }
@@ -181,7 +181,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

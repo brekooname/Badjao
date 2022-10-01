@@ -31,14 +31,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataRow _row = dataRow?.First( );
+                    var _row = dataRow?.First( );
                     var _dictionary = _row?.ToDictionary( );
                     var _array = _dictionary?.Keys.ToArray( );
                     var _names = Enum.GetNames( typeof( Numeric ) );
 
                     if( _array != null )
                     {
-                        foreach( string k in _array )
+                        foreach( var k in _array )
                         {
                             if( _names?.Contains( k ) == true )
                             {
@@ -72,14 +72,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataRow _row = dataRow?.First( );
+                    var _row = dataRow?.First( );
                     var _dict = _row?.ToDictionary( );
                     var _key = _dict?.Keys.ToArray( );
                     var _names = Enum.GetNames( typeof( PrimaryKey ) );
 
                     if( _key != null )
                     {
-                        foreach( string k in _key )
+                        foreach( var k in _key )
                         {
                             if( !string.IsNullOrEmpty( k )
                                 && _names?.Contains( k ) == true )
@@ -115,7 +115,7 @@ namespace BudgetExecution
                 {
                     var _list = new List<int>( );
 
-                    foreach( DataRow _row in dataRow )
+                    foreach( var _row in dataRow )
                     {
                         if( _row?.ItemArray[ 0 ] != null )
                         {
@@ -150,7 +150,7 @@ namespace BudgetExecution
                 {
                     var _list = new BindingList<DataRow>( );
 
-                    foreach( DataRow item in dataRows )
+                    foreach( var item in dataRows )
                     {
                         _list.Add( item );
                     }
@@ -185,7 +185,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataRow _row = dataRow?.First( );
+                    var _row = dataRow?.First( );
                     var _dictionary = _row.ToDictionary( );
                     var _array = _dictionary.Keys.ToArray( );
 
@@ -224,7 +224,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataTable _table = dataRow.CopyToDataTable( );
+                    var _table = dataRow.CopyToDataTable( );
                     var _rows = _table?.Select( dict.ToCriteria( ) );
 
                     return _rows?.Any( ) == true
@@ -257,9 +257,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataRow _row = dataRow?.First( );
+                    var _row = dataRow?.First( );
 
-                    DataColumnCollection _columns = _row?.Table?.Columns;
+                    var _columns = _row?.Table?.Columns;
 
                     if( _columns?.Contains( dataColumn?.ColumnName ) == true )
                     {
@@ -299,9 +299,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    DataRow _row = dataRow?.First( );
+                    var _row = dataRow?.First( );
 
-                    DataColumnCollection _columns = _row?.Table?.Columns;
+                    var _columns = _row?.Table?.Columns;
 
                     if( _columns?.Contains( field.ToString( ) ) == true )
                     {
@@ -350,11 +350,11 @@ namespace BudgetExecution
 
             try
             {
-                using( ExcelPackage _excel = new ExcelPackage( new FileInfo( path ) ) )
+                using( var _excel = new ExcelPackage( new FileInfo( path ) ) )
                 {
-                    ExcelWorkbook _workbook = _excel.Workbook;
-                    ExcelWorksheet _worksheet = _workbook.Worksheets[ 0 ];
-                    ExcelRange _range = _worksheet.Cells;
+                    var _workbook = _excel.Workbook;
+                    var _worksheet = _workbook.Worksheets[ 0 ];
+                    var _range = _worksheet.Cells;
                     _range?.LoadFromCollection( type, true, style );
                     return _excel;
                 }
@@ -380,9 +380,9 @@ namespace BudgetExecution
                 && start > 0
                 && end > 0 )
             {
-                int _index = 0;
+                var _index = 0;
 
-                foreach( T item in type )
+                foreach( var item in type )
                 {
                     if( _index >= end )
                     {
@@ -403,7 +403,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

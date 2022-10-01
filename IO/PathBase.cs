@@ -223,7 +223,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _file = Path.GetFullPath( Buffer );
+                var _file = Path.GetFullPath( Buffer );
 
                 if( !string.IsNullOrEmpty( _file )
                     && File.Exists( _file ) )
@@ -282,7 +282,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _path = Path.GetFullPath( Buffer );
+                var _path = Path.GetFullPath( Buffer );
 
                 return !string.IsNullOrEmpty( _path ) 
                     && File.Exists( _path ) 
@@ -323,7 +323,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

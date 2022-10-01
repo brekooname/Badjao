@@ -119,7 +119,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _logString = Exception.ToLogString( "" );
+                var _logString = Exception.ToLogString( "" );
                 TextBox.Text = _logString;
             }
             catch( Exception ex )
@@ -135,7 +135,7 @@ namespace BudgetExecution
         {
             try
             {
-                string _logString = exc?.ToLogString( "" );
+                var _logString = exc?.ToLogString( "" );
                 TextBox.Text = _logString;
             }
             catch( Exception ex )

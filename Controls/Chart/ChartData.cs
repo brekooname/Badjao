@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
-    using System.Threading;
     using DataTable = System.Data.DataTable;
 
     /// <summary>
@@ -268,7 +267,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

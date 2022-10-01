@@ -89,13 +89,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _path = ConfigurationManager.AppSettings[ $"{ Extension }" ];
-                    int _index = _path.LastIndexOf( @"\" );
-                    int _size = _path.Length;
-                    int _end = _size - _index;
-                    string _folder = $@"\{ CommandType }";
-                    string _remove = _path?.Remove( _index, _end );
-                    string _dirpath = _remove + _folder;
+                    var _path = ConfigurationManager.AppSettings[ $"{Extension}" ];
+                    var _index = _path.LastIndexOf( @"\" );
+                    var _size = _path.Length;
+                    var _end = _size - _index;
+                    var _folder = $@"\{CommandType}";
+                    var _remove = _path?.Remove( _index, _end );
+                    var _dirpath = _remove + _folder;
 
                     return Directory.Exists( _dirpath )
                         ? _dirpath
@@ -122,18 +122,18 @@ namespace BudgetExecution
             {
                 var _repository = new Dictionary<string, string>( );
 
-                foreach( string file in Files )
+                foreach( var file in Files )
                 {
                     string _output;
 
-                    using( StreamReader _stream = File.OpenText( file ) )
+                    using( var _stream = File.OpenText( file ) )
                     {
                         _output = _stream.ReadToEnd( );
                     }
 
                     if( !string.IsNullOrEmpty( _output ) )
                     {
-                        string _name = Path.GetFileNameWithoutExtension( file );
+                        var _name = Path.GetFileNameWithoutExtension( file );
                         _repository.Add( _name, _output );
                     }
                 }
@@ -177,7 +177,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

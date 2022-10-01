@@ -116,8 +116,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _name = Path.GetFileName( path );
-                    Bitmap _image = new Bitmap( path );
+                    var _name = Path.GetFileName( path );
+                    var _image = new Bitmap( path );
 
                     if( _image != null )
                     {
@@ -141,12 +141,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( string _file in paths )
+                    foreach( var _file in paths )
                     {
                         if( File.Exists( _file ) )
                         {
-                            string _name = Path.GetFileName( _file );
-                            Bitmap _image = new Bitmap( _file );
+                            var _name = Path.GetFileName( _file );
+                            var _image = new Bitmap( _file );
 
                             if( _image != null )
                             {
@@ -196,11 +196,11 @@ namespace BudgetExecution
 
                 if( _files?.Count( ) > 0 )
                 {
-                    foreach( string _file in _files )
+                    foreach( var _file in _files )
                     {
-                        using( FileStream _stream = File.Open( _file, FileMode.Open ) )
+                        using( var _stream = File.Open( _file, FileMode.Open ) )
                         {
-                            using( Bitmap _img = new Bitmap( _stream ) )
+                            using( var _img = new Bitmap( _stream ) )
                             {
                                 _list.Add( _img );
                             }
@@ -228,11 +228,11 @@ namespace BudgetExecution
                 var _files = paths.ToList( );
                 var _list = new List<Image>( );
 
-                for( int i = 0; i < _files.Count; i++ )
+                for( var i = 0; i < _files.Count; i++ )
                 {
-                    using( FileStream _stream = File.Open( _files[ i ], FileMode.Open ) )
+                    using( var _stream = File.Open( _files[ i ], FileMode.Open ) )
                     {
-                        using( Bitmap _img = new Bitmap( _stream ) )
+                        using( var _img = new Bitmap( _stream ) )
                         {
                             _list.Add( _img );
                         }

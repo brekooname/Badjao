@@ -90,7 +90,7 @@ namespace BudgetExecution
 
                         foreach( var kvp in output )
                         {
-                            for( int i = 0; i < data.Length; i++ )
+                            for( var i = 0; i < data.Length; i++ )
                             {
                                 if( kvp.Key.Contains( data[ i ].ToString( ) ) )
                                 {
@@ -129,7 +129,7 @@ namespace BudgetExecution
                     if( _enumerable?.Any( ) == true
                         && _fields?.Any( ) == true )
                     {
-                        foreach( string value in _enumerable )
+                        foreach( var value in _enumerable )
                         {
                             if( !string.IsNullOrEmpty( value )
                                 && _fields.Contains( value ) )
@@ -169,7 +169,7 @@ namespace BudgetExecution
 
                     if( _keys?.Any( ) == true )
                     {
-                        foreach( string key in _keys )
+                        foreach( var key in _keys )
                         {
                             if( !string.IsNullOrEmpty( key )
                                 && _fields.Contains( key ) )

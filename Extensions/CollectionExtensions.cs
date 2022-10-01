@@ -55,9 +55,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    for( int i = 0; i < values.Length; i++ )
+                    for( var i = 0; i < values.Length; i++ )
                     {
-                        T _value = values[ i ];
+                        var _value = values[ i ];
 
                         if( _value != null )
                         {
@@ -121,7 +121,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( T _item in values )
+                    foreach( var _item in values )
                     {
                         collection.Remove( _item );
                     }
@@ -179,7 +179,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

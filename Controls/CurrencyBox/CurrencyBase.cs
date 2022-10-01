@@ -94,8 +94,8 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        SourceBinding _list = bindingList as SourceBinding;
-                        string _filter = string.Empty;
+                        var _list = bindingList as SourceBinding;
+                        var _filter = string.Empty;
 
                         foreach( var kvp in dict )
                         {
@@ -159,7 +159,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var kvp in dict )
                     {
@@ -262,7 +262,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string filter = string.Empty;
+                    var filter = string.Empty;
 
                     foreach( var kvp in dict )
                     {
@@ -327,7 +327,7 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            CurrencyBox _currencyTextBox = sender as CurrencyBox;
+            var _currencyTextBox = sender as CurrencyBox;
 
             try
             {
@@ -336,15 +336,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        string _hoverText = _currencyTextBox?.HoverText;
-                        MetroTip _ = new MetroTip( _currencyTextBox, _hoverText );
+                        var _hoverText = _currencyTextBox?.HoverText;
+                        var _ = new MetroTip( _currencyTextBox, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            string _text = Tag?.ToString( )?.SplitPascal( );
-                            MetroTip _ = new MetroTip( _currencyTextBox, _text );
+                            var _text = Tag?.ToString( )?.SplitPascal( );
+                            var _ = new MetroTip( _currencyTextBox, _text );
                         }
                     }
                 }
@@ -365,7 +365,7 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            CurrencyBox _currencyTextBox = sender as CurrencyBox;
+            var _currencyTextBox = sender as CurrencyBox;
 
             try
             {
@@ -385,7 +385,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

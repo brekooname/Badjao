@@ -242,7 +242,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( FileStream _stream = File.Open( path, FileMode.Open ) )
+                    using( var _stream = File.Open( path, FileMode.Open ) )
                     {
                         FormIcon = new Icon( _stream );
                     }
@@ -260,7 +260,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

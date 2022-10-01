@@ -223,14 +223,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _columns = string.Empty;
+                    var _columns = string.Empty;
 
-                    foreach( string col in Columns )
+                    foreach( var col in Columns )
                     {
                         _columns += $"{col}, ";
                     }
 
-                    string _cols = _columns.TrimEnd( ", ".ToCharArray( ) );
+                    var _cols = _columns.TrimEnd( ", ".ToCharArray( ) );
                     return $"SELECT {_cols} FROM {Source} WHERE {Criteria.ToCriteria( )};";
                 }
                 catch( Exception ex )
@@ -264,7 +264,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _criteria = where.ToCriteria( );
+                    var _criteria = where.ToCriteria( );
                     return $"SELECT * FROM {Source} WHERE {_criteria};";
                 }
                 catch( Exception ex )
@@ -292,15 +292,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _cols = string.Empty;
+                    var _cols = string.Empty;
 
-                    foreach( string name in columns )
+                    foreach( var name in columns )
                     {
                         _cols += $"{name}, ";
                     }
 
-                    string _criteria = where.ToCriteria( );
-                    string _columns = _cols.TrimEnd( ", ".ToCharArray( ) );
+                    var _criteria = where.ToCriteria( );
+                    var _columns = _cols.TrimEnd( ", ".ToCharArray( ) );
                     return $"SELECT {_columns} FROM {Source} WHERE {_criteria} ;";
                 }
                 catch( Exception ex )
@@ -330,24 +330,24 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _cols = string.Empty;
-                    string _aggr = string.Empty;
-                    string _grp = string.Empty;
+                    var _cols = string.Empty;
+                    var _aggr = string.Empty;
+                    var _grp = string.Empty;
 
-                    foreach( string name in columns )
+                    foreach( var name in columns )
                     {
                         _cols += $"{name}, ";
                     }
 
-                    foreach( string _numeric in numerics )
+                    foreach( var _numeric in numerics )
                     {
                         _grp += $"SUM({_numeric}), ";
                         _aggr += $"SUM({_numeric}) AS {_numeric}, ";
                     }
 
-                    string _criteria = having.ToCriteria( );
-                    string _columns = _cols + _aggr.TrimEnd( ", ".ToCharArray( ) );
-                    string _groups = _cols + _grp.TrimEnd( ", ".ToCharArray( ) );
+                    var _criteria = having.ToCriteria( );
+                    var _columns = _cols + _aggr.TrimEnd( ", ".ToCharArray( ) );
+                    var _groups = _cols + _grp.TrimEnd( ", ".ToCharArray( ) );
                     return $"SELECT {_columns} FROM {Source} "
                         + $"GROUP BY {_groups} HAVING {_criteria};";
                 }
@@ -375,7 +375,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _update = string.Empty;
+                    var _update = string.Empty;
 
                     if( updates.Count == 1 )
                     {
@@ -392,8 +392,8 @@ namespace BudgetExecution
                         }
                     }
 
-                    string _criteria = where.ToCriteria( );
-                    string _values = _update.TrimEnd( ", ".ToCharArray( ) );
+                    var _criteria = where.ToCriteria( );
+                    var _values = _update.TrimEnd( ", ".ToCharArray( ) );
                     return $"{SQL.UPDATE} {Source} SET {_values} WHERE {_criteria};";
                 }
                 catch( Exception ex )
@@ -417,8 +417,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _columns = string.Empty;
-                    string _values = string.Empty;
+                    var _columns = string.Empty;
+                    var _values = string.Empty;
 
                     if( updates.Count == 1 )
                     {
@@ -437,7 +437,7 @@ namespace BudgetExecution
                         }
                     }
 
-                    string _columnValues = $"({_columns.TrimEnd( ", ".ToCharArray( ) )})"
+                    var _columnValues = $"({_columns.TrimEnd( ", ".ToCharArray( ) )})"
                         + $" VALUES ({_values.TrimEnd( ", ".ToCharArray( ) )})";
 
                     return $"INSERT INTO {Source} {_columnValues};";
@@ -463,7 +463,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _criteria = where.ToCriteria( );
+                    var _criteria = where.ToCriteria( );
                     return $"{SQL.DELETE} FROM {Source} WHERE {_criteria};";
                 }
                 catch( Exception ex )
@@ -482,7 +482,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

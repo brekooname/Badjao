@@ -1,6 +1,5 @@
 ﻿namespace BudgetExecution
 {
-    using System;
     using System.Windows.Forms;
 
     public class SyncTip : SyncTipBase

@@ -205,7 +205,7 @@ namespace BudgetExecution
                 {
                     var _cols = Columns.ToArray( );
 
-                    foreach( Frame frame in Frames )
+                    foreach( var frame in Frames )
                     {
                         if( frame.Index >= _cols.Length )
                         {
@@ -229,7 +229,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( Frame _frame in Frames )
+                    foreach( var _frame in Frames )
                     {
                         _frame.Dock = DockStyle.Fill;
                     }
@@ -248,7 +248,7 @@ namespace BudgetExecution
         {
             if( Frames?.Any( ) == true )
             {
-                foreach( Frame frame in Frames )
+                foreach( var frame in Frames )
                 {
                     frame.Label.ForeColor = Color.LightSteelBlue;
                     frame.TextBox.ForeColor = Color.White;
@@ -324,7 +324,7 @@ namespace BudgetExecution
                     var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
                     var _cols = Columns.ToArray( );
 
-                    for( int i = 0; i < _cols.Length; i++ )
+                    for( var i = 0; i < _cols.Length; i++ )
                     {
                         _frames[ i ].Label.Text = _cols[ i ].SplitPascal( );
                         _frames[ i ].TextBox.Text = _items[ i ].ToString( );
@@ -382,7 +382,7 @@ namespace BudgetExecution
             {
                 var _frames = new List<Frame>( );
 
-                foreach( object _control in FrameTable.Controls )
+                foreach( var _control in FrameTable.Controls )
                 {
                     if( _control.GetType( ) == typeof( Frame ) )
                     {

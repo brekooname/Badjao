@@ -41,8 +41,8 @@ namespace BudgetExecution
                 try
                 {
                     {
-                        DataTable _table = dataRow.Table;
-                        DataColumnCollection _columns = _table?.Columns;
+                        var _table = dataRow.Table;
+                        var _columns = _table?.Columns;
                         var _values = dataRow.ItemArray;
 
                         switch( provider )
@@ -52,9 +52,9 @@ namespace BudgetExecution
                             {
                                 var _sqlite = new List<SQLiteParameter>( );
 
-                                for( int i = 0; i < _columns?.Count; i++ )
+                                for( var i = 0; i < _columns?.Count; i++ )
                                 {
-                                    SQLiteParameter _parameter = new SQLiteParameter
+                                    var _parameter = new SQLiteParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -73,9 +73,9 @@ namespace BudgetExecution
                             {
                                 var _sqlce = new List<SqlCeParameter>( );
 
-                                for( int i = 0; i < _columns?.Count; i++ )
+                                for( var i = 0; i < _columns?.Count; i++ )
                                 {
-                                    SqlCeParameter _parameter = new SqlCeParameter
+                                    var _parameter = new SqlCeParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -96,9 +96,9 @@ namespace BudgetExecution
                             {
                                 var _oledb = new List<OleDbParameter>( );
 
-                                for( int i = 0; i < _columns?.Count; i++ )
+                                for( var i = 0; i < _columns?.Count; i++ )
                                 {
-                                    OleDbParameter parameter = new OleDbParameter
+                                    var parameter = new OleDbParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -117,9 +117,9 @@ namespace BudgetExecution
                             {
                                 var _sqlserver = new List<SqlParameter>( );
 
-                                for( int i = 0; i < _columns?.Count; i++ )
+                                for( var i = 0; i < _columns?.Count; i++ )
                                 {
-                                    SqlParameter _parameter = new SqlParameter
+                                    var _parameter = new SqlParameter
                                     {
                                         SourceColumn = _columns[ i ].ColumnName,
                                         Value = _values[ i ]
@@ -159,11 +159,11 @@ namespace BudgetExecution
                 if( dataRow?.ItemArray.Length > 0 )
                 {
                     var _dictionary = new Dictionary<string, object>( );
-                    DataTable _table = dataRow?.Table;
-                    DataColumnCollection _column = _table?.Columns;
+                    var _table = dataRow?.Table;
+                    var _column = _table?.Columns;
                     var _items = dataRow?.ItemArray;
 
-                    for( int i = 0; i < _column?.Count; i++ )
+                    for( var i = 0; i < _column?.Count; i++ )
                     {
                         if( !string.IsNullOrEmpty( _column[ i ]?.ColumnName ) )
                         {
@@ -318,7 +318,7 @@ namespace BudgetExecution
                     var _colums = dataRow.Table?.GetColumnNames( );
                     var _names = Enum.GetNames( typeof( Numeric ) );
 
-                    for( int i = 1; i < _colums?.Length; i++ )
+                    for( var i = 1; i < _colums?.Length; i++ )
                     {
                         if( _names.Contains( _colums[ i ] ) )
                         {
@@ -357,11 +357,11 @@ namespace BudgetExecution
                     var _dictionary = row.ToDictionary( );
                     var _key = _dictionary.Keys?.ToArray( );
                     var _names = Enum.GetNames( typeof( PrimaryKey ) );
-                    int _count = 0;
+                    var _count = 0;
 
-                    for( int i = 1; i < _key.Length; i++ )
+                    for( var i = 1; i < _key.Length; i++ )
                     {
-                        string name = _key[ i ];
+                        var name = _key[ i ];
 
                         if( _names.Contains( name ) )
                         {
@@ -396,9 +396,9 @@ namespace BudgetExecution
                     var _key = _dictionary.Keys?.ToArray( );
                     var _names = Enum.GetNames( typeof( PrimaryKey ) );
 
-                    for( int i = 1; i < _key?.Length; i++ )
+                    for( var i = 1; i < _key?.Length; i++ )
                     {
-                        string _name = _key[ i ];
+                        var _name = _key[ i ];
 
                         if( _names.Contains( _name ) )
                         {
@@ -428,7 +428,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

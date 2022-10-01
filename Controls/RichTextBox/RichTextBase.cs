@@ -93,8 +93,8 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        BindingSource _list = bindingList as BindingSource;
-                        string _filter = string.Empty;
+                        var _list = bindingList as BindingSource;
+                        var _filter = string.Empty;
 
                         foreach( var kvp in dict )
                         {
@@ -158,7 +158,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string _filter = string.Empty;
+                    var _filter = string.Empty;
 
                     foreach( var kvp in dict )
                     {
@@ -261,7 +261,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    string filter = string.Empty;
+                    var filter = string.Empty;
 
                     foreach( var kvp in dict )
                     {
@@ -323,7 +323,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
+            using( var _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

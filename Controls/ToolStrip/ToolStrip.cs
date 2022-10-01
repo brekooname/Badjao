@@ -119,7 +119,7 @@ namespace BudgetExecution
 
             if( Items?.Count > 0 )
             {
-                foreach( object control in Items )
+                foreach( var control in Items )
                 {
                     if( control is ToolStripButton _item )
                     {
@@ -147,7 +147,7 @@ namespace BudgetExecution
         {
             if( sender is ToolStrip toolStrip )
             {
-                foreach( ToolStripButton button in toolStrip.Buttons.Values )
+                foreach( var button in toolStrip.Buttons.Values )
                 {
                     button.BindingSource = BindingSource;
                 }
