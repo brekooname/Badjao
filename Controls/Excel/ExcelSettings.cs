@@ -9,6 +9,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Spreadsheet;
@@ -222,11 +223,11 @@ namespace BudgetExecution
         public virtual void SetFilePath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath ) )
+                && File.Exists( filePath ) )
             {
                 try
                 {
-                    FilePath = System.IO.Path.GetFileName( filePath );
+                    FilePath = Path.GetFileName( filePath );
                 }
                 catch( Exception e )
                 {
@@ -243,11 +244,11 @@ namespace BudgetExecution
         public virtual void SetFileName( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath ) )
+                && File.Exists( filePath ) )
             {
                 try
                 {
-                    FilePath = System.IO.Path.GetFileNameWithoutExtension( filePath );
+                    FilePath = Path.GetFileNameWithoutExtension( filePath );
                 }
                 catch( Exception e )
                 {
@@ -266,12 +267,10 @@ namespace BudgetExecution
         {
             try
             {
-                var _path = System.IO.Path.GetExtension( filePath );
-
+                var _path = Path.GetExtension( filePath );
                 if( _path != null )
                 {
                     var _extension = (EXT)Enum.Parse( typeof( EXT ), _path );
-
                     return Enum.IsDefined( typeof( EXT ), _extension )
                         ? _extension
                         : default( EXT );
@@ -302,19 +301,16 @@ namespace BudgetExecution
                     switch( extension?.ToUpper( ) )
                     {
                         case ".XLS":
-
                         {
                             return @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 8.0;HDR=YES;\"";
                         }
                         case ".XLSX":
-
                         {
                             return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 12.0;HDR=YES;\"";
                         }
                         default:
-
                         {
                             return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 12.0;HDR=YES;\"";
@@ -378,9 +374,7 @@ namespace BudgetExecution
                     spreadSheet.Workbook.ActiveSheet.StandardWidth = 12.5f;
                     var name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
                     var sheet = spreadSheet.Workbook.ActiveSheet;
-
                     spreadSheet.ActiveSheet.ImportDataGridView( dataGrid, 1, 1, true, false );
-
                     var range = sheet.UsedRange;
                     var table = sheet.ListObjects.Create( name, range );
                     table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium2;
@@ -408,19 +402,18 @@ namespace BudgetExecution
                 {
                     using( var _range = grid?.GetRange( ) )
                     {
-                        var _excelComment = _range?.AddComment( text, "Budget" );
-
-                        if( _excelComment != null )
+                        var _comment = _range?.AddComment( text, "Budget" );
+                        if( _comment != null )
                         {
-                            _excelComment.From.Row = _range.Start.Row;
-                            _excelComment.From.Column = _range.Start.Column;
-                            _excelComment.To.Row = _range.End.Row;
-                            _excelComment.To.Column = _range.End.Column;
-                            _excelComment.BackgroundColor = Color.FromArgb( 15, 15, 15 );
-                            _excelComment.Font.FontName = "Consolas";
-                            _excelComment.Font.Size = 8;
-                            _excelComment.Font.Color = Color.Black;
-                            _excelComment.Text = text;
+                            _comment.From.Row = _range.Start.Row;
+                            _comment.From.Column = _range.Start.Column;
+                            _comment.To.Row = _range.End.Row;
+                            _comment.To.Column = _range.End.Column;
+                            _comment.BackgroundColor = Color.FromArgb( 15, 15, 15 );
+                            _comment.Font.FontName = "Consolas";
+                            _comment.Font.Size = 8;
+                            _comment.Font.Color = Color.Black;
+                            _comment.Text = text;
                         }
                     }
                 }

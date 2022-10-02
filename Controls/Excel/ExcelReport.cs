@@ -156,7 +156,6 @@ namespace BudgetExecution
                 try
                 {
                     var _table = new DataTable( );
-
                     foreach( var info in typeof( T ).GetProperties( ) )
                     {
                         _table?.Columns?.Add( new DataColumn( info.Name,
@@ -166,7 +165,6 @@ namespace BudgetExecution
                     foreach( var t in data )
                     {
                         var _row = _table.NewRow( );
-
                         foreach( var info in typeof( T ).GetProperties( ) )
                         {
                             _row[ info.Name ] = !IsNullableType( info.PropertyType )
@@ -266,9 +264,15 @@ namespace BudgetExecution
             try
             {
                 var _cell = new Cell
-                    { CellReference = cellReference, DataType = CellValues.String };
+                {
+                    CellReference = cellReference, 
+                    DataType = CellValues.String
+                };
 
-                var _cellValue = new CellValue { Text = cellStringValue };
+                var _cellValue = new CellValue
+                {
+                    Text = cellStringValue
+                };
 
                 _cell.Append( _cellValue );
                 excelRow.Append( _cell );
@@ -300,9 +304,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _cell = new Cell { CellReference = cellReference };
+                    var _cell = new Cell
+                    {
+                        CellReference = cellReference
+                    };
 
-                    var _cellValue = new CellValue { Text = cellStringValue };
+                    var _cellValue = new CellValue
+                    {
+                        Text = cellStringValue
+                    };
 
                     _cell.Append( _cellValue );
                     excelRow.Append( _cell );
@@ -333,7 +343,7 @@ namespace BudgetExecution
 
                 var _first = (char)( 'A' + columnIndex / 26 - 1 );
                 var _second = (char)( 'A' + columnIndex % 26 );
-                return $"{_first}{_second}";
+                return $"{ _first }{ _second }";
             }
             catch( Exception ex )
             {
@@ -359,7 +369,6 @@ namespace BudgetExecution
                 try
                 {
                     spreadSheet.AddWorkbookPart( );
-
                     if( spreadSheet.WorkbookPart != null )
                     {
                         spreadSheet.WorkbookPart.Workbook =
@@ -379,12 +388,10 @@ namespace BudgetExecution
                         {
                             var _part =
                                 spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>( );
-
                             _part.Worksheet = new Worksheet( );
                             _part.Worksheet.AppendChild( new SheetData( ) );
                             WriteDataTableToExcelWorksheet( _dataTable, _part );
                             _part.Worksheet.Save( );
-
                             if( _id == 1 )
                             {
                                 spreadSheet.WorkbookPart.Workbook.AppendChild( new Sheets( ) );
@@ -440,8 +447,10 @@ namespace BudgetExecution
                     }
 
                     uint _rowIndex = 1;
-
-                    var _row = new Row { RowIndex = _rowIndex };
+                    var _row = new Row
+                    {
+                        RowIndex = _rowIndex
+                    };
 
                     _data?.Append( _row );
 
@@ -457,8 +466,10 @@ namespace BudgetExecution
                     foreach( DataRow _dataRow in dataTable.Rows )
                     {
                         ++_rowIndex;
-
-                        var _excelRow = new Row { RowIndex = _rowIndex };
+                        var _excelRow = new Row
+                        {
+                            RowIndex = _rowIndex
+                        };
 
                         _data?.Append( _excelRow );
 
