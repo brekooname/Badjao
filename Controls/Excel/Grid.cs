@@ -68,7 +68,6 @@ namespace BudgetExecution
         {
             Worksheet = workSheet;
             Range = range;
-
             Address = new ExcelAddress( Range.Start.Row, Range.Start.Column, Range.End.Row,
                 Range.End.Row );
 
@@ -116,7 +115,6 @@ namespace BudgetExecution
         {
             Worksheet = workSheet;
             Range = Worksheet.Cells[ fromRow, fromColumn, toRow, toColumn ];
-
             Address = new ExcelAddress( Range.Start.Row, Range.Start.Column, Range.End.Row,
                 Range.End.Row );
 
@@ -136,7 +134,6 @@ namespace BudgetExecution
         {
             Worksheet = workSheet;
             Range = Worksheet.Cells[ cell[ 0 ], cell[ 1 ], cell[ 2 ], cell[ 3 ] ];
-
             Address = new ExcelAddress( Range.Start.Row, Range.Start.Column, Range.End.Row,
                 Range.End.Column );
 
@@ -160,7 +157,6 @@ namespace BudgetExecution
         {
             Worksheet = workSheet;
             Range = Worksheet.Cells[ from.Row, from.Column, to.Row, to.Column ];
-
             Address = new ExcelAddress( Range.Start.Row, Range.Start.Column, Range.End.Row,
                 Range.End.Row );
 
@@ -181,7 +177,6 @@ namespace BudgetExecution
         {
             Worksheet = workSheet;
             Range = Worksheet.Cells[ from.Row, from.Column ];
-
             Address = new ExcelAddress( Range.Start.Row, Range.Start.Column, Range.Start.Row,
                 Range.Start.Column );
 

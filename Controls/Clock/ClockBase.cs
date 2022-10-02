@@ -43,7 +43,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -51,7 +51,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Sets the color of the hour.
         /// </summary>
@@ -210,7 +210,6 @@ namespace BudgetExecution
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
             var _budgetClock = sender as Clock;
-
             try
             {
                 if( _budgetClock != null
@@ -248,7 +247,6 @@ namespace BudgetExecution
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
             var _budgetClock = sender as Clock;
-
             try
             {
                 if( _budgetClock != null )

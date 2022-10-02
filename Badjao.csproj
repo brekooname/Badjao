@@ -635,13 +635,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Chart\CallOut.cs" />
-    <Compile Include="Controls\Chart\ChartBinding.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Chart\ChartSeries.cs" />
     <Compile Include="Controls\Chart\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
-    <Compile Include="Controls\Chart\SeriesBindingModel.cs" />
+    <Compile Include="Controls\Chart\BindingModel.cs" />
     <Compile Include="Controls\Chart\BindingModelBase.cs" />
     <Compile Include="Controls\Chart\TitleInfo.cs" />
     <Compile Include="Controls\Excel\GridBase.cs">

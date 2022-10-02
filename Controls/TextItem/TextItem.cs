@@ -178,7 +178,7 @@ namespace BudgetExecution
         /// <param name="headerText">The header text.</param>
         /// <param name="bodyText">The body text.</param>
         /// <param name="footerText">The footer text.</param>
-        public TextItem( string headerText, string bodyText, string footerText ) 
+        public TextItem( string headerText, string bodyText, string footerText )
             : this( )
         {
             HeaderText = headerText;

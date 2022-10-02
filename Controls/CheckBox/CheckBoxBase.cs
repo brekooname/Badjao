@@ -54,7 +54,6 @@ namespace BudgetExecution
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
             var _checkBox = sender as CheckBox;
-
             try
             {
                 if( _checkBox != null
@@ -89,7 +88,6 @@ namespace BudgetExecution
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
             var _checkBox = sender as CheckBox;
-
             try
             {
                 if( _checkBox != null )

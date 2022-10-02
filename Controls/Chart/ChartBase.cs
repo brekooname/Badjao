@@ -168,7 +168,6 @@ namespace BudgetExecution
             PrintColorMode = ChartPrintColorMode.CheckPrinter;
             BackInterior = new BrushInfo( Color.FromArgb( 15, 15, 15 ) );
             BackColor = Color.FromArgb( 15, 15, 15 );
-
             ChartInterior = new BrushInfo( GradientStyle.PathRectangle, Color.LightSteelBlue,
                 Color.FromArgb( 15, 15, 15 ) );
 
@@ -190,7 +189,6 @@ namespace BudgetExecution
             SeriesHighlight = true;
             SeriesHighlightIndex = -1;
             ShadowWidth = 5;
-
             ShadowColor = new BrushInfo( GradientStyle.PathRectangle, Color.FromArgb( 15, 15, 15 ),
                 Color.Silver );
 
@@ -229,7 +227,6 @@ namespace BudgetExecution
             Legend.ShowItemsShadow = true;
             Legend.ShowBorder = false;
             Legend.Visible = true;
-
             Header = new ChartTitle( );
         }
 
@@ -293,7 +290,6 @@ namespace BudgetExecution
                     {
                         var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
-
                         foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
@@ -357,7 +353,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
@@ -460,7 +455,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )

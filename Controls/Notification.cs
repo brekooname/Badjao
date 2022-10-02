@@ -71,7 +71,6 @@ namespace BudgetExecution
             Title.Text = title;
             Message.Text = body;
             Animator = new FormAnimator( this, animation, direction, 500 );
-
             Region = Region.FromHrgn(
                 NativeMethods.CreateRoundRectRgn( 0, 0, Width - 5, Height - 5, 20, 20 ) );
 
@@ -90,7 +89,6 @@ namespace BudgetExecution
         public new void Show( )
         {
             _currentForegroundWindow = NativeMethods.GetForegroundWindow( );
-
             base.Show( );
         }
 

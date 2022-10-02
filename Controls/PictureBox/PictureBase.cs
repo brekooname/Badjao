@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Called when [mouse hover].
         /// </summary>
@@ -81,7 +81,6 @@ namespace BudgetExecution
             try
             {
                 var _picturePanel = sender as PictureBase;
-
                 if( !string.IsNullOrEmpty( HoverText ) )
                 {
                     var _ = new MetroTip( _picturePanel, HoverText );

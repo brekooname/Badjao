@@ -75,7 +75,6 @@ namespace BudgetExecution
             TextBox.Border.HoverColor = Color.Maroon;
             TextBox.Parent = BackPanel;
             TextBox.Dock = DockStyle.Fill;
-
             BackPanel.BackColor = Color.FromArgb( 15, 15, 15 );
             BackPanel.BackColorState.Enabled = Color.FromArgb( 15, 15, 15 );
             BackPanel.BackColorState.Disabled = Color.FromArgb( 15, 15, 15 );
@@ -84,9 +83,7 @@ namespace BudgetExecution
             BackPanel.Parent = this;
             BackPanel.Location = new Point( 61, 48 );
             BackPanel.Controls.Add( TextBox );
-
             Controls.Add( BackPanel );
-
             CloseButton.Click += OnClick;
         }
 

@@ -113,7 +113,6 @@ namespace BudgetExecution
             RowsDefaultCellStyle.SelectionBackColor = Color.FromArgb( 22, 39, 70 );
             RowsDefaultCellStyle.SelectionForeColor = Color.White;
             RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
             AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb( 55, 55, 55 );
             AlternatingRowsDefaultCellStyle.ForeColor = Color.LightSteelBlue;
             AlternatingRowsDefaultCellStyle.Font = new Font( "Roboto", 8 );
@@ -174,7 +173,8 @@ namespace BudgetExecution
                 ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
                 {
                     Font = new Font( "Roboto", 9, FontStyle.Bold ),
-                    Alignment = DataGridViewContentAlignment.MiddleCenter, ForeColor = Color.White,
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                    ForeColor = Color.White,
                     BackColor = Color.SteelBlue
                 };
             }
@@ -193,7 +193,8 @@ namespace BudgetExecution
             {
                 RowHeadersDefaultCellStyle = new DataGridViewCellStyle
                 {
-                    Alignment = DataGridViewContentAlignment.BottomCenter, ForeColor = Color.Black,
+                    Alignment = DataGridViewContentAlignment.BottomCenter,
+                    ForeColor = Color.Black,
                     Font = new Font( "Roboto", 9, FontStyle.Bold ),
                     BackColor = Color.FromArgb( 141, 139, 138 )
                 };
@@ -202,8 +203,10 @@ namespace BudgetExecution
                 {
                     Alignment = DataGridViewContentAlignment.BottomCenter,
                     SelectionForeColor = Color.Black,
-                    SelectionBackColor = SystemColors.ControlLight, ForeColor = Color.Black,
-                    Font = new Font( "Roboto", 9 ), BackColor = Color.LightSteelBlue
+                    SelectionBackColor = SystemColors.ControlLight,
+                    ForeColor = Color.Black,
+                    Font = new Font( "Roboto", 9 ),
+                    BackColor = Color.LightSteelBlue
                 };
             }
             catch( Exception ex )
@@ -256,7 +259,6 @@ namespace BudgetExecution
                     {
                         var _count = dataRows.CopyToDataTable( ).Columns.Count;
                         var _columns = dataRows.CopyToDataTable( ).Columns;
-
                         for( var i = 0; i < _count; i++ )
                         {
                             Columns[ i ].HeaderText = _columns[ i ]?.ColumnName?.SplitPascal( );
@@ -283,7 +285,6 @@ namespace BudgetExecution
                     try
                     {
                         var _vals = string.Empty;
-
                         foreach( var _kvp in dict )
                         {
                             _vals += $"{_kvp.Key} = '{_kvp.Value}' AND ";
@@ -336,10 +337,11 @@ namespace BudgetExecution
                 try
                 {
                     var _columnConfiguration = new ColumnConfiguration( this )
-                        { Location = PointToScreen( new Point( e.X, e.Y ) ) };
+                    {
+                        Location = PointToScreen( new Point( e.X, e.Y ) )
+                    };
 
                     _columnConfiguration.ColumnListBox?.Items?.Clear( );
-
                     foreach( DataGridViewColumn c in Columns )
                     {
                         _columnConfiguration.ColumnListBox?.Items.Add( c.HeaderText, c.Visible );

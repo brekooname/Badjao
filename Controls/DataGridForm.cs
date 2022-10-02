@@ -133,6 +133,7 @@ namespace BudgetExecution
                     { "BFY", "2022" },
                     { "FundCode", "B" }
                 };
+
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
                 DataGrid.DataSource = BindingSource;
@@ -162,7 +163,6 @@ namespace BudgetExecution
             {
                 TableListBox.Items.Clear( );
                 var _names = Enum.GetNames( typeof( Source ) );
-
                 foreach( var name in _names )
                 {
                     if( name != "NS" )
@@ -185,7 +185,6 @@ namespace BudgetExecution
             try
             {
                 var _names = Enum.GetNames( typeof( SQL ) );
-
                 foreach( var name in _names )
                 {
                     if( name != "NS" )
@@ -219,7 +218,6 @@ namespace BudgetExecution
                 var _listBox = sender as VisualListBox;
                 var _value = _listBox?.SelectedItem.ToString( );
                 SelectedTable = _value;
-
                 if( !string.IsNullOrEmpty( _value ) )
                 {
                     var _source = (Source)Enum.Parse( typeof( Source ), _value );
@@ -227,12 +225,10 @@ namespace BudgetExecution
                     BindingSource.DataSource = DataModel.DataTable;
                     DataGrid.DataSource = BindingSource;
                     ToolStrip.BindingSource = BindingSource;
-
                     DataGridGroupBox.Text =
                         SourcePrefix + DataModel.DataTable.TableName?.SplitPascal( );
 
                     var _columns = DataModel.GetDataColumns( );
-
                     foreach( var col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
@@ -265,11 +261,9 @@ namespace BudgetExecution
                 var _listBox = sender as VisualListBox;
                 var _column = _listBox?.SelectedItem?.ToString( );
                 var _series = DataModel.DataElements;
-
                 if( !string.IsNullOrEmpty( _column ) )
                 {
                     SelectedColumn = _column?.Trim( );
-
                     foreach( var item in _series[ _column ] )
                     {
                         ValueListBox.Items.Add( item );
@@ -294,14 +288,12 @@ namespace BudgetExecution
                 var _value = _listBox?.SelectedItem?.ToString( );
                 SelectedValue = _value?.Trim( );
                 var _query = string.Empty;
-
                 if( !string.IsNullOrEmpty( SelectedTable )
                     & !string.IsNullOrEmpty( SelectedColumn ) )
                 {
                     FormFilter.Add( SelectedColumn, SelectedValue );
-
-                    _query = $"SELECT * FROM { SelectedTable } "
-                        + $"WHERE { SelectedColumn } = '{ SelectedValue }';";
+                    _query = $"SELECT * FROM {SelectedTable} "
+                        + $"WHERE {SelectedColumn} = '{SelectedValue}';";
                 }
 
                 SqlQuery = _query;

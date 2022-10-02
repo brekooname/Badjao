@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual MetroTip ToolTip { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>

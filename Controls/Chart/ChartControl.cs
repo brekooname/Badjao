@@ -19,14 +19,6 @@ namespace BudgetExecution
     public class ChartControl : ChartBase
     {
         /// <summary>
-        /// Gets or sets the chart binding.
-        /// </summary>
-        /// <value>
-        /// The chart binding.
-        /// </value>
-        public IChartBinding ChartBinding { get; set; }
-
-        /// <summary>
         /// Gets or sets the data values.
         /// </summary>
         /// <value>
@@ -67,8 +59,7 @@ namespace BudgetExecution
         public ChartControl( BindingSource bindingSource )
             : this( )
         {
-            ChartBinding = new ChartBinding( bindingSource );
-            BindingSource = (BindingSource)ChartBinding;
+            BindingSource = bindingSource; 
             DataSource = BindingSource.DataSource;
             DataSeries = new ChartSeries( bindingSource );
             DataMetric = DataSeries.DataMetric;
@@ -87,9 +78,8 @@ namespace BudgetExecution
         public ChartControl( BindingSource bindingSource, IDictionary<string, object> dict )
             : this( )
         {
-            ChartBinding = new ChartBinding( bindingSource );
-            BindingSource = (BindingSource)ChartBinding;
-            DataSource = BindingSource.DataSource;
+            BindingSource = bindingSource;
+            DataSource = bindingSource.DataSource;
             DataSeries = new ChartSeries( bindingSource );
             DataMetric = DataSeries.DataMetric;
             DataValues = DataSeries.DataValues;
@@ -102,10 +92,9 @@ namespace BudgetExecution
         public ChartControl( DataTable dataTable )
             : this( )
         {
-            ChartBinding = new ChartBinding( dataTable );
-            BindingSource = (BindingSource)ChartBinding;
+            BindingSource.DataSource = dataTable;
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesBindingModel( dataTable );
+            SeriesModel = new BindingModel( dataTable );
             DataSeries = new ChartSeries( dataTable );
             DataMetric = DataSeries.DataMetric;
             TableName = dataTable?.TableName;
@@ -117,10 +106,9 @@ namespace BudgetExecution
         public ChartControl( DataTable dataTable, IDictionary<string, object> dict )
             : this( )
         {
-            ChartBinding = new ChartBinding( dataTable, dict );
-            BindingSource = (BindingSource)ChartBinding;
+            BindingSource.DataSource = dataTable.Filter( dict );
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesBindingModel( dataTable );
+            SeriesModel = new BindingModel( dataTable );
             DataSeries = new ChartSeries( dataTable );
             DataMetric = DataSeries.DataMetric;
             TableName = dataTable?.TableName;
@@ -132,10 +120,9 @@ namespace BudgetExecution
         public ChartControl( IEnumerable<DataRow> dataRows )
             : this( )
         {
-            ChartBinding = new ChartBinding( dataRows );
-            BindingSource = (BindingSource)ChartBinding;
+            BindingSource.DataSource = dataRows.CopyToDataTable( );
             DataSource = BindingSource.DataSource;
-            SeriesModel = new SeriesBindingModel( dataRows );
+            SeriesModel = new BindingModel( dataRows );
             DataSeries = new ChartSeries( dataRows );
             DataMetric = DataSeries.DataMetric;
             TableName = dataRows.CopyToDataTable( ).TableName;
@@ -164,12 +151,10 @@ namespace BudgetExecution
                         case ChartSeriesType.Pyramid:
                         case ChartSeriesType.Funnel:
                         case ChartSeriesType.Pie:
-
                         {
                             foreach( var kvp in DataValues )
                             {
                                 DataSeries.Points.Add( kvp.Key, kvp.Value );
-
                                 if( DataSeries.STAT != STAT.Percentage )
                                 {
                                     DataSeries.Styles[ 0 ].TextFormat =
@@ -185,7 +170,6 @@ namespace BudgetExecution
                             break;
                         }
                         default:
-
                         {
                             foreach( var kvp in DataValues )
                             {

@@ -128,7 +128,6 @@ namespace BudgetExecution
                     try
                     {
                         var _filter = string.Empty;
-
                         foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
@@ -191,7 +190,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
@@ -295,7 +293,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
@@ -360,7 +357,6 @@ namespace BudgetExecution
             try
             {
                 var _rows = DataTable?.AsEnumerable( );
-
                 return _rows?.Any( ) == true
                     ? _rows
                     : default( EnumerableRowCollection<DataRow> );

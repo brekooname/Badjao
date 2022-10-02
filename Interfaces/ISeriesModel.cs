@@ -2,8 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using System.ComponentModel;
+    using System.Data;
     using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
@@ -30,22 +30,14 @@
         /// The data.
         /// </value>
         IEnumerable<DataRow> Data { get; set; }
-
-        /// <summary>
-        /// Gets or sets the chart binding.
-        /// </summary>
-        /// <value>
-        /// The chart binding.
-        /// </value>
-        IChartBinding ChartBinding { get; set; }
-
+        
         /// <summary>
         /// Gets the binding model.
         /// </summary>
         /// <value>
         /// The binding model.
         /// </value>
-        ChartDataBindModel BindingModel { get; set; }
+        ChartDataBindModel ChartDataBindModel { get; set; }
 
         /// <summary>
         /// Gets or sets the metric.

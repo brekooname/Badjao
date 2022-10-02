@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public override BindingSource BindingSource { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -259,12 +259,14 @@ namespace BudgetExecution
             try
             {
                 TextImageRelation = TextImageRelation.ImageBeforeText;
-
                 TextStyle = new TextStyle
                 {
                     TextLineAlignment = StringAlignment.Center,
-                    TextAlignment = StringAlignment.Center, Hover = hover, Enabled = normal,
-                    Disabled = normal, Pressed = normal
+                    TextAlignment = StringAlignment.Center,
+                    Hover = hover,
+                    Enabled = normal,
+                    Disabled = normal,
+                    Pressed = normal
                 };
             }
             catch( Exception ex )
@@ -302,7 +304,6 @@ namespace BudgetExecution
         public void OnMouseOver( object sender, EventArgs e )
         {
             var _button = sender as Button;
-
             try
             {
                 if( _button != null
@@ -340,7 +341,6 @@ namespace BudgetExecution
         public override void OnMouseLeave( object sender, EventArgs e )
         {
             var _button = sender as Button;
-
             try
             {
                 if( _button != null )

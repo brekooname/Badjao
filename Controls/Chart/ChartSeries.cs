@@ -20,14 +20,6 @@ namespace BudgetExecution
     public class ChartSeries : ChartData
     {
         /// <summary>
-        /// Gets or sets the chart binding.
-        /// </summary>
-        /// <value>
-        /// The chart binding.
-        /// </value>
-        public ChartBinding ChartBinding { get; set; }
-
-        /// <summary>
         /// Gets or sets the data points.
         /// </summary>
         /// <value>
@@ -66,7 +58,6 @@ namespace BudgetExecution
             : base( bindingSource )
         {
             BindingSource = bindingSource;
-            ChartBinding = new ChartBinding( bindingSource );
         }
 
         /// <summary>
@@ -76,8 +67,7 @@ namespace BudgetExecution
         public ChartSeries( DataTable dataTable )
             : base( dataTable )
         {
-            ChartBinding = new ChartBinding( dataTable );
-            BindingSource = ChartBinding.BindingSource;
+            BindingSource.DataSource = dataTable;
         }
 
         /// <summary>
@@ -86,8 +76,7 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         public ChartSeries( IEnumerable<DataRow> data )
         {
-            ChartBinding = new ChartBinding( );
-            BindingSource = ChartBinding.BindingSource;
+            BindingSource.DataSource = data.CopyToDataTable( );
         }
 
         /// <summary>
@@ -100,7 +89,6 @@ namespace BudgetExecution
         {
             DataFilter = dict;
             BindingSource = bindingSource;
-            ChartBinding = new ChartBinding( bindingSource );
         }
 
         /// <summary>
@@ -116,36 +104,27 @@ namespace BudgetExecution
                     {
                         case STAT.Total:
                         case STAT.Average:
-
                         {
                             Style.TextFormat = "{0:C}";
                             break;
                         }
-
                         case STAT.Variance:
                         case STAT.StandardDeviation:
-
                         {
                             Style.TextFormat = "{0:N1}";
                             break;
                         }
-
                         case STAT.Percentage:
-
                         {
                             Style.TextFormat = "{0:P}";
                             break;
                         }
-
                         case STAT.Count:
-
                         {
                             Style.TextFormat = "{0}";
                             break;
                         }
-
                         default:
-
                         {
                             Style.TextFormat = "{0:N2}";
                             break;
@@ -215,14 +194,12 @@ namespace BudgetExecution
                         case ChartSeriesType.Pyramid:
                         case ChartSeriesType.Funnel:
                         case ChartSeriesType.Pie:
-
                         {
                             foreach( var _kvp in data )
                             {
                                 Points.Add( _kvp.Key, _kvp.Value );
                                 var _keys = data.Keys.Select( k => k.ToString( ) ).ToArray( );
                                 var _vals = data.Values.Select( v => v ).ToArray( );
-
                                 if( stat != STAT.Percentage )
                                 {
                                     for( var i = 0; i < data.Keys.Count; i++ )
@@ -242,7 +219,6 @@ namespace BudgetExecution
                             break;
                         }
                         default:
-
                         {
                             foreach( var _kvp in data )
                             {

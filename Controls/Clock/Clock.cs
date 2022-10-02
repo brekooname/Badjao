@@ -35,7 +35,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public override string HoverText { get; set; }
-    
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>

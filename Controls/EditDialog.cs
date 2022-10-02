@@ -146,7 +146,6 @@ namespace BudgetExecution
                     {
                         case ToolType.CopyButton:
                         case ToolType.EditRecordButton:
-
                         {
                             DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
@@ -156,7 +155,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.DeleteRecordButton:
-
                         {
                             DataTab.Text = "Delete Data";
                             ActiveTab = DataTab;
@@ -166,7 +164,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.EditSqlButton:
-
                         {
                             SqlTab.Text = "SQL Editor";
                             ActiveTab = SqlTab;
@@ -176,7 +173,6 @@ namespace BudgetExecution
                             break;
                         }
                         default:
-
                         {
                             DataTab.Text = "Edit Data";
                             ActiveTab = DataTab;
@@ -204,7 +200,6 @@ namespace BudgetExecution
                 try
                 {
                     var _cols = Columns.ToArray( );
-
                     foreach( var frame in Frames )
                     {
                         if( frame.Index >= _cols.Length )
@@ -267,7 +262,6 @@ namespace BudgetExecution
                 try
                 {
                     var _cols = Columns.ToArray( );
-
                     if( _cols.Length >= 43 )
                     {
                         FrameTable.Location = new Point( 12, 25 );
@@ -323,7 +317,6 @@ namespace BudgetExecution
                     var _items = Current.ItemArray;
                     var _frames = Frames.OrderBy( f => f.Index ).ToArray( );
                     var _cols = Columns.ToArray( );
-
                     for( var i = 0; i < _cols.Length; i++ )
                     {
                         _frames[ i ].Label.Text = _cols[ i ].SplitPascal( );
@@ -347,9 +340,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var
-                        _tabPages = new Dictionary<string, TabPageAdv>( );
-
+                    var _tabPages = new Dictionary<string, TabPageAdv>( );
                     foreach( TabPageAdv tabpage in TabControl.TabPages )
                     {
                         if( tabpage != null )
@@ -381,7 +372,6 @@ namespace BudgetExecution
             try
             {
                 var _frames = new List<Frame>( );
-
                 foreach( var _control in FrameTable.Controls )
                 {
                     if( _control.GetType( ) == typeof( Frame ) )

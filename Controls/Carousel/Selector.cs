@@ -38,14 +38,12 @@ namespace BudgetExecution
                 var _files = Directory.EnumerateFiles( sourceDirectory );
                 var _paths = _files?.ToList( );
                 var _list = new ImageList( );
-
                 for( var i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
                         var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
-
                         using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
                             var _bitmap = new Bitmap( _stream )
@@ -80,17 +78,18 @@ namespace BudgetExecution
                 var _files = Directory.EnumerateFiles( sourceDirectory );
                 var _paths = _files?.ToList( );
                 var _list = new ImageList( );
-
                 for( var i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
                         var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
-
                         using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
-                            var _img = new Bitmap( _stream ) { Tag = _name };
+                            var _img = new Bitmap( _stream )
+                            {
+                                Tag = _name
+                            };
 
                             _list.ImageSize = size;
                             _list?.Images?.Add( _img );
@@ -117,14 +116,16 @@ namespace BudgetExecution
             {
                 var _list = paths.ToList( );
                 var _carouselImages = new List<CarouselImage>( );
-
                 for( var i = 0; i < _list?.Count; i++ )
                 {
                     using( var _stream = File.Open( _list[ i ], FileMode.Open ) )
                     {
                         using( var _img = new Bitmap( _stream ) )
                         {
-                            var _carouselImage = new CarouselImage { ItemImage = _img };
+                            var _carouselImage = new CarouselImage
+                            {
+                                ItemImage = _img
+                            };
 
                             _carouselImages.Add( _carouselImage );
                         }
@@ -150,10 +151,12 @@ namespace BudgetExecution
             {
                 var _list = images.ToList( );
                 var _carouselImages = new List<CarouselImage>( );
-
                 for( var i = 0; i < images?.Count( ); i++ )
                 {
-                    var _carouselImage = new CarouselImage { ItemImage = _list[ i ] };
+                    var _carouselImage = new CarouselImage
+                    {
+                        ItemImage = _list[ i ]
+                    };
 
                     ImageListCollection.Add( _carouselImage );
                     _carouselImages.Add( _carouselImage );
@@ -180,7 +183,6 @@ namespace BudgetExecution
                 var _files = Directory.EnumerateFiles( srcDir );
                 var _list = _files?.ToList( );
                 var _carouselImages = new List<CarouselImage>( );
-
                 for( var i = 0; i < _list?.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _list[ i ] )
@@ -191,7 +193,9 @@ namespace BudgetExecution
                             using( var _image = new Bitmap( _stream ) )
                             {
                                 var _carouselImage = new CarouselImage
-                                    { ItemImage = _image };
+                                {
+                                    ItemImage = _image
+                                };
 
                                 _carouselImages.Add( _carouselImage );
                             }

@@ -85,17 +85,13 @@ namespace BudgetExecution
             FileExtension = "xlsx";
             PictureBox.Image = GetImage( );
             FilePaths = GetListViewPaths( );
-
             FileDialog.DefaultExt = FileExtension;
-
             FileDialog.InitialDirectory =
                 Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
 
             FileDialog.CheckFileExists = true;
-
             CloseButton.Click += OnCloseButtonClicked;
             FileList.SelectedValueChanged += OnPathSelected;
-
             Load += OnLoaded;
         }
 
@@ -135,12 +131,10 @@ namespace BudgetExecution
                 {
                     var _path = ConfigurationManager.AppSettings[ "Extensions" ];
                     var _files = Directory.GetFiles( _path );
-
                     if( _files?.Any( ) == true )
                     {
                         var _extension = FileExtension.TrimStart( '.' ).ToUpper( );
                         var _file = _files.Where( f => f.Contains( _extension ) )?.First( );
-
                         using( var stream = File.Open( _file, FileMode.Open ) )
                         {
                             var _img = Image.FromStream( stream );
@@ -206,7 +200,6 @@ namespace BudgetExecution
                 try
                 {
                     var _list = new List<string>( );
-
                     foreach( var path in InitialDirPaths )
                     {
                         var _first = Directory.EnumerateFiles( path )
@@ -214,9 +207,7 @@ namespace BudgetExecution
                             ?.Select( f => Path.GetFullPath( f ) )?.ToList( );
 
                         _list.AddRange( _first );
-
                         var _dirs = Directory.GetDirectories( path );
-
                         foreach( var dir in _dirs )
                         {
                             if( !dir.Contains( "My " ) )
@@ -226,9 +217,7 @@ namespace BudgetExecution
                                     ?.Select( s => Path.GetFullPath( s ) )?.ToList( );
 
                                 _list.AddRange( _second );
-
                                 var _subdir = Directory.GetDirectories( dir );
-
                                 foreach( var sub in _subdir )
                                 {
                                     var _last = Directory.EnumerateFiles( sub )
@@ -328,7 +317,6 @@ namespace BudgetExecution
                 var _list = new List<string>
                 {
                     Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
-
                     Environment.GetFolderPath( Environment.SpecialFolder.Personal ),
                     Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments ),
                     @"C:\Users\terry\source\repos\Badjao\Resources\Docs",
@@ -378,7 +366,6 @@ namespace BudgetExecution
                 if( filePaths?.Any( ) == true )
                 {
                     FileList.Items.Clear( );
-
                     foreach( var path in filePaths )
                     {
                         if( !string.IsNullOrEmpty( path ) )

@@ -4,14 +4,14 @@
 
 namespace BudgetExecution
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Forms;
-    using Syncfusion.Windows.Forms.Chart;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
+    using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Windows.Forms;
+    using Syncfusion.Windows.Forms.Chart;
     using DataTable = System.Data.DataTable;
 
     /// <summary>
@@ -19,9 +19,9 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartSeries" />
     /// <seealso cref="IDataSeries" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class ChartData : Syncfusion.Windows.Forms.Chart.ChartSeries
     {
         /// <summary>
@@ -165,11 +165,15 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource );
-
-            BindingModel = new ChartDataBindModel { DataSource = bindingSource.DataSource };
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = bindingSource.DataSource
+            };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
-                { DataSource = bindingSource.DataSource };
+            {
+                DataSource = bindingSource.DataSource
+            };
         }
 
         /// <summary>
@@ -182,13 +186,20 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( dataRows );
+            BindingSource = new BindingSource
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
 
-            BindingSource = new BindingSource { DataSource = dataRows.CopyToDataTable( ) };
-
-            BindingModel = new ChartDataBindModel { DataSource = dataRows.CopyToDataTable( ) };
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
-                { DataSource = dataRows.CopyToDataTable( ) };
+            {
+                DataSource = dataRows.CopyToDataTable( )
+            };
         }
 
         /// <summary>
@@ -201,12 +212,20 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( dataTable );
+            BindingSource = new BindingSource
+            {
+                DataSource = dataTable
+            };
 
-            BindingSource = new BindingSource { DataSource = dataTable };
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = dataTable
+            };
 
-            BindingModel = new ChartDataBindModel { DataSource = dataTable };
-
-            AxisLabelModel = new ChartDataBindAxisLabelModel { DataSource = dataTable };
+            AxisLabelModel = new ChartDataBindAxisLabelModel
+            {
+                DataSource = dataTable
+            };
         }
 
         /// <summary>
@@ -225,11 +244,15 @@ namespace BudgetExecution
             Type = ChartSeriesType.Column;
             STAT = STAT.Total;
             DataMetric = new DataMetric( bindingSource, dict );
-
-            BindingModel = new ChartDataBindModel { DataSource = bindingSource.DataSource };
+            BindingModel = new ChartDataBindModel
+            {
+                DataSource = bindingSource.DataSource
+            };
 
             AxisLabelModel = new ChartDataBindAxisLabelModel
-                { DataSource = bindingSource.DataSource };
+            {
+                DataSource = bindingSource.DataSource
+            };
         }
 
         /// <summary>
@@ -264,10 +287,10 @@ namespace BudgetExecution
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

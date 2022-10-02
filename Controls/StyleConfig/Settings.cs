@@ -137,27 +137,22 @@ namespace BudgetExecution
                     switch( size )
                     {
                         case PicSize.Small:
-
                         {
                             return new Size( 16, 16 );
                         }
                         case PicSize.Medium:
-
                         {
                             return new Size( 30, 30 );
                         }
                         case PicSize.Large:
-
                         {
                             return new Size( 50, 50 );
                         }
                         case PicSize.Huge:
-
                         {
                             return new Size( 250, 250 );
                         }
                         default:
-
                         {
                             return Size.Empty;
                         }

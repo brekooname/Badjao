@@ -178,7 +178,6 @@ namespace BudgetExecution
                 try
                 {
                     excelRange.Style.Font.Color.SetColor( Color.Black );
-
                     using( Font )
                     {
                         excelRange.Style.Font.SetFromFont( Font );
@@ -209,7 +208,6 @@ namespace BudgetExecution
                 try
                 {
                     excelRange.Style.Font.Color.SetColor( FontColor );
-
                     using( Font )
                     {
                         excelRange.Style.Font.SetFromFont( Font );
@@ -242,8 +240,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _prc = Worksheet.Cells[ excelRange.Start.Row,
-                        excelRange.Start.Column, excelRange.End.Row, excelRange.End.Column ];
+                    var _prc = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column,
+                        excelRange.End.Row, excelRange.End.Column ];
 
                     for( var i = excelRange.Start.Row; i < excelRange.End.Row; i++ )
                     {
@@ -309,7 +307,6 @@ namespace BudgetExecution
                 try
                 {
                     SetHeaderText( grid );
-
                     using( var _range = grid.GetRange( ) )
                     {
                         _range.Style.Font.SetFromFont( TitleFont );
@@ -342,13 +339,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _total = Worksheet.Cells[ excelRange.Start.Row,
-                        excelRange.Start.Column, excelRange.Start.Row,
-                        excelRange.Start.Column + 6 ];
+                    var _total = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column,
+                        excelRange.Start.Row, excelRange.Start.Column + 6 ];
 
-                    var _range = Worksheet.Cells[ excelRange.Start.Row,
-                        excelRange.Start.Column + 1, excelRange.Start.Row,
-                        excelRange.Start.Column + 6 ];
+                    var _range = Worksheet.Cells[ excelRange.Start.Row, excelRange.Start.Column + 1,
+                        excelRange.Start.Row, excelRange.Start.Column + 6 ];
 
                     _total.Style.Fill.PatternType = ExcelFillStyle.Solid;
                     _total.Style.Fill.BackgroundColor.SetColor( PrimaryBackColor );

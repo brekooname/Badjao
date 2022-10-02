@@ -102,7 +102,6 @@ namespace BudgetExecution
             try
             {
                 var _control = sender as RadioButton;
-
                 if( _control is RadioButton _radioButton
                     && !string.IsNullOrEmpty( HoverText ) )
                 {

@@ -62,7 +62,6 @@ namespace BudgetExecution
             : this( )
         {
             Location = location;
-
             if( parent != null )
             {
                 Parent = parent;
@@ -81,7 +80,6 @@ namespace BudgetExecution
             : this( )
         {
             Size = size;
-
             if( parent != null )
             {
                 Parent = parent;

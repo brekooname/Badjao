@@ -66,7 +66,6 @@ namespace BudgetExecution
             try
             {
                 var _control = sender as CheckBox;
-
                 if( _control is Control _checkBox
                     && !string.IsNullOrEmpty( HoverText ) )
                 {

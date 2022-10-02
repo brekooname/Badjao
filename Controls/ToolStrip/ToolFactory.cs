@@ -54,10 +54,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "FirstButton.png";
-
                 var _firstButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "First Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "First Record",
                     ToolType = ToolType.FirstButton
                 };
 
@@ -79,10 +79,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "PreviousButton.png";
-
                 var _previousButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Previous Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Previous Record",
                     ToolType = ToolType.PreviousButton
                 };
 
@@ -104,10 +104,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "NextButton.png";
-
                 var _nextButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Next Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Next Record",
                     ToolType = ToolType.NextButton
                 };
 
@@ -129,10 +129,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "LastButton.png";
-
                 var _lastButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Last Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Last Record",
                     ToolType = ToolType.LastButton
                 };
 
@@ -154,10 +154,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "EditButton.png";
-
                 var _editButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Edit Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Edit Record",
                     ToolType = ToolType.EditButton
                 };
 
@@ -179,10 +179,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "AddButton.png";
-
                 var _addButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Add Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Add Record",
                     ToolType = ToolType.AddButton
                 };
 
@@ -204,10 +204,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "DeleteButton.png";
-
                 var _deleteButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Delete Record",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Delete Record",
                     ToolType = ToolType.DeleteButton
                 };
 
@@ -229,10 +229,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "RefreshButton.png";
-
                 var _refreshButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Refresh Data",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Refresh Data",
                     ToolType = ToolType.RefreshButton
                 };
 
@@ -254,10 +254,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "SaveButton.png";
-
                 var _saveButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Save Changes",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Save Changes",
                     ToolType = ToolType.SaveButton
                 };
 
@@ -279,10 +279,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "PrintButton.png";
-
                 var _printButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Print Data",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Print Data",
                     ToolType = ToolType.PrintButton
                 };
 
@@ -304,10 +304,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "ExcelButton.png";
-
                 var _excelButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Export to Excel",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Export to Excel",
                     ToolType = ToolType.ExcelButton
                 };
 
@@ -329,10 +329,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "CalculatorButton.png";
-
                 var _calculatorButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Launch Calculator",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Launch Calculator",
                     ToolType = ToolType.CalculatorButton
                 };
 
@@ -354,10 +354,10 @@ namespace BudgetExecution
             try
             {
                 var _filename = ImageDirectory + "HomeButton.png";
-
                 var _homeButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ), HoverText = "Main Menu",
+                    Image = Image.FromFile( _filename ),
+                    HoverText = "Main Menu",
                     ToolType = ToolType.HomeButton
                 };
 

@@ -8,18 +8,17 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="ChartDataBindModel" />
+    /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartDataBindModel" />
     /// <seealso />
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
-    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
+    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
+    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class BindingModelBase : ChartDataBindModel
     {
         /// <summary>
@@ -29,22 +28,14 @@ namespace BudgetExecution
         /// The data.
         /// </value>
         public virtual IEnumerable<DataRow> Data { get; set; }
-
-        /// <summary>
-        /// Gets or sets the chart binding.
-        /// </summary>
-        /// <value>
-        /// The chart binding.
-        /// </value>
-        public virtual IChartBinding ChartBinding { get; set; }
-
+        
         /// <summary>
         /// Gets the binding model.
         /// </summary>
         /// <value>
         /// The binding model.
         /// </value>
-        public virtual ChartDataBindModel BindingModel { get; set; }
+        public virtual ChartDataBindModel ChartDataBindModel { get; set; }
 
         /// <summary>
         /// Gets or sets the axis label model.
@@ -93,100 +84,7 @@ namespace BudgetExecution
         /// The series categories.
         /// </value>
         public virtual IEnumerable<string> Categories { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance
-        /// of the <see cref="BindingModelBase" /> class.
-        /// </summary>
-        protected BindingModelBase( )
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BindingModelBase" /> struct.
-        /// </summary>
-        /// <param name="bindingSource">The binding source.</param>
-        protected BindingModelBase( BindingSource bindingSource )
-        {
-            BindingModel = new ChartDataBindModel( bindingSource );
-            ChartBinding = new ChartBinding( bindingSource );
-            Data = ChartBinding.Data;
-            DataSource = Data.CopyToDataTable( );
-            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
-            DataMetric = new DataMetric( bindingSource );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
-        /// </summary>
-        /// <param name="dataTable">The data table.</param>
-        protected BindingModelBase( DataTable dataTable )
-        {
-            BindingModel = new ChartDataBindModel( dataTable );
-            ChartBinding = new ChartBinding( dataTable );
-            Data = ChartBinding.Data;
-            DataSource = dataTable;
-            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
-            DataMetric = new DataMetric( dataTable );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
-        /// </summary>
-        /// <param name="dataSet">The data table.</param>
-        protected BindingModelBase( DataSet dataSet )
-        {
-            BindingModel = new ChartDataBindModel( dataSet );
-            ChartBinding = new ChartBinding( dataSet );
-            Data = ChartBinding.Data;
-            DataSource = dataSet.Tables[ 0 ];
-            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
-        /// </summary>
-        /// <param name="dataRows">The data rows.</param>
-        protected BindingModelBase( IEnumerable<DataRow> dataRows )
-        {
-            BindingModel = new ChartDataBindModel( dataRows );
-            ChartBinding = new ChartBinding( dataRows );
-            Data = dataRows;
-            DataSource = Data.CopyToDataTable( );
-            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
-            DataMetric = new DataMetric( dataRows );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BindingModelBase" /> struct.
-        /// </summary>
-        /// <param name="chartBinding">The binding source.</param>
-        protected BindingModelBase( IChartBinding chartBinding )
-        {
-            BindingModel = new ChartDataBindModel( chartBinding );
-            ChartBinding = chartBinding;
-            Data = ChartBinding.Data;
-            DataSource = Data.CopyToDataTable( );
-            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
-            DataMetric = new DataMetric( Data );
-            SeriesData = DataMetric.CalculateStatistics( );
-            Categories = SeriesData.Keys;
-            BindingModel.Changed += OnChanged;
-        }
-
+        
         /// <summary>
         /// Called when [changed].
         /// </summary>
@@ -214,7 +112,7 @@ namespace BudgetExecution
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
         protected void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )

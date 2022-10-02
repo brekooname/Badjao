@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public override string HoverText { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -216,7 +216,6 @@ namespace BudgetExecution
                 switch( hoverColor )
                 {
                     case true:
-
                     {
                         Border.Color = Color.FromArgb( 64, 64, 64 );
                         Border.Thickness = 1;
@@ -225,9 +224,7 @@ namespace BudgetExecution
                         Border.Type = ShapeTypes.Rounded;
                         break;
                     }
-
                     case false:
-
                     {
                         Border.Color = Color.FromArgb( 15, 15, 15 );
                         Border.Thickness = 1;

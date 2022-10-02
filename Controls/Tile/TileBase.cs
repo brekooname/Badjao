@@ -41,7 +41,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>

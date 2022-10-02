@@ -111,7 +111,6 @@ namespace BudgetExecution
                     {
                         var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
-
                         foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
@@ -175,7 +174,6 @@ namespace BudgetExecution
                 try
                 {
                     var filter = string.Empty;
-
                     foreach( var kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
@@ -278,7 +276,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )

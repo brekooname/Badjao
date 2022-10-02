@@ -139,9 +139,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRow
-                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.StandardDeviation( p => p.Field<decimal>( $"{ numeric }" ) );
+                    var _query = dataRow?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.StandardDeviation( p => p.Field<decimal>( $"{numeric}" ) );
 
                     return _query > 0
                         ? double.Parse( _query.ToString( ) )
@@ -175,12 +174,11 @@ namespace BudgetExecution
                 && GetCount( dataRow, numeric ) > 30 )
             {
                 var _table = dataRow.CopyToDataTable( );
-
                 try
                 {
                     var _query = _table?.AsEnumerable( )
-                        ?.Where( p => p.Field<decimal>( $"{ numeric }" ) != 0 )
-                        ?.Variance( p => p.Field<decimal>( $"{ numeric }" ) );
+                        ?.Where( p => p.Field<decimal>( $"{numeric}" ) != 0 )
+                        ?.Variance( p => p.Field<decimal>( $"{numeric}" ) );
 
                     return _query > 0
                         ? double.Parse( _query.ToString( ) )
@@ -195,7 +193,7 @@ namespace BudgetExecution
 
             return default( double );
         }
-        
+
         /// <summary>
         /// Calculates the statistics.
         /// </summary>

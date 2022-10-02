@@ -94,7 +94,11 @@ namespace BudgetExecution
                 try
                 {
                     var _controlHost = new ToolStripControlHost( this )
-                        { AutoSize = true, Margin = Padding.Empty, Padding = Padding.Empty };
+                    {
+                        AutoSize = true,
+                        Margin = Padding.Empty,
+                        Padding = Padding.Empty
+                    };
 
                     return _controlHost;
                 }
@@ -126,14 +130,15 @@ namespace BudgetExecution
                 try
                 {
                     ColumnListBox?.Items?.Clear( );
-
                     foreach( DataGridViewColumn c in Grid?.Columns )
                     {
                         ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
                     }
 
                     var _columnConfiguration = new ColumnConfiguration( Grid )
-                        { Location = Grid.PointToScreen( new Point( e.X, e.Y ) ) };
+                    {
+                        Location = Grid.PointToScreen( new Point( e.X, e.Y ) )
+                    };
 
                     _columnConfiguration?.ShowDialog( );
                     _columnConfiguration.TopMost = true;

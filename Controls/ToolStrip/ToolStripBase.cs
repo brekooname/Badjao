@@ -293,7 +293,6 @@ namespace BudgetExecution
             try
             {
                 DropDown?.ComboBox.Items?.Clear( );
-
                 if( items?.Count( ) > 0 )
                 {
                     foreach( var item in items )

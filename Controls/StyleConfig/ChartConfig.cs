@@ -44,7 +44,7 @@ namespace BudgetExecution
                 {
                     var _chartFont = new ChartFontInfo
                     {
-                        FontStyle = font.Style, 
+                        FontStyle = font.Style,
                         FontFamilyTemplate = font.FontFamily,
                         Size = font.Size
                     };
@@ -83,8 +83,8 @@ namespace BudgetExecution
                 {
                     var chart = new ChartFontInfo
                     {
-                        FontStyle = style, 
-                        Facename = family, 
+                        FontStyle = style,
+                        Facename = family,
                         Size = size
                     };
 
@@ -137,8 +137,8 @@ namespace BudgetExecution
             {
                 var style = new ChartLineInfo
                 {
-                    Alignment = PenAlignment.Center, 
-                    Width = width, 
+                    Alignment = PenAlignment.Center,
+                    Width = width,
                     Color = color
                 };
 

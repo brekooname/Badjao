@@ -1,4 +1,4 @@
-﻿// <copyright file = "TipBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "MetroTipBase.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -62,7 +62,7 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public virtual BindingSource BindingSource { get; set; }
-        
+
         /// <summary>
         /// Sets the animation.
         /// </summary>
@@ -155,7 +155,7 @@ namespace BudgetExecution
                 }
             }
         }
-        
+
         /// <summary>
         /// Sets the tag.
         /// </summary>
@@ -231,7 +231,6 @@ namespace BudgetExecution
                 {
                     Control parent = item.GetCurrentParent( );
                     var caption = item?.Tag?.ToString( );
-
                     if( !string.IsNullOrEmpty( caption ) )
                     {
                         RemoveAll( );

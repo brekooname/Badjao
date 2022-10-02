@@ -65,7 +65,6 @@ namespace BudgetExecution
             try
             {
                 var _button = sender as ToolStripButton;
-
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
@@ -125,31 +124,26 @@ namespace BudgetExecution
                     switch( _button?.ToolType )
                     {
                         case ToolType.FirstButton:
-
                         {
                             BindingSource?.MoveFirst( );
                             break;
                         }
                         case ToolType.PreviousButton:
-
                         {
                             BindingSource?.MovePrevious( );
                             break;
                         }
                         case ToolType.NextButton:
-
                         {
                             BindingSource?.MoveNext( );
                             break;
                         }
                         case ToolType.LastButton:
-
                         {
                             BindingSource?.MoveLast( );
                             break;
                         }
                         case ToolType.ExcelButton:
-
                         {
                             using( var _excelForm = new ExcelForm( ) )
                             {
@@ -159,7 +153,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.PdfButton:
-
                         {
                             using( var _message = new PdfForm( ) )
                             {
@@ -169,7 +162,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.PrintButton:
-
                         {
                             using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
                             {
@@ -179,7 +171,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.AddRecordButton:
-
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
@@ -190,7 +181,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.AddButton:
-
                         {
                             using( var _dataConfig = new EditDialog( _button.ToolType ) )
                             {
@@ -203,7 +193,6 @@ namespace BudgetExecution
                         case ToolType.AddTableButton:
                         case ToolType.AddDatabaseButton:
                         case ToolType.AddColumnButton:
-
                         {
                             using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
@@ -215,7 +204,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.EditColumnButton:
-
                         {
                             using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
@@ -227,7 +215,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.DeleteColumnButton:
-
                         {
                             using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
@@ -239,7 +226,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.DeleteTableButton:
-
                         {
                             using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
@@ -251,7 +237,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.DeleteDatabaseButton:
-
                         {
                             using( var _dataConfig =
                                 new DefinitionDialog( _button.ToolType, BindingSource ) )
@@ -263,7 +248,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.DeleteRecordButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -274,7 +258,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.DeleteButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -285,7 +268,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.RefreshButton:
-
                         {
                             using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
                             {
@@ -295,28 +277,24 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.ExitButton:
-
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.ExportButton:
-
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.ImportButton:
-
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.FilterDataButton:
-
                         {
                             using( var _dataConfig = new LookupDialog( ) )
                             {
@@ -327,7 +305,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.EditSqlButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -339,7 +316,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.EditButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -351,7 +327,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.EditRecordButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -363,7 +338,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.CopyButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -375,7 +349,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.UpdateButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -387,7 +360,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.InsertButton:
-
                         {
                             using( var _dataConfig =
                                 new EditDialog( _button.ToolType, BindingSource ) )
@@ -399,7 +371,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.CalculatorButton:
-
                         {
                             using( var _calculator = new CalculationForm( ) )
                             {
@@ -409,7 +380,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.CalendarButton:
-
                         {
                             using( var _form = new CalendarForm( ) )
                             {
@@ -419,7 +389,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.BrowseButton:
-
                         {
                             using( var _browser = new FileBrowser( ) )
                             {
@@ -429,7 +398,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.HomeButton:
-
                         {
                             using( var _form = new MainForm( ) )
                             {
@@ -439,7 +407,6 @@ namespace BudgetExecution
                             break;
                         }
                         case ToolType.ChartButton:
-
                         {
                             if( BindingSource?.DataSource != null )
                             {
@@ -460,7 +427,6 @@ namespace BudgetExecution
                             break;
                         }
                         default:
-
                         {
                             var _message = new Message( "NOT YET IMPLEMENTED!" );
                             _message?.ShowDialog( );
@@ -484,9 +450,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
-                        + $"{ToolType}.png";
-
+                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ] + $"{ToolType}.png";
                     using( var _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
@@ -513,15 +477,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ]
-                        + $"{toolType}.png";
-
+                    var _path = ConfigurationManager.AppSettings[ "ToolStrip" ] + $"{toolType}.png";
                     using( var _stream = File.Open( _path, FileMode.Open ) )
                     {
                         if( _stream != null )
                         {
                             var _image = Image.FromStream( _stream );
-
                             return _image != null
                                 ? _image
                                 : default( Image );

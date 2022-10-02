@@ -200,7 +200,6 @@ namespace BudgetExecution
             try
             {
                 var _returnType = type;
-
                 if( type.IsGenericType
                     && type.GetGenericTypeDefinition( ) == typeof( Nullable<> ) )
                 {
@@ -265,7 +264,7 @@ namespace BudgetExecution
             {
                 var _cell = new Cell
                 {
-                    CellReference = cellReference, 
+                    CellReference = cellReference,
                     DataType = CellValues.String
                 };
 
@@ -343,7 +342,7 @@ namespace BudgetExecution
 
                 var _first = (char)( 'A' + columnIndex / 26 - 1 );
                 var _second = (char)( 'A' + columnIndex % 26 );
-                return $"{ _first }{ _second }";
+                return $"{_first}{_second}";
             }
             catch( Exception ex )
             {
@@ -383,11 +382,9 @@ namespace BudgetExecution
                         var _stylesheet = new Stylesheet( );
                         _styles.Stylesheet = _stylesheet;
                         uint _id = 1;
-
                         foreach( DataTable _dataTable in dataSet.Tables )
                         {
-                            var _part =
-                                spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>( );
+                            var _part = spreadSheet.WorkbookPart.AddNewPart<WorksheetPart>( );
                             _part.Worksheet = new Worksheet( );
                             _part.Worksheet.AppendChild( new SheetData( ) );
                             WriteDataTableToExcelWorksheet( _dataTable, _part );
@@ -401,7 +398,8 @@ namespace BudgetExecution
                                 new Sheet
                                 {
                                     Id = spreadSheet.WorkbookPart.GetIdOfPart( _part ),
-                                    SheetId = _id, Name = _dataTable.TableName
+                                    SheetId = _id,
+                                    Name = _dataTable.TableName
                                 } );
 
                             _id++;
@@ -440,7 +438,6 @@ namespace BudgetExecution
                     var _columns = dataTable.Columns.Count;
                     var _isNumeric = new bool[ _columns ];
                     var _names = new string[ _columns ];
-
                     for( var n = 0; n < _columns; n++ )
                     {
                         _names[ n ] = GetExcelColumnName( n );
@@ -453,12 +450,10 @@ namespace BudgetExecution
                     };
 
                     _data?.Append( _row );
-
                     for( var colinx = 0; colinx < _columns; colinx++ )
                     {
                         var _column = dataTable.Columns[ colinx ];
                         AppendTextCell( _names[ colinx ] + "1", _column.ColumnName, _row );
-
                         _isNumeric[ colinx ] = _column.DataType.FullName == "System.Decimal"
                             || _column.DataType.FullName == "System.Int32";
                     }
@@ -472,11 +467,9 @@ namespace BudgetExecution
                         };
 
                         _data?.Append( _excelRow );
-
                         for( var i = 0; i < _columns; i++ )
                         {
                             var _value = _dataRow?.ItemArray[ i ].ToString( );
-
                             if( _isNumeric[ i ] )
                             {
                                 if( double.TryParse( _value, out var cellnumericvalue ) )

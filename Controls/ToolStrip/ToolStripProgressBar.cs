@@ -143,7 +143,6 @@ namespace BudgetExecution
                 try
                 {
                     var _text = progress?.HoverText;
-
                     if( !string.IsNullOrEmpty( _text ) )
                     {
                         var _ = new MetroTip( this, _text );

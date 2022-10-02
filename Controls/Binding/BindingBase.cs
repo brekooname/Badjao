@@ -119,7 +119,6 @@ namespace BudgetExecution
             try
             {
                 var _dataRows = DataTable?.AsEnumerable( );
-
                 return _dataRows?.Any( ) == true
                     ? _dataRows
                     : default( EnumerableRowCollection<DataRow> );

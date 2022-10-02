@@ -194,11 +194,8 @@ namespace BudgetExecution
                     var _query = "SELECT DISTINCT SchemaTypes.TypeName" + " FROM SchemaTypes"
                         + $" WHERE SchemaTypes.Provider = '{provider}'";
 
-                    var _model =
-                        new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
-
+                    var _model = new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
                     var _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
-
                     return _data?.Length > 0
                         ? _data
                         : default( IEnumerable<string> );
@@ -239,11 +236,9 @@ namespace BudgetExecution
             try
             {
                 var _names = Enum.GetNames( typeof( Source ) );
-
                 if( listBox?.Items.Count > 0 )
                 {
                     listBox.Items.Clear( );
-
                     foreach( var name in _names )
                     {
                         if( name != "NS" )
@@ -314,9 +309,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _buttons =
-                        new Dictionary<string, RadioButton>( );
-
+                    var _buttons = new Dictionary<string, RadioButton>( );
                     foreach( var _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
@@ -362,7 +355,6 @@ namespace BudgetExecution
                 try
                 {
                     var _buttons = new Dictionary<string, ComboBox>( );
-
                     foreach( var _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
@@ -408,7 +400,6 @@ namespace BudgetExecution
                 try
                 {
                     var _groupBoxes = new Dictionary<string, GroupBox>( );
-
                     foreach( var _tabPage in TabPages.Values )
                     {
                         foreach( var _control in _tabPage.Controls )
@@ -445,7 +436,6 @@ namespace BudgetExecution
                 try
                 {
                     var _listBoxes = new Dictionary<string, ListBox>( );
-
                     foreach( var _tabPage in TabPages.Values )
                     {
                         if( _tabPage?.Controls?.Count > 0 )

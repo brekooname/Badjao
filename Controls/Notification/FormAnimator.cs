@@ -236,7 +236,6 @@ namespace BudgetExecution
             if( Form.MdiParent == null )
             {
                 var flags = (int)Method | (int)Direction;
-
                 if( Form.Visible )
                 {
                     flags |= AwActivate;

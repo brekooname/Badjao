@@ -96,78 +96,58 @@ namespace BudgetExecution
                     switch( tool )
                     {
                         case ToolType.FirstButton:
-
                         {
                             return "First Record";
                         }
                         case ToolType.PreviousButton:
-
                         {
                             return "Previous Record";
                         }
                         case ToolType.NextButton:
-
                         {
                             return "Next Record";
                         }
                         case ToolType.LastButton:
-
                         {
                             return "Last Record";
                         }
                         case ToolType.EditButton:
-
                         {
                             return "Edit Record";
                         }
                         case ToolType.AddButton:
-
                         {
                             return "Add Record";
                         }
                         case ToolType.DeleteButton:
-
                         {
                             return "Delete Record";
                         }
                         case ToolType.SaveButton:
-
                         {
                             return "Save Record";
                         }
-
                         case ToolType.RefreshButton:
-
                         {
                             return "Reset Filters";
                         }
-
                         case ToolType.ExcelButton:
-
                         {
                             return "Excel Export";
                         }
-
                         case ToolType.CalculatorButton:
-
                         {
                             return "Calculator";
                         }
-
                         case ToolType.ChartButton:
-
                         {
                             return "Visualizations";
                         }
-
                         case ToolType.HomeButton:
-
                         {
                             return "Main Menu";
                         }
-
                         default:
-
                         {
                             return string.Empty;
                         }
@@ -190,7 +170,6 @@ namespace BudgetExecution
             if( Enum.IsDefined( typeof( ToolType ), ToolType ) )
             {
                 var _text = GetHoverText( ToolType );
-
                 if( !string.IsNullOrEmpty( _text ) )
                 {
                     try

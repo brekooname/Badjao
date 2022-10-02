@@ -87,7 +87,6 @@ namespace BudgetExecution
             {
                 TableListBox.Items.Clear( );
                 var _names = Enum.GetNames( typeof( Source ) );
-
                 foreach( var name in _names )
                 {
                     if( name != "NS" )
@@ -118,15 +117,12 @@ namespace BudgetExecution
                 ValueGroupBox.Text = string.Empty;
                 var _listBox = sender as ListBox;
                 var _value = _listBox?.SelectedItem.ToString( );
-
                 if( !string.IsNullOrEmpty( _value ) )
                 {
                     var _source = (Source)Enum.Parse( typeof( Source ), _value );
                     DataModel = new DataBuilder( _source, Provider.Access );
                     BindingSource.DataSource = DataModel.DataTable;
-
                     var _columns = DataModel.GetDataColumns( );
-
                     foreach( var col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
@@ -155,7 +151,6 @@ namespace BudgetExecution
                 var _listBox = sender as ListBox;
                 var _column = _listBox?.SelectedItem?.ToString( );
                 var _series = DataModel.DataElements;
-
                 if( !string.IsNullOrEmpty( _column ) )
                 {
                     foreach( var item in _series[ _column ] )

@@ -155,7 +155,6 @@ namespace BudgetExecution
             try
             {
                 var _comboBox = sender as ToolStripDropDown;
-
                 if( !string.IsNullOrEmpty( _comboBox?.HoverText ) )
                 {
                     var _text = _comboBox?.HoverText;

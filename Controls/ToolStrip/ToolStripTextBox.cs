@@ -87,7 +87,6 @@ namespace BudgetExecution
         public void SetHoverText( ToolStripItem item )
         {
             var _text = item?.Tag?.ToString( );
-
             if( !string.IsNullOrEmpty( _text ) )
             {
                 try
@@ -111,7 +110,6 @@ namespace BudgetExecution
             try
             {
                 var _button = sender as ToolStripTextBox;
-
                 if( _button != null
                     && !string.IsNullOrEmpty( HoverText ) )
                 {

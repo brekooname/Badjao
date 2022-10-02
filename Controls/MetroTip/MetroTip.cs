@@ -1,4 +1,4 @@
-﻿// <copyright file = "ToolTip.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "MetroTip.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 

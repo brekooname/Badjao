@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -47,7 +47,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-        
+
         /// <summary>
         /// Sets the binding source.
         /// </summary>
@@ -96,13 +96,12 @@ namespace BudgetExecution
                     {
                         var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
-
                         foreach( var _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
                             {
-                                _filter += $"{_kvp.Key} = { _kvp.Value } AND";
+                                _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                             }
                         }
 
@@ -160,7 +159,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
@@ -263,7 +261,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )

@@ -162,7 +162,6 @@ namespace BudgetExecution
         public virtual void SetHoverText( ToolStripItem item )
         {
             var _text = item?.Tag?.ToString( );
-
             try
             {
                 HoverText = Settings.GetText( _text );

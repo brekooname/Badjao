@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -96,7 +96,6 @@ namespace BudgetExecution
                     {
                         var _list = bindingList as BindingSource;
                         var _filter = string.Empty;
-
                         foreach( var kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( kvp.Key )
@@ -160,7 +159,6 @@ namespace BudgetExecution
                 try
                 {
                     var _filter = string.Empty;
-
                     foreach( var kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
@@ -263,7 +261,6 @@ namespace BudgetExecution
                 try
                 {
                     var filter = string.Empty;
-
                     foreach( var kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
@@ -328,7 +325,6 @@ namespace BudgetExecution
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
             var _budgetLabel = sender as Label;
-
             try
             {
                 if( _budgetLabel != null
@@ -366,7 +362,6 @@ namespace BudgetExecution
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
             var _budgetLabel = sender as Label;
-
             try
             {
                 if( _budgetLabel != null )

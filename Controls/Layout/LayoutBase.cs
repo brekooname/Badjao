@@ -48,7 +48,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -212,7 +212,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _list = new List<Control> { item };
+                    var _list = new List<Control>
+                    {
+                        item
+                    };
 
                     return _list?.Any( ) == true
                         ? _list
@@ -226,7 +229,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<Control> );
         }
-        
+
         /// <summary>
         /// Sets the tag.
         /// </summary>

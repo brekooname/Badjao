@@ -63,7 +63,9 @@ namespace BudgetExecution
                 try
                 {
                     var _dataFilter = new Dictionary<string, object>
-                        { { $"{field}", filter } };
+                    {
+                        { $"{field}", filter }
+                    };
 
                     DataFilter = _dataFilter?.Any( ) == true
                         ? _dataFilter
