@@ -15,10 +15,10 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartDataBindModel" />
     /// <seealso />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class BindingModelBase : ChartDataBindModel
     {
         /// <summary>
@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// The data.
         /// </value>
         public virtual IEnumerable<DataRow> Data { get; set; }
-        
+
         /// <summary>
         /// Gets the binding model.
         /// </summary>
@@ -54,14 +54,6 @@ namespace BudgetExecution
         public virtual DataMetric DataMetric { get; set; }
 
         /// <summary>
-        /// Gets the value.
-        /// </summary>
-        /// <value>
-        /// The value.
-        /// </value>
-        public virtual STAT Stat { get; set; }
-
-        /// <summary>
         /// Gets the series data.
         /// </summary>
         /// <value>
@@ -84,7 +76,44 @@ namespace BudgetExecution
         /// The series categories.
         /// </value>
         public virtual IEnumerable<string> Categories { get; set; }
+
+        /// <summary>
+        /// Gets or sets the filter.
+        /// </summary>
+        /// <value>
+        /// The filter.
+        /// </value>
+        public virtual IDictionary<string, object> DataFilter { get; set; }
+
+        /// <summary>
+        /// Gets the series data.
+        /// </summary>
+        /// <value>
+        /// The series data.
+        /// </value>
+        public virtual IDictionary<string, double> DataValues { get; set; }
         
+        /// <summary>
+        /// Gets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        public virtual STAT STAT { get; set; }
+
+        /// <summary>
+        /// Gets the numeric.
+        /// </summary>
+        public virtual Numeric Numeric { get; set; }
+
+        /// <summary>
+        /// Gets or sets the field.
+        /// </summary>
+        /// <value>
+        /// The field.
+        /// </value>
+        public virtual Field Field { get; set; }
+
         /// <summary>
         /// Called when [changed].
         /// </summary>
@@ -112,7 +141,7 @@ namespace BudgetExecution
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
             using( var _error = new Error( ex ) )

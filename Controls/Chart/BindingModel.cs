@@ -1,4 +1,4 @@
-﻿// <copyright file = "DataBindingModel.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "BindingModel.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -16,12 +16,12 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="ISeriesModel" />
+    /// <seealso cref="IBindingModel" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
-    public class BindingModel : BindingModelBase, ISeriesModel
+    public class BindingModel : BindingModelBase, IBindingModel
     {
         /// <summary>
         /// Gets or sets the chart handler.
@@ -86,23 +86,7 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         public BindingSource BindingSource { get; set; }
-
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
-        public Numeric Numeric { get; set; }
-
-        /// <summary>
-        /// Gets or sets the filter.
-        /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
-        public IDictionary<string, object> DataFilter { get; set; }
-
+        
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="BindingModel" />
@@ -122,8 +106,6 @@ namespace BudgetExecution
             Source = (Source)Enum.Parse( typeof( Source ),
                 ( (DataTable)bindingSource.DataSource ).TableName );
 
-            Categories = SeriesData.Keys;
-            Values = GetSeriesValues( );
             BindingSource = bindingSource;
             DataSource = (DataTable)bindingSource.DataSource;
             DataTable = (DataTable)bindingSource.DataSource;
@@ -139,6 +121,8 @@ namespace BudgetExecution
             DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
+            YNames = Categories.ToArray( );
+            Values = GetSeriesValues( );
             ChartDataBindModel.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
@@ -149,7 +133,6 @@ namespace BudgetExecution
         /// <param name="dataTable">The data table.</param>
         public BindingModel( DataTable dataTable )
         {
-            Values = GetSeriesValues( );
             BindingSource = new BindingSource
             {
                 DataSource = dataTable
@@ -166,6 +149,7 @@ namespace BudgetExecution
             DataMetric = new DataMetric( DataTable );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             ChartDataBindModel.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
@@ -181,7 +165,6 @@ namespace BudgetExecution
         /// </param>
         public BindingModel( DataSet dataSet, string tableName )
         {
-            Values = GetSeriesValues( );
             TableName = tableName;
             BindingSource = new BindingSource
             {
@@ -189,12 +172,16 @@ namespace BudgetExecution
                 DataMember = tableName
             };
 
+            DataTable = dataSet.Tables[ tableName ];
             DataSource = BindingSource.DataSource;
+            DataMember = tableName;
             DataSet = dataSet;
+            Data = dataSet.Tables[ tableName ].AsEnumerable( );
             Record = BindingSource.GetCurrentDataRow( );
             DataMetric = new DataMetric( DataTable );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
             ChartDataBindModel.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
@@ -210,7 +197,6 @@ namespace BudgetExecution
                 DataSource = dataRows.CopyToDataTable( )
             };
 
-            Values = GetSeriesValues( );
             Data = dataRows;
             BindingList = dataRows.ToBindingList( );
             Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
@@ -219,6 +205,12 @@ namespace BudgetExecution
             DataSource = DataTable.ToBindingList( );
             DataSet = DataTable.DataSet;
             Record = BindingSource.GetCurrentDataRow( );
+            DataMetric = new DataMetric( dataRows );
+            SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            Values = GetSeriesValues( );
+            ChartDataBindModel.Changed += OnChanged;
+            Changed += OnCurrentChanged;
         }
 
         /// <summary>
@@ -269,7 +261,7 @@ namespace BudgetExecution
         /// Gets the source model.
         /// </summary>
         /// <returns></returns>
-        public ISeriesModel GetSeriesModel( )
+        public IBindingModel GetSeriesModel( )
         {
             try
             {
@@ -278,7 +270,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( ISeriesModel );
+                return default( IBindingModel );
             }
         }
     }

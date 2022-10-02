@@ -452,6 +452,8 @@
     <Compile Include="Controls\Carousel\Rotator.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Interfaces\IBindingModel.cs" />
+    <Compile Include="Interfaces\IChart.cs" />
     <Compile Include="Controls\Excel\ExcelBase.cs" />
     <Compile Include="Controls\Excel\RibbonBase.cs">
       <SubType>Component</SubType>
@@ -467,7 +469,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Interfaces\IChartBinding.cs" />
     <Compile Include="Controls\EditDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -495,9 +496,8 @@
     <Compile Include="IO\FileBase.cs" />
     <Compile Include="Interfaces\ISqlStatement.cs" />
     <Compile Include="Interfaces\IDataModel.cs" />
-    <Compile Include="Interfaces\ISeriesModel.cs" />
     <Compile Include="Data\DataBuilder\Computation.cs" />
-    <Compile Include="Controls\Chart\ChartControl.cs">
+    <Compile Include="Controls\Chart\Chart.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\StyleConfig\AlignConfig.cs" />
@@ -509,12 +509,6 @@
     </Compile>
     <Compile Include="Controls\CheckBox\CheckBox.cs" />
     <Compile Include="Controls\CheckBox\CheckBoxBase.cs" />
-    <Compile Include="Controls\Binding\BindingData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\Binding\SourceBinding.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Clock\Clock.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -621,9 +615,6 @@
     <Compile Include="Controls\ChartForm.Designer.cs">
       <DependentUpon>ChartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Binding\BindingBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Button\ButtonBase.cs" />
     <Compile Include="Controls\Calculator\CalculatorBase.cs">
       <SubType>Component</SubType>
@@ -631,12 +622,8 @@
     <Compile Include="Controls\Carousel\CarouselBase.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Chart\ChartBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Controls\Chart\CallOut.cs" />
     <Compile Include="Controls\Chart\ChartSeries.cs" />
-    <Compile Include="Controls\Chart\ChartData.cs" />
     <Compile Include="Controls\Chart\LegendItem.cs" />
     <Compile Include="Controls\Chart\BindingModel.cs" />
     <Compile Include="Controls\Chart\BindingModelBase.cs" />
@@ -653,10 +640,7 @@
     <Compile Include="Interfaces\IDataGrid.cs" />
     <Compile Include="Interfaces\IButton.cs" />
     <Compile Include="Interfaces\IToolStrip.cs" />
-    <Compile Include="Interfaces\IBindingSource.cs" />
     <Compile Include="Interfaces\IWorkbook.cs" />
-    <Compile Include="Interfaces\IChart.cs" />
-    <Compile Include="Interfaces\IChartSeriesModel.cs" />
     <Compile Include="Interfaces\IDataSeries.cs" />
     <Compile Include="Interfaces\IDataSource.cs" />
     <Compile Include="Interfaces\IGrid.cs" />

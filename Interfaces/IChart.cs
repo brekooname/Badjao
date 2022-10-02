@@ -1,88 +1,19 @@
-﻿// <copyright file = "IBudgetChart.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
-
-namespace BudgetExecution
+﻿namespace BudgetExecution
 {
     using System.Collections.Generic;
-    using System.Collections.Specialized;
     using System.Drawing;
     using System.Windows.Forms;
+    using Syncfusion.Windows.Forms.Chart;
 
     public interface IChart
     {
         /// <summary>
-        /// Sets the size.
-        /// </summary>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
-        void SetSize( int width = 600, int height = 400 );
-
-        /// <summary>
-        /// Sets the location.
-        /// </summary>
-        /// <param name="x">The x.</param>
-        /// <param name="y">The y.</param>
-        void SetLocation( int x = 1, int y = 1 );
-
-        /// <summary>
-        /// Sets the parent.
-        /// </summary>
-        /// <param name="parent">The parent.</param>
-        void SetParent( Control parent );
-
-        /// <summary>
-        /// Sets the primary axis title.
-        /// </summary>
-        /// <param name="text">The title.</param>
-        /// <param name="font"></param>
-        /// <param name="color">The color.</param>
-        void SetPrimaryAxisTitle( string text, Font font, Color color );
-
-        /// <summary>
-        /// Gets or sets the bud ex configuration.
+        /// Gets or sets the header.
         /// </summary>
         /// <value>
-        /// The bud ex configuration.
+        /// The header.
         /// </value>
-        NameValueCollection Setting { get; set; }
-
-        /// <summary>
-        /// The style
-        /// </summary>
-        IChartConfig Style { get; set; }
-
-        /// <summary>
-        /// Gets or sets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
-        Source Source { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        ISeriesModel SeriesModel { get; set; }
-
-        /// <summary>
-        /// Gets the data series.
-        /// </summary>
-        /// <value>
-        /// The data series.
-        /// </value>
-        ChartData DataSeries { get; set; }
-
-        /// <summary>
-        /// Gets the default title.
-        /// </summary>
-        /// <value>
-        /// The title information.
-        /// </value>
-        ITitleInfo TitleInfo { get; set; }
+        ChartTitle Header { get; set; }
 
         /// <summary>
         /// Gets or sets the binding source.
@@ -91,6 +22,22 @@ namespace BudgetExecution
         /// The binding source.
         /// </value>
         BindingSource BindingSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tool tip.
+        /// </summary>
+        /// <value>
+        /// The tool tip.
+        /// </value>
+        MetroTip ToolTip { get; set; }
+
+        /// <summary>
+        /// Gets or sets the hover text.
+        /// </summary>
+        /// <value>
+        /// The hover text.
+        /// </value>
+        string HoverText { get; set; }
 
         /// <summary>
         /// Gets or sets the field.
@@ -109,11 +56,88 @@ namespace BudgetExecution
         Numeric Numeric { get; set; }
 
         /// <summary>
+        /// Gets or sets the stat.
+        /// </summary>
+        /// <value>
+        /// The stat.
+        /// </value>
+        STAT Stat { get; set; }
+
+        /// <summary>
+        /// Gets or sets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        Source Source { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data values.
+        /// </summary>
+        /// <value>
+        /// The data values.
+        /// </value>
+        IDictionary<string, double> DataValues { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data source.
+        /// </summary>
+        /// <value>
+        /// The data source.
+        /// </value>
+        object DataSource { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        string TableName { get; set; }
+
+        /// <summary>
         /// Gets or sets the filter.
         /// </summary>
         /// <value>
         /// The filter.
         /// </value>
         IDictionary<string, object> DataFilter { get; set; }
+
+        /// <summary>
+        /// Gets or sets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        DataMetric DataMetric { get; set; }
+
+        /// <summary>
+        /// Gets the data series.
+        /// </summary>
+        /// <value>
+        /// The data series.
+        /// </value>
+        ChartSeries DataSeries { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        IBindingModel BindingModel { get; set; }
+
+        /// <summary>
+        /// Sets the points.
+        /// </summary>
+        void SetPoints( );
+
+        /// <summary>
+        /// Sets the primary axis titleInfo.
+        /// </summary>
+        /// <param name="text">The titleInfo.</param>
+        /// <param name="font"></param>
+        /// <param name="color">The color.</param>
+        void SetPrimaryAxisTitle( string text, Font font, Color color );
     }
 }

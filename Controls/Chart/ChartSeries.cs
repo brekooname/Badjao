@@ -17,7 +17,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public class ChartSeries : ChartData
+    public class ChartSeries : Syncfusion.Windows.Forms.Chart.ChartSeries
     {
         /// <summary>
         /// Gets or sets the data points.
@@ -44,10 +44,59 @@ namespace BudgetExecution
         public IEnumerable<double> Values { get; set; }
 
         /// <summary>
+        /// Gets or sets the binding source.
+        /// </summary>
+        /// <value>
+        /// The binding source.
+        /// </value>
+        public IBindingModel BindingModel { get; set; }
+
+        /// <summary>
+        /// Gets the metric.
+        /// </summary>
+        /// <value>
+        /// The metric.
+        /// </value>
+        public STAT STAT { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ChartSeries"/> class.
         /// </summary>
         public ChartSeries( )
         {
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
+            SmartLabelsBorderColor = Color.SteelBlue;
+            SmartLabelsBorderWidth = 1;
+            Type = ChartSeriesType.Column;
+
+            // Basic Properties
+            SmartLabels = true;
+            Visible = true;
+            ShowTicks = true;
+            Rotate = true;
+            EnableAreaToolTip = true;
+            EnableStyles = true;
+            OptimizePiePointPositions = true;
+            LegendItemUseSeriesStyle = true;
+            SmartLabelsBorderColor = Color.SteelBlue;
+            SmartLabelsBorderWidth = 1;
+
+            // Callout Properties
+            Style.DisplayText = true;
+            Style.Callout.Enable = true;
+            Style.Callout.Position = LabelPosition.Top;
+            Style.Callout.DisplayTextAndFormat = "{0} : {2}";
+            Style.Callout.Border.Color = Color.SteelBlue;
+            Style.Callout.Color = Color.FromArgb( 15, 15, 15 );
+            Style.Callout.Font = ChartConfig.SetFont( );
+            Style.DisplayText = true;
         }
 
         /// <summary>
@@ -55,9 +104,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="bindingSource">The binding source.</param>
         public ChartSeries( BindingSource bindingSource )
-            : base( bindingSource )
         {
-            BindingSource = bindingSource;
         }
 
         /// <summary>
@@ -65,9 +112,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataTable">The data table.</param>
         public ChartSeries( DataTable dataTable )
-            : base( dataTable )
         {
-            BindingSource.DataSource = dataTable;
         }
 
         /// <summary>
@@ -76,7 +121,6 @@ namespace BudgetExecution
         /// <param name="data">The data.</param>
         public ChartSeries( IEnumerable<DataRow> data )
         {
-            BindingSource.DataSource = data.CopyToDataTable( );
         }
 
         /// <summary>
@@ -85,90 +129,7 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         /// <param name = "dict" > </param>
         public ChartSeries( BindingSource bindingSource, IDictionary<string, object> dict )
-            : base( bindingSource )
         {
-            DataFilter = dict;
-            BindingSource = bindingSource;
-        }
-
-        /// <summary>
-        /// Sets the point configuration.
-        /// </summary>
-        public void SetPointConfig( )
-        {
-            if( Enum.IsDefined( typeof( STAT ), STAT ) )
-            {
-                try
-                {
-                    switch( STAT )
-                    {
-                        case STAT.Total:
-                        case STAT.Average:
-                        {
-                            Style.TextFormat = "{0:C}";
-                            break;
-                        }
-                        case STAT.Variance:
-                        case STAT.StandardDeviation:
-                        {
-                            Style.TextFormat = "{0:N1}";
-                            break;
-                        }
-                        case STAT.Percentage:
-                        {
-                            Style.TextFormat = "{0:P}";
-                            break;
-                        }
-                        case STAT.Count:
-                        {
-                            Style.TextFormat = "{0}";
-                            break;
-                        }
-                        default:
-                        {
-                            Style.TextFormat = "{0:N2}";
-                            break;
-                        }
-                    }
-
-                    if( Type != ChartSeriesType.Pie )
-                    {
-                        SmartLabels = true;
-                        SortPoints = true;
-                        Style.DisplayText = true;
-                        Style.TextOffset = 50.0F;
-                        Style.TextOrientation = ChartTextOrientation.Up;
-                        Style.DisplayShadow = true;
-                        Style.TextColor = Color.White;
-                        Style.Font.Size = 10F;
-                        Style.Font.FontStyle = FontStyle.Bold;
-                        Style.Font.Facename = "Roboto";
-                        ShowTicks = true;
-                        ConfigItems.ColumnItem.ShadingMode = ChartColumnShadingMode.PhongCylinder;
-                        ConfigItems.ColumnItem.PhongAlpha = 20d;
-                    }
-                    else
-                    {
-                        SmartLabels = true;
-                        SortPoints = true;
-                        Style.DisplayText = true;
-                        Style.TextOffset = 50.0F;
-                        Style.TextOrientation = ChartTextOrientation.Up;
-                        Style.DisplayShadow = true;
-                        Style.TextColor = Color.White;
-                        Style.Font.Size = 10F;
-                        Style.Font.FontStyle = FontStyle.Bold;
-                        Style.Font.Facename = "Roboto";
-                        ShowTicks = true;
-                        ConfigItems.ColumnItem.ShadingMode = ChartColumnShadingMode.PhongCylinder;
-                        ConfigItems.ColumnItem.PhongAlpha = 20d;
-                    }
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
         }
 
         /// <summary>
@@ -204,14 +165,14 @@ namespace BudgetExecution
                                 {
                                     for( var i = 0; i < data.Keys.Count; i++ )
                                     {
-                                        Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:N1}";
+                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n {_vals[ i ]:N1}";
                                     }
                                 }
                                 else if( stat == STAT.Percentage )
                                 {
                                     for( var i = 0; i < data.Keys.Count; i++ )
                                     {
-                                        Styles[ i ].TextFormat = $"{_keys[ i ]} \n {_vals[ i ]:P}";
+                                        Styles[ i ].TextFormat = $"{ _keys[ i ] } \n {_vals[ i ]:P}";
                                     }
                                 }
                             }
@@ -233,6 +194,20 @@ namespace BudgetExecution
                 {
                     Fail( ex );
                 }
+            }
+        }
+        
+        /// <summary>
+        /// Get Error Dialog.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+        protected void Fail( Exception ex )
+        {
+            using( var _error = new Error( ex ) )
+            {
+                _error?.SetText( );
+                _error?.ShowDialog( );
             }
         }
     }
