@@ -168,7 +168,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _fileDialog = new SaveFileDialog
+                    SaveFileDialog _fileDialog = new SaveFileDialog
                         { Filter = "CSV files (*.csv)|*.csv", FilterIndex = 1 };
 
                     if( _fileDialog.ShowDialog( ) == DialogResult.OK )
@@ -176,10 +176,8 @@ namespace BudgetExecution
                         workBook.SaveAs( new FileInfo( _fileDialog.FileName ) );
                         const string _msg = "Save Successful!";
 
-                        using( var _message = new Message( _msg ) )
-                        {
-                            _message?.ShowDialog( );
-                        }
+                        using Message _message = new Message( _msg );
+                        _message?.ShowDialog( );
                     }
                 }
                 catch( Exception ex )
@@ -204,46 +202,40 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _dataSet = new DataSet( ) )
+                    using DataSet _dataSet = new DataSet( );
+                    string _sql = "SELECT * FROM [" + sheetName + "]";
+
+                    string _connectionString =
+                        $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
+                            Path.GetDirectoryName( sheetName )
+                        };" + "Extended Properties='Text;HDR=YES;FMT=Delimited'";
+
+                    using OleDbConnection _connection =
+                        new OleDbConnection( _connectionString );
+
+                    DataTable _schema =
+                        _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+
+                    if( !string.IsNullOrEmpty( sheetName ) )
                     {
-                        var _sql = "SELECT * FROM [" + sheetName + "]";
-
-                        var _connectionString =
-                            $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
-                                    Path.GetDirectoryName( sheetName )
-                                };" + "Extended Properties='Text;HDR=YES;FMT=Delimited'";
-
-                        using( var _connection =
-                            new OleDbConnection( _connectionString ) )
+                        if( !SheetExists( sheetName, _schema ) )
                         {
-                            var _schema =
-                                _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+                            string _msg = $"{sheetName} in {sheetName} Does Not Exist!";
 
-                            if( !string.IsNullOrEmpty( sheetName ) )
-                            {
-                                if( !SheetExists( sheetName, _schema ) )
-                                {
-                                    var _msg = $"{sheetName} in {sheetName} Does Not Exist!";
-
-                                    using( var _message = new Message( _msg ) )
-                                    {
-                                        _message?.ShowDialog( );
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                sheetName = _schema?.Rows[ 0 ][ "TABLENAME" ].ToString( );
-                            }
-
-                            using( var _dataAdapter =
-                                new OleDbDataAdapter( _sql, _connection ) )
-                            {
-                                _dataAdapter.Fill( _dataSet );
-                                return _dataSet.Tables[ 0 ];
-                            }
+                            using Message _message = new Message( _msg );
+                            _message?.ShowDialog( );
                         }
                     }
+                    else
+                    {
+                        sheetName = _schema?.Rows[ 0 ][ "TABLENAME" ].ToString( );
+                    }
+
+                    using OleDbDataAdapter _dataAdapter =
+                        new OleDbDataAdapter( _sql, _connection );
+
+                    _dataAdapter.Fill( _dataSet );
+                    return _dataSet.Tables[ 0 ];
                 }
                 catch( Exception ex )
                 {
@@ -273,46 +265,40 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _dataSet = new DataSet( ) )
+                    using DataSet _dataSet = new DataSet( );
+                    string _sql = "SELECT * FROM [" + sheetName + "]";
+
+                    string _connectionString =
+                        $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
+                            Path.GetDirectoryName( fileName )
+                        };Extended Properties='Text;HDR=YES;FMT=Delimited'";
+
+                    using OleDbConnection _connection =
+                        new OleDbConnection( _connectionString );
+
+                    DataTable _schema =
+                        _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+
+                    if( !string.IsNullOrEmpty( sheetName ) )
                     {
-                        var _sql = "SELECT * FROM [" + sheetName + "]";
-
-                        var _connectionString =
-                            $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={
-                                    Path.GetDirectoryName( fileName )
-                                };Extended Properties='Text;HDR=YES;FMT=Delimited'";
-
-                        using( var _connection =
-                            new OleDbConnection( _connectionString ) )
+                        if( !SheetExists( sheetName, _schema ) )
                         {
-                            var _schema =
-                                _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+                            string _msg = $"{sheetName} in {fileName} Does Not Exist!";
 
-                            if( !string.IsNullOrEmpty( sheetName ) )
-                            {
-                                if( !SheetExists( sheetName, _schema ) )
-                                {
-                                    var _msg = $"{sheetName} in {fileName} Does Not Exist!";
-
-                                    using( var _message = new Message( _msg ) )
-                                    {
-                                        _message?.ShowDialog( );
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                sheetName = _schema?.Rows[ 0 ][ "TABLENAME" ].ToString( );
-                            }
-
-                            using( var _dataAdapter =
-                                new OleDbDataAdapter( _sql, _connection ) )
-                            {
-                                _dataAdapter.Fill( _dataSet );
-                                return _dataSet.Tables[ 0 ];
-                            }
+                            using Message _message = new Message( _msg );
+                            _message?.ShowDialog( );
                         }
                     }
+                    else
+                    {
+                        sheetName = _schema?.Rows[ 0 ][ "TABLENAME" ].ToString( );
+                    }
+
+                    using OleDbDataAdapter _dataAdapter =
+                        new OleDbDataAdapter( _sql, _connection );
+
+                    _dataAdapter.Fill( _dataSet );
+                    return _dataSet.Tables[ 0 ];
                 }
                 catch( Exception ex )
                 {
@@ -341,29 +327,27 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _excelPackage = CreateCsvFile( filePath ) )
+                    using ExcelPackage _excelPackage = CreateCsvFile( filePath );
+                    string _withoutExtension = Path.GetFileNameWithoutExtension( filePath );
+
+                    ExcelWorksheet _excelWorksheet =
+                        _excelPackage.Workbook.Worksheets.Add( _withoutExtension );
+
+                    int _columns = table.Columns.Count;
+                    int _rows = table.Rows.Count;
+
+                    for( int column = 1; column <= _columns; column++ )
                     {
-                        var _withoutExtension = Path.GetFileNameWithoutExtension( filePath );
+                        _excelWorksheet.Cells[ 1, column ].Value =
+                            table.Columns[ column - 1 ].ColumnName;
+                    }
 
-                        var _excelWorksheet =
-                            _excelPackage.Workbook.Worksheets.Add( _withoutExtension );
-
-                        var _columns = table.Columns.Count;
-                        var _rows = table.Rows.Count;
-
-                        for( var column = 1; column <= _columns; column++ )
+                    for( int row = 1; row <= _rows; row++ )
+                    {
+                        for( int col = 0; col < _columns; col++ )
                         {
-                            _excelWorksheet.Cells[ 1, column ].Value =
-                                table.Columns[ column - 1 ].ColumnName;
-                        }
-
-                        for( var row = 1; row <= _rows; row++ )
-                        {
-                            for( var col = 0; col < _columns; col++ )
-                            {
-                                _excelWorksheet.Cells[ row + 1, col + 1 ].Value =
-                                    table.Rows[ row - 1 ][ col ];
-                            }
+                            _excelWorksheet.Cells[ row + 1, col + 1 ].Value =
+                                table.Rows[ row - 1 ][ col ];
                         }
                     }
                 }
@@ -387,28 +371,27 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filePath = ConnectionBuilder.DbPath;
+                    string _filePath = ConnectionBuilder.DbPath;
 
-                    using( var _excelPackage =
-                        new ExcelPackage( new FileInfo( _filePath ) ) )
+                    using ExcelPackage _excelPackage =
+                        new ExcelPackage( new FileInfo( _filePath ) );
+
+                    ExcelWorkbook _excelWorkbook = _excelPackage.Workbook;
+                    ExcelWorksheet _excelWorksheet = _excelWorkbook.Worksheets[ 1 ];
+                    int _rows = _excelWorksheet.SelectedRange.Rows;
+                    int _columns = _excelWorksheet.SelectedRange.Columns;
+                    dataGrid.ColumnCount = _columns;
+                    dataGrid.RowCount = _rows;
+
+                    for( int i = 1; i <= _rows; i++ )
                     {
-                        var _excelWorkbook = _excelPackage.Workbook;
-                        var _excelWorksheet = _excelWorkbook.Worksheets[ 1 ];
-                        var _rows = _excelWorksheet.SelectedRange.Rows;
-                        var _columns = _excelWorksheet.SelectedRange.Columns;
-                        dataGrid.ColumnCount = _columns;
-                        dataGrid.RowCount = _rows;
-
-                        for( var i = 1; i <= _rows; i++ )
+                        for( int j = 1; j <= _columns; j++ )
                         {
-                            for( var j = 1; j <= _columns; j++ )
+                            if( _excelWorksheet.Cells[ i, j ] != null
+                               && _excelWorksheet.Cells[ i, j ].Value != null )
                             {
-                                if( _excelWorksheet.Cells[ i, j ] != null
-                                    && _excelWorksheet.Cells[ i, j ].Value != null )
-                                {
-                                    dataGrid.Rows[ i - 1 ].Cells[ j - 1 ].Value =
-                                        _excelWorksheet.Cells[ i, j ].Value.ToString( );
-                                }
+                                dataGrid.Rows[ i - 1 ].Cells[ j - 1 ].Value =
+                                    _excelWorksheet.Cells[ i, j ].Value.ToString( );
                             }
                         }
                     }
@@ -434,7 +417,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _fileInfo = new FileInfo( filePath );
+                    FileInfo _fileInfo = new FileInfo( filePath );
                     return new ExcelPackage( _fileInfo );
                 }
                 catch( Exception ex )
@@ -456,9 +439,9 @@ namespace BudgetExecution
         {
             try
             {
-                var _fileName = "";
+                string _fileName = "";
 
-                var _fileDialog = new OpenFileDialog
+                OpenFileDialog _fileDialog = new OpenFileDialog
                 {
                     Title = "CSV File Dialog", InitialDirectory = @"c:\",
                     Filter = "All files (*.*)|*.*|All files (*.*)|*.*", FilterIndex = 2,
@@ -498,9 +481,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    for( var i = 0; i < dataTable.Rows.Count; i++ )
+                    for( int i = 0; i < dataTable.Rows.Count; i++ )
                     {
-                        var _dataRow = dataTable.Rows[ i ];
+                        DataRow _dataRow = dataTable.Rows[ i ];
 
                         if( sheetName == _dataRow[ "TABLENAME" ].ToString( ) )
                         {

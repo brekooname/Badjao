@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Windows.Forms;
-    using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms.Tools;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -336,7 +335,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IDictionary<string, TabPageAdv> GetTabPages( )
         {
-            if( TabControl?.TabPages?.Any( ) == true )
+            if( TabControl?.TabPages?.Count > 0 )
             {
                 try
                 {

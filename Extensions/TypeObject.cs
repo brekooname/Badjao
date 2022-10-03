@@ -10,8 +10,8 @@ namespace BudgetExecution
     using System.Xml.Serialization;
     using System.IO;
     using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Formatters.Binary;
     using System.Runtime.Serialization.Json;
+    using System.Runtime.Serialization.Formatters.Binary;
     using System.Web.Script.Serialization;
 
     /// <summary>
@@ -33,13 +33,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _stream = new MemoryStream( ) )
-                    {
-                        var _formatter = new BinaryFormatter( );
-                        _formatter.Serialize( _stream, type );
-                        _stream.Position = 0;
-                        return (T)_formatter.Deserialize( _stream );
-                    }
+                    using MemoryStream _stream = new MemoryStream( );
+                    BinaryFormatter _formatter = new BinaryFormatter( );
+                    _formatter.Serialize( _stream, type );
+                    _stream.Position = 0;
+                    return (T)_formatter.Deserialize( _stream );
                 }
                 catch( Exception ex )
                 {
@@ -63,17 +61,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _encoding = Encoding.Default;
-
-                    var _serializer =
+                    Encoding _encoding = Encoding.Default;
+                    DataContractJsonSerializer _serializer =
                         new DataContractJsonSerializer( typeof( T ) );
 
-                    using( var stream = new MemoryStream( ) )
-                    {
-                        _serializer.WriteObject( stream, type );
-                        var json = _encoding.GetString( stream.ToArray( ) );
-                        return json;
-                    }
+                    using MemoryStream stream = new MemoryStream( );
+                    _serializer.WriteObject( stream, type );
+                    string json = _encoding.GetString( stream.ToArray( ) );
+                    return json;
                 }
                 catch( Exception ex )
                 {
@@ -99,13 +94,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _formatter = new BinaryFormatter( );
+                    BinaryFormatter _formatter = new BinaryFormatter( );
 
-                    using( var _stream = new MemoryStream( ) )
-                    {
-                        _formatter.Serialize( _stream, type );
-                        return Encoding.Default.GetString( _stream.ToArray( ) );
-                    }
+                    using MemoryStream _stream = new MemoryStream( );
+                    _formatter.Serialize( _stream, type );
+                    return Encoding.Default.GetString( _stream.ToArray( ) );
                 }
                 catch( Exception ex )
                 {
@@ -132,13 +125,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _formatter = new BinaryFormatter( );
+                    BinaryFormatter _formatter = new BinaryFormatter( );
 
-                    using( var _stream = new MemoryStream( ) )
-                    {
-                        _formatter.Serialize( _stream, type );
-                        return encoding.GetString( _stream.ToArray( ) );
-                    }
+                    using MemoryStream _stream = new MemoryStream( );
+                    _formatter.Serialize( _stream, type );
+                    return encoding.GetString( _stream.ToArray( ) );
                 }
                 catch( Exception ex )
                 {
@@ -163,18 +154,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _serializer = new XmlSerializer( type.GetType( ) );
+                    XmlSerializer _serializer = new XmlSerializer( type.GetType( ) );
 
-                    using( var _writer = new StringWriter( ) )
-                    {
-                        _serializer?.Serialize( _writer, type );
-                        var _string = _writer?.GetStringBuilder( )?.ToString( );
+                    using StringWriter _writer = new StringWriter( );
+                    _serializer?.Serialize( _writer, type );
+                    string _string = _writer?.GetStringBuilder( )?.ToString( );
 
-                        using( var _reader = new StringReader( _string ) )
-                        {
-                            return _reader?.ReadToEnd( ) ?? String.Empty;
-                        }
-                    }
+                    using StringReader _reader = new StringReader( _string );
+                    return _reader?.ReadToEnd( ) ?? String.Empty;
                 }
                 catch( Exception ex )
                 {
@@ -198,7 +185,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _serializer = new JavaScriptSerializer( );
+                    JavaScriptSerializer _serializer = new JavaScriptSerializer( );
                     return _serializer.Serialize( type );
                 }
                 catch( Exception ex )
@@ -215,11 +202,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

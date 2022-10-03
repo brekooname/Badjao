@@ -26,14 +26,14 @@ namespace BudgetExecution
         /// Gets the column ordinals.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<int> GetOrdinals( )
+        public virtual IEnumerable<int> GetOrdinals( )
         {
             if( DataTable?.Columns?.Count > 0 )
             {
                 try
                 {
-                    var _columns = DataTable.Columns;
-                    var _values = new List<int>( );
+                    DataColumnCollection _columns = DataTable.Columns;
+                    List<int> _values = new List<int>( );
 
                     if( _columns?.Count > 0 )
                     {
@@ -67,11 +67,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columns = DataTable?.Columns;
+                    DataColumnCollection _columns = DataTable?.Columns;
 
                     if( _columns?.Count > 0 )
                     {
-                        var _schema = new Dictionary<string, Type>( );
+                        Dictionary<string, Type> _schema = new Dictionary<string, Type>( );
                         foreach( DataColumn col in _columns )
                         {
                             _schema.Add( col.ColumnName, col.DataType );
@@ -106,9 +106,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _elements = new List<IElement>( );
-                    var _columns = Record?.Table?.Columns;
-                    var _fields = Enum.GetNames( typeof( Field ) );
+                    List<IElement> _elements = new List<IElement>( );
+                    DataColumnCollection _columns = Record?.Table?.Columns;
+                    string[ ] _fields = Enum.GetNames( typeof( Field ) );
 
                     if( _columns?.Count > 0 )
                     {
@@ -154,9 +154,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _criteria = dict.ToCriteria( );
-                    var _dataTable = dataRows.CopyToDataTable( );
-                    var _data = _dataTable.Select( _criteria );
+                    string _criteria = dict.ToCriteria( );
+                    DataTable _dataTable = dataRows.CopyToDataTable( );
+                    DataRow[ ] _data = _dataTable.Select( _criteria );
 
                     return _data?.Length > 0
                         ? _data
@@ -182,8 +182,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dataColumns = new List<DataColumn>( );
-                    var _data = dataTable?.Columns;
+                    List<DataColumn> _dataColumns = new List<DataColumn>( );
+                    DataColumnCollection _data = dataTable?.Columns;
 
                     if( _data?.Count > 0 )
                     {
@@ -217,13 +217,12 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<DataColumn> GetDataColumns( )
         {
-            if( DataTable != null
-                && DataTable?.Columns?.Count > 0 )
+            if( DataTable?.Columns?.Count > 0 )
             {
                 try
                 {
-                    var _dataColumns = new List<DataColumn>( );
-                    var _data = DataTable?.Columns;
+                    List<DataColumn> _dataColumns = new List<DataColumn>( );
+                    DataColumnCollection _data = DataTable?.Columns;
 
                     if( _data?.Count > 0 )
                     {

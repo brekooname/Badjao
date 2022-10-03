@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual MetroTip ToolTip { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -55,7 +55,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
+        
         /// <summary>Initializes a new instance of the class.
         /// 	<see cref="CarouselBase" />
         /// </summary>
@@ -192,7 +192,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>
@@ -253,17 +253,18 @@ namespace BudgetExecution
         {
             if( Directory.Exists( srcDir ) )
             {
-                var _files = Directory.EnumerateFiles( srcDir );
-                var _paths = _files?.ToList( );
-                var _list = new ImageList( );
-                for( var i = 0; i < _paths.Count; i++ )
+                IEnumerable<string> _files = Directory.GetDirectories( srcDir );
+                List<string> _paths = _files?.ToList( );
+                ImageList _list = new ImageList( );
+
+                for( int i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
-                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
+                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
-                            var _img = new Bitmap( _stream );
+                            Bitmap _img = new Bitmap( _stream );
                             _list?.Images?.Add( _img );
                         }
                     }
@@ -287,21 +288,20 @@ namespace BudgetExecution
         {
             if( Directory.Exists( srcDir ) )
             {
-                var _files = Directory.EnumerateFiles( srcDir );
-                var _paths = _files?.ToList( );
-                var _list = new ImageList( );
-                for( var i = 0; i < _paths.Count; i++ )
+                IEnumerable<string> _files = Directory.GetDirectories( srcDir );
+                List<string> _paths = _files?.ToList( );
+                ImageList _list = new ImageList( );
+
+                for( int i = 0; i < _paths.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
-                        var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
-                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
+                        string _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
+
+                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
                         {
-                            var _img = new Bitmap( _stream )
-                            {
-                                Tag = _name
-                            };
+                            Bitmap _img = new Bitmap( _stream ) { Tag = _name };
 
                             _list.ImageSize = size;
                             _list?.Images?.Add( _img );
@@ -326,21 +326,20 @@ namespace BudgetExecution
         {
             if( paths?.Any( ) == true )
             {
-                var _list = paths.ToList( );
-                var _carouselImages = new List<CarouselImage>( );
-                for( var i = 0; i < _list?.Count; i++ )
+                List<string> _list = paths.ToList( );
+                List<CarouselImage> _carouselImages = new List<CarouselImage>( );
+
+                for( int i = 0; i < _list?.Count; i++ )
                 {
                     if( !string.IsNullOrEmpty( _list[ i ] )
                         && File.Exists( _list[ i ] ) )
                     {
-                        using( var _stream = File.Open( _list[ i ], FileMode.Open ) )
+                        using( FileStream _stream = File.Open( _list[ i ], FileMode.Open ) )
                         {
-                            using( var _img = new Bitmap( _stream ) )
+                            using( Bitmap _img = new Bitmap( _stream ) )
                             {
-                                var _carouselImage = new CarouselImage
-                                {
-                                    ItemImage = _img
-                                };
+                                CarouselImage _carouselImage = new CarouselImage
+                                    { ItemImage = _img };
 
                                 _carouselImages.Add( _carouselImage );
                             }
@@ -363,7 +362,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

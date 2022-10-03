@@ -15,7 +15,7 @@ namespace BudgetExecution
         /// <param name = "bindingSource" >
         /// The bindingSource.
         /// </param>
-        void SetDataSource( SourceBinding bindingSource );
+        void SetDataSource( BindingSource bindingSource );
 
         /// <summary> Called when [mouse over]. </summary>
         /// <param name = "sender" > The sender. </param>

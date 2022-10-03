@@ -118,7 +118,8 @@ namespace BudgetExecution
         {
             try
             {
-                var _dataRows = DataTable?.AsEnumerable( );
+                EnumerableRowCollection<DataRow> _dataRows = DataTable?.AsEnumerable( );
+
                 return _dataRows?.Any( ) == true
                     ? _dataRows
                     : default( EnumerableRowCollection<DataRow> );
@@ -177,11 +178,9 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

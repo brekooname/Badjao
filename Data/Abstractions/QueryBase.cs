@@ -330,27 +330,27 @@ namespace BudgetExecution
                         case Provider.OleDb:
                         case Provider.Access:
                         {
-                            var _builder = new AdapterBuilder( CommandBuilder );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
                             return _builder?.GetAdapter(  ) as OleDbDataAdapter;
                         }
                         case Provider.SQLite:
                         {
-                            var _builder = new AdapterBuilder( CommandBuilder );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
                             return _builder?.GetAdapter( ) as SQLiteDataAdapter;
                         }
                         case Provider.SqlCe:
                         {
-                            var _builder = new AdapterBuilder( CommandBuilder );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
                             return _builder?.GetAdapter( ) as SqlCeDataAdapter;
                         }
                         case Provider.SqlServer:
                         {
-                            var _builder = new AdapterBuilder( CommandBuilder );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
                             return _builder?.GetAdapter( ) as SqlDataAdapter;
                         }
                         default:
                         {
-                            var _builder = new AdapterBuilder( CommandBuilder );
+                            AdapterBuilder _builder = new AdapterBuilder( CommandBuilder );
                             return _builder?.GetAdapter( ) as OleDbDataAdapter;
                         }
                     }
@@ -371,11 +371,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

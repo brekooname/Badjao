@@ -5,6 +5,7 @@
 namespace BudgetExecution
 {
     using System.ComponentModel;
+    using System.Windows.Forms;
 
     public class DataWorker : BackgroundWorker
     {
@@ -20,6 +21,6 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public SourceBinding BindingSource { get; set; }
+        public BindingSource BindingSource { get; set; }
     }
 }

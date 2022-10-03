@@ -10,7 +10,6 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms.Tools;
 
     /// <summary>
@@ -278,7 +277,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IDictionary<string, TabPageAdv> GetTabPages( )
         {
-            if( TabControl?.TabPages?.Any( ) == true )
+            if( TabControl?.TabPages?.Count > 0 )
             {
                 try
                 {

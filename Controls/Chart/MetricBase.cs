@@ -267,7 +267,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _select = dataRow.Sum( p => p.Field<decimal>( $"{numeric}" ) );
+                    var _select = dataRow.Select( p => p.Field<decimal>( $"{numeric}" ) ).Sum( );
                     return _select > 0
                         ? double.Parse( _select.ToString( "N1" ) )
                         : 0.0d;

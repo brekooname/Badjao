@@ -40,7 +40,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -95,9 +95,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindinglist as BindingSource;
-                        var _filter = string.Empty;
-                        foreach( var _kvp in dict )
+                        BindingSource _list = bindinglist as BindingSource;
+                        string _filter = string.Empty;
+
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
@@ -159,8 +160,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
-                    foreach( var _kvp in dict )
+                    string _filter = string.Empty;
+
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -261,8 +263,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
-                    foreach( var _kvp in dict )
+                    string _filter = string.Empty;
+
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -325,7 +328,8 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _groupBox = sender as GroupBox;
+            GroupBox _groupBox = sender as GroupBox;
+
             try
             {
                 if( _groupBox != null
@@ -333,15 +337,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _groupBox?.HoverText;
-                        var _ = new MetroTip( _groupBox, _hoverText );
+                        string _hoverText = _groupBox?.HoverText;
+                        MetroTip _ = new MetroTip( _groupBox, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new MetroTip( _groupBox, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            MetroTip _ = new MetroTip( _groupBox, _text );
                         }
                     }
                 }
@@ -362,7 +366,8 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _groupBox = sender as GroupBox;
+            GroupBox _groupBox = sender as GroupBox;
+
             try
             {
                 if( _groupBox != null )
@@ -381,11 +386,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

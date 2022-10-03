@@ -188,7 +188,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
+                    PrimaryKey _key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
 
                     PrimaryKey = Enum.IsDefined( typeof( PrimaryKey ), _key )
                         ? PrimaryKey
@@ -213,15 +213,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columns = Enum.GetNames( typeof( PrimaryKey ) );
+                    string[ ] _columns = Enum.GetNames( typeof( PrimaryKey ) );
 
                     if( !string.IsNullOrEmpty( dataRow[ 0 ]?.ToString( ) )
                         && _columns?.Contains( dataRow[ 0 ]?.ToString( ) ) == true )
                     {
-                        var _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ),
+                        PrimaryKey _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ),
                             dataRow[ 0 ].ToString( ) );
 
-                        var _names = dataRow.Table?.GetColumnNames( );
+                        string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                         PrimaryKey = _names?.Contains( _field.ToString( ) ) == true
                             ? _field
@@ -266,7 +266,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow.Table?.GetColumnNames( );
+                    string[ ] _names = dataRow.Table?.GetColumnNames( );
 
                     PrimaryKey = _names?.Contains( keyName.ToString( ) ) == true
                         ? keyName
@@ -309,7 +309,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow?.Table?.GetColumnNames( );
+                    string[ ] _names = dataRow?.Table?.GetColumnNames( );
 
                     Index = _names?.Contains( key.ToString( ) ) == true
                         ? int.Parse( dataRow[ $"{key}" ].ToString( ) )
@@ -328,11 +328,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

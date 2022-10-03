@@ -116,8 +116,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _name = Path.GetFileName( path );
-                    var _image = new Bitmap( path );
+                    string _name = Path.GetFileName( path );
+                    Bitmap _image = new Bitmap( path );
+
                     if( _image != null )
                     {
                         Images.Add( _name, _image );
@@ -140,12 +141,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _file in paths )
+                    foreach( string _file in paths )
                     {
                         if( File.Exists( _file ) )
                         {
-                            var _name = Path.GetFileName( _file );
-                            var _image = new Bitmap( _file );
+                            string _name = Path.GetFileName( _file );
+                            Bitmap _image = new Bitmap( _file );
+
                             if( _image != null )
                             {
                                 Images.Add( _name, _image );
@@ -189,19 +191,16 @@ namespace BudgetExecution
         {
             if( Directory.Exists( srcDir ) )
             {
-                var _files = Directory.EnumerateFiles( srcDir );
-                var _list = new List<Image>( );
+                IEnumerable<string> _files = Directory.GetFiles( srcDir );
+                List<Image> _list = new List<Image>( );
+
                 if( _files?.Count( ) > 0 )
                 {
-                    foreach( var _file in _files )
+                    foreach( string _file in _files )
                     {
-                        using( var _stream = File.Open( _file, FileMode.Open ) )
-                        {
-                            using( var _img = new Bitmap( _stream ) )
-                            {
-                                _list.Add( _img );
-                            }
-                        }
+                        using FileStream _stream = File.Open( _file, FileMode.Open );
+                        using Bitmap _img = new Bitmap( _stream );
+                        _list.Add( _img );
                     }
                 }
 
@@ -222,17 +221,14 @@ namespace BudgetExecution
         {
             if( paths?.Count( ) > 0 )
             {
-                var _files = paths.ToList( );
-                var _list = new List<Image>( );
-                for( var i = 0; i < _files.Count; i++ )
+                List<string> _files = paths.ToList( );
+                List<Image> _list = new List<Image>( );
+
+                for( int i = 0; i < _files.Count; i++ )
                 {
-                    using( var _stream = File.Open( _files[ i ], FileMode.Open ) )
-                    {
-                        using( var _img = new Bitmap( _stream ) )
-                        {
-                            _list.Add( _img );
-                        }
-                    }
+                    using FileStream _stream = File.Open( _files[ i ], FileMode.Open );
+                    using Bitmap _img = new Bitmap( _stream );
+                    _list.Add( _img );
                 }
 
                 return _list.Count > 0

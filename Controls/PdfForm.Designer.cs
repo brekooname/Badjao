@@ -1,5 +1,7 @@
 ﻿namespace BudgetExecution
 {
+    using System.Windows.Forms;
+
     partial class PdfForm
     {
         /// <summary>
@@ -34,7 +36,7 @@
             Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings textSearchSettings1 = new Syncfusion.Windows.Forms.PdfViewer.TextSearchSettings();
             Syncfusion.Windows.Forms.CaptionImage captionImage1 = new Syncfusion.Windows.Forms.CaptionImage();
             this.pdfViewerControl1 = new Syncfusion.Windows.Forms.PdfViewer.PdfViewerControl();
-            this.BindingSource = new BudgetExecution.SourceBinding();
+            this.BindingSource = new BindingSource( );
             this.ToolTip = new BudgetExecution.MetroTip();
             this.ToolStrip = new BudgetExecution.ToolStrip();
             this.AddButton = new BudgetExecution.ToolStripButton();
@@ -111,17 +113,6 @@
             this.pdfViewerControl1.VerticalScrollOffset = 0;
             this.pdfViewerControl1.VisualStyle = Syncfusion.Windows.Forms.PdfViewer.VisualStyle.Default;
             this.pdfViewerControl1.ZoomMode = Syncfusion.Windows.Forms.PdfViewer.ZoomMode.Default;
-            // 
-            // BindingSource
-            // 
-            this.BindingSource.DataFilter = null;
-            this.BindingSource.DataSet = null;
-            this.BindingSource.DataTable = null;
-            this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
-            this.BindingSource.Index = 0;
-            this.BindingSource.Numeric = BudgetExecution.Numeric.NS;
-            this.BindingSource.Record = null;
-            this.BindingSource.Source = BudgetExecution.Source.NS;
             // 
             // ToolTip
             // 
@@ -679,7 +670,7 @@
         #endregion
 
         private Syncfusion.Windows.Forms.PdfViewer.PdfViewerControl pdfViewerControl1;
-        private SourceBinding BindingSource;
+        private BindingSource BindingSource;
         private MetroTip ToolTip;
         public ToolStrip ToolStrip;
         public ToolStripButton AddButton;

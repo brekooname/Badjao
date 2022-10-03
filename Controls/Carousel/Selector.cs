@@ -35,7 +35,7 @@ namespace BudgetExecution
         {
             if( Directory.Exists( sourceDirectory ) )
             {
-                var _files = Directory.EnumerateFiles( sourceDirectory );
+                var _files = Directory.GetDirectories( sourceDirectory );
                 var _paths = _files?.ToList( );
                 var _list = new ImageList( );
                 for( var i = 0; i < _paths.Count; i++ )
@@ -75,7 +75,7 @@ namespace BudgetExecution
         {
             if( Directory.Exists( sourceDirectory ) )
             {
-                var _files = Directory.EnumerateFiles( sourceDirectory );
+                var _files = Directory.GetDirectories( sourceDirectory );
                 var _paths = _files?.ToList( );
                 var _list = new ImageList( );
                 for( var i = 0; i < _paths.Count; i++ )
@@ -180,7 +180,7 @@ namespace BudgetExecution
             if( !string.IsNullOrEmpty( srcDir )
                 && Directory.Exists( srcDir ) )
             {
-                var _files = Directory.EnumerateFiles( srcDir );
+                var _files = Directory.GetDirectories( srcDir );
                 var _list = _files?.ToList( );
                 var _carouselImages = new List<CarouselImage>( );
                 for( var i = 0; i < _list?.Count; i++ )

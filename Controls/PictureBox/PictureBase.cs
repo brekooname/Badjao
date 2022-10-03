@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
+        
         /// <summary>
         /// Called when [mouse hover].
         /// </summary>
@@ -80,16 +80,17 @@ namespace BudgetExecution
         {
             try
             {
-                var _picturePanel = sender as PictureBase;
+                PictureBase _picturePanel = sender as PictureBase;
+
                 if( !string.IsNullOrEmpty( HoverText ) )
                 {
-                    var _ = new MetroTip( _picturePanel, HoverText );
+                    MetroTip _ = new MetroTip( _picturePanel, HoverText );
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _ = new MetroTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
+                        MetroTip _ = new MetroTip( _picturePanel, Tag?.ToString( ).SplitPascal( ) );
                     }
                 }
             }
@@ -105,11 +106,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

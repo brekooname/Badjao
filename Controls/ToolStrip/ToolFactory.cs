@@ -35,7 +35,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _separator = new ToolSeparator( );
+                ToolSeparator _separator = new ToolSeparator( );
                 return _separator;
             }
             catch( Exception ex )
@@ -53,11 +53,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "FirstButton.png";
-                var _firstButton = new ToolStripButton
+                string _filename = ImageDirectory + "FirstButton.png";
+
+                ToolStripButton _firstButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "First Record",
+                    Image = Image.FromFile( _filename ), HoverText = "First Record",
                     ToolType = ToolType.FirstButton
                 };
 
@@ -78,11 +78,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "PreviousButton.png";
-                var _previousButton = new ToolStripButton
+                string _filename = ImageDirectory + "PreviousButton.png";
+
+                ToolStripButton _previousButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Previous Record",
+                    Image = Image.FromFile( _filename ), HoverText = "Previous Record",
                     ToolType = ToolType.PreviousButton
                 };
 
@@ -103,11 +103,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "NextButton.png";
-                var _nextButton = new ToolStripButton
+                string _filename = ImageDirectory + "NextButton.png";
+
+                ToolStripButton _nextButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Next Record",
+                    Image = Image.FromFile( _filename ), HoverText = "Next Record",
                     ToolType = ToolType.NextButton
                 };
 
@@ -128,11 +128,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "LastButton.png";
-                var _lastButton = new ToolStripButton
+                string _filename = ImageDirectory + "LastButton.png";
+
+                ToolStripButton _lastButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Last Record",
+                    Image = Image.FromFile( _filename ), HoverText = "Last Record",
                     ToolType = ToolType.LastButton
                 };
 
@@ -153,11 +153,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "EditButton.png";
-                var _editButton = new ToolStripButton
+                string _filename = ImageDirectory + "EditButton.png";
+
+                ToolStripButton _editButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Edit Record",
+                    Image = Image.FromFile( _filename ), HoverText = "Edit Record",
                     ToolType = ToolType.EditButton
                 };
 
@@ -178,11 +178,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "AddButton.png";
-                var _addButton = new ToolStripButton
+                string _filename = ImageDirectory + "AddButton.png";
+
+                ToolStripButton _addButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Add Record",
+                    Image = Image.FromFile( _filename ), HoverText = "Add Record",
                     ToolType = ToolType.AddButton
                 };
 
@@ -203,11 +203,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "DeleteButton.png";
-                var _deleteButton = new ToolStripButton
+                string _filename = ImageDirectory + "DeleteButton.png";
+
+                ToolStripButton _deleteButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Delete Record",
+                    Image = Image.FromFile( _filename ), HoverText = "Delete Record",
                     ToolType = ToolType.DeleteButton
                 };
 
@@ -228,11 +228,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "RefreshButton.png";
-                var _refreshButton = new ToolStripButton
+                string _filename = ImageDirectory + "RefreshButton.png";
+
+                ToolStripButton _refreshButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Refresh Data",
+                    Image = Image.FromFile( _filename ), HoverText = "Refresh Data",
                     ToolType = ToolType.RefreshButton
                 };
 
@@ -253,11 +253,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "SaveButton.png";
-                var _saveButton = new ToolStripButton
+                string _filename = ImageDirectory + "SaveButton.png";
+
+                ToolStripButton _saveButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Save Changes",
+                    Image = Image.FromFile( _filename ), HoverText = "Save Changes",
                     ToolType = ToolType.SaveButton
                 };
 
@@ -278,11 +278,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "PrintButton.png";
-                var _printButton = new ToolStripButton
+                string _filename = ImageDirectory + "PrintButton.png";
+
+                ToolStripButton _printButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Print Data",
+                    Image = Image.FromFile( _filename ), HoverText = "Print Data",
                     ToolType = ToolType.PrintButton
                 };
 
@@ -303,11 +303,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "ExcelButton.png";
-                var _excelButton = new ToolStripButton
+                string _filename = ImageDirectory + "ExcelButton.png";
+
+                ToolStripButton _excelButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Export to Excel",
+                    Image = Image.FromFile( _filename ), HoverText = "Export to Excel",
                     ToolType = ToolType.ExcelButton
                 };
 
@@ -328,11 +328,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "CalculatorButton.png";
-                var _calculatorButton = new ToolStripButton
+                string _filename = ImageDirectory + "CalculatorButton.png";
+
+                ToolStripButton _calculatorButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Launch Calculator",
+                    Image = Image.FromFile( _filename ), HoverText = "Launch Calculator",
                     ToolType = ToolType.CalculatorButton
                 };
 
@@ -353,11 +353,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _filename = ImageDirectory + "HomeButton.png";
-                var _homeButton = new ToolStripButton
+                string _filename = ImageDirectory + "HomeButton.png";
+
+                ToolStripButton _homeButton = new ToolStripButton
                 {
-                    Image = Image.FromFile( _filename ),
-                    HoverText = "Main Menu",
+                    Image = Image.FromFile( _filename ), HoverText = "Main Menu",
                     ToolType = ToolType.HomeButton
                 };
 
@@ -379,7 +379,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _label = new ToolStripLabel( );
+                ToolStripLabel _label = new ToolStripLabel( );
                 return _label;
             }
             catch( Exception ex )
@@ -398,7 +398,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _comboBox = new ToolStripComboBoxEx( );
+                ToolStripComboBoxEx _comboBox = new ToolStripComboBoxEx( );
                 return _comboBox;
             }
             catch( Exception ex )
@@ -417,7 +417,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _progress = new ToolStripProgressBar( );
+                ToolStripProgressBar _progress = new ToolStripProgressBar( );
                 return _progress;
             }
             catch( Exception ex )
@@ -436,7 +436,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _textBox = new ToolStripTextBox( );
+                ToolStripTextBox _textBox = new ToolStripTextBox( );
                 return _textBox;
             }
             catch( Exception ex )
@@ -452,11 +452,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

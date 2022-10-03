@@ -1,5 +1,7 @@
 ﻿namespace BudgetExecution
 {
+    using System.Windows.Forms;
+
     partial class PivotForm
     {
         /// <summary>
@@ -33,7 +35,7 @@
             this.DataSet = new System.Data.DataSet();
             this.ListPanel = new BudgetExecution.Layout();
             this.ListBox = new BudgetExecution.ListBox();
-            this.BindingSource = new BudgetExecution.SourceBinding();
+            this.BindingSource = new BindingSource( );
             this.ToolTip = new BudgetExecution.MetroTip();
             this.PivotPanel = new BudgetExecution.Layout();
             this.ToolStrip = new BudgetExecution.ToolStrip();
@@ -155,18 +157,6 @@
             this.ListBox.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.ListBox.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.ListBox.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            this.ListBox.ToolTip = this.ToolTip;
-            // 
-            // BindingSource
-            // 
-            this.BindingSource.DataFilter = null;
-            this.BindingSource.DataSet = DataSet;
-            this.BindingSource.DataTable = null;
-            this.BindingSource.Field = BudgetExecution.Field.RpioActivityCode;
-            this.BindingSource.Index = 0;
-            this.BindingSource.Numeric = BudgetExecution.Numeric.NS;
-            this.BindingSource.Record = null;
-            this.BindingSource.Source = BudgetExecution.Source.NS;
             // 
             // ToolTip
             // 
@@ -685,7 +675,7 @@
         public ToolStripButton HomeButton;
         public ToolSeparator Separator16;
         public Layout PivotPanel;
-        public SourceBinding BindingSource;
+        public BindingSource BindingSource;
         public System.Data.DataSet DataSet;
         public MetroTip ToolTip;
         public Layout ListPanel;

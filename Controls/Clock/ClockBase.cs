@@ -43,7 +43,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -51,7 +51,7 @@ namespace BudgetExecution
         /// The filter.
         /// </value>
         public virtual IDictionary<string, object> DataFilter { get; set; }
-
+        
         /// <summary>
         /// Sets the color of the hour.
         /// </summary>
@@ -209,7 +209,8 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _budgetClock = sender as Clock;
+            Clock _budgetClock = sender as Clock;
+
             try
             {
                 if( _budgetClock != null
@@ -217,15 +218,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _budgetClock?.HoverText;
-                        var _ = new MetroTip( _budgetClock, _hoverText );
+                        string _hoverText = _budgetClock?.HoverText;
+                        MetroTip _ = new MetroTip( _budgetClock, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new MetroTip( _budgetClock, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            MetroTip _ = new MetroTip( _budgetClock, _text );
                         }
                     }
                 }
@@ -246,7 +247,8 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _budgetClock = sender as Clock;
+            Clock _budgetClock = sender as Clock;
+
             try
             {
                 if( _budgetClock != null )
@@ -265,7 +267,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

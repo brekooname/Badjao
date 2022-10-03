@@ -86,7 +86,7 @@ namespace BudgetExecution
                     throw new ArgumentNullException( nameof( connection ) );
                 }
 
-                var _command = connection?.CreateCommand( );
+                IDbCommand _command = connection?.CreateCommand( );
                 _command.CommandText = sql;
 
                 return !string.IsNullOrEmpty( _command?.CommandText )
@@ -110,7 +110,7 @@ namespace BudgetExecution
         {
             try
             {
-                using( var _command = connection?.CreateCommand( sql ) )
+                using( IDbCommand _command = connection?.CreateCommand( sql ) )
                 {
                     return _command?.ExecuteNonQuery( ) ?? 0;
                 }
@@ -132,7 +132,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _stringBuilder = new StringBuilder( );
+                StringBuilder _stringBuilder = new StringBuilder( );
 
                 if( !string.IsNullOrEmpty( message ) )
                 {
@@ -142,7 +142,7 @@ namespace BudgetExecution
 
                 if( ex != null )
                 {
-                    var _orgex = ex;
+                    Exception _orgex = ex;
                     _stringBuilder.Append( "Exception:" );
                     _stringBuilder.Append( Environment.NewLine );
 
@@ -155,7 +155,7 @@ namespace BudgetExecution
 
                     if( ex.Data != null )
                     {
-                        foreach( var i in ex.Data )
+                        foreach( object i in ex.Data )
                         {
                             _stringBuilder.Append( "Data :" );
                             _stringBuilder.Append( i );
@@ -187,7 +187,7 @@ namespace BudgetExecution
                         _stringBuilder.Append( Environment.NewLine );
                     }
 
-                    var _baseException = ex.GetBaseException( );
+                    Exception _baseException = ex.GetBaseException( );
 
                     if( _baseException != null )
                     {
@@ -215,11 +215,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _dictionary = new Dictionary<string, object>( );
+                Dictionary<string, object> _dictionary = new Dictionary<string, object>( );
 
                 if( nvm != null )
                 {
-                    foreach( var _key in nvm.AllKeys )
+                    foreach( string _key in nvm.AllKeys )
                     {
                         _dictionary.Add( _key, nvm[ _key ] );
                     }
@@ -240,7 +240,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         public static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

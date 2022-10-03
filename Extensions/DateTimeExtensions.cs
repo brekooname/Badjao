@@ -44,7 +44,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( days, 0, 0, 0 );
+                TimeSpan _timeSpan = new TimeSpan( days, 0, 0, 0 );
                 return DateTime.Now.Subtract( _timeSpan );
             }
             catch( Exception ex )
@@ -66,7 +66,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( days, 0, 0, 0 );
+                TimeSpan _timeSpan = new TimeSpan( days, 0, 0, 0 );
                 return DateTime.Now.Add( _timeSpan );
             }
             catch( Exception ex )
@@ -88,7 +88,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( hours, 0, 0 );
+                TimeSpan _timeSpan = new TimeSpan( hours, 0, 0 );
                 return DateTime.Now.Subtract( _timeSpan );
             }
             catch( Exception ex )
@@ -110,7 +110,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( hours, 0, 0 );
+                TimeSpan _timeSpan = new TimeSpan( hours, 0, 0 );
                 return DateTime.Now.Add( _timeSpan );
             }
             catch( Exception ex )
@@ -132,7 +132,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( 0, minutes, 0 );
+                TimeSpan _timeSpan = new TimeSpan( 0, minutes, 0 );
                 return DateTime.Now.Subtract( _timeSpan );
             }
             catch( Exception ex )
@@ -154,7 +154,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( 0, minutes, 0 );
+                TimeSpan _timeSpan = new TimeSpan( 0, minutes, 0 );
                 return DateTime.Now.Add( _timeSpan );
             }
             catch( Exception ex )
@@ -176,7 +176,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( 0, 0, seconds );
+                TimeSpan _timeSpan = new TimeSpan( 0, 0, seconds );
                 return DateTime.Now.Subtract( _timeSpan );
             }
             catch( Exception ex )
@@ -198,7 +198,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = new TimeSpan( 0, 0, seconds );
+                TimeSpan _timeSpan = new TimeSpan( 0, 0, seconds );
                 return DateTime.Now.Add( _timeSpan );
             }
             catch( Exception ex )
@@ -291,13 +291,13 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = endDate - startDate;
+                TimeSpan _timeSpan = endDate - startDate;
                 Console.WriteLine( _timeSpan.Days );
-                var _days = 0;
+                int _days = 0;
 
-                for( var i = 0; i < _timeSpan.Days; i++ )
+                for( int i = 0; i < _timeSpan.Days; i++ )
                 {
-                    var _dateTime = startDate.AddDays( i );
+                    DateTime _dateTime = startDate.AddDays( i );
 
                     if( _dateTime.IsWeekDay( ) )
                     {
@@ -331,12 +331,12 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = endDate - startDate;
-                var _weekEnds = 0;
+                TimeSpan _timeSpan = endDate - startDate;
+                int _weekEnds = 0;
 
-                for( var i = 0; i < _timeSpan.Days; i++ )
+                for( int i = 0; i < _timeSpan.Days; i++ )
                 {
-                    var _dateTime = startDate.AddDays( i );
+                    DateTime _dateTime = startDate.AddDays( i );
 
                     if( _dateTime.IsWeekEnd( ) )
                     {
@@ -370,7 +370,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _timeSpan = startDate.Subtract( endDate );
+                TimeSpan _timeSpan = startDate.Subtract( endDate );
                 return _timeSpan;
             }
             catch( Exception ex )
@@ -392,12 +392,12 @@ namespace BudgetExecution
         public static bool IsFederalHoliday( this DateTime dateTime )
         {
             // to ease typing
-            var _nthDay = (int)Math.Ceiling( dateTime.Day / 7.0d );
-            var _date = dateTime.DayOfWeek;
-            var _thursday = _date == DayOfWeek.Thursday;
-            var _friday = _date == DayOfWeek.Friday;
-            var _monday = _date == DayOfWeek.Monday;
-            var _weekend = _date == DayOfWeek.Saturday || _date == DayOfWeek.Sunday;
+            int _nthDay = (int)Math.Ceiling( dateTime.Day / 7.0d );
+            DayOfWeek _date = dateTime.DayOfWeek;
+            bool _thursday = _date == DayOfWeek.Thursday;
+            bool _friday = _date == DayOfWeek.Friday;
+            bool _monday = _date == DayOfWeek.Monday;
+            bool _weekend = _date == DayOfWeek.Saturday || _date == DayOfWeek.Sunday;
 
             switch( dateTime.Month )
             {
@@ -449,11 +449,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

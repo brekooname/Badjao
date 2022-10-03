@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System;
     using Syncfusion.Windows.Forms;
     using System.Collections.Generic;
+    using System.Data;
     using VisualPlus.Toolkit.Controls.DataManagement;
 
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
@@ -133,7 +134,6 @@ namespace BudgetExecution
                     { "BFY", "2022" },
                     { "FundCode", "B" }
                 };
-
                 DataModel = new DataBuilder( Source.StatusOfFunds, Provider.Access, FormFilter );
                 BindingSource.DataSource = DataModel.DataTable;
                 DataGrid.DataSource = BindingSource;
@@ -162,8 +162,9 @@ namespace BudgetExecution
             try
             {
                 TableListBox.Items.Clear( );
-                var _names = Enum.GetNames( typeof( Source ) );
-                foreach( var name in _names )
+                string[ ] _names = Enum.GetNames( typeof( Source ) );
+
+                foreach( string name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -184,8 +185,9 @@ namespace BudgetExecution
         {
             try
             {
-                var _names = Enum.GetNames( typeof( SQL ) );
-                foreach( var name in _names )
+                string[ ] _names = Enum.GetNames( typeof( SQL ) );
+
+                foreach( string name in _names )
                 {
                     if( name != "NS" )
                     {
@@ -215,21 +217,24 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 ColumnGroupBox.Text = string.Empty;
                 ValueGroupBox.Text = string.Empty;
-                var _listBox = sender as VisualListBox;
-                var _value = _listBox?.SelectedItem.ToString( );
+                VisualListBox _listBox = sender as VisualListBox;
+                string _value = _listBox?.SelectedItem.ToString( );
                 SelectedTable = _value;
+
                 if( !string.IsNullOrEmpty( _value ) )
                 {
-                    var _source = (Source)Enum.Parse( typeof( Source ), _value );
+                    Source _source = (Source)Enum.Parse( typeof( Source ), _value );
                     DataModel = new DataBuilder( _source, Provider.Access );
                     BindingSource.DataSource = DataModel.DataTable;
                     DataGrid.DataSource = BindingSource;
                     ToolStrip.BindingSource = BindingSource;
+
                     DataGridGroupBox.Text =
                         SourcePrefix + DataModel.DataTable.TableName?.SplitPascal( );
 
-                    var _columns = DataModel.GetDataColumns( );
-                    foreach( var col in _columns )
+                    IEnumerable<DataColumn> _columns = DataModel.GetDataColumns( );
+
+                    foreach( DataColumn col in _columns )
                     {
                         ColumnListBox.Items.Add( col.ColumnName );
                     }
@@ -258,13 +263,15 @@ namespace BudgetExecution
                 ValueListBox.Items.Clear( );
                 SqlQuery = string.Empty;
                 HeaderLabel.Text = string.Empty;
-                var _listBox = sender as VisualListBox;
-                var _column = _listBox?.SelectedItem?.ToString( );
-                var _series = DataModel.DataElements;
+                VisualListBox _listBox = sender as VisualListBox;
+                string _column = _listBox?.SelectedItem?.ToString( );
+                IDictionary<string, IEnumerable<string>> _series = DataModel.DataElements;
+
                 if( !string.IsNullOrEmpty( _column ) )
                 {
                     SelectedColumn = _column?.Trim( );
-                    foreach( var item in _series[ _column ] )
+
+                    foreach( string item in _series[ _column ] )
                     {
                         ValueListBox.Items.Add( item );
                     }
@@ -284,14 +291,16 @@ namespace BudgetExecution
             {
                 SqlQuery = string.Empty;
                 HeaderLabel.Text = string.Empty;
-                var _listBox = sender as VisualListBox;
-                var _value = _listBox?.SelectedItem?.ToString( );
+                VisualListBox _listBox = sender as VisualListBox;
+                string _value = _listBox?.SelectedItem?.ToString( );
                 SelectedValue = _value?.Trim( );
-                var _query = string.Empty;
+                string _query = string.Empty;
+
                 if( !string.IsNullOrEmpty( SelectedTable )
                     & !string.IsNullOrEmpty( SelectedColumn ) )
                 {
                     FormFilter.Add( SelectedColumn, SelectedValue );
+
                     _query = $"SELECT * FROM {SelectedTable} "
                         + $"WHERE {SelectedColumn} = '{SelectedValue}';";
                 }
@@ -312,11 +321,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -8,12 +8,13 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Forms;
     using Syncfusion.Windows.Forms.Chart;
 
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="Syncfusion.Windows.Forms.Chart.ChartDataBindModel" />
+    /// <seealso cref="ChartDataBindModel" />
     /// <seealso />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
@@ -35,7 +36,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding model.
         /// </value>
-        public virtual ChartDataBindModel ChartDataBindModel { get; set; }
+        public virtual ChartDataBindModel ChartDataBindingModel { get; set; }
 
         /// <summary>
         /// Gets or sets the axis label model.
@@ -52,6 +53,14 @@ namespace BudgetExecution
         /// The metric.
         /// </value>
         public virtual DataMetric DataMetric { get; set; }
+
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
+        public virtual STAT Stat { get; set; }
 
         /// <summary>
         /// Gets the series data.
@@ -78,41 +87,75 @@ namespace BudgetExecution
         public virtual IEnumerable<string> Categories { get; set; }
 
         /// <summary>
-        /// Gets or sets the filter.
+        /// Initializes a new instance
+        /// of the <see cref="BindingModelBase" /> class.
         /// </summary>
-        /// <value>
-        /// The filter.
-        /// </value>
-        public virtual IDictionary<string, object> DataFilter { get; set; }
+        protected BindingModelBase( )
+        {
+        }
 
         /// <summary>
-        /// Gets the series data.
+        /// Initializes a new instance of the <see cref="BindingModelBase" /> struct.
         /// </summary>
-        /// <value>
-        /// The series data.
-        /// </value>
-        public virtual IDictionary<string, double> DataValues { get; set; }
-        
-        /// <summary>
-        /// Gets the metric.
-        /// </summary>
-        /// <value>
-        /// The metric.
-        /// </value>
-        public virtual STAT STAT { get; set; }
+        /// <param name="bindingSource">The binding source.</param>
+        protected BindingModelBase( BindingSource bindingSource )
+        {
+            ChartDataBindingModel = new ChartDataBindModel( bindingSource );
+            Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
+            DataSource = Data.CopyToDataTable( );
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            DataMetric = new DataMetric( bindingSource );
+            SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            ChartDataBindingModel.Changed += OnChanged;
+        }
 
         /// <summary>
-        /// Gets the numeric.
+        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
         /// </summary>
-        public virtual Numeric Numeric { get; set; }
+        /// <param name="dataTable">The data table.</param>
+        protected BindingModelBase( DataTable dataTable )
+        {
+            ChartDataBindingModel = new ChartDataBindModel( dataTable );
+            Data = dataTable.AsEnumerable( );
+            DataSource = dataTable;
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            DataMetric = new DataMetric( dataTable );
+            SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            ChartDataBindingModel.Changed += OnChanged;
+        }
 
         /// <summary>
-        /// Gets or sets the field.
+        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
         /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
-        public virtual Field Field { get; set; }
+        /// <param name="dataSet">The data table.</param>
+        protected BindingModelBase( DataSet dataSet )
+        {
+            ChartDataBindingModel = new ChartDataBindModel( dataSet );
+            Data = dataSet.Tables[ 0 ].AsEnumerable( );
+            DataSource = dataSet.Tables[ 0 ];
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            DataMetric = new DataMetric( Data );
+            SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            ChartDataBindingModel.Changed += OnChanged;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BindingModelBase"/> class.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
+        protected BindingModelBase( IEnumerable<DataRow> dataRows )
+        {
+            ChartDataBindingModel = new ChartDataBindModel( dataRows );
+            DataSource = Data.CopyToDataTable( );
+            AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
+            DataMetric = new DataMetric( dataRows );
+            SeriesData = DataMetric.CalculateStatistics( );
+            Categories = SeriesData.Keys;
+            ChartDataBindingModel.Changed += OnChanged;
+        }
 
         /// <summary>
         /// Called when [changed].
@@ -127,7 +170,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var message = new Message( "NOT YET IMPLEMENTED" );
+                    Message message = new Message( "NOT YET IMPLEMENTED" );
                     message?.ShowDialog( );
                 }
                 catch( Exception ex )
@@ -144,11 +187,9 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

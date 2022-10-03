@@ -212,7 +212,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRows
+                    IEnumerable<string> _query = dataRows
                         ?.Select( p => p.Field<string>( column ) )
                         ?.Distinct( );
                     return _query?.Any( ) == true
@@ -245,7 +245,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = dataRows
+                    IEnumerable<string> _query = dataRows
                         ?.Where( p => p.Field<string>( $"{name}" ).Equals( value ) )
                         ?.Select( p => p.Field<string>( $"{name}" ) )?.Distinct( );
                     return _query?.Any( ) == true
@@ -273,9 +273,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _reader = new DataTableReader( dataTable ) )
+                    using( DataTableReader _reader = new DataTableReader( dataTable ) )
                     {
-                        var _schema = _reader?.GetSchemaTable( );
+                        DataTable _schema = _reader?.GetSchemaTable( );
                         return _schema?.Rows?.Count > 0
                             ? _schema
                             : default( DataTable );
@@ -303,20 +303,20 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                    string _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
                         + filePath + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
-                    using( var _connection = new OleDbConnection( _connectionString ) )
+                    using( OleDbConnection _connection = new OleDbConnection( _connectionString ) )
                     {
                         _connection?.Open( );
-                        using( var _dataSet = new DataSet( ) )
+                        using( DataSet _dataSet = new DataSet( ) )
                         {
-                            using( var _schema = _connection?.GetSchema( ) )
+                            using( DataTable _schema = _connection?.GetSchema( ) )
                             {
-                                var _sheetName = string.Empty;
+                                string _sheetName = string.Empty;
                                 if( _schema != null )
                                 {
-                                    var _dataTable = _schema?.AsEnumerable( )
+                                    DataTable _dataTable = _schema?.AsEnumerable( )
                                         ?.Where( r => r.Field<string>( "TABLE_NAME" )
                                             .Contains( "FilterDatabase" ) )
                                         ?.Select( r => r )
@@ -325,15 +325,15 @@ namespace BudgetExecution
                                     _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString( );
                                 }
 
-                                using( var _command = new OleDbCommand( ) )
+                                using( OleDbCommand _command = new OleDbCommand( ) )
                                 {
                                     _command.Connection = _connection;
                                     _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
-                                    using( var _dataAdapter =
+                                    using( OleDbDataAdapter _dataAdapter =
                                         new OleDbDataAdapter( _command ) )
                                     {
                                         _dataAdapter.Fill( _dataSet, "excelData" );
-                                        using( var _table = _dataSet.Tables[ "ExcelData" ] )
+                                        using( DataTable _table = _dataSet.Tables[ "ExcelData" ] )
                                         {
                                             _connection.Close( );
                                             return _table;
@@ -367,17 +367,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _package = new ExcelPackage( ) )
+                    using( ExcelPackage _package = new ExcelPackage( ) )
                     {
-                        using( var _stream = File.OpenRead( filePath ) )
+                        using( FileStream _stream = File.OpenRead( filePath ) )
                         {
                             _package.Load( _stream );
-                            var _worksheet = _package?.Workbook?.Worksheets?.First( );
-                            var _table = new DataTable( _worksheet?.Name );
+                            ExcelWorksheet _worksheet = _package?.Workbook?.Worksheets?.First( );
+                            DataTable _table = new DataTable( _worksheet?.Name );
 
                             if( _worksheet?.Cells != null )
                             {
-                                foreach( var _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
+                                foreach( ExcelRangeBase _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
                                     _worksheet.Dimension.End.Column ] )
                                 {
                                     _table?.Columns?.Add( header
@@ -385,16 +385,16 @@ namespace BudgetExecution
                                         : $"Column {_firstRowCell.Start.Column}" );
                                 }
 
-                                var _start = header
+                                int _start = header
                                     ? 2
                                     : 1;
 
-                                for( var _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
+                                for( int _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
                                 {
-                                    var _excelRange = _worksheet.Cells[ _row, 1, _row,
+                                    ExcelRange _excelRange = _worksheet.Cells[ _row, 1, _row,
                                         _worksheet.Dimension.End.Column ];
-                                    var _dataRow = _table.Rows?.Add( );
-                                    foreach( var cell in _excelRange )
+                                    DataRow _dataRow = _table.Rows?.Add( );
+                                    foreach( ExcelRangeBase cell in _excelRange )
                                     {
                                         _dataRow[ cell.Start.Column - 1 ] = cell?.Text;
                                     }
@@ -428,13 +428,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _dict =
+                    Dictionary<string, IEnumerable<string>> _dict =
                         new Dictionary<string, IEnumerable<string>>( );
 
-                    var _columns = dataTable?.Columns;
-                    var _rows = dataTable?.AsEnumerable( );
+                    DataColumnCollection _columns = dataTable?.Columns;
+                    EnumerableRowCollection<DataRow> _rows = dataTable?.AsEnumerable( );
 
-                    for( var i = 0; i < _columns?.Count; i++ )
+                    for( int i = 0; i < _columns?.Count; i++ )
                     {
                         if( !string.IsNullOrEmpty( _columns[ i ]?.ColumnName )
                             && _columns[ i ]?.DataType == typeof( string ) )

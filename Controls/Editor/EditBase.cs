@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Drawing;
     using System.Linq;
     using System.Windows.Forms;
-    using Microsoft.EntityFrameworkCore.Internal;
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
@@ -191,11 +190,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _query = "SELECT DISTINCT SchemaTypes.TypeName" + " FROM SchemaTypes"
+                    string _query = "SELECT DISTINCT SchemaTypes.TypeName" + " FROM SchemaTypes"
                         + $" WHERE SchemaTypes.Provider = '{provider}'";
 
-                    var _model = new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
-                    var _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
+                    DataBuilder _model =
+                        new DataBuilder( Source.SchemaTypes, Provider.Access, _query );
+
+                    string[ ] _data = _model.DataTable.GetUniqueFieldValues( "TypeName" );
+
                     return _data?.Length > 0
                         ? _data
                         : default( IEnumerable<string> );
@@ -235,11 +237,13 @@ namespace BudgetExecution
         {
             try
             {
-                var _names = Enum.GetNames( typeof( Source ) );
+                string[ ] _names = Enum.GetNames( typeof( Source ) );
+
                 if( listBox?.Items.Count > 0 )
                 {
                     listBox.Items.Clear( );
-                    foreach( var name in _names )
+
+                    foreach( string name in _names )
                     {
                         if( name != "NS" )
                         {
@@ -263,7 +267,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _groupBox in GroupBoxes.Values )
+                    foreach( GroupBox _groupBox in GroupBoxes.Values )
                     {
                         _groupBox.SeparatorColor = Color.FromArgb( 64, 64, 64 );
                         _groupBox.Separate = true;
@@ -286,7 +290,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _radioButton in RadioButtons.Values )
+                    foreach( RadioButton _radioButton in RadioButtons.Values )
                     {
                         _radioButton.ForeColor = Color.FromArgb( 0, 120, 212 );
                         _radioButton.CheckSignColor = Color.LimeGreen;
@@ -309,16 +313,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _buttons = new Dictionary<string, RadioButton>( );
-                    foreach( var _tabPage in TabPages.Values )
+                    Dictionary<string, RadioButton> _buttons =
+                        new Dictionary<string, RadioButton>( );
+
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
                         {
-                            foreach( var _control in _tab.Controls )
+                            foreach( object _control in _tab.Controls )
                             {
                                 if( _control is GroupBox _group )
                                 {
-                                    foreach( var _item in _group.Controls )
+                                    foreach( object _item in _group.Controls )
                                     {
                                         if( _item is RadioButton _radioButton )
                                         {
@@ -354,14 +360,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _buttons = new Dictionary<string, ComboBox>( );
-                    foreach( var _tabPage in TabPages.Values )
+                    Dictionary<string, ComboBox> _buttons = new Dictionary<string, ComboBox>( );
+
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
                         if( _tabPage is TabPageAdv _tab )
                         {
                             foreach( Control _control in _tab.Controls )
                             {
-                                if( _control.Controls?.Any( ) == true )
+                                if( _control.Controls.Count > 0 )
                                 {
                                     foreach( Control _subControl in _control.Controls )
                                     {
@@ -399,10 +406,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _groupBoxes = new Dictionary<string, GroupBox>( );
-                    foreach( var _tabPage in TabPages.Values )
+                    Dictionary<string, GroupBox> _groupBoxes = new Dictionary<string, GroupBox>( );
+
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
-                        foreach( var _control in _tabPage.Controls )
+                        foreach( object _control in _tabPage.Controls )
                         {
                             if( _control is GroupBox _groupBox )
                             {
@@ -435,12 +443,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _listBoxes = new Dictionary<string, ListBox>( );
-                    foreach( var _tabPage in TabPages.Values )
+                    Dictionary<string, ListBox> _listBoxes = new Dictionary<string, ListBox>( );
+
+                    foreach( TabPageAdv _tabPage in TabPages.Values )
                     {
                         if( _tabPage?.Controls?.Count > 0 )
                         {
-                            foreach( var _control in _tabPage.Controls )
+                            foreach( object _control in _tabPage.Controls )
                             {
                                 if( _control is ListBox _listBox )
                                 {
@@ -470,11 +479,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

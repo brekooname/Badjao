@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// The hover text.
         /// </value>
         public virtual string HoverText { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -94,9 +94,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
-                        foreach( var kvp in dict )
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
+
+                        foreach( KeyValuePair<string, object> kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( kvp.Key )
                                 && kvp.Value != null )
@@ -158,8 +159,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
-                    foreach( var kvp in dict )
+                    string _filter = string.Empty;
+
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -260,8 +262,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var filter = string.Empty;
-                    foreach( var kvp in dict )
+                    string filter = string.Empty;
+
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -324,7 +327,8 @@ namespace BudgetExecution
         /// instance containing the event data.</param>
         public virtual void OnMouseOver( object sender, EventArgs e )
         {
-            var _budgetLabel = sender as Label;
+            Label _budgetLabel = sender as Label;
+
             try
             {
                 if( _budgetLabel != null
@@ -332,15 +336,15 @@ namespace BudgetExecution
                 {
                     if( !string.IsNullOrEmpty( HoverText ) )
                     {
-                        var _hoverText = _budgetLabel?.HoverText;
-                        var _ = new MetroTip( _budgetLabel, _hoverText );
+                        string _hoverText = _budgetLabel?.HoverText;
+                        MetroTip _ = new MetroTip( _budgetLabel, _hoverText );
                     }
                     else
                     {
                         if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                         {
-                            var _text = Tag?.ToString( )?.SplitPascal( );
-                            var _ = new MetroTip( _budgetLabel, _text );
+                            string _text = Tag?.ToString( )?.SplitPascal( );
+                            MetroTip _ = new MetroTip( _budgetLabel, _text );
                         }
                     }
                 }
@@ -361,7 +365,8 @@ namespace BudgetExecution
         /// </param>
         public virtual void OnMouseLeave( object sender, EventArgs e )
         {
-            var _budgetLabel = sender as Label;
+            Label _budgetLabel = sender as Label;
+
             try
             {
                 if( _budgetLabel != null )
@@ -380,7 +385,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

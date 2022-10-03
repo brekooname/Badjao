@@ -89,13 +89,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _path = ConfigurationManager.AppSettings[ $"{Extension}" ];
-                    var _index = _path.LastIndexOf( @"\" );
-                    var _size = _path.Length;
-                    var _end = _size - _index;
-                    var _folder = $@"\{CommandType}";
-                    var _remove = _path?.Remove( _index, _end );
-                    var _dirpath = _remove + _folder;
+                    string _path = ConfigurationManager.AppSettings[ $"{ Extension }" ];
+                    int _index = _path.LastIndexOf( @"\" );
+                    int _size = _path.Length;
+                    int _end = _size - _index;
+                    string _folder = $@"\{ CommandType }";
+                    string _remove = _path?.Remove( _index, _end );
+                    string _dirpath = _remove + _folder;
 
                     return Directory.Exists( _dirpath )
                         ? _dirpath
@@ -120,20 +120,20 @@ namespace BudgetExecution
             if( Enum.IsDefined( typeof( SQL ), CommandType )
                 && Files?.Any( ) == true )
             {
-                var _repository = new Dictionary<string, string>( );
+                Dictionary<string, string> _repository = new Dictionary<string, string>( );
 
-                foreach( var file in Files )
+                foreach( string file in Files )
                 {
                     string _output;
 
-                    using( var _stream = File.OpenText( file ) )
+                    using( StreamReader _stream = File.OpenText( file ) )
                     {
                         _output = _stream.ReadToEnd( );
                     }
 
                     if( !string.IsNullOrEmpty( _output ) )
                     {
-                        var _name = Path.GetFileNameWithoutExtension( file );
+                        string _name = Path.GetFileNameWithoutExtension( file );
                         _repository.Add( _name, _output );
                     }
                 }
@@ -177,11 +177,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

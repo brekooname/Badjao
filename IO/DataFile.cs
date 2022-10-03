@@ -1,4 +1,4 @@
-﻿// <copyright file = "DataFile.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "FilePath.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -32,7 +32,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="DataFile"/> class.
         /// </summary>
         /// <param name="input">The input.</param>
-        public DataFile( string input )
+        public DataFile( string input ) 
             : base( input )
         {
             Buffer = input;
@@ -58,7 +58,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !string.IsNullOrEmpty( filePath )
+                return !string.IsNullOrEmpty( filePath ) 
                     ? new FileInfo( filePath )
                     : default( FileInfo );
             }
@@ -75,19 +75,19 @@ namespace BudgetExecution
         /// <param name="folder">The folder.</param>
         public void Transfer( DirectoryInfo folder )
         {
-            if( folder != null
-                && !Directory.Exists( folder.FullName ) )
+            if( folder != null &&
+                !Directory.Exists( folder.FullName ) )
             {
                 Directory.CreateDirectory( folder.FullName );
             }
 
             try
             {
-                var _files = folder?.GetFiles( );
+                FileInfo[ ] _files = folder?.GetFiles( );
 
                 if( _files?.Any( ) == true )
                 {
-                    foreach( var _fileInfo in _files )
+                    foreach( FileInfo _fileInfo in _files )
                     {
                         Directory.Move( _fileInfo.FullName, folder.Name );
                     }
@@ -113,14 +113,14 @@ namespace BudgetExecution
                 if( !string.IsNullOrEmpty( search )
                     && File.Exists( search ) )
                 {
-                    using( var _stream = File.Open( search, FileMode.Open ) )
+                    using( FileStream _stream = File.Open( search, FileMode.Open ) )
                     {
-                        using( var _reader = new StreamReader( _stream ) )
+                        using( StreamReader _reader = new StreamReader( _stream ) )
                         {
                             if( _reader != null )
                             {
-                                var _text = _reader?.ReadLine( );
-                                var _result = false;
+                                string _text = _reader?.ReadLine( );
+                                bool _result = false;
 
                                 while( _text == string.Empty )
                                 {
@@ -159,16 +159,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _input = Path.GetFullPath( Buffer );
+                    string _input = Path.GetFullPath( Buffer );
 
                     if( !string.IsNullOrEmpty( _input )
                         && File.Exists( _input ) )
                     {
-                        var _enumerable = Directory.EnumerateDirectories( _input, pattern );
+                        IEnumerable<string> _enumerable =
+                            Directory.GetDirectories( _input, pattern );
 
-                        var _list = new List<FileInfo>( );
+                        List<FileInfo> _list = new List<FileInfo>( );
 
-                        foreach( var file in _enumerable )
+                        foreach( string file in _enumerable )
                         {
                             _list.Add( new FileInfo( file ) );
                         }
@@ -187,7 +188,7 @@ namespace BudgetExecution
 
             return default( IEnumerable<FileInfo> );
         }
-
+        
         /// <summary>
         /// Gets the parent.
         /// </summary>
@@ -220,9 +221,9 @@ namespace BudgetExecution
         {
             try
             {
-                var _dialog = new OpenFileDialog
+                OpenFileDialog _dialog = new OpenFileDialog
                 {
-                    CheckFileExists = true,
+                    CheckFileExists = true, 
                     CheckPathExists = true
                 };
 

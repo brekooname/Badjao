@@ -109,9 +109,10 @@ namespace BudgetExecution
                 {
                     try
                     {
-                        var _list = bindingList as BindingSource;
-                        var _filter = string.Empty;
-                        foreach( var _kvp in dict )
+                        BindingSource _list = bindingList as BindingSource;
+                        string _filter = string.Empty;
+
+                        foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
                                 && _kvp.Value != null )
@@ -173,8 +174,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var filter = string.Empty;
-                    foreach( var kvp in dict )
+                    string filter = string.Empty;
+
+                    foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
                             && kvp.Value != null )
@@ -275,8 +277,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filter = string.Empty;
-                    foreach( var _kvp in dict )
+                    string _filter = string.Empty;
+
+                    foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
                             && _kvp.Value != null )
@@ -336,11 +339,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

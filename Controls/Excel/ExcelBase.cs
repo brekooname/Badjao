@@ -129,10 +129,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.AutoFitColumns( width );
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.AutoFitColumns( width );
                 }
                 catch( Exception ex )
                 {
@@ -158,12 +156,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        _range.Style.Fill.BackgroundColor.SetColor( color );
-                        _range.Style.HorizontalAlignment = Left;
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    _range.Style.Fill.BackgroundColor.SetColor( color );
+                    _range.Style.HorizontalAlignment = Left;
                 }
                 catch( Exception ex )
                 {
@@ -189,10 +185,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.Style.Font.SetFromFont( font );
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.Style.Font.SetFromFont( font );
                 }
                 catch( Exception ex )
                 {
@@ -218,11 +212,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.Style.Font.Color.SetColor( color );
-                        _range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.Style.Font.Color.SetColor( color );
+                    _range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
                 }
                 catch( Exception ex )
                 {
@@ -252,35 +244,42 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
+                    using ExcelRange _range = grid.GetRange( );
+                    switch( side )
                     {
-                        switch( side )
+                        case BorderSide.Top:
+
                         {
-                            case BorderSide.Top:
-                            {
-                                _range.Style.Border.Top.Style = style;
-                                break;
-                            }
-                            case BorderSide.Bottom:
-                            {
-                                _range.Style.Border.Bottom.Style = style;
-                                break;
-                            }
-                            case BorderSide.Right:
-                            {
-                                _range.Style.Border.Right.Style = style;
-                                break;
-                            }
-                            case BorderSide.Left:
-                            {
-                                _range.Style.Border.Left.Style = style;
-                                break;
-                            }
-                            default:
-                            {
-                                _range.Style.Border.BorderAround( ExcelBorderStyle.None );
-                                break;
-                            }
+                            _range.Style.Border.Top.Style = style;
+                            break;
+                        }
+
+                        case BorderSide.Bottom:
+
+                        {
+                            _range.Style.Border.Bottom.Style = style;
+                            break;
+                        }
+
+                        case BorderSide.Right:
+
+                        {
+                            _range.Style.Border.Right.Style = style;
+                            break;
+                        }
+
+                        case BorderSide.Left:
+
+                        {
+                            _range.Style.Border.Left.Style = style;
+                            break;
+                        }
+
+                        default:
+
+                        {
+                            _range.Style.Border.BorderAround( ExcelBorderStyle.None );
+                            break;
                         }
                     }
                 }
@@ -308,10 +307,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.Style.HorizontalAlignment = align;
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.Style.HorizontalAlignment = align;
                 }
                 catch( Exception ex )
                 {
@@ -336,10 +333,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.Style.VerticalAlignment = align;
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.Style.VerticalAlignment = align;
                 }
                 catch( Exception ex )
                 {
@@ -361,10 +356,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _range = grid.GetRange( ) )
-                    {
-                        _range.Merge = true;
-                    }
+                    using ExcelRange _range = grid.GetRange( );
+                    _range.Merge = true;
                 }
                 catch( Exception ex )
                 {

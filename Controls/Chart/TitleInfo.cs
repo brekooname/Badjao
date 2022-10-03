@@ -74,7 +74,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref="TitleInfo"/> class.
         /// </summary>
         /// <param name="title">The title.</param>
-        public TitleInfo( IReadOnlyList<string> title )
+        public TitleInfo( IList<string> title )
         {
             Main = title[ 0 ] ?? string.Empty;
             Axis = title[ 1 ] ?? string.Empty;
@@ -137,11 +137,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var data = new Dictionary<string, string>
-                    {
-                        [ "Main" ] = main,
-                        [ "Axis" ] = axis
-                    };
+                    Dictionary<string, string> data = new Dictionary<string, string>
+                        { [ "Main" ] = main, [ "Axis" ] = axis };
 
                     return data;
                 }
@@ -165,15 +162,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle( ) )
-                    {
-                        _title.Text = Main;
-                        _title.ForeColor = Color.FromArgb( 141, 139, 138 );
-                        _title.Visible = true;
-                        _title.Font = new Font( "Roboto", 9 );
-                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
-                        return _title;
-                    }
+                    using ChartTitle _title = new ChartTitle( );
+                    _title.Text = Main;
+                    _title.ForeColor = Color.FromArgb( 141, 139, 138 );
+                    _title.Visible = true;
+                    _title.Font = new Font( "Roboto", 9 );
+                    _title.BackColor = Color.FromArgb( 15, 15, 15 );
+                    return _title;
                 }
                 catch( Exception ex )
                 {
@@ -195,15 +190,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle( ) )
-                    {
-                        _title.Text = Main;
-                        _title.ForeColor = Color.FromArgb( 141, 139, 138 );
-                        _title.Visible = true;
-                        _title.Font = new Font( "Roboto", 9 );
-                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
-                        return _title;
-                    }
+                    using ChartTitle _title = new ChartTitle( );
+                    _title.Text = Main;
+                    _title.ForeColor = Color.FromArgb( 141, 139, 138 );
+                    _title.Visible = true;
+                    _title.Font = new Font( "Roboto", 9 );
+                    _title.BackColor = Color.FromArgb( 15, 15, 15 );
+                    return _title;
                 }
                 catch( Exception ex )
                 {
@@ -228,15 +221,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle( ) )
-                    {
-                        _title.Text = Main;
-                        _title.Visible = true;
-                        _title.Font = font;
-                        _title.ForeColor = color;
-                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
-                        return _title;
-                    }
+                    using ChartTitle _title = new ChartTitle( );
+                    _title.Text = Main;
+                    _title.Visible = true;
+                    _title.Font = font;
+                    _title.ForeColor = color;
+                    _title.BackColor = Color.FromArgb( 15, 15, 15 );
+                    return _title;
                 }
                 catch( Exception ex )
                 {
@@ -261,15 +252,13 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _title = new ChartTitle( ) )
-                    {
-                        _title.Text = Main;
-                        _title.Visible = true;
-                        _title.Font = font;
-                        _title.ForeColor = color;
-                        _title.BackColor = Color.FromArgb( 15, 15, 15 );
-                        return _title;
-                    }
+                    using ChartTitle _title = new ChartTitle( );
+                    _title.Text = Main;
+                    _title.Visible = true;
+                    _title.Font = font;
+                    _title.ForeColor = color;
+                    _title.BackColor = Color.FromArgb( 15, 15, 15 );
+                    return _title;
                 }
                 catch( Exception ex )
                 {
@@ -288,11 +277,9 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

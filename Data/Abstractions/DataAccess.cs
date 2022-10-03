@@ -7,6 +7,7 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
@@ -38,7 +39,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _dataTable = GetDataTable( );
+                DataTable _dataTable = GetDataTable( );
                 IEnumerable<DataRow> _data = _dataTable?.AsEnumerable( );
 
                 return _data?.Any( ) == true
@@ -66,15 +67,13 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query.GetAdapter(  ) )
-                    {
-                        _adapter?.Fill( DataSet, DataTable.TableName );
-                        SetColumnCaptions( DataTable );
+                    using DbDataAdapter _adapter = Query.GetAdapter(  );
+                    _adapter?.Fill( DataSet, DataTable.TableName );
+                    SetColumnCaptions( DataTable );
 
-                        return DataTable?.Rows?.Count > 0
-                            ? DataTable
-                            : default( DataTable );
-                    }
+                    return DataTable?.Rows?.Count > 0
+                        ? DataTable
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
@@ -100,15 +99,13 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query.GetAdapter( ) )
-                    {
-                        _adapter?.Fill( DataSet, DataTable?.TableName );
-                        SetColumnCaptions( DataTable );
+                    using DbDataAdapter _adapter = Query.GetAdapter( );
+                    _adapter?.Fill( DataSet, DataTable?.TableName );
+                    SetColumnCaptions( DataTable );
 
-                        return DataTable?.Rows?.Count > 0
-                            ? DataSet
-                            : default( DataSet );
-                    }
+                    return DataTable?.Rows?.Count > 0
+                        ? DataSet
+                        : default( DataSet );
                 }
                 catch( Exception ex )
                 {
@@ -135,7 +132,7 @@ namespace BudgetExecution
                         if( column != null
                             && string.IsNullOrEmpty( column.Caption ) )
                         {
-                            var _caption = column.ColumnName.SplitPascal( );
+                            string _caption = column.ColumnName.SplitPascal( );
                             column.Caption = _caption;
                         }
                     }
@@ -161,15 +158,13 @@ namespace BudgetExecution
                     DataTable = new DataTable( $"{ Source }" );
                     DataSet.Tables.Add( DataTable );
 
-                    using( var _adapter = Query?.GetAdapter( ) )
-                    {
-                        _adapter?.Fill( DataSet, DataTable.TableName );
-                        SetColumnCaptions( DataTable );
+                    using DbDataAdapter _adapter = Query?.GetAdapter( );
+                    _adapter?.Fill( DataSet, DataTable.TableName );
+                    SetColumnCaptions( DataTable );
 
-                        return DataTable?.Columns?.Count > 0
-                            ? DataTable.Columns
-                            : default( DataColumnCollection );
-                    }
+                    return DataTable?.Columns?.Count > 0
+                        ? DataTable.Columns
+                        : default( DataColumnCollection );
                 }
                 catch( Exception ex )
                 {
@@ -193,8 +188,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _table = dataRows?.CopyToDataTable( );
-                    var _values = _table?.GetPrimaryKeyValues( );
+                    DataTable _table = dataRows?.CopyToDataTable( );
+                    IEnumerable<int> _values = _table?.GetPrimaryKeyValues( );
 
                     return _values?.Any( ) == true
                         ? _values.ToArray( )

@@ -85,13 +85,17 @@ namespace BudgetExecution
             FileExtension = "xlsx";
             PictureBox.Image = GetImage( );
             FilePaths = GetListViewPaths( );
+
             FileDialog.DefaultExt = FileExtension;
+
             FileDialog.InitialDirectory =
                 Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory );
 
             FileDialog.CheckFileExists = true;
+
             CloseButton.Click += OnCloseButtonClicked;
             FileList.SelectedValueChanged += OnPathSelected;
+
             Load += OnLoaded;
         }
 
@@ -129,17 +133,17 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _path = ConfigurationManager.AppSettings[ "Extensions" ];
-                    var _files = Directory.GetFiles( _path );
+                    string _path = ConfigurationManager.AppSettings[ "Extensions" ];
+                    string[ ] _files = Directory.GetFiles( _path );
+
                     if( _files?.Any( ) == true )
                     {
-                        var _extension = FileExtension.TrimStart( '.' ).ToUpper( );
-                        var _file = _files.Where( f => f.Contains( _extension ) )?.First( );
-                        using( var stream = File.Open( _file, FileMode.Open ) )
-                        {
-                            var _img = Image.FromStream( stream );
-                            return new Bitmap( _img, 22, 22 );
-                        }
+                        string _extension = FileExtension.TrimStart( '.' ).ToUpper( );
+                        string _file = _files.Where( f => f.Contains( _extension ) )?.First( );
+
+                        using FileStream stream = File.Open( _file, FileMode.Open );
+                        Image _img = Image.FromStream( stream );
+                        return new Bitmap( _img, 22, 22 );
                     }
                 }
                 catch( Exception ex )
@@ -159,7 +163,7 @@ namespace BudgetExecution
         {
             try
             {
-                foreach( var radioButton in RadioButtons )
+                foreach( RadioButton radioButton in RadioButtons )
                 {
                     radioButton.CheckedChanged += null;
                     radioButton.CheckState = CheckState.Unchecked;
@@ -178,7 +182,7 @@ namespace BudgetExecution
         {
             try
             {
-                foreach( var radioButton in RadioButtons )
+                foreach( RadioButton radioButton in RadioButtons )
                 {
                     radioButton.CheckedChanged += OnRadioButtonSelected;
                 }
@@ -199,28 +203,33 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _list = new List<string>( );
-                    foreach( var path in InitialDirPaths )
+                    List<string> _list = new List<string>( );
+
+                    foreach( string path in InitialDirPaths )
                     {
-                        var _first = Directory.EnumerateFiles( path )
+                        List<string> _first = Directory.GetFiles( path )
                             ?.Where( f => f.EndsWith( FileExtension ) )
                             ?.Select( f => Path.GetFullPath( f ) )?.ToList( );
 
                         _list.AddRange( _first );
-                        var _dirs = Directory.GetDirectories( path );
-                        foreach( var dir in _dirs )
+
+                        string[ ] _dirs = Directory.GetDirectories( path );
+
+                        foreach( string dir in _dirs )
                         {
                             if( !dir.Contains( "My " ) )
                             {
-                                var _second = Directory.EnumerateFiles( dir )
+                                List<string> _second = Directory.GetFiles( dir )
                                     ?.Where( s => s.EndsWith( FileExtension ) )
                                     ?.Select( s => Path.GetFullPath( s ) )?.ToList( );
 
                                 _list.AddRange( _second );
-                                var _subdir = Directory.GetDirectories( dir );
-                                foreach( var sub in _subdir )
+
+                                string[ ] _subdir = Directory.GetDirectories( dir );
+
+                                foreach( string sub in _subdir )
                                 {
-                                    var _last = Directory.EnumerateFiles( sub )
+                                    List<string> _last = Directory.GetFiles( sub )
                                         ?.Where( l => l.EndsWith( FileExtension ) )
                                         ?.Select( l => Path.GetFullPath( l ) )?.ToList( );
 
@@ -258,7 +267,7 @@ namespace BudgetExecution
                     FileExtension = _radioButton?.Result;
                     MessageLabel.Text = string.Empty;
                     FoundLabel.Text = string.Empty;
-                    var _paths = GetListViewPaths( );
+                    IEnumerable<string> _paths = GetListViewPaths( );
                     PopulateListView( _paths );
                     PictureBox.Image = GetImage( );
                     FoundLabel.Text = "Found: " + _paths?.ToList( )?.Count ?? "0";
@@ -278,7 +287,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _list = new List<RadioButton>
+                List<RadioButton> _list = new List<RadioButton>
                 {
                     PdfRadioButton,
                     AccessRadioButton,
@@ -313,12 +322,13 @@ namespace BudgetExecution
         {
             try
             {
-                var _current = Environment.CurrentDirectory;
-                var _list = new List<string>
+                string _current = Environment.CurrentDirectory;
+                List<string> _list = new List<string>
                 {
                     Environment.GetFolderPath( Environment.SpecialFolder.DesktopDirectory ),
+
                     Environment.GetFolderPath( Environment.SpecialFolder.Personal ),
-                    Environment.GetFolderPath( Environment.SpecialFolder.CommonDocuments ),
+                    Environment.GetFolderPath( Environment.SpecialFolder.Recent ),
                     @"C:\Users\terry\source\repos\Badjao\Resources\Docs",
                     _current
                 };
@@ -343,7 +353,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var path in FilePaths )
+                    foreach( string path in FilePaths )
                     {
                         FileList.Items.Add( path );
                     }
@@ -366,7 +376,8 @@ namespace BudgetExecution
                 if( filePaths?.Any( ) == true )
                 {
                     FileList.Items.Clear( );
-                    foreach( var path in filePaths )
+
+                    foreach( string path in filePaths )
                     {
                         if( !string.IsNullOrEmpty( path ) )
                         {
@@ -430,11 +441,9 @@ namespace BudgetExecution
         /// <param name="ex">The exception.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

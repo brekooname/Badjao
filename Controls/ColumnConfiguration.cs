@@ -93,12 +93,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _controlHost = new ToolStripControlHost( this )
-                    {
-                        AutoSize = true,
-                        Margin = Padding.Empty,
-                        Padding = Padding.Empty
-                    };
+                    ToolStripControlHost _controlHost = new ToolStripControlHost( this )
+                        { AutoSize = true, Margin = Padding.Empty, Padding = Padding.Empty };
 
                     return _controlHost;
                 }
@@ -130,15 +126,14 @@ namespace BudgetExecution
                 try
                 {
                     ColumnListBox?.Items?.Clear( );
+
                     foreach( DataGridViewColumn c in Grid?.Columns )
                     {
                         ColumnListBox?.Items.Add( c.HeaderText, c.Visible );
                     }
 
-                    var _columnConfiguration = new ColumnConfiguration( Grid )
-                    {
-                        Location = Grid.PointToScreen( new Point( e.X, e.Y ) )
-                    };
+                    ColumnConfiguration _columnConfiguration = new ColumnConfiguration( Grid )
+                        { Location = Grid.PointToScreen( new Point( e.X, e.Y ) ) };
 
                     _columnConfiguration?.ShowDialog( );
                     _columnConfiguration.TopMost = true;
@@ -180,11 +175,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -186,7 +186,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    IEnumerable<FileInfo> _enumerable = DirectoryInfo?.EnumerateFiles( FullPath );
+                    IEnumerable<FileInfo> _enumerable = DirectoryInfo?.GetFiles( FullPath );
 
                     return  _enumerable?.Any( ) == true
                         ? _enumerable

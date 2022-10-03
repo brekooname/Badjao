@@ -41,7 +41,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual MetroTip ToolTip { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -187,7 +187,7 @@ namespace BudgetExecution
                 Fail( ex );
             }
         }
-
+        
         /// <summary>
         /// Sets the tag.
         /// </summary>
@@ -269,7 +269,7 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

@@ -49,7 +49,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding source.
         /// </value>
-        public IBindingModel BindingModel { get; set; }
+        public BindingModel BindingModel { get; set; }
 
         /// <summary>
         /// Gets the metric.

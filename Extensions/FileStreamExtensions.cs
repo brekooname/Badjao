@@ -51,7 +51,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( var _line in reader.IterateLines( ) )
+                    foreach( string _line in reader.IterateLines( ) )
                     {
                         action( _line );
                     }
@@ -219,7 +219,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _reader = stream.GetReader( encoding ) )
+                    using( StreamReader _reader = stream.GetReader( encoding ) )
                     {
                         return _reader.ReadToEnd( );
                     }
@@ -314,7 +314,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _buffer = new byte[ buffer ];
+                    byte[ ] _buffer = new byte[ buffer ];
                     int _count;
 
                     while( ( _count = stream.Read( _buffer, 0, buffer ) ) > 0 )
@@ -349,9 +349,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _memory = new MemoryStream( (int)stream.Length ) )
+                    using( MemoryStream _memory = new MemoryStream( (int)stream.Length ) )
                     {
-                        stream.CopyTo( _memory );
+                        stream.CopyTo( _memory, (int)stream.Length );
                         return _memory;
                     }
                 }
@@ -380,7 +380,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _memory = stream.CopyToMemory( ) )
+                    using( MemoryStream _memory = stream.CopyToMemory( ) )
                     {
                         return _memory.ToArray( );
                     }
@@ -401,24 +401,24 @@ namespace BudgetExecution
         /// <param name = "stream" >
         /// The stream to read from
         /// </param>
-        /// <param name = "bufferSize" >
+        /// <param name = "bufsize" >
         /// The number of bytes to read.
         /// </param>
         /// <returns>
         /// the read byte[]
         /// </returns>
-        public static IEnumerable<byte> ReadFixedbuffersize( this Stream stream, int bufferSize )
+        public static IEnumerable<byte> ReadFixedbuffersize( this Stream stream, int bufsize )
         {
             if( stream != null )
             {
                 try
                 {
-                    var _buffer = new byte[ bufferSize ];
-                    var _offset = 0;
+                    byte[ ] _buffer = new byte[ bufsize ];
+                    int _offset = 0;
 
                     do
                     {
-                        var _read = stream.Read( _buffer, _offset, bufferSize - _offset );
+                        int _read = stream.Read( _buffer, _offset, bufsize - _offset );
 
                         if( _read == 0 )
                         {
@@ -427,7 +427,7 @@ namespace BudgetExecution
 
                         _offset += _read;
                     }
-                    while( _offset < bufferSize );
+                    while( _offset < bufsize );
 
                     return _buffer;
                 }
@@ -469,7 +469,7 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
+            using( Error _error = new Error( ex ) )
             {
                 _error?.SetText( );
                 _error?.ShowDialog( );

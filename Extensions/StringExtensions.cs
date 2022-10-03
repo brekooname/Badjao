@@ -11,6 +11,7 @@ namespace BudgetExecution
     using System.Net.Mail;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading;
     using System.Xml;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -156,7 +157,7 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( text ) )
                 {
-                    var _letters = text.ToCharArray( );
+                    char[ ] _letters = text.ToCharArray( );
                     _letters[ 0 ] = char.ToUpper( _letters[ 0 ] );
                     return new string( _letters );
                 }
@@ -187,7 +188,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _date = DateTime.TryParse( text, out var _dateTime );
+                    bool _date = DateTime.TryParse( text, out DateTime _dateTime );
                     return _date  ? _dateTime : default( DateTime );
                 }
                 catch( Exception ex )
@@ -213,7 +214,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _buffer = Encoding.UTF8.GetBytes( text );
+                byte[ ] _buffer = Encoding.UTF8.GetBytes( text );
                 return new MemoryStream( _buffer );
             }
             catch( Exception ex )
@@ -268,7 +269,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _document = new XmlDocument( );
+                XmlDocument _document = new XmlDocument( );
                 _document.LoadXml( text );
                 return _document;
             }
@@ -309,12 +310,12 @@ namespace BudgetExecution
         /// </returns>
         public static int WordCount( this string text )
         {
-            var _count = 0;
+            int _count = 0;
 
             try
             {
-                var re = new Regex( @"[^\text]+" );
-                var _matches = re.Matches( text );
+                Regex re = new Regex( @"[^\text]+" );
+                MatchCollection _matches = re.Matches( text );
                 _count = _matches.Count;
             }
             catch( Exception ex )
@@ -366,10 +367,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _writer = new StreamWriter( text, false ) )
-                    {
-                        _writer.Write( file );
-                    }
+                    using StreamWriter _writer = new StreamWriter( text, false );
+                    _writer.Write( file );
                 }
                 catch( Exception ex )
                 {
@@ -404,14 +403,14 @@ namespace BudgetExecution
         {
             try
             {
-                var _message = new MailMessage( );
+                MailMessage _message = new MailMessage( );
                 _message.To.Add( recipient );
-                var _address = new MailAddress( sender );
+                MailAddress _address = new MailAddress( sender );
                 _message.From = _address;
                 _message.Subject = subject;
                 _message.Body = body;
-                var _client = new SmtpClient( server );
-                var _credentials = new NetworkCredential( );
+                SmtpClient _client = new SmtpClient( server );
+                NetworkCredential _credentials = new NetworkCredential( );
                 _client.Credentials = _credentials;
                 _client.Send( _message );
                 return true;
@@ -459,7 +458,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _regex = new Regex( @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" );
+                Regex _regex = new Regex( @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" );
                 return _regex.IsMatch( s );
             }
             catch( Exception ex )
@@ -473,11 +472,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

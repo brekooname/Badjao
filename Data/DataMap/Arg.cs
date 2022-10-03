@@ -115,24 +115,23 @@ namespace BudgetExecution
         /// Gets the values.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetValues( )
+        public IEnumerable<object> GetValues( )
         {
             if( Output?.Any( ) == true )
             {
                 try
                 {
                     var _array = Output.Values?.ToArray( );
-                    var _enumerable = _array?.Select( o => o.ToString( ) );
+                    var _enumerable = _array?.Select( o => o );
                     var _fields = Enum.GetNames( typeof( Field ) );
-                    var _list = new List<string>( );
+                    var _list = new List<object>( );
 
                     if( _enumerable?.Any( ) == true
                         && _fields?.Any( ) == true )
                     {
                         foreach( var value in _enumerable )
                         {
-                            if( !string.IsNullOrEmpty( value )
-                                && _fields.Contains( value ) )
+                            if( _fields.Contains( value ) )
                             {
                                 _list.Add( value );
                             }
@@ -141,16 +140,16 @@ namespace BudgetExecution
 
                     return _enumerable?.Any( ) == true
                         ? _enumerable
-                        : default( IEnumerable<string> );
+                        : default( IEnumerable<object> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IEnumerable<string> );
+                    return default( IEnumerable<object> );
                 }
             }
 
-            return default( IEnumerable<string> );
+            return default( IEnumerable<object> );
         }
 
         /// <summary>

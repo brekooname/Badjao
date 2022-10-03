@@ -39,7 +39,7 @@ namespace BudgetExecution
         /// The tool tip.
         /// </value>
         public virtual MetroTip ToolTip { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the filter.
         /// </summary>
@@ -242,10 +242,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _stream = File.Open( path, FileMode.Open ) )
-                    {
-                        FormIcon = new Icon( _stream );
-                    }
+                    using FileStream _stream = File.Open( path, FileMode.Open );
+                    FormIcon = new Icon( _stream );
                 }
                 catch( Exception ex )
                 {
@@ -260,11 +258,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

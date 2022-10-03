@@ -1,4 +1,4 @@
-﻿// <copyright file = "SyncTipBase.cs" company = "Terry D. Eppler">
+﻿// <copyright file = "ToolTip.cs" company = "Terry D. Eppler">
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
@@ -12,7 +12,7 @@ namespace BudgetExecution
     using Syncfusion.Windows.Forms;
     using Syncfusion.Windows.Forms.Tools;
 
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class SyncTipBase : SfToolTip
     {
         /// <summary>
@@ -37,15 +37,15 @@ namespace BudgetExecution
         /// <value>
         /// The tip item.
         /// </value>
-        public virtual ToolTipInfo.ToolTipItem TipItem { get; set; }
-
+        public virtual ToolTipInfo.ToolTipItem TipItem { get; set; } 
+        
         /// <summary>
         /// Initializes a new instance
         /// of the <see cref="MetroTip"/> class.
         /// </summary>
         public SyncTipBase( )
         {
-            SetCommonProperties( );
+            SetCommonProperties(  );
             TipInfo.Header.Font = TipText.HeaderFont;
             TipInfo.Header.ForeColor = TipText.HeaderForeColor;
             TipInfo.Header.TextAlign = TipText.HeaderAlignment;
@@ -61,7 +61,7 @@ namespace BudgetExecution
         /// <param name="control">The control.</param>
         public SyncTipBase( Control control )
         {
-            SetCommonProperties( );
+            SetCommonProperties(  );
             TipInfo.Header.Font = TipText.HeaderFont;
             TipInfo.Header.ForeColor = TipText.HeaderForeColor;
             TipInfo.Header.TextAlign = TipText.HeaderAlignment;
@@ -72,6 +72,7 @@ namespace BudgetExecution
 
         public SyncTipBase( TextItem tipText )
         {
+            
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                Fail( ex  );
             }
         }
 
@@ -141,6 +142,7 @@ namespace BudgetExecution
                 TipInfo.Header.Font = TipText.HeaderFont;
                 TipInfo.Header.ForeColor = TipText.HeaderForeColor;
                 TipInfo.Header.TextAlign = TipText.HeaderAlignment;
+
                 TipInfo.Header.Text = !string.IsNullOrEmpty( TipText.HeaderText )
                     ? TipText.HeaderText
                     : string.Empty;
@@ -161,6 +163,7 @@ namespace BudgetExecution
             {
                 if( !string.IsNullOrEmpty( bodyText ) )
                 {
+
                     TipInfo.Body.Text = bodyText;
                 }
             }
@@ -180,6 +183,7 @@ namespace BudgetExecution
                 TipInfo.Body.Font = TipText.BodyFont;
                 TipInfo.Body.ForeColor = TipText.BodyForeColor;
                 TipInfo.Body.TextAlign = TipText.BodyAlignment;
+
                 TipInfo.Body.Text = !string.IsNullOrEmpty( TipText.BodyText )
                     ? TipText.BodyText
                     : string.Empty;
@@ -219,6 +223,7 @@ namespace BudgetExecution
                 TipInfo.Footer.Font = TipText.FooterFont;
                 TipInfo.Footer.ForeColor = TipText.FooterForeColor;
                 TipInfo.Footer.TextAlign = TipText.FooterAlignment;
+
                 TipInfo.Footer.Text = !string.IsNullOrEmpty( TipText.FooterText )
                     ? TipText.FooterText
                     : string.Empty;
@@ -235,11 +240,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Windows.Forms;
     using Syncfusion.Windows.Forms;
+    using Syncfusion.Windows.Forms.Chart;
 
     public partial class ChartForm : MetroForm
     {
@@ -17,7 +18,7 @@ namespace BudgetExecution
         /// <value>
         /// The chart.
         /// </value>
-        public ChartControl Chart { get; set; }
+        public Chart Chart { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChartForm"/> class.
@@ -39,7 +40,7 @@ namespace BudgetExecution
             ToolStrip.Office12Mode = true;
             ToolStrip.BindingSource = bindingSource;
             ToolStrip.BindingSource.DataSource = bindingSource.DataSource;
-            Chart = new ChartControl( bindingSource )
+            Chart = new Chart( bindingSource )
             {
                 Dock = DockStyle.Fill
             };
@@ -63,7 +64,7 @@ namespace BudgetExecution
             ToolStrip.Office12Mode = true;
             ToolStrip.BindingSource = BindingSource;
             ToolStrip.BindingSource.DataSource = BindingSource.DataSource;
-            Chart = new ChartControl( dataTable )
+            Chart = new Chart( dataTable )
             {
                 Dock = DockStyle.Fill
             };
@@ -83,7 +84,7 @@ namespace BudgetExecution
 
             ToolStrip.BindingSource = BindingSource;
             ToolStrip.BindingSource.DataSource = BindingSource.DataSource;
-            Chart = new ChartControl( dataRows )
+            Chart = new Chart( dataRows )
             {
                 Dock = DockStyle.Fill
             };

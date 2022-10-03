@@ -101,18 +101,19 @@ namespace BudgetExecution
         {
             try
             {
-                var _control = sender as RadioButton;
+                RadioButton _control = sender as RadioButton;
+
                 if( _control is RadioButton _radioButton
                     && !string.IsNullOrEmpty( HoverText ) )
                 {
-                    var tip = new MetroTip( _radioButton, HoverText );
+                    MetroTip tip = new MetroTip( _radioButton, HoverText );
                     ToolTip = tip;
                 }
                 else
                 {
                     if( !string.IsNullOrEmpty( Tag?.ToString( ) ) )
                     {
-                        var _tool = new MetroTip( _control );
+                        MetroTip _tool = new MetroTip( _control );
                         ToolTip = _tool;
                     }
                 }
@@ -152,11 +153,9 @@ namespace BudgetExecution
         /// <param name="ex">The exception.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }
