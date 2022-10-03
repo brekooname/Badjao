@@ -36,7 +36,7 @@ namespace BudgetExecution
         /// <value>
         /// The binding model.
         /// </value>
-        public virtual ChartDataBindModel ChartDataBindingModel { get; set; }
+        public virtual ChartDataBindModel ChartData { get; set; }
 
         /// <summary>
         /// Gets or sets the axis label model.
@@ -100,14 +100,14 @@ namespace BudgetExecution
         /// <param name="bindingSource">The binding source.</param>
         protected BindingModelBase( BindingSource bindingSource )
         {
-            ChartDataBindingModel = new ChartDataBindModel( bindingSource );
+            ChartData = new ChartDataBindModel( bindingSource );
             Data = ( (DataTable)bindingSource.DataSource ).AsEnumerable( );
             DataSource = Data.CopyToDataTable( );
             AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( bindingSource );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
         }
 
         /// <summary>
@@ -116,14 +116,14 @@ namespace BudgetExecution
         /// <param name="dataTable">The data table.</param>
         protected BindingModelBase( DataTable dataTable )
         {
-            ChartDataBindingModel = new ChartDataBindModel( dataTable );
+            ChartData = new ChartDataBindModel( dataTable );
             Data = dataTable.AsEnumerable( );
             DataSource = dataTable;
             AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( dataTable );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
         }
 
         /// <summary>
@@ -132,14 +132,14 @@ namespace BudgetExecution
         /// <param name="dataSet">The data table.</param>
         protected BindingModelBase( DataSet dataSet )
         {
-            ChartDataBindingModel = new ChartDataBindModel( dataSet );
+            ChartData = new ChartDataBindModel( dataSet );
             Data = dataSet.Tables[ 0 ].AsEnumerable( );
             DataSource = dataSet.Tables[ 0 ];
             AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( Data );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
         }
 
         /// <summary>
@@ -148,13 +148,13 @@ namespace BudgetExecution
         /// <param name="dataRows">The data rows.</param>
         protected BindingModelBase( IEnumerable<DataRow> dataRows )
         {
-            ChartDataBindingModel = new ChartDataBindModel( dataRows );
-            DataSource = Data.CopyToDataTable( );
+            ChartData = new ChartDataBindModel( dataRows );
+            DataSource = dataRows.CopyToDataTable( );
             AxisLabelModel = new ChartDataBindAxisLabelModel( DataSource );
             DataMetric = new DataMetric( dataRows );
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
         }
 
         /// <summary>

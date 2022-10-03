@@ -273,13 +273,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( DataTableReader _reader = new DataTableReader( dataTable ) )
-                    {
-                        DataTable _schema = _reader?.GetSchemaTable( );
-                        return _schema?.Rows?.Count > 0
-                            ? _schema
-                            : default( DataTable );
-                    }
+                    using DataTableReader _reader = new DataTableReader( dataTable );
+                    DataTable _schema = _reader?.GetSchemaTable( );
+                    return _schema?.Rows?.Count > 0
+                        ? _schema
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
@@ -306,43 +304,32 @@ namespace BudgetExecution
                     string _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
                         + filePath + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
-                    using( OleDbConnection _connection = new OleDbConnection( _connectionString ) )
+                    using OleDbConnection _connection = new OleDbConnection( _connectionString );
+                    _connection?.Open( );
+                    using DataSet _dataSet = new DataSet( );
+                    using DataTable _schema = _connection?.GetSchema( );
+                    string _sheetName = string.Empty;
+                    if( _schema != null )
                     {
-                        _connection?.Open( );
-                        using( DataSet _dataSet = new DataSet( ) )
-                        {
-                            using( DataTable _schema = _connection?.GetSchema( ) )
-                            {
-                                string _sheetName = string.Empty;
-                                if( _schema != null )
-                                {
-                                    DataTable _dataTable = _schema?.AsEnumerable( )
-                                        ?.Where( r => r.Field<string>( "TABLE_NAME" )
-                                            .Contains( "FilterDatabase" ) )
-                                        ?.Select( r => r )
-                                        ?.CopyToDataTable( );
+                        DataTable _dataTable = _schema?.AsEnumerable( )
+                            ?.Where( r => r.Field<string>( "TABLE_NAME" )
+                                .Contains( "FilterDatabase" ) )
+                            ?.Select( r => r )
+                            ?.CopyToDataTable( );
 
-                                    _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString( );
-                                }
-
-                                using( OleDbCommand _command = new OleDbCommand( ) )
-                                {
-                                    _command.Connection = _connection;
-                                    _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
-                                    using( OleDbDataAdapter _dataAdapter =
-                                        new OleDbDataAdapter( _command ) )
-                                    {
-                                        _dataAdapter.Fill( _dataSet, "excelData" );
-                                        using( DataTable _table = _dataSet.Tables[ "ExcelData" ] )
-                                        {
-                                            _connection.Close( );
-                                            return _table;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString( );
                     }
+
+                    using OleDbCommand _command = new OleDbCommand( );
+                    _command.Connection = _connection;
+                    _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
+                    using OleDbDataAdapter _dataAdapter =
+                        new OleDbDataAdapter( _command );
+
+                    _dataAdapter.Fill( _dataSet, "excelData" );
+                    using DataTable _table = _dataSet.Tables[ "ExcelData" ];
+                    _connection.Close( );
+                    return _table;
                 }
                 catch( Exception ex )
                 {
@@ -367,44 +354,40 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( ExcelPackage _package = new ExcelPackage( ) )
+                    using ExcelPackage _package = new ExcelPackage( );
+                    using FileStream _stream = File.OpenRead( filePath );
+                    _package.Load( _stream );
+                    ExcelWorksheet _worksheet = _package?.Workbook?.Worksheets?.First( );
+                    DataTable _table = new DataTable( _worksheet?.Name );
+
+                    if( _worksheet?.Cells != null )
                     {
-                        using( FileStream _stream = File.OpenRead( filePath ) )
-                        {
-                            _package.Load( _stream );
-                            ExcelWorksheet _worksheet = _package?.Workbook?.Worksheets?.First( );
-                            DataTable _table = new DataTable( _worksheet?.Name );
-
-                            if( _worksheet?.Cells != null )
-                            {
-                                foreach( ExcelRangeBase _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
+                        foreach( ExcelRangeBase _firstRowCell in _worksheet?.Cells[ 1, 1, 1,
                                     _worksheet.Dimension.End.Column ] )
-                                {
-                                    _table?.Columns?.Add( header
-                                        ? _firstRowCell.Text
-                                        : $"Column {_firstRowCell.Start.Column}" );
-                                }
+                        {
+                            _table?.Columns?.Add( header
+                                ? _firstRowCell.Text
+                                : $"Column {_firstRowCell.Start.Column}" );
+                        }
 
-                                int _start = header
-                                    ? 2
-                                    : 1;
+                        int _start = header
+                            ? 2
+                            : 1;
 
-                                for( int _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
-                                {
-                                    ExcelRange _excelRange = _worksheet.Cells[ _row, 1, _row,
-                                        _worksheet.Dimension.End.Column ];
-                                    DataRow _dataRow = _table.Rows?.Add( );
-                                    foreach( ExcelRangeBase cell in _excelRange )
-                                    {
-                                        _dataRow[ cell.Start.Column - 1 ] = cell?.Text;
-                                    }
-                                }
-
-                                return _table?.Rows?.Count > 0
-                                    ? _table
-                                    : default( DataTable );
+                        for( int _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
+                        {
+                            ExcelRange _excelRange = _worksheet.Cells[ _row, 1, _row,
+                                _worksheet.Dimension.End.Column ];
+                            DataRow _dataRow = _table.Rows?.Add( );
+                            foreach( ExcelRangeBase cell in _excelRange )
+                            {
+                                _dataRow[ cell.Start.Column - 1 ] = cell?.Text;
                             }
                         }
+
+                        return _table?.Rows?.Count > 0
+                            ? _table
+                            : default( DataTable );
                     }
                 }
                 catch( Exception ex )

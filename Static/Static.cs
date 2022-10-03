@@ -110,10 +110,8 @@ namespace BudgetExecution
         {
             try
             {
-                using( IDbCommand _command = connection?.CreateCommand( sql ) )
-                {
-                    return _command?.ExecuteNonQuery( ) ?? 0;
-                }
+                using IDbCommand _command = connection?.CreateCommand( sql );
+                return _command?.ExecuteNonQuery( ) ?? 0;
             }
             catch( Exception ex )
             {
@@ -240,11 +238,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         public static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

@@ -87,32 +87,29 @@ namespace BudgetExecution
         public List<string> GetColumnNames( string tableName )
         {
             List<string> _names = new List<string>( );
+            using OleDbCommand _command =
+                new OleDbCommand( "select * from " + tableName, _connection );
 
-            using( OleDbCommand _command =
-                new OleDbCommand( "select * from " + tableName, _connection ) )
+            using OleDbDataReader _dataReader =
+                _command.ExecuteReader( CommandBehavior.SchemaOnly );
+
+            DataTable _dataTable = _dataReader.GetSchemaTable( );
+            DataColumn _dataColumn = _dataTable?.Columns[ "ColumnName" ];
+
+            if( _dataTable?.Rows != null )
             {
-                using( OleDbDataReader _dataReader =
-                    _command.ExecuteReader( CommandBehavior.SchemaOnly ) )
+                foreach( DataRow row in _dataTable?.Rows )
                 {
-                    DataTable _dataTable = _dataReader.GetSchemaTable( );
-                    DataColumn _dataColumn = _dataTable?.Columns[ "ColumnName" ];
-
-                    if( _dataTable?.Rows != null )
+                    if( _dataColumn != null )
                     {
-                        foreach( DataRow row in _dataTable?.Rows )
-                        {
-                            if( _dataColumn != null )
-                            {
-                                _names.Add( row[ _dataColumn ].ToString( ) );
-                            }
-                        }
+                        _names.Add( row[ _dataColumn ].ToString( ) );
                     }
-
-                    return _names?.Any( ) == true
-                        ? _names
-                        : default( List<string> );
                 }
             }
+
+            return _names?.Any( ) == true
+                ? _names
+                : default( List<string> );
         }
     }
 }

@@ -153,16 +153,14 @@ namespace BudgetExecution
                 {
                     var _connectionString = ConnectionString[ "Excel" ].ConnectionString;
                     var _sql = "SELECT * FROM [" + sheetName + "$]";
+                    using var _adapter =
+                        new OleDbDataAdapter( _sql, _connectionString );
 
-                    using( var _adapter =
-                        new OleDbDataAdapter( _sql, _connectionString ) )
-                    {
-                        var _table = new DataTable { TableName = sheetName };
+                    var _table = new DataTable { TableName = sheetName };
 
-                        _adapter?.FillSchema( _table, SchemaType.Source );
-                        _adapter.Fill( _table, _table.TableName );
-                        return _table;
-                    }
+                    _adapter?.FillSchema( _table, SchemaType.Source );
+                    _adapter.Fill( _table, _table.TableName );
+                    return _table;
                 }
                 catch( Exception ex )
                 {
@@ -481,11 +479,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using var _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

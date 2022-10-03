@@ -219,10 +219,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( StreamReader _reader = stream.GetReader( encoding ) )
-                    {
-                        return _reader.ReadToEnd( );
-                    }
+                    using StreamReader _reader = stream.GetReader( encoding );
+                    return _reader.ReadToEnd( );
                 }
                 catch( Exception ex )
                 {
@@ -349,11 +347,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( MemoryStream _memory = new MemoryStream( (int)stream.Length ) )
-                    {
-                        stream.CopyTo( _memory, (int)stream.Length );
-                        return _memory;
-                    }
+                    using MemoryStream _memory = new MemoryStream( (int)stream.Length );
+                    stream.CopyTo( _memory, (int)stream.Length );
+                    return _memory;
                 }
                 catch( Exception ex )
                 {
@@ -380,10 +376,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( MemoryStream _memory = stream.CopyToMemory( ) )
-                    {
-                        return _memory.ToArray( );
-                    }
+                    using MemoryStream _memory = stream.CopyToMemory( );
+                    return _memory.ToArray( );
                 }
                 catch( Exception ex )
                 {
@@ -469,11 +463,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

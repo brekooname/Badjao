@@ -142,22 +142,18 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _dataTable = dataGridView.GetDataTable( ) )
+                    using var _dataTable = dataGridView.GetDataTable( );
+                    using var _view = new System.Data.DataView( _dataTable );
+                    if( _dataTable?.Columns?.Count > 0 )
                     {
-                        using( var _view = new System.Data.DataView( _dataTable ) )
-                        {
-                            if( _dataTable?.Columns?.Count > 0 )
-                            {
-                                var _columns =
-                                    fields?.Select( f => f.ToString( ) )?.ToArray( );
+                        var _columns =
+                            fields?.Select( f => f.ToString( ) )?.ToArray( );
 
-                                var _table = _view?.ToTable( true, _columns );
+                        var _table = _view?.ToTable( true, _columns );
 
-                                return _table?.Columns?.Count > 0
-                                    ? _table
-                                    : default( DataTable );
-                            }
-                        }
+                        return _table?.Columns?.Count > 0
+                            ? _table
+                            : default( DataTable );
                     }
                 }
                 catch( Exception ex )
@@ -185,32 +181,28 @@ namespace BudgetExecution
         {
             try
             {
-                using( var _dataTable = dataGridView?.GetDataTable( ) )
+                using var _dataTable = dataGridView?.GetDataTable( );
+                if( _dataTable?.Columns?.Count > 0
+                   && index?.Length > 0 )
                 {
-                    if( _dataTable?.Columns?.Count > 0
-                       && index?.Length > 0 )
+                    var _columns = _dataTable.Columns;
+                    var _names = new string[ index.Length ];
+
+                    if( _columns?.Count > 0
+                       && _names?.Length > 0 )
                     {
-                        var _columns = _dataTable.Columns;
-                        var _names = new string[ index.Length ];
-
-                        if( _columns?.Count > 0
-                           && _names?.Length > 0 )
+                        for( var i = 0; i < index.Length; i++ )
                         {
-                            for( var i = 0; i < index.Length; i++ )
-                            {
-                                _names[ i ] = _columns[ index[ i ] ].ColumnName;
-                            }
-                        }
-
-                        using( var _view = new System.Data.DataView( _dataTable ) )
-                        {
-                            var _table = _view?.ToTable( true, _names );
-
-                            return _table.Columns.Count > 0
-                                ? _table
-                                : default( DataTable );
+                            _names[ i ] = _columns[ index[ i ] ].ColumnName;
                         }
                     }
+
+                    using var _view = new System.Data.DataView( _dataTable );
+                    var _table = _view?.ToTable( true, _names );
+
+                    return _table.Columns.Count > 0
+                        ? _table
+                        : default( DataTable );
                 }
             }
             catch( Exception ex )
@@ -367,17 +359,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using( var _table = dataGridView.GetDataTable( ) )
+                    using var _table = dataGridView.GetDataTable( );
+                    if( _table?.Columns?.Count > 0 )
                     {
-                        if( _table?.Columns?.Count > 0 )
+                        foreach( DataGridViewColumn _column in dataGridView.Columns )
                         {
-                            foreach( DataGridViewColumn _column in dataGridView.Columns )
+                            if( !string.IsNullOrEmpty( _table.Columns[ _column.Name ]
+                                   .Caption ) )
                             {
-                                if( !string.IsNullOrEmpty( _table.Columns[ _column.Name ]
-                                       .Caption ) )
-                                {
-                                    _column.HeaderText = _table.Columns[ _column.Name ].Caption;
-                                }
+                                _column.HeaderText = _table.Columns[ _column.Name ].Caption;
                             }
                         }
                     }
@@ -393,11 +383,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private static void Fail( Exception ex )
         {
-            using( var _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using var _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

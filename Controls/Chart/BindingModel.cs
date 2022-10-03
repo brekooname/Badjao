@@ -123,7 +123,7 @@ namespace BudgetExecution
             Categories = SeriesData.Keys;
             YNames = Categories.ToArray( );
             Values = GetSeriesValues( );
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
 
@@ -150,7 +150,7 @@ namespace BudgetExecution
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
 
@@ -182,7 +182,7 @@ namespace BudgetExecution
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
 
@@ -199,7 +199,7 @@ namespace BudgetExecution
 
             Data = dataRows;
             BindingList = dataRows.ToBindingList( );
-            Source = (Source)Enum.Parse( typeof( Source ), DataTable.TableName );
+            Source = (Source)Enum.Parse( typeof( Source ), DataTable?.TableName );
             DataTable = dataRows.CopyToDataTable( );
             TableName = Source.ToString( );
             DataSource = DataTable.ToBindingList( );
@@ -209,7 +209,7 @@ namespace BudgetExecution
             SeriesData = DataMetric.CalculateStatistics( );
             Categories = SeriesData.Keys;
             Values = GetSeriesValues( );
-            ChartDataBindingModel.Changed += OnChanged;
+            ChartData.Changed += OnChanged;
             Changed += OnCurrentChanged;
         }
 

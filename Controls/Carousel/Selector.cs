@@ -44,16 +44,14 @@ namespace BudgetExecution
                         && File.Exists( _paths[ i ] ) )
                     {
                         var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
-                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
+                        using var _stream = File.Open( _paths[ i ], FileMode.Open );
+                        var _bitmap = new Bitmap( _stream )
                         {
-                            var _bitmap = new Bitmap( _stream )
-                            {
-                                Tag = _name
-                            };
+                            Tag = _name
+                        };
 
-                            _list.ImageSize = ImageSize;
-                            _list?.Images?.Add( _bitmap );
-                        }
+                        _list.ImageSize = ImageSize;
+                        _list?.Images?.Add( _bitmap );
                     }
                 }
 
@@ -84,16 +82,14 @@ namespace BudgetExecution
                         && File.Exists( _paths[ i ] ) )
                     {
                         var _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
-                        using( var _stream = File.Open( _paths[ i ], FileMode.Open ) )
+                        using var _stream = File.Open( _paths[ i ], FileMode.Open );
+                        var _img = new Bitmap( _stream )
                         {
-                            var _img = new Bitmap( _stream )
-                            {
-                                Tag = _name
-                            };
+                            Tag = _name
+                        };
 
-                            _list.ImageSize = size;
-                            _list?.Images?.Add( _img );
-                        }
+                        _list.ImageSize = size;
+                        _list?.Images?.Add( _img );
                     }
                 }
 
@@ -118,18 +114,14 @@ namespace BudgetExecution
                 var _carouselImages = new List<CarouselImage>( );
                 for( var i = 0; i < _list?.Count; i++ )
                 {
-                    using( var _stream = File.Open( _list[ i ], FileMode.Open ) )
+                    using var _stream = File.Open( _list[ i ], FileMode.Open );
+                    using var _img = new Bitmap( _stream );
+                    var _carouselImage = new CarouselImage
                     {
-                        using( var _img = new Bitmap( _stream ) )
-                        {
-                            var _carouselImage = new CarouselImage
-                            {
-                                ItemImage = _img
-                            };
+                        ItemImage = _img
+                    };
 
-                            _carouselImages.Add( _carouselImage );
-                        }
-                    }
+                    _carouselImages.Add( _carouselImage );
                 }
 
                 return _carouselImages.Any( )
@@ -188,18 +180,14 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _list[ i ] )
                         && File.Exists( _list[ i ] ) )
                     {
-                        using( var _stream = File.Open( _list[ i ], FileMode.Open ) )
+                        using var _stream = File.Open( _list[ i ], FileMode.Open );
+                        using var _image = new Bitmap( _stream );
+                        var _carouselImage = new CarouselImage
                         {
-                            using( var _image = new Bitmap( _stream ) )
-                            {
-                                var _carouselImage = new CarouselImage
-                                {
-                                    ItemImage = _image
-                                };
+                            ItemImage = _image
+                        };
 
-                                _carouselImages.Add( _carouselImage );
-                            }
-                        }
+                        _carouselImages.Add( _carouselImage );
                     }
                 }
 

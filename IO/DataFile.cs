@@ -113,29 +113,25 @@ namespace BudgetExecution
                 if( !string.IsNullOrEmpty( search )
                     && File.Exists( search ) )
                 {
-                    using( FileStream _stream = File.Open( search, FileMode.Open ) )
+                    using FileStream _stream = File.Open( search, FileMode.Open );
+                    using StreamReader _reader = new StreamReader( _stream );
+                    if( _reader != null )
                     {
-                        using( StreamReader _reader = new StreamReader( _stream ) )
+                        string _text = _reader?.ReadLine( );
+                        bool _result = false;
+
+                        while( _text == string.Empty )
                         {
-                            if( _reader != null )
+                            if( Regex.IsMatch( _text, search ) )
                             {
-                                string _text = _reader?.ReadLine( );
-                                bool _result = false;
-
-                                while( _text == string.Empty )
-                                {
-                                    if( Regex.IsMatch( _text, search ) )
-                                    {
-                                        _result = true;
-                                        break;
-                                    }
-
-                                    _text = _reader.ReadLine( );
-                                }
-
-                                return _result;
+                                _result = true;
+                                break;
                             }
+
+                            _text = _reader.ReadLine( );
                         }
+
+                        return _result;
                     }
                 }
 

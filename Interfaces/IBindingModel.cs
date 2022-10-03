@@ -105,7 +105,7 @@ public interface IBindingModel
     /// <value>
     /// The binding model.
     /// </value>
-    ChartDataBindModel ChartDataBindingModel { get; set; }
+    ChartDataBindModel ChartData { get; set; }
 
     /// <summary>
     /// Gets or sets the axis label model.

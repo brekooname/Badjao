@@ -262,11 +262,9 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _paths[ i ] )
                         && File.Exists( _paths[ i ] ) )
                     {
-                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
-                        {
-                            Bitmap _img = new Bitmap( _stream );
-                            _list?.Images?.Add( _img );
-                        }
+                        using FileStream _stream = File.Open( _paths[ i ], FileMode.Open );
+                        Bitmap _img = new Bitmap( _stream );
+                        _list?.Images?.Add( _img );
                     }
                 }
 
@@ -298,14 +296,11 @@ namespace BudgetExecution
                         && File.Exists( _paths[ i ] ) )
                     {
                         string _name = Path.GetFileNameWithoutExtension( _paths[ i ] );
+                        using FileStream _stream = File.Open( _paths[ i ], FileMode.Open );
+                        Bitmap _img = new Bitmap( _stream ) { Tag = _name };
 
-                        using( FileStream _stream = File.Open( _paths[ i ], FileMode.Open ) )
-                        {
-                            Bitmap _img = new Bitmap( _stream ) { Tag = _name };
-
-                            _list.ImageSize = size;
-                            _list?.Images?.Add( _img );
-                        }
+                        _list.ImageSize = size;
+                        _list?.Images?.Add( _img );
                     }
                 }
 
@@ -334,16 +329,12 @@ namespace BudgetExecution
                     if( !string.IsNullOrEmpty( _list[ i ] )
                         && File.Exists( _list[ i ] ) )
                     {
-                        using( FileStream _stream = File.Open( _list[ i ], FileMode.Open ) )
-                        {
-                            using( Bitmap _img = new Bitmap( _stream ) )
-                            {
-                                CarouselImage _carouselImage = new CarouselImage
-                                    { ItemImage = _img };
+                        using FileStream _stream = File.Open( _list[ i ], FileMode.Open );
+                        using Bitmap _img = new Bitmap( _stream );
+                        CarouselImage _carouselImage = new CarouselImage
+                            { ItemImage = _img };
 
-                                _carouselImages.Add( _carouselImage );
-                            }
-                        }
+                        _carouselImages.Add( _carouselImage );
                     }
                 }
 
@@ -362,11 +353,9 @@ namespace BudgetExecution
         [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
         protected void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

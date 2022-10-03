@@ -310,11 +310,8 @@ namespace BudgetExecution
         {
             try
             {
-                using( Message _message = new Message( "Not Yet Implemented." ) )
-                {
-                    _message?.ShowDialog( );
-                }
-
+                using Message _message = new Message( "Not Yet Implemented." );
+                _message?.ShowDialog( );
                 return default( DataRow );
             }
             catch( Exception ex )
@@ -360,11 +357,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         protected static void Fail( Exception ex )
         {
-            using( Error _error = new Error( ex ) )
-            {
-                _error?.SetText( );
-                _error?.ShowDialog( );
-            }
+            using Error _error = new Error( ex );
+            _error?.SetText( );
+            _error?.ShowDialog( );
         }
     }
 }

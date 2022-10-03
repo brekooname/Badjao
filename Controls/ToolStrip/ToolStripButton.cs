@@ -145,135 +145,103 @@ namespace BudgetExecution
                         }
                         case ToolType.ExcelButton:
                         {
-                            using( var _excelForm = new ExcelForm( ) )
-                            {
-                                _excelForm?.ShowDialog( );
-                            }
-
+                            using var _excelForm = new ExcelForm( );
+                            _excelForm?.ShowDialog( );
                             break;
                         }
                         case ToolType.PdfButton:
                         {
-                            using( var _message = new PdfForm( ) )
-                            {
-                                _message?.ShowDialog( );
-                            }
-
+                            using var _message = new PdfForm( );
+                            _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.PrintButton:
                         {
-                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
-                            {
-                                _message?.ShowDialog( );
-                            }
-
+                            using var _message = new Message( "NOT YET IMPLEMENTED!" );
+                            _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.AddRecordButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
-
+                            using var _dataConfig = new EditDialog( _button.ToolType );
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.AddButton:
                         {
-                            using( var _dataConfig = new EditDialog( _button.ToolType ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
-
+                            using var _dataConfig = new EditDialog( _button.ToolType );
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.AddTableButton:
                         case ToolType.AddDatabaseButton:
                         case ToolType.AddColumnButton:
                         {
-                            using( var _dataConfig =
-                                new DefinitionDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new DefinitionDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.EditColumnButton:
                         {
-                            using( var _dataConfig =
-                                new DefinitionDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new DefinitionDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.DeleteColumnButton:
                         {
-                            using( var _dataConfig =
-                                new DefinitionDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new DefinitionDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.DeleteTableButton:
                         {
-                            using( var _dataConfig =
-                                new DefinitionDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new DefinitionDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.DeleteDatabaseButton:
                         {
-                            using( var _dataConfig =
-                                new DefinitionDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new DefinitionDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.DeleteRecordButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.DeleteButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.RefreshButton:
                         {
-                            using( var _message = new Message( "NOT YET IMPLEMENTED!" ) )
-                            {
-                                _message?.ShowDialog( );
-                            }
-
+                            using var _message = new Message( "NOT YET IMPLEMENTED!" );
+                            _message?.ShowDialog( );
                             break;
                         }
                         case ToolType.ExitButton:
@@ -296,132 +264,101 @@ namespace BudgetExecution
                         }
                         case ToolType.FilterDataButton:
                         {
-                            using( var _dataConfig = new LookupDialog( ) )
-                            {
-                                _dataConfig.BindingSource = BindingSource;
-                                _dataConfig?.ShowDialog( );
-                            }
-
+                            using var _dataConfig = new LookupDialog( );
+                            _dataConfig.BindingSource = BindingSource;
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.EditSqlButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
-                                _dataConfig.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                            _dataConfig.ShowDialog( );
                             break;
                         }
                         case ToolType.EditButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
-                                _dataConfig.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                            _dataConfig.ShowDialog( );
                             break;
                         }
                         case ToolType.EditRecordButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.CopyButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.UpdateButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.InsertButton:
                         {
-                            using( var _dataConfig =
-                                new EditDialog( _button.ToolType, BindingSource ) )
-                            {
-                                _dataConfig.Current = BindingSource.GetCurrentDataRow( );
-                                _dataConfig?.ShowDialog( );
-                            }
+                            using var _dataConfig =
+                                new EditDialog( _button.ToolType, BindingSource );
 
+                            _dataConfig.Current = BindingSource.GetCurrentDataRow( );
+                            _dataConfig?.ShowDialog( );
                             break;
                         }
                         case ToolType.CalculatorButton:
                         {
-                            using( var _calculator = new CalculationForm( ) )
-                            {
-                                _calculator?.ShowDialog( );
-                            }
-
+                            using var _calculator = new CalculationForm( );
+                            _calculator?.ShowDialog( );
                             break;
                         }
                         case ToolType.CalendarButton:
                         {
-                            using( var _form = new CalendarForm( ) )
-                            {
-                                _form?.ShowDialog( );
-                            }
-
+                            using var _form = new CalendarForm( );
+                            _form?.ShowDialog( );
                             break;
                         }
                         case ToolType.BrowseButton:
                         {
-                            using( var _browser = new FileBrowser( ) )
-                            {
-                                _browser?.ShowDialog( );
-                            }
-
+                            using var _browser = new FileBrowser( );
+                            _browser?.ShowDialog( );
                             break;
                         }
                         case ToolType.HomeButton:
                         {
-                            using( var _form = new MainForm( ) )
-                            {
-                                _form?.ShowDialog( );
-                            }
-
+                            using var _form = new MainForm( );
+                            _form?.ShowDialog( );
                             break;
                         }
                         case ToolType.ChartButton:
                         {
                             if( BindingSource?.DataSource != null )
                             {
-                                using( var _chartForm = new ChartForm( ) )
-                                {
-                                    _chartForm.BindingSource = BindingSource;
-                                    _chartForm?.ShowDialog( );
-                                }
+                                using var _chartForm = new ChartForm( );
+                                _chartForm.BindingSource = BindingSource;
+                                _chartForm?.ShowDialog( );
                             }
                             else if( BindingSource == null )
                             {
-                                using( var _form = new ChartForm( ) )
-                                {
-                                    _form?.ShowDialog( );
-                                }
+                                using var _form = new ChartForm( );
+                                _form?.ShowDialog( );
                             }
 
                             break;
@@ -451,13 +388,11 @@ namespace BudgetExecution
                 try
                 {
                     var _path = ConfigurationManager.AppSettings[ "ToolStrip" ] + $"{ToolType}.png";
-                    using( var _stream = File.Open( _path, FileMode.Open ) )
+                    using var _stream = File.Open( _path, FileMode.Open );
+                    if( _stream != null )
                     {
-                        if( _stream != null )
-                        {
-                            var _image = Image.FromStream( _stream );
-                            Image = _image;
-                        }
+                        var _image = Image.FromStream( _stream );
+                        Image = _image;
                     }
                 }
                 catch( Exception ex )
@@ -478,15 +413,13 @@ namespace BudgetExecution
                 try
                 {
                     var _path = ConfigurationManager.AppSettings[ "ToolStrip" ] + $"{toolType}.png";
-                    using( var _stream = File.Open( _path, FileMode.Open ) )
+                    using var _stream = File.Open( _path, FileMode.Open );
+                    if( _stream != null )
                     {
-                        if( _stream != null )
-                        {
-                            var _image = Image.FromStream( _stream );
-                            return _image != null
-                                ? _image
-                                : default( Image );
-                        }
+                        var _image = Image.FromStream( _stream );
+                        return _image != null
+                            ? _image
+                            : default( Image );
                     }
                 }
                 catch( Exception ex )
