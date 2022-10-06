@@ -1,6 +1,6 @@
-﻿// <copyright file = "TypeObject.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "TypeObject.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -10,7 +10,6 @@ namespace BudgetExecution
     using System.Xml.Serialization;
     using System.IO;
     using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Web.Script.Serialization;
 
@@ -41,7 +40,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    TypeObject.Fail( ex );
                     return default( T );
                 }
             }
@@ -72,7 +71,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    TypeObject.Fail( ex );
                     return default( string );
                 }
             }
@@ -95,14 +94,13 @@ namespace BudgetExecution
                 try
                 {
                     BinaryFormatter _formatter = new BinaryFormatter( );
-
                     using MemoryStream _stream = new MemoryStream( );
                     _formatter.Serialize( _stream, type );
                     return Encoding.Default.GetString( _stream.ToArray( ) );
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    TypeObject.Fail( ex );
                     return default( string );
                 }
             }
@@ -126,14 +124,13 @@ namespace BudgetExecution
                 try
                 {
                     BinaryFormatter _formatter = new BinaryFormatter( );
-
                     using MemoryStream _stream = new MemoryStream( );
                     _formatter.Serialize( _stream, type );
                     return encoding.GetString( _stream.ToArray( ) );
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    TypeObject.Fail( ex );
                     return default( string );
                 }
             }
@@ -155,17 +152,15 @@ namespace BudgetExecution
                 try
                 {
                     XmlSerializer _serializer = new XmlSerializer( type.GetType( ) );
-
                     using StringWriter _writer = new StringWriter( );
                     _serializer?.Serialize( _writer, type );
                     string _string = _writer?.GetStringBuilder( )?.ToString( );
-
                     using StringReader _reader = new StringReader( _string );
                     return _reader?.ReadToEnd( ) ?? String.Empty;
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    TypeObject.Fail( ex );
                     return default( string );
                 }
             }
@@ -190,7 +185,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    TypeObject.Fail( ex );
                     return default( string );
                 }
             }

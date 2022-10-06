@@ -42,7 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>10</LangVersion>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <CodeAnalysisRuleSet>
     </CodeAnalysisRuleSet>
@@ -470,6 +470,7 @@
     </Compile>
     <Compile Include="IO\DataPath.cs" />
     <Compile Include="Interfaces\IPath.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.6.2.AssemblyAttributes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Controls\MainForm.cs">
       <SubType>Form</SubType>
@@ -835,6 +836,49 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include=".git\config" />
+    <Content Include=".git\description" />
+    <Content Include=".git\FETCH_HEAD" />
+    <Content Include=".git\HEAD" />
+    <Content Include=".git\hooks\applypatch-msg.sample" />
+    <Content Include=".git\hooks\commit-msg.sample" />
+    <Content Include=".git\hooks\fsmonitor-watchman.sample" />
+    <Content Include=".git\hooks\post-update.sample" />
+    <Content Include=".git\hooks\pre-applypatch.sample" />
+    <Content Include=".git\hooks\pre-commit.sample" />
+    <Content Include=".git\hooks\pre-merge-commit.sample" />
+    <Content Include=".git\hooks\pre-push.sample" />
+    <Content Include=".git\hooks\pre-rebase.sample" />
+    <Content Include=".git\hooks\pre-receive.sample" />
+    <Content Include=".git\hooks\prepare-commit-msg.sample" />
+    <Content Include=".git\hooks\push-to-checkout.sample" />
+    <Content Include=".git\hooks\update.sample" />
+    <Content Include=".git\index" />
+    <Content Include=".git\info\exclude" />
+    <Content Include=".git\logs\HEAD" />
+    <Content Include=".git\logs\refs\heads\main" />
+    <Content Include=".git\logs\refs\remotes\origin\HEAD" />
+    <Content Include=".git\logs\refs\remotes\origin\main" />
+    <Content Include=".git\objects\pack\pack-1b987af2394659d4c2fb95f976a0442b3f012657.idx" />
+    <Content Include=".git\objects\pack\pack-1b987af2394659d4c2fb95f976a0442b3f012657.pack" />
+    <Content Include=".git\objects\pack\pack-d3853387044e3b8ed251b5e82252bab888b8fb57.idx" />
+    <Content Include=".git\objects\pack\pack-d3853387044e3b8ed251b5e82252bab888b8fb57.pack" />
+    <Content Include=".git\objects\pack\pack-f411334d4d33f7e506f7ce1893124a0f483f0515.idx" />
+    <Content Include=".git\objects\pack\pack-f411334d4d33f7e506f7ce1893124a0f483f0515.pack" />
+    <Content Include=".git\ORIG_HEAD" />
+    <Content Include=".git\packed-refs" />
+    <Content Include=".git\refs\heads\main" />
+    <Content Include=".git\refs\remotes\origin\HEAD" />
+    <Content Include=".git\refs\remotes\origin\main" />
+    <Content Include=".idea\.idea.Badjao\.idea\.gitignore" />
+    <Content Include=".idea\.idea.Badjao\.idea\codeStyles\codeStyleConfig.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\dataSources.local.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\dataSources.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\encodings.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\indexLayout.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\projectSettingsUpdater.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\vcs.xml" />
+    <Content Include=".idea\.idea.Badjao\.idea\workspace.xml" />
     <Content Include="Data\Database\Access\DataModels\ALTERTABLE\AlterTableAddColumn.sql" />
     <Content Include="Data\Database\Access\DataModels\ALTERTABLE\AlterTableRenameColumn.sql" />
     <Content Include="Data\Database\Access\DataModels\ALTERTABLE\AlterTableRenameTable.sql" />
@@ -1403,6 +1447,7 @@
     <None Include="Resources\Images\Data\png\DataSearchIcon.png" />
     <Content Include="Lib\System.Data.OleDb.dll" />
     <Content Include="Lib\System.Runtime.Serialization.Json.dll" />
+    <Content Include="obj\Debug\Badjao.csproj.AssemblyReference.cache" />
     <Content Include="Resources\Images\Dialog\ico\ApplicationError.ico" />
     <None Include="Resources\Images\Interface\Save.png" />
     <None Include="Resources\Images\Filter\png\Filter.png" />
@@ -2792,6 +2837,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".git\objects\info" />
+    <Folder Include=".git\refs\tags" />
+    <Folder Include=".idea\.idea.Badjao\.idea\dataSources" />
+    <Folder Include="bin\Debug" />
     <Folder Include="Data\Database\SqlServer\DataModels\ALTERTABLE\" />
     <Folder Include="Data\Database\SqlServer\DataModels\SELECT\" />
     <Folder Include="Data\Database\SqlServer\DataModels\UPDATE\" />
@@ -2985,8 +3034,8 @@
     <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\compilers\cs\NET Framework\Framework Assemblies\System.ComponentModel.dll</HintPath>
+    <Reference Include="System.ComponentModel, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\Microsoft.NET.Build.Extensions\net461\lib\System.ComponentModel.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Console, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -3021,24 +3070,18 @@
     <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\System.Drawing.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-      <HintPath>..\..\compilers\cs\NET Framework\Framework Assemblies\System.IO.Compression.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.IO.Compression.FileSystem\v4.0_4.0.0.0__b77a5c561934e089\System.IO.Compression.FileSystem.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression.ZipFile, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>Lib\System.IO.Compression.ZipFile.dll</HintPath>
     </Reference>
-    <Reference Include="System.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\compilers\cs\NET Framework\sdk\.NETCore\v4.5\System.Linq.dll</HintPath>
+    <Reference Include="System.Linq, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\Microsoft.NET.Build.Extensions\net461\lib\System.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Runtime.Serialization\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\compilers\cs\NET Framework\sdk\.NETCore\v4.5\System.Runtime.Serialization.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization.Xml, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <HintPath>Lib\System.Runtime.Serialization.Xml.dll</HintPath>

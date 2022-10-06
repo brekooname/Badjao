@@ -159,8 +159,10 @@ namespace BudgetExecution
 
                 var _fileDialog = new OpenFileDialog
                 {
-                    Title = "Excel File Dialog", InitialDirectory = @"c:\",
-                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*", FilterIndex = 2,
+                    Title = "Excel File Dialog",
+                    InitialDirectory = @"c:\",
+                    Filter = "All files (*.*)|*.*|All files (*.*)|*.*", 
+                    FilterIndex = 2,
                     RestoreDirectory = true
                 };
 
@@ -260,7 +262,7 @@ namespace BudgetExecution
 
                     if( !string.IsNullOrEmpty( _cstring ) )
                     {
-                        var _sql = $"SELECT * FROM {sheetName}$";
+                        var _sql = $"SELECT * FROM { sheetName }$";
                         var _csvQuery = new CsvQuery( _cstring, _sql );
                         var _dataAdapter = _csvQuery.GetAdapter( ) as OleDbDataAdapter;
                         _dataAdapter?.Fill( _dataSet, sheetName );
