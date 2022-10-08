@@ -7,9 +7,9 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using System.ComponentModel;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
     using System.Windows.Forms;
 
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
@@ -73,7 +73,7 @@ namespace BudgetExecution
             try
             {
                 if( bindingSource is BindingSource _binder
-                    && _binder?.DataSource != null )
+                   && _binder?.DataSource != null )
                 {
                     try
                     {
@@ -105,24 +105,23 @@ namespace BudgetExecution
             try
             {
                 if( bindingList != null
-                    && dict?.Any( ) == true )
+                   && dict?.Any( ) == true )
                 {
                     try
                     {
                         BindingSource _list = bindingList as BindingSource;
                         string _filter = string.Empty;
-
                         foreach( KeyValuePair<string, object> _kvp in dict )
                         {
                             if( !string.IsNullOrEmpty( _kvp.Key )
-                                && _kvp.Value != null )
+                               && _kvp.Value != null )
                             {
                                 _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                             }
                         }
 
                         if( _filter?.Length > 0
-                            && _list?.DataSource != null )
+                           && _list?.DataSource != null )
                         {
                             BindingSource.DataSource = _list?.DataSource;
                             BindingSource.Filter = _filter?.TrimEnd( " AND".ToCharArray( ) );
@@ -175,11 +174,10 @@ namespace BudgetExecution
                 try
                 {
                     string filter = string.Empty;
-
                     foreach( KeyValuePair<string, object> kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( kvp.Key )
-                            && kvp.Value != null )
+                           && kvp.Value != null )
                         {
                             filter += $"{kvp.Key} = {kvp.Value} AND";
                         }
@@ -209,7 +207,7 @@ namespace BudgetExecution
             where T2 : struct
         {
             if( data?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field ) )
+               && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {
@@ -273,16 +271,15 @@ namespace BudgetExecution
             where T2 : IDictionary<string, object>
         {
             if( data?.Any( ) == true
-                && dict?.Any( ) == true )
+               && dict?.Any( ) == true )
             {
                 try
                 {
                     string _filter = string.Empty;
-
                     foreach( KeyValuePair<string, object> _kvp in dict )
                     {
                         if( !string.IsNullOrEmpty( _kvp.Key )
-                            && _kvp.Value != null )
+                           && _kvp.Value != null )
                         {
                             _filter += $"{_kvp.Key} = {_kvp.Value} AND";
                         }
@@ -310,7 +307,7 @@ namespace BudgetExecution
             where T2 : struct
         {
             if( data?.Any( ) == true
-                && Enum.IsDefined( typeof( Field ), field ) )
+               && Enum.IsDefined( typeof( Field ), field ) )
             {
                 try
                 {

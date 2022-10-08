@@ -9,7 +9,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.Linq;
+    using System.IO;
     using System.Windows.Forms;
     using OfficeOpenXml;
     using Syncfusion.Windows.Forms.Spreadsheet;
@@ -223,11 +223,11 @@ namespace BudgetExecution
         public virtual void SetFilePath( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath ) )
+               && File.Exists( filePath ) )
             {
                 try
                 {
-                    FilePath = System.IO.Path.GetFileName( filePath );
+                    FilePath = Path.GetFileName( filePath );
                 }
                 catch( Exception e )
                 {
@@ -244,11 +244,11 @@ namespace BudgetExecution
         public virtual void SetFileName( string filePath )
         {
             if( !string.IsNullOrEmpty( filePath )
-                && System.IO.File.Exists( filePath ) )
+               && File.Exists( filePath ) )
             {
                 try
                 {
-                    FilePath = System.IO.Path.GetFileNameWithoutExtension( filePath );
+                    FilePath = Path.GetFileNameWithoutExtension( filePath );
                 }
                 catch( Exception e )
                 {
@@ -267,12 +267,10 @@ namespace BudgetExecution
         {
             try
             {
-                string _path = System.IO.Path.GetExtension( filePath );
-
+                string _path = Path.GetExtension( filePath );
                 if( _path != null )
                 {
                     EXT _extension = (EXT)Enum.Parse( typeof( EXT ), _path );
-
                     return Enum.IsDefined( typeof( EXT ), _extension )
                         ? _extension
                         : default( EXT );
@@ -296,26 +294,25 @@ namespace BudgetExecution
         public virtual string GetConnectionString( string extension, string filePath )
         {
             if( !string.IsNullOrEmpty( extension )
-                && !string.IsNullOrEmpty( filePath ) )
+               && !string.IsNullOrEmpty( filePath ) )
             {
                 try
                 {
                     switch( extension?.ToUpper( ) )
                     {
                         case ".XLS":
-
                         {
                             return @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 8.0;HDR=YES;\"";
                         }
-                        case ".XLSX":
 
+                        case ".XLSX":
                         {
                             return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 12.0;HDR=YES;\"";
                         }
-                        default:
 
+                        default:
                         {
                             return @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath
                                 + ";Extended Properties=\"Excel 12.0;HDR=YES;\"";
@@ -340,7 +337,7 @@ namespace BudgetExecution
         public virtual void SetExcelForm( Spreadsheet spreadSheet, DataTable dataTable )
         {
             if( spreadSheet != null
-                && dataTable?.Rows?.Count > 0 )
+               && dataTable?.Rows?.Count > 0 )
             {
                 try
                 {
@@ -371,7 +368,7 @@ namespace BudgetExecution
         public virtual void SetExcelForm( Spreadsheet spreadSheet, DataGridView dataGrid )
         {
             if( spreadSheet != null
-                && dataGrid?.DataSource != null )
+               && dataGrid?.DataSource != null )
             {
                 try
                 {
@@ -379,9 +376,7 @@ namespace BudgetExecution
                     spreadSheet.Workbook.ActiveSheet.StandardWidth = 12.5f;
                     string name = spreadSheet.Workbook.Worksheets[ 0 ].Name;
                     IWorksheet sheet = spreadSheet.Workbook.ActiveSheet;
-
                     spreadSheet.ActiveSheet.ImportDataGridView( dataGrid, 1, 1, true, false );
-
                     IRange range = sheet.UsedRange;
                     IListObject table = sheet.ListObjects.Create( name, range );
                     table.BuiltInTableStyle = TableBuiltInStyles.TableStyleMedium2;
@@ -403,13 +398,12 @@ namespace BudgetExecution
         public void AddComment( Grid grid, string text )
         {
             if( grid != null
-                && !string.IsNullOrEmpty( text ) )
+               && !string.IsNullOrEmpty( text ) )
             {
                 try
                 {
                     using ExcelRange _range = grid?.GetRange( );
                     ExcelComment _excelComment = _range?.AddComment( text, "Budget" );
-
                     if( _excelComment != null )
                     {
                         _excelComment.From.Row = _range.Start.Row;
@@ -466,8 +460,8 @@ namespace BudgetExecution
         public void SetText( Grid grid, IEnumerable<string> text )
         {
             if( grid != null
-                && text?.Any( ) == true
-                && grid.GetRange( ).Any( ) )
+               && text?.Any( ) == true
+               && grid.GetRange( )?.Any( ) )
             {
                 try
                 {
@@ -476,7 +470,7 @@ namespace BudgetExecution
                         foreach( string caption in text )
                         {
                             if( cell != null
-                                && !string.IsNullOrEmpty( caption ) )
+                               && !string.IsNullOrEmpty( caption ) )
                             {
                                 cell.Value = caption;
                             }
