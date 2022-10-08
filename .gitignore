@@ -267,6 +267,9 @@ __pycache__/
 # Database files
 *.accdb
 *.db
+*.mdf
+*.sdf
+*.ldf
 
 *.laccdb
 *.accdb
